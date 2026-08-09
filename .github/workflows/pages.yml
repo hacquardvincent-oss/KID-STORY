@@ -1,10 +1,15 @@
 name: Publier le site
 
-# Publie le site sur GitHub Pages à chaque envoi sur la branche principale.
-# La première exécution active Pages toute seule (enablement: true).
+# Publie le site sur GitHub Pages.
+#
+# Déclenchement manuel uniquement, tant que Pages n'est pas activé : GitHub
+# refuse qu'un workflow crée le site lui-même, il faut d'abord aller une fois
+# dans Settings → Pages → Source : GitHub Actions.
+#
+# Une fois Pages activé, on peut publier à chaque envoi en ajoutant :
+#   push:
+#     branches: [claude/stories-gallery-site-4zdcps]
 on:
-  push:
-    branches: [claude/stories-gallery-site-4zdcps]
   workflow_dispatch:
 
 permissions:
