@@ -16,7 +16,7 @@ var UNIVERSES = [
   {
     id: 'peppa',
     name: 'Peppa Pig',
-    tagline: 'Liva, Peppa et toute la famille Pig',
+    tagline: 'Livia, Peppa et toute la famille Pig',
     emoji: '🐷',
     c1: '#ff6fa5',
     c2: '#ffd166',
@@ -25,7 +25,7 @@ var UNIVERSES = [
       items: [
         { t: 'parasol', x: 120, y: 470, s: .9 },
         { t: 'peppa', x: 330, y: 480, s: 1, pose: 'wave' },
-        { t: 'liva', x: 470, y: 480, s: 1, pose: 'armsup' },
+        { t: 'livia', x: 470, y: 480, s: 1, pose: 'armsup' },
         { t: 'sandcastle', x: 660, y: 500, s: .9 },
         { t: 'starfish', x: 210, y: 520 }
       ]
@@ -35,7 +35,7 @@ var UNIVERSES = [
       /* ---------- Histoire 1 ---------- */
       {
         id: 'plage',
-        title: 'Liva et Peppa à la plage',
+        title: 'Livia et Peppa à la plage',
         subtitle: 'Le premier jour des vacances',
         tag: 'Été',
         minutes: 5,
@@ -44,7 +44,7 @@ var UNIVERSES = [
           items: [
             { t: 'parasol', x: 130, y: 480, s: .95 },
             { t: 'peppa', x: 340, y: 490, s: 1.05, pose: 'wave' },
-            { t: 'liva', x: 480, y: 490, s: 1.05, pose: 'armsup' },
+            { t: 'livia', x: 480, y: 490, s: 1.05, pose: 'armsup' },
             { t: 'sandcastle', x: 680, y: 510, s: .95 },
             { t: 'crab', x: 200, y: 530 }
           ]
@@ -56,13 +56,13 @@ var UNIVERSES = [
               back: [{ t: 'house', x: 170, y: 400, s: .95 }],
               items: [
                 { t: 'peppa', x: 430, y: 480, s: 1, pose: 'wave' },
-                { t: 'liva', x: 580, y: 480, s: 1, pose: 'hold', hat: '#8ed67a' },
+                { t: 'livia', x: 580, y: 480, s: 1, pose: 'hold', hat: '#8ed67a' },
                 { t: 'suitcase', x: 660, y: 500, s: .8 },
                 { t: 'flower', x: 90, y: 520 }, { t: 'flower', x: 760, y: 510, color: '#ffd93d' }
               ],
-              bubbles: [{ x: 330, y: 40, w: 300, t: 'Liva ! Aujourd\'hui on va à la plage !', tx: 430, ty: 218 }]
+              bubbles: [{ x: 330, y: 40, w: 300, t: 'Livia ! Aujourd\'hui on va à la plage !', tx: 430, ty: 218 }]
             },
-            text: "Le soleil se lève sur la maison de Peppa. C'est le tout premier jour des grandes vacances ! Liva sonne à la porte avec son sac de plage et son plus beau chapeau."
+            text: "Le soleil se lève sur la maison de Peppa. C'est le tout premier jour des grandes vacances ! Livia sonne à la porte avec son sac de plage et son plus beau chapeau."
           },
           {
             scene: {
@@ -85,7 +85,7 @@ var UNIVERSES = [
               sfx: [{ t: 'VROUM !', x: 150, y: 380, fs: 52, rot: -10 }],
               bubbles: [{ x: 430, y: 50, w: 300, t: 'La mer ! Je vois la mer !', tx: 420, ty: 400 }]
             },
-            text: "En route ! Pendant tout le trajet, Liva et Peppa chantent à tue-tête. Et puis, tout en haut de la colline, la mer apparaît : toute bleue, toute brillante."
+            text: "En route ! Pendant tout le trajet, Livia et Peppa chantent à tue-tête. Et puis, tout en haut de la colline, la mer apparaît : toute bleue, toute brillante."
           },
           {
             scene: {
@@ -93,12 +93,12 @@ var UNIVERSES = [
               back: [{ t: 'parasol', x: 130, y: 470, s: 1 }, { t: 'towel', x: 250, y: 505 }],
               items: [
                 { t: 'peppa', x: 420, y: 500, s: 1.05, pose: 'jump' },
-                { t: 'liva', x: 590, y: 500, s: 1.05, pose: 'jump' },
+                { t: 'livia', x: 590, y: 500, s: 1.05, pose: 'jump' },
                 { t: 'bucket', x: 700, y: 520, s: .8 }
               ],
               sfx: [{ t: 'YOUPI !', x: 500, y: 190, fs: 46, rot: -6, color: '#fff' }]
             },
-            text: "Le sable est tout chaud sous les pieds. Peppa plante le parasol, Liva étale les serviettes, et toutes les deux se mettent à sauter partout. Les vacances, ça commence fort !"
+            text: "Le sable est tout chaud sous les pieds. Peppa plante le parasol, Livia étale les serviettes, et toutes les deux se mettent à sauter partout. Les vacances, ça commence fort !"
           },
           {
             scene: {
@@ -106,7 +106,7 @@ var UNIVERSES = [
               items: [
                 { t: 'bucket', x: 200, y: 520, s: .9 },
                 { t: 'peppa', x: 330, y: 505, s: 1, pose: 'hold' },
-                { t: 'liva', x: 460, y: 505, s: 1, pose: 'point' },
+                { t: 'livia', x: 460, y: 505, s: 1, pose: 'point' },
                 { t: 'sandcastle', x: 660, y: 510, s: 1 }
               ],
               bubbles: [{ x: 300, y: 34, w: 290, t: 'Et là, il faut un pont-levis !', tx: 470, ty: 240 }]
@@ -119,20 +119,20 @@ var UNIVERSES = [
               back: [{ t: 'sandcastle', x: 660, y: 512, s: 1 }],
               items: [
                 { t: 'peppa', x: 300, y: 505, s: 1, pose: 'armsup', mood: 'wow' },
-                { t: 'liva', x: 440, y: 505, s: 1, pose: 'armsup', mood: 'wow' }
+                { t: 'livia', x: 440, y: 505, s: 1, pose: 'armsup', mood: 'wow' }
               ],
               front: [{ t: 'splash', x: 596, y: 512, s: 1 }],
               sfx: [{ t: 'SPLOUCH !', x: 645, y: 288, fs: 44, rot: -12, color: '#bfe8f7' }],
               bubbles: [{ x: 210, y: 34, w: 280, t: 'Oh non ! Ma tour !', tx: 320, ty: 250 }]
             },
-            text: "Mais une petite vague coquine arrive sur la pointe des pieds… et emporte une tour ! Peppa ouvre grand la bouche. Puis Liva éclate de rire, et tout le monde rigole avec elle."
+            text: "Mais une petite vague coquine arrive sur la pointe des pieds… et emporte une tour ! Peppa ouvre grand la bouche. Puis Livia éclate de rire, et tout le monde rigole avec elle."
           },
           {
             scene: {
               bg: 'sea',
               items: [
                 { t: 'peppa', x: 230, y: 450, s: 1, pose: 'swim' },
-                { t: 'liva', x: 400, y: 455, s: 1, pose: 'swim' },
+                { t: 'livia', x: 400, y: 455, s: 1, pose: 'swim' },
                 { t: 'daddy', x: 620, y: 480, s: 1.2, pose: 'armsup' },
                 { t: 'float', x: 740, y: 480, s: .9 }
               ],
@@ -149,26 +149,26 @@ var UNIVERSES = [
               bg: 'beach',
               back: [{ t: 'parasol', x: 640, y: 480, s: 1 }, { t: 'towel', x: 380, y: 520, s: 1.1 }],
               items: [
-                { t: 'liva', x: 250, y: 500, s: 1, pose: 'hold', mood: 'wow' },
+                { t: 'livia', x: 250, y: 500, s: 1, pose: 'hold', mood: 'wow' },
                 { t: 'icecream', x: 320, y: 470, s: 1.1 },
                 { t: 'peppa', x: 480, y: 505, s: 1, pose: 'hold' },
                 { t: 'watermelon', x: 620, y: 530, s: .8 }
               ],
               bubbles: [{ x: 420, y: 34, w: 300, t: 'Trois boules, s\'il te plaît !', tx: 300, ty: 250 }]
             },
-            text: "Après la baignade, c'est l'heure du goûter : des tranches de pastèque bien fraîches et une glace à trois boules. Liva choisit fraise, vanille et myrtille. Peppa prend la même chose."
+            text: "Après la baignade, c'est l'heure du goûter : des tranches de pastèque bien fraîches et une glace à trois boules. Livia choisit fraise, vanille et myrtille. Peppa prend la même chose."
           },
           {
             scene: {
               bg: 'beach', time: 'sunset',
               items: [
                 { t: 'peppa', x: 320, y: 500, s: 1, pose: 'stand' },
-                { t: 'liva', x: 450, y: 500, s: 1, pose: 'hold' },
+                { t: 'livia', x: 450, y: 500, s: 1, pose: 'hold' },
                 { t: 'shell', x: 620, y: 520, s: 1.3 }
               ],
-              bubbles: [{ x: 380, y: 40, w: 300, t: 'Vivement demain, Liva !', tx: 340, ty: 250 }]
+              bubbles: [{ x: 380, y: 40, w: 300, t: 'Vivement demain, Livia !', tx: 340, ty: 250 }]
             },
-            text: "Le soleil descend tout doucement dans la mer. Liva a trouvé un coquillage rose : elle le gardera pour toujours. « Vivement demain », chuchote Peppa. Et voilà, l'été ne fait que commencer."
+            text: "Le soleil descend tout doucement dans la mer. Livia a trouvé un coquillage rose : elle le gardera pour toujours. « Vivement demain », chuchote Peppa. Et voilà, l'été ne fait que commencer."
           }
         ]
       },
@@ -187,7 +187,7 @@ var UNIVERSES = [
             { t: 'campfire', x: 470, y: 480, s: 1.1 },
             { t: 'log', x: 640, y: 462 },
             { t: 'peppa', x: 630, y: 452, s: .95, pose: 'sit' },
-            { t: 'liva', x: 330, y: 490, s: .95, pose: 'wave' }
+            { t: 'livia', x: 330, y: 490, s: .95, pose: 'wave' }
           ]
         },
         pages: [
@@ -198,12 +198,12 @@ var UNIVERSES = [
                 { t: 'car', x: 180, y: 470, s: .85 },
                 { t: 'daddy', x: 430, y: 500, s: 1.25, pose: 'hold' },
                 { t: 'peppa', x: 590, y: 500, s: 1, pose: 'jump' },
-                { t: 'liva', x: 710, y: 500, s: 1, pose: 'jump' },
+                { t: 'livia', x: 710, y: 500, s: 1, pose: 'jump' },
                 { t: 'suitcase', x: 300, y: 505, s: .8 }
               ],
               bubbles: [{ x: 330, y: 34, w: 300, t: 'Ce soir, on dort dans la tente !', tx: 430, ty: 210 }]
             },
-            text: "La voiture s'arrête au bord de la forêt. Ce soir, personne ne dort dans un lit : tout le monde dort sous la tente ! Peppa et Liva sautent de joie dans l'herbe."
+            text: "La voiture s'arrête au bord de la forêt. Ce soir, personne ne dort dans un lit : tout le monde dort sous la tente ! Peppa et Livia sautent de joie dans l'herbe."
           },
           {
             scene: {
@@ -211,7 +211,7 @@ var UNIVERSES = [
               items: [
                 { t: 'tent', x: 420, y: 500, s: .95, rot: 22 },
                 { t: 'peppa', x: 690, y: 505, s: 1, pose: 'shrug', mood: 'wow' },
-                { t: 'liva', x: 150, y: 505, s: 1, pose: 'shrug', mood: 'wow' }
+                { t: 'livia', x: 150, y: 505, s: 1, pose: 'shrug', mood: 'wow' }
               ],
               sfx: [{ t: 'BADABOUM !', x: 400, y: 210, fs: 46, rot: -8 }],
               bubbles: [{ x: 500, y: 40, w: 260, t: 'Papa ? Ça va ?', tx: 660, ty: 250 }]
@@ -225,7 +225,7 @@ var UNIVERSES = [
               items: [
                 { t: 'mummy', x: 420, y: 505, s: 1.2, pose: 'point' },
                 { t: 'suzy', x: 580, y: 505, s: 1, pose: 'wave' },
-                { t: 'liva', x: 740, y: 505, s: 1, pose: 'wave' }
+                { t: 'livia', x: 740, y: 505, s: 1, pose: 'wave' }
               ],
               bubbles: [{ x: 470, y: 34, w: 300, t: 'Coucou ! Je campe à côté !', tx: 590, ty: 250 }]
             },
@@ -235,14 +235,14 @@ var UNIVERSES = [
             scene: {
               bg: 'forest',
               items: [
-                { t: 'liva', x: 300, y: 510, s: 1, pose: 'hold' },
+                { t: 'livia', x: 300, y: 510, s: 1, pose: 'hold' },
                 { t: 'peppa', x: 450, y: 510, s: 1, pose: 'hold' },
                 { t: 'log', x: 600, y: 520, s: .8 },
                 { t: 'butterfly', x: 660, y: 260, s: 1.2 }
               ],
               bubbles: [{ x: 380, y: 34, w: 300, t: 'On cherche du bois pour le feu !', tx: 320, ty: 250 }]
             },
-            text: "Il faut du bois pour le feu de camp. Dans la forêt, Liva ramasse les plus grosses branches et Peppa les plus petites. Un papillon orange les accompagne tout le long du chemin."
+            text: "Il faut du bois pour le feu de camp. Dans la forêt, Livia ramasse les plus grosses branches et Peppa les plus petites. Un papillon orange les accompagne tout le long du chemin."
           },
           {
             scene: {
@@ -250,7 +250,7 @@ var UNIVERSES = [
               back: [{ t: 'tent', x: 130, y: 490, s: .9 }],
               items: [
                 { t: 'log', x: 300, y: 500 },
-                { t: 'liva', x: 290, y: 490, s: .95, pose: 'hold' },
+                { t: 'livia', x: 290, y: 490, s: .95, pose: 'hold' },
                 { t: 'campfire', x: 470, y: 505, s: 1.1 },
                 { t: 'log', x: 650, y: 500 },
                 { t: 'peppa', x: 640, y: 490, s: .95, pose: 'hold' },
@@ -258,7 +258,7 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 30, w: 300, t: 'Le mien est tout doré !', tx: 320, ty: 250, fill: '#fff6ec' }]
             },
-            text: "La nuit tombe et le feu de camp crépite. Chacun fait griller un chamallow au bout d'un bâton. Celui de Liva est doré à point. Celui de Papa Pig est… tout noir."
+            text: "La nuit tombe et le feu de camp crépite. Chacun fait griller un chamallow au bout d'un bâton. Celui de Livia est doré à point. Celui de Papa Pig est… tout noir."
           },
           {
             scene: {
@@ -267,31 +267,31 @@ var UNIVERSES = [
               items: [
                 { t: 'campfire', x: 200, y: 505, s: .9 },
                 { t: 'peppa', x: 380, y: 500, s: 1, pose: 'shrug', mood: 'wow' },
-                { t: 'liva', x: 520, y: 500, s: 1, pose: 'point', mood: 'wow' }
+                { t: 'livia', x: 520, y: 500, s: 1, pose: 'point', mood: 'wow' }
               ],
               sfx: [{ t: 'CRAC…', x: 660, y: 372, fs: 38, rot: 6, color: '#ffd93d' }],
               bubbles: [{ x: 300, y: 30, w: 300, t: 'Il y a quelque chose là-bas…', tx: 520, ty: 250, fill: '#fff' }]
             },
-            text: "Soudain, CRAC ! Un bruit dans les buissons. Peppa se cache derrière Liva. Liva se cache derrière Peppa. Personne n'ose plus bouger un seul cil."
+            text: "Soudain, CRAC ! Un bruit dans les buissons. Peppa se cache derrière Livia. Livia se cache derrière Peppa. Personne n'ose plus bouger un seul cil."
           },
           {
             scene: {
               bg: 'camp', time: 'night',
               items: [
                 { t: 'hedgehog', x: 620, y: 522, s: 1.5 },
-                { t: 'liva', x: 300, y: 505, s: 1, pose: 'point' },
+                { t: 'livia', x: 300, y: 505, s: 1, pose: 'point' },
                 { t: 'peppa', x: 440, y: 505, s: 1, pose: 'wave' }
               ],
               bubbles: [{ x: 120, y: 30, w: 300, t: 'C\'est un tout petit hérisson !', tx: 300, ty: 250 }]
             },
-            text: "Les buissons s'écartent… et un tout petit hérisson sort son museau. Il vient juste renifler les chamallows. Liva lui dit bonsoir tout doucement, et il repart en trottinant."
+            text: "Les buissons s'écartent… et un tout petit hérisson sort son museau. Il vient juste renifler les chamallows. Livia lui dit bonsoir tout doucement, et il repart en trottinant."
           },
           {
             scene: {
               bg: 'camp', time: 'night',
               back: [{ t: 'tent', x: 660, y: 500, s: .9 }],
               items: [
-                { t: 'liva', x: 300, y: 500, s: 1, pose: 'armsup' },
+                { t: 'livia', x: 300, y: 500, s: 1, pose: 'armsup' },
                 { t: 'peppa', x: 440, y: 500, s: 1, pose: 'armsup' }
               ],
               front: [
@@ -311,9 +311,9 @@ var UNIVERSES = [
                 { t: 'campfire', x: 660, y: 505, s: .7 },
                 { t: 'log', x: 660, y: 508, s: .7 }
               ],
-              bubbles: [{ x: 90, y: 60, w: 300, t: 'Bonne nuit Liva… Bonne nuit Peppa…', tx: 300, ty: 400, fill: '#fff6ec' }]
+              bubbles: [{ x: 90, y: 60, w: 300, t: 'Bonne nuit Livia… Bonne nuit Peppa…', tx: 300, ty: 400, fill: '#fff6ec' }]
             },
-            text: "Dans la tente, les deux amies se glissent dans leurs sacs de couchage. Dehors, on entend juste les grillons. « Bonne nuit Liva. » « Bonne nuit Peppa. » Et tout le monde s'endort en souriant."
+            text: "Dans la tente, les deux amies se glissent dans leurs sacs de couchage. Dehors, on entend juste les grillons. « Bonne nuit Livia. » « Bonne nuit Peppa. » Et tout le monde s'endort en souriant."
           }
         ]
       },
@@ -331,7 +331,7 @@ var UNIVERSES = [
             { t: 'slide', x: 250, y: 470, s: .9 },
             { t: 'pool', x: 470, y: 500, s: .95 },
             { t: 'peppa', x: 620, y: 470, s: 1, pose: 'jump' },
-            { t: 'liva', x: 380, y: 470, s: 1, pose: 'armsup' }
+            { t: 'livia', x: 380, y: 470, s: 1, pose: 'armsup' }
           ]
         },
         pages: [
@@ -341,7 +341,7 @@ var UNIVERSES = [
               back: [{ t: 'pool', x: 420, y: 500, s: 1.25 }],
               items: [
                 { t: 'peppa', x: 250, y: 520, s: 1, pose: 'swim' },
-                { t: 'liva', x: 470, y: 524, s: 1, pose: 'swim' },
+                { t: 'livia', x: 470, y: 524, s: 1, pose: 'swim' },
                 { t: 'float', x: 660, y: 520, s: .85 }
               ],
               front: [
@@ -359,7 +359,7 @@ var UNIVERSES = [
               items: [
                 { t: 'slide', x: 180, y: 505, s: 1 },
                 { t: 'peppa', x: 620, y: 512, s: 1, pose: 'point', mood: 'wow' },
-                { t: 'liva', x: 740, y: 512, s: 1, pose: 'stand' }
+                { t: 'livia', x: 740, y: 512, s: 1, pose: 'stand' }
               ],
               bubbles: [{ x: 400, y: 24, w: 300, t: 'Regarde comme il est haut !', tx: 610, ty: 226 }]
             },
@@ -371,7 +371,7 @@ var UNIVERSES = [
               back: [{ t: 'slide', x: 240, y: 500, s: 1 }],
               items: [
                 { t: 'peppa', x: 480, y: 500, s: 1, pose: 'shrug', mood: 'sad' },
-                { t: 'liva', x: 640, y: 500, s: 1, pose: 'hold' }
+                { t: 'livia', x: 640, y: 500, s: 1, pose: 'hold' }
               ],
               bubbles: [{ x: 300, y: 34, w: 290, t: 'Je crois que… je préfère regarder.', tx: 470, ty: 250 }]
             },
@@ -382,12 +382,12 @@ var UNIVERSES = [
               bg: 'garden',
               back: [{ t: 'slide', x: 220, y: 500, s: 1 }],
               items: [
-                { t: 'liva', x: 470, y: 500, s: 1, pose: 'hold' },
+                { t: 'livia', x: 470, y: 500, s: 1, pose: 'hold' },
                 { t: 'peppa', x: 600, y: 500, s: 1, pose: 'hold' }
               ],
               bubbles: [{ x: 330, y: 30, w: 320, t: 'On descend ensemble, je te tiens la main !', tx: 470, ty: 250 }]
             },
-            text: "Alors Liva vient tout près et lui prend la main. « On y va ensemble », dit-elle. « Toi devant, moi derrière. Et si tu as peur, tu fermes les yeux. »"
+            text: "Alors Livia vient tout près et lui prend la main. « On y va ensemble », dit-elle. « Toi devant, moi derrière. Et si tu as peur, tu fermes les yeux. »"
           },
           {
             scene: {
@@ -395,7 +395,7 @@ var UNIVERSES = [
               back: [{ t: 'pool', x: 540, y: 516, s: 1.15 }],
               items: [
                 { t: 'slide', x: 170, y: 505, s: 1.05 },
-                { t: 'liva', x: 350, y: 372, s: .9, pose: 'jump', mood: 'wow' },
+                { t: 'livia', x: 350, y: 372, s: .9, pose: 'jump', mood: 'wow' },
                 { t: 'peppa', x: 470, y: 430, s: .95, pose: 'jump', mood: 'wow' }
               ],
               front: [{ t: 'splash', x: 600, y: 508, s: 1.1 }],
@@ -409,7 +409,7 @@ var UNIVERSES = [
               back: [{ t: 'pool', x: 400, y: 505, s: 1.3 }],
               items: [
                 { t: 'peppa', x: 260, y: 524, s: 1, pose: 'armsup', mood: 'wow' },
-                { t: 'liva', x: 540, y: 524, s: 1, pose: 'armsup', mood: 'wow' }
+                { t: 'livia', x: 540, y: 524, s: 1, pose: 'armsup', mood: 'wow' }
               ],
               front: [
                 { t: 'splash', x: 400, y: 500, s: .85 },
@@ -440,12 +440,12 @@ var UNIVERSES = [
               items: [
                 { t: 'mudpuddle', x: 420, y: 520, s: 1.1 },
                 { t: 'peppa', x: 380, y: 500, s: 1, pose: 'jump' },
-                { t: 'liva', x: 560, y: 505, s: 1, pose: 'wave' }
+                { t: 'livia', x: 560, y: 505, s: 1, pose: 'wave' }
               ],
               sfx: [{ t: 'SPLATCH !', x: 300, y: 300, fs: 42, rot: -8, color: '#c99a5f' }],
               bubbles: [{ x: 130, y: 34, w: 300, t: 'La meilleure flaque de l\'été !', tx: 370, ty: 250 }]
             },
-            text: "Sur le chemin du retour, il y a une magnifique flaque de boue. Peppa saute dedans à pieds joints, évidemment. Liva saute aussi. Et Maman Pig soupire… en riant."
+            text: "Sur le chemin du retour, il y a une magnifique flaque de boue. Peppa saute dedans à pieds joints, évidemment. Livia saute aussi. Et Maman Pig soupire… en riant."
           }
         ]
       },
@@ -461,7 +461,7 @@ var UNIVERSES = [
           bg: 'hill',
           items: [
             { t: 'kite', x: 620, y: 150, s: 1.1 },
-            { t: 'liva', x: 300, y: 500, s: 1.05, pose: 'point' },
+            { t: 'livia', x: 300, y: 500, s: 1.05, pose: 'point' },
             { t: 'peppa', x: 440, y: 505, s: 1.05, pose: 'armsup' }
           ]
         },
@@ -471,19 +471,19 @@ var UNIVERSES = [
               bg: 'hill',
               items: [
                 { t: 'peppa', x: 300, y: 500, s: 1, pose: 'stand' },
-                { t: 'liva', x: 440, y: 500, s: 1, pose: 'point' },
+                { t: 'livia', x: 440, y: 500, s: 1, pose: 'point' },
                 { t: 'flower', x: 700, y: 500, color: '#ffd93d' },
                 { t: 'flower', x: 130, y: 520 }
               ],
               sfx: [{ t: 'FFFOU…', x: 640, y: 200, fs: 36, rot: -6, color: '#fff' }]
             },
-            text: "Ce matin, le vent souffle sur la colline. Il fait danser l'herbe et décoiffe tout le monde. « Un vent pareil », dit Liva, « c'est un vent à cerf-volant ! »"
+            text: "Ce matin, le vent souffle sur la colline. Il fait danser l'herbe et décoiffe tout le monde. « Un vent pareil », dit Livia, « c'est un vent à cerf-volant ! »"
           },
           {
             scene: {
               bg: 'garden',
               items: [
-                { t: 'liva', x: 300, y: 500, s: 1, pose: 'hold' },
+                { t: 'livia', x: 300, y: 500, s: 1, pose: 'hold' },
                 { t: 'kite', x: 420, y: 400, s: .9 },
                 { t: 'peppa', x: 560, y: 500, s: 1, pose: 'hold' }
               ],
@@ -507,21 +507,21 @@ var UNIVERSES = [
             scene: {
               bg: 'hill',
               items: [
-                { t: 'liva', x: 260, y: 505, s: 1.05, pose: 'run' },
+                { t: 'livia', x: 260, y: 505, s: 1.05, pose: 'run' },
                 { t: 'tether', x: 365, y: 350, dx: 213, dy: -84, qx: 150, qy: 30 },
                 { t: 'kite', x: 600, y: 220, s: 1 }
               ],
               sfx: [{ t: 'ÇA MONTE !', x: 420, y: 150, fs: 42, rot: -8 }],
-              bubbles: [{ x: 60, y: 34, w: 280, t: 'Cours, Liva, cours !', tx: 260, ty: 250 }]
+              bubbles: [{ x: 60, y: 34, w: 280, t: 'Cours, Livia, cours !', tx: 260, ty: 250 }]
             },
-            text: "Alors Liva se met à courir. Elle court, elle court, la ficelle se tend… et d'un coup, le cerf-volant s'envole ! Il monte, il monte, plus haut que les arbres."
+            text: "Alors Livia se met à courir. Elle court, elle court, la ficelle se tend… et d'un coup, le cerf-volant s'envole ! Il monte, il monte, plus haut que les arbres."
           },
           {
             scene: {
               bg: 'hill',
               items: [
                 { t: 'kite', x: 560, y: 130, s: 1.2 },
-                { t: 'liva', x: 430, y: 505, s: 1, pose: 'hold' },
+                { t: 'livia', x: 430, y: 505, s: 1, pose: 'hold' },
                 { t: 'tether', x: 490, y: 409, dx: 70, dy: -224, qx: 90, qy: -90 },
                 { t: 'peppa', x: 300, y: 505, s: 1, pose: 'armsup', mood: 'wow' },
                 { t: 'seagull', x: 180, y: 160, s: 1.6 }
@@ -536,7 +536,7 @@ var UNIVERSES = [
               items: [
                 { t: 'kite', x: 640, y: 320, s: .9, rot: 25 },
                 { t: 'peppa', x: 280, y: 505, s: 1, pose: 'shrug', mood: 'sad' },
-                { t: 'liva', x: 410, y: 505, s: 1, pose: 'point', mood: 'wow' },
+                { t: 'livia', x: 410, y: 505, s: 1, pose: 'point', mood: 'wow' },
                 { t: 'tether', x: 510, y: 357, dx: 130, dy: -10, qx: 80, qy: 60 }
               ],
               sfx: [{ t: 'OH NON !', x: 400, y: 180, fs: 42, rot: -8, color: '#ff8a5c' }]
@@ -550,7 +550,7 @@ var UNIVERSES = [
               items: [
                 { t: 'daddy', x: 500, y: 420, s: 1.15, pose: 'armsup' },
                 { t: 'kite', x: 560, y: 300, s: .8 },
-                { t: 'liva', x: 250, y: 505, s: 1, pose: 'armsup' },
+                { t: 'livia', x: 250, y: 505, s: 1, pose: 'armsup' },
                 { t: 'peppa', x: 730, y: 505, s: 1, pose: 'armsup' }
               ],
               bubbles: [{ x: 120, y: 30, w: 300, t: 'Papa Pig au secours !', tx: 250, ty: 240 }]
@@ -562,7 +562,7 @@ var UNIVERSES = [
               bg: 'hill', time: 'sunset',
               items: [
                 { t: 'towel', x: 400, y: 510, s: 1.2 },
-                { t: 'liva', x: 300, y: 495, s: .95, pose: 'sit' },
+                { t: 'livia', x: 300, y: 495, s: .95, pose: 'sit' },
                 { t: 'peppa', x: 520, y: 495, s: .95, pose: 'sit', flip: true },
                 { t: 'watermelon', x: 420, y: 520, s: .7 },
                 { t: 'kite', x: 700, y: 420, s: .7, rot: 15 }
@@ -581,7 +581,7 @@ var UNIVERSES = [
   {
     id: 'frozen',
     name: 'La Reine des Neiges',
-    tagline: 'Liva, Elsa, Anna et Olaf',
+    tagline: 'Livia, Elsa, Anna et Olaf',
     emoji: '❄️',
     c1: '#5fb8f0',
     c2: '#b39ff5',
@@ -590,7 +590,7 @@ var UNIVERSES = [
       items: [
         { t: 'castleIce', x: 660, y: 440, s: .6 },
         { t: 'elsa', x: 280, y: 480, s: 1.05, pose: 'magic' },
-        { t: 'livaPrincess', x: 430, y: 480, s: 1, pose: 'wave' },
+        { t: 'liviaPrincess', x: 430, y: 480, s: 1, pose: 'wave' },
         { t: 'olaf', x: 540, y: 490, s: .85 },
         { t: 'snowflake', x: 120, y: 140, r: 26 }
       ]
@@ -607,7 +607,7 @@ var UNIVERSES = [
           items: [
             { t: 'castleIce', x: 650, y: 450, s: .62 },
             { t: 'elsa', x: 260, y: 490, s: 1.1, pose: 'magic' },
-            { t: 'livaPrincess', x: 420, y: 490, s: 1.05, pose: 'armsup' },
+            { t: 'liviaPrincess', x: 420, y: 490, s: 1.05, pose: 'armsup' },
             { t: 'olaf', x: 540, y: 495, s: .9 }
           ]
         },
@@ -617,7 +617,7 @@ var UNIVERSES = [
               bg: 'village',
               items: [
                 { t: 'anna', x: 320, y: 500, s: 1.05, pose: 'shrug' },
-                { t: 'livaPrincess', x: 480, y: 500, s: 1, pose: 'hold' },
+                { t: 'liviaPrincess', x: 480, y: 500, s: 1, pose: 'hold' },
                 { t: 'flower', x: 120, y: 520, color: '#ff7ab8' }
               ],
               sfx: [{ t: 'OUF, QUELLE CHALEUR !', x: 210, y: 424, fs: 26, rot: -4, color: '#ffd93d' }],
@@ -629,20 +629,20 @@ var UNIVERSES = [
             scene: {
               bg: 'village',
               items: [
-                { t: 'livaPrincess', x: 300, y: 500, s: 1.05, pose: 'wave' },
+                { t: 'liviaPrincess', x: 300, y: 500, s: 1.05, pose: 'wave' },
                 { t: 'elsa', x: 470, y: 500, s: 1.1, pose: 'wave' },
                 { t: 'anna', x: 620, y: 500, s: 1.05, pose: 'armsup' }
               ],
               bubbles: [{ x: 60, y: 34, w: 300, t: 'Bonjour Elsa ! Bonjour Anna !', tx: 300, ty: 250 }]
             },
-            text: "C'est ce moment-là que choisit Liva pour arriver au château, avec sa couronne toute neuve. Elsa et Anna courent l'accueillir. « Tu tombes très bien », sourit Elsa."
+            text: "C'est ce moment-là que choisit Livia pour arriver au château, avec sa couronne toute neuve. Elsa et Anna courent l'accueillir. « Tu tombes très bien », sourit Elsa."
           },
           {
             scene: {
               bg: 'snow',
               items: [
                 { t: 'elsa', x: 260, y: 500, s: 1.15, pose: 'magic' },
-                { t: 'livaPrincess', x: 500, y: 500, s: 1.05, pose: 'shrug', mood: 'wow' },
+                { t: 'liviaPrincess', x: 500, y: 500, s: 1.05, pose: 'shrug', mood: 'wow' },
                 { t: 'snowflake', x: 400, y: 180, r: 30 },
                 { t: 'snowflake', x: 620, y: 250, r: 20 },
                 { t: 'sparkle', x: 340, y: 300, r: 26 }
@@ -650,14 +650,14 @@ var UNIVERSES = [
               sfx: [{ t: 'FRIIIISSS !', x: 620, y: 400, fs: 40, rot: -8, color: '#bfe8f7' }],
               bubbles: [{ x: 120, y: 30, w: 300, t: 'Un petit hiver, juste pour nous !', tx: 260, ty: 250 }]
             },
-            text: "Elsa lève les mains, et FRIIIISS ! Des flocons se mettent à tomber sur la cour du château. Un tout petit hiver, rien que pour elles. Liva n'en revient pas."
+            text: "Elsa lève les mains, et FRIIIISS ! Des flocons se mettent à tomber sur la cour du château. Un tout petit hiver, rien que pour elles. Livia n'en revient pas."
           },
           {
             scene: {
               bg: 'snow',
               items: [
                 { t: 'olaf', x: 300, y: 500, s: 1.1 },
-                { t: 'livaPrincess', x: 500, y: 500, s: 1.05, pose: 'point' },
+                { t: 'liviaPrincess', x: 500, y: 500, s: 1.05, pose: 'point' },
                 { t: 'snowflake', x: 680, y: 200, r: 22 }
               ],
               bubbles: [{ x: 60, y: 34, w: 300, t: 'J\'adore les étés enneigés !', tx: 300, ty: 250 }]
@@ -669,7 +669,7 @@ var UNIVERSES = [
               bg: 'snow',
               items: [
                 { t: 'anna', x: 250, y: 500, s: 1.05, pose: 'jump' },
-                { t: 'livaPrincess', x: 470, y: 500, s: 1.05, pose: 'armsup', mood: 'wow' },
+                { t: 'liviaPrincess', x: 470, y: 500, s: 1.05, pose: 'armsup', mood: 'wow' },
                 { t: 'elsa', x: 660, y: 500, s: 1.1, pose: 'jump' },
                 { t: 'snowball', x: 380, y: 300, r: 16 },
                 { t: 'snowball', x: 560, y: 250, r: 12 },
@@ -677,7 +677,7 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PAF !', x: 330, y: 200, fs: 44, rot: -10, color: '#fff' }]
             },
-            text: "Alors commence la plus grande bataille de boules de neige de l'histoire d'Arendelle. Anna vise Elsa. Elsa vise Liva. Liva vise… tout le monde à la fois !"
+            text: "Alors commence la plus grande bataille de boules de neige de l'histoire d'Arendelle. Anna vise Elsa. Elsa vise Livia. Livia vise… tout le monde à la fois !"
           },
           {
             scene: {
@@ -685,19 +685,19 @@ var UNIVERSES = [
               back: [{ t: 'castleIce', x: 640, y: 440, s: .6 }],
               items: [
                 { t: 'slide', x: 240, y: 500, s: 1, color: '#bfe8f7' },
-                { t: 'livaPrincess', x: 460, y: 440, s: .95, pose: 'jump', mood: 'wow' },
+                { t: 'liviaPrincess', x: 460, y: 440, s: .95, pose: 'jump', mood: 'wow' },
                 { t: 'olaf', x: 620, y: 500, s: .8 }
               ],
               sfx: [{ t: 'WHIIII !', x: 600, y: 232, fs: 38, rot: -8, color: '#7fd8f0' }]
             },
-            text: "Ensuite, Elsa dessine dans l'air un immense toboggan de glace qui descend jusqu'à la cour. Liva se lance la première. Olaf compte les tours : dix-sept !"
+            text: "Ensuite, Elsa dessine dans l'air un immense toboggan de glace qui descend jusqu'à la cour. Livia se lance la première. Olaf compte les tours : dix-sept !"
           },
           {
             scene: {
               bg: 'snow',
               items: [
                 { t: 'elsa', x: 280, y: 500, s: 1.1, pose: 'hold' },
-                { t: 'livaPrincess', x: 430, y: 500, s: 1.05, pose: 'hold' },
+                { t: 'liviaPrincess', x: 430, y: 500, s: 1.05, pose: 'hold' },
                 { t: 'anna', x: 580, y: 500, s: 1.05, pose: 'hold' },
                 { t: 'sparkle', x: 150, y: 200, r: 20 },
                 { t: 'sparkle', x: 700, y: 260, r: 16 },
@@ -710,7 +710,7 @@ var UNIVERSES = [
             scene: {
               bg: 'village',
               items: [
-                { t: 'livaPrincess', x: 300, y: 500, s: 1.05, pose: 'hold', mood: 'wow' },
+                { t: 'liviaPrincess', x: 300, y: 500, s: 1.05, pose: 'hold', mood: 'wow' },
                 { t: 'icecream', x: 370, y: 470, s: 1.1 },
                 { t: 'anna', x: 540, y: 500, s: 1.05, pose: 'hold' },
                 { t: 'olaf', x: 680, y: 505, s: .8 }
@@ -725,14 +725,14 @@ var UNIVERSES = [
               back: [{ t: 'castleIce', x: 620, y: 450, s: .55 }],
               items: [
                 { t: 'elsa', x: 250, y: 500, s: 1.05, pose: 'stand' },
-                { t: 'livaPrincess', x: 380, y: 500, s: 1, pose: 'stand' },
+                { t: 'liviaPrincess', x: 380, y: 500, s: 1, pose: 'stand' },
                 { t: 'anna', x: 500, y: 500, s: 1, pose: 'stand' },
                 { t: 'olaf', x: 600, y: 505, s: .75 }
               ],
               front: [{ t: 'sparkle', x: 200, y: 160, r: 20 }, { t: 'sparkle', x: 500, y: 120, r: 16 }],
-              bubbles: [{ x: 420, y: 40, w: 300, t: 'Reviens l\'été prochain, Liva !', tx: 300, ty: 250 }]
+              bubbles: [{ x: 420, y: 40, w: 300, t: 'Reviens l\'été prochain, Livia !', tx: 300, ty: 250 }]
             },
-            text: "Le soir, la neige d'Elsa fond doucement et l'été revient. Toutes les quatre regardent le ciel s'allumer. « Reviens l'été prochain », dit Elsa. Liva promet, la main sur le cœur."
+            text: "Le soir, la neige d'Elsa fond doucement et l'été revient. Toutes les quatre regardent le ciel s'allumer. « Reviens l'été prochain », dit Elsa. Livia promet, la main sur le cœur."
           }
         ]
       },
@@ -740,13 +740,13 @@ var UNIVERSES = [
       {
         id: 'nuit-etoiles-glacees',
         title: 'La nuit des étoiles glacées',
-        subtitle: 'Une aurore pour Liva',
+        subtitle: 'Une aurore pour Livia',
         tag: 'Nuit',
         minutes: 5,
         cover: {
           bg: 'snow', time: 'night',
           items: [
-            { t: 'livaPrincess', x: 300, y: 490, s: 1.05, pose: 'armsup' },
+            { t: 'liviaPrincess', x: 300, y: 490, s: 1.05, pose: 'armsup' },
             { t: 'elsa', x: 460, y: 490, s: 1.1, pose: 'magic' },
             { t: 'olaf', x: 610, y: 495, s: .85 },
             { t: 'sparkle', x: 160, y: 170, r: 24 }
@@ -758,19 +758,19 @@ var UNIVERSES = [
               bg: 'snow', time: 'night',
               back: [{ t: 'castleIce', x: 660, y: 450, s: .58 }],
               items: [
-                { t: 'livaPrincess', x: 320, y: 500, s: 1.05, pose: 'stand', mood: 'wow' },
+                { t: 'liviaPrincess', x: 320, y: 500, s: 1.05, pose: 'stand', mood: 'wow' },
                 { t: 'elsa', x: 480, y: 500, s: 1.1, pose: 'point' }
               ],
               bubbles: [{ x: 380, y: 34, w: 300, t: 'Cette nuit, le ciel va danser.', tx: 480, ty: 250 }]
             },
-            text: "Ce soir-là, Elsa réveille Liva tout doucement. « Habille-toi bien chaud », murmure-t-elle. « Cette nuit, le ciel va danser. » Liva enfile son manteau en trois secondes."
+            text: "Ce soir-là, Elsa réveille Livia tout doucement. « Habille-toi bien chaud », murmure-t-elle. « Cette nuit, le ciel va danser. » Livia enfile son manteau en trois secondes."
           },
           {
             scene: {
               bg: 'forest', time: 'night',
               items: [
                 { t: 'elsa', x: 300, y: 510, s: 1.1, pose: 'hold' },
-                { t: 'livaPrincess', x: 450, y: 510, s: 1.05, pose: 'hold' },
+                { t: 'liviaPrincess', x: 450, y: 510, s: 1.05, pose: 'hold' },
                 { t: 'olaf', x: 600, y: 515, s: .8 },
                 { t: 'lantern', x: 715, y: 384, s: 1.3 }
               ]
@@ -783,7 +783,7 @@ var UNIVERSES = [
               items: [
                 { t: 'anna', x: 280, y: 505, s: 1.05, pose: 'wave' },
                 { t: 'sled', x: 500, y: 520, s: 1.1 },
-                { t: 'livaPrincess', x: 620, y: 505, s: 1.05, pose: 'wave' }
+                { t: 'liviaPrincess', x: 620, y: 505, s: 1.05, pose: 'wave' }
               ],
               bubbles: [{ x: 60, y: 34, w: 300, t: 'Vous partiez sans moi ?!', tx: 280, ty: 250 }]
             },
@@ -794,7 +794,7 @@ var UNIVERSES = [
               bg: 'snow', time: 'night',
               items: [
                 { t: 'sled', x: 400, y: 508, s: 1.7 },
-                { t: 'livaPrincess', x: 330, y: 478, s: .95, pose: 'armsup', mood: 'wow' },
+                { t: 'liviaPrincess', x: 330, y: 478, s: .95, pose: 'armsup', mood: 'wow' },
                 { t: 'anna', x: 480, y: 478, s: .95, pose: 'armsup', mood: 'wow' }
               ],
               sfx: [{ t: 'WHOUUUU !', x: 640, y: 250, fs: 40, rot: -10, color: '#bfe8f7' }]
@@ -807,18 +807,18 @@ var UNIVERSES = [
               items: [
                 { t: 'snowpine', x: 140, y: 500, s: .9 },
                 { t: 'olaf', x: 400, y: 505, s: 1.1, mood: 'wow' },
-                { t: 'livaPrincess', x: 580, y: 505, s: 1.05, pose: 'point' }
+                { t: 'liviaPrincess', x: 580, y: 505, s: 1.05, pose: 'point' }
               ],
               bubbles: [{ x: 200, y: 30, w: 300, t: 'Mes pieds sont perdus ! Encore !', tx: 400, ty: 250 }]
             },
-            text: "En chemin, Olaf perd ses pieds dans une congère. Liva les retrouve tout de suite : ils étaient juste derrière lui. « Merci ! » dit Olaf. « Ça m'arrive tout le temps. »"
+            text: "En chemin, Olaf perd ses pieds dans une congère. Livia les retrouve tout de suite : ils étaient juste derrière lui. « Merci ! » dit Olaf. « Ça m'arrive tout le temps. »"
           },
           {
             scene: {
               bg: 'snow', time: 'night', aurora: true,
               items: [
                 { t: 'elsa', x: 300, y: 500, s: 1.15, pose: 'magic' },
-                { t: 'livaPrincess', x: 540, y: 500, s: 1.05, pose: 'armsup', mood: 'wow' }
+                { t: 'liviaPrincess', x: 540, y: 500, s: 1.05, pose: 'armsup', mood: 'wow' }
               ],
               front: [
                 { t: 'sparkle', x: 200, y: 200, r: 24 }, { t: 'sparkle', x: 640, y: 160, r: 20 },
@@ -833,7 +833,7 @@ var UNIVERSES = [
               bg: 'snow', time: 'night', aurora: true,
               items: [
                 { t: 'elsa', x: 260, y: 505, s: 1.05, pose: 'stand' },
-                { t: 'livaPrincess', x: 390, y: 505, s: 1, pose: 'stand' },
+                { t: 'liviaPrincess', x: 390, y: 505, s: 1, pose: 'stand' },
                 { t: 'anna', x: 510, y: 505, s: 1, pose: 'stand' },
                 { t: 'olaf', x: 620, y: 510, s: .8 }
               ],
@@ -845,13 +845,13 @@ var UNIVERSES = [
             scene: {
               bg: 'bedroom',
               items: [
-                { t: 'livaPrincess', x: 300, y: 500, s: 1.05, pose: 'stand', mood: 'sleep' },
+                { t: 'liviaPrincess', x: 300, y: 500, s: 1.05, pose: 'stand', mood: 'sleep' },
                 { t: 'elsa', x: 480, y: 500, s: 1.1, pose: 'hold' },
                 { t: 'sparkle', x: 660, y: 320, r: 18 }
               ],
               bubbles: [{ x: 90, y: 40, w: 300, t: 'Bonne nuit, petite princesse.', tx: 460, ty: 250, fill: '#fff6ec' }]
             },
-            text: "Au retour, Liva a les yeux qui se ferment tout seuls. Elsa la borde et pose un flocon de glace sur sa table de nuit : un flocon qui ne fond jamais. « Bonne nuit, petite princesse. »"
+            text: "Au retour, Livia a les yeux qui se ferment tout seuls. Elsa la borde et pose un flocon de glace sur sa table de nuit : un flocon qui ne fond jamais. « Bonne nuit, petite princesse. »"
           }
         ]
       }

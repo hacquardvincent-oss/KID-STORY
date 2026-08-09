@@ -1,7 +1,7 @@
 {
-  "name": "Les histoires de Liva",
+  "name": "Les histoires de Livia",
   "short_name": "Histoires",
-  "description": "La bibliothèque des histoires du soir de Liva, en bandes dessinées.",
+  "description": "La bibliothèque des histoires du soir de Livia, en bandes dessinées.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

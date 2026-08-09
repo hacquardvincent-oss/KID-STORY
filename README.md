@@ -1,6 +1,6 @@
-# 📖 Les histoires de Liva
+# 📖 Les histoires de Livia
 
-Un petit site (pensé pour le téléphone) qui répertorie les histoires du soir de Liva,
+Un petit site (pensé pour le téléphone) qui répertorie les histoires du soir de Livia,
 rangées par univers, feuilletables en **Cover Flow** façon iPod, et lisibles sous
 forme de **bande dessinée**.
 
@@ -28,7 +28,7 @@ externe, aucune dépendance, aucun build**. On ouvre `index.html` et ça marche.
 
 | Histoire | Planches |
 |---|---|
-| Liva et Peppa à la plage | 9 |
+| Livia et Peppa à la plage | 9 |
 | Le camping sous les étoiles | 9 |
 | La grande journée à la piscine | 8 |
 | Le cerf-volant de l'été | 8 |
@@ -53,6 +53,20 @@ python3 -m http.server 8000
 
 (Ouvrir `index.html` directement en `file://` marche aussi dans la plupart des cas.)
 
+### Une seule page à partager
+
+Pour envoyer le site par message, le déposer sur n'importe quel hébergeur ou le
+garder sur le téléphone sans connexion, on peut tout replier dans un seul fichier
+(CSS, JavaScript et police compris) :
+
+```bash
+node outils/construire-page-unique.js
+# → dist/histoires-de-livia.html  (~170 Ko, aucune requête vers l'extérieur)
+```
+
+Le fichier est déjà présent dans `dist/` ; il suffit de relancer la commande après
+avoir ajouté une histoire.
+
 ### Le mettre en ligne (GitHub Pages)
 
 Dans le dépôt : **Settings → Pages → Source: Deploy from a branch**, puis choisir la
@@ -69,7 +83,7 @@ dans le tableau `stories` de l'univers voulu :
 ```js
 {
   id: 'ma-nouvelle-histoire',        // identifiant unique dans l'univers (sert à l'URL)
-  title: 'Liva et le grand toboggan',
+  title: 'Livia et le grand toboggan',
   subtitle: 'Un mercredi au parc',
   tag: 'Été',
   minutes: 5,
@@ -128,7 +142,7 @@ Chaque élément s'écrit :
 `bedroom`, `plain`
 
 **Personnages**
-`peppa`, `george`, `mummy`, `daddy`, `suzy`, `liva`, `livaPrincess`, `elsa`, `anna`,
+`peppa`, `george`, `mummy`, `daddy`, `suzy`, `livia`, `liviaPrincess`, `elsa`, `anna`,
 `olaf`, `dino`
 
 **Poses** (`pose`)
@@ -158,7 +172,7 @@ Toujours dans `stories.js`, un nouvel objet en haut du tableau `UNIVERSES` :
 {
   id: 'pat-patrouille',
   name: 'Pat\' Patrouille',
-  tagline: 'Liva part en mission',
+  tagline: 'Livia part en mission',
   emoji: '🐶',
   c1: '#4ea8f0',            // les deux couleurs du dégradé de l'univers
   c2: '#ffd166',
@@ -190,8 +204,14 @@ assets/css/style.css        toute la mise en page, mobile d'abord
 assets/js/art.js            le moteur de dessin SVG (décors, personnages, objets, bulles)
 assets/js/stories.js        les histoires (c'est ici qu'on écrit)
 assets/js/app.js            navigation, Cover Flow, lecteur
+assets/fonts/               la police Fredoka (SIL Open Font License 1.1)
 outils/apercu-histoire.html planche de contrôle pour les dessins
+outils/construire-page-unique.js  replie tout le site dans un fichier
+dist/histoires-de-livia.html      le résultat, prêt à partager
 ```
+
+Rien n'est chargé depuis un serveur extérieur : ni police, ni script, ni image.
+Le site fonctionne hors connexion une fois la page ouverte.
 
 Le moteur de dessin repose sur une astuce simple : chaque forme est tracée deux fois,
 d'abord en gros trait d'encre puis remplie par-dessus. Le contour obtenu épouse

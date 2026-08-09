@@ -1073,13 +1073,13 @@
     mummy: function (o) { return pig({ skin: '#f7a8c4', cloth: '#f2803d', pose: o.pose, mood: o.mood, hat: o.hat }); },
     daddy: function (o) { return pig({ skin: '#f7a8c4', cloth: '#6fbf5c', top: true, glasses: true, pose: o.pose, mood: o.mood, hat: o.hat }); },
     suzy: function (o) { return sheep({ pose: o.pose, mood: o.mood, cloth: '#8ec9f0' }); },
-    liva: function (o) {
+    livia: function (o) {
       return girl({
         skin: '#f6cba6', hair: '#6f4327', dress: o.dress || '#3ec9c9', hairstyle: o.hairstyle || 'pigtails',
         bows: '#ff5c8a', pose: o.pose, mood: o.mood, hat: o.hat, trim: '#fff1a8'
       });
     },
-    livaPrincess: function (o) {
+    liviaPrincess: function (o) {
       return girl({
         skin: '#f6cba6', hair: '#6f4327', dress: o.dress || '#a98cf0', hairstyle: o.hairstyle || 'twobraids',
         bows: '#ffd93d', pose: o.pose, mood: o.mood, crown: '#ffd93d', trim: '#ffe9c9'

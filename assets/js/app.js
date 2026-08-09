@@ -5,7 +5,7 @@
   'use strict';
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
-  var STORE = 'liva.v1.';
+  var STORE = 'livia.v1.';
 
   /* ---------------- petites aides ---------------- */
   function store(k, v) {
