@@ -8,6 +8,24 @@
    listées dans le README.
    ============================================================ */
 
+/* L'illustration de la une. Comme dans un magazine, elle rassemble les
+   personnages de tous les univers du numéro. */
+var COUVERTURE = {
+  bg: 'beach',
+  items: [
+    { t: 'parasol', x: 150, y: 486, s: .95 },
+    { t: 'sandcastle', x: 680, y: 540, s: .82 },
+    { t: 'peppa', x: 268, y: 528, s: 1.3, pose: 'wave' },
+    { t: 'livia', x: 410, y: 538, s: 1.55, pose: 'armsup' },
+    { t: 'elsa', x: 556, y: 524, s: 1.18, pose: 'magic' },
+    { t: 'olaf', x: 662, y: 536, s: .8 },
+    { t: 'starfish', x: 330, y: 552, s: .9 },
+    { t: 'crab', x: 214, y: 548, s: .95 },
+    { t: 'snowflake', x: 604, y: 150, r: 22 },
+    { t: 'sparkle', x: 226, y: 206, r: 16 }
+  ]
+};
+
 var UNIVERSES = [
 
   /* ==========================================================

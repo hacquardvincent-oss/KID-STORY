@@ -16,6 +16,9 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 
 ## Ce qu'il y a dedans
 
+* **Une couverture** — le site s'ouvre sur la une du mois : gros titre, illustration
+  rassemblant tous les personnages, pastille du nombre d'histoires, et le mois
+  courant qui se met à jour tout seul
 * **Menu des univers** — Peppa Pig, La Reine des Neiges… (facile d'en rajouter)
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
@@ -176,6 +179,13 @@ Chaque élément s'écrit :
 La plupart acceptent une `color` (`{ t: 'flower', x: 90, y: 520, color: '#ffd93d' }`),
 `tether` prend `dx` / `dy` (et éventuellement `qx` / `qy` pour la courbure).
 
+### Changer la couverture
+
+L'illustration de la une est la scène `COUVERTURE`, tout en haut de
+`stories.js`. C'est une scène ordinaire : on y met les personnages du moment.
+Attention au cadrage, elle est recadrée en 4/3 — gardez l'essentiel entre
+`x = 30` et `x = 770`.
+
 ### Ajouter un univers
 
 Toujours dans `stories.js`, un nouvel objet en haut du tableau `UNIVERSES` :
@@ -215,7 +225,7 @@ manifest.webmanifest        pour l'installation sur l'écran d'accueil
 assets/css/style.css        toute la mise en page, mobile d'abord
 assets/js/art.js            le moteur de dessin SVG (décors, personnages, objets, bulles)
 assets/js/stories.js        les histoires (c'est ici qu'on écrit)
-assets/js/app.js            navigation, Cover Flow, lecteur
+assets/js/app.js            navigation, couverture, Cover Flow, lecteur
 assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
 assets/img/grain.png        le grain du papier, en surimpression
 outils/apercu-histoire.html planche de contrôle pour les dessins
@@ -235,6 +245,10 @@ Le grain de papier est un carré de bruit de 64 pixels, répété et posé en
 `multiply` par-dessus la page ; le tremblé du trait vient d'un `feTurbulence`
 qui déplace légèrement chaque contour. Deux effets qui coûtent presque rien et
 qui suffisent à sortir le dessin du rendu vectoriel trop lisse.
+
+Les adresses suivent la lecture : `#/` la couverture, `#/sommaire` les univers,
+`#/u/peppa` le présentoir d'un univers, `#/u/peppa/plage` une histoire ouverte.
+Chaque histoire a donc son lien direct, partageable tel quel.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu

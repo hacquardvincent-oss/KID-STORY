@@ -216,6 +216,10 @@
      ============================================================ */
   var els = {
     tabs: $('#tabs'), home: $('#viewHome'), uni: $('#viewUniverse'),
+    cover: $('#viewCover'), coverArt: $('#coverArt'), coverMeta: $('#coverMeta'),
+    coverLines: $('#coverLines'), coverSticker: $('#coverSticker'),
+    topbar: document.querySelector('.topbar'),
+    open: $('#btnOpen'), coverRandom: $('#btnCoverRandom'),
     grid: $('#uniGrid'), back: $('#btnBack'), random: $('#btnRandom'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
@@ -241,7 +245,7 @@
     var all = document.createElement('button');
     all.className = 'tab' + (activeId ? '' : ' is-active');
     all.textContent = '★ Tout';
-    all.onclick = function () { location.hash = '#/'; };
+    all.onclick = function () { location.hash = '#/sommaire'; };
     els.tabs.appendChild(all);
 
     UNIVERSES.forEach(function (u) {
@@ -253,7 +257,26 @@
     });
   }
 
-  /* ---------------- accueil ---------------- */
+  /* ---------------- la une ---------------- */
+  var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+    'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+  function renderCover() {
+    if (els.coverArt.childNodes.length) return;   // dessinée une seule fois
+    els.coverArt.innerHTML = Art.scene(COUVERTURE, { slice: true, noBubbles: true });
+
+    var d = new Date();
+    els.coverMeta.textContent = MOIS[d.getMonth()] + ' ' + d.getFullYear();
+
+    var total = 0;
+    els.coverLines.innerHTML = UNIVERSES.map(function (u) {
+      total += u.stories.length;
+      return '<span>' + u.emoji + ' ' + u.name + '</span>';
+    }).join('');
+    els.coverSticker.innerHTML = '<b>' + total + '</b><span>histoires<br>du soir</span>';
+  }
+
+  /* ---------------- sommaire ---------------- */
   function renderHome() {
     els.grid.innerHTML = '';
     UNIVERSES.forEach(function (u) {
@@ -438,18 +461,31 @@
     var h = location.hash.replace(/^#\/?/, '');
     var parts = h.split('/').filter(Boolean);
 
-    if (parts[0] !== 'u') {
+    if (!parts.length) {                       // la une
+      closeReader();
+      setTheme(null);
+      els.cover.hidden = false; els.home.hidden = true; els.uni.hidden = true;
+      els.topbar.hidden = true; els.tabs.hidden = true;
+      renderCover();
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    els.cover.hidden = true;
+    els.topbar.hidden = false; els.tabs.hidden = false;
+
+    if (parts[0] !== 'u') {                      // le sommaire
       closeReader();
       renderTabs(null);
       setTheme(null);
-      els.home.hidden = false; els.uni.hidden = true; els.back.hidden = true;
+      els.home.hidden = false; els.uni.hidden = true; els.back.hidden = false;
       renderHome();
       window.scrollTo(0, 0);
       return;
     }
 
     var u = findUniverse(parts[1]);
-    if (!u) { location.hash = '#/'; return; }
+    if (!u) { location.hash = '#/sommaire'; return; }
 
     renderTabs(u.id);
     els.home.hidden = true; els.uni.hidden = false; els.back.hidden = false;
@@ -480,8 +516,13 @@
 
   els.back.onclick = function () {
     if (!els.reader.hidden) location.hash = '#/u/' + state.universe.id;
+    else if (els.home.hidden) location.hash = '#/sommaire';
     else location.hash = '#/';
   };
+
+  els.open.onclick = function () { location.hash = '#/sommaire'; };
+
+  els.coverRandom.onclick = function () { els.random.onclick(); };
 
   els.random.onclick = function () {
     var pool = [];

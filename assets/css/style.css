@@ -142,6 +142,91 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
 .tab:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
 .tab.is-active { background: var(--tc2, var(--jaune)); font-weight: 600; }
 
+/* ---------------- LA UNE ---------------- */
+.cover {
+  height: 100vh; height: 100svh;
+  display: flex; align-items: center; justify-content: center;
+  padding: calc(var(--safe-top) + 12px) 12px calc(var(--safe-bot) + 12px);
+}
+.cover-sheet {
+  position: relative; width: 100%; max-width: 520px; max-height: 100%;
+  display: flex; flex-direction: column;
+  background: var(--page);
+  border: 4px solid var(--ink);
+  box-shadow: 7px 8px 0 rgba(58, 42, 34, .3);
+  overflow: hidden;
+}
+
+.cover-head {
+  flex: 0 0 auto; background: var(--rouge); color: #fff6e4;
+  padding: 10px 16px 13px; border-bottom: 4px solid var(--ink);
+  text-align: center;
+}
+.cover-kicker {
+  display: inline-block; background: var(--jaune); color: var(--ink);
+  font-size: 11.5px; font-weight: 600; letter-spacing: .3px;
+  padding: 2px 10px; border: 2px solid var(--ink); border-radius: 999px;
+  margin-bottom: 7px;
+}
+.cover-head h1 {
+  margin: 0; font-size: clamp(30px, 8.5vw, 44px); font-weight: 700;
+  line-height: .98; letter-spacing: -.5px; text-wrap: balance;
+}
+.cover-head h1 b {
+  color: var(--jaune); font-weight: 700;
+  -webkit-text-stroke: 1.5px var(--ink);
+  paint-order: stroke fill;
+}
+.cover-meta {
+  margin-top: 5px; font-size: 12.5px; letter-spacing: 1.6px;
+  text-transform: uppercase; color: #ffd9c9;
+}
+
+/* le dessin garde un cadrage large : en portrait, il serait trop rogné */
+.cover-art {
+  flex: 0 1 auto; aspect-ratio: 4 / 3; min-height: 0;
+  position: relative; border-bottom: 4px solid var(--ink);
+}
+.cover-art svg { display: block; width: 100%; height: 100%; }
+.cover-art::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: var(--grain); background-size: 96px 96px;
+  opacity: .3; mix-blend-mode: multiply;
+}
+
+/* la pastille du kiosque */
+.cover-sticker {
+  position: absolute; top: 40%; right: 12px; z-index: 3;
+  width: 84px; height: 84px; border-radius: 50%;
+  background: var(--jaune); border: 3px solid var(--ink);
+  box-shadow: 3px 3px 0 rgba(58, 42, 34, .35);
+  display: grid; place-content: center; text-align: center;
+  transform: rotate(-11deg); line-height: 1.05;
+}
+.cover-sticker b { display: block; font-size: 27px; font-weight: 700; }
+.cover-sticker span { font-size: 10.5px; font-weight: 500; }
+
+.cover-foot { flex: 0 0 auto; padding: 12px 16px 16px; text-align: center; }
+.cover-lines {
+  display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
+  margin-bottom: 12px;
+}
+.cover-lines span {
+  font-size: 13px; font-weight: 500; padding: 3px 11px;
+  background: var(--paper-2); border: 2px solid var(--ink); border-radius: 999px;
+}
+.cover-foot .cta { margin-top: 0; width: 100%; max-width: 320px; }
+.cover-random {
+  display: block; margin: 10px auto 0; font-family: inherit; cursor: pointer;
+  background: none; border: 0; color: var(--ink-soft);
+  font-size: 13.5px; text-decoration: underline; text-underline-offset: 3px;
+}
+
+@media (min-width: 720px) {
+  .cover-sticker { width: 100px; height: 100px; right: 20px; }
+  .cover-sticker b { font-size: 32px; }
+}
+
 /* ---------------- le sommaire ---------------- */
 .view { padding: 12px 14px 40px; }
 .hello { margin: 2px 2px 16px; color: var(--ink-soft); font-size: 15px; }
