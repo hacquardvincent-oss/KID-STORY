@@ -219,6 +219,39 @@
         front: ''
       };
     }
+    /* boucles en bataille : une masse de boucles + quelques mèches rebelles */
+    if (style === 'curly') {
+      return {
+        back: U([
+          '<circle cx="0" cy="-62" r="35" fill="%F%" %S%/>',
+          '<circle cx="-45" cy="-52" r="25" fill="%F%" %S%/>',
+          '<circle cx="-27" cy="-83" r="26" fill="%F%" %S%/>',
+          '<circle cx="5" cy="-93" r="27" fill="%F%" %S%/>',
+          '<circle cx="35" cy="-79" r="25" fill="%F%" %S%/>',
+          '<circle cx="49" cy="-49" r="24" fill="%F%" %S%/>',
+          '<circle cx="-41" cy="-21" r="20" fill="%F%" %S%/>',
+          '<circle cx="45" cy="-19" r="20" fill="%F%" %S%/>',
+          '<circle cx="-70" cy="-80" r="12" fill="%F%" %S%/>',
+          '<circle cx="-25" cy="-121" r="11" fill="%F%" %S%/>',
+          '<circle cx="16" cy="-118" r="9" fill="%F%" %S%/>',
+          '<circle cx="42" cy="-113" r="13" fill="%F%" %S%/>',
+          '<circle cx="70" cy="-84" r="11" fill="%F%" %S%/>',
+          '<circle cx="-66" cy="-30" r="11" fill="%F%" %S%/>',
+          '<circle cx="66" cy="-26" r="10" fill="%F%" %S%/>',
+          '<circle cx="-56" cy="-104" r="10" fill="%F%" %S%/>'
+        ], hair, 8),
+        fringe: U([
+          '<circle cx="-40" cy="-58" r="15" fill="%F%" %S%/>',
+          '<circle cx="-30" cy="-76" r="18" fill="%F%" %S%/>',
+          '<circle cx="-4" cy="-85" r="19" fill="%F%" %S%/>',
+          '<circle cx="22" cy="-79" r="18" fill="%F%" %S%/>',
+          '<circle cx="40" cy="-62" r="15" fill="%F%" %S%/>'
+        ], hair, 8) +
+          line('M -34,-88 q 10,-9 19,-2 M 2,-96 q 11,-8 19,1 M -52,-70 q 7,-11 16,-7', d, 3.5) +
+          line('M -56,-30 q -11,-9 -6,-20 M 58,-32 q 11,-9 6,-20', d, 3.5),
+        front: ''
+      };
+    }
     // couettes (pigtails)
     return {
       back: U([cap,
@@ -234,7 +267,7 @@
     var s = H.back;
     s += U(['<ellipse cx="0" cy="-46" rx="42" ry="44" fill="%F%" %S%/>'], skin, 9);
     // frange
-    s += U(['<path d="M -42,-52 C -44,-88 -24,-100 0,-100 C 24,-100 44,-88 42,-52 C 34,-70 20,-78 4,-76 C -14,-84 -34,-72 -42,-52 Z" fill="%F%" %S%/>'], hair, 8);
+    s += H.fringe || U(['<path d="M -42,-52 C -44,-88 -24,-100 0,-100 C 24,-100 44,-88 42,-52 C 34,-70 20,-78 4,-76 C -14,-84 -34,-72 -42,-52 Z" fill="%F%" %S%/>'], hair, 8);
     s += H.front;
     if (mood === 'sleep') {
       s += line('M -24,-46 q 9,8 18,0', INK, 4) + line('M 6,-46 q 9,8 18,0', INK, 4);
@@ -253,6 +286,11 @@
     if (o.bows) {
       s += '<circle cx="-54" cy="-64" r="9" fill="' + o.bows + '" stroke="' + INK + '" stroke-width="3.5"/>' +
         '<circle cx="54" cy="-64" r="9" fill="' + o.bows + '" stroke="' + INK + '" stroke-width="3.5"/>';
+    }
+    if (o.clip) {
+      s += U(['<path d="M -46,-92 L -66,-102 L -66,-82 Z" fill="%F%" %S%/>',
+        '<path d="M -46,-92 L -26,-102 L -26,-82 Z" fill="%F%" %S%/>',
+        '<circle cx="-46" cy="-92" r="6" fill="%F%" %S%/>'], o.clip, 7);
     }
     return s;
   }
@@ -337,7 +375,8 @@
     if (o.trim) t += line('M -47,-68 L 47,-68', o.trim, 5);
     t += line('M -20,-136 q 20,16 40,0', shade(dress, -0.25), 4);
     t += g('translate(0,-130)', girlHead({
-      skin: skin, hair: hair, hairstyle: o.hairstyle, mood: o.mood, crown: o.crown, bows: o.bows
+      skin: skin, hair: hair, hairstyle: o.hairstyle, mood: o.mood,
+      crown: o.crown, bows: o.bows, clip: o.clip
     }));
     if (o.hat) t += g('translate(0,-130)', sunHat(o.hat));
     return s + (sit ? g('translate(-6,42)', t) : t);
@@ -1075,14 +1114,14 @@
     suzy: function (o) { return sheep({ pose: o.pose, mood: o.mood, cloth: '#8ec9f0' }); },
     livia: function (o) {
       return girl({
-        skin: '#f6cba6', hair: '#6f4327', dress: o.dress || '#3ec9c9', hairstyle: o.hairstyle || 'pigtails',
-        bows: '#ff5c8a', pose: o.pose, mood: o.mood, hat: o.hat, trim: '#fff1a8'
+        skin: '#f6cba6', hair: '#f0be48', dress: o.dress || '#3ec9c9', hairstyle: o.hairstyle || 'curly',
+        clip: '#ff5c8a', pose: o.pose, mood: o.mood, hat: o.hat, trim: '#fff1a8'
       });
     },
     liviaPrincess: function (o) {
       return girl({
-        skin: '#f6cba6', hair: '#6f4327', dress: o.dress || '#a98cf0', hairstyle: o.hairstyle || 'twobraids',
-        bows: '#ffd93d', pose: o.pose, mood: o.mood, crown: '#ffd93d', trim: '#ffe9c9'
+        skin: '#f6cba6', hair: '#f0be48', dress: o.dress || '#a98cf0', hairstyle: o.hairstyle || 'curly',
+        pose: o.pose, mood: o.mood, crown: '#ffd93d', trim: '#ffe9c9'
       });
     },
     elsa: function (o) {
