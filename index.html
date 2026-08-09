@@ -43,7 +43,10 @@
       <div class="cover-foot">
         <div class="cover-lines" id="coverLines"></div>
         <button class="cta" id="btnOpen">Ouvrir le sommaire</button>
-        <button class="cover-random" id="btnCoverRandom">🎲 Une histoire au hasard</button>
+        <div class="cover-liens">
+          <button class="cover-random" id="btnCoverGames">🎮 Jouer</button>
+          <button class="cover-random" id="btnCoverRandom">🎲 Une histoire au hasard</button>
+        </div>
       </div>
     </div>
   </section>
@@ -75,6 +78,16 @@
 
     <div class="cf-dots" id="cfDots"></div>
   </section>
+
+  <!-- LES JEUX -->
+  <section class="view" id="viewGames" hidden>
+    <div class="uni-head">
+      <h2>🎮 Les jeux de Livia</h2>
+      <p id="gamesSub">Pour jouer tout seul, dès 3 ans</p>
+    </div>
+    <div class="jeux-grid" id="gamesGrid"></div>
+    <div class="jeu-stage" id="gameStage" hidden></div>
+  </section>
 </main>
 
 <!-- LECTEUR DE BD -->
@@ -94,6 +107,7 @@
 
 <script src="assets/js/art.js"></script>
 <script src="assets/js/stories.js"></script>
+<script src="assets/js/games.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
 </html>

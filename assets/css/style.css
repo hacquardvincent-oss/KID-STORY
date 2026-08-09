@@ -217,7 +217,7 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
 }
 .cover-foot .cta { margin-top: 0; width: 100%; max-width: 320px; }
 .cover-random {
-  display: block; margin: 10px auto 0; font-family: inherit; cursor: pointer;
+  font-family: inherit; cursor: pointer;
   background: none; border: 0; color: var(--ink-soft);
   font-size: 13.5px; text-decoration: underline; text-underline-offset: 3px;
 }
@@ -379,6 +379,121 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
   border: 1.5px solid var(--ink); opacity: .45; transition: .2s;
 }
 .cf-dots i.on { background: var(--rouge); opacity: 1; transform: scale(1.2); }
+
+/* ---------------- LES JEUX ---------------- */
+.jeux-grid { display: grid; gap: 14px; margin-top: 12px; }
+.jeu-carte {
+  display: flex; align-items: center; gap: 14px; width: 100%;
+  padding: 10px 14px 10px 10px; cursor: pointer; font-family: inherit;
+  background: var(--page); color: var(--ink); text-align: left;
+  border: 3px solid var(--ink); border-radius: 4px;
+  box-shadow: 5px 6px 0 rgba(58, 42, 34, .22);
+  transition: transform .14s, box-shadow .14s;
+}
+.jeu-carte:active { transform: translate(2px, 3px); box-shadow: 2px 3px 0 rgba(58, 42, 34, .22); }
+.jeu-vignette {
+  flex: 0 0 auto; width: 76px; height: 76px; border-radius: 50%;
+  background: var(--paper-2); border: 2.5px solid var(--ink); overflow: hidden;
+}
+.jeu-vignette svg { display: block; width: 100%; height: 100%; }
+.jeu-texte h3 { margin: 0; font-size: 18px; font-weight: 700; }
+.jeu-texte p { margin: 2px 0 0; font-size: 13.5px; color: var(--ink-soft); }
+
+/* le plateau */
+.jeu-stage { margin-top: 10px; }
+.jeu-etoiles { display: flex; gap: 8px; justify-content: center; margin-bottom: 10px; }
+.jeu-etoiles .etoile {
+  width: 22px; height: 22px; background: var(--paper-3);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  transition: background .25s, transform .25s;
+}
+.jeu-etoiles .etoile.on { background: var(--jaune); transform: scale(1.15); }
+.jeu-consigne {
+  margin: 0 0 12px; text-align: center; font-size: 17px; font-weight: 500;
+  min-height: 22px; text-wrap: balance;
+}
+.jeu-zone { position: relative; }
+
+/* relier */
+.relier { position: relative; display: flex; justify-content: space-between; gap: 12px; }
+.relier-col { display: flex; flex-direction: column; gap: 12px; flex: 0 0 42%; }
+.relier-traits { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.relier-traits line { stroke: var(--rouge); stroke-width: 5; stroke-linecap: round; }
+.carte {
+  width: 100%; aspect-ratio: 1 / 1; padding: 4px; cursor: pointer;
+  background: var(--page); border: 3px solid var(--ink); border-radius: 4px;
+  box-shadow: 3px 4px 0 rgba(58, 42, 34, .2);
+  transition: transform .12s, box-shadow .12s, background .2s, border-color .2s;
+}
+.carte svg { display: block; width: 100%; height: 100%; }
+.carte.choisie { background: var(--jaune); transform: translateY(-2px); }
+.carte.ok { background: #dff0d2; border-color: #4f8a3d; box-shadow: 3px 4px 0 rgba(79, 138, 61, .35); }
+.carte.secoue { animation: secoue .4s; }
+@keyframes secoue {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px); }
+  75% { transform: translateX(7px); }
+}
+
+/* compter */
+.jeu-tableau { border: 3px solid var(--ink); overflow: hidden; background: var(--page); }
+.jeu-tableau svg { display: block; width: 100%; height: auto; }
+.chiffres { display: flex; gap: 12px; justify-content: center; margin-top: 16px; }
+.chiffre {
+  width: 74px; height: 74px; font-family: inherit; cursor: pointer;
+  font-size: 34px; font-weight: 700; color: var(--ink);
+  background: var(--page); border: 3px solid var(--ink); border-radius: 16px;
+  box-shadow: 0 5px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s, background .2s;
+}
+.chiffre:active { transform: translateY(5px); box-shadow: 0 0 0 var(--ink); }
+.chiffre.ok { background: #a8dc8c; }
+.chiffre.secoue { animation: secoue .4s; }
+
+/* écrire */
+.trace {
+  width: min(100%, 340px); margin: 0 auto; aspect-ratio: 1 / 1;
+  background: var(--page); border: 3px solid var(--ink);
+  box-shadow: 4px 5px 0 rgba(58, 42, 34, .2);
+  touch-action: none;
+}
+.trace svg { display: block; width: 100%; height: 100%; }
+.trace .guide { stroke: var(--paper-3); stroke-linecap: round; }
+.trace .guide.fait { stroke: #cfe4c0; }
+.trace .pointille { stroke: var(--ink-soft); stroke-dasharray: 3 4; opacity: .5; }
+.trace .depart { fill: #4f8a3d; }
+.trace .encre { fill: none; stroke: var(--rouge); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.trace .ecrit { stroke: #4f8a3d; stroke-linecap: round; }
+
+/* félicitations */
+.jeu-bravo {
+  position: absolute; inset: 0; display: grid; place-content: center; text-align: center;
+  background: rgba(246, 236, 217, .92); z-index: 5; animation: pop .3s ease;
+}
+.jeu-bravo b { font-size: 30px; color: var(--rouge); }
+.bravo-etoile { font-size: 62px; animation: tourne .8s ease; }
+@keyframes pop { from { opacity: 0; transform: scale(.9); } }
+@keyframes tourne { from { transform: rotate(-25deg) scale(.4); } }
+
+.jeu-fin { text-align: center; padding: 20px 10px; }
+.fin-etoiles { font-size: 46px; letter-spacing: 4px; }
+.jeu-fin h3 { margin: 8px 0 4px; font-size: 28px; color: var(--rouge); }
+.jeu-fin p { margin: 0 0 18px; color: var(--ink-soft); font-family: 'Literata', Georgia, serif; }
+.jeu-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.jeu-actions button {
+  font-family: inherit; cursor: pointer; border-radius: 999px; font-size: 15px;
+  padding: 11px 20px; border: 2.5px solid var(--ink);
+  background: var(--page); color: var(--ink); box-shadow: 0 3px 0 var(--ink);
+}
+.jeu-actions button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+.jeu-actions button.primary { background: var(--jaune); font-weight: 600; }
+
+.cover-liens { display: flex; gap: 16px; justify-content: center; margin-top: 10px; }
+
+@media (min-width: 720px) {
+  .jeux-grid { grid-template-columns: 1fr 1fr; }
+  .jeu-stage { max-width: 640px; margin: 10px auto 0; }
+}
 
 /* ---------------- LE LIVRET ---------------- */
 .reader {

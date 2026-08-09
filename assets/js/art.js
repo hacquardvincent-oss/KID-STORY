@@ -1218,8 +1218,20 @@
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }
 
+  /* une vignette : un seul élément, sans décor, pour les jeux */
+  function stickerSVG(it) {
+    var fn = ITEMS[it.t];
+    if (!fn) return '';
+    var sc = it.ds === undefined ? 1 : it.ds;
+    var y = it.dy === undefined ? 180 : it.dy;
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" ' +
+      'preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + (it.nom || '') + '">' +
+      '<g transform="translate(100,' + y + ') scale(' + sc + ')">' + fn(it) + '</g></svg>';
+  }
+
   global.Art = {
     scene: sceneSVG,
+    sticker: stickerSVG,
     INK: INK,
     W: VW,
     H: VH,

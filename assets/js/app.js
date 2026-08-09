@@ -220,6 +220,9 @@
     coverLines: $('#coverLines'), coverSticker: $('#coverSticker'),
     topbar: document.querySelector('.topbar'),
     open: $('#btnOpen'), coverRandom: $('#btnCoverRandom'),
+    coverGames: $('#btnCoverGames'),
+    games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
+    gamesSub: $('#gamesSub'),
     grid: $('#uniGrid'), back: $('#btnBack'), random: $('#btnRandom'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
@@ -255,6 +258,39 @@
       b.onclick = function () { location.hash = '#/u/' + u.id; };
       els.tabs.appendChild(b);
     });
+
+    var j = document.createElement('button');
+    j.className = 'tab' + (activeId === 'jeux' ? ' is-active' : '');
+    j.textContent = '🎮 Jeux';
+    j.onclick = function () { location.hash = '#/jeux'; };
+    els.tabs.appendChild(j);
+  }
+
+  /* ---------------- les jeux ---------------- */
+  function renderGames() {
+    els.gamesGrid.innerHTML = '';
+    els.gamesGrid.hidden = false;
+    els.gameStage.hidden = true;
+    els.gameStage.innerHTML = '';
+    els.gamesSub.textContent = 'Pour jouer tout seul, dès 3 ans';
+
+    Jeux.liste.forEach(function (jeu) {
+      var c = document.createElement('button');
+      c.className = 'jeu-carte';
+      c.innerHTML =
+        '<div class="jeu-vignette">' + Art.sticker(jeu.vignette) + '</div>' +
+        '<div class="jeu-texte"><h3>' + jeu.emoji + ' ' + jeu.nom + '</h3>' +
+        '<p>' + jeu.sous + '</p></div>';
+      c.onclick = function () { location.hash = '#/jeux/' + jeu.id; };
+      els.gamesGrid.appendChild(c);
+    });
+  }
+
+  function openGame(jeu) {
+    els.gamesGrid.hidden = true;
+    els.gameStage.hidden = false;
+    els.gamesSub.textContent = jeu.sous;
+    Jeux.lancer(els.gameStage, jeu, function () { location.hash = '#/jeux'; });
   }
 
   /* ---------------- la une ---------------- */
@@ -465,6 +501,7 @@
       closeReader();
       setTheme(null);
       els.cover.hidden = false; els.home.hidden = true; els.uni.hidden = true;
+      els.games.hidden = true; Jeux.taire();
       els.topbar.hidden = true; els.tabs.hidden = true;
       renderCover();
       window.scrollTo(0, 0);
@@ -473,6 +510,22 @@
 
     els.cover.hidden = true;
     els.topbar.hidden = false; els.tabs.hidden = false;
+
+    if (parts[0] === 'jeux') {                   // les jeux
+      closeReader();
+      Jeux.taire();
+      renderTabs('jeux');
+      setTheme(null);
+      els.home.hidden = true; els.uni.hidden = true; els.games.hidden = false;
+      els.back.hidden = false;
+      var jeu = parts[1] && Jeux.trouver(parts[1]);
+      if (jeu) { renderGames(); openGame(jeu); }
+      else renderGames();
+      window.scrollTo(0, 0);
+      return;
+    }
+    els.games.hidden = true;
+    Jeux.taire();
 
     if (parts[0] !== 'u') {                      // le sommaire
       closeReader();
@@ -516,9 +569,12 @@
 
   els.back.onclick = function () {
     if (!els.reader.hidden) location.hash = '#/u/' + state.universe.id;
+    else if (!els.games.hidden) location.hash = els.gameStage.hidden ? '#/sommaire' : '#/jeux';
     else if (els.home.hidden) location.hash = '#/sommaire';
     else location.hash = '#/';
   };
+
+  els.coverGames.onclick = function () { location.hash = '#/jeux'; };
 
   els.open.onclick = function () { location.hash = '#/sommaire'; };
 

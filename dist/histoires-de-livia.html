@@ -221,7 +221,7 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
 }
 .cover-foot .cta { margin-top: 0; width: 100%; max-width: 320px; }
 .cover-random {
-  display: block; margin: 10px auto 0; font-family: inherit; cursor: pointer;
+  font-family: inherit; cursor: pointer;
   background: none; border: 0; color: var(--ink-soft);
   font-size: 13.5px; text-decoration: underline; text-underline-offset: 3px;
 }
@@ -383,6 +383,121 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
   border: 1.5px solid var(--ink); opacity: .45; transition: .2s;
 }
 .cf-dots i.on { background: var(--rouge); opacity: 1; transform: scale(1.2); }
+
+/* ---------------- LES JEUX ---------------- */
+.jeux-grid { display: grid; gap: 14px; margin-top: 12px; }
+.jeu-carte {
+  display: flex; align-items: center; gap: 14px; width: 100%;
+  padding: 10px 14px 10px 10px; cursor: pointer; font-family: inherit;
+  background: var(--page); color: var(--ink); text-align: left;
+  border: 3px solid var(--ink); border-radius: 4px;
+  box-shadow: 5px 6px 0 rgba(58, 42, 34, .22);
+  transition: transform .14s, box-shadow .14s;
+}
+.jeu-carte:active { transform: translate(2px, 3px); box-shadow: 2px 3px 0 rgba(58, 42, 34, .22); }
+.jeu-vignette {
+  flex: 0 0 auto; width: 76px; height: 76px; border-radius: 50%;
+  background: var(--paper-2); border: 2.5px solid var(--ink); overflow: hidden;
+}
+.jeu-vignette svg { display: block; width: 100%; height: 100%; }
+.jeu-texte h3 { margin: 0; font-size: 18px; font-weight: 700; }
+.jeu-texte p { margin: 2px 0 0; font-size: 13.5px; color: var(--ink-soft); }
+
+/* le plateau */
+.jeu-stage { margin-top: 10px; }
+.jeu-etoiles { display: flex; gap: 8px; justify-content: center; margin-bottom: 10px; }
+.jeu-etoiles .etoile {
+  width: 22px; height: 22px; background: var(--paper-3);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  transition: background .25s, transform .25s;
+}
+.jeu-etoiles .etoile.on { background: var(--jaune); transform: scale(1.15); }
+.jeu-consigne {
+  margin: 0 0 12px; text-align: center; font-size: 17px; font-weight: 500;
+  min-height: 22px; text-wrap: balance;
+}
+.jeu-zone { position: relative; }
+
+/* relier */
+.relier { position: relative; display: flex; justify-content: space-between; gap: 12px; }
+.relier-col { display: flex; flex-direction: column; gap: 12px; flex: 0 0 42%; }
+.relier-traits { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; }
+.relier-traits line { stroke: var(--rouge); stroke-width: 5; stroke-linecap: round; }
+.carte {
+  width: 100%; aspect-ratio: 1 / 1; padding: 4px; cursor: pointer;
+  background: var(--page); border: 3px solid var(--ink); border-radius: 4px;
+  box-shadow: 3px 4px 0 rgba(58, 42, 34, .2);
+  transition: transform .12s, box-shadow .12s, background .2s, border-color .2s;
+}
+.carte svg { display: block; width: 100%; height: 100%; }
+.carte.choisie { background: var(--jaune); transform: translateY(-2px); }
+.carte.ok { background: #dff0d2; border-color: #4f8a3d; box-shadow: 3px 4px 0 rgba(79, 138, 61, .35); }
+.carte.secoue { animation: secoue .4s; }
+@keyframes secoue {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px); }
+  75% { transform: translateX(7px); }
+}
+
+/* compter */
+.jeu-tableau { border: 3px solid var(--ink); overflow: hidden; background: var(--page); }
+.jeu-tableau svg { display: block; width: 100%; height: auto; }
+.chiffres { display: flex; gap: 12px; justify-content: center; margin-top: 16px; }
+.chiffre {
+  width: 74px; height: 74px; font-family: inherit; cursor: pointer;
+  font-size: 34px; font-weight: 700; color: var(--ink);
+  background: var(--page); border: 3px solid var(--ink); border-radius: 16px;
+  box-shadow: 0 5px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s, background .2s;
+}
+.chiffre:active { transform: translateY(5px); box-shadow: 0 0 0 var(--ink); }
+.chiffre.ok { background: #a8dc8c; }
+.chiffre.secoue { animation: secoue .4s; }
+
+/* écrire */
+.trace {
+  width: min(100%, 340px); margin: 0 auto; aspect-ratio: 1 / 1;
+  background: var(--page); border: 3px solid var(--ink);
+  box-shadow: 4px 5px 0 rgba(58, 42, 34, .2);
+  touch-action: none;
+}
+.trace svg { display: block; width: 100%; height: 100%; }
+.trace .guide { stroke: var(--paper-3); stroke-linecap: round; }
+.trace .guide.fait { stroke: #cfe4c0; }
+.trace .pointille { stroke: var(--ink-soft); stroke-dasharray: 3 4; opacity: .5; }
+.trace .depart { fill: #4f8a3d; }
+.trace .encre { fill: none; stroke: var(--rouge); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+.trace .ecrit { stroke: #4f8a3d; stroke-linecap: round; }
+
+/* félicitations */
+.jeu-bravo {
+  position: absolute; inset: 0; display: grid; place-content: center; text-align: center;
+  background: rgba(246, 236, 217, .92); z-index: 5; animation: pop .3s ease;
+}
+.jeu-bravo b { font-size: 30px; color: var(--rouge); }
+.bravo-etoile { font-size: 62px; animation: tourne .8s ease; }
+@keyframes pop { from { opacity: 0; transform: scale(.9); } }
+@keyframes tourne { from { transform: rotate(-25deg) scale(.4); } }
+
+.jeu-fin { text-align: center; padding: 20px 10px; }
+.fin-etoiles { font-size: 46px; letter-spacing: 4px; }
+.jeu-fin h3 { margin: 8px 0 4px; font-size: 28px; color: var(--rouge); }
+.jeu-fin p { margin: 0 0 18px; color: var(--ink-soft); font-family: 'Literata', Georgia, serif; }
+.jeu-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.jeu-actions button {
+  font-family: inherit; cursor: pointer; border-radius: 999px; font-size: 15px;
+  padding: 11px 20px; border: 2.5px solid var(--ink);
+  background: var(--page); color: var(--ink); box-shadow: 0 3px 0 var(--ink);
+}
+.jeu-actions button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+.jeu-actions button.primary { background: var(--jaune); font-weight: 600; }
+
+.cover-liens { display: flex; gap: 16px; justify-content: center; margin-top: 10px; }
+
+@media (min-width: 720px) {
+  .jeux-grid { grid-template-columns: 1fr 1fr; }
+  .jeu-stage { max-width: 640px; margin: 10px auto 0; }
+}
 
 /* ---------------- LE LIVRET ---------------- */
 .reader {
@@ -553,7 +668,10 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
       <div class="cover-foot">
         <div class="cover-lines" id="coverLines"></div>
         <button class="cta" id="btnOpen">Ouvrir le sommaire</button>
-        <button class="cover-random" id="btnCoverRandom">🎲 Une histoire au hasard</button>
+        <div class="cover-liens">
+          <button class="cover-random" id="btnCoverGames">🎮 Jouer</button>
+          <button class="cover-random" id="btnCoverRandom">🎲 Une histoire au hasard</button>
+        </div>
       </div>
     </div>
   </section>
@@ -584,6 +702,16 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
     </div>
 
     <div class="cf-dots" id="cfDots"></div>
+  </section>
+
+  <!-- LES JEUX -->
+  <section class="view" id="viewGames" hidden>
+    <div class="uni-head">
+      <h2>🎮 Les jeux de Livia</h2>
+      <p id="gamesSub">Pour jouer tout seul, dès 3 ans</p>
+    </div>
+    <div class="jeux-grid" id="gamesGrid"></div>
+    <div class="jeu-stage" id="gameStage" hidden></div>
   </section>
 </main>
 
@@ -1823,8 +1951,20 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }
 
+  /* une vignette : un seul élément, sans décor, pour les jeux */
+  function stickerSVG(it) {
+    var fn = ITEMS[it.t];
+    if (!fn) return '';
+    var sc = it.ds === undefined ? 1 : it.ds;
+    var y = it.dy === undefined ? 180 : it.dy;
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" ' +
+      'preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + (it.nom || '') + '">' +
+      '<g transform="translate(100,' + y + ') scale(' + sc + ')">' + fn(it) + '</g></svg>';
+  }
+
   global.Art = {
     scene: sceneSVG,
+    sticker: stickerSVG,
     INK: INK,
     W: VW,
     H: VH,
@@ -2933,6 +3073,9 @@ var UNIVERSES = [
     coverLines: $('#coverLines'), coverSticker: $('#coverSticker'),
     topbar: document.querySelector('.topbar'),
     open: $('#btnOpen'), coverRandom: $('#btnCoverRandom'),
+    coverGames: $('#btnCoverGames'),
+    games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
+    gamesSub: $('#gamesSub'),
     grid: $('#uniGrid'), back: $('#btnBack'), random: $('#btnRandom'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
@@ -2968,6 +3111,39 @@ var UNIVERSES = [
       b.onclick = function () { location.hash = '#/u/' + u.id; };
       els.tabs.appendChild(b);
     });
+
+    var j = document.createElement('button');
+    j.className = 'tab' + (activeId === 'jeux' ? ' is-active' : '');
+    j.textContent = '🎮 Jeux';
+    j.onclick = function () { location.hash = '#/jeux'; };
+    els.tabs.appendChild(j);
+  }
+
+  /* ---------------- les jeux ---------------- */
+  function renderGames() {
+    els.gamesGrid.innerHTML = '';
+    els.gamesGrid.hidden = false;
+    els.gameStage.hidden = true;
+    els.gameStage.innerHTML = '';
+    els.gamesSub.textContent = 'Pour jouer tout seul, dès 3 ans';
+
+    Jeux.liste.forEach(function (jeu) {
+      var c = document.createElement('button');
+      c.className = 'jeu-carte';
+      c.innerHTML =
+        '<div class="jeu-vignette">' + Art.sticker(jeu.vignette) + '</div>' +
+        '<div class="jeu-texte"><h3>' + jeu.emoji + ' ' + jeu.nom + '</h3>' +
+        '<p>' + jeu.sous + '</p></div>';
+      c.onclick = function () { location.hash = '#/jeux/' + jeu.id; };
+      els.gamesGrid.appendChild(c);
+    });
+  }
+
+  function openGame(jeu) {
+    els.gamesGrid.hidden = true;
+    els.gameStage.hidden = false;
+    els.gamesSub.textContent = jeu.sous;
+    Jeux.lancer(els.gameStage, jeu, function () { location.hash = '#/jeux'; });
   }
 
   /* ---------------- la une ---------------- */
@@ -3178,6 +3354,7 @@ var UNIVERSES = [
       closeReader();
       setTheme(null);
       els.cover.hidden = false; els.home.hidden = true; els.uni.hidden = true;
+      els.games.hidden = true; Jeux.taire();
       els.topbar.hidden = true; els.tabs.hidden = true;
       renderCover();
       window.scrollTo(0, 0);
@@ -3186,6 +3363,22 @@ var UNIVERSES = [
 
     els.cover.hidden = true;
     els.topbar.hidden = false; els.tabs.hidden = false;
+
+    if (parts[0] === 'jeux') {                   // les jeux
+      closeReader();
+      Jeux.taire();
+      renderTabs('jeux');
+      setTheme(null);
+      els.home.hidden = true; els.uni.hidden = true; els.games.hidden = false;
+      els.back.hidden = false;
+      var jeu = parts[1] && Jeux.trouver(parts[1]);
+      if (jeu) { renderGames(); openGame(jeu); }
+      else renderGames();
+      window.scrollTo(0, 0);
+      return;
+    }
+    els.games.hidden = true;
+    Jeux.taire();
 
     if (parts[0] !== 'u') {                      // le sommaire
       closeReader();
@@ -3229,9 +3422,12 @@ var UNIVERSES = [
 
   els.back.onclick = function () {
     if (!els.reader.hidden) location.hash = '#/u/' + state.universe.id;
+    else if (!els.games.hidden) location.hash = els.gameStage.hidden ? '#/sommaire' : '#/jeux';
     else if (els.home.hidden) location.hash = '#/sommaire';
     else location.hash = '#/';
   };
+
+  els.coverGames.onclick = function () { location.hash = '#/jeux'; };
 
   els.open.onclick = function () { location.hash = '#/sommaire'; };
 

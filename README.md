@@ -28,6 +28,9 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Reprise de lecture** — le site se souvient de la page où on s'est arrêté
   et marque les histoires déjà lues d'un ✓
 * **Bouton 🎲** — une histoire au hasard
+* **Trois jeux** pour les 3-5 ans, avec les mêmes héros : relier chaque
+  personnage à son objet, compter jusqu'à six, et tracer les lettres de son
+  prénom au doigt. Aucun texte à lire : tout est dit à voix haute.
 * **Installable** sur l'écran d'accueil du téléphone (PWA légère)
 
 ### Les histoires déjà écrites
@@ -225,6 +228,7 @@ manifest.webmanifest        pour l'installation sur l'écran d'accueil
 assets/css/style.css        toute la mise en page, mobile d'abord
 assets/js/art.js            le moteur de dessin SVG (décors, personnages, objets, bulles)
 assets/js/stories.js        les histoires (c'est ici qu'on écrit)
+assets/js/games.js          les trois jeux et leur cadre commun
 assets/js/app.js            navigation, couverture, Cover Flow, lecteur
 assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
 assets/img/grain.png        le grain du papier, en surimpression
@@ -247,8 +251,13 @@ qui déplace légèrement chaque contour. Deux effets qui coûtent presque rien 
 qui suffisent à sortir le dessin du rendu vectoriel trop lisse.
 
 Les adresses suivent la lecture : `#/` la couverture, `#/sommaire` les univers,
-`#/u/peppa` le présentoir d'un univers, `#/u/peppa/plage` une histoire ouverte.
-Chaque histoire a donc son lien direct, partageable tel quel.
+`#/u/peppa` le présentoir d'un univers, `#/u/peppa/plage` une histoire ouverte,
+`#/jeux/compter` un jeu. Chaque page a donc son lien direct, partageable tel quel.
+
+Les jeux partagent un même cadre (`jouer()` dans `games.js`) qui gère les manches,
+les étoiles et les félicitations ; un jeu n'a qu'à fournir sa fonction `manche()`
+et appeler `api.reussi()`. Trois principes les gouvernent : on ne perd jamais, on
+n'a rien à lire, et une manche se joue en un seul geste.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu
