@@ -633,29 +633,30 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
       '<path d="M -22,-76 C -36,-96 -24,-118 -6,-110 C -2,-100 -8,-86 -6,-76 Z" fill="%F%" %S%/>',
       '<path d="M 10,-80 C 4,-104 22,-118 32,-104 C 30,-94 20,-88 18,-78 Z" fill="%F%" %S%/>',
       '<ellipse cx="0" cy="-46" rx="45" ry="43" fill="%F%" %S%/>',
-      '<ellipse cx="57" cy="-66" rx="23" ry="14" transform="rotate(-14 57 -66)" fill="%F%" %S%/>'
+      /* le groin sort du milieu du visage, sous les yeux */
+      '<ellipse cx="58" cy="-38" rx="23" ry="14" transform="rotate(-12 58 -38)" fill="%F%" %S%/>'
     ];
     var s = U(parts, skin, 9);
-    // nez
-    s += '<ellipse cx="66" cy="-72" rx="4.4" ry="5.6" fill="' + shade(skin, -0.42) + '"/>' +
-      '<ellipse cx="72" cy="-63" rx="4.4" ry="5.6" fill="' + shade(skin, -0.42) + '"/>';
-    // yeux
-    var ey = -52;
-    s += '<circle cx="14" cy="' + ey + '" r="12.5" fill="#fff" stroke="' + INK + '" stroke-width="3.5"/>' +
-      '<circle cx="39" cy="' + (ey + 3) + '" r="12.5" fill="#fff" stroke="' + INK + '" stroke-width="3.5"/>';
+    // narines
+    s += '<ellipse cx="66" cy="-44" rx="4.4" ry="5.6" fill="' + shade(skin, -0.42) + '"/>' +
+      '<ellipse cx="72" cy="-35" rx="4.4" ry="5.6" fill="' + shade(skin, -0.42) + '"/>';
+    // yeux, posés au-dessus du groin
+    var ey = -63;
+    s += '<circle cx="15" cy="' + ey + '" r="12.5" fill="#fff" stroke="' + INK + '" stroke-width="3.5"/>' +
+      '<circle cx="40" cy="' + (ey + 4) + '" r="12.5" fill="#fff" stroke="' + INK + '" stroke-width="3.5"/>';
     if (mood === 'sleep') {
-      s += line('M 6,-52 q 8,7 16,0', INK, 4) + line('M 31,-49 q 8,7 16,0', INK, 4);
+      s += line('M 7,' + ey + ' q 8,7 16,0', INK, 4) + line('M 32,' + (ey + 4) + ' q 8,7 16,0', INK, 4);
     } else if (mood === 'wow') {
-      s += '<circle cx="16" cy="' + ey + '" r="6" fill="' + INK + '"/><circle cx="41" cy="' + (ey + 3) + '" r="6" fill="' + INK + '"/>';
+      s += '<circle cx="17" cy="' + ey + '" r="6" fill="' + INK + '"/><circle cx="42" cy="' + (ey + 4) + '" r="6" fill="' + INK + '"/>';
     } else {
-      s += '<circle cx="18" cy="' + (ey + 1) + '" r="5.4" fill="' + INK + '"/><circle cx="43" cy="' + (ey + 4) + '" r="5.4" fill="' + INK + '"/>';
+      s += '<circle cx="19" cy="' + (ey + 1) + '" r="5.4" fill="' + INK + '"/><circle cx="44" cy="' + (ey + 5) + '" r="5.4" fill="' + INK + '"/>';
     }
-    // joues
-    s += '<circle cx="-2" cy="-26" r="10" fill="' + shade(skin, -0.16) + '" opacity=".85"/>';
-    // bouche
-    if (mood === 'wow') s += '<ellipse cx="34" cy="-24" rx="9" ry="11" fill="#b8355c" stroke="' + INK + '" stroke-width="3.5"/>';
-    else if (mood === 'sad') s += line('M 22,-20 q 14,-12 28,-2', INK, 4.5);
-    else s += line('M 18,-28 q 16,18 32,0', INK, 4.5);
+    // joue
+    s += '<circle cx="-8" cy="-30" r="10" fill="' + shade(skin, -0.16) + '" opacity=".85"/>';
+    // bouche, sous le groin
+    if (mood === 'wow') s += '<ellipse cx="24" cy="-22" rx="8.5" ry="10" fill="#b8355c" stroke="' + INK + '" stroke-width="3.5"/>';
+    else if (mood === 'sad') s += line('M 10,-16 q 14,-10 26,-8', INK, 5);
+    else s += line('M 8,-24 q 16,15 30,-4', INK, 5);
     return s;
   }
 
@@ -680,9 +681,9 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
     }
     t += g('translate(0,-134)', pigHead({ skin: skin, mood: o.mood }));
     if (o.glasses) {
-      t += g('translate(0,-134)', '<circle cx="14" cy="-52" r="16" fill="none" stroke="' + INK + '" stroke-width="3.5"/>' +
-        '<circle cx="39" cy="-49" r="16" fill="none" stroke="' + INK + '" stroke-width="3.5"/>' +
-        line('M 29,-52 l 9,1', INK, 3.5));
+      t += g('translate(0,-134)', '<circle cx="15" cy="-63" r="16" fill="none" stroke="' + INK + '" stroke-width="3.5"/>' +
+        '<circle cx="40" cy="-59" r="16" fill="none" stroke="' + INK + '" stroke-width="3.5"/>' +
+        line('M 30,-63 l 9,2', INK, 3.5));
     }
     if (o.hat) t += g('translate(0,-134)', hatCap(o.hat));
     return s + (sit ? g('translate(-6,44)', t) : t);
