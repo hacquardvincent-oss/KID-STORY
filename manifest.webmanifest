@@ -1,0 +1,14 @@
+{
+  "name": "Les histoires de Liva",
+  "short_name": "Histoires",
+  "description": "La bibliothèque des histoires du soir de Liva, en bandes dessinées.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a1030",
+  "theme_color": "#1a1030",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
