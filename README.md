@@ -74,17 +74,16 @@ avoir ajouté une histoire.
 
 ### Le mettre en ligne (GitHub Pages)
 
-Le workflow `.github/workflows/pages.yml` publie le site à chaque envoi sur la
-branche principale. Il faut l'autoriser **une seule fois**, à la main :
+Le dépôt est un site statique posé à la racine : il se publie sans rien construire.
 
-**Settings → Pages → Source : GitHub Actions**
+**Settings → Pages → Source : Deploy from a branch**, puis la branche du projet et
+le dossier **`/ (root)`**. Le site est en ligne une minute plus tard, et chaque
+`git push` le met à jour tout seul.
 
-(GitHub refuse qu'un robot allume Pages tout seul : la création du site demande une
-action du propriétaire du dépôt.) Ensuite, tout est automatique.
-
-À savoir : sur un dépôt **privé**, Pages demande un compte GitHub Pro. Sur un dépôt
-**public**, c'est gratuit. Le fichier `.nojekyll` est déjà là pour éviter que GitHub
-ne bricole les fichiers.
+Deux choses à savoir : Pages est gratuit sur un dépôt **public** mais demande un
+compte Pro sur un dépôt privé ; et GitHub refuse qu'un jeton automatique crée le
+site — cette première activation revient au propriétaire du dépôt. Le fichier
+`.nojekyll` est déjà là pour éviter que GitHub ne bricole les fichiers.
 
 ---
 
