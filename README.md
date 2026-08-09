@@ -7,6 +7,11 @@ forme de **bande dessinée**.
 Tout est dessiné en SVG à la main par un petit moteur maison : **aucune image
 externe, aucune dépendance, aucun build**. On ouvre `index.html` et ça marche.
 
+La direction artistique reprend celle des magazines de lecture jeunesse :
+papier crème et grain d'impression, bandeau rouge, titres ronds, palette gouache,
+trait d'encre légèrement tremblé, et le texte des histoires composé dans un vrai
+caractère de lecture. Chaque histoire porte son numéro, comme un numéro de revue.
+
 ---
 
 ## Ce qu'il y a dedans
@@ -212,7 +217,8 @@ assets/css/style.css        toute la mise en page, mobile d'abord
 assets/js/art.js            le moteur de dessin SVG (décors, personnages, objets, bulles)
 assets/js/stories.js        les histoires (c'est ici qu'on écrit)
 assets/js/app.js            navigation, Cover Flow, lecteur
-assets/fonts/               la police Fredoka (SIL Open Font License 1.1)
+assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
+assets/img/grain.png        le grain du papier, en surimpression
 outils/apercu-histoire.html planche de contrôle pour les dessins
 outils/construire-page-unique.js  replie tout le site dans un fichier
 dist/histoires-de-livia.html      le résultat, prêt à partager
@@ -225,6 +231,11 @@ Le moteur de dessin repose sur une astuce simple : chaque forme est tracée deux
 d'abord en gros trait d'encre puis remplie par-dessus. Le contour obtenu épouse
 l'**union** des formes, ce qui permet de coller une tête, un museau et deux oreilles
 sans jamais voir les traits de construction.
+
+Le grain de papier est un carré de bruit de 64 pixels, répété et posé en
+`multiply` par-dessus la page ; le tremblé du trait vient d'un `feTurbulence`
+qui déplace légèrement chaque contour. Deux effets qui coûtent presque rien et
+qui suffisent à sortir le dessin du rendu vectoriel trop lisse.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu

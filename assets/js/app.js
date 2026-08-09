@@ -25,12 +25,27 @@
   }
   function isRead(u, s) { return store('read.' + u.id + '.' + s.id) === '1'; }
 
+  /* chaque histoire porte un numéro, comme les numéros d'un magazine */
+  var NUMERO = {};
+  (function () {
+    var n = 0;
+    UNIVERSES.forEach(function (u) {
+      u.stories.forEach(function (s) { NUMERO[u.id + '/' + s.id] = ++n; });
+    });
+  })();
+  function numero(u, s) { return 'N° ' + NUMERO[u.id + '/' + s.id]; }
+  function plageNumeros(u) {
+    var ns = u.stories.map(function (s) { return NUMERO[u.id + '/' + s.id]; });
+    return ns.length > 1 ? 'N° ' + Math.min.apply(null, ns) + ' à ' + Math.max.apply(null, ns)
+      : 'N° ' + ns[0];
+  }
+
   function setTheme(u) {
     var r = document.documentElement.style;
     r.setProperty('--tc1', u ? u.c1 : '#ff6fa5');
     r.setProperty('--tc2', u ? u.c2 : '#ffd166');
     var m = document.querySelector('meta[name=theme-color]');
-    if (m) m.setAttribute('content', '#1a1030');
+    if (m) m.setAttribute('content', '#d8342b');
   }
 
   /* ============================================================
@@ -58,8 +73,12 @@
       n.setAttribute('aria-label', it.label);
       var svg = Art.scene(it.scene, { slice: true, noBubbles: true });
       n.innerHTML =
-        '<div class="cf-art">' + svg + (it.badge ? '<div class="cf-badge">' + it.badge + '</div>' : '') +
+        '<div class="cf-art">' +
+        '<div class="cf-band"><span>' + it.num + '</span><span>' + it.tag + '</span></div>' +
+        svg +
+        '<div class="cf-name">' + it.label + '</div>' +
         '<div class="cf-shade"></div></div>' +
+        (it.badge ? '<div class="cf-badge">' + it.badge + '</div>' : '') +
         '<div class="cf-reflect">' + svg + '</div>';
       n.addEventListener('click', function () {
         if (self.moved) return;
@@ -242,8 +261,10 @@
       card.className = 'uni-card';
       var n = u.stories.length;
       card.innerHTML =
+        '<div class="band"><h3>' + u.emoji + ' ' + u.name + '</h3>' +
+        '<span class="num">' + plageNumeros(u) + '</span></div>' +
         '<div class="thumb">' + Art.scene(u.cover, { slice: true, noBubbles: true }) + '</div>' +
-        '<div class="cap"><div><h3>' + u.emoji + ' ' + u.name + '</h3><p>' + u.tagline + '</p></div>' +
+        '<div class="cap"><p>' + u.tagline + '</p>' +
         '<span class="pill">' + n + ' histoire' + (n > 1 ? 's' : '') + '</span></div>';
       card.onclick = function () { location.hash = '#/u/' + u.id; };
       els.grid.appendChild(card);
@@ -261,7 +282,7 @@
     var items = u.stories.map(function (s, i) {
       if (startId && s.id === startId) start = i;
       return {
-        scene: s.cover, label: s.title,
+        scene: s.cover, label: s.title, num: numero(u, s), tag: s.tag,
         badge: isRead(u, s) ? '✓' : String(s.pages.length) + ' p.'
       };
     });
@@ -280,7 +301,7 @@
     els.cfTitle.textContent = s.title;
     els.cfSub.textContent = s.subtitle;
     els.cfTags.innerHTML =
-      '<span>' + s.tag + '</span><span>' + s.pages.length + ' pages</span>' +
+      '<span>' + numero(u, s) + '</span><span>' + s.pages.length + ' pages</span>' +
       '<span>≈ ' + s.minutes + ' min</span>' + (isRead(u, s) ? '<span>✓ déjà lue</span>' : '');
     var dots = els.cfDots.children;
     for (var k = 0; k < dots.length; k++) dots[k].className = k === i ? 'on' : '';

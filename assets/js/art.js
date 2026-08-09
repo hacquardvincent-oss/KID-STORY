@@ -6,7 +6,7 @@
 (function (global) {
   'use strict';
 
-  var INK = '#3d2b33';
+  var INK = '#3a2a22';
   var VW = 800, VH = 560;
   var uid = 0;
 
@@ -57,7 +57,7 @@
      se dessine vers le haut (y négatif). Hauteur ≈ 230.
      ============================================================ */
 
-  var SHOE = '#3b2f3a';
+  var SHOE = '#4a3a2e';
 
   function pigLegs(pose, skin) {
     if (pose === 'jump') {
@@ -482,7 +482,7 @@
     for (var i = 0; i < leaves.length; i++) {
       var f = leaves[i][0], rot = leaves[i][1];
       out += g('translate(-14,-134) scale(' + f + ',1) rotate(' + rot + ')',
-        U(['<path d="M 0,0 C 30,-22 66,-20 84,-2 C 62,-6 34,4 0,10 Z" fill="%F%" %S%/>'], '#4faa5a', 7));
+        U(['<path d="M 0,0 C 30,-22 66,-20 84,-2 C 62,-6 34,4 0,10 Z" fill="%F%" %S%/>'], '#5f9350', 7));
     }
     return s + out + U(['<circle cx="-14" cy="-128" r="9" fill="%F%" %S%/>',
       '<circle cx="-2" cy="-124" r="9" fill="%F%" %S%/>'], '#c98a3f', 5);
@@ -626,7 +626,7 @@
   };
 
   P.tree = function (o) {
-    var c = o.color || '#4faa5a';
+    var c = o.color || '#5f9350';
     return line('M 0,0 L 0,-70', '#8a5a3b', 16) +
       U(['<circle cx="-34" cy="-96" r="38" fill="%F%" %S%/>',
         '<circle cx="24" cy="-108" r="42" fill="%F%" %S%/>',
@@ -635,7 +635,7 @@
   };
 
   P.pine = function (o) {
-    var c = o.color || '#2f6b52';
+    var c = o.color || '#3d6b52';
     return line('M 0,0 L 0,-30', '#6b4a33', 12) +
       U(['<path d="M 0,-140 L 34,-86 L -34,-86 Z" fill="%F%" %S%/>',
         '<path d="M 0,-112 L 44,-52 L -44,-52 Z" fill="%F%" %S%/>',
@@ -643,7 +643,7 @@
   };
 
   P.snowpine = function () {
-    return P.pine({ color: '#2f6b52' }) +
+    return P.pine({ color: '#3d6b52' }) +
       '<path d="M 0,-140 L 22,-105 L -22,-105 Z" fill="#fdfcff"/>' +
       '<path d="M 0,-112 L 28,-74 L -28,-74 Z" fill="#fdfcff" opacity=".9"/>';
   };
@@ -651,11 +651,11 @@
   P.bush = function (o) {
     return U(['<ellipse cx="-24" cy="-14" rx="28" ry="22" fill="%F%" %S%/>',
       '<ellipse cx="12" cy="-24" rx="32" ry="26" fill="%F%" %S%/>',
-      '<ellipse cx="40" cy="-12" rx="24" ry="20" fill="%F%" %S%/>'], o.color || '#5cb86a', 8);
+      '<ellipse cx="40" cy="-12" rx="24" ry="20" fill="%F%" %S%/>'], o.color || '#6fa057', 8);
   };
 
   P.flower = function (o) {
-    var c = o.color || '#ff7ab8', s = line('M 0,0 L 0,-26', '#4faa5a', 4), i;
+    var c = o.color || '#ff7ab8', s = line('M 0,0 L 0,-26', '#5f9350', 4), i;
     for (i = 0; i < 5; i++) {
       var an = i * 72 * Math.PI / 180;
       s += '<circle cx="' + (Math.cos(an) * 10).toFixed(1) + '" cy="' + (-26 + Math.sin(an) * 10).toFixed(1) + '" r="9" fill="' + c + '" stroke="' + INK + '" stroke-width="3"/>';
@@ -881,12 +881,12 @@
      ============================================================ */
 
   var SKY = {
-    day: ['#7fd4ff', '#d9f4ff'],
-    morning: ['#9fd8ff', '#ffe9c9'],
-    sunset: ['#ff8a5c', '#ffd9a0'],
-    night: ['#101f45', '#31477b'],
-    snow: ['#a8d8f0', '#e6f6ff'],
-    snownight: ['#101f45', '#2b4a86']
+    day: ['#9ecfe0', '#e6f0e4'],
+    morning: ['#b3d8e8', '#f7e6c8'],
+    sunset: ['#e8895c', '#f5cf9c'],
+    night: ['#25304f', '#4a5a7a'],
+    snow: ['#b6d4e0', '#eef4f2'],
+    snownight: ['#232f4c', '#465a80']
   };
 
   function skyRect(time) {
@@ -911,8 +911,8 @@
 
   BG.beach = function (s) {
     var time = s.time || 'day';
-    var sand = time === 'sunset' ? '#f0c98f' : '#f7dfae';
-    var sea = time === 'sunset' ? '#e8825c' : '#3fb0d8';
+    var sand = time === 'sunset' ? '#e6c692' : '#eed9ab';
+    var sea = time === 'sunset' ? '#dd8460' : '#4f9cb5';
     var out = skyRect(time);
     if (time === 'night') out += stars(22, 220);
     if (time === 'sunset') out += g('translate(640,190)', P.sun({ color: '#ffdf6b' }));
@@ -947,7 +947,7 @@
     if (time === 'night') out += stars(20, 200) + g('translate(690,96)', P.moon({}));
     else out += g('translate(700,90)', P.sun({})) + g('translate(180,110) scale(1)', P.cloud({})) + g('translate(470,74) scale(.7)', P.cloud({}));
     out += '<path d="M 0,330 C 160,306 320,344 470,326 C 620,308 720,336 800,322 L 800,560 L 0,560 Z" fill="#7ecb6a"/>';
-    out += line('M 0,330 C 160,306 320,344 470,326 C 620,308 720,336 800,322', '#5aa94f', 5);
+    out += line('M 0,330 C 160,306 320,344 470,326 C 620,308 720,336 800,322', '#6f9147', 5);
     out += '<rect x="0" y="392" width="800" height="168" fill="#8ed67a"/>';
     return out;
   };
@@ -969,9 +969,9 @@
     } else {
       out += g('translate(690,96)', P.sun({})) + g('translate(200,110)', P.cloud({})) + g('translate(500,72) scale(.7)', P.cloud({}));
     }
-    var far = time === 'night' ? '#1f3f5c' : '#8fc6a0';
+    var far = time === 'night' ? '#1f3f5c' : '#93b592';
     out += '<path d="M 0,330 L 120,230 L 220,330 L 340,240 L 460,330 L 600,236 L 740,330 L 800,300 L 800,400 L 0,400 Z" fill="' + far + '"/>';
-    var grass = time === 'night' ? '#25543f' : '#7ecb6a';
+    var grass = time === 'night' ? '#2f4a3a' : '#8fb35c';
     out += '<path d="M 0,352 C 200,336 400,372 600,352 C 700,342 760,360 800,352 L 800,560 L 0,560 Z" fill="' + grass + '"/>';
     return out;
   };
@@ -980,10 +980,10 @@
     var time = s.time || 'day';
     var out = skyRect(time);
     if (time === 'night') out += stars(20, 220);
-    var t = time === 'night' ? '#1f4a38' : '#3f8a5c';
+    var t = time === 'night' ? '#2a4438' : '#3f8a5c';
     out += g('translate(80,380) scale(1.3)', P.pine({ color: t })) + g('translate(240,368) scale(1.05)', P.pine({ color: t })) +
       g('translate(620,384) scale(1.25)', P.pine({ color: t })) + g('translate(760,366)', P.pine({ color: t }));
-    out += '<path d="M 0,372 C 200,356 400,392 600,372 C 700,362 760,380 800,372 L 800,560 L 0,560 Z" fill="' + (time === 'night' ? '#25543f' : '#7ecb6a') + '"/>';
+    out += '<path d="M 0,372 C 200,356 400,392 600,372 C 700,362 760,380 800,372 L 800,560 L 0,560 Z" fill="' + (time === 'night' ? '#2f4a3a' : '#8fb35c') + '"/>';
     return out;
   };
 
@@ -1078,7 +1078,7 @@
       parts.push('<circle cx="' + (cx - 10) + '" cy="' + (y + h + 16) + '" r="12" fill="%F%" %S%/>');
       parts.push('<circle cx="' + (cx - 22) + '" cy="' + (y + h + 40) + '" r="7" fill="%F%" %S%/>');
     }
-    var s = U(parts, b.fill || '#ffffff', 9);
+    var s = U(parts, b.fill || '#fdf7ea', 9);
     var ty0 = y + 18 + fs * 0.82;
     s += '<text x="' + cx + '" y="' + ty0 + '" text-anchor="middle" font-family="' + FONT + '" font-size="' + fs +
       '" font-weight="700" fill="' + INK + '">';
@@ -1110,7 +1110,7 @@
     peppa: function (o) { return pig({ skin: '#f7a8c4', cloth: '#e8436e', pose: o.pose, mood: o.mood, hat: o.hat }); },
     george: function (o) { return pig({ skin: '#f7a8c4', cloth: '#5aa9e8', top: true, pose: o.pose, mood: o.mood, hat: o.hat }); },
     mummy: function (o) { return pig({ skin: '#f7a8c4', cloth: '#f2803d', pose: o.pose, mood: o.mood, hat: o.hat }); },
-    daddy: function (o) { return pig({ skin: '#f7a8c4', cloth: '#6fbf5c', top: true, glasses: true, pose: o.pose, mood: o.mood, hat: o.hat }); },
+    daddy: function (o) { return pig({ skin: '#f7a8c4', cloth: '#7ba450', top: true, glasses: true, pose: o.pose, mood: o.mood, hat: o.hat }); },
     suzy: function (o) { return sheep({ pose: o.pose, mood: o.mood, cloth: '#8ec9f0' }); },
     livia: function (o) {
       return girl({
@@ -1147,6 +1147,16 @@
     for (k in CHARS) if (CHARS.hasOwnProperty(k)) ITEMS[k] = CHARS[k];
   })();
 
+  /* ombre portée au sol : ce qui pose vraiment un personnage sur le décor */
+  var OMBRE = { dino: 0, olaf: 34, george: 38 };
+  function ombre(t, pose) {
+    if (!CHARS.hasOwnProperty(t) || pose === 'swim' || pose === 'jump') return '';
+    var r = OMBRE.hasOwnProperty(t) ? OMBRE[t] : 46;
+    if (!r) return '';
+    return '<ellipse cx="6" cy="-3" rx="' + r + '" ry="' + (r * 0.23).toFixed(1) +
+      '" fill="' + INK + '" opacity=".13"/>';
+  }
+
   /* ============================================================
      RENDU DE SCÈNE
      ============================================================ */
@@ -1163,30 +1173,48 @@
       var rot = it.rot ? ' rotate(' + it.rot + ')' : '';
       var op = it.op !== undefined ? ' opacity="' + it.op + '"' : '';
       out += '<g transform="translate(' + (it.x || 0) + ',' + (it.y || 0) + ') scale(' + sx + ',' + sc + ')' + rot + '"' + op + '>' +
-        fn(it) + '</g>';
+        ombre(it.t, it.pose) + fn(it) + '</g>';
     }
     return out;
   }
 
   function sceneSVG(s, opts) {
     opts = opts || {};
+    var id = ++uid;
     var bgFn = BG[s.bg] || BG.plain;
-    var out = bgFn(s);
-    out += renderItems(s.back);
-    out += renderItems(s.items);
-    out += renderItems(s.front);
+
+    /* le dessin : décor, personnages, objets */
+    var art = bgFn(s);
+    art += renderItems(s.back);
+    art += renderItems(s.items);
+    art += renderItems(s.front);
+
+    /* le lettrage : bruitages et bulles, laissés nets */
+    var letters = '';
     if (s.sfx) {
       for (var i = 0; i < s.sfx.length; i++) {
         var f = s.sfx[i];
-        out += g('translate(' + f.x + ',' + f.y + ')', sfx(f));
+        letters += g('translate(' + f.x + ',' + f.y + ')', sfx(f));
       }
     }
     if (s.bubbles && !opts.noBubbles) {
-      for (var j = 0; j < s.bubbles.length; j++) out += bubble(s.bubbles[j]);
+      for (var j = 0; j < s.bubbles.length; j++) letters += bubble(s.bubbles[j]);
     }
+
+    /* le trait tremble légèrement, comme une encre posée à la main */
+    var defs = '<defs><filter id="pl' + id + '" x="-4%" y="-4%" width="108%" height="108%">' +
+      '<feTurbulence type="fractalNoise" baseFrequency="0.021" numOctaves="1" seed="' + (id * 13 % 97) + '" result="t"/>' +
+      '<feDisplacementMap in="SourceGraphic" in2="t" scale="3" xChannelSelector="R" yChannelSelector="G"/>' +
+      '</filter></defs>';
+
+    /* voile chaud : tout est imprimé sur le même papier crème */
+    var wash = '<rect x="0" y="0" width="' + VW + '" height="' + VH +
+      '" fill="#e0c9a0" opacity=".10" style="mix-blend-mode:multiply"/>';
+
     var par = opts.slice ? 'xMidYMid slice' : 'xMidYMid meet';
-    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + VW + ' ' + VH + '" preserveAspectRatio="' + par + '" role="img">' +
-      out + '</svg>';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + VW + ' ' + VH +
+      '" preserveAspectRatio="' + par + '" role="img">' + defs +
+      '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }
 
   global.Art = {

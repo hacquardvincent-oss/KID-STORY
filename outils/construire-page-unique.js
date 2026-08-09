@@ -19,10 +19,12 @@ const ROOT = path.join(__dirname, '..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 const b64 = (p) => fs.readFileSync(path.join(ROOT, p)).toString('base64');
 
-/* --- CSS : on remplace les polices par des data: URI --- */
+/* --- CSS : polices et images deviennent des data: URI --- */
 let css = read('assets/css/style.css');
 css = css.replace(/url\('\.\.\/fonts\/([^']+)'\)/g, (_, file) =>
   "url('data:font/woff2;base64," + b64('assets/fonts/' + file) + "')");
+css = css.replace(/url\('\.\.\/img\/([^']+)'\)/g, (_, file) =>
+  "url('data:image/png;base64," + b64('assets/img/' + file) + "')");
 
 /* --- HTML : on ne garde que le contenu du <body> --- */
 const html = read('index.html');
