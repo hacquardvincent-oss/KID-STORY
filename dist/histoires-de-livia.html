@@ -531,7 +531,9 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 
 /* écrire */
 /* les 6 différences : deux fois la même case, à un détail près */
-.diff { display: grid; gap: 10px; }
+/* sur un téléphone, la case va d'un bord à l'autre : chaque pixel compte
+   pour viser un détail du doigt */
+.diff { display: grid; gap: 8px; margin: 0 -14px; }
 .diff-vue {
   position: relative; aspect-ratio: 800 / 560; overflow: hidden;
   border: 3px solid var(--ink); background: var(--page);
@@ -551,8 +553,50 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .diff-score b { font-size: 24px; color: var(--rouge); }
 
 @media (min-width: 760px) {
-  .diff { grid-template-columns: 1fr 1fr; }
+  .diff { grid-template-columns: 1fr 1fr; margin: 0; gap: 12px; }
 }
+
+/* le rang de jeux, pour passer de l'un à l'autre */
+.jeux-nav {
+  display: flex; gap: 7px; overflow-x: auto; padding: 0 0 10px;
+  margin: 0 -14px 10px; padding-inline: 14px;
+  scrollbar-width: none;
+}
+.jeux-nav::-webkit-scrollbar { display: none; }
+.jeux-nav .chip { flex: 0 0 auto; }
+
+/* choisir un prénom, choisir une lettre */
+.choix-grille {
+  display: grid; gap: 8px; margin: 0 0 14px;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+}
+.choix-b {
+  font-family: inherit; cursor: pointer;
+  font-size: 16px; font-weight: 600; letter-spacing: .5px;
+  padding: 12px 6px; color: var(--ink);
+  background: var(--page); border: 3px solid var(--ink); border-radius: 14px;
+  box-shadow: 0 3px 0 var(--ink);
+}
+.choix-b:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+.choix-hasard {
+  display: block; width: 100%; font-family: inherit; cursor: pointer;
+  font-size: 16px; font-weight: 600; padding: 11px 16px;
+  background: var(--jaune); color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 999px; box-shadow: 0 3px 0 var(--ink);
+}
+.choix-hasard:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+
+/* reconnaître une lettre parmi trois */
+.lettres-choix { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.lettre-b {
+  cursor: pointer; aspect-ratio: 1 / 1; padding: 8px;
+  background: var(--page); color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 16px; box-shadow: 0 4px 0 var(--ink);
+}
+.lettre-b svg { display: block; width: 100%; height: 100%; }
+.lettre-b:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+.lettre-b.juste { background: #cfe8bd; color: #3d6b2c; }
+.lettre-b.faux { animation: secousse .3s; }
 
 /* le prénom en cours d'écriture, lettre par lettre */
 .prenom {
@@ -832,6 +876,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
       <h2>🎮 Les jeux de Livia</h2>
       <p id="gamesSub">Pour jouer tout seul, dès 3 ans</p>
     </div>
+    <nav class="jeux-nav" id="jeuxNav" aria-label="Les jeux" hidden></nav>
     <div class="jeux-grid" id="gamesGrid"></div>
     <div class="jeu-stage" id="gameStage" hidden></div>
   </section>
@@ -2604,7 +2649,11 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     /* en recadrage, on garde le bas de l'image : c'est là que se tiennent
        les personnages. Le ciel, lui, peut être rogné sans dommage. */
     var par = opts.slice ? 'xMidYMax slice' : 'xMidYMid meet';
-    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + VW + ' ' + VH +
+    /* un cadre permet de ne montrer qu'une partie de la case : c'est ce qui
+       agrandit le dessin dans le jeu des différences */
+    var c = opts.cadre;
+    var vb = c ? (c.x + ' ' + c.y + ' ' + c.w + ' ' + c.h) : ('0 0 ' + VW + ' ' + VH);
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + vb +
       '" preserveAspectRatio="' + par + '" role="img">' + defs +
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }
@@ -2711,6 +2760,8 @@ var THEMES = [
   { id: 'amitie', nom: 'Amitié', emoji: '🤝' },
   { id: 'emotions', nom: 'Émotions', emoji: '💛' },
   { id: 'grandir', nom: 'Grandir', emoji: '🌱' },
+  { id: 'partager', nom: 'Partager', emoji: '🤲' },
+  { id: 'regles', nom: 'Règles', emoji: '📏' },
   { id: 'famille', nom: 'Famille', emoji: '🏡' },
   { id: 'dehors', nom: 'Dehors', emoji: '🌳' },
   { id: 'nuit', nom: 'Nuit', emoji: '🌙' },
@@ -3394,7 +3445,7 @@ var UNIVERSES = [
         title: 'Le vélo de Livia',
         subtitle: 'Ce qui est plus drôle à deux',
         tag: 'Grandir',
-        themes: ['Émotions', 'Amitié'],
+        themes: ['Émotions', 'Amitié', 'Partager'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -3591,7 +3642,7 @@ var UNIVERSES = [
         title: 'La flaque interdite',
         subtitle: 'Pourquoi Maman avait dit non',
         tag: 'Grandir',
-        themes: ['Grandir', 'Bêtises'],
+        themes: ['Grandir', 'Bêtises', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'village',
@@ -3690,7 +3741,7 @@ var UNIVERSES = [
         title: 'Le vase de Maman',
         subtitle: 'Le poids d\'un petit mensonge',
         tag: 'Grandir',
-        themes: ['Grandir', 'Famille'],
+        themes: ['Grandir', 'Famille', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'bedroom',
@@ -3788,7 +3839,7 @@ var UNIVERSES = [
         title: 'La file du toboggan',
         subtitle: 'Attendre sans que ce soit long',
         tag: 'Grandir',
-        themes: ['Grandir', 'Amitié'],
+        themes: ['Grandir', 'Amitié', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -3987,6 +4038,292 @@ var UNIVERSES = [
               front: [{ t: 'cube', x: 730, y: 544, s: .75, rot: 10, color: '#f7c518' }]
             },
             text: "Le soir, la tour faisait onze cubes. Pablo en renversa dix. Livia respira un grand coup, et recommença. C'est aussi ça, être une grande sœur."
+          }
+        ]
+      },
+
+      /* ---------- 12 : partager quand ça coûte ---------- */
+      {
+        id: 'dernier-gateau',
+        title: 'Le dernier gâteau',
+        subtitle: 'Partager quand il n\'y en a qu\'un',
+        tag: 'Grandir',
+        themes: ['Partager', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 280, y: 520, s: 1.15, pose: 'hold' },
+            { t: 'livia', x: 520, y: 522, s: 1.1, pose: 'hold' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 560, y: 520, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'LE GOÛTER !', x: 430, y: 168, fs: 30, rot: -5, color: '#f2803d' }]
+            },
+            text: "Il y avait eu six gâteaux au chocolat. Livia en avait mangé deux. Peppa en avait mangé trois. Sur l'assiette, il en restait exactement un."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 280, y: 522, s: 1.15, mood: 'wow' },
+                { t: 'peppa', x: 540, y: 520, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'LE DERNIER…', x: 410, y: 166, fs: 30, rot: -4, color: '#6d5847' }]
+            },
+            text: "Elles le regardèrent toutes les deux en même temps. Le dernier gâteau. Il n'y avait plus rien à dire, et pourtant il y avait beaucoup de choses à décider."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 280, y: 522, s: 1.15, pose: 'point' },
+                { t: 'peppa', x: 560, y: 520, s: 1.15, pose: 'point', mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'C\'est moi qui l\'ai vu en premier !', tx: 285, ty: 244 }]
+            },
+            text: "« C'est moi qui l'ai vu en premier ! » dit Livia. « C'est moi qui ai apporté l'assiette ! » dit Peppa. Chacune avait une très bonne raison. C'est souvent comme ça, les très bonnes raisons."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'mummy', x: 300, y: 518, s: 1.35, pose: 'shrug' },
+                { t: 'livia', x: 560, y: 522, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 330, y: 24, w: 330, t: 'Je ne choisis pas. C\'est votre gâteau.', tx: 320, ty: 240 }]
+            },
+            text: "Maman Pig passa par là. « Je ne choisis pas », dit-elle. « C'est votre gâteau. » Puis elle posa un couteau sur la table, et elle repartit, l'air de rien."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 560, y: 520, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'CLIC.', x: 430, y: 164, fs: 32, rot: -6, color: '#7ba450' }]
+            },
+            text: "Livia prit le couteau. Elle coupa le gâteau en deux, tout doucement, en visant bien le milieu. Une moitié n'est pas un gâteau entier. Une moitié, c'est quand même beaucoup mieux que rien du tout."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 520, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 560, y: 522, s: 1.15 }
+              ],
+              bubbles: [{ x: 330, y: 24, w: 320, t: 'Prends la plus grosse, tu as coupé.', tx: 320, ty: 240 }]
+            },
+            text: "« Prends la plus grosse », dit Peppa. « Toi tu as coupé, alors moi je choisis, et je choisis que tu prends la plus grosse. » Livia ne comprit pas très bien, mais ça lui plut beaucoup."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 300, y: 508, s: 1.1, pose: 'sit' },
+                { t: 'livia', x: 540, y: 506, s: 1.1, pose: 'sit' }
+              ]
+            },
+            text: "Elles mangèrent leur moitié sur les marches, sans se presser. Livia trouva que ce demi-gâteau-là avait bien meilleur goût que les deux qu'elle avait mangés toute seule."
+          }
+        ]
+      },
+
+      /* ---------- 13 : la règle qui protège ---------- */
+      {
+        id: 'donner-la-main',
+        title: 'On donne la main',
+        subtitle: 'La règle qui ne se discute pas',
+        tag: 'Grandir',
+        themes: ['Règles', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'road',
+          items: [
+            { t: 'mummy', x: 300, y: 518, s: 1.35, pose: 'hold' },
+            { t: 'livia', x: 540, y: 522, s: 1.1, pose: 'hold' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 280, y: 518, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 520, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 700, y: 520, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ON Y VA !', x: 430, y: 160, fs: 30, rot: -5, color: '#3f6ea8' }]
+            },
+            text: "Pour aller à la boulangerie, il faut traverser la route. Avant de traverser, on donne la main. C'est comme ça depuis toujours, et personne n'a jamais demandé pourquoi."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 260, y: 518, s: 1.35 },
+                { t: 'livia', x: 540, y: 522, s: 1.15, pose: 'shrug' }
+              ],
+              bubbles: [{ x: 320, y: 24, w: 330, t: 'Je suis grande. Je peux tout seule.', tx: 540, ty: 240 }]
+            },
+            text: "Ce jour-là, Livia retira sa main. « Je suis grande », dit-elle. « Je peux traverser toute seule. » Elle était très fière de sa phrase. Elle l'avait préparée dans sa tête."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'livia', x: 400, y: 522, s: 1.25, pose: 'run' }
+              ],
+              front: [{ t: 'car', x: 610, y: 512, s: 1.15 }],
+              sfx: [{ t: 'TUUUT !!', x: 600, y: 190, fs: 40, rot: -10, color: '#e0453c' }]
+            },
+            text: "Elle fit deux pas sur la route. Une voiture arriva. Elle klaxonna très fort et s'arrêta d'un coup. Il ne s'est rien passé. Mais il aurait pu se passer quelque chose."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 300, y: 518, s: 1.4, mood: 'wow' },
+                { t: 'livia', x: 570, y: 522, s: 1.15, mood: 'sad' }
+              ],
+              sfx: [{ t: 'LIVIA !', x: 420, y: 164, fs: 36, rot: -7, color: '#e0453c' }]
+            },
+            text: "Maman Pig cria son prénom très fort. Puis elle la serra très fort. Sa voix tremblait un peu. Livia comprit que ce n'était pas de la colère : c'était de la peur."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 280, y: 496, s: 1.35, pose: 'sit' },
+                { t: 'livia', x: 540, y: 502, s: 1.1, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 340, t: 'La règle, c\'est pour te ramener à la maison.', tx: 300, ty: 236 }]
+            },
+            text: "Elles s'assirent sur le trottoir. « Certaines règles se discutent », dit Maman Pig. « Celle-là, non. La route, c'est la règle qui te ramène à la maison. »"
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 300, y: 518, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 540, y: 522, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'À GAUCHE, À DROITE…', x: 420, y: 158, fs: 26, rot: -4, color: '#3f6ea8' }]
+            },
+            text: "Alors Livia reprit la main. Elle regarda à gauche, puis à droite, puis encore à gauche, comme on lui avait appris. Et c'est elle qui dit : « On peut y aller. »"
+          },
+          {
+            scene: {
+              bg: 'road', time: 'sunset',
+              items: [
+                { t: 'mummy', x: 260, y: 518, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 500, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 690, y: 520, s: 1.1, pose: 'hold' }
+              ]
+            },
+            text: "Au retour, Livia tendit la main la première, sans qu'on lui demande. Être grande, ce n'est pas faire tout seul. C'est savoir quand on a besoin de quelqu'un."
+          }
+        ]
+      },
+
+      /* ---------- 14 : le non des parents ---------- */
+      {
+        id: 'maman-dit-non',
+        title: 'Quand Maman dit non',
+        subtitle: 'Un non, et ce qui vient après',
+        tag: 'Grandir',
+        themes: ['Règles', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'mummy', x: 300, y: 516, s: 1.35 },
+            { t: 'livia', x: 540, y: 520, s: 1.1, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 280, y: 516, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 540, y: 520, s: 1.15, pose: 'point' }
+              ],
+              sfx: [{ t: 'JE VEUX ÇA !', x: 430, y: 164, fs: 30, rot: -5, color: '#e8436e' }]
+            },
+            text: "Au magasin, il y avait un tout petit cheval en plastique. Livia le voulait. Elle le voulait tout de suite, elle le voulait beaucoup, et elle le dit très clairement."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 300, y: 516, s: 1.4, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 520, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 300, t: 'Non. Pas aujourd\'hui.', tx: 300, ty: 240 }]
+            },
+            text: "« Non », dit Maman. « Pas aujourd'hui. » Elle ne dit pas peut-être. Elle ne dit pas on verra. Elle dit non, une seule fois, calmement, ce qui est très énervant."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 400, y: 496, s: 1.25, pose: 'sit', mood: 'wow' }
+              ],
+              sfx: [{ t: 'AAAAAAH !', x: 400, y: 156, fs: 44, rot: -9, color: '#e0453c' }]
+            },
+            text: "Alors Livia se coucha par terre. Elle cria. Elle tapa des pieds. Tout le magasin la regarda. Elle sentait bien que c'était très fort, ce qui sortait d'elle."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 320, y: 494, s: 1.4, pose: 'sit' },
+                { t: 'livia', x: 580, y: 502, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              sfx: [{ t: '. . .', x: 450, y: 172, fs: 32, rot: 0, color: '#8a7768' }]
+            },
+            text: "Maman ne cria pas. Elle s'assit à côté, sans rien dire, et elle attendit. La colère est comme une grosse vague : si personne ne la nourrit, elle finit par redescendre."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 300, y: 516, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 560, y: 520, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 340, t: 'Tu as le droit d\'être triste. Le non reste non.', tx: 300, ty: 240 }]
+            },
+            text: "Quand ce fut fini, Maman dit : « Tu as le droit d'être triste. Tu as le droit d'être en colère. Le non, lui, reste non. » Les deux choses tenaient ensemble, bizarrement."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 280, y: 516, s: 1.35, pose: 'point' },
+                { t: 'livia', x: 540, y: 520, s: 1.15 }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'On le note sur la liste des envies.', tx: 285, ty: 240 }]
+            },
+            text: "« On le note sur la liste des envies », dit Maman. « Pour ton anniversaire, tu choisiras dedans. » Ce n'était pas tout de suite. Mais ce n'était plus jamais non plus."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'mummy', x: 300, y: 516, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 540, y: 520, s: 1.15, pose: 'hold' }
+              ]
+            },
+            text: "En sortant, Livia tenait la liste dans sa poche. Le petit cheval était resté au magasin. Il n'avait pas bougé, et Livia savait maintenant où le retrouver."
           }
         ]
       }
@@ -4525,7 +4862,7 @@ var UNIVERSES = [
         title: 'Le ballon qui ne doit pas tomber',
         subtitle: 'Une seule règle, et elle est difficile',
         tag: 'Jardin',
-        themes: ['Dehors', 'Famille'],
+        themes: ['Dehors', 'Famille', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -5388,6 +5725,103 @@ var UNIVERSES = [
             text: "Dans la chambre, les trois amies ont encore des petites lumières plein les yeux. « Bonne nuit les lucioles », murmure Bingo. Elles dorment avant la fin de la phrase."
           }
         ]
+      },
+
+      /* ---------- 11 : partager le temps ---------- */
+      {
+        id: 'balancoire',
+        title: 'La balançoire pour deux',
+        subtitle: 'Une seule balançoire, et vingt secondes chacun',
+        tag: 'Jardin',
+        themes: ['Partager', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'bluey', x: 280, y: 518, s: 1.15, pose: 'armsup' },
+            { t: 'livia', x: 520, y: 522, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.2, pose: 'armsup' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'UNE BALANÇOIRE !', x: 430, y: 164, fs: 28, rot: -5, color: '#6f9ed8' }]
+            },
+            text: "Papa avait accroché une balançoire à la branche du grand arbre. Une seule. Bluey et Livia la regardèrent, puis se regardèrent, et comprirent le problème en même temps."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 280, y: 518, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'point' }
+              ],
+              sfx: [{ t: 'MOI D\'ABORD !', x: 430, y: 162, fs: 32, rot: -6, color: '#e0453c' }]
+            },
+            text: "« Moi d'abord ! » dirent-elles exactement en même temps, ce qui ne réglait rien du tout. Elles le redirent une deuxième fois, plus fort, ce qui ne régla rien non plus."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 260, y: 516, s: 1.4, pose: 'shrug' },
+                { t: 'bluey', x: 500, y: 518, s: 1.1, mood: 'sad' },
+                { t: 'livia', x: 690, y: 522, s: 1.05, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 340, t: 'Vingt. On compte jusqu\'à vingt, chacune son tour.', tx: 300, ty: 240 }]
+            },
+            text: "Papa arriva avec une idée à la place d'une punition. « Vingt », dit-il. « On compte jusqu'à vingt à voix haute, et on change. Celle qui pousse compte. »"
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.15, pose: 'armsup' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'UN… DEUX… TROIS…', x: 430, y: 160, fs: 26, rot: -4, color: '#3ec9c9' }]
+            },
+            text: "Livia poussa, et compta. Un, deux, trois. Au début elle compta très vite, en espérant que ça irait plus vite. Papa lui fit remarquer qu'après, ce serait pareil pour elle."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'armsup' },
+                { t: 'bluey', x: 560, y: 518, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'DIX-HUIT… DIX-NEUF…', x: 430, y: 160, fs: 26, rot: -4, color: '#6f9ed8' }]
+            },
+            text: "Alors Bluey compta lentement, très lentement, en traînant sur chaque nombre. Livia fut d'accord pour dire que c'était la meilleure façon de compter jusqu'à vingt."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.15, pose: 'armsup' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'À TOI ! À MOI !', x: 430, y: 158, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Elles firent ça tout l'après-midi. Vingt pour l'une, vingt pour l'autre. Attendre son tour est beaucoup moins long quand on sait exactement combien de temps ça dure."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'bandit', x: 260, y: 516, s: 1.4 },
+                { t: 'bluey', x: 480, y: 506, s: 1.1, pose: 'sit' },
+                { t: 'livia', x: 690, y: 508, s: 1.05, pose: 'sit' }
+              ]
+            },
+            text: "Le soir, Papa demanda qui avait gagné. Personne ne comprit la question. On ne gagne pas à la balançoire : on y va chacun son tour, et c'est déjà beaucoup."
+          }
+        ]
       }
     ]
   },
@@ -5839,7 +6273,7 @@ var UNIVERSES = [
         title: 'Madame Range-Tout et le grand désordre',
         subtitle: 'Quand tout est trop bien rangé',
         tag: 'Humeurs',
-        themes: ['Émotions', 'Bêtises'],
+        themes: ['Émotions', 'Bêtises', 'Règles'],
         minutes: 4,
         cover: {
           bg: 'bedroom',
@@ -6337,7 +6771,7 @@ var UNIVERSES = [
         title: 'La cabane de tous les amis',
         subtitle: 'Chacun apporte ce qu\'il sait faire',
         tag: 'Tous ensemble',
-        themes: ['Amitié', 'Dehors'],
+        themes: ['Amitié', 'Dehors', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -6773,7 +7207,7 @@ var UNIVERSES = [
         title: 'La dispute du toboggan',
         subtitle: 'Bouder, c\'est long',
         tag: 'Copines',
-        themes: ['Amitié', 'Émotions'],
+        themes: ['Amitié', 'Émotions', 'Partager'],
         minutes: 4,
         cover: {
           bg: 'garden',
@@ -7033,7 +7467,7 @@ var UNIVERSES = [
         title: 'La cabane des quatre',
         subtitle: 'Quatre idées, une seule cabane',
         tag: 'Copines',
-        themes: ['Amitié', 'Dehors'],
+        themes: ['Amitié', 'Dehors', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'forest',
@@ -7203,6 +7637,179 @@ var UNIVERSES = [
             text: "Le lendemain, elles avaient toutes les trois un chapeau bizarre. Roxane trouva ça très laid. Elle en mit un quand même. C'est ça, réparer."
           }
         ]
+      },
+
+      /* ---------- 7 : prêter ce à quoi on tient ---------- */
+      {
+        id: 'prete-doudou',
+        title: 'Prêter son doudou',
+        subtitle: 'Prêter ce qui compte le plus',
+        tag: 'Copines',
+        themes: ['Partager', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 300, y: 508, s: 1.05, pose: 'hold' },
+            { t: 'isadora', x: 520, y: 506, s: 1, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 508, s: 1.2, pose: 'hold' }
+              ],
+              sfx: [{ t: 'MON DOUDOU', x: 400, y: 150, fs: 30, rot: -5, color: '#f2a0c2' }]
+            },
+            text: "Livia a un doudou. Il est gris, il sent la maison, et il ne va jamais nulle part sans elle. C'est la seule chose au monde qu'elle ne prête à personne."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'isadora', x: 300, y: 506, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 540, y: 508, s: 1.05 }
+              ],
+              sfx: [{ t: 'LA SIESTE…', x: 420, y: 148, fs: 28, rot: -4, color: '#8a7768' }]
+            },
+            text: "Ce jour-là, Isadora dormait chez Livia. À l'heure de la sieste, elle s'assit sur le matelas sans rien dire. Elle avait oublié son doudou à elle, à la maison."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 508, s: 1.2, mood: 'sad', pose: 'hold' }
+              ],
+              sfx: [{ t: 'MMMH…', x: 400, y: 152, fs: 32, rot: -5, color: '#6d5847' }]
+            },
+            text: "Livia serra son doudou plus fort. Elle pensa : elle n'a qu'à dormir sans. Puis elle pensa : moi, je ne pourrais pas. Les deux pensées se battirent un moment."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 508, s: 1.1, pose: 'point' },
+                { t: 'isadora', x: 540, y: 506, s: 1.05, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 22, w: 330, t: 'Tu peux le prendre. Mais il revient après.', tx: 300, ty: 236 }]
+            },
+            text: "« Tu peux le prendre », dit Livia. « Mais il revient après. » Isadora hocha la tête très vite, comme on promet une chose extrêmement sérieuse."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'isadora', x: 300, y: 506, s: 1.05, mood: 'sleep' },
+                { t: 'livia', x: 540, y: 508, s: 1.05, mood: 'sleep' }
+              ],
+              sfx: [{ t: 'ZZZ…', x: 430, y: 154, fs: 30, rot: -6, color: '#a98cf0' }]
+            },
+            text: "Isadora s'endormit en trois minutes. Livia, elle, mit plus longtemps. Elle regarda le plafond, les bras vides. Puis elle s'endormit quand même, ce qui la surprit beaucoup."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'isadora', x: 300, y: 506, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 540, y: 508, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'TIENS !', x: 420, y: 150, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: "Au réveil, Isadora lui rendit le doudou avant même de dire bonjour. Il sentait un peu Isadora, maintenant. Livia trouva que ce n'était pas si grave."
+          }
+        ]
+      },
+
+      /* ---------- 8 : les règles du jeu ---------- */
+      {
+        id: 'regles-du-jeu',
+        title: 'Les règles du jeu',
+        subtitle: 'On les dit avant, pas pendant',
+        tag: 'Copines',
+        themes: ['Règles', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'roxane', x: 260, y: 522, s: 1.05, pose: 'point' },
+            { t: 'livia', x: 470, y: 524, s: 1.05, mood: 'sad' },
+            { t: 'juliette', x: 660, y: 522, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 220, y: 522, s: 1.05, pose: 'point' },
+                { t: 'livia', x: 430, y: 524, s: 1.05 },
+                { t: 'juliette', x: 640, y: 522, s: 1 }
+              ],
+              front: [{ t: 'ball', x: 540, y: 540, s: .8 }],
+              sfx: [{ t: 'ON JOUE À CHAT !', x: 400, y: 166, fs: 28, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "« On joue à chat ! » dit Roxane. Tout le monde était d'accord. Personne n'avait dit les règles, parce que tout le monde croyait les connaître."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 250, y: 524, s: 1.05, pose: 'run' },
+                { t: 'roxane', x: 560, y: 522, s: 1.05, pose: 'run' }
+              ],
+              sfx: [{ t: 'ATTRAPÉE !', x: 420, y: 164, fs: 32, rot: -7, color: '#e0453c' }]
+            },
+            text: "Livia courut très vite et toucha Roxane dans le dos. « Attrapée ! » cria-t-elle. C'était clair, c'était net, et c'était très satisfaisant."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 280, y: 522, s: 1.1, pose: 'point' },
+                { t: 'livia', x: 560, y: 524, s: 1.05, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'Non ! L\'arbre, c\'est la maison !', tx: 285, ty: 240 }]
+            },
+            text: "« Non ! » dit Roxane. « J'étais près de l'arbre, et l'arbre c'est la maison ! » Personne n'avait jamais parlé d'un arbre. L'arbre venait d'apparaître dans le jeu."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'juliette', x: 230, y: 522, s: 1, mood: 'sad' },
+                { t: 'livia', x: 450, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'roxane', x: 660, y: 522, s: 1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'C\'EST PAS JUSTE !', x: 400, y: 164, fs: 28, rot: -6, color: '#6d5847' }]
+            },
+            text: "Alors ce fut le banc, puis le portail, puis le bac à sable. À chaque fois que Roxane allait être attrapée, un nouvel endroit devenait la maison. Le jeu s'arrêta tout seul."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'point' },
+                { t: 'roxane', x: 560, y: 522, s: 1.05 }
+              ],
+              bubbles: [{ x: 320, y: 22, w: 340, t: 'On dit les règles avant. Après, on n\'en change plus.', tx: 320, ty: 236 }]
+            },
+            text: "« On dit les règles avant », dit Livia. « Après, on n'en change plus, même quand ça nous arrange. » Roxane répondit que c'était nul. Elle savait très bien que c'était vrai."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'roxane', x: 220, y: 522, s: 1, pose: 'run' },
+                { t: 'juliette', x: 430, y: 522, s: 1, pose: 'run' },
+                { t: 'livia', x: 650, y: 524, s: 1.05, pose: 'run' }
+              ],
+              sfx: [{ t: 'LA MAISON, C\'EST LE BANC !', x: 400, y: 160, fs: 24, rot: -4, color: '#f7c518' }]
+            },
+            text: "Elles recommencèrent. Cette fois, la maison c'était le banc, et rien d'autre, et tout le monde l'avait dit à voix haute. Le jeu dura jusqu'à la nuit."
+          }
+        ]
       }
     ]
   }
@@ -7251,7 +7858,7 @@ var UNIVERSES = [
      LE CADRE : manches, étoiles, félicitations
      ============================================================ */
   function jouer(stage, def, onQuit) {
-    var gagnees = 0;
+    var gagnees = 0, total = 0, valeur = null;
     stage.innerHTML = '';
 
     var barre = el('div', 'jeu-etoiles');
@@ -7263,7 +7870,7 @@ var UNIVERSES = [
 
     function majEtoiles() {
       barre.innerHTML = '';
-      for (var i = 0; i < def.manches; i++) {
+      for (var i = 0; i < total; i++) {
         barre.appendChild(el('i', 'etoile' + (i < gagnees ? ' on' : '')));
       }
     }
@@ -7278,13 +7885,27 @@ var UNIVERSES = [
     }
 
     function manche() {
-      if (gagnees >= def.manches) return fin();
+      if (gagnees >= total) return fin();
       majEtoiles();
       zone.innerHTML = '';
       def.manche(zone, gagnees, {
         consigne: function (texte) { consigne.textContent = texte; dire(texte); },
         reussi: function () { gagnees++; majEtoiles(); feter(manche); }
-      });
+      }, valeur);
+    }
+
+    /* certains jeux commencent par un choix : quel prénom, quelle lettre */
+    function demarrer(v) {
+      valeur = v;
+      total = typeof def.manches === 'function' ? def.manches(v) : def.manches;
+      gagnees = 0;
+      manche();
+    }
+    function choisir() {
+      barre.innerHTML = '';
+      consigne.textContent = def.choixConsigne || '';
+      zone.innerHTML = '';
+      def.choisir(zone, demarrer);
     }
 
     function fin() {
@@ -7297,17 +7918,19 @@ var UNIVERSES = [
         '<p>' + def.felicitation + '</p>' +
         '<div class="jeu-actions">' +
         '<button class="primary" data-act="rejouer">Rejouer</button>' +
+        (def.choisir ? '<button data-act="choisir">' + (def.choixBouton || 'Changer') + '</button>' : '') +
         '<button data-act="autres">Les autres jeux</button></div>');
       zone.appendChild(f);
       dire('Bravo Livia ! Tu as gagné toutes les étoiles.');
       f.addEventListener('click', function (e) {
         var a = e.target.getAttribute && e.target.getAttribute('data-act');
-        if (a === 'rejouer') { gagnees = 0; manche(); }
+        if (a === 'rejouer') demarrer(valeur);
+        else if (a === 'choisir') choisir();
         else if (a === 'autres') onQuit();
       });
     }
 
-    manche();
+    if (def.choisir) choisir(); else demarrer(null);
   }
 
   /* ============================================================
@@ -7506,13 +8129,32 @@ var UNIVERSES = [
   var NS = 'http://www.w3.org/2000/svg';
   var lotPrenoms = null;
 
-  function jeuEcrire(zone, n, api) {
+  /* la grille de choix : un bouton par prénom, plus le tirage au sort */
+  function grilleChoix(zone, items, pret, hasard) {
+    var g = el('div', 'choix-grille');
+    items.forEach(function (t) {
+      var b = el('button', 'choix-b', t);
+      b.onclick = function () { pret(t); };
+      g.appendChild(b);
+    });
+    zone.appendChild(g);
+    var h = el('button', 'choix-hasard', hasard || '🎲 Au hasard');
+    h.onclick = function () { pret(null); };
+    zone.appendChild(h);
+  }
+  function choixPrenom(zone, pret) { grilleChoix(zone, PRENOMS, pret, '🎲 Cinq au hasard'); }
+
+  function jeuEcrire(zone, n, api, choisi) {
+    if (choisi) return ecrireMot(zone, choisi, api);
     if (n === 0 || !lotPrenoms) {
       lotPrenoms = ['LIVIA'].concat(piocher(PRENOMS.slice(1), PRENOMS.length - 1));
     }
-    var nom = lotPrenoms[n % lotPrenoms.length];
+    return ecrireMot(zone, lotPrenoms[n % lotPrenoms.length], api);
+  }
+
+  function ecrireMot(zone, nom, api, consigne) {
     var lettres = nom.split('').filter(function (c) { return LETTRES[c]; });
-    api.consigne('Écris ' + nom + '.');
+    api.consigne(consigne || ('Écris ' + nom + '.'));
 
     /* le prénom en toutes lettres, pour savoir où on en est */
     var bandeau = el('div', 'prenom');
@@ -7633,6 +8275,58 @@ var UNIVERSES = [
   }
 
   /* ============================================================
+     JEU 5 — L'ALPHABET
+     Deux exercices en alternance : reconnaître la lettre parmi trois,
+     puis la tracer. On apprend à la voir avant de savoir l'écrire.
+     ============================================================ */
+  var ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  var lotLettres = null;
+
+  function choixLettre(zone, pret) {
+    grilleChoix(zone, ALPHABET, pret, '🎲 Six au hasard');
+  }
+
+  function jeuAlphabet(zone, n, api, choisie) {
+    var lettre;
+    if (choisie) lettre = choisie;
+    else {
+      if (n === 0 || !lotLettres) lotLettres = piocher(ALPHABET, ALPHABET.length);
+      lettre = lotLettres[Math.floor(n / 2) % lotLettres.length];
+    }
+    /* une fois sur deux on reconnaît, une fois sur deux on trace */
+    if (n % 2 === 0) reconnaitreLettre(zone, lettre, api);
+    else tracerLettre(zone, lettre, api);
+  }
+
+  function reconnaitreLettre(zone, lettre, api) {
+    api.consigne('Touche la lettre ' + lettre + '.');
+    var autres = piocher(ALPHABET.filter(function (c) { return c !== lettre; }), 2);
+    var lot = melange([lettre].concat(autres));
+    var g = el('div', 'lettres-choix');
+    lot.forEach(function (c) {
+      var b = el('button', 'lettre-b');
+      b.innerHTML = '<svg viewBox="0 0 100 100">' + LETTRES[c].map(function (d) {
+        return '<path d="' + d + '" fill="none" stroke="currentColor" stroke-width="11" ' +
+          'stroke-linecap="round" stroke-linejoin="round"/>';
+      }).join('') + '</svg>';
+      b.onclick = function () {
+        if (c === lettre) { b.classList.add('juste'); setTimeout(function () { api.reussi(); }, 350); }
+        else {
+          b.classList.add('faux');
+          setTimeout(function () { b.classList.remove('faux'); }, 400);
+          dire('Non, ça c\'est le ' + c + '. Cherche le ' + lettre + '.');
+        }
+      };
+      g.appendChild(b);
+    });
+    zone.appendChild(g);
+  }
+
+  function tracerLettre(zone, lettre, api) {
+    ecrireMot(zone, lettre, api, 'Trace la lettre ' + lettre + '.');
+  }
+
+  /* ============================================================
      LE CATALOGUE
      ============================================================ */
   /* ============================================================
@@ -7700,54 +8394,122 @@ var UNIVERSES = [
 
   var HUMEURS = ['happy', 'wow', 'sad'];
 
+  /* ------------------------------------------------------------
+     Fabriquer les six différences.
+
+     L'ordre compte : on choisit d'abord la FENÊTRE — la portion de case
+     qu'on va montrer — puis on ne retouche que ce qui s'y trouve. C'est
+     l'inverse de l'intuition, mais c'est ce qui garantit un dessin assez
+     grand sur un téléphone : une fenêtre de 400 unités sur 800, c'est un
+     dessin deux fois plus gros. Si on n'y trouve pas six différences, on
+     élargit d'un cran.
+     ------------------------------------------------------------ */
   function fabriquerDifferences(scene, graine) {
+    var W = 800, H = 560;
     var r = graineur(graine);
     var copie = JSON.parse(JSON.stringify(scene));
     delete copie.bubbles;
-    var zones = [];
 
-    var persos = [], objets = [];
+    var elements = [];
     ['back', 'items', 'front'].forEach(function (c) {
       (copie[c] || []).forEach(function (it) {
-        (PERSOS.indexOf(it.t) >= 0 ? persos : objets).push(it);
+        var perso = PERSOS.indexOf(it.t) >= 0;
+        elements.push({
+          it: it, perso: perso,
+          x: it.x, y: it.y - (perso ? 110 * (it.s || 1) : 22)
+        });
       });
     });
 
-    /* une seule retouche par élément : deux changements au même endroit,
-       ça ne se voit plus, ça s'annule */
-    var efface = 0;
-    var candidats = melangeAvec(objets, r).map(function (it, k) {
-      /* on n'efface qu'un objet sur trois : une case vidée n'est plus la même case */
-      var quoi = (k % 3 === 0 && efface < 2) ? 'retirer' : 'taille';
-      if (quoi === 'retirer') efface++;
-      return { it: it, quoi: quoi, perso: false };
-    }).concat(melangeAvec(persos, r).map(function (it, k) {
-      return { it: it, quoi: ['pose', 'flip', 'humeur'][k % 3], perso: true };
-    }));
-    /* deux différences côte à côte n'en font qu'une : on les espace */
-    function loin(x, y, d) {
-      return zones.every(function (z) {
-        return (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y) > d * d;
-      });
-    }
-    function centre(c) {
-      return [c.it.x, c.it.y - (c.perso ? 110 * (c.it.s || 1) : 22)];
-    }
-    var melanges = melangeAvec(candidats, r), retenus = [];
-    [130, 90, 55].forEach(function (ecart) {
-      melanges.forEach(function (c) {
-        if (retenus.length >= A_TROUVER || c.pris) return;
-        var p = centre(c);
-        if (!loin(p[0], p[1], ecart)) return;
-        c.pris = true; retenus.push(c); zones.push({ x: p[0], y: p[1] });
-      });
-    });
-    zones.length = 0;
-    candidats = retenus;
+    var pivots = elements.filter(function (e) { return e.perso; });
+    var pv = pivots.length ? pivots[Math.floor(r() * pivots.length)] : { x: W / 2, y: 380 };
 
-    candidats.forEach(function (c) {
-      var it = c.it;
-      var cx = it.x, cy = it.y - (c.perso ? 110 * (it.s || 1) : 22);
+    function fenetre(largeur) {
+      var w = Math.min(largeur, W), h = w * H / W;
+      return {
+        x: Math.min(Math.max(pv.x - w / 2, 0), W - w),
+        y: Math.min(Math.max(pv.y - h * 0.42, 0), H - h),
+        w: w, h: h
+      };
+    }
+    function dedans(f, x, y, m) {
+      m = m || 0;
+      return x > f.x + m && x < f.x + f.w - m && y > f.y + m && y < f.y + f.h - m;
+    }
+
+    /* le plan : ce qu'on va changer, sans encore rien changer */
+    function planifier(f) {
+      var ecartMin = f.w * 0.16;
+      var zones = [], plan = [];
+      function loin(x, y, d) {
+        return zones.every(function (z) {
+          return (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y) > d * d;
+        });
+      }
+
+      var objets = [], persos = [];
+      elements.forEach(function (e) {
+        if (!dedans(f, e.x, e.y, 10)) return;
+        (e.perso ? persos : objets).push(e);
+      });
+
+      var efface = 0;
+      var candidats = melangeAvec(objets, r).map(function (e, k) {
+        var quoi = (k % 3 === 0 && efface < 2) ? 'retirer' : 'taille';
+        if (quoi === 'retirer') efface++;
+        return { e: e, quoi: quoi };
+      }).concat(melangeAvec(persos, r).map(function (e, k) {
+        return { e: e, quoi: ['pose', 'flip', 'humeur'][k % 3] };
+      }));
+      candidats = melangeAvec(candidats, r);
+
+      [ecartMin, ecartMin * 0.7, ecartMin * 0.45].forEach(function (d) {
+        candidats.forEach(function (c) {
+          if (plan.length >= A_TROUVER || c.pris) return;
+          if (!loin(c.e.x, c.e.y, d)) return;
+          c.pris = true; plan.push(c); zones.push({ x: c.e.x, y: c.e.y });
+        });
+      });
+
+      /* on complète avec des objets qui n'étaient pas là, posés au sol
+         dans la fenêtre */
+      var pool = AJOUTS[scene.bg] || AJOUTS.plain;
+      var solBas = Math.min(f.y + f.h - f.h * 0.06, 552);
+      var places = [];
+      [0.12, 0.34, 0.56, 0.78, 0.24, 0.68].forEach(function (t) {
+        places.push({ x: Math.round(f.x + f.w * t), y: Math.round(solBas) });
+        places.push({ x: Math.round(f.x + f.w * t), y: Math.round(solBas - f.h * 0.22) });
+      });
+      places = melangeAvec(places, r).filter(function (pl) {
+        return (scene.items || []).every(function (it) {
+          return Math.abs(it.x - pl.x) > f.w * 0.09;
+        });
+      });
+      [ecartMin, ecartMin * 0.7, ecartMin * 0.45].forEach(function (d) {
+        places.forEach(function (pl) {
+          if (plan.length >= A_TROUVER || pl.pris) return;
+          if (!loin(pl.x, pl.y - f.h * 0.05, d)) return;
+          pl.pris = true;
+          plan.push({ ajout: { t: pool[Math.floor(r() * pool.length)], x: pl.x, y: pl.y, s: f.w / 800 * 1.5 } });
+          zones.push({ x: pl.x, y: pl.y - f.h * 0.05 });
+        });
+      });
+
+      return { plan: plan, zones: zones };
+    }
+
+    /* on serre autant que possible, puis on desserre s'il le faut */
+    var f, essai;
+    var tailles = [520, 600, 690, 800];
+    for (var i = 0; i < tailles.length; i++) {
+      f = fenetre(tailles[i]);
+      essai = planifier(f);
+      if (essai.plan.length >= A_TROUVER) break;
+    }
+
+    essai.plan.forEach(function (c) {
+      if (c.ajout) { (copie.front = copie.front || []).push(c.ajout); return; }
+      var it = c.e.it;
       if (c.quoi === 'retirer') it.t = 'rien';
       else if (c.quoi === 'taille') it.s = (it.s === undefined ? 1 : it.s) * (r() < .5 ? .55 : 1.5);
       else if (c.quoi === 'flip') it.flip = !it.flip;
@@ -7756,34 +8518,11 @@ var UNIVERSES = [
         it.mood = h[Math.floor(r() * h.length)];
       } else if (c.quoi === 'pose') {
         if (it.x > 110 && it.x < 690 && it.pose !== 'sit') it.pose = it.pose === 'armsup' ? 'point' : 'armsup';
-        else { it.flip = !it.flip; }
+        else it.flip = !it.flip;
       }
-      zones.push({ x: cx, y: cy });
     });
 
-    /* s'il manque des différences, on ajoute ce qui n'était pas là */
-    var pool = AJOUTS[scene.bg] || AJOUTS.plain;
-    /* on ne pose rien juste devant un visage, le reste peut se chevaucher.
-       Copie des emplacements : les marquer sur PLACES les userait d'une
-       planche à l'autre. */
-    var places = melangeAvec(PLACES, r)
-      .map(function (pl) { return { x: pl[0], y: pl[1], pris: false }; })
-      .filter(function (pl) {
-        return (scene.items || []).every(function (it) { return Math.abs(it.x - pl.x) > 55; });
-      });
-    /* le dernier passage n'impose plus d'écart : mieux vaut six différences
-       serrées que cinq bien réparties */
-    [110, 70, 45, 0].forEach(function (ecart) {
-      places.forEach(function (pl) {
-        if (zones.length >= A_TROUVER || pl.pris) return;
-        if (ecart && !loin(pl.x, pl.y - 24, ecart)) return;
-        pl.pris = true;
-        var t = pool[Math.floor(r() * pool.length)];
-        (copie.front = copie.front || []).push({ t: t, x: pl.x, y: pl.y, s: 1.5 });
-        zones.push({ x: pl.x, y: pl.y - 24 });
-      });
-    });
-    return { scene: copie, zones: zones };
+    return { scene: copie, zones: essai.zones, cadre: f };
   }
 
   var lotPlanches = null;
@@ -7797,11 +8536,12 @@ var UNIVERSES = [
     var fab = fabriquerDifferences(trouve.scene, 1000 + choix.i * 7919);
     api.consigne('Trouve les 6 différences.');
 
+    var cadre = fab.cadre;
     var plateau = el('div', 'diff');
     var vues = [];
     [trouve.scene, fab.scene].forEach(function (sc) {
       var v = el('div', 'diff-vue');
-      v.innerHTML = Art.scene(sc, { noBubbles: true });
+      v.innerHTML = Art.scene(sc, { noBubbles: true, cadre: cadre });
       plateau.appendChild(v);
       vues.push(v);
     });
@@ -7820,7 +8560,9 @@ var UNIVERSES = [
       vues.forEach(function (v) {
         var sv = v.querySelector('svg');
         var c = document.createElementNS(NS, 'circle');
-        c.setAttribute('cx', z.x); c.setAttribute('cy', z.y); c.setAttribute('r', 62);
+        c.setAttribute('cx', z.x); c.setAttribute('cy', z.y);
+        c.setAttribute('r', Math.round(cadre.w / 800 * 62));
+        c.setAttribute('stroke-width', Math.round(cadre.w / 800 * 9));
         c.setAttribute('class', 'diff-marque');
         sv.appendChild(c);
       });
@@ -7828,15 +8570,16 @@ var UNIVERSES = [
 
     function toucher(e) {
       var v = e.currentTarget, r = v.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width * 800;
-      var y = (e.clientY - r.top) / r.height * 560;
+      var x = cadre.x + (e.clientX - r.left) / r.width * cadre.w;
+      var y = cadre.y + (e.clientY - r.top) / r.height * cadre.h;
       var best = -1, bd = 1e9;
       fab.zones.forEach(function (z, i) {
         if (vus[i]) return;
         var d = (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y);
         if (d < bd) { bd = d; best = i; }
       });
-      if (best < 0 || bd > 105 * 105) {
+      var portee = cadre.w / 800 * 118;      // on vise en pixels, pas en unités
+      if (best < 0 || bd > portee * portee) {
         v.classList.add('rate');
         setTimeout(function () { v.classList.remove('rate'); }, 260);
         return;
@@ -7867,13 +8610,33 @@ var UNIVERSES = [
       id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️',
       sous: 'Livia, Pablo, Maman, Papa…',
       vignette: { t: 'elsa', ds: .66, dy: 184 },
-      def: { manches: 5, manche: jeuEcrire, felicitation: 'Tu as écrit cinq prénoms en entier !' }
+      def: {
+        manches: function (v) { return v ? 1 : 5; },
+        manche: jeuEcrire,
+        choisir: choixPrenom,
+        choixConsigne: 'Choisis un prénom à écrire.',
+        choixBouton: 'Un autre prénom',
+        felicitation: 'Bien écrit !'
+      }
     },
     {
       id: 'differences', nom: 'Les 6 différences', emoji: '🔍',
       sous: 'Deux cases presque pareilles',
       vignette: { t: 'bluey', ds: .62, dy: 184 },
       def: { manches: 6, manche: jeuDifferences, felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.' }
+    },
+    {
+      id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤',
+      sous: 'Reconnaître puis tracer chaque lettre',
+      vignette: { t: 'juliette', ds: .62, dy: 184 },
+      def: {
+        manches: function (v) { return v ? 2 : 6; },
+        manche: jeuAlphabet,
+        choisir: choixLettre,
+        choixConsigne: 'Choisis une lettre.',
+        choixBouton: 'Une autre lettre',
+        felicitation: 'Tu connais tes lettres !'
+      }
     }
   ];
 
@@ -8114,7 +8877,7 @@ var UNIVERSES = [
     topbar: document.querySelector('.topbar'),
     coverRandom: $('#btnCoverRandom'),
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
-    gamesSub: $('#gamesSub'),
+    gamesSub: $('#gamesSub'), jeuxNav: $('#jeuxNav'),
     grid: $('#uniGrid'), random: $('#btnRandom'),
     hello: $('#homeHello'), themeChips: $('#themeChips'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
@@ -8239,12 +9002,32 @@ var UNIVERSES = [
   }
 
   /* ---------------- les jeux ---------------- */
+  /* le rang de jeux : on passe de l'un à l'autre sans revenir en arrière */
+  function renderJeuxNav(actif) {
+    els.jeuxNav.hidden = !actif;
+    if (!actif) return;
+    els.jeuxNav.innerHTML = '';
+    var tous = document.createElement('button');
+    tous.className = 'chip';
+    tous.textContent = '↩ Tous les jeux';
+    tous.onclick = function () { location.hash = '#/jeux'; };
+    els.jeuxNav.appendChild(tous);
+    Jeux.liste.forEach(function (j) {
+      var b = document.createElement('button');
+      b.className = 'chip' + (j.id === actif ? ' is-active' : '');
+      b.textContent = j.emoji + ' ' + j.nom;
+      b.onclick = function () { location.hash = '#/jeux/' + j.id; };
+      els.jeuxNav.appendChild(b);
+    });
+  }
+
   function renderGames() {
     els.gamesGrid.innerHTML = '';
     els.gamesGrid.hidden = false;
     els.gameStage.hidden = true;
     els.gameStage.innerHTML = '';
     els.gamesSub.textContent = 'Pour jouer tout seul, dès 3 ans';
+    renderJeuxNav(null);
 
     Jeux.liste.forEach(function (jeu) {
       var c = document.createElement('button');
@@ -8262,6 +9045,7 @@ var UNIVERSES = [
     els.gamesGrid.hidden = true;
     els.gameStage.hidden = false;
     els.gamesSub.textContent = jeu.sous;
+    renderJeuxNav(jeu.id);
     Jeux.lancer(els.gameStage, jeu, function () { location.hash = '#/jeux'; });
   }
 

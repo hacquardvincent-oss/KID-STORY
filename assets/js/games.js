@@ -41,7 +41,7 @@
      LE CADRE : manches, étoiles, félicitations
      ============================================================ */
   function jouer(stage, def, onQuit) {
-    var gagnees = 0;
+    var gagnees = 0, total = 0, valeur = null;
     stage.innerHTML = '';
 
     var barre = el('div', 'jeu-etoiles');
@@ -53,7 +53,7 @@
 
     function majEtoiles() {
       barre.innerHTML = '';
-      for (var i = 0; i < def.manches; i++) {
+      for (var i = 0; i < total; i++) {
         barre.appendChild(el('i', 'etoile' + (i < gagnees ? ' on' : '')));
       }
     }
@@ -68,13 +68,27 @@
     }
 
     function manche() {
-      if (gagnees >= def.manches) return fin();
+      if (gagnees >= total) return fin();
       majEtoiles();
       zone.innerHTML = '';
       def.manche(zone, gagnees, {
         consigne: function (texte) { consigne.textContent = texte; dire(texte); },
         reussi: function () { gagnees++; majEtoiles(); feter(manche); }
-      });
+      }, valeur);
+    }
+
+    /* certains jeux commencent par un choix : quel prénom, quelle lettre */
+    function demarrer(v) {
+      valeur = v;
+      total = typeof def.manches === 'function' ? def.manches(v) : def.manches;
+      gagnees = 0;
+      manche();
+    }
+    function choisir() {
+      barre.innerHTML = '';
+      consigne.textContent = def.choixConsigne || '';
+      zone.innerHTML = '';
+      def.choisir(zone, demarrer);
     }
 
     function fin() {
@@ -87,17 +101,19 @@
         '<p>' + def.felicitation + '</p>' +
         '<div class="jeu-actions">' +
         '<button class="primary" data-act="rejouer">Rejouer</button>' +
+        (def.choisir ? '<button data-act="choisir">' + (def.choixBouton || 'Changer') + '</button>' : '') +
         '<button data-act="autres">Les autres jeux</button></div>');
       zone.appendChild(f);
       dire('Bravo Livia ! Tu as gagné toutes les étoiles.');
       f.addEventListener('click', function (e) {
         var a = e.target.getAttribute && e.target.getAttribute('data-act');
-        if (a === 'rejouer') { gagnees = 0; manche(); }
+        if (a === 'rejouer') demarrer(valeur);
+        else if (a === 'choisir') choisir();
         else if (a === 'autres') onQuit();
       });
     }
 
-    manche();
+    if (def.choisir) choisir(); else demarrer(null);
   }
 
   /* ============================================================
@@ -296,13 +312,32 @@
   var NS = 'http://www.w3.org/2000/svg';
   var lotPrenoms = null;
 
-  function jeuEcrire(zone, n, api) {
+  /* la grille de choix : un bouton par prénom, plus le tirage au sort */
+  function grilleChoix(zone, items, pret, hasard) {
+    var g = el('div', 'choix-grille');
+    items.forEach(function (t) {
+      var b = el('button', 'choix-b', t);
+      b.onclick = function () { pret(t); };
+      g.appendChild(b);
+    });
+    zone.appendChild(g);
+    var h = el('button', 'choix-hasard', hasard || '🎲 Au hasard');
+    h.onclick = function () { pret(null); };
+    zone.appendChild(h);
+  }
+  function choixPrenom(zone, pret) { grilleChoix(zone, PRENOMS, pret, '🎲 Cinq au hasard'); }
+
+  function jeuEcrire(zone, n, api, choisi) {
+    if (choisi) return ecrireMot(zone, choisi, api);
     if (n === 0 || !lotPrenoms) {
       lotPrenoms = ['LIVIA'].concat(piocher(PRENOMS.slice(1), PRENOMS.length - 1));
     }
-    var nom = lotPrenoms[n % lotPrenoms.length];
+    return ecrireMot(zone, lotPrenoms[n % lotPrenoms.length], api);
+  }
+
+  function ecrireMot(zone, nom, api, consigne) {
     var lettres = nom.split('').filter(function (c) { return LETTRES[c]; });
-    api.consigne('Écris ' + nom + '.');
+    api.consigne(consigne || ('Écris ' + nom + '.'));
 
     /* le prénom en toutes lettres, pour savoir où on en est */
     var bandeau = el('div', 'prenom');
@@ -423,6 +458,58 @@
   }
 
   /* ============================================================
+     JEU 5 — L'ALPHABET
+     Deux exercices en alternance : reconnaître la lettre parmi trois,
+     puis la tracer. On apprend à la voir avant de savoir l'écrire.
+     ============================================================ */
+  var ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  var lotLettres = null;
+
+  function choixLettre(zone, pret) {
+    grilleChoix(zone, ALPHABET, pret, '🎲 Six au hasard');
+  }
+
+  function jeuAlphabet(zone, n, api, choisie) {
+    var lettre;
+    if (choisie) lettre = choisie;
+    else {
+      if (n === 0 || !lotLettres) lotLettres = piocher(ALPHABET, ALPHABET.length);
+      lettre = lotLettres[Math.floor(n / 2) % lotLettres.length];
+    }
+    /* une fois sur deux on reconnaît, une fois sur deux on trace */
+    if (n % 2 === 0) reconnaitreLettre(zone, lettre, api);
+    else tracerLettre(zone, lettre, api);
+  }
+
+  function reconnaitreLettre(zone, lettre, api) {
+    api.consigne('Touche la lettre ' + lettre + '.');
+    var autres = piocher(ALPHABET.filter(function (c) { return c !== lettre; }), 2);
+    var lot = melange([lettre].concat(autres));
+    var g = el('div', 'lettres-choix');
+    lot.forEach(function (c) {
+      var b = el('button', 'lettre-b');
+      b.innerHTML = '<svg viewBox="0 0 100 100">' + LETTRES[c].map(function (d) {
+        return '<path d="' + d + '" fill="none" stroke="currentColor" stroke-width="11" ' +
+          'stroke-linecap="round" stroke-linejoin="round"/>';
+      }).join('') + '</svg>';
+      b.onclick = function () {
+        if (c === lettre) { b.classList.add('juste'); setTimeout(function () { api.reussi(); }, 350); }
+        else {
+          b.classList.add('faux');
+          setTimeout(function () { b.classList.remove('faux'); }, 400);
+          dire('Non, ça c\'est le ' + c + '. Cherche le ' + lettre + '.');
+        }
+      };
+      g.appendChild(b);
+    });
+    zone.appendChild(g);
+  }
+
+  function tracerLettre(zone, lettre, api) {
+    ecrireMot(zone, lettre, api, 'Trace la lettre ' + lettre + '.');
+  }
+
+  /* ============================================================
      LE CATALOGUE
      ============================================================ */
   /* ============================================================
@@ -490,54 +577,122 @@
 
   var HUMEURS = ['happy', 'wow', 'sad'];
 
+  /* ------------------------------------------------------------
+     Fabriquer les six différences.
+
+     L'ordre compte : on choisit d'abord la FENÊTRE — la portion de case
+     qu'on va montrer — puis on ne retouche que ce qui s'y trouve. C'est
+     l'inverse de l'intuition, mais c'est ce qui garantit un dessin assez
+     grand sur un téléphone : une fenêtre de 400 unités sur 800, c'est un
+     dessin deux fois plus gros. Si on n'y trouve pas six différences, on
+     élargit d'un cran.
+     ------------------------------------------------------------ */
   function fabriquerDifferences(scene, graine) {
+    var W = 800, H = 560;
     var r = graineur(graine);
     var copie = JSON.parse(JSON.stringify(scene));
     delete copie.bubbles;
-    var zones = [];
 
-    var persos = [], objets = [];
+    var elements = [];
     ['back', 'items', 'front'].forEach(function (c) {
       (copie[c] || []).forEach(function (it) {
-        (PERSOS.indexOf(it.t) >= 0 ? persos : objets).push(it);
+        var perso = PERSOS.indexOf(it.t) >= 0;
+        elements.push({
+          it: it, perso: perso,
+          x: it.x, y: it.y - (perso ? 110 * (it.s || 1) : 22)
+        });
       });
     });
 
-    /* une seule retouche par élément : deux changements au même endroit,
-       ça ne se voit plus, ça s'annule */
-    var efface = 0;
-    var candidats = melangeAvec(objets, r).map(function (it, k) {
-      /* on n'efface qu'un objet sur trois : une case vidée n'est plus la même case */
-      var quoi = (k % 3 === 0 && efface < 2) ? 'retirer' : 'taille';
-      if (quoi === 'retirer') efface++;
-      return { it: it, quoi: quoi, perso: false };
-    }).concat(melangeAvec(persos, r).map(function (it, k) {
-      return { it: it, quoi: ['pose', 'flip', 'humeur'][k % 3], perso: true };
-    }));
-    /* deux différences côte à côte n'en font qu'une : on les espace */
-    function loin(x, y, d) {
-      return zones.every(function (z) {
-        return (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y) > d * d;
-      });
-    }
-    function centre(c) {
-      return [c.it.x, c.it.y - (c.perso ? 110 * (c.it.s || 1) : 22)];
-    }
-    var melanges = melangeAvec(candidats, r), retenus = [];
-    [130, 90, 55].forEach(function (ecart) {
-      melanges.forEach(function (c) {
-        if (retenus.length >= A_TROUVER || c.pris) return;
-        var p = centre(c);
-        if (!loin(p[0], p[1], ecart)) return;
-        c.pris = true; retenus.push(c); zones.push({ x: p[0], y: p[1] });
-      });
-    });
-    zones.length = 0;
-    candidats = retenus;
+    var pivots = elements.filter(function (e) { return e.perso; });
+    var pv = pivots.length ? pivots[Math.floor(r() * pivots.length)] : { x: W / 2, y: 380 };
 
-    candidats.forEach(function (c) {
-      var it = c.it;
-      var cx = it.x, cy = it.y - (c.perso ? 110 * (it.s || 1) : 22);
+    function fenetre(largeur) {
+      var w = Math.min(largeur, W), h = w * H / W;
+      return {
+        x: Math.min(Math.max(pv.x - w / 2, 0), W - w),
+        y: Math.min(Math.max(pv.y - h * 0.42, 0), H - h),
+        w: w, h: h
+      };
+    }
+    function dedans(f, x, y, m) {
+      m = m || 0;
+      return x > f.x + m && x < f.x + f.w - m && y > f.y + m && y < f.y + f.h - m;
+    }
+
+    /* le plan : ce qu'on va changer, sans encore rien changer */
+    function planifier(f) {
+      var ecartMin = f.w * 0.16;
+      var zones = [], plan = [];
+      function loin(x, y, d) {
+        return zones.every(function (z) {
+          return (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y) > d * d;
+        });
+      }
+
+      var objets = [], persos = [];
+      elements.forEach(function (e) {
+        if (!dedans(f, e.x, e.y, 10)) return;
+        (e.perso ? persos : objets).push(e);
+      });
+
+      var efface = 0;
+      var candidats = melangeAvec(objets, r).map(function (e, k) {
+        var quoi = (k % 3 === 0 && efface < 2) ? 'retirer' : 'taille';
+        if (quoi === 'retirer') efface++;
+        return { e: e, quoi: quoi };
+      }).concat(melangeAvec(persos, r).map(function (e, k) {
+        return { e: e, quoi: ['pose', 'flip', 'humeur'][k % 3] };
+      }));
+      candidats = melangeAvec(candidats, r);
+
+      [ecartMin, ecartMin * 0.7, ecartMin * 0.45].forEach(function (d) {
+        candidats.forEach(function (c) {
+          if (plan.length >= A_TROUVER || c.pris) return;
+          if (!loin(c.e.x, c.e.y, d)) return;
+          c.pris = true; plan.push(c); zones.push({ x: c.e.x, y: c.e.y });
+        });
+      });
+
+      /* on complète avec des objets qui n'étaient pas là, posés au sol
+         dans la fenêtre */
+      var pool = AJOUTS[scene.bg] || AJOUTS.plain;
+      var solBas = Math.min(f.y + f.h - f.h * 0.06, 552);
+      var places = [];
+      [0.12, 0.34, 0.56, 0.78, 0.24, 0.68].forEach(function (t) {
+        places.push({ x: Math.round(f.x + f.w * t), y: Math.round(solBas) });
+        places.push({ x: Math.round(f.x + f.w * t), y: Math.round(solBas - f.h * 0.22) });
+      });
+      places = melangeAvec(places, r).filter(function (pl) {
+        return (scene.items || []).every(function (it) {
+          return Math.abs(it.x - pl.x) > f.w * 0.09;
+        });
+      });
+      [ecartMin, ecartMin * 0.7, ecartMin * 0.45].forEach(function (d) {
+        places.forEach(function (pl) {
+          if (plan.length >= A_TROUVER || pl.pris) return;
+          if (!loin(pl.x, pl.y - f.h * 0.05, d)) return;
+          pl.pris = true;
+          plan.push({ ajout: { t: pool[Math.floor(r() * pool.length)], x: pl.x, y: pl.y, s: f.w / 800 * 1.5 } });
+          zones.push({ x: pl.x, y: pl.y - f.h * 0.05 });
+        });
+      });
+
+      return { plan: plan, zones: zones };
+    }
+
+    /* on serre autant que possible, puis on desserre s'il le faut */
+    var f, essai;
+    var tailles = [520, 600, 690, 800];
+    for (var i = 0; i < tailles.length; i++) {
+      f = fenetre(tailles[i]);
+      essai = planifier(f);
+      if (essai.plan.length >= A_TROUVER) break;
+    }
+
+    essai.plan.forEach(function (c) {
+      if (c.ajout) { (copie.front = copie.front || []).push(c.ajout); return; }
+      var it = c.e.it;
       if (c.quoi === 'retirer') it.t = 'rien';
       else if (c.quoi === 'taille') it.s = (it.s === undefined ? 1 : it.s) * (r() < .5 ? .55 : 1.5);
       else if (c.quoi === 'flip') it.flip = !it.flip;
@@ -546,34 +701,11 @@
         it.mood = h[Math.floor(r() * h.length)];
       } else if (c.quoi === 'pose') {
         if (it.x > 110 && it.x < 690 && it.pose !== 'sit') it.pose = it.pose === 'armsup' ? 'point' : 'armsup';
-        else { it.flip = !it.flip; }
+        else it.flip = !it.flip;
       }
-      zones.push({ x: cx, y: cy });
     });
 
-    /* s'il manque des différences, on ajoute ce qui n'était pas là */
-    var pool = AJOUTS[scene.bg] || AJOUTS.plain;
-    /* on ne pose rien juste devant un visage, le reste peut se chevaucher.
-       Copie des emplacements : les marquer sur PLACES les userait d'une
-       planche à l'autre. */
-    var places = melangeAvec(PLACES, r)
-      .map(function (pl) { return { x: pl[0], y: pl[1], pris: false }; })
-      .filter(function (pl) {
-        return (scene.items || []).every(function (it) { return Math.abs(it.x - pl.x) > 55; });
-      });
-    /* le dernier passage n'impose plus d'écart : mieux vaut six différences
-       serrées que cinq bien réparties */
-    [110, 70, 45, 0].forEach(function (ecart) {
-      places.forEach(function (pl) {
-        if (zones.length >= A_TROUVER || pl.pris) return;
-        if (ecart && !loin(pl.x, pl.y - 24, ecart)) return;
-        pl.pris = true;
-        var t = pool[Math.floor(r() * pool.length)];
-        (copie.front = copie.front || []).push({ t: t, x: pl.x, y: pl.y, s: 1.5 });
-        zones.push({ x: pl.x, y: pl.y - 24 });
-      });
-    });
-    return { scene: copie, zones: zones };
+    return { scene: copie, zones: essai.zones, cadre: f };
   }
 
   var lotPlanches = null;
@@ -587,11 +719,12 @@
     var fab = fabriquerDifferences(trouve.scene, 1000 + choix.i * 7919);
     api.consigne('Trouve les 6 différences.');
 
+    var cadre = fab.cadre;
     var plateau = el('div', 'diff');
     var vues = [];
     [trouve.scene, fab.scene].forEach(function (sc) {
       var v = el('div', 'diff-vue');
-      v.innerHTML = Art.scene(sc, { noBubbles: true });
+      v.innerHTML = Art.scene(sc, { noBubbles: true, cadre: cadre });
       plateau.appendChild(v);
       vues.push(v);
     });
@@ -610,7 +743,9 @@
       vues.forEach(function (v) {
         var sv = v.querySelector('svg');
         var c = document.createElementNS(NS, 'circle');
-        c.setAttribute('cx', z.x); c.setAttribute('cy', z.y); c.setAttribute('r', 62);
+        c.setAttribute('cx', z.x); c.setAttribute('cy', z.y);
+        c.setAttribute('r', Math.round(cadre.w / 800 * 62));
+        c.setAttribute('stroke-width', Math.round(cadre.w / 800 * 9));
         c.setAttribute('class', 'diff-marque');
         sv.appendChild(c);
       });
@@ -618,15 +753,16 @@
 
     function toucher(e) {
       var v = e.currentTarget, r = v.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width * 800;
-      var y = (e.clientY - r.top) / r.height * 560;
+      var x = cadre.x + (e.clientX - r.left) / r.width * cadre.w;
+      var y = cadre.y + (e.clientY - r.top) / r.height * cadre.h;
       var best = -1, bd = 1e9;
       fab.zones.forEach(function (z, i) {
         if (vus[i]) return;
         var d = (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y);
         if (d < bd) { bd = d; best = i; }
       });
-      if (best < 0 || bd > 105 * 105) {
+      var portee = cadre.w / 800 * 118;      // on vise en pixels, pas en unités
+      if (best < 0 || bd > portee * portee) {
         v.classList.add('rate');
         setTimeout(function () { v.classList.remove('rate'); }, 260);
         return;
@@ -657,13 +793,33 @@
       id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️',
       sous: 'Livia, Pablo, Maman, Papa…',
       vignette: { t: 'elsa', ds: .66, dy: 184 },
-      def: { manches: 5, manche: jeuEcrire, felicitation: 'Tu as écrit cinq prénoms en entier !' }
+      def: {
+        manches: function (v) { return v ? 1 : 5; },
+        manche: jeuEcrire,
+        choisir: choixPrenom,
+        choixConsigne: 'Choisis un prénom à écrire.',
+        choixBouton: 'Un autre prénom',
+        felicitation: 'Bien écrit !'
+      }
     },
     {
       id: 'differences', nom: 'Les 6 différences', emoji: '🔍',
       sous: 'Deux cases presque pareilles',
       vignette: { t: 'bluey', ds: .62, dy: 184 },
       def: { manches: 6, manche: jeuDifferences, felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.' }
+    },
+    {
+      id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤',
+      sous: 'Reconnaître puis tracer chaque lettre',
+      vignette: { t: 'juliette', ds: .62, dy: 184 },
+      def: {
+        manches: function (v) { return v ? 2 : 6; },
+        manche: jeuAlphabet,
+        choisir: choixLettre,
+        choixConsigne: 'Choisis une lettre.',
+        choixBouton: 'Une autre lettre',
+        felicitation: 'Tu connais tes lettres !'
+      }
     }
   ];
 

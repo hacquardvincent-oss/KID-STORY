@@ -1749,7 +1749,11 @@
     /* en recadrage, on garde le bas de l'image : c'est là que se tiennent
        les personnages. Le ciel, lui, peut être rogné sans dommage. */
     var par = opts.slice ? 'xMidYMax slice' : 'xMidYMid meet';
-    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + VW + ' ' + VH +
+    /* un cadre permet de ne montrer qu'une partie de la case : c'est ce qui
+       agrandit le dessin dans le jeu des différences */
+    var c = opts.cadre;
+    var vb = c ? (c.x + ' ' + c.y + ' ' + c.w + ' ' + c.h) : ('0 0 ' + VW + ' ' + VH);
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + vb +
       '" preserveAspectRatio="' + par + '" role="img">' + defs +
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }

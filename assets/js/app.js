@@ -223,7 +223,7 @@
     topbar: document.querySelector('.topbar'),
     coverRandom: $('#btnCoverRandom'),
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
-    gamesSub: $('#gamesSub'),
+    gamesSub: $('#gamesSub'), jeuxNav: $('#jeuxNav'),
     grid: $('#uniGrid'), random: $('#btnRandom'),
     hello: $('#homeHello'), themeChips: $('#themeChips'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
@@ -348,12 +348,32 @@
   }
 
   /* ---------------- les jeux ---------------- */
+  /* le rang de jeux : on passe de l'un à l'autre sans revenir en arrière */
+  function renderJeuxNav(actif) {
+    els.jeuxNav.hidden = !actif;
+    if (!actif) return;
+    els.jeuxNav.innerHTML = '';
+    var tous = document.createElement('button');
+    tous.className = 'chip';
+    tous.textContent = '↩ Tous les jeux';
+    tous.onclick = function () { location.hash = '#/jeux'; };
+    els.jeuxNav.appendChild(tous);
+    Jeux.liste.forEach(function (j) {
+      var b = document.createElement('button');
+      b.className = 'chip' + (j.id === actif ? ' is-active' : '');
+      b.textContent = j.emoji + ' ' + j.nom;
+      b.onclick = function () { location.hash = '#/jeux/' + j.id; };
+      els.jeuxNav.appendChild(b);
+    });
+  }
+
   function renderGames() {
     els.gamesGrid.innerHTML = '';
     els.gamesGrid.hidden = false;
     els.gameStage.hidden = true;
     els.gameStage.innerHTML = '';
     els.gamesSub.textContent = 'Pour jouer tout seul, dès 3 ans';
+    renderJeuxNav(null);
 
     Jeux.liste.forEach(function (jeu) {
       var c = document.createElement('button');
@@ -371,6 +391,7 @@
     els.gamesGrid.hidden = true;
     els.gameStage.hidden = false;
     els.gamesSub.textContent = jeu.sous;
+    renderJeuxNav(jeu.id);
     Jeux.lancer(els.gameStage, jeu, function () { location.hash = '#/jeux'; });
   }
 

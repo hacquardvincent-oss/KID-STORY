@@ -527,7 +527,9 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 
 /* écrire */
 /* les 6 différences : deux fois la même case, à un détail près */
-.diff { display: grid; gap: 10px; }
+/* sur un téléphone, la case va d'un bord à l'autre : chaque pixel compte
+   pour viser un détail du doigt */
+.diff { display: grid; gap: 8px; margin: 0 -14px; }
 .diff-vue {
   position: relative; aspect-ratio: 800 / 560; overflow: hidden;
   border: 3px solid var(--ink); background: var(--page);
@@ -547,8 +549,50 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .diff-score b { font-size: 24px; color: var(--rouge); }
 
 @media (min-width: 760px) {
-  .diff { grid-template-columns: 1fr 1fr; }
+  .diff { grid-template-columns: 1fr 1fr; margin: 0; gap: 12px; }
 }
+
+/* le rang de jeux, pour passer de l'un à l'autre */
+.jeux-nav {
+  display: flex; gap: 7px; overflow-x: auto; padding: 0 0 10px;
+  margin: 0 -14px 10px; padding-inline: 14px;
+  scrollbar-width: none;
+}
+.jeux-nav::-webkit-scrollbar { display: none; }
+.jeux-nav .chip { flex: 0 0 auto; }
+
+/* choisir un prénom, choisir une lettre */
+.choix-grille {
+  display: grid; gap: 8px; margin: 0 0 14px;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+}
+.choix-b {
+  font-family: inherit; cursor: pointer;
+  font-size: 16px; font-weight: 600; letter-spacing: .5px;
+  padding: 12px 6px; color: var(--ink);
+  background: var(--page); border: 3px solid var(--ink); border-radius: 14px;
+  box-shadow: 0 3px 0 var(--ink);
+}
+.choix-b:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+.choix-hasard {
+  display: block; width: 100%; font-family: inherit; cursor: pointer;
+  font-size: 16px; font-weight: 600; padding: 11px 16px;
+  background: var(--jaune); color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 999px; box-shadow: 0 3px 0 var(--ink);
+}
+.choix-hasard:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+
+/* reconnaître une lettre parmi trois */
+.lettres-choix { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.lettre-b {
+  cursor: pointer; aspect-ratio: 1 / 1; padding: 8px;
+  background: var(--page); color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 16px; box-shadow: 0 4px 0 var(--ink);
+}
+.lettre-b svg { display: block; width: 100%; height: 100%; }
+.lettre-b:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+.lettre-b.juste { background: #cfe8bd; color: #3d6b2c; }
+.lettre-b.faux { animation: secousse .3s; }
 
 /* le prénom en cours d'écriture, lettre par lettre */
 .prenom {

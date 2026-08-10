@@ -63,6 +63,8 @@ var THEMES = [
   { id: 'amitie', nom: 'Amitié', emoji: '🤝' },
   { id: 'emotions', nom: 'Émotions', emoji: '💛' },
   { id: 'grandir', nom: 'Grandir', emoji: '🌱' },
+  { id: 'partager', nom: 'Partager', emoji: '🤲' },
+  { id: 'regles', nom: 'Règles', emoji: '📏' },
   { id: 'famille', nom: 'Famille', emoji: '🏡' },
   { id: 'dehors', nom: 'Dehors', emoji: '🌳' },
   { id: 'nuit', nom: 'Nuit', emoji: '🌙' },
@@ -746,7 +748,7 @@ var UNIVERSES = [
         title: 'Le vélo de Livia',
         subtitle: 'Ce qui est plus drôle à deux',
         tag: 'Grandir',
-        themes: ['Émotions', 'Amitié'],
+        themes: ['Émotions', 'Amitié', 'Partager'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -943,7 +945,7 @@ var UNIVERSES = [
         title: 'La flaque interdite',
         subtitle: 'Pourquoi Maman avait dit non',
         tag: 'Grandir',
-        themes: ['Grandir', 'Bêtises'],
+        themes: ['Grandir', 'Bêtises', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'village',
@@ -1042,7 +1044,7 @@ var UNIVERSES = [
         title: 'Le vase de Maman',
         subtitle: 'Le poids d\'un petit mensonge',
         tag: 'Grandir',
-        themes: ['Grandir', 'Famille'],
+        themes: ['Grandir', 'Famille', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'bedroom',
@@ -1140,7 +1142,7 @@ var UNIVERSES = [
         title: 'La file du toboggan',
         subtitle: 'Attendre sans que ce soit long',
         tag: 'Grandir',
-        themes: ['Grandir', 'Amitié'],
+        themes: ['Grandir', 'Amitié', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -1339,6 +1341,292 @@ var UNIVERSES = [
               front: [{ t: 'cube', x: 730, y: 544, s: .75, rot: 10, color: '#f7c518' }]
             },
             text: "Le soir, la tour faisait onze cubes. Pablo en renversa dix. Livia respira un grand coup, et recommença. C'est aussi ça, être une grande sœur."
+          }
+        ]
+      },
+
+      /* ---------- 12 : partager quand ça coûte ---------- */
+      {
+        id: 'dernier-gateau',
+        title: 'Le dernier gâteau',
+        subtitle: 'Partager quand il n\'y en a qu\'un',
+        tag: 'Grandir',
+        themes: ['Partager', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 280, y: 520, s: 1.15, pose: 'hold' },
+            { t: 'livia', x: 520, y: 522, s: 1.1, pose: 'hold' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 560, y: 520, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'LE GOÛTER !', x: 430, y: 168, fs: 30, rot: -5, color: '#f2803d' }]
+            },
+            text: "Il y avait eu six gâteaux au chocolat. Livia en avait mangé deux. Peppa en avait mangé trois. Sur l'assiette, il en restait exactement un."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 280, y: 522, s: 1.15, mood: 'wow' },
+                { t: 'peppa', x: 540, y: 520, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'LE DERNIER…', x: 410, y: 166, fs: 30, rot: -4, color: '#6d5847' }]
+            },
+            text: "Elles le regardèrent toutes les deux en même temps. Le dernier gâteau. Il n'y avait plus rien à dire, et pourtant il y avait beaucoup de choses à décider."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 280, y: 522, s: 1.15, pose: 'point' },
+                { t: 'peppa', x: 560, y: 520, s: 1.15, pose: 'point', mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'C\'est moi qui l\'ai vu en premier !', tx: 285, ty: 244 }]
+            },
+            text: "« C'est moi qui l'ai vu en premier ! » dit Livia. « C'est moi qui ai apporté l'assiette ! » dit Peppa. Chacune avait une très bonne raison. C'est souvent comme ça, les très bonnes raisons."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'mummy', x: 300, y: 518, s: 1.35, pose: 'shrug' },
+                { t: 'livia', x: 560, y: 522, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 330, y: 24, w: 330, t: 'Je ne choisis pas. C\'est votre gâteau.', tx: 320, ty: 240 }]
+            },
+            text: "Maman Pig passa par là. « Je ne choisis pas », dit-elle. « C'est votre gâteau. » Puis elle posa un couteau sur la table, et elle repartit, l'air de rien."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 560, y: 520, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'CLIC.', x: 430, y: 164, fs: 32, rot: -6, color: '#7ba450' }]
+            },
+            text: "Livia prit le couteau. Elle coupa le gâteau en deux, tout doucement, en visant bien le milieu. Une moitié n'est pas un gâteau entier. Une moitié, c'est quand même beaucoup mieux que rien du tout."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 520, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 560, y: 522, s: 1.15 }
+              ],
+              bubbles: [{ x: 330, y: 24, w: 320, t: 'Prends la plus grosse, tu as coupé.', tx: 320, ty: 240 }]
+            },
+            text: "« Prends la plus grosse », dit Peppa. « Toi tu as coupé, alors moi je choisis, et je choisis que tu prends la plus grosse. » Livia ne comprit pas très bien, mais ça lui plut beaucoup."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 300, y: 508, s: 1.1, pose: 'sit' },
+                { t: 'livia', x: 540, y: 506, s: 1.1, pose: 'sit' }
+              ]
+            },
+            text: "Elles mangèrent leur moitié sur les marches, sans se presser. Livia trouva que ce demi-gâteau-là avait bien meilleur goût que les deux qu'elle avait mangés toute seule."
+          }
+        ]
+      },
+
+      /* ---------- 13 : la règle qui protège ---------- */
+      {
+        id: 'donner-la-main',
+        title: 'On donne la main',
+        subtitle: 'La règle qui ne se discute pas',
+        tag: 'Grandir',
+        themes: ['Règles', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'road',
+          items: [
+            { t: 'mummy', x: 300, y: 518, s: 1.35, pose: 'hold' },
+            { t: 'livia', x: 540, y: 522, s: 1.1, pose: 'hold' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 280, y: 518, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 520, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 700, y: 520, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ON Y VA !', x: 430, y: 160, fs: 30, rot: -5, color: '#3f6ea8' }]
+            },
+            text: "Pour aller à la boulangerie, il faut traverser la route. Avant de traverser, on donne la main. C'est comme ça depuis toujours, et personne n'a jamais demandé pourquoi."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 260, y: 518, s: 1.35 },
+                { t: 'livia', x: 540, y: 522, s: 1.15, pose: 'shrug' }
+              ],
+              bubbles: [{ x: 320, y: 24, w: 330, t: 'Je suis grande. Je peux tout seule.', tx: 540, ty: 240 }]
+            },
+            text: "Ce jour-là, Livia retira sa main. « Je suis grande », dit-elle. « Je peux traverser toute seule. » Elle était très fière de sa phrase. Elle l'avait préparée dans sa tête."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'livia', x: 400, y: 522, s: 1.25, pose: 'run' }
+              ],
+              front: [{ t: 'car', x: 610, y: 512, s: 1.15 }],
+              sfx: [{ t: 'TUUUT !!', x: 600, y: 190, fs: 40, rot: -10, color: '#e0453c' }]
+            },
+            text: "Elle fit deux pas sur la route. Une voiture arriva. Elle klaxonna très fort et s'arrêta d'un coup. Il ne s'est rien passé. Mais il aurait pu se passer quelque chose."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 300, y: 518, s: 1.4, mood: 'wow' },
+                { t: 'livia', x: 570, y: 522, s: 1.15, mood: 'sad' }
+              ],
+              sfx: [{ t: 'LIVIA !', x: 420, y: 164, fs: 36, rot: -7, color: '#e0453c' }]
+            },
+            text: "Maman Pig cria son prénom très fort. Puis elle la serra très fort. Sa voix tremblait un peu. Livia comprit que ce n'était pas de la colère : c'était de la peur."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 280, y: 496, s: 1.35, pose: 'sit' },
+                { t: 'livia', x: 540, y: 502, s: 1.1, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 340, t: 'La règle, c\'est pour te ramener à la maison.', tx: 300, ty: 236 }]
+            },
+            text: "Elles s'assirent sur le trottoir. « Certaines règles se discutent », dit Maman Pig. « Celle-là, non. La route, c'est la règle qui te ramène à la maison. »"
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'mummy', x: 300, y: 518, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 540, y: 522, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'À GAUCHE, À DROITE…', x: 420, y: 158, fs: 26, rot: -4, color: '#3f6ea8' }]
+            },
+            text: "Alors Livia reprit la main. Elle regarda à gauche, puis à droite, puis encore à gauche, comme on lui avait appris. Et c'est elle qui dit : « On peut y aller. »"
+          },
+          {
+            scene: {
+              bg: 'road', time: 'sunset',
+              items: [
+                { t: 'mummy', x: 260, y: 518, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 500, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 690, y: 520, s: 1.1, pose: 'hold' }
+              ]
+            },
+            text: "Au retour, Livia tendit la main la première, sans qu'on lui demande. Être grande, ce n'est pas faire tout seul. C'est savoir quand on a besoin de quelqu'un."
+          }
+        ]
+      },
+
+      /* ---------- 14 : le non des parents ---------- */
+      {
+        id: 'maman-dit-non',
+        title: 'Quand Maman dit non',
+        subtitle: 'Un non, et ce qui vient après',
+        tag: 'Grandir',
+        themes: ['Règles', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'mummy', x: 300, y: 516, s: 1.35 },
+            { t: 'livia', x: 540, y: 520, s: 1.1, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 280, y: 516, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 540, y: 520, s: 1.15, pose: 'point' }
+              ],
+              sfx: [{ t: 'JE VEUX ÇA !', x: 430, y: 164, fs: 30, rot: -5, color: '#e8436e' }]
+            },
+            text: "Au magasin, il y avait un tout petit cheval en plastique. Livia le voulait. Elle le voulait tout de suite, elle le voulait beaucoup, et elle le dit très clairement."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 300, y: 516, s: 1.4, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 520, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 300, t: 'Non. Pas aujourd\'hui.', tx: 300, ty: 240 }]
+            },
+            text: "« Non », dit Maman. « Pas aujourd'hui. » Elle ne dit pas peut-être. Elle ne dit pas on verra. Elle dit non, une seule fois, calmement, ce qui est très énervant."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 400, y: 496, s: 1.25, pose: 'sit', mood: 'wow' }
+              ],
+              sfx: [{ t: 'AAAAAAH !', x: 400, y: 156, fs: 44, rot: -9, color: '#e0453c' }]
+            },
+            text: "Alors Livia se coucha par terre. Elle cria. Elle tapa des pieds. Tout le magasin la regarda. Elle sentait bien que c'était très fort, ce qui sortait d'elle."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 320, y: 494, s: 1.4, pose: 'sit' },
+                { t: 'livia', x: 580, y: 502, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              sfx: [{ t: '. . .', x: 450, y: 172, fs: 32, rot: 0, color: '#8a7768' }]
+            },
+            text: "Maman ne cria pas. Elle s'assit à côté, sans rien dire, et elle attendit. La colère est comme une grosse vague : si personne ne la nourrit, elle finit par redescendre."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 300, y: 516, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 560, y: 520, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 340, t: 'Tu as le droit d\'être triste. Le non reste non.', tx: 300, ty: 240 }]
+            },
+            text: "Quand ce fut fini, Maman dit : « Tu as le droit d'être triste. Tu as le droit d'être en colère. Le non, lui, reste non. » Les deux choses tenaient ensemble, bizarrement."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mummy', x: 280, y: 516, s: 1.35, pose: 'point' },
+                { t: 'livia', x: 540, y: 520, s: 1.15 }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'On le note sur la liste des envies.', tx: 285, ty: 240 }]
+            },
+            text: "« On le note sur la liste des envies », dit Maman. « Pour ton anniversaire, tu choisiras dedans. » Ce n'était pas tout de suite. Mais ce n'était plus jamais non plus."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'mummy', x: 300, y: 516, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 540, y: 520, s: 1.15, pose: 'hold' }
+              ]
+            },
+            text: "En sortant, Livia tenait la liste dans sa poche. Le petit cheval était resté au magasin. Il n'avait pas bougé, et Livia savait maintenant où le retrouver."
           }
         ]
       }
@@ -1877,7 +2165,7 @@ var UNIVERSES = [
         title: 'Le ballon qui ne doit pas tomber',
         subtitle: 'Une seule règle, et elle est difficile',
         tag: 'Jardin',
-        themes: ['Dehors', 'Famille'],
+        themes: ['Dehors', 'Famille', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -2740,6 +3028,103 @@ var UNIVERSES = [
             text: "Dans la chambre, les trois amies ont encore des petites lumières plein les yeux. « Bonne nuit les lucioles », murmure Bingo. Elles dorment avant la fin de la phrase."
           }
         ]
+      },
+
+      /* ---------- 11 : partager le temps ---------- */
+      {
+        id: 'balancoire',
+        title: 'La balançoire pour deux',
+        subtitle: 'Une seule balançoire, et vingt secondes chacun',
+        tag: 'Jardin',
+        themes: ['Partager', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'bluey', x: 280, y: 518, s: 1.15, pose: 'armsup' },
+            { t: 'livia', x: 520, y: 522, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.2, pose: 'armsup' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'UNE BALANÇOIRE !', x: 430, y: 164, fs: 28, rot: -5, color: '#6f9ed8' }]
+            },
+            text: "Papa avait accroché une balançoire à la branche du grand arbre. Une seule. Bluey et Livia la regardèrent, puis se regardèrent, et comprirent le problème en même temps."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 280, y: 518, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'point' }
+              ],
+              sfx: [{ t: 'MOI D\'ABORD !', x: 430, y: 162, fs: 32, rot: -6, color: '#e0453c' }]
+            },
+            text: "« Moi d'abord ! » dirent-elles exactement en même temps, ce qui ne réglait rien du tout. Elles le redirent une deuxième fois, plus fort, ce qui ne régla rien non plus."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 260, y: 516, s: 1.4, pose: 'shrug' },
+                { t: 'bluey', x: 500, y: 518, s: 1.1, mood: 'sad' },
+                { t: 'livia', x: 690, y: 522, s: 1.05, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 340, t: 'Vingt. On compte jusqu\'à vingt, chacune son tour.', tx: 300, ty: 240 }]
+            },
+            text: "Papa arriva avec une idée à la place d'une punition. « Vingt », dit-il. « On compte jusqu'à vingt à voix haute, et on change. Celle qui pousse compte. »"
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.15, pose: 'armsup' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'UN… DEUX… TROIS…', x: 430, y: 160, fs: 26, rot: -4, color: '#3ec9c9' }]
+            },
+            text: "Livia poussa, et compta. Un, deux, trois. Au début elle compta très vite, en espérant que ça irait plus vite. Papa lui fit remarquer qu'après, ce serait pareil pour elle."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'armsup' },
+                { t: 'bluey', x: 560, y: 518, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'DIX-HUIT… DIX-NEUF…', x: 430, y: 160, fs: 26, rot: -4, color: '#6f9ed8' }]
+            },
+            text: "Alors Bluey compta lentement, très lentement, en traînant sur chaque nombre. Livia fut d'accord pour dire que c'était la meilleure façon de compter jusqu'à vingt."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.15, pose: 'armsup' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'À TOI ! À MOI !', x: 430, y: 158, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Elles firent ça tout l'après-midi. Vingt pour l'une, vingt pour l'autre. Attendre son tour est beaucoup moins long quand on sait exactement combien de temps ça dure."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'bandit', x: 260, y: 516, s: 1.4 },
+                { t: 'bluey', x: 480, y: 506, s: 1.1, pose: 'sit' },
+                { t: 'livia', x: 690, y: 508, s: 1.05, pose: 'sit' }
+              ]
+            },
+            text: "Le soir, Papa demanda qui avait gagné. Personne ne comprit la question. On ne gagne pas à la balançoire : on y va chacun son tour, et c'est déjà beaucoup."
+          }
+        ]
       }
     ]
   },
@@ -3191,7 +3576,7 @@ var UNIVERSES = [
         title: 'Madame Range-Tout et le grand désordre',
         subtitle: 'Quand tout est trop bien rangé',
         tag: 'Humeurs',
-        themes: ['Émotions', 'Bêtises'],
+        themes: ['Émotions', 'Bêtises', 'Règles'],
         minutes: 4,
         cover: {
           bg: 'bedroom',
@@ -3689,7 +4074,7 @@ var UNIVERSES = [
         title: 'La cabane de tous les amis',
         subtitle: 'Chacun apporte ce qu\'il sait faire',
         tag: 'Tous ensemble',
-        themes: ['Amitié', 'Dehors'],
+        themes: ['Amitié', 'Dehors', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -4125,7 +4510,7 @@ var UNIVERSES = [
         title: 'La dispute du toboggan',
         subtitle: 'Bouder, c\'est long',
         tag: 'Copines',
-        themes: ['Amitié', 'Émotions'],
+        themes: ['Amitié', 'Émotions', 'Partager'],
         minutes: 4,
         cover: {
           bg: 'garden',
@@ -4385,7 +4770,7 @@ var UNIVERSES = [
         title: 'La cabane des quatre',
         subtitle: 'Quatre idées, une seule cabane',
         tag: 'Copines',
-        themes: ['Amitié', 'Dehors'],
+        themes: ['Amitié', 'Dehors', 'Règles'],
         minutes: 5,
         cover: {
           bg: 'forest',
@@ -4553,6 +4938,179 @@ var UNIVERSES = [
               ]
             },
             text: "Le lendemain, elles avaient toutes les trois un chapeau bizarre. Roxane trouva ça très laid. Elle en mit un quand même. C'est ça, réparer."
+          }
+        ]
+      },
+
+      /* ---------- 7 : prêter ce à quoi on tient ---------- */
+      {
+        id: 'prete-doudou',
+        title: 'Prêter son doudou',
+        subtitle: 'Prêter ce qui compte le plus',
+        tag: 'Copines',
+        themes: ['Partager', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 300, y: 508, s: 1.05, pose: 'hold' },
+            { t: 'isadora', x: 520, y: 506, s: 1, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 508, s: 1.2, pose: 'hold' }
+              ],
+              sfx: [{ t: 'MON DOUDOU', x: 400, y: 150, fs: 30, rot: -5, color: '#f2a0c2' }]
+            },
+            text: "Livia a un doudou. Il est gris, il sent la maison, et il ne va jamais nulle part sans elle. C'est la seule chose au monde qu'elle ne prête à personne."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'isadora', x: 300, y: 506, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 540, y: 508, s: 1.05 }
+              ],
+              sfx: [{ t: 'LA SIESTE…', x: 420, y: 148, fs: 28, rot: -4, color: '#8a7768' }]
+            },
+            text: "Ce jour-là, Isadora dormait chez Livia. À l'heure de la sieste, elle s'assit sur le matelas sans rien dire. Elle avait oublié son doudou à elle, à la maison."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 508, s: 1.2, mood: 'sad', pose: 'hold' }
+              ],
+              sfx: [{ t: 'MMMH…', x: 400, y: 152, fs: 32, rot: -5, color: '#6d5847' }]
+            },
+            text: "Livia serra son doudou plus fort. Elle pensa : elle n'a qu'à dormir sans. Puis elle pensa : moi, je ne pourrais pas. Les deux pensées se battirent un moment."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 508, s: 1.1, pose: 'point' },
+                { t: 'isadora', x: 540, y: 506, s: 1.05, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 22, w: 330, t: 'Tu peux le prendre. Mais il revient après.', tx: 300, ty: 236 }]
+            },
+            text: "« Tu peux le prendre », dit Livia. « Mais il revient après. » Isadora hocha la tête très vite, comme on promet une chose extrêmement sérieuse."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'isadora', x: 300, y: 506, s: 1.05, mood: 'sleep' },
+                { t: 'livia', x: 540, y: 508, s: 1.05, mood: 'sleep' }
+              ],
+              sfx: [{ t: 'ZZZ…', x: 430, y: 154, fs: 30, rot: -6, color: '#a98cf0' }]
+            },
+            text: "Isadora s'endormit en trois minutes. Livia, elle, mit plus longtemps. Elle regarda le plafond, les bras vides. Puis elle s'endormit quand même, ce qui la surprit beaucoup."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'isadora', x: 300, y: 506, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 540, y: 508, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'TIENS !', x: 420, y: 150, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: "Au réveil, Isadora lui rendit le doudou avant même de dire bonjour. Il sentait un peu Isadora, maintenant. Livia trouva que ce n'était pas si grave."
+          }
+        ]
+      },
+
+      /* ---------- 8 : les règles du jeu ---------- */
+      {
+        id: 'regles-du-jeu',
+        title: 'Les règles du jeu',
+        subtitle: 'On les dit avant, pas pendant',
+        tag: 'Copines',
+        themes: ['Règles', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'roxane', x: 260, y: 522, s: 1.05, pose: 'point' },
+            { t: 'livia', x: 470, y: 524, s: 1.05, mood: 'sad' },
+            { t: 'juliette', x: 660, y: 522, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 220, y: 522, s: 1.05, pose: 'point' },
+                { t: 'livia', x: 430, y: 524, s: 1.05 },
+                { t: 'juliette', x: 640, y: 522, s: 1 }
+              ],
+              front: [{ t: 'ball', x: 540, y: 540, s: .8 }],
+              sfx: [{ t: 'ON JOUE À CHAT !', x: 400, y: 166, fs: 28, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "« On joue à chat ! » dit Roxane. Tout le monde était d'accord. Personne n'avait dit les règles, parce que tout le monde croyait les connaître."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 250, y: 524, s: 1.05, pose: 'run' },
+                { t: 'roxane', x: 560, y: 522, s: 1.05, pose: 'run' }
+              ],
+              sfx: [{ t: 'ATTRAPÉE !', x: 420, y: 164, fs: 32, rot: -7, color: '#e0453c' }]
+            },
+            text: "Livia courut très vite et toucha Roxane dans le dos. « Attrapée ! » cria-t-elle. C'était clair, c'était net, et c'était très satisfaisant."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 280, y: 522, s: 1.1, pose: 'point' },
+                { t: 'livia', x: 560, y: 524, s: 1.05, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'Non ! L\'arbre, c\'est la maison !', tx: 285, ty: 240 }]
+            },
+            text: "« Non ! » dit Roxane. « J'étais près de l'arbre, et l'arbre c'est la maison ! » Personne n'avait jamais parlé d'un arbre. L'arbre venait d'apparaître dans le jeu."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'juliette', x: 230, y: 522, s: 1, mood: 'sad' },
+                { t: 'livia', x: 450, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'roxane', x: 660, y: 522, s: 1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'C\'EST PAS JUSTE !', x: 400, y: 164, fs: 28, rot: -6, color: '#6d5847' }]
+            },
+            text: "Alors ce fut le banc, puis le portail, puis le bac à sable. À chaque fois que Roxane allait être attrapée, un nouvel endroit devenait la maison. Le jeu s'arrêta tout seul."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'point' },
+                { t: 'roxane', x: 560, y: 522, s: 1.05 }
+              ],
+              bubbles: [{ x: 320, y: 22, w: 340, t: 'On dit les règles avant. Après, on n\'en change plus.', tx: 320, ty: 236 }]
+            },
+            text: "« On dit les règles avant », dit Livia. « Après, on n'en change plus, même quand ça nous arrange. » Roxane répondit que c'était nul. Elle savait très bien que c'était vrai."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'roxane', x: 220, y: 522, s: 1, pose: 'run' },
+                { t: 'juliette', x: 430, y: 522, s: 1, pose: 'run' },
+                { t: 'livia', x: 650, y: 524, s: 1.05, pose: 'run' }
+              ],
+              sfx: [{ t: 'LA MAISON, C\'EST LE BANC !', x: 400, y: 160, fs: 24, rot: -4, color: '#f7c518' }]
+            },
+            text: "Elles recommencèrent. Cette fois, la maison c'était le banc, et rien d'autre, et tout le monde l'avait dit à voix haute. Le jeu dura jusqu'à la nuit."
           }
         ]
       }

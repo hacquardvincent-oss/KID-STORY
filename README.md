@@ -26,8 +26,8 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame, les cross-over,
   les copines… faciles à compléter)
 * **Deux filtres** — par univers (les onglets) et par thème (Été, Amitié,
-  Émotions, Grandir, Famille, Dehors, Nuit, Bêtises) ; les thèmes traversent
-  les univers, et les onglets filtrent à l'intérieur d'un thème
+  Émotions, Grandir, Partager, Règles, Famille, Dehors, Nuit, Bêtises) ; les
+  thèmes traversent les univers, et les onglets filtrent à l'intérieur d'un thème
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
@@ -36,11 +36,13 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Reprise de lecture** — le site se souvient de la page où on s'est arrêté
   et marque les histoires déjà lues d'un ✓
 * **Bouton 🎲** — une histoire au hasard
-* **Quatre jeux** pour les 3-5 ans, avec les mêmes héros : relier chaque
+* **Cinq jeux** pour les 3-5 ans, avec les mêmes héros : relier chaque
   personnage à son objet, compter jusqu'à six, tracer au doigt les prénoms de
-  la maison (Livia, Pablo, Maman, Papa, Mila, Antoine…) et chercher les six
-  différences entre deux cases d'une histoire. Aucun texte à lire : tout est
-  dit à voix haute.
+  la maison (Livia, Pablo, Maman, Papa, Mila, Antoine…), apprendre l'alphabet
+  lettre par lettre, et chercher les six différences entre deux cases d'une
+  histoire. Aucun texte à lire : tout est dit à voix haute. Un rang de boutons
+  permet de passer d'un jeu à l'autre sans revenir en arrière, et les jeux de
+  lettres commencent par un choix : quel prénom, quelle lettre.
 * **Installable** sur l'écran d'accueil du téléphone (PWA légère)
 
 ### Les histoires déjà écrites
@@ -122,8 +124,21 @@ même dessin animé, et ils se rencontrent quand même
 | Le goûter et le petit frère | un bébé renverse tout, et ce n'est pas grave |
 | La cabane des quatre | décider à plusieurs, en votant |
 | Le jour où Livia n'a pas été gentille | réparer, c'est plus que dire pardon |
+| Prêter son doudou | prêter ce à quoi on tient le plus |
+| Les règles du jeu | on les dit avant, pas pendant |
 
 Pablo apparaît aussi dans **Pablo veut faire pareil** (Peppa Pig, série *Grandir*).
+
+**Partager et les règles** — la série la plus demandée à la maison
+
+| Histoire | Univers | Ce qu'elle raconte |
+|---|---|---|
+| Le dernier gâteau | Peppa Pig | partager quand il n'y en a qu'un |
+| La balançoire pour deux | Bluey | vingt secondes chacun, et l'attente devient courte |
+| Prêter son doudou | Les copines | prêter ce à quoi on tient |
+| On donne la main | Peppa Pig | la règle qui ne se discute pas |
+| Quand Maman dit non | Peppa Pig | un non qui tient, et la colère qui redescend |
+| Les règles du jeu | Les copines | changer les règles en cours de partie |
 
 ---
 
@@ -313,7 +328,7 @@ manifest.webmanifest        pour l'installation sur l'écran d'accueil
 assets/css/style.css        toute la mise en page, mobile d'abord
 assets/js/art.js            le moteur de dessin SVG (décors, personnages, objets, bulles)
 assets/js/stories.js        les histoires (c'est ici qu'on écrit)
-assets/js/games.js          les quatre jeux et leur cadre commun
+assets/js/games.js          les cinq jeux et leur cadre commun
 assets/js/app.js            navigation, couverture, Cover Flow, lecteur
 assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
 assets/img/grain.png        le grain du papier, en surimpression
@@ -354,9 +369,17 @@ lettres plus `É` et `È` sont déjà tracées.
 
 **Les 6 différences** ne sont pas dessinées à la main : le jeu prend une case
 existante et la retouche lui-même (un objet retiré, un autre agrandi, un
-personnage retourné, une humeur changée, un élément ajouté), en veillant à ne
-poser qu'une retouche par élément et à les espacer. Ajouter une planche au jeu
-tient donc en une ligne dans `PLANCHES` : `{ u: 'bluey', s: 'crabes', p: 6 }`.
+personnage retourné, une humeur ou une pose changée, un élément ajouté), en
+veillant à ne poser qu'une retouche par élément et à les espacer. Ajouter une
+planche au jeu tient donc en une ligne dans `PLANCHES` :
+`{ u: 'bluey', s: 'crabes', p: 6 }`.
+
+L'ordre des opérations y compte : le jeu choisit **d'abord la fenêtre** — la
+portion de case qu'il va montrer — et ne retouche ensuite que ce qui s'y
+trouve. C'est l'inverse de l'intuition, mais c'est ce qui garantit un dessin
+assez grand sur un téléphone : une fenêtre de 520 unités sur 800, c'est un
+dessin une fois et demie plus gros. Si six différences n'y tiennent pas, la
+fenêtre s'élargit d'un cran.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu
