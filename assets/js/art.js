@@ -1047,6 +1047,24 @@
     return s;
   };
 
+  /* la cabane de branches : deux perches en A, des traverses, et parfois
+     un toit posé dessus. « ecroulee » donne le tas d'avant (ou d'après). */
+  P.cabane = function (o) {
+    var c = o.color || '#a9773f';
+    if (o.ecroulee) {
+      return line('M -118,-8 L 58,-30', c, 13) + line('M -76,-32 L 108,-10', c, 11) +
+        line('M -42,-6 L 116,-38', c, 10) + line('M -104,-36 L 24,-10', c, 9);
+    }
+    var perches = line('M -108,0 L 0,-168', c, 13) + line('M 108,0 L 0,-168', c, 13);
+    var s = perches + line('M -60,-70 L 60,-70', c, 10) + line('M -33,-116 L 33,-116', c, 9);
+    if (o.toit) {
+      s += '<g opacity=".55">' +
+        U(['<path d="M 0,-176 L 94,-14 L -94,-14 Z" fill="%F%" %S%/>'], o.toit, 6) + '</g>';
+      s += perches;
+    }
+    return s;
+  };
+
   P.rock = function (o) {
     return U(['<path d="M -34,0 C -40,-22 -20,-38 0,-36 C 22,-34 36,-20 32,0 Z" fill="%F%" %S%/>'], o.color || '#b9b3ae', 7);
   };
@@ -1196,6 +1214,20 @@
       var y = ((i * 73) % (maxY || 260)) + 14;
       var r = (i % 3) ? 6 : 10;
       s += g('translate(' + x + ',' + y + ')', P.star({ r: r }));
+    }
+    return s;
+  }
+
+  /* la neige qui tombe : une couche de flocons semés toujours de la même
+     façon, pour qu'une case ne change pas d'aspect d'un affichage à l'autre */
+  function flocons(n) {
+    var s = '', i;
+    for (i = 0; i < n; i++) {
+      var x = ((i * 149) % 792) + 6;
+      var y = ((i * 97) % 540) + 8;
+      var r = 7 + (i % 3) * 4;
+      s += '<g transform="translate(' + x + ',' + y + ') rotate(' + ((i * 37) % 60 - 30) + ')">' +
+        P.snowflake({ r: r, color: '#ffffff' }) + '</g>';
     }
     return s;
   }
@@ -1558,6 +1590,7 @@
 
     /* le dessin : décor, personnages, objets */
     var art = bgFn(s);
+    if (s.neige) art += flocons(s.neige === true ? 26 : s.neige);
     art += renderItems(s.back);
     art += renderItems(s.items);
     art += renderItems(s.front);

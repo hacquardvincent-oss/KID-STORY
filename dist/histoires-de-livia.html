@@ -201,12 +201,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   font-size: 13px; font-weight: 600; letter-spacing: 2.4px;
 }
 .cover-logo .logo-mark { width: 30px; height: 30px; }
-.cover-kicker {
-  display: inline-block; background: var(--jaune); color: var(--ink);
-  font-size: 11.5px; font-weight: 600; letter-spacing: .3px;
-  padding: 2px 10px; border: 2px solid var(--ink); border-radius: 999px;
-  margin-bottom: 7px;
-}
 .cover-head h1 {
   margin: 0; font-size: clamp(30px, 8.5vw, 44px); font-weight: 700;
   line-height: .98; letter-spacing: -.5px; text-wrap: balance;
@@ -250,15 +244,19 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   flex: 0 0 auto; text-align: center;
   padding: 14px 16px calc(var(--safe-bot) + 16px);
 }
-.cover-lines {
-  display: flex; flex-wrap: wrap; gap: 7px; justify-content: center;
-  margin-bottom: 12px;
+/* le menu de rubriques, dans le bandeau : les deux seules portes d'entrée */
+.cover-nav {
+  display: flex; gap: 10px; justify-content: center; margin-top: 12px;
 }
-.cover-lines span {
-  font-size: 13px; font-weight: 500; padding: 3px 11px;
-  background: var(--paper-2); border: 2px solid var(--ink); border-radius: 999px;
+.cover-nav button {
+  font-family: inherit; cursor: pointer;
+  font-size: 16px; font-weight: 600; padding: 9px 22px;
+  border: 3px solid var(--ink); border-radius: 999px;
+  background: var(--page); color: var(--ink);
+  box-shadow: 0 3px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s, background .15s;
 }
-.cover-foot .cta { margin-top: 0; width: 100%; max-width: 320px; }
+.cover-nav button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
 .cover-random {
   font-family: inherit; cursor: pointer;
   background: none; border: 0; color: var(--ink-soft);
@@ -274,13 +272,10 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   .cover-head h1 { font-size: clamp(34px, 3.6vw, 48px); }
   .cover-logo { margin-bottom: 4px; font-size: 12px; }
   .cover-logo .logo-mark { width: 24px; height: 24px; }
-  .cover-kicker { margin-bottom: 4px; }
   .cover-meta { margin-top: 3px; font-size: 11.5px; }
   .cover-foot { padding: 10px 16px 14px; }
-  .cover-lines { margin-bottom: 9px; }
-  .cover-lines span { font-size: 15px; padding: 4px 14px; }
-  .cover-foot .cta { max-width: 380px; font-size: 18px; padding: 11px 30px; }
-  .cover-liens { margin-top: 7px; }
+  .cover-nav { margin-top: 9px; }
+  .cover-nav button { font-size: 17px; padding: 10px 28px; }
 }
 
 /* ---------------- le sommaire ---------------- */
@@ -544,8 +539,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .jeu-actions button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
 .jeu-actions button.primary { background: var(--jaune); font-weight: 600; }
 
-.cover-liens { display: flex; gap: 16px; justify-content: center; margin-top: 10px; }
-
 @media (min-width: 720px) {
   .jeux-grid { grid-template-columns: 1fr 1fr; }
   .jeu-stage { max-width: 640px; margin: 10px auto 0; }
@@ -719,20 +712,18 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     <div class="cover-sheet">
       <div class="cover-head">
         <div class="cover-logo"><span class="logo-mark" id="coverMark"></span><span>KID CARTOON</span></div>
-        <div class="cover-kicker">+ tes BD préférées</div>
         <h1>Les histoires de <b>Livia</b></h1>
         <div class="cover-meta" id="coverMeta"></div>
+        <nav class="cover-nav" id="coverNav" aria-label="Rubriques">
+          <button data-nav="histoires">📖 Histoires</button>
+          <button data-nav="jeux">🎮 Jeux</button>
+        </nav>
       </div>
       <div class="cover-art" id="coverArt">
         <div class="cover-sticker" id="coverSticker"></div>
       </div>
       <div class="cover-foot">
-        <div class="cover-lines" id="coverLines"></div>
-        <button class="cta" id="btnOpen">Ouvrir le sommaire</button>
-        <div class="cover-liens">
-          <button class="cover-random" id="btnCoverGames">🎮 Jouer</button>
-          <button class="cover-random" id="btnCoverRandom">🎲 Une histoire au hasard</button>
-        </div>
+        <button class="cover-random" id="btnCoverRandom">🎲 Une histoire au hasard</button>
       </div>
     </div>
   </section>
@@ -1841,6 +1832,24 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     return s;
   };
 
+  /* la cabane de branches : deux perches en A, des traverses, et parfois
+     un toit posé dessus. « ecroulee » donne le tas d'avant (ou d'après). */
+  P.cabane = function (o) {
+    var c = o.color || '#a9773f';
+    if (o.ecroulee) {
+      return line('M -118,-8 L 58,-30', c, 13) + line('M -76,-32 L 108,-10', c, 11) +
+        line('M -42,-6 L 116,-38', c, 10) + line('M -104,-36 L 24,-10', c, 9);
+    }
+    var perches = line('M -108,0 L 0,-168', c, 13) + line('M 108,0 L 0,-168', c, 13);
+    var s = perches + line('M -60,-70 L 60,-70', c, 10) + line('M -33,-116 L 33,-116', c, 9);
+    if (o.toit) {
+      s += '<g opacity=".55">' +
+        U(['<path d="M 0,-176 L 94,-14 L -94,-14 Z" fill="%F%" %S%/>'], o.toit, 6) + '</g>';
+      s += perches;
+    }
+    return s;
+  };
+
   P.rock = function (o) {
     return U(['<path d="M -34,0 C -40,-22 -20,-38 0,-36 C 22,-34 36,-20 32,0 Z" fill="%F%" %S%/>'], o.color || '#b9b3ae', 7);
   };
@@ -1990,6 +1999,20 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
       var y = ((i * 73) % (maxY || 260)) + 14;
       var r = (i % 3) ? 6 : 10;
       s += g('translate(' + x + ',' + y + ')', P.star({ r: r }));
+    }
+    return s;
+  }
+
+  /* la neige qui tombe : une couche de flocons semés toujours de la même
+     façon, pour qu'une case ne change pas d'aspect d'un affichage à l'autre */
+  function flocons(n) {
+    var s = '', i;
+    for (i = 0; i < n; i++) {
+      var x = ((i * 149) % 792) + 6;
+      var y = ((i * 97) % 540) + 8;
+      var r = 7 + (i % 3) * 4;
+      s += '<g transform="translate(' + x + ',' + y + ') rotate(' + ((i * 37) % 60 - 30) + ')">' +
+        P.snowflake({ r: r, color: '#ffffff' }) + '</g>';
     }
     return s;
   }
@@ -2352,6 +2375,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 
     /* le dessin : décor, personnages, objets */
     var art = bgFn(s);
+    if (s.neige) art += flocons(s.neige === true ? 26 : s.neige);
     art += renderItems(s.back);
     art += renderItems(s.items);
     art += renderItems(s.front);
@@ -5729,6 +5753,556 @@ var UNIVERSES = [
         ]
       }
     ]
+  },
+
+  /* ==========================================================
+     UNIVERS 5 — LE GRAND MÉLANGE
+     Les amis de Livia ne viennent pas du même dessin animé.
+     Ici, ils se rencontrent quand même.
+     ========================================================== */
+  {
+    id: 'melange',
+    name: 'Le grand mélange',
+    tagline: 'Quand tous les amis de Livia se retrouvent',
+    emoji: '🌈',
+    c1: '#7ac6a8',
+    c2: '#f2a0c2',
+    cover: {
+      bg: 'garden',
+      items: [
+        { t: 'peppa', x: 130, y: 522, s: .95 },
+        { t: 'livia', x: 330, y: 524, s: 1.05, pose: 'armsup' },
+        { t: 'bluey', x: 520, y: 520, s: .95, pose: 'wave' },
+        { t: 'elsa', x: 700, y: 514, s: .95 }
+      ]
+    },
+    stories: [
+
+      /* ---------- 1 ---------- */
+      {
+        id: 'trois-amies',
+        title: 'Les trois amies de Livia',
+        subtitle: 'Trois jeux différents, un seul après-midi',
+        tag: 'Tous ensemble',
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 180, y: 522, s: 1 },
+            { t: 'livia', x: 400, y: 524, s: 1.05, pose: 'wave' },
+            { t: 'bluey', x: 620, y: 520, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 524, s: 1.15, pose: 'armsup' }],
+              sfx: [{ t: 'TOUT LE MONDE VIENT !', x: 400, y: 170, fs: 26, rot: -4, color: '#3ec9c9' }]
+            },
+            text: "Ce mercredi-là, Livia avait invité ses amies. Toutes ses amies. Celles de la boue, celles du jardin, et celle de la neige. Elle attendait devant la maison, le cœur qui sautait."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 220, y: 522, s: 1.1, pose: 'jump' },
+                { t: 'livia', x: 480, y: 524, s: 1.1, pose: 'wave' }
+              ],
+              front: [{ t: 'mudpuddle', x: 700, y: 534, s: 1 }],
+              sfx: [{ t: 'SPLATCH !', x: 300, y: 174, fs: 34, rot: -8, color: '#8a6a4a' }]
+            },
+            text: "Peppa arriva la première. Elle avait mis ses bottes. « J'ai vu une flaque en chemin », dit-elle. « Une très bonne flaque. » Peppa connaissait les bonnes flaques."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 170, y: 522, s: 1 },
+                { t: 'livia', x: 400, y: 524, s: 1.05 },
+                { t: 'bluey', x: 640, y: 520, s: 1.05, pose: 'point' }
+              ],
+              bubbles: [{ x: 440, y: 26, w: 320, t: 'On invente un jeu ! Ça s\'appelle…', tx: 620, ty: 244 }]
+            },
+            text: "Bluey arriva ensuite, en courant. Bluey n'arrivait jamais autrement. « On invente un jeu ! » dit-elle. Elle avait déjà un nom pour le jeu. Elle n'avait pas encore de règles."
+          },
+          {
+            scene: {
+              bg: 'garden', neige: 16,
+              items: [
+                { t: 'peppa', x: 150, y: 522, s: .95 },
+                { t: 'livia', x: 350, y: 524, s: 1 },
+                { t: 'bluey', x: 540, y: 520, s: .95 },
+                { t: 'elsa', x: 706, y: 514, s: .95, pose: 'magic' }
+              ],
+              sfx: [{ t: 'FRIIIISSS…', x: 400, y: 168, fs: 30, rot: -5, color: '#7fd8f0' }]
+            },
+            text: "Elsa arriva la dernière, sans bruit. Sur son passage, l'herbe fit de tout petits cristaux. Peppa la regarda. Bluey la regarda. Personne ne savait quoi dire."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 150, y: 522, s: .95, mood: 'sad' },
+                { t: 'bluey', x: 350, y: 520, s: .95, pose: 'shrug' },
+                { t: 'elsa', x: 536, y: 514, s: .95, mood: 'sad' },
+                { t: 'livia', x: 700, y: 524, s: .95, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'Moi je veux sauter dans la flaque.', tx: 160, ty: 250 }]
+            },
+            text: "Peppa voulait sauter dans la flaque. Bluey voulait inventer. Elsa voulait la neige. Chacune tirait de son côté, et l'après-midi commençait à se casser en trois morceaux."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 400, y: 524, s: 1.15, pose: 'point' }
+              ],
+              bubbles: [{ x: 230, y: 24, w: 340, t: 'Et si on faisait les trois à la fois ?', tx: 400, ty: 236 }]
+            },
+            text: "Alors Livia leva le doigt. « Et si on faisait les trois à la fois ? » Une flaque, inventée par Bluey, gelée par Elsa. Ça n'existait pas. C'est bien pour ça que c'était une bonne idée."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 150, y: 522, s: .95, pose: 'jump' },
+                { t: 'livia', x: 350, y: 524, s: 1, pose: 'jump' },
+                { t: 'bluey', x: 540, y: 520, s: .95, pose: 'jump' },
+                { t: 'elsa', x: 706, y: 514, s: .95, pose: 'armsup' }
+              ],
+              front: [{ t: 'mudpuddle', x: 440, y: 548, s: 1.1 }],
+              sfx: [{ t: 'CRIC ! SPLATCH ! YOUPI !', x: 400, y: 164, fs: 28, rot: -6, color: '#f7c518' }]
+            },
+            text: "Elles glissèrent, tombèrent, recommencèrent. La flaque était gelée sur le dessus et boueuse en dessous : exactement ce qu'il fallait. Le soir, elles étaient sales, mouillées et amies."
+          }
+        ]
+      },
+
+      /* ---------- 2 ---------- */
+      {
+        id: 'neige-plage',
+        title: 'De la neige sur la plage',
+        subtitle: 'Un cadeau qui fond, et ce qu\'on en fait',
+        tag: 'Tous ensemble',
+        minutes: 5,
+        cover: {
+          bg: 'beach',
+          items: [
+            { t: 'livia', x: 250, y: 528, s: 1.05 },
+            { t: 'elsa', x: 460, y: 520, s: .95, pose: 'magic' },
+            { t: 'olaf', x: 660, y: 526, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'parasol', x: 90, y: 500, s: .8 }],
+              items: [
+                { t: 'livia', x: 300, y: 528, s: 1.1, mood: 'sad' },
+                { t: 'peppa', x: 540, y: 526, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'QU\'EST-CE QU\'IL FAIT CHAUD !', x: 400, y: 168, fs: 24, rot: -4, color: '#e0453c' }]
+            },
+            text: "C'était le jour le plus chaud de l'été. Le sable brûlait les pieds. Peppa s'éventait avec une feuille. Livia n'avait plus envie de rien, même pas d'une glace."
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'peppa', x: 200, y: 526, s: 1 },
+                { t: 'livia', x: 420, y: 528, s: 1.05, pose: 'point' },
+                { t: 'elsa', x: 640, y: 520, s: .95, pose: 'wave' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 320, t: 'Elsa ! Tu peux faire quelque chose ?', tx: 430, ty: 248 }]
+            },
+            text: "Et puis Elsa arriva, avec sa robe qui ne se froissait jamais. « Elsa ! » cria Livia. « Tu peux faire quelque chose ? » Elsa regarda le ciel, puis le sable, et sourit."
+          },
+          {
+            scene: {
+              bg: 'beach', neige: 30,
+              items: [
+                { t: 'peppa', x: 200, y: 526, s: 1, mood: 'wow' },
+                { t: 'livia', x: 420, y: 528, s: 1.05, mood: 'wow' },
+                { t: 'elsa', x: 640, y: 520, s: .95, pose: 'magic' }
+              ],
+              sfx: [{ t: 'FROUUUCH !', x: 400, y: 160, fs: 38, rot: -8, color: '#bfe8f7' }]
+            },
+            text: "Elsa leva les deux mains. Il se mit à neiger. Sur la plage. En plein mois d'août. Les flocons tombaient sur le sable chaud comme des confettis très sérieux."
+          },
+          {
+            scene: {
+              bg: 'beach', neige: 24,
+              items: [
+                { t: 'peppa', x: 190, y: 526, s: 1, pose: 'armsup' },
+                { t: 'livia', x: 400, y: 528, s: 1.05, pose: 'jump' },
+                { t: 'olaf', x: 630, y: 526, s: 1.05, pose: 'wave' }
+              ],
+              sfx: [{ t: 'BONJOUR TOUT LE MONDE !', x: 420, y: 166, fs: 24, rot: -4, color: '#5fb8d8' }]
+            },
+            text: "Dans la neige, quelque chose bougea. Deux brindilles, un nez de carotte, et un très large sourire. « Bonjour tout le monde ! » dit Olaf. « J'adore l'été. C'est ma première fois. »"
+          },
+          {
+            scene: {
+              bg: 'beach', neige: 8,
+              items: [
+                { t: 'livia', x: 300, y: 528, s: 1.05, mood: 'sad' },
+                { t: 'olaf', x: 560, y: 526, s: 1.05, mood: 'sad' }
+              ],
+              front: [{ t: 'splash', x: 620, y: 546, s: 1 }],
+              sfx: [{ t: 'PLIC… PLOC…', x: 380, y: 174, fs: 30, rot: -6, color: '#4f9cb5' }]
+            },
+            text: "Mais la neige n'est pas faite pour le sable chaud. Elle devint de l'eau. Olaf devint plus petit. Livia sentit sa gorge se serrer. « Ne t'en va pas », dit-elle tout bas."
+          },
+          {
+            scene: {
+              bg: 'beach', neige: 20,
+              items: [
+                { t: 'elsa', x: 250, y: 520, s: 1, pose: 'magic' },
+                { t: 'livia', x: 480, y: 528, s: 1.05 },
+                { t: 'olaf', x: 690, y: 526, s: 1 }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 320, t: 'Je peux le refaire. Autant de fois que tu veux.', tx: 250, ty: 244 }]
+            },
+            text: "Elsa posa une main sur l'épaule de Livia. « Je peux le refaire », dit-elle. « Autant de fois que tu veux. » Elle souffla, et Olaf redevint entier, avec un flocon au-dessus de la tête pour le garder au frais."
+          },
+          {
+            scene: {
+              bg: 'beach', time: 'sunset', neige: 14,
+              items: [
+                { t: 'peppa', x: 160, y: 510, s: .95, pose: 'sit' },
+                { t: 'livia', x: 360, y: 508, s: 1, pose: 'sit' },
+                { t: 'olaf', x: 560, y: 526, s: .95 },
+                { t: 'elsa', x: 716, y: 502, s: .95, pose: 'sit' }
+              ],
+              front: [{ t: 'shell', x: 480, y: 548, s: .8 }]
+            },
+            text: "Ils restèrent jusqu'au coucher du soleil, à moitié dans le sable et à moitié dans la neige. « Le plus beau jour de ma vie », dit Olaf. C'était aussi le seul, mais personne ne le lui fit remarquer."
+          }
+        ]
+      },
+
+      /* ---------- 3 ---------- */
+      {
+        id: 'grande-cabane',
+        title: 'La cabane de tous les amis',
+        subtitle: 'Chacun apporte ce qu\'il sait faire',
+        tag: 'Tous ensemble',
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          back: [{ t: 'cabane', x: 640, y: 522, s: .9, toit: '#bfe8f7' }],
+          items: [
+            { t: 'bluey', x: 200, y: 520, s: 1.05, pose: 'point' },
+            { t: 'livia', x: 420, y: 524, s: 1.05 },
+            { t: 'costaud', x: 640, y: 522, s: .95, pose: 'armsup' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 520, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 560, y: 524, s: 1.1 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 320, t: 'On construit une cabane. Une immense.', tx: 300, ty: 244 }]
+            },
+            text: "« On construit une cabane », annonça Bluey. « Une immense. » Livia demanda comment. Bluey répondit qu'on verrait bien. C'est souvent comme ça que commencent les meilleures constructions."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 180, y: 520, s: 1, pose: 'hold' },
+                { t: 'livia', x: 400, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'peppa', x: 620, y: 522, s: 1, pose: 'hold' }
+              ],
+              front: [{ t: 'cabane', x: 690, y: 550, s: .7, ecroulee: true }],
+              sfx: [{ t: 'HHHNN… ÇA GLISSE !', x: 380, y: 170, fs: 26, rot: -5, color: '#7ba450' }]
+            },
+            text: "Elles portèrent des branches. Peppa en laissa tomber deux. Bluey en laissa tomber trois. Le tas ressemblait à un tas, pas encore à une cabane."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 260, y: 524, s: 1.05, pose: 'point' },
+                { t: 'costaud', x: 560, y: 522, s: 1.05, pose: 'armsup' }
+              ],
+              front: [{ t: 'log', x: 740, y: 540, s: 1 }],
+              sfx: [{ t: 'FASTOCHE !', x: 560, y: 168, fs: 32, rot: -6, color: '#c4453c' }]
+            },
+            text: "Alors Livia alla chercher Monsieur Costaud. Il souleva le tronc le plus gros comme si c'était une cuillère. « Fastoche », dit-il. Il aimait bien qu'on ait besoin de lui."
+          },
+          {
+            scene: {
+              bg: 'garden', neige: 14,
+              back: [{ t: 'cabane', x: 420, y: 524, s: 1.8, toit: '#bfe8f7' }],
+              items: [
+                { t: 'peppa', x: 160, y: 522, s: .95, mood: 'wow' },
+                { t: 'livia', x: 350, y: 524, s: 1, mood: 'wow' },
+                { t: 'bluey', x: 540, y: 520, s: .95, mood: 'wow' },
+                { t: 'elsa', x: 706, y: 514, s: .95, pose: 'magic' }
+              ],
+              sfx: [{ t: 'CRIIIC !', x: 420, y: 164, fs: 34, rot: -7, color: '#7fd8f0' }]
+            },
+            text: "Il manquait un toit. Elsa souffla doucement au-dessus des branches, et la glace se posa entre elles comme du ciment. Un toit transparent, où l'on voyait passer les nuages."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 220, y: 520, s: 1, mood: 'sad' },
+                { t: 'livia', x: 440, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'peppa', x: 660, y: 522, s: 1, mood: 'sad' }
+              ],
+              front: [{ t: 'cabane', x: 420, y: 552, s: 1, ecroulee: true }],
+              sfx: [{ t: 'PATATRAS !', x: 400, y: 168, fs: 36, rot: -8, color: '#e0453c' }]
+            },
+            text: "Elles entrèrent toutes en même temps. La cabane fit un bruit, pencha, et s'écroula sur leurs têtes. Il y eut un grand silence, puis un très grand fou rire."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'cabane', x: 700, y: 524, s: .85 }],
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'point' },
+                { t: 'bluey', x: 560, y: 520, s: 1.05 }
+              ],
+              bubbles: [{ x: 380, y: 24, w: 340, t: 'On recommence. Mais on entre un par un.', tx: 380, ty: 240 }]
+            },
+            text: "« On recommence », dit Livia. « Mais on entre un par un. » Bluey trouva que c'était une règle un peu ennuyeuse. Elle trouva aussi que c'était sûrement une bonne règle."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              back: [{ t: 'cabane', x: 380, y: 530, s: 1.9, toit: '#bfe8f7' }],
+              items: [
+                { t: 'peppa', x: 250, y: 508, s: .85, pose: 'sit' },
+                { t: 'livia', x: 400, y: 506, s: .9, pose: 'sit' },
+                { t: 'bluey', x: 545, y: 506, s: .85, pose: 'sit' },
+                { t: 'costaud', x: 704, y: 522, s: .8 }
+              ]
+            },
+            text: "La deuxième cabane tint jusqu'au soir. Elles s'assirent dedans, serrées, sous le toit de glace qui gouttait un peu. Monsieur Costaud resta dehors : il ne rentrait pas. « C'est la plus belle maison du monde », dit Peppa, et personne ne dit le contraire."
+          }
+        ]
+      },
+
+      /* ---------- 4 ---------- */
+      {
+        id: 'grande-course',
+        title: 'La grande course des amis',
+        subtitle: 'Gagner, ce n\'est pas toujours arriver devant',
+        tag: 'Tous ensemble',
+        minutes: 5,
+        cover: {
+          bg: 'hill',
+          items: [
+            { t: 'bluey', x: 200, y: 518, s: 1.05, pose: 'run' },
+            { t: 'livia', x: 420, y: 522, s: 1.05, pose: 'run' },
+            { t: 'rapide', x: 640, y: 518, s: .95, pose: 'run' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'bluey', x: 240, y: 518, s: 1.1, pose: 'point' },
+                { t: 'livia', x: 500, y: 522, s: 1.1 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'Le premier en haut de la colline !', tx: 240, ty: 244 }]
+            },
+            text: "« Le premier en haut de la colline ! » cria Bluey. Livia trouva l'idée excellente. C'était une longue colline, et un très beau matin pour courir."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'peppa', x: 150, y: 520, s: .95 },
+                { t: 'livia', x: 340, y: 522, s: 1 },
+                { t: 'bluey', x: 530, y: 518, s: .95 },
+                { t: 'rapide', x: 700, y: 518, s: .85, pose: 'run' }
+              ],
+              sfx: [{ t: 'À VOS MARQUES…', x: 400, y: 166, fs: 28, rot: -4, color: '#3f6ea8' }]
+            },
+            text: "Tout le monde vint. Peppa, Bluey, Livia, et même Monsieur Rapide, qui était déjà arrivé avant le départ. Il fallut lui demander de revenir se mettre sur la ligne."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 620, y: 518, s: 1, pose: 'run' },
+                { t: 'bluey', x: 380, y: 518, s: 1.05, pose: 'run' },
+                { t: 'livia', x: 160, y: 522, s: 1, pose: 'run' }
+              ],
+              sfx: [{ t: 'ZOOOUM !', x: 420, y: 160, fs: 36, rot: -8, color: '#f0862c' }]
+            },
+            text: "Monsieur Rapide partit comme une flèche. Bluey partit comme un chien. Livia partit comme une fille de quatre ans, c'est-à-dire très vite, mais pas très longtemps."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'peppa', x: 300, y: 502, s: 1.1, mood: 'sad', pose: 'sit' },
+                { t: 'livia', x: 560, y: 522, s: 1.05, pose: 'point' }
+              ],
+              sfx: [{ t: 'AÏE…', x: 300, y: 172, fs: 32, rot: -6, color: '#e8436e' }]
+            },
+            text: "Au milieu de la montée, Peppa s'assit dans l'herbe. Elle avait un caillou dans la botte et plus du tout envie. Livia s'arrêta net, alors qu'elle était deuxième."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'peppa', x: 300, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 540, y: 522, s: 1.05, pose: 'hold' }
+              ],
+              bubbles: [{ x: 380, y: 24, w: 320, t: 'On monte ensemble, doucement.', tx: 520, ty: 240 }]
+            },
+            text: "Livia enleva le caillou de la botte. Puis elle prit la main de Peppa. « On monte ensemble, doucement. » Elles montèrent doucement. Elles arrivèrent dernières."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 180, y: 518, s: .95 },
+                { t: 'bluey', x: 380, y: 518, s: 1, pose: 'armsup' },
+                { t: 'peppa', x: 570, y: 520, s: .95 },
+                { t: 'livia', x: 730, y: 522, s: .9 }
+              ],
+              sfx: [{ t: 'BRAVO !', x: 400, y: 164, fs: 34, rot: -6, color: '#f7c518' }]
+            },
+            text: "En haut, Bluey et Monsieur Rapide les attendaient. Ils ne s'étaient pas assis. Ils avaient regardé toute la montée, et ils applaudirent les dernières comme on applaudit les premières."
+          },
+          {
+            scene: {
+              bg: 'hill', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 160, y: 510, s: .95, pose: 'sit' },
+                { t: 'livia', x: 360, y: 508, s: 1, pose: 'sit' },
+                { t: 'bluey', x: 550, y: 506, s: .95, pose: 'sit' },
+                { t: 'rapide', x: 698, y: 518, s: .85 }
+              ]
+            },
+            text: "Ils s'assirent tous en haut pour regarder le soleil descendre. « Qui a gagné ? » demanda Peppa. Personne ne s'en souvenait. Monsieur Rapide trouva ça très reposant."
+          }
+        ]
+      },
+
+      /* ---------- 5 ---------- */
+      {
+        id: 'nuit-etoiles',
+        title: 'La nuit où tout le monde a dormi dehors',
+        subtitle: 'Une tente, quatre amis, et le noir',
+        tag: 'Tous ensemble',
+        minutes: 5,
+        cover: {
+          bg: 'camp',
+          back: [{ t: 'tent', x: 110, y: 496, s: .85 }],
+          items: [
+            { t: 'livia', x: 260, y: 524, s: 1.05 },
+            { t: 'bluey', x: 470, y: 520, s: 1 },
+            { t: 'peppa', x: 670, y: 522, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'camp',
+              back: [{ t: 'tent', x: 700, y: 500, s: 1, rot: 4 }],
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'armsup' },
+                { t: 'bluey', x: 560, y: 520, s: 1.05, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'ON DORT DEHORS !', x: 420, y: 168, fs: 28, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "La tente était montée au fond du jardin. Un peu de travers, mais montée. « On dort dehors ! » criaient Livia et Bluey, qui n'avaient encore jamais dormi dehors."
+          },
+          {
+            scene: {
+              bg: 'camp',
+              back: [{ t: 'tent', x: 720, y: 498, s: .8 }],
+              items: [
+                { t: 'peppa', x: 170, y: 522, s: 1, pose: 'hold' },
+                { t: 'campfire', x: 400, y: 528, s: 1 },
+                { t: 'livia', x: 590, y: 524, s: 1.05, pose: 'hold' }
+              ],
+              front: [{ t: 'marshmallow', x: 250, y: 480, s: 1 }],
+              sfx: [{ t: 'MIAM !', x: 460, y: 172, fs: 32, rot: -6, color: '#f2803d' }]
+            },
+            text: "Il y eut des chamallows au bout des bâtons. Peppa fit brûler le sien et dit que c'était exprès. Personne ne la crut, et tout le monde fit semblant."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'tent', x: 720, y: 498, s: .8 }],
+              items: [
+                { t: 'peppa', x: 190, y: 522, s: 1, mood: 'sad' },
+                { t: 'livia', x: 410, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'bluey', x: 630, y: 520, s: 1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'CRAC…', x: 430, y: 156, fs: 30, rot: -6, color: '#bfe8f7' }]
+            },
+            text: "Puis la nuit tomba pour de bon. Le jardin qu'elles connaissaient par cœur devint un endroit inconnu. Il y eut un craquement. Trois amies se rapprochèrent en même temps."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night', neige: 22,
+              back: [{ t: 'tent', x: 720, y: 498, s: .8 }],
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'elsa', x: 560, y: 516, s: 1, pose: 'magic' }
+              ],
+              sfx: [{ t: 'PSSSCHHH…', x: 420, y: 150, fs: 30, rot: -5, color: '#7fd8f0' }]
+            },
+            text: "Alors Elsa arriva. Elle ne dit pas qu'il ne fallait pas avoir peur. Elle leva la main, et de tout petits flocons se mirent à briller dans l'air, comme des lampes de poche minuscules."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night', neige: 18,
+              back: [{ t: 'tent', x: 90, y: 498, s: .8 }, { t: 'lantern', x: 752, y: 246, s: 1 }],
+              items: [
+                { t: 'peppa', x: 200, y: 522, s: 1 },
+                { t: 'livia', x: 420, y: 524, s: 1.05, pose: 'point' },
+                { t: 'bluey', x: 640, y: 520, s: 1 }
+              ],
+              bubbles: [{ x: 60, y: 22, w: 320, t: 'Le craquement, c\'était juste une branche.', tx: 420, ty: 238 }]
+            },
+            text: "À la lumière des flocons, elles allèrent voir le craquement de plus près. C'était une branche. Une simple branche, posée par le vent. Le jardin redevint le jardin."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'tent', x: 80, y: 470, s: .7 }],
+              items: [
+                { t: 'peppa', x: 180, y: 510, s: .95, pose: 'sit' },
+                { t: 'livia', x: 380, y: 508, s: 1, pose: 'sit' },
+                { t: 'bluey', x: 570, y: 508, s: .95, pose: 'sit' },
+                { t: 'elsa', x: 720, y: 502, s: .95, pose: 'sit' }
+              ],
+              sfx: [{ t: 'CHUUUT…', x: 420, y: 152, fs: 28, rot: -4, color: '#bfe8f7' }]
+            },
+            text: "Elles s'installèrent devant la tente pour compter les étoiles. Peppa s'arrêta à douze. Bluey s'arrêta à cinquante. Livia s'endormit à sept, la tête sur l'épaule d'Elsa."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'tent', x: 700, y: 498, s: .85 }],
+              items: [
+                { t: 'livia', x: 300, y: 508, s: 1.05, mood: 'sleep', pose: 'sit' },
+                { t: 'bluey', x: 560, y: 506, s: 1, mood: 'sleep', pose: 'sit' }
+              ],
+              sfx: [{ t: 'ZZZ…', x: 430, y: 180, fs: 32, rot: -6, color: '#bfe8f7' }]
+            },
+            text: "Au matin, il restait un peu de givre sur la tente et beaucoup de miettes de chamallow. « On recommence ce soir ? » demanda Bluey. Livia dormait encore. Elle dit oui quand même."
+          }
+        ]
+      }
+    ]
   }
 ];
 
@@ -6359,10 +6933,9 @@ var UNIVERSES = [
     logo: $('#btnLogo'), logoMark: $('#logoMark'), coverMark: $('#coverMark'),
     mainnav: $('#mainnav'),
     cover: $('#viewCover'), coverArt: $('#coverArt'), coverMeta: $('#coverMeta'),
-    coverLines: $('#coverLines'), coverSticker: $('#coverSticker'),
+    coverNav: $('#coverNav'), coverSticker: $('#coverSticker'),
     topbar: document.querySelector('.topbar'),
-    open: $('#btnOpen'), coverRandom: $('#btnCoverRandom'),
-    coverGames: $('#btnCoverGames'),
+    coverRandom: $('#btnCoverRandom'),
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
     gamesSub: $('#gamesSub'),
     grid: $('#uniGrid'), random: $('#btnRandom'),
@@ -6390,8 +6963,8 @@ var UNIVERSES = [
   els.logo.onclick = function () { location.hash = '#/'; };
 
   /* ---------------- le menu principal ---------------- */
-  function renderNav(actif) {
-    var b = els.mainnav.children;
+  function cablerNav(zone, actif) {
+    var b = zone.children;
     for (var i = 0; i < b.length; i++) {
       var nav = b[i].getAttribute('data-nav');
       b[i].className = nav === actif ? 'is-active' : '';
@@ -6400,6 +6973,8 @@ var UNIVERSES = [
       })(nav);
     }
   }
+  function renderNav(actif) { cablerNav(els.mainnav, actif); }
+  cablerNav(els.coverNav, null);
 
   /* ---------------- onglets ---------------- */
   function renderTabs(activeId) {
@@ -6472,10 +7047,7 @@ var UNIVERSES = [
     els.coverMeta.textContent = MOIS[d.getMonth()] + ' ' + d.getFullYear();
 
     var total = 0;
-    els.coverLines.innerHTML = UNIVERSES.map(function (u) {
-      total += u.stories.length;
-      return '<span>' + u.emoji + ' ' + u.name + '</span>';
-    }).join('');
+    UNIVERSES.forEach(function (u) { total += u.stories.length; });
     els.coverSticker.innerHTML = '<b>' + total + '</b><span>histoires<br>du soir</span>';
   }
 
@@ -6735,10 +7307,6 @@ var UNIVERSES = [
       window.scrollTo(0, 0);
     }
   }
-
-  els.coverGames.onclick = function () { location.hash = '#/jeux'; };
-
-  els.open.onclick = function () { location.hash = '#/histoires'; };
 
   els.coverRandom.onclick = function () { els.random.onclick(); };
 

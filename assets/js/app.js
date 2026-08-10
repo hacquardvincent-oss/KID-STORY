@@ -219,10 +219,9 @@
     logo: $('#btnLogo'), logoMark: $('#logoMark'), coverMark: $('#coverMark'),
     mainnav: $('#mainnav'),
     cover: $('#viewCover'), coverArt: $('#coverArt'), coverMeta: $('#coverMeta'),
-    coverLines: $('#coverLines'), coverSticker: $('#coverSticker'),
+    coverNav: $('#coverNav'), coverSticker: $('#coverSticker'),
     topbar: document.querySelector('.topbar'),
-    open: $('#btnOpen'), coverRandom: $('#btnCoverRandom'),
-    coverGames: $('#btnCoverGames'),
+    coverRandom: $('#btnCoverRandom'),
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
     gamesSub: $('#gamesSub'),
     grid: $('#uniGrid'), random: $('#btnRandom'),
@@ -250,8 +249,8 @@
   els.logo.onclick = function () { location.hash = '#/'; };
 
   /* ---------------- le menu principal ---------------- */
-  function renderNav(actif) {
-    var b = els.mainnav.children;
+  function cablerNav(zone, actif) {
+    var b = zone.children;
     for (var i = 0; i < b.length; i++) {
       var nav = b[i].getAttribute('data-nav');
       b[i].className = nav === actif ? 'is-active' : '';
@@ -260,6 +259,8 @@
       })(nav);
     }
   }
+  function renderNav(actif) { cablerNav(els.mainnav, actif); }
+  cablerNav(els.coverNav, null);
 
   /* ---------------- onglets ---------------- */
   function renderTabs(activeId) {
@@ -332,10 +333,7 @@
     els.coverMeta.textContent = MOIS[d.getMonth()] + ' ' + d.getFullYear();
 
     var total = 0;
-    els.coverLines.innerHTML = UNIVERSES.map(function (u) {
-      total += u.stories.length;
-      return '<span>' + u.emoji + ' ' + u.name + '</span>';
-    }).join('');
+    UNIVERSES.forEach(function (u) { total += u.stories.length; });
     els.coverSticker.innerHTML = '<b>' + total + '</b><span>histoires<br>du soir</span>';
   }
 
@@ -595,10 +593,6 @@
       window.scrollTo(0, 0);
     }
   }
-
-  els.coverGames.onclick = function () { location.hash = '#/jeux'; };
-
-  els.open.onclick = function () { location.hash = '#/histoires'; };
 
   els.coverRandom.onclick = function () { els.random.onclick(); };
 

@@ -23,8 +23,8 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   un cadrage unique couperait les personnages sur un téléphone.
 * **Un logo Kid Cartoon** présent partout, qui ramène à l'accueil d'un doigt
 * **Deux rubriques** — Histoires et Jeux ; sous Histoires, les univers
-  (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame… faciles à
-  compléter)
+  (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame, les cross-over…
+  faciles à compléter)
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
@@ -95,6 +95,17 @@ autour d'une émotion nommée et d'une réparation concrète, sans morale plaqu�
 | Madame Range-Tout et le grand désordre | on range après, pas pendant |
 | Monsieur Costaud n'y arrive pas | demander de l'aide |
 | Madame Bonheur et le jour gris | rester là quand ça ne va pas |
+
+**Le grand mélange** — les cross-over : les amis de Livia ne viennent pas du
+même dessin animé, et ils se rencontrent quand même
+
+| Histoire | Qui s'y retrouve |
+|---|---|
+| Les trois amies de Livia | Peppa, Bluey et Elsa, trois jeux à réconcilier |
+| De la neige sur la plage | Peppa, Elsa et Olaf, un jour de canicule |
+| La cabane de tous les amis | Bluey, Peppa, Elsa et Monsieur Costaud |
+| La grande course des amis | Peppa, Bluey et Monsieur Rapide |
+| La nuit où tout le monde a dormi dehors | Peppa, Bluey et Elsa sous la tente |
 
 ---
 
@@ -167,6 +178,7 @@ dans le tableau `stories` de l'univers voulu :
 scene: {
   bg: 'beach',          // le décor
   time: 'sunset',       // day (défaut) | morning | sunset | night | gris (ciel couvert)
+  neige: 24,            // il neige : nombre de flocons (true = 26)
   aurora: true,         // (décor 'snow' de nuit uniquement) affiche une aurore boréale
 
   back:  [ /* éléments dessinés derrière les personnages */ ],
@@ -227,7 +239,8 @@ leur chapeau)*
 `marshmallow`, `hedgehog`, `snowball`, `star`, `snowflake`, `rock`, `fish`, `slide`,
 `pool`, `sled`, `castleIce`, `house`, `sparkle`, `splash`, `lantern`, `balloon`,
 `mudpuddle`, `wave`, `aurora`, `sprinkler`, `trampoline`, `mangue`, `esky`,
-`cube`, `tourcubes`
+`cube`, `tourcubes`, `cabane` *(`toit: '#bfe8f7'` pour le toit de glace,
+`ecroulee: true` pour le tas de branches)*
 
 La plupart acceptent une `color` (`{ t: 'flower', x: 90, y: 520, color: '#ffd93d' }`),
 `tether` prend `dx` / `dy` (et éventuellement `qx` / `qy` pour la courbure).
