@@ -115,7 +115,15 @@
     { nom: 'Olaf', objet: 'la boule de neige',
       a: { t: 'olaf', ds: .95, dy: 182 }, b: { t: 'snowball', ds: 1, dy: 100, r: 52 } },
     { nom: 'Papa Pig', objet: 'la voiture',
-      a: { t: 'daddy', ds: .66, dy: 184 }, b: { t: 'car', ds: .68, dy: 122 } }
+      a: { t: 'daddy', ds: .66, dy: 184 }, b: { t: 'car', ds: .68, dy: 122 } },
+    { nom: 'Bluey', objet: 'le ballon',
+      a: { t: 'bluey', ds: .62, dy: 184 }, b: { t: 'ball', ds: 1.1, dy: 122 } },
+    { nom: 'Madame Bonheur', objet: 'la fleur',
+      a: { t: 'bonheur', ds: .62, dy: 180 }, b: { t: 'flower', ds: 2.2, dy: 120 } },
+    { nom: 'Monsieur Grognon', objet: 'le caillou',
+      a: { t: 'grognon', ds: .62, dy: 180 }, b: { t: 'rock', ds: 1.5, dy: 130 } },
+    { nom: 'Madame Range-Tout', objet: 'le cube',
+      a: { t: 'rangetout', ds: .62, dy: 180 }, b: { t: 'cube', ds: 1.5, dy: 136 } }
   ];
 
   function jeuRelier(zone, n, api) {
@@ -197,7 +205,8 @@
     { t: 'flower', pluriel: 'fleurs', bg: 'garden', s: 2.4, y: 525 },
     { t: 'ball', pluriel: 'ballons', bg: 'garden', s: 1.2, y: 505 },
     { t: 'butterfly', pluriel: 'papillons', bg: 'garden', s: 2.2, y: 330 },
-    { t: 'snowball', pluriel: 'boules de neige', bg: 'snow', s: 1.6, y: 500, r: 26 }
+    { t: 'snowball', pluriel: 'boules de neige', bg: 'snow', s: 1.6, y: 500, r: 26 },
+    { t: 'cube', pluriel: 'cubes', bg: 'bedroom', s: 1.3, y: 520 }
   ];
 
   function jeuCompter(zone, n, api) {

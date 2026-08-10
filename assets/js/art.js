@@ -510,6 +510,111 @@
     return s + (sit ? g('translate(-6,44)', t) : t);
   }
 
+  /* ---------- les petits bonshommes géométriques ----------
+     Un corps (rond, carré, ovale ou poire), deux traits pour les bras,
+     deux pour les jambes, un chapeau : de quoi fabriquer autant de
+     personnages qu'on a d'humeurs à raconter. */
+  function mrmCorps(forme) {
+    if (forme === 'carre') return '<rect x="-64" y="-200" width="128" height="140" rx="30" fill="%F%" %S%/>';
+    if (forme === 'ovale') return '<ellipse cx="0" cy="-130" rx="56" ry="72" fill="%F%" %S%/>';
+    if (forme === 'poire') return '<path d="M 0,-206 C 34,-206 48,-182 44,-156 C 40,-130 74,-116 70,-92 ' +
+      'C 66,-64 36,-56 0,-56 C -36,-56 -66,-64 -70,-92 C -74,-116 -40,-130 -44,-156 ' +
+      'C -48,-182 -34,-206 0,-206 Z" fill="%F%" %S%/>';
+    return '<circle cx="0" cy="-130" r="70" fill="%F%" %S%/>';
+  }
+
+  function mrmChapeau(o) {
+    var c = o.chapeau, y = o.hautCorps;
+    if (o.type === 'haut') {
+      return U(['<rect x="-74" y="' + (y - 6) + '" width="148" height="14" rx="7" fill="%F%" %S%/>',
+        '<rect x="-40" y="' + (y - 54) + '" width="80" height="52" rx="8" fill="%F%" %S%/>'], c, 8);
+    }
+    if (o.type === 'plat') {
+      return U(['<path d="M -58,' + y + ' C -58,' + (y - 34) + ' 58,' + (y - 34) + ' 58,' + y + ' Z" fill="%F%" %S%/>',
+        '<rect x="-64" y="' + (y - 6) + '" width="128" height="12" rx="6" fill="%F%" %S%/>'], c, 8);
+    }
+    if (o.type === 'noeud') {
+      return U(['<path d="M -6,' + (y + 4) + ' L -48,' + (y - 22) + ' L -48,' + (y + 24) + ' Z" fill="%F%" %S%/>',
+        '<path d="M 6,' + (y + 4) + ' L 48,' + (y - 22) + ' L 48,' + (y + 24) + ' Z" fill="%F%" %S%/>',
+        '<circle cx="0" cy="' + (y + 4) + '" r="14" fill="%F%" %S%/>'], c, 8);
+    }
+    if (o.type === 'fleur') {
+      return g('translate(0,' + (y + 26) + ') scale(1.5)', P.flower({ color: c }));
+    }
+    return '';
+  }
+
+  function mrm(o) {
+    o = o || {};
+    var c = o.couleur || '#f7c518';
+    var forme = o.forme || 'rond';
+    var pose = o.pose || 'stand';
+    var mood = o.mood || 'happy';
+    var haut = forme === 'carre' ? -200 : (forme === 'poire' ? -206 : (forme === 'ovale' ? -202 : -200));
+    var s = '';
+
+    /* jambes */
+    if (pose === 'run') {
+      s += line('M -14,-64 C -26,-44 -38,-26 -40,-12', INK, 7) + line('M 14,-64 C 24,-46 28,-28 26,-12', INK, 7) +
+        '<ellipse cx="-46" cy="-8" rx="21" ry="10" fill="' + INK + '"/>' +
+        '<ellipse cx="32" cy="-8" rx="21" ry="10" fill="' + INK + '"/>';
+    } else if (pose === 'jump') {
+      s += line('M -14,-66 C -28,-50 -44,-40 -54,-36', INK, 7) + line('M 14,-66 C 28,-50 44,-42 54,-38', INK, 7) +
+        '<ellipse cx="-58" cy="-34" rx="20" ry="10" fill="' + INK + '" transform="rotate(-25 -58 -34)"/>' +
+        '<ellipse cx="58" cy="-36" rx="20" ry="10" fill="' + INK + '" transform="rotate(25 58 -36)"/>';
+    } else {
+      s += line('M -18,-62 L -18,-14', INK, 7) + line('M 18,-62 L 18,-14', INK, 7) +
+        '<ellipse cx="-20" cy="-9" rx="22" ry="10" fill="' + INK + '"/>' +
+        '<ellipse cx="20" cy="-9" rx="22" ry="10" fill="' + INK + '"/>';
+    }
+
+    /* bras */
+    var bg1, bd1, mg, md;
+    if (pose === 'wave') { bg1 = 'M -58,-150 C -84,-142 -96,-128 -98,-114'; bd1 = 'M 58,-152 C 88,-168 104,-196 106,-216'; mg = [-102, -110]; md = [110, -222]; }
+    else if (pose === 'armsup' || pose === 'jump') { bg1 = 'M -58,-152 C -86,-170 -102,-196 -104,-216'; bd1 = 'M 58,-152 C 86,-170 102,-196 104,-216'; mg = [-108, -222]; md = [108, -222]; }
+    else if (pose === 'point') { bg1 = 'M -58,-148 C -82,-140 -94,-128 -96,-114'; bd1 = 'M 58,-150 C 88,-152 112,-158 130,-164'; mg = [-100, -110]; md = [136, -166]; }
+    else if (pose === 'hold') { bg1 = 'M -58,-146 C -78,-138 -88,-124 -88,-110'; bd1 = 'M 58,-146 C 78,-138 88,-124 88,-110'; mg = [-92, -106]; md = [92, -106]; }
+    else if (pose === 'shrug') { bg1 = 'M -58,-154 C -84,-160 -100,-152 -106,-140'; bd1 = 'M 58,-154 C 84,-160 100,-152 106,-140'; mg = [-110, -136]; md = [110, -136]; }
+    else { bg1 = 'M -58,-148 C -82,-140 -94,-126 -96,-112'; bd1 = 'M 58,-148 C 82,-140 94,-126 96,-112'; mg = [-100, -108]; md = [100, -108]; }
+    s += line(bg1, INK, 6) + line(bd1, INK, 6);
+
+    /* corps */
+    s += U([mrmCorps(forme)], c, 9);
+
+    /* mains, par-dessus, comme de petites moufles */
+    s += '<ellipse cx="' + mg[0] + '" cy="' + mg[1] + '" rx="13" ry="15" fill="' + c + '" stroke="' + INK + '" stroke-width="5"/>';
+    s += '<ellipse cx="' + md[0] + '" cy="' + md[1] + '" rx="13" ry="15" fill="' + c + '" stroke="' + INK + '" stroke-width="5"/>';
+
+    /* visage */
+    var ey = -156;
+    s += '<ellipse cx="-23" cy="' + ey + '" rx="14" ry="17" fill="#fff" stroke="' + INK + '" stroke-width="4"/>' +
+      '<ellipse cx="23" cy="' + ey + '" rx="14" ry="17" fill="#fff" stroke="' + INK + '" stroke-width="4"/>';
+    if (mood === 'sleep') {
+      s += line('M -34,' + ey + ' q 11,9 22,0', INK, 4) + line('M 12,' + ey + ' q 11,9 22,0', INK, 4);
+    } else if (mood === 'fache') {
+      s += '<circle cx="-21" cy="' + (ey + 2) + '" r="6" fill="' + INK + '"/><circle cx="21" cy="' + (ey + 2) + '" r="6" fill="' + INK + '"/>';
+      s += line('M -38,' + (ey - 22) + ' L -10,' + (ey - 12) + ' M 38,' + (ey - 22) + ' L 10,' + (ey - 12), INK, 6);
+    } else if (mood === 'wow') {
+      s += '<circle cx="-21" cy="' + ey + '" r="7" fill="' + INK + '"/><circle cx="21" cy="' + ey + '" r="7" fill="' + INK + '"/>';
+    } else {
+      s += '<circle cx="-19" cy="' + (ey + 2) + '" r="6" fill="' + INK + '"/><circle cx="25" cy="' + (ey + 2) + '" r="6" fill="' + INK + '"/>';
+    }
+    /* le nez, une petite bosse ronde */
+    s += '<circle cx="0" cy="' + (ey + 26) + '" r="11" fill="' + shade(c, -0.22) + '" stroke="' + INK + '" stroke-width="4"/>';
+    /* la bouche */
+    if (mood === 'fache') s += line('M -20,-98 q 20,-16 40,0', INK, 5);
+    else if (mood === 'sad') s += line('M -18,-98 q 18,-14 36,0', INK, 5);
+    else if (mood === 'wow') s += '<ellipse cx="0" cy="-104" rx="12" ry="14" fill="#b8355c" stroke="' + INK + '" stroke-width="4"/>';
+    else s += line('M -24,-112 q 24,26 48,0', INK, 5);
+
+    if (o.cheveux) {
+      s += U(['<circle cx="-56" cy="' + (haut + 44) + '" r="20" fill="%F%" %S%/>',
+        '<circle cx="56" cy="' + (haut + 44) + '" r="20" fill="%F%" %S%/>'], o.cheveux, 7);
+    }
+    if (o.chapeau && !o.sansChapeau) s += mrmChapeau({ chapeau: o.chapeau, type: o.type || 'haut', hautCorps: haut });
+    return s;
+  }
+
   /* ---------- mouton (Suzy) ---------- */
   function sheep(o) {
     o = o || {};
@@ -920,6 +1025,28 @@
     return s;
   };
 
+  /* un cube de bois, qui se pose seul ou s'empile en tour */
+  P.cube = function (o) {
+    var c = o.color || '#e8b44a';
+    var s = U(['<rect x="-22" y="-44" width="44" height="44" rx="6" fill="%F%" %S%/>'], c, 6);
+    if (o.lettre) {
+      s += '<text x="0" y="-14" text-anchor="middle" font-family="' + FONT +
+        '" font-size="26" font-weight="800" fill="' + INK + '">' + esc(o.lettre) + '</text>';
+    }
+    return s;
+  };
+
+  /* une tour de cubes : ce que construisent les enfants, et ce qui s'écroule */
+  P.tourcubes = function (o) {
+    var cs = o.colors || ['#e0453c', '#4a7fc1', '#7ab648', '#f7c518'];
+    var n = o.n || 4, s = '', i;
+    for (i = 0; i < n; i++) {
+      s += g('translate(' + ((i % 2 ? 5 : -5)) + ',' + (-i * 42) + ') rotate(' + ((i % 2 ? 2 : -2)) + ')',
+        P.cube({ color: cs[i % cs.length] }));
+    }
+    return s;
+  };
+
   P.rock = function (o) {
     return U(['<path d="M -34,0 C -40,-22 -20,-38 0,-36 C 22,-34 36,-20 32,0 Z" fill="%F%" %S%/>'], o.color || '#b9b3ae', 7);
   };
@@ -1045,6 +1172,7 @@
     sunset: ['#e8895c', '#f5cf9c'],
     night: ['#25304f', '#4a5a7a'],
     snow: ['#b6d4e0', '#eef4f2'],
+    gris: ['#b4bfc4', '#dde2de'],
     snownight: ['#232f4c', '#465a80']
   };
 
@@ -1053,6 +1181,12 @@
     return '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1">' +
       '<stop offset="0%" stop-color="' + c[0] + '"/><stop offset="100%" stop-color="' + c[1] + '"/>' +
       '</linearGradient></defs><rect x="0" y="0" width="' + VW + '" height="' + VH + '" fill="url(#' + id + ')"/>';
+  }
+
+  /* le soleil : il ne se montre ni la nuit, ni les jours gris */
+  function soleil(time, tx, ty, o) {
+    if (time === 'gris' || time === 'night') return '';
+    return g('translate(' + tx + ',' + ty + ')', P.sun(o || {}));
   }
 
   function stars(n, maxY) {
@@ -1077,8 +1211,8 @@
     /* une scène peut poser son propre soleil (utile quand le cadrage
        plein écran rogne le haut du ciel) : voir COUVERTURE */
     if (s.noSun) { /* la scène s'en charge */ }
-    else if (time === 'sunset') out += g('translate(640,190)', P.sun({ color: '#ffdf6b' }));
-    else if (time !== 'night') out += g('translate(690,96)', P.sun({}));
+    else if (time === 'sunset') out += soleil(time, 640, 190, { color: '#ffdf6b' });
+    else if (time !== 'night') out += soleil(time, 690, 96);
     else out += g('translate(690,96)', P.moon({}));
     if (time !== 'night') {
       out += g('translate(150,110) scale(1.1)', P.cloud({})) + g('translate(430,70) scale(.8)', P.cloud({}));
@@ -1096,7 +1230,7 @@
   BG.sea = function (s) {
     var time = s.time || 'day';
     var out = skyRect(time);
-    if (time !== 'night') out += g('translate(700,90)', P.sun({})) + g('translate(190,110) scale(.9)', P.cloud({}));
+    if (time !== 'night') out += soleil(time, 700, 90) + g('translate(190,110) scale(.9)', P.cloud({}));
     out += '<rect x="0" y="300" width="' + VW + '" height="260" fill="#3fb0d8"/>';
     out += '<path d="M 0,300 q 40,-18 80,0 q 40,18 80,0 q 40,-18 80,0 q 40,18 80,0 q 40,-18 80,0 q 40,18 80,0 q 40,-18 80,0 q 40,18 80,0 q 40,-18 80,0 q 40,18 80,0 L 800,340 L 0,340 Z" fill="#5ec6e8"/>';
     out += g('translate(200,400)', P.wave({})) + g('translate(560,460)', P.wave({})) + g('translate(360,520)', P.wave({}));
@@ -1107,7 +1241,7 @@
     var time = s.time || 'day';
     var out = skyRect(time);
     if (time === 'night') out += stars(20, 200) + g('translate(690,96)', P.moon({}));
-    else out += g('translate(700,90)', P.sun({})) + g('translate(180,110) scale(1)', P.cloud({})) + g('translate(470,74) scale(.7)', P.cloud({}));
+    else out += soleil(time, 700, 90) + g('translate(180,110) scale(1)', P.cloud({})) + g('translate(470,74) scale(.7)', P.cloud({}));
     out += '<path d="M 0,330 C 160,306 320,344 470,326 C 620,308 720,336 800,322 L 800,560 L 0,560 Z" fill="#7ecb6a"/>';
     out += line('M 0,330 C 160,306 320,344 470,326 C 620,308 720,336 800,322', '#6f9147', 5);
     out += '<rect x="0" y="392" width="800" height="168" fill="#8ed67a"/>';
@@ -1117,7 +1251,7 @@
   BG.hill = function (s) {
     var time = s.time || 'day';
     var out = skyRect(time);
-    if (time !== 'night') out += g('translate(120,90)', P.sun({})) + g('translate(560,110) scale(1)', P.cloud({})) + g('translate(340,64) scale(.7)', P.cloud({}));
+    if (time !== 'night') out += soleil(time, 120, 90) + g('translate(560,110) scale(1)', P.cloud({})) + g('translate(340,64) scale(.7)', P.cloud({}));
     out += '<path d="M -20,420 C 120,300 320,300 440,368 C 560,436 700,404 820,352 L 820,560 L -20,560 Z" fill="#8ed67a"/>';
     out += '<path d="M -20,470 C 160,400 340,470 520,436 C 660,410 740,440 820,420 L 820,560 L -20,560 Z" fill="#6fbf5c"/>';
     return out;
@@ -1129,7 +1263,7 @@
     if (time === 'night') {
       out += stars(26, 250) + g('translate(120,96)', P.moon({}));
     } else {
-      out += g('translate(690,96)', P.sun({})) + g('translate(200,110)', P.cloud({})) + g('translate(500,72) scale(.7)', P.cloud({}));
+      out += soleil(time, 690, 96) + g('translate(200,110)', P.cloud({})) + g('translate(500,72) scale(.7)', P.cloud({}));
     }
     var far = time === 'night' ? '#1f3f5c' : '#93b592';
     out += '<path d="M 0,330 L 120,230 L 220,330 L 340,240 L 460,330 L 600,236 L 740,330 L 800,300 L 800,400 L 0,400 Z" fill="' + far + '"/>';
@@ -1153,7 +1287,7 @@
   BG.creek = function (s) {
     var time = s.time || 'day';
     var out = skyRect(time);
-    if (time !== 'night') out += g('translate(700,86)', P.sun({})) + g('translate(180,104)', P.cloud({}));
+    if (time !== 'night') out += soleil(time, 700, 86) + g('translate(180,104)', P.cloud({}));
     out += g('translate(90,360) scale(1.25)', P.tree({ color: '#7f9e63' })) +
       g('translate(690,352) scale(1.1)', P.tree({ color: '#6f9147' }));
     out += '<path d="M 0,320 C 200,300 400,336 600,318 C 700,308 760,330 800,318 L 800,400 L 0,400 Z" fill="#8fb35c"/>';
@@ -1176,7 +1310,7 @@
       if (s.aurora) out += g('translate(400,150)', P.aurora({}));
       out += g('translate(120,90)', P.moon({}));
     }
-    else out += g('translate(690,90)', P.sun({ color: '#fff0a8' })) + g('translate(180,110) scale(.9)', P.cloud({ color: '#ffffff' }));
+    else out += soleil(time, 690, 90, { color: '#fff0a8' }) + g('translate(180,110) scale(.9)', P.cloud({ color: '#ffffff' }));
     out += '<path d="M 0,340 L 130,190 L 250,340 Z" fill="#7ba6c9"/><path d="M 130,190 L 178,250 L 96,250 Z" fill="#fdfcff"/>';
     out += '<path d="M 240,350 L 420,150 L 600,350 Z" fill="#8fb8d8"/><path d="M 420,150 L 484,232 L 356,232 Z" fill="#fdfcff"/>';
     out += '<path d="M 560,346 L 690,200 L 810,346 Z" fill="#7ba6c9"/><path d="M 690,200 L 736,258 L 646,258 Z" fill="#fdfcff"/>';
@@ -1190,7 +1324,7 @@
     var time = s.time || 'day';
     var out = skyRect(time);
     if (time === 'night') out += stars(18, 200) + g('translate(680,90)', P.moon({}));
-    else out += g('translate(700,86)', P.sun({})) + g('translate(220,104)', P.cloud({}));
+    else out += soleil(time, 700, 86) + g('translate(220,104)', P.cloud({}));
     out += g('translate(140,340) scale(.62)', P.house({ roof: '#e8746b' })) +
       g('translate(660,342) scale(.58)', P.house({ roof: '#7aa9e8', color: '#fdf3e2' }));
     out += g('translate(400,340) scale(.72)', P.tree({}));
@@ -1202,7 +1336,7 @@
   BG.road = function (s) {
     var time = s.time || 'day';
     var out = skyRect(time);
-    if (time !== 'night') out += g('translate(700,86)', P.sun({})) + g('translate(180,100)', P.cloud({})) + g('translate(450,66) scale(.7)', P.cloud({}));
+    if (time !== 'night') out += soleil(time, 700, 86) + g('translate(180,100)', P.cloud({})) + g('translate(450,66) scale(.7)', P.cloud({}));
     out += '<path d="M 0,320 C 140,250 300,270 420,320 C 540,368 680,300 800,318 L 800,420 L 0,420 Z" fill="#8fc6a0"/>';
     out += '<rect x="0" y="380" width="800" height="180" fill="#6fbf5c"/>';
     out += '<path d="M -40,560 L 260,392 L 560,392 L 860,560 Z" fill="#6b6470"/>';
@@ -1338,6 +1472,18 @@
       });
     },
     olaf: function (o) { return snowman(o); },
+
+    /* les Monsieur Madame */
+    grognon: function (o) { return mrm({ couleur: '#4a7fc1', forme: 'carre', chapeau: '#2f5b90', type: 'plat', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood || 'fache' }); },
+    chipie: function (o) { return mrm({ couleur: '#e0453c', forme: 'rond', chapeau: '#4f9147', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    etourdi: function (o) { return mrm({ couleur: '#7ab648', forme: 'poire', chapeau: '#c98a3f', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    timide: function (o) { return mrm({ couleur: '#f2a0c2', forme: 'rond', chapeau: '#e0453c', type: 'fleur', cheveux: '#c9702f', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    rapide: function (o) { return mrm({ couleur: '#f0862c', forme: 'ovale', chapeau: '#3f6ea8', type: 'plat', sansChapeau: o.sansChapeau, pose: o.pose || 'run', mood: o.mood }); },
+    lent: function (o) { return mrm({ couleur: '#9a7fc4', forme: 'poire', chapeau: '#5f4a86', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    rangetout: function (o) { return mrm({ couleur: '#3fb3b0', forme: 'ovale', chapeau: '#f7c518', type: 'noeud', cheveux: '#8a5a3b', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    costaud: function (o) { return mrm({ couleur: '#c4453c', forme: 'carre', chapeau: '#f7c518', type: 'plat', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    bonheur: function (o) { return mrm({ couleur: '#f7c518', forme: 'rond', chapeau: '#e0453c', type: 'fleur', cheveux: '#e8a83c', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    curieux: function (o) { return mrm({ couleur: '#5fb8d8', forme: 'ovale', chapeau: '#c4453c', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
 
     /* la famille bouvier */
     bluey: function (o) {

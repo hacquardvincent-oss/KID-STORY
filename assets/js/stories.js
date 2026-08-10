@@ -246,7 +246,7 @@ var UNIVERSES = [
                 { t: 'car', x: 180, y: 470, s: .85 },
                 { t: 'daddy', x: 430, y: 500, s: 1.25, pose: 'hold' },
                 { t: 'peppa', x: 590, y: 500, s: 1, pose: 'jump' },
-                { t: 'livia', x: 710, y: 500, s: 1, pose: 'jump' },
+                { t: 'livia', x: 694, y: 500, s: 1, pose: 'jump' },
                 { t: 'suitcase', x: 300, y: 505, s: .8 }
               ],
               bubbles: [{ x: 330, y: 34, w: 300, t: 'Ce soir, on dort dans la tente !', tx: 430, ty: 210 }]
@@ -273,7 +273,7 @@ var UNIVERSES = [
               items: [
                 { t: 'mummy', x: 420, y: 505, s: 1.2, pose: 'point' },
                 { t: 'suzy', x: 560, y: 505, s: 1, pose: 'wave' },
-                { t: 'livia', x: 706, y: 505, s: 1, pose: 'wave' }
+                { t: 'livia', x: 693, y: 505, s: 1, pose: 'wave' }
               ],
               bubbles: [{ x: 470, y: 34, w: 300, t: 'Coucou ! Je campe à côté !', tx: 590, ty: 250 }]
             },
@@ -447,7 +447,7 @@ var UNIVERSES = [
                 { t: 'peppa', x: 470, y: 430, s: .95, pose: 'jump', mood: 'wow' }
               ],
               front: [{ t: 'splash', x: 600, y: 508, s: 1.1 }],
-              sfx: [{ t: 'SPLAAASH !', x: 674, y: 248, fs: 44, rot: -10, color: '#bfe8f7' }]
+              sfx: [{ t: 'SPLAAASH !', x: 658, y: 248, fs: 44, rot: -10, color: '#bfe8f7' }]
             },
             text: "Une, deux, trois… c'est parti ! Le toboggan tourne à gauche, tourne à droite, et SPLAAASH ! Les deux amies atterrissent dans l'eau au milieu d'une gerbe d'éclaboussures."
           },
@@ -599,7 +599,7 @@ var UNIVERSES = [
                 { t: 'daddy', x: 500, y: 420, s: 1.15, pose: 'armsup' },
                 { t: 'kite', x: 560, y: 300, s: .8 },
                 { t: 'livia', x: 250, y: 505, s: 1, pose: 'armsup' },
-                { t: 'peppa', x: 730, y: 505, s: 1, pose: 'armsup' }
+                { t: 'peppa', x: 687, y: 505, s: 1, pose: 'armsup' }
               ],
               bubbles: [{ x: 120, y: 30, w: 300, t: 'Papa Pig au secours !', tx: 250, ty: 240 }]
             },
@@ -812,8 +812,8 @@ var UNIVERSES = [
             scene: {
               bg: 'garden', time: 'sunset',
               items: [
-                { t: 'peppa', x: 340, y: 516, s: 1.15, pose: 'sit' },
-                { t: 'livia', x: 520, y: 518, s: 1.1, pose: 'sit' },
+                { t: 'peppa', x: 340, y: 508, s: 1.15, pose: 'sit' },
+                { t: 'livia', x: 520, y: 510, s: 1.1, pose: 'sit' },
                 { t: 'ball', x: 660, y: 516, s: .8 }
               ]
             },
@@ -1135,7 +1135,7 @@ var UNIVERSES = [
               items: [
                 { t: 'suzy', x: 466, y: 514, s: 1.05, pose: 'stand' },
                 { t: 'peppa', x: 606, y: 514, s: 1.15, pose: 'stand' },
-                { t: 'livia', x: 730, y: 516, s: 1.05, pose: 'stand' }
+                { t: 'livia', x: 709, y: 516, s: 1.05, pose: 'stand' }
               ],
               sfx: [{ t: 'LE TOBOGGAN !', x: 400, y: 200, fs: 32, rot: -6, color: '#f7c518' }]
             },
@@ -1173,7 +1173,7 @@ var UNIVERSES = [
                 { t: 'peppa', x: 520, y: 514, s: 1.2, pose: 'stand', mood: 'sad' },
                 { t: 'suzy', x: 700, y: 514, s: 1.05, pose: 'shrug', mood: 'sad' }
               ],
-              bubbles: [{ x: 100, y: 26, w: 310, t: 'On ne joue plus avec toi si tu triches.', tx: 700, ty: 226 }]
+              bubbles: [{ x: 470, y: 26, w: 310, t: 'On ne joue plus avec toi si tu triches.', tx: 700, ty: 226 }]
             },
             text: "En bas du toboggan, plus personne ne lui parle. « On ne joue plus avec toi si tu triches », dit Suzy. C'est descendu très vite, et ce n'était même pas amusant."
           },
@@ -1195,7 +1195,7 @@ var UNIVERSES = [
               items: [
                 { t: 'suzy', x: 452, y: 514, s: 1.05, pose: 'hold' },
                 { t: 'peppa', x: 596, y: 514, s: 1.15, pose: 'hold' },
-                { t: 'livia', x: 724, y: 516, s: 1.05, pose: 'stand' }
+                { t: 'livia', x: 709, y: 516, s: 1.05, pose: 'stand' }
               ],
               bubbles: [{ x: 260, y: 26, w: 310, t: 'Un nuage… deux nuages… trois nuages…', tx: 630, ty: 226 }]
             },
@@ -1570,10 +1570,10 @@ var UNIVERSES = [
             scene: {
               bg: 'garden',
               items: [
-                { t: 'bandit', x: 200, y: 516, s: 1.45, pose: 'shrug', mood: 'wow' },
-                { t: 'sprinkler', x: 470, y: 520, s: 1.3 },
-                { t: 'bluey', x: 596, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' },
-                { t: 'livia', x: 722, y: 516, s: 1.05, pose: 'armsup' }
+                { t: 'bandit', x: 190, y: 516, s: 1.45, pose: 'shrug', mood: 'wow' },
+                { t: 'sprinkler', x: 430, y: 520, s: 1.3 },
+                { t: 'bluey', x: 556, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' },
+                { t: 'livia', x: 690, y: 516, s: 1.05, pose: 'armsup' }
               ],
               sfx: [{ t: 'TCHIIIII !', x: 430, y: 240, fs: 44, rot: -8, color: '#8fd0e8' }]
             },
@@ -1613,7 +1613,7 @@ var UNIVERSES = [
                 { t: 'livia', x: 540, y: 500, s: 1.1, pose: 'jump', mood: 'wow' }
               ],
               front: [{ t: 'splash', x: 400, y: 520, s: .9 }],
-              sfx: [{ t: 'YOUHOU !', x: 714, y: 158, fs: 36, rot: -8, color: '#fff' }]
+              sfx: [{ t: 'YOUHOU !', x: 700, y: 158, fs: 36, rot: -8, color: '#fff' }]
             },
             text: "Elles traversent le jet en hurlant de rire. C'est froid ! C'est glacé ! C'est le meilleur froid du monde ! Bingo veut recommencer tout de suite, et encore, et encore."
           },
@@ -1623,7 +1623,7 @@ var UNIVERSES = [
               items: [
                 { t: 'chilli', x: 220, y: 518, s: 1.35, pose: 'hold' },
                 { t: 'icecream', x: 300, y: 486, s: 1.1 },
-                { t: 'bluey', x: 450, y: 516, s: 1.15, pose: 'sit' },
+                { t: 'bluey', x: 450, y: 507, s: 1.15, pose: 'sit' },
                 { t: 'bingo', x: 580, y: 516, s: .95, pose: 'sit' },
                 { t: 'livia', x: 700, y: 518, s: 1.05, pose: 'sit' }
               ],
@@ -1837,10 +1837,10 @@ var UNIVERSES = [
               bg: 'garden', time: 'sunset',
               items: [
                 { t: 'ball', x: 420, y: 300, s: 1 },
-                { t: 'bluey', x: 250, y: 516, s: 1.15, pose: 'armsup' },
-                { t: 'bingo', x: 390, y: 516, s: .95, pose: 'armsup' },
-                { t: 'livia', x: 520, y: 518, s: 1.05, pose: 'armsup' },
-                { t: 'bandit', x: 670, y: 516, s: 1.4, pose: 'armsup' }
+                { t: 'bluey', x: 220, y: 516, s: 1.15, pose: 'armsup' },
+                { t: 'bingo', x: 358, y: 516, s: .95, pose: 'armsup' },
+                { t: 'livia', x: 498, y: 518, s: 1.05, pose: 'armsup' },
+                { t: 'bandit', x: 646, y: 516, s: 1.4, pose: 'armsup' }
               ],
               sfx: [{ t: 'CENT !', x: 420, y: 190, fs: 46, rot: -6, color: '#f7c518' }]
             },
@@ -1923,7 +1923,7 @@ var UNIVERSES = [
                 { t: 'crab', x: 400, y: 532, s: 1 },
                 { t: 'crab', x: 540, y: 524, s: 1.1 },
                 { t: 'crab', x: 680, y: 530, s: .9 },
-                { t: 'bandit', x: 150, y: 516, s: 1.45, pose: 'armsup', mood: 'wow' }
+                { t: 'bandit', x: 163, y: 516, s: 1.45, pose: 'armsup', mood: 'wow' }
               ],
               sfx: [{ t: 'MILLE CRABES !', x: 470, y: 210, fs: 34, rot: -6, color: '#fff' }]
             },
@@ -1980,7 +1980,7 @@ var UNIVERSES = [
               items: [
                 { t: 'bandit', x: 250, y: 516, s: 1.45, pose: 'hold' },
                 { t: 'tent', x: 500, y: 518, s: 1, rot: 15 },
-                { t: 'bluey', x: 700, y: 514, s: 1.15, pose: 'point' }
+                { t: 'bluey', x: 656, y: 514, s: 1.15, pose: 'point' }
               ],
               bubbles: [{ x: 380, y: 26, w: 300, t: 'Elle penche un peu, Papa.', tx: 690, ty: 226 }]
             },
@@ -2088,7 +2088,7 @@ var UNIVERSES = [
                 { t: 'chilli', x: 260, y: 514, s: 1.4, pose: 'point' },
                 { t: 'bluey', x: 440, y: 512, s: 1.2, pose: 'armsup' },
                 { t: 'bingo', x: 570, y: 512, s: .95, pose: 'armsup' },
-                { t: 'livia', x: 700, y: 514, s: 1.1, pose: 'armsup' }
+                { t: 'livia', x: 684, y: 514, s: 1.1, pose: 'armsup' }
               ],
               bubbles: [{ x: 320, y: 26, w: 300, t: 'Une glace chacun, ça vous dit ?', tx: 270, ty: 226 }]
             },
@@ -2374,7 +2374,7 @@ var UNIVERSES = [
               bg: 'garden', time: 'sunset',
               items: [
                 { t: 'bandit', x: 280, y: 516, s: 1.45, pose: 'hold' },
-                { t: 'bluey', x: 450, y: 516, s: 1.15, pose: 'sit' },
+                { t: 'bluey', x: 450, y: 507, s: 1.15, pose: 'sit' },
                 { t: 'bingo', x: 580, y: 516, s: .95, pose: 'sit' },
                 { t: 'livia', x: 700, y: 518, s: 1.05, pose: 'sit' }
               ],
@@ -2481,7 +2481,7 @@ var UNIVERSES = [
               bg: 'hill', time: 'sunset',
               items: [
                 { t: 'towel', x: 420, y: 524, s: 1.3 },
-                { t: 'bandit', x: 280, y: 508, s: 1.35, pose: 'sit' },
+                { t: 'bandit', x: 280, y: 492, s: 1.35, pose: 'sit' },
                 { t: 'bluey', x: 430, y: 508, s: 1.1, pose: 'sit' },
                 { t: 'bingo', x: 550, y: 508, s: .9, pose: 'sit' },
                 { t: 'livia', x: 670, y: 510, s: 1.05, pose: 'sit' }
@@ -2517,7 +2517,7 @@ var UNIVERSES = [
                 { t: 'chilli', x: 280, y: 516, s: 1.4, pose: 'point' },
                 { t: 'bluey', x: 460, y: 514, s: 1.2, pose: 'stand' },
                 { t: 'bingo', x: 600, y: 514, s: .95, pose: 'stand' },
-                { t: 'livia', x: 720, y: 516, s: 1.1, pose: 'stand' }
+                { t: 'livia', x: 705, y: 516, s: 1.1, pose: 'stand' }
               ],
               bubbles: [{ x: 340, y: 26, w: 310, t: 'Ce soir, vous vous couchez plus tard.', tx: 290, ty: 226 }]
             },
@@ -2599,6 +2599,707 @@ var UNIVERSES = [
               bubbles: [{ x: 90, y: 40, w: 300, t: 'Bonne nuit les lucioles…', tx: 300, ty: 250, fill: '#fff6ec' }]
             },
             text: "Dans la chambre, les trois amies ont encore des petites lumières plein les yeux. « Bonne nuit les lucioles », murmure Bingo. Elles dorment avant la fin de la phrase."
+          }
+        ]
+      }
+    ]
+  },
+
+  /* ==========================================================
+     UNIVERS 4 — LES MONSIEUR MADAME
+     ========================================================== */
+  {
+    id: 'monsieurmadame',
+    name: 'Les Monsieur Madame',
+    tagline: 'Livia et les petits bonshommes ronds',
+    emoji: '🟡',
+    c1: '#f7c518',
+    c2: '#5fb8d8',
+    cover: {
+      bg: 'garden',
+      items: [
+        { t: 'grognon', x: 130, y: 518, s: .9 },
+        { t: 'bonheur', x: 330, y: 518, s: .9, pose: 'armsup' },
+        { t: 'livia', x: 500, y: 520, s: 1.05 },
+        { t: 'chipie', x: 660, y: 518, s: .9, pose: 'wave' }
+      ]
+    },
+    stories: [
+
+      /* ---------- 1 ---------- */
+      {
+        id: 'grognon',
+        title: 'Monsieur Grognon et le sourire perdu',
+        subtitle: 'On peut être grognon et se laisser attraper',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'grognon', x: 280, y: 520, s: 1 },
+            { t: 'livia', x: 500, y: 522, s: 1.05, pose: 'point' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'grognon', x: 400, y: 522, s: 1.1 }],
+              sfx: [{ t: 'GRRR.', x: 620, y: 250, fs: 42, rot: -6, color: '#4a7fc1' }]
+            },
+            text: "Monsieur Grognon était grognon. Le matin, il était grognon. Le soir, il était grognon. Même le jour de son anniversaire, il était grognon. C'était comme ça."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'grognon', x: 260, y: 520, s: 1 },
+                { t: 'livia', x: 500, y: 522, s: 1.05, pose: 'wave' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 290, t: 'Bonjour Monsieur Grognon !', tx: 500, ty: 246 }]
+            },
+            text: "Ce matin-là, Livia le croisa sur le chemin. « Bonjour Monsieur Grognon ! » Monsieur Grognon répondit : « Mmpf. » Ce qui, dans sa langue, voulait dire bonjour."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.05, pose: 'point' },
+                { t: 'grognon', x: 560, y: 520, s: 1, pose: 'shrug' }
+              ],
+              bubbles: [{ x: 80, y: 26, w: 300, t: 'Tu as perdu ton sourire ?', tx: 300, ty: 246 }]
+            },
+            text: "« Tu as perdu ton sourire ? » demanda Livia. Monsieur Grognon réfléchit. Il ne se souvenait pas d'en avoir eu un. « On va le chercher », décida Livia."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'livia', x: 260, y: 516, s: 1.05, pose: 'run' },
+                { t: 'grognon', x: 520, y: 514, s: 1, pose: 'shrug' },
+                { t: 'butterfly', x: 660, y: 300, s: 1.5 }
+              ],
+              sfx: [{ t: 'ON CHERCHE !', x: 420, y: 180, fs: 32, rot: -5, color: '#f7c518' }]
+            },
+            text: "Ils cherchèrent sous une pierre. Rien. Ils cherchèrent dans un arbre. Rien. Ils cherchèrent dans la poche de Monsieur Grognon. Il n'y avait qu'un vieux bouton."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'livia', x: 300, y: 516, s: 1.05, pose: 'sit' },
+                { t: 'grognon', x: 560, y: 514, s: 1, mood: 'wow' }
+              ],
+              sfx: [{ t: 'PATATRAS !', x: 400, y: 190, fs: 38, rot: -8, color: '#e0453c' }]
+            },
+            text: "Et puis Livia glissa sur l'herbe mouillée et tomba sur les fesses. Elle rit très fort. Alors il se passa quelque chose d'extraordinaire dans le visage de Monsieur Grognon."
+          },
+          {
+            scene: {
+              bg: 'hill', time: 'sunset',
+              items: [
+                { t: 'grognon', x: 320, y: 516, s: 1, mood: 'happy' },
+                { t: 'livia', x: 560, y: 518, s: 1.05, pose: 'armsup' }
+              ],
+              bubbles: [{ x: 400, y: 26, w: 300, t: 'Il était là depuis le début !', tx: 560, ty: 246 }]
+            },
+            text: "Un coin de sa bouche monta. Puis l'autre. Monsieur Grognon souriait. « Il était là depuis le début », dit Livia. Le lendemain, il était de nouveau grognon. Mais un peu moins."
+          }
+        ]
+      },
+
+      /* ---------- 2 ---------- */
+      {
+        id: 'chipie',
+        title: 'Madame Chipie fait une farce',
+        subtitle: 'La blague qui va trop loin',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'chipie', x: 300, y: 520, s: 1, pose: 'point' },
+            { t: 'livia', x: 520, y: 522, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'chipie', x: 400, y: 522, s: 1.1, pose: 'point' }],
+              sfx: [{ t: 'HÉHÉHÉ…', x: 648, y: 196, fs: 34, rot: -6, color: '#e0453c' }]
+            },
+            text: "Madame Chipie adorait les farces. Elle nouait les lacets. Elle cachait les chapeaux. Elle mettait du sel dans le sucre. Et elle riait, riait, riait."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'chipie', x: 280, y: 522, s: 1, pose: 'hold' },
+                { t: 'lent', x: 560, y: 520, s: 1, mood: 'wow', sansChapeau: true }
+              ],
+              sfx: [{ t: 'MON CHAPEAU !', x: 470, y: 190, fs: 30, rot: -5, color: '#9a7fc4' }]
+            },
+            text: "Ce jour-là, elle prit le chapeau de Monsieur Lent et le posa tout en haut d'un arbre. Monsieur Lent mit une heure à s'en apercevoir. Madame Chipie riait déjà depuis longtemps."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'chipie', x: 260, y: 522, s: 1, pose: 'point' },
+                { t: 'livia', x: 520, y: 524, s: 1.05, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'À ton tour, Livia !', tx: 260, ty: 250 }]
+            },
+            text: "Puis elle décida de faire une farce à Livia. Elle attendit qu'elle ait le dos tourné, et cacha son doudou dans le grand buisson."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 340, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'chipie', x: 600, y: 522, s: 1, mood: 'wow' }
+              ],
+              sfx: [{ t: 'MON DOUDOU…', x: 400, y: 180, fs: 30, rot: -5, color: '#6d5847' }]
+            },
+            text: "Livia chercha partout. Elle ne riait pas du tout. Ses yeux devinrent brillants, et sa bouche fit une drôle de forme. Madame Chipie sentit son propre rire s'éteindre."
+          },
+          {
+            scene: {
+              bg: 'village',
+              back: [{ t: 'bush', x: 660, y: 526, s: 1.2 }],
+              items: [
+                { t: 'chipie', x: 320, y: 522, s: 1, pose: 'hold', mood: 'sad' },
+                { t: 'livia', x: 540, y: 524, s: 1.05, pose: 'hold' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 310, t: 'Pardon. Je ne savais pas que ça piquait.', tx: 320, ty: 250 }]
+            },
+            text: "Madame Chipie courut au buisson, rapporta le doudou et le rendit à Livia. « Pardon », dit-elle. « Je croyais que c'était drôle. Je ne savais pas que ça piquait. »"
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'chipie', x: 320, y: 522, s: 1, pose: 'wave' },
+                { t: 'livia', x: 560, y: 524, s: 1.05, pose: 'wave' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'On rit à deux, ou on ne rit pas.', tx: 560, ty: 250 }]
+            },
+            text: "Depuis, Madame Chipie fait toujours des farces. Mais avant, elle se pose une question : est-ce qu'on va rire à deux ? Si la réponse est non, elle en cherche une autre."
+          }
+        ]
+      },
+
+      /* ---------- 3 ---------- */
+      {
+        id: 'etourdi',
+        title: 'Monsieur Étourdi perd tout',
+        subtitle: 'Une place pour chaque chose',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'etourdi', x: 320, y: 506, s: 1, pose: 'shrug' },
+            { t: 'livia', x: 540, y: 508, s: 1.05, pose: 'point' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'etourdi', x: 400, y: 508, s: 1.1, pose: 'shrug' }],
+              sfx: [{ t: 'OÙ EST MON CHAPEAU ?', x: 400, y: 150, fs: 26, rot: -4, color: '#7ab648' }]
+            },
+            text: "Monsieur Étourdi perdait tout. Ses clés. Ses chaussures. Une fois, il a perdu son chapeau alors qu'il l'avait sur la tête. Il a cherché toute la journée."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'etourdi', x: 280, y: 508, s: 1, mood: 'wow' },
+                { t: 'livia', x: 540, y: 510, s: 1.05, pose: 'point' }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Il est sur ta tête !', tx: 540, ty: 236 }]
+            },
+            text: "Livia le trouva assis par terre, au milieu d'un grand désordre. « Il est sur ta tête », dit-elle. Monsieur Étourdi toucha sa tête. Le chapeau y était."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.05, pose: 'hold' },
+                { t: 'etourdi', x: 560, y: 508, s: 1, pose: 'hold' },
+                { t: 'suitcase', x: 690, y: 518, s: .8 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 310, t: 'Une place pour chaque chose.', tx: 300, ty: 240 }]
+            },
+            text: "« J'ai un secret », dit Livia. « Une place pour chaque chose, et chaque chose à sa place. » Les clés sur le crochet. Les chaussures près de la porte. Le chapeau sur la tête."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'etourdi', x: 340, y: 508, s: 1, pose: 'point' },
+                { t: 'livia', x: 580, y: 510, s: 1.05 }
+              ],
+              sfx: [{ t: 'ET HOP !', x: 620, y: 160, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Ils rangèrent tout l'après-midi. Chaque objet trouva son endroit. Monsieur Étourdi était très fier. Il avait même inventé une place pour son parapluie."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'etourdi', x: 360, y: 522, s: 1, pose: 'shrug', mood: 'wow', sansChapeau: true },
+                { t: 'livia', x: 600, y: 524, s: 1.05 }
+              ],
+              sfx: [{ t: 'ENCORE LE CHAPEAU !', x: 380, y: 170, fs: 26, rot: -4, color: '#7ab648' }]
+            },
+            text: "Le lendemain matin, Monsieur Étourdi sortit de chez lui d'un pas décidé. Puis il s'arrêta. Il avait oublié son chapeau. Il était bien rangé, sur le crochet de l'entrée."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'etourdi', x: 340, y: 522, s: 1, pose: 'wave', sansChapeau: true },
+                { t: 'livia', x: 580, y: 524, s: 1.05, pose: 'wave' }
+              ],
+              bubbles: [{ x: 420, y: 26, w: 310, t: 'Au moins, tu sais où il est !', tx: 580, ty: 250 }]
+            },
+            text: "« Au moins, tu sais où il est ! » dit Livia. Monsieur Étourdi trouva que c'était un très bon point. Il retourna le chercher en chantant."
+          }
+        ]
+      },
+
+      /* ---------- 4 ---------- */
+      {
+        id: 'timide',
+        title: 'Madame Timide dit bonjour',
+        subtitle: 'Le mot le plus difficile du monde',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'timide', x: 320, y: 522, s: 1, mood: 'sad' },
+            { t: 'livia', x: 540, y: 524, s: 1.05, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'forest',
+              items: [{ t: 'timide', x: 420, y: 518, s: 1.05, mood: 'sad' }],
+              sfx: [{ t: 'CHUUUT…', x: 200, y: 240, fs: 34, rot: -5, color: '#f2a0c2' }]
+            },
+            text: "Madame Timide était timide. Très timide. Tellement timide qu'elle habitait au fond des bois, dans une maison que personne ne trouvait jamais."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'timide', x: 300, y: 518, s: 1, mood: 'wow' },
+                { t: 'livia', x: 560, y: 520, s: 1.05, pose: 'wave' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 280, t: 'Bonjour ! Je suis Livia.', tx: 560, ty: 244 }]
+            },
+            text: "Un jour, quelqu'un frappa à sa porte. C'était Livia, qui s'était perdue en cherchant des châtaignes. Madame Timide devint toute rouge. Puis elle se cacha derrière la porte."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 320, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'timide', x: 580, y: 518, s: 1, pose: 'shrug', mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 310, t: 'Tu peux juste faire coucou de la main.', tx: 320, ty: 244 }]
+            },
+            text: "« Ce n'est pas grave », dit Livia. « Tu peux juste faire coucou de la main. » Madame Timide y réfléchit très longtemps. Puis elle leva une toute petite main."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'timide', x: 340, y: 518, s: 1, pose: 'wave' },
+                { t: 'livia', x: 580, y: 520, s: 1.05, pose: 'wave' }
+              ],
+              sfx: [{ t: 'COUCOU !', x: 420, y: 176, fs: 34, rot: -6, color: '#f7c518' }]
+            },
+            text: "Livia fit coucou aussi. Elles restèrent là, à se faire coucou, pendant un temps ridicule. Et Madame Timide s'aperçut que son cœur battait moins fort qu'avant."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'timide', x: 300, y: 522, s: 1, pose: 'shrug' },
+                { t: 'bonheur', x: 520, y: 522, s: .95, pose: 'wave' },
+                { t: 'livia', x: 700, y: 524, s: 1.05 }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 290, t: 'B… bonjour.', tx: 300, ty: 248 }]
+            },
+            text: "Le lendemain, Livia l'emmena au village. Il y avait du monde partout. Madame Timide serra très fort la main de Livia. Puis elle dit, tout bas : « B… bonjour. »"
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'timide', x: 330, y: 522, s: 1 },
+                { t: 'livia', x: 570, y: 524, s: 1.05, pose: 'hold' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'C\'était le plus dur. Le reste est facile.', tx: 330, ty: 248 }]
+            },
+            text: "Personne ne se moqua. Personne ne fit d'histoires. Quelqu'un répondit simplement : « Bonjour ! » « C'était le plus dur », dit Livia. « Maintenant, le reste est facile. »"
+          }
+        ]
+      },
+
+      /* ---------- 5 ---------- */
+      {
+        id: 'rapide-lent',
+        title: 'Monsieur Rapide et Monsieur Lent',
+        subtitle: 'Deux vitesses, une seule promenade',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'road',
+          items: [
+            { t: 'rapide', x: 280, y: 522, s: 1, pose: 'run' },
+            { t: 'lent', x: 540, y: 520, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'rapide', x: 250, y: 524, s: 1.05, pose: 'run' },
+                { t: 'lent', x: 570, y: 522, s: 1.05 }
+              ],
+              sfx: [{ t: 'ZOUUUM !', x: 420, y: 190, fs: 36, rot: -8, color: '#f0862c' }]
+            },
+            text: "Monsieur Rapide faisait tout vite. Monsieur Lent faisait tout lentement. Monsieur Rapide avait déjà fini son petit-déjeuner que Monsieur Lent cherchait encore sa cuillère."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'livia', x: 250, y: 518, s: 1.05, pose: 'point' },
+                { t: 'rapide', x: 470, y: 516, s: 1 },
+                { t: 'lent', x: 684, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'On se promène tous les trois ?', tx: 260, ty: 244 }]
+            },
+            text: "Un matin, Livia leur proposa une promenade. Tous les trois. Monsieur Rapide dit oui avant la fin de la question. Monsieur Lent dit oui bien après."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 640, y: 516, s: 1, pose: 'run' },
+                { t: 'livia', x: 380, y: 518, s: 1.05 },
+                { t: 'lent', x: 160, y: 516, s: 1 }
+              ],
+              sfx: [{ t: 'ATTENDEZ-MOI…', x: 300, y: 176, fs: 28, rot: -4, color: '#9a7fc4' }]
+            },
+            text: "Au bout de dix pas, Monsieur Rapide était déjà en haut de la colline. Au bout de dix pas, Monsieur Lent était encore en bas. Livia était au milieu, toute seule."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 300, y: 518, s: 1, pose: 'shrug', mood: 'sad' },
+                { t: 'lent', x: 560, y: 518, s: 1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'CE N\'EST PAS DRÔLE.', x: 420, y: 176, fs: 26, rot: -4, color: '#6d5847' }]
+            },
+            text: "Monsieur Rapide arriva le premier. Il n'y avait personne pour regarder le paysage avec lui. Monsieur Lent arriva le dernier. Il n'y avait plus personne pour l'attendre."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 260, y: 518, s: 1, pose: 'hold' },
+                { t: 'livia', x: 460, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'lent', x: 660, y: 518, s: 1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 250, y: 26, w: 310, t: 'On va à la vitesse du milieu !', tx: 460, ty: 246 }]
+            },
+            text: "Alors Livia eut une idée. « On va à la vitesse du milieu. » Monsieur Rapide ralentit un peu. Monsieur Lent accéléra un peu. Ce fut un peu difficile pour les deux."
+          },
+          {
+            scene: {
+              bg: 'hill', time: 'sunset',
+              items: [
+                { t: 'rapide', x: 290, y: 518, s: 1 },
+                { t: 'livia', x: 480, y: 520, s: 1.05 },
+                { t: 'lent', x: 670, y: 518, s: 1 }
+              ]
+            },
+            text: "Ils marchèrent côte à côte jusqu'au sommet. Ils virent le même coucher de soleil, en même temps. Monsieur Rapide trouva que c'était très long. Et très bien."
+          }
+        ]
+      },
+
+      /* ---------- 6 ---------- */
+      {
+        id: 'rangetout',
+        title: 'Madame Range-Tout et le grand désordre',
+        subtitle: 'Quand tout est trop bien rangé',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'rangetout', x: 320, y: 506, s: 1, pose: 'point' },
+            { t: 'livia', x: 540, y: 508, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'rangetout', x: 400, y: 508, s: 1.1, pose: 'point' }],
+              sfx: [{ t: 'TOUT DROIT !', x: 400, y: 150, fs: 30, rot: -4, color: '#3fb3b0' }]
+            },
+            text: "Chez Madame Range-Tout, tout était rangé. Les livres par ordre de taille. Les crayons par ordre de couleur. Les petits pois par ordre de rondeur."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 290, y: 508, s: 1, mood: 'wow' },
+                { t: 'livia', x: 550, y: 510, s: 1.05, pose: 'hold' },
+                { t: 'tourcubes', x: 690, y: 508, s: .7, n: 3 },
+                { t: 'ball', x: 640, y: 506, s: .7 }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 290, t: 'On joue à quelque chose ?', tx: 560, ty: 236 }]
+            },
+            text: "Livia vint jouer chez elle. Elle apporta des cubes, des crayons et un ballon. Madame Range-Tout regarda tout cela avec un peu d'inquiétude."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 320, y: 510, s: 1.05, pose: 'armsup' },
+                { t: 'rangetout', x: 580, y: 508, s: 1, mood: 'wow' }
+              ],
+              front: [
+                { t: 'cube', x: 150, y: 522, s: .8, rot: -14, color: '#e0453c' },
+                { t: 'cube', x: 440, y: 528, s: .8, rot: 18, color: '#4a7fc1' },
+                { t: 'cube', x: 700, y: 524, s: .8, rot: -8, color: '#7ab648' },
+                { t: 'cube', x: 250, y: 546, s: .7, rot: 26, color: '#f7c518' }
+              ],
+              sfx: [{ t: 'PATATRAS !', x: 420, y: 156, fs: 34, rot: -8, color: '#e0453c' }]
+            },
+            text: "Elles construisirent une tour. Puis un pont. Puis un château qui s'écroula sur le tapis. Il y avait des cubes partout. Madame Range-Tout ne respirait plus très bien."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 340, y: 508, s: 1, pose: 'shrug' },
+                { t: 'livia', x: 580, y: 510, s: 1.05, pose: 'point' }
+              ],
+              bubbles: [{ x: 410, y: 26, w: 310, t: 'On range après. Pas pendant.', tx: 580, ty: 240 }]
+            },
+            text: "« On range après », dit Livia. « Pas pendant. Sinon on ne joue jamais. » Madame Range-Tout trouva cette phrase très dérangeante. Et un peu vraie."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 340, y: 508, s: 1, pose: 'jump' },
+                { t: 'livia', x: 580, y: 510, s: 1.05, pose: 'jump' }
+              ],
+              front: [
+                { t: 'cube', x: 120, y: 528, s: .8, rot: 12, color: '#4a7fc1' },
+                { t: 'cube', x: 470, y: 534, s: .8, rot: -20, color: '#e0453c' },
+                { t: 'cube', x: 720, y: 526, s: .8, rot: 8, color: '#f7c518' }
+              ],
+              sfx: [{ t: 'ENCORE !', x: 420, y: 150, fs: 34, rot: -6, color: '#f7c518' }]
+            },
+            text: "Alors elle essaya. Elle laissa un cube par terre. Puis deux. Puis elle renversa la tour elle-même, exprès, en riant très fort. C'était absolument délicieux."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 320, y: 508, s: 1, pose: 'hold' },
+                { t: 'livia', x: 560, y: 510, s: 1.05, pose: 'hold' }
+              ],
+              front: [{ t: 'cube', x: 710, y: 530, s: .8, rot: -10, color: '#e0453c' }],
+              bubbles: [{ x: 160, y: 26, w: 300, t: 'Et maintenant, on range !', tx: 320, ty: 240 }]
+            },
+            text: "Le soir, elles rangèrent tout, ensemble, en dix minutes. « Voilà », dit Madame Range-Tout. « Après. » Et elle laissa un seul cube dehors, juste pour voir."
+          }
+        ]
+      },
+
+      /* ---------- 7 ---------- */
+      {
+        id: 'costaud',
+        title: 'Monsieur Costaud n\'y arrive pas',
+        subtitle: 'Demander de l\'aide, c\'est permis',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'costaud', x: 320, y: 520, s: 1.05, pose: 'shrug' },
+            { t: 'livia', x: 560, y: 522, s: 1.05, pose: 'point' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'costaud', x: 400, y: 522, s: 1.15, pose: 'armsup' }],
+              sfx: [{ t: 'FASTOCHE !', x: 640, y: 200, fs: 34, rot: -6, color: '#c4453c' }]
+            },
+            text: "Monsieur Costaud était le plus fort de tous. Il soulevait les arbres. Il portait les maisons. Une fois, il a déplacé une colline parce qu'elle le gênait."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'costaud', x: 340, y: 522, s: 1.1, pose: 'hold' },
+                { t: 'rock', x: 600, y: 528, s: 1.4 }
+              ],
+              sfx: [{ t: 'HHHHNNN…', x: 480, y: 200, fs: 32, rot: -6, color: '#c4453c' }]
+            },
+            text: "Ce jour-là, il trouva un rocher. Il tira. Le rocher ne bougea pas. Il tira encore. Le rocher ne bougea toujours pas. Monsieur Costaud devint tout rouge."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'costaud', x: 320, y: 522, s: 1.1, pose: 'shrug', mood: 'sad' },
+                { t: 'livia', x: 600, y: 524, s: 1.05 }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Tu veux un coup de main ?', tx: 600, ty: 250 }]
+            },
+            text: "Livia passa par là. « Tu veux un coup de main ? » Monsieur Costaud répondit non. Il était Monsieur Costaud. Monsieur Costaud n'avait besoin de personne."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'costaud', x: 400, y: 522, s: 1.1, pose: 'hold', mood: 'fache' },
+                { t: 'rock', x: 640, y: 528, s: 1.4 }
+              ],
+              sfx: [{ t: 'ENCORE !', x: 260, y: 210, fs: 34, rot: -8, color: '#c4453c' }]
+            },
+            text: "Il tira toute la matinée. Il tira tout l'après-midi. Le rocher resta exactement où il était. Le soir, Monsieur Costaud était encore devant lui, très fatigué et un peu triste."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rock', x: 100, y: 530, s: 1.4 },
+                { t: 'costaud', x: 280, y: 522, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 470, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'grognon', x: 660, y: 522, s: .95, pose: 'hold' }
+              ],
+              sfx: [{ t: 'À TROIS !', x: 470, y: 180, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Alors il dit une phrase toute petite : « Tu peux m'aider ? » Livia appela Monsieur Grognon, qui grogna, mais qui vint. Ils poussèrent tous les trois. « Un, deux, trois ! »"
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'rock', x: 96, y: 468, s: 1.2, rot: 24 },
+                { t: 'costaud', x: 320, y: 522, s: 1.05, pose: 'armsup' },
+                { t: 'livia', x: 510, y: 524, s: 1.05, pose: 'armsup' },
+                { t: 'grognon', x: 690, y: 522, s: .95 }
+              ],
+              sfx: [{ t: 'ÇA BOUGE !', x: 470, y: 170, fs: 34, rot: -6, color: '#f7c518' }]
+            },
+            text: "Le rocher bougea. Puis il roula. Puis il descendit la colline tout seul. « Je suis toujours le plus fort », dit Monsieur Costaud. « Mais à trois, c'est encore mieux. »"
+          }
+        ]
+      },
+
+      /* ---------- 8 ---------- */
+      {
+        id: 'bonheur',
+        title: 'Madame Bonheur et le jour gris',
+        subtitle: 'Ce qu\'on fait quand rien ne va',
+        tag: 'Humeurs',
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'bonheur', x: 320, y: 522, s: 1.05, pose: 'armsup' },
+            { t: 'livia', x: 540, y: 524, s: 1.05, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'bonheur', x: 400, y: 524, s: 1.15, pose: 'armsup' }],
+              sfx: [{ t: 'QUELLE BELLE JOURNÉE !', x: 400, y: 176, fs: 26, rot: -4, color: '#f7c518' }]
+            },
+            text: "Madame Bonheur était heureuse. Tous les jours. Sans exception. Même sous la pluie, elle trouvait que les flaques faisaient de jolis miroirs."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 400, y: 524, s: 1.15, mood: 'sad' }
+              ],
+              sfx: [{ t: 'ET PUIS UN JOUR…', x: 400, y: 170, fs: 28, rot: -4, color: '#6d5847' }]
+            },
+            text: "Et puis un matin, elle se réveilla toute grise. Elle ne savait pas pourquoi. Rien de grave n'était arrivé. Simplement, le bonheur n'était pas venu."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 300, y: 524, s: 1.05, pose: 'shrug', mood: 'sad' },
+                { t: 'livia', x: 560, y: 526, s: 1.05 }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Tu veux qu\'on reste là un peu ?', tx: 560, ty: 252 }]
+            },
+            text: "Livia la trouva devant sa porte, sans rien faire. Elle ne dit pas « souris ». Elle ne dit pas « ce n'est rien ». Elle demanda seulement : « Tu veux qu'on reste là un peu ? »"
+          },
+          {
+            scene: {
+              bg: 'village', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 340, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 560, y: 526, s: 1.05 }
+              ],
+              sfx: [{ t: '. . .', x: 460, y: 186, fs: 34, rot: 0, color: '#8a7768' }]
+            },
+            text: "Elles restèrent là un long moment, sans rien dire. Le ciel était gris. Le vent était froid. Livia ne partit pas. C'était tout ce qu'il y avait à faire."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'gris',
+              items: [
+                { t: 'grognon', x: 200, y: 524, s: .95 },
+                { t: 'timide', x: 400, y: 524, s: .95, pose: 'wave' },
+                { t: 'costaud', x: 600, y: 524, s: .95, pose: 'hold' },
+                { t: 'flower', x: 730, y: 534, s: 1.4 }
+              ],
+              bubbles: [{ x: 220, y: 26, w: 300, t: 'On est venus, c\'est tout.', tx: 400, ty: 246 }]
+            },
+            text: "Puis les autres arrivèrent. Monsieur Grognon apporta un caillou, parce qu'il ne savait pas quoi apporter. Madame Timide dit bonjour. Monsieur Costaud apporta une fleur."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'bonheur', x: 292, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 508, y: 526, s: 1.05, pose: 'hold' },
+                { t: 'grognon', x: 688, y: 524, s: .95 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 310, t: 'Demain, ça ira peut-être mieux.', tx: 300, ty: 252 }]
+            },
+            text: "Le soir venu, Madame Bonheur n'était pas redevenue joyeuse. Mais elle n'était plus toute seule. « Demain, ça ira peut-être mieux », dit-elle. Et le lendemain, ça allait mieux."
           }
         ]
       }

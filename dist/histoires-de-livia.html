@@ -1304,6 +1304,111 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     return s + (sit ? g('translate(-6,44)', t) : t);
   }
 
+  /* ---------- les petits bonshommes géométriques ----------
+     Un corps (rond, carré, ovale ou poire), deux traits pour les bras,
+     deux pour les jambes, un chapeau : de quoi fabriquer autant de
+     personnages qu'on a d'humeurs à raconter. */
+  function mrmCorps(forme) {
+    if (forme === 'carre') return '<rect x="-64" y="-200" width="128" height="140" rx="30" fill="%F%" %S%/>';
+    if (forme === 'ovale') return '<ellipse cx="0" cy="-130" rx="56" ry="72" fill="%F%" %S%/>';
+    if (forme === 'poire') return '<path d="M 0,-206 C 34,-206 48,-182 44,-156 C 40,-130 74,-116 70,-92 ' +
+      'C 66,-64 36,-56 0,-56 C -36,-56 -66,-64 -70,-92 C -74,-116 -40,-130 -44,-156 ' +
+      'C -48,-182 -34,-206 0,-206 Z" fill="%F%" %S%/>';
+    return '<circle cx="0" cy="-130" r="70" fill="%F%" %S%/>';
+  }
+
+  function mrmChapeau(o) {
+    var c = o.chapeau, y = o.hautCorps;
+    if (o.type === 'haut') {
+      return U(['<rect x="-74" y="' + (y - 6) + '" width="148" height="14" rx="7" fill="%F%" %S%/>',
+        '<rect x="-40" y="' + (y - 54) + '" width="80" height="52" rx="8" fill="%F%" %S%/>'], c, 8);
+    }
+    if (o.type === 'plat') {
+      return U(['<path d="M -58,' + y + ' C -58,' + (y - 34) + ' 58,' + (y - 34) + ' 58,' + y + ' Z" fill="%F%" %S%/>',
+        '<rect x="-64" y="' + (y - 6) + '" width="128" height="12" rx="6" fill="%F%" %S%/>'], c, 8);
+    }
+    if (o.type === 'noeud') {
+      return U(['<path d="M -6,' + (y + 4) + ' L -48,' + (y - 22) + ' L -48,' + (y + 24) + ' Z" fill="%F%" %S%/>',
+        '<path d="M 6,' + (y + 4) + ' L 48,' + (y - 22) + ' L 48,' + (y + 24) + ' Z" fill="%F%" %S%/>',
+        '<circle cx="0" cy="' + (y + 4) + '" r="14" fill="%F%" %S%/>'], c, 8);
+    }
+    if (o.type === 'fleur') {
+      return g('translate(0,' + (y + 26) + ') scale(1.5)', P.flower({ color: c }));
+    }
+    return '';
+  }
+
+  function mrm(o) {
+    o = o || {};
+    var c = o.couleur || '#f7c518';
+    var forme = o.forme || 'rond';
+    var pose = o.pose || 'stand';
+    var mood = o.mood || 'happy';
+    var haut = forme === 'carre' ? -200 : (forme === 'poire' ? -206 : (forme === 'ovale' ? -202 : -200));
+    var s = '';
+
+    /* jambes */
+    if (pose === 'run') {
+      s += line('M -14,-64 C -26,-44 -38,-26 -40,-12', INK, 7) + line('M 14,-64 C 24,-46 28,-28 26,-12', INK, 7) +
+        '<ellipse cx="-46" cy="-8" rx="21" ry="10" fill="' + INK + '"/>' +
+        '<ellipse cx="32" cy="-8" rx="21" ry="10" fill="' + INK + '"/>';
+    } else if (pose === 'jump') {
+      s += line('M -14,-66 C -28,-50 -44,-40 -54,-36', INK, 7) + line('M 14,-66 C 28,-50 44,-42 54,-38', INK, 7) +
+        '<ellipse cx="-58" cy="-34" rx="20" ry="10" fill="' + INK + '" transform="rotate(-25 -58 -34)"/>' +
+        '<ellipse cx="58" cy="-36" rx="20" ry="10" fill="' + INK + '" transform="rotate(25 58 -36)"/>';
+    } else {
+      s += line('M -18,-62 L -18,-14', INK, 7) + line('M 18,-62 L 18,-14', INK, 7) +
+        '<ellipse cx="-20" cy="-9" rx="22" ry="10" fill="' + INK + '"/>' +
+        '<ellipse cx="20" cy="-9" rx="22" ry="10" fill="' + INK + '"/>';
+    }
+
+    /* bras */
+    var bg1, bd1, mg, md;
+    if (pose === 'wave') { bg1 = 'M -58,-150 C -84,-142 -96,-128 -98,-114'; bd1 = 'M 58,-152 C 88,-168 104,-196 106,-216'; mg = [-102, -110]; md = [110, -222]; }
+    else if (pose === 'armsup' || pose === 'jump') { bg1 = 'M -58,-152 C -86,-170 -102,-196 -104,-216'; bd1 = 'M 58,-152 C 86,-170 102,-196 104,-216'; mg = [-108, -222]; md = [108, -222]; }
+    else if (pose === 'point') { bg1 = 'M -58,-148 C -82,-140 -94,-128 -96,-114'; bd1 = 'M 58,-150 C 88,-152 112,-158 130,-164'; mg = [-100, -110]; md = [136, -166]; }
+    else if (pose === 'hold') { bg1 = 'M -58,-146 C -78,-138 -88,-124 -88,-110'; bd1 = 'M 58,-146 C 78,-138 88,-124 88,-110'; mg = [-92, -106]; md = [92, -106]; }
+    else if (pose === 'shrug') { bg1 = 'M -58,-154 C -84,-160 -100,-152 -106,-140'; bd1 = 'M 58,-154 C 84,-160 100,-152 106,-140'; mg = [-110, -136]; md = [110, -136]; }
+    else { bg1 = 'M -58,-148 C -82,-140 -94,-126 -96,-112'; bd1 = 'M 58,-148 C 82,-140 94,-126 96,-112'; mg = [-100, -108]; md = [100, -108]; }
+    s += line(bg1, INK, 6) + line(bd1, INK, 6);
+
+    /* corps */
+    s += U([mrmCorps(forme)], c, 9);
+
+    /* mains, par-dessus, comme de petites moufles */
+    s += '<ellipse cx="' + mg[0] + '" cy="' + mg[1] + '" rx="13" ry="15" fill="' + c + '" stroke="' + INK + '" stroke-width="5"/>';
+    s += '<ellipse cx="' + md[0] + '" cy="' + md[1] + '" rx="13" ry="15" fill="' + c + '" stroke="' + INK + '" stroke-width="5"/>';
+
+    /* visage */
+    var ey = -156;
+    s += '<ellipse cx="-23" cy="' + ey + '" rx="14" ry="17" fill="#fff" stroke="' + INK + '" stroke-width="4"/>' +
+      '<ellipse cx="23" cy="' + ey + '" rx="14" ry="17" fill="#fff" stroke="' + INK + '" stroke-width="4"/>';
+    if (mood === 'sleep') {
+      s += line('M -34,' + ey + ' q 11,9 22,0', INK, 4) + line('M 12,' + ey + ' q 11,9 22,0', INK, 4);
+    } else if (mood === 'fache') {
+      s += '<circle cx="-21" cy="' + (ey + 2) + '" r="6" fill="' + INK + '"/><circle cx="21" cy="' + (ey + 2) + '" r="6" fill="' + INK + '"/>';
+      s += line('M -38,' + (ey - 22) + ' L -10,' + (ey - 12) + ' M 38,' + (ey - 22) + ' L 10,' + (ey - 12), INK, 6);
+    } else if (mood === 'wow') {
+      s += '<circle cx="-21" cy="' + ey + '" r="7" fill="' + INK + '"/><circle cx="21" cy="' + ey + '" r="7" fill="' + INK + '"/>';
+    } else {
+      s += '<circle cx="-19" cy="' + (ey + 2) + '" r="6" fill="' + INK + '"/><circle cx="25" cy="' + (ey + 2) + '" r="6" fill="' + INK + '"/>';
+    }
+    /* le nez, une petite bosse ronde */
+    s += '<circle cx="0" cy="' + (ey + 26) + '" r="11" fill="' + shade(c, -0.22) + '" stroke="' + INK + '" stroke-width="4"/>';
+    /* la bouche */
+    if (mood === 'fache') s += line('M -20,-98 q 20,-16 40,0', INK, 5);
+    else if (mood === 'sad') s += line('M -18,-98 q 18,-14 36,0', INK, 5);
+    else if (mood === 'wow') s += '<ellipse cx="0" cy="-104" rx="12" ry="14" fill="#b8355c" stroke="' + INK + '" stroke-width="4"/>';
+    else s += line('M -24,-112 q 24,26 48,0', INK, 5);
+
+    if (o.cheveux) {
+      s += U(['<circle cx="-56" cy="' + (haut + 44) + '" r="20" fill="%F%" %S%/>',
+        '<circle cx="56" cy="' + (haut + 44) + '" r="20" fill="%F%" %S%/>'], o.cheveux, 7);
+    }
+    if (o.chapeau && !o.sansChapeau) s += mrmChapeau({ chapeau: o.chapeau, type: o.type || 'haut', hautCorps: haut });
+    return s;
+  }
+
   /* ---------- mouton (Suzy) ---------- */
   function sheep(o) {
     o = o || {};
@@ -1714,6 +1819,28 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     return s;
   };
 
+  /* un cube de bois, qui se pose seul ou s'empile en tour */
+  P.cube = function (o) {
+    var c = o.color || '#e8b44a';
+    var s = U(['<rect x="-22" y="-44" width="44" height="44" rx="6" fill="%F%" %S%/>'], c, 6);
+    if (o.lettre) {
+      s += '<text x="0" y="-14" text-anchor="middle" font-family="' + FONT +
+        '" font-size="26" font-weight="800" fill="' + INK + '">' + esc(o.lettre) + '</text>';
+    }
+    return s;
+  };
+
+  /* une tour de cubes : ce que construisent les enfants, et ce qui s'écroule */
+  P.tourcubes = function (o) {
+    var cs = o.colors || ['#e0453c', '#4a7fc1', '#7ab648', '#f7c518'];
+    var n = o.n || 4, s = '', i;
+    for (i = 0; i < n; i++) {
+      s += g('translate(' + ((i % 2 ? 5 : -5)) + ',' + (-i * 42) + ') rotate(' + ((i % 2 ? 2 : -2)) + ')',
+        P.cube({ color: cs[i % cs.length] }));
+    }
+    return s;
+  };
+
   P.rock = function (o) {
     return U(['<path d="M -34,0 C -40,-22 -20,-38 0,-36 C 22,-34 36,-20 32,0 Z" fill="%F%" %S%/>'], o.color || '#b9b3ae', 7);
   };
@@ -1839,6 +1966,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     sunset: ['#e8895c', '#f5cf9c'],
     night: ['#25304f', '#4a5a7a'],
     snow: ['#b6d4e0', '#eef4f2'],
+    gris: ['#b4bfc4', '#dde2de'],
     snownight: ['#232f4c', '#465a80']
   };
 
@@ -1847,6 +1975,12 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     return '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1">' +
       '<stop offset="0%" stop-color="' + c[0] + '"/><stop offset="100%" stop-color="' + c[1] + '"/>' +
       '</linearGradient></defs><rect x="0" y="0" width="' + VW + '" height="' + VH + '" fill="url(#' + id + ')"/>';
+  }
+
+  /* le soleil : il ne se montre ni la nuit, ni les jours gris */
+  function soleil(time, tx, ty, o) {
+    if (time === 'gris' || time === 'night') return '';
+    return g('translate(' + tx + ',' + ty + ')', P.sun(o || {}));
   }
 
   function stars(n, maxY) {
@@ -1871,8 +2005,8 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     /* une scène peut poser son propre soleil (utile quand le cadrage
        plein écran rogne le haut du ciel) : voir COUVERTURE */
     if (s.noSun) { /* la scène s'en charge */ }
-    else if (time === 'sunset') out += g('translate(640,190)', P.sun({ color: '#ffdf6b' }));
-    else if (time !== 'night') out += g('translate(690,96)', P.sun({}));
+    else if (time === 'sunset') out += soleil(time, 640, 190, { color: '#ffdf6b' });
+    else if (time !== 'night') out += soleil(time, 690, 96);
     else out += g('translate(690,96)', P.moon({}));
     if (time !== 'night') {
       out += g('translate(150,110) scale(1.1)', P.cloud({})) + g('translate(430,70) scale(.8)', P.cloud({}));
@@ -1890,7 +2024,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   BG.sea = function (s) {
     var time = s.time || 'day';
     var out = skyRect(time);
-    if (time !== 'night') out += g('translate(700,90)', P.sun({})) + g('translate(190,110) scale(.9)', P.cloud({}));
+    if (time !== 'night') out += soleil(time, 700, 90) + g('translate(190,110) scale(.9)', P.cloud({}));
     out += '<rect x="0" y="300" width="' + VW + '" height="260" fill="#3fb0d8"/>';
     out += '<path d="M 0,300 q 40,-18 80,0 q 40,18 80,0 q 40,-18 80,0 q 40,18 80,0 q 40,-18 80,0 q 40,18 80,0 q 40,-18 80,0 q 40,18 80,0 q 40,-18 80,0 q 40,18 80,0 L 800,340 L 0,340 Z" fill="#5ec6e8"/>';
     out += g('translate(200,400)', P.wave({})) + g('translate(560,460)', P.wave({})) + g('translate(360,520)', P.wave({}));
@@ -1901,7 +2035,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     var time = s.time || 'day';
     var out = skyRect(time);
     if (time === 'night') out += stars(20, 200) + g('translate(690,96)', P.moon({}));
-    else out += g('translate(700,90)', P.sun({})) + g('translate(180,110) scale(1)', P.cloud({})) + g('translate(470,74) scale(.7)', P.cloud({}));
+    else out += soleil(time, 700, 90) + g('translate(180,110) scale(1)', P.cloud({})) + g('translate(470,74) scale(.7)', P.cloud({}));
     out += '<path d="M 0,330 C 160,306 320,344 470,326 C 620,308 720,336 800,322 L 800,560 L 0,560 Z" fill="#7ecb6a"/>';
     out += line('M 0,330 C 160,306 320,344 470,326 C 620,308 720,336 800,322', '#6f9147', 5);
     out += '<rect x="0" y="392" width="800" height="168" fill="#8ed67a"/>';
@@ -1911,7 +2045,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   BG.hill = function (s) {
     var time = s.time || 'day';
     var out = skyRect(time);
-    if (time !== 'night') out += g('translate(120,90)', P.sun({})) + g('translate(560,110) scale(1)', P.cloud({})) + g('translate(340,64) scale(.7)', P.cloud({}));
+    if (time !== 'night') out += soleil(time, 120, 90) + g('translate(560,110) scale(1)', P.cloud({})) + g('translate(340,64) scale(.7)', P.cloud({}));
     out += '<path d="M -20,420 C 120,300 320,300 440,368 C 560,436 700,404 820,352 L 820,560 L -20,560 Z" fill="#8ed67a"/>';
     out += '<path d="M -20,470 C 160,400 340,470 520,436 C 660,410 740,440 820,420 L 820,560 L -20,560 Z" fill="#6fbf5c"/>';
     return out;
@@ -1923,7 +2057,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     if (time === 'night') {
       out += stars(26, 250) + g('translate(120,96)', P.moon({}));
     } else {
-      out += g('translate(690,96)', P.sun({})) + g('translate(200,110)', P.cloud({})) + g('translate(500,72) scale(.7)', P.cloud({}));
+      out += soleil(time, 690, 96) + g('translate(200,110)', P.cloud({})) + g('translate(500,72) scale(.7)', P.cloud({}));
     }
     var far = time === 'night' ? '#1f3f5c' : '#93b592';
     out += '<path d="M 0,330 L 120,230 L 220,330 L 340,240 L 460,330 L 600,236 L 740,330 L 800,300 L 800,400 L 0,400 Z" fill="' + far + '"/>';
@@ -1947,7 +2081,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   BG.creek = function (s) {
     var time = s.time || 'day';
     var out = skyRect(time);
-    if (time !== 'night') out += g('translate(700,86)', P.sun({})) + g('translate(180,104)', P.cloud({}));
+    if (time !== 'night') out += soleil(time, 700, 86) + g('translate(180,104)', P.cloud({}));
     out += g('translate(90,360) scale(1.25)', P.tree({ color: '#7f9e63' })) +
       g('translate(690,352) scale(1.1)', P.tree({ color: '#6f9147' }));
     out += '<path d="M 0,320 C 200,300 400,336 600,318 C 700,308 760,330 800,318 L 800,400 L 0,400 Z" fill="#8fb35c"/>';
@@ -1970,7 +2104,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
       if (s.aurora) out += g('translate(400,150)', P.aurora({}));
       out += g('translate(120,90)', P.moon({}));
     }
-    else out += g('translate(690,90)', P.sun({ color: '#fff0a8' })) + g('translate(180,110) scale(.9)', P.cloud({ color: '#ffffff' }));
+    else out += soleil(time, 690, 90, { color: '#fff0a8' }) + g('translate(180,110) scale(.9)', P.cloud({ color: '#ffffff' }));
     out += '<path d="M 0,340 L 130,190 L 250,340 Z" fill="#7ba6c9"/><path d="M 130,190 L 178,250 L 96,250 Z" fill="#fdfcff"/>';
     out += '<path d="M 240,350 L 420,150 L 600,350 Z" fill="#8fb8d8"/><path d="M 420,150 L 484,232 L 356,232 Z" fill="#fdfcff"/>';
     out += '<path d="M 560,346 L 690,200 L 810,346 Z" fill="#7ba6c9"/><path d="M 690,200 L 736,258 L 646,258 Z" fill="#fdfcff"/>';
@@ -1984,7 +2118,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     var time = s.time || 'day';
     var out = skyRect(time);
     if (time === 'night') out += stars(18, 200) + g('translate(680,90)', P.moon({}));
-    else out += g('translate(700,86)', P.sun({})) + g('translate(220,104)', P.cloud({}));
+    else out += soleil(time, 700, 86) + g('translate(220,104)', P.cloud({}));
     out += g('translate(140,340) scale(.62)', P.house({ roof: '#e8746b' })) +
       g('translate(660,342) scale(.58)', P.house({ roof: '#7aa9e8', color: '#fdf3e2' }));
     out += g('translate(400,340) scale(.72)', P.tree({}));
@@ -1996,7 +2130,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   BG.road = function (s) {
     var time = s.time || 'day';
     var out = skyRect(time);
-    if (time !== 'night') out += g('translate(700,86)', P.sun({})) + g('translate(180,100)', P.cloud({})) + g('translate(450,66) scale(.7)', P.cloud({}));
+    if (time !== 'night') out += soleil(time, 700, 86) + g('translate(180,100)', P.cloud({})) + g('translate(450,66) scale(.7)', P.cloud({}));
     out += '<path d="M 0,320 C 140,250 300,270 420,320 C 540,368 680,300 800,318 L 800,420 L 0,420 Z" fill="#8fc6a0"/>';
     out += '<rect x="0" y="380" width="800" height="180" fill="#6fbf5c"/>';
     out += '<path d="M -40,560 L 260,392 L 560,392 L 860,560 Z" fill="#6b6470"/>';
@@ -2132,6 +2266,18 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
       });
     },
     olaf: function (o) { return snowman(o); },
+
+    /* les Monsieur Madame */
+    grognon: function (o) { return mrm({ couleur: '#4a7fc1', forme: 'carre', chapeau: '#2f5b90', type: 'plat', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood || 'fache' }); },
+    chipie: function (o) { return mrm({ couleur: '#e0453c', forme: 'rond', chapeau: '#4f9147', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    etourdi: function (o) { return mrm({ couleur: '#7ab648', forme: 'poire', chapeau: '#c98a3f', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    timide: function (o) { return mrm({ couleur: '#f2a0c2', forme: 'rond', chapeau: '#e0453c', type: 'fleur', cheveux: '#c9702f', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    rapide: function (o) { return mrm({ couleur: '#f0862c', forme: 'ovale', chapeau: '#3f6ea8', type: 'plat', sansChapeau: o.sansChapeau, pose: o.pose || 'run', mood: o.mood }); },
+    lent: function (o) { return mrm({ couleur: '#9a7fc4', forme: 'poire', chapeau: '#5f4a86', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    rangetout: function (o) { return mrm({ couleur: '#3fb3b0', forme: 'ovale', chapeau: '#f7c518', type: 'noeud', cheveux: '#8a5a3b', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    costaud: function (o) { return mrm({ couleur: '#c4453c', forme: 'carre', chapeau: '#f7c518', type: 'plat', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    bonheur: function (o) { return mrm({ couleur: '#f7c518', forme: 'rond', chapeau: '#e0453c', type: 'fleur', cheveux: '#e8a83c', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
+    curieux: function (o) { return mrm({ couleur: '#5fb8d8', forme: 'ovale', chapeau: '#c4453c', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
 
     /* la famille bouvier */
     bluey: function (o) {
@@ -2525,7 +2671,7 @@ var UNIVERSES = [
                 { t: 'car', x: 180, y: 470, s: .85 },
                 { t: 'daddy', x: 430, y: 500, s: 1.25, pose: 'hold' },
                 { t: 'peppa', x: 590, y: 500, s: 1, pose: 'jump' },
-                { t: 'livia', x: 710, y: 500, s: 1, pose: 'jump' },
+                { t: 'livia', x: 694, y: 500, s: 1, pose: 'jump' },
                 { t: 'suitcase', x: 300, y: 505, s: .8 }
               ],
               bubbles: [{ x: 330, y: 34, w: 300, t: 'Ce soir, on dort dans la tente !', tx: 430, ty: 210 }]
@@ -2552,7 +2698,7 @@ var UNIVERSES = [
               items: [
                 { t: 'mummy', x: 420, y: 505, s: 1.2, pose: 'point' },
                 { t: 'suzy', x: 560, y: 505, s: 1, pose: 'wave' },
-                { t: 'livia', x: 706, y: 505, s: 1, pose: 'wave' }
+                { t: 'livia', x: 693, y: 505, s: 1, pose: 'wave' }
               ],
               bubbles: [{ x: 470, y: 34, w: 300, t: 'Coucou ! Je campe à côté !', tx: 590, ty: 250 }]
             },
@@ -2726,7 +2872,7 @@ var UNIVERSES = [
                 { t: 'peppa', x: 470, y: 430, s: .95, pose: 'jump', mood: 'wow' }
               ],
               front: [{ t: 'splash', x: 600, y: 508, s: 1.1 }],
-              sfx: [{ t: 'SPLAAASH !', x: 674, y: 248, fs: 44, rot: -10, color: '#bfe8f7' }]
+              sfx: [{ t: 'SPLAAASH !', x: 658, y: 248, fs: 44, rot: -10, color: '#bfe8f7' }]
             },
             text: "Une, deux, trois… c'est parti ! Le toboggan tourne à gauche, tourne à droite, et SPLAAASH ! Les deux amies atterrissent dans l'eau au milieu d'une gerbe d'éclaboussures."
           },
@@ -2878,7 +3024,7 @@ var UNIVERSES = [
                 { t: 'daddy', x: 500, y: 420, s: 1.15, pose: 'armsup' },
                 { t: 'kite', x: 560, y: 300, s: .8 },
                 { t: 'livia', x: 250, y: 505, s: 1, pose: 'armsup' },
-                { t: 'peppa', x: 730, y: 505, s: 1, pose: 'armsup' }
+                { t: 'peppa', x: 687, y: 505, s: 1, pose: 'armsup' }
               ],
               bubbles: [{ x: 120, y: 30, w: 300, t: 'Papa Pig au secours !', tx: 250, ty: 240 }]
             },
@@ -3091,8 +3237,8 @@ var UNIVERSES = [
             scene: {
               bg: 'garden', time: 'sunset',
               items: [
-                { t: 'peppa', x: 340, y: 516, s: 1.15, pose: 'sit' },
-                { t: 'livia', x: 520, y: 518, s: 1.1, pose: 'sit' },
+                { t: 'peppa', x: 340, y: 508, s: 1.15, pose: 'sit' },
+                { t: 'livia', x: 520, y: 510, s: 1.1, pose: 'sit' },
                 { t: 'ball', x: 660, y: 516, s: .8 }
               ]
             },
@@ -3414,7 +3560,7 @@ var UNIVERSES = [
               items: [
                 { t: 'suzy', x: 466, y: 514, s: 1.05, pose: 'stand' },
                 { t: 'peppa', x: 606, y: 514, s: 1.15, pose: 'stand' },
-                { t: 'livia', x: 730, y: 516, s: 1.05, pose: 'stand' }
+                { t: 'livia', x: 709, y: 516, s: 1.05, pose: 'stand' }
               ],
               sfx: [{ t: 'LE TOBOGGAN !', x: 400, y: 200, fs: 32, rot: -6, color: '#f7c518' }]
             },
@@ -3452,7 +3598,7 @@ var UNIVERSES = [
                 { t: 'peppa', x: 520, y: 514, s: 1.2, pose: 'stand', mood: 'sad' },
                 { t: 'suzy', x: 700, y: 514, s: 1.05, pose: 'shrug', mood: 'sad' }
               ],
-              bubbles: [{ x: 100, y: 26, w: 310, t: 'On ne joue plus avec toi si tu triches.', tx: 700, ty: 226 }]
+              bubbles: [{ x: 470, y: 26, w: 310, t: 'On ne joue plus avec toi si tu triches.', tx: 700, ty: 226 }]
             },
             text: "En bas du toboggan, plus personne ne lui parle. « On ne joue plus avec toi si tu triches », dit Suzy. C'est descendu très vite, et ce n'était même pas amusant."
           },
@@ -3474,7 +3620,7 @@ var UNIVERSES = [
               items: [
                 { t: 'suzy', x: 452, y: 514, s: 1.05, pose: 'hold' },
                 { t: 'peppa', x: 596, y: 514, s: 1.15, pose: 'hold' },
-                { t: 'livia', x: 724, y: 516, s: 1.05, pose: 'stand' }
+                { t: 'livia', x: 709, y: 516, s: 1.05, pose: 'stand' }
               ],
               bubbles: [{ x: 260, y: 26, w: 310, t: 'Un nuage… deux nuages… trois nuages…', tx: 630, ty: 226 }]
             },
@@ -3849,10 +3995,10 @@ var UNIVERSES = [
             scene: {
               bg: 'garden',
               items: [
-                { t: 'bandit', x: 200, y: 516, s: 1.45, pose: 'shrug', mood: 'wow' },
-                { t: 'sprinkler', x: 470, y: 520, s: 1.3 },
-                { t: 'bluey', x: 596, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' },
-                { t: 'livia', x: 722, y: 516, s: 1.05, pose: 'armsup' }
+                { t: 'bandit', x: 190, y: 516, s: 1.45, pose: 'shrug', mood: 'wow' },
+                { t: 'sprinkler', x: 430, y: 520, s: 1.3 },
+                { t: 'bluey', x: 556, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' },
+                { t: 'livia', x: 690, y: 516, s: 1.05, pose: 'armsup' }
               ],
               sfx: [{ t: 'TCHIIIII !', x: 430, y: 240, fs: 44, rot: -8, color: '#8fd0e8' }]
             },
@@ -3892,7 +4038,7 @@ var UNIVERSES = [
                 { t: 'livia', x: 540, y: 500, s: 1.1, pose: 'jump', mood: 'wow' }
               ],
               front: [{ t: 'splash', x: 400, y: 520, s: .9 }],
-              sfx: [{ t: 'YOUHOU !', x: 714, y: 158, fs: 36, rot: -8, color: '#fff' }]
+              sfx: [{ t: 'YOUHOU !', x: 700, y: 158, fs: 36, rot: -8, color: '#fff' }]
             },
             text: "Elles traversent le jet en hurlant de rire. C'est froid ! C'est glacé ! C'est le meilleur froid du monde ! Bingo veut recommencer tout de suite, et encore, et encore."
           },
@@ -3902,7 +4048,7 @@ var UNIVERSES = [
               items: [
                 { t: 'chilli', x: 220, y: 518, s: 1.35, pose: 'hold' },
                 { t: 'icecream', x: 300, y: 486, s: 1.1 },
-                { t: 'bluey', x: 450, y: 516, s: 1.15, pose: 'sit' },
+                { t: 'bluey', x: 450, y: 507, s: 1.15, pose: 'sit' },
                 { t: 'bingo', x: 580, y: 516, s: .95, pose: 'sit' },
                 { t: 'livia', x: 700, y: 518, s: 1.05, pose: 'sit' }
               ],
@@ -4116,10 +4262,10 @@ var UNIVERSES = [
               bg: 'garden', time: 'sunset',
               items: [
                 { t: 'ball', x: 420, y: 300, s: 1 },
-                { t: 'bluey', x: 250, y: 516, s: 1.15, pose: 'armsup' },
-                { t: 'bingo', x: 390, y: 516, s: .95, pose: 'armsup' },
-                { t: 'livia', x: 520, y: 518, s: 1.05, pose: 'armsup' },
-                { t: 'bandit', x: 670, y: 516, s: 1.4, pose: 'armsup' }
+                { t: 'bluey', x: 220, y: 516, s: 1.15, pose: 'armsup' },
+                { t: 'bingo', x: 358, y: 516, s: .95, pose: 'armsup' },
+                { t: 'livia', x: 498, y: 518, s: 1.05, pose: 'armsup' },
+                { t: 'bandit', x: 646, y: 516, s: 1.4, pose: 'armsup' }
               ],
               sfx: [{ t: 'CENT !', x: 420, y: 190, fs: 46, rot: -6, color: '#f7c518' }]
             },
@@ -4202,7 +4348,7 @@ var UNIVERSES = [
                 { t: 'crab', x: 400, y: 532, s: 1 },
                 { t: 'crab', x: 540, y: 524, s: 1.1 },
                 { t: 'crab', x: 680, y: 530, s: .9 },
-                { t: 'bandit', x: 150, y: 516, s: 1.45, pose: 'armsup', mood: 'wow' }
+                { t: 'bandit', x: 163, y: 516, s: 1.45, pose: 'armsup', mood: 'wow' }
               ],
               sfx: [{ t: 'MILLE CRABES !', x: 470, y: 210, fs: 34, rot: -6, color: '#fff' }]
             },
@@ -4259,7 +4405,7 @@ var UNIVERSES = [
               items: [
                 { t: 'bandit', x: 250, y: 516, s: 1.45, pose: 'hold' },
                 { t: 'tent', x: 500, y: 518, s: 1, rot: 15 },
-                { t: 'bluey', x: 700, y: 514, s: 1.15, pose: 'point' }
+                { t: 'bluey', x: 656, y: 514, s: 1.15, pose: 'point' }
               ],
               bubbles: [{ x: 380, y: 26, w: 300, t: 'Elle penche un peu, Papa.', tx: 690, ty: 226 }]
             },
@@ -4367,7 +4513,7 @@ var UNIVERSES = [
                 { t: 'chilli', x: 260, y: 514, s: 1.4, pose: 'point' },
                 { t: 'bluey', x: 440, y: 512, s: 1.2, pose: 'armsup' },
                 { t: 'bingo', x: 570, y: 512, s: .95, pose: 'armsup' },
-                { t: 'livia', x: 700, y: 514, s: 1.1, pose: 'armsup' }
+                { t: 'livia', x: 684, y: 514, s: 1.1, pose: 'armsup' }
               ],
               bubbles: [{ x: 320, y: 26, w: 300, t: 'Une glace chacun, ça vous dit ?', tx: 270, ty: 226 }]
             },
@@ -4653,7 +4799,7 @@ var UNIVERSES = [
               bg: 'garden', time: 'sunset',
               items: [
                 { t: 'bandit', x: 280, y: 516, s: 1.45, pose: 'hold' },
-                { t: 'bluey', x: 450, y: 516, s: 1.15, pose: 'sit' },
+                { t: 'bluey', x: 450, y: 507, s: 1.15, pose: 'sit' },
                 { t: 'bingo', x: 580, y: 516, s: .95, pose: 'sit' },
                 { t: 'livia', x: 700, y: 518, s: 1.05, pose: 'sit' }
               ],
@@ -4760,7 +4906,7 @@ var UNIVERSES = [
               bg: 'hill', time: 'sunset',
               items: [
                 { t: 'towel', x: 420, y: 524, s: 1.3 },
-                { t: 'bandit', x: 280, y: 508, s: 1.35, pose: 'sit' },
+                { t: 'bandit', x: 280, y: 492, s: 1.35, pose: 'sit' },
                 { t: 'bluey', x: 430, y: 508, s: 1.1, pose: 'sit' },
                 { t: 'bingo', x: 550, y: 508, s: .9, pose: 'sit' },
                 { t: 'livia', x: 670, y: 510, s: 1.05, pose: 'sit' }
@@ -4796,7 +4942,7 @@ var UNIVERSES = [
                 { t: 'chilli', x: 280, y: 516, s: 1.4, pose: 'point' },
                 { t: 'bluey', x: 460, y: 514, s: 1.2, pose: 'stand' },
                 { t: 'bingo', x: 600, y: 514, s: .95, pose: 'stand' },
-                { t: 'livia', x: 720, y: 516, s: 1.1, pose: 'stand' }
+                { t: 'livia', x: 705, y: 516, s: 1.1, pose: 'stand' }
               ],
               bubbles: [{ x: 340, y: 26, w: 310, t: 'Ce soir, vous vous couchez plus tard.', tx: 290, ty: 226 }]
             },
@@ -4882,8 +5028,1115 @@ var UNIVERSES = [
         ]
       }
     ]
+  },
+
+  /* ==========================================================
+     UNIVERS 4 — LES MONSIEUR MADAME
+     ========================================================== */
+  {
+    id: 'monsieurmadame',
+    name: 'Les Monsieur Madame',
+    tagline: 'Livia et les petits bonshommes ronds',
+    emoji: '🟡',
+    c1: '#f7c518',
+    c2: '#5fb8d8',
+    cover: {
+      bg: 'garden',
+      items: [
+        { t: 'grognon', x: 130, y: 518, s: .9 },
+        { t: 'bonheur', x: 330, y: 518, s: .9, pose: 'armsup' },
+        { t: 'livia', x: 500, y: 520, s: 1.05 },
+        { t: 'chipie', x: 660, y: 518, s: .9, pose: 'wave' }
+      ]
+    },
+    stories: [
+
+      /* ---------- 1 ---------- */
+      {
+        id: 'grognon',
+        title: 'Monsieur Grognon et le sourire perdu',
+        subtitle: 'On peut être grognon et se laisser attraper',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'grognon', x: 280, y: 520, s: 1 },
+            { t: 'livia', x: 500, y: 522, s: 1.05, pose: 'point' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'grognon', x: 400, y: 522, s: 1.1 }],
+              sfx: [{ t: 'GRRR.', x: 620, y: 250, fs: 42, rot: -6, color: '#4a7fc1' }]
+            },
+            text: "Monsieur Grognon était grognon. Le matin, il était grognon. Le soir, il était grognon. Même le jour de son anniversaire, il était grognon. C'était comme ça."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'grognon', x: 260, y: 520, s: 1 },
+                { t: 'livia', x: 500, y: 522, s: 1.05, pose: 'wave' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 290, t: 'Bonjour Monsieur Grognon !', tx: 500, ty: 246 }]
+            },
+            text: "Ce matin-là, Livia le croisa sur le chemin. « Bonjour Monsieur Grognon ! » Monsieur Grognon répondit : « Mmpf. » Ce qui, dans sa langue, voulait dire bonjour."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.05, pose: 'point' },
+                { t: 'grognon', x: 560, y: 520, s: 1, pose: 'shrug' }
+              ],
+              bubbles: [{ x: 80, y: 26, w: 300, t: 'Tu as perdu ton sourire ?', tx: 300, ty: 246 }]
+            },
+            text: "« Tu as perdu ton sourire ? » demanda Livia. Monsieur Grognon réfléchit. Il ne se souvenait pas d'en avoir eu un. « On va le chercher », décida Livia."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'livia', x: 260, y: 516, s: 1.05, pose: 'run' },
+                { t: 'grognon', x: 520, y: 514, s: 1, pose: 'shrug' },
+                { t: 'butterfly', x: 660, y: 300, s: 1.5 }
+              ],
+              sfx: [{ t: 'ON CHERCHE !', x: 420, y: 180, fs: 32, rot: -5, color: '#f7c518' }]
+            },
+            text: "Ils cherchèrent sous une pierre. Rien. Ils cherchèrent dans un arbre. Rien. Ils cherchèrent dans la poche de Monsieur Grognon. Il n'y avait qu'un vieux bouton."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'livia', x: 300, y: 516, s: 1.05, pose: 'sit' },
+                { t: 'grognon', x: 560, y: 514, s: 1, mood: 'wow' }
+              ],
+              sfx: [{ t: 'PATATRAS !', x: 400, y: 190, fs: 38, rot: -8, color: '#e0453c' }]
+            },
+            text: "Et puis Livia glissa sur l'herbe mouillée et tomba sur les fesses. Elle rit très fort. Alors il se passa quelque chose d'extraordinaire dans le visage de Monsieur Grognon."
+          },
+          {
+            scene: {
+              bg: 'hill', time: 'sunset',
+              items: [
+                { t: 'grognon', x: 320, y: 516, s: 1, mood: 'happy' },
+                { t: 'livia', x: 560, y: 518, s: 1.05, pose: 'armsup' }
+              ],
+              bubbles: [{ x: 400, y: 26, w: 300, t: 'Il était là depuis le début !', tx: 560, ty: 246 }]
+            },
+            text: "Un coin de sa bouche monta. Puis l'autre. Monsieur Grognon souriait. « Il était là depuis le début », dit Livia. Le lendemain, il était de nouveau grognon. Mais un peu moins."
+          }
+        ]
+      },
+
+      /* ---------- 2 ---------- */
+      {
+        id: 'chipie',
+        title: 'Madame Chipie fait une farce',
+        subtitle: 'La blague qui va trop loin',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'chipie', x: 300, y: 520, s: 1, pose: 'point' },
+            { t: 'livia', x: 520, y: 522, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'chipie', x: 400, y: 522, s: 1.1, pose: 'point' }],
+              sfx: [{ t: 'HÉHÉHÉ…', x: 648, y: 196, fs: 34, rot: -6, color: '#e0453c' }]
+            },
+            text: "Madame Chipie adorait les farces. Elle nouait les lacets. Elle cachait les chapeaux. Elle mettait du sel dans le sucre. Et elle riait, riait, riait."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'chipie', x: 280, y: 522, s: 1, pose: 'hold' },
+                { t: 'lent', x: 560, y: 520, s: 1, mood: 'wow', sansChapeau: true }
+              ],
+              sfx: [{ t: 'MON CHAPEAU !', x: 470, y: 190, fs: 30, rot: -5, color: '#9a7fc4' }]
+            },
+            text: "Ce jour-là, elle prit le chapeau de Monsieur Lent et le posa tout en haut d'un arbre. Monsieur Lent mit une heure à s'en apercevoir. Madame Chipie riait déjà depuis longtemps."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'chipie', x: 260, y: 522, s: 1, pose: 'point' },
+                { t: 'livia', x: 520, y: 524, s: 1.05, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'À ton tour, Livia !', tx: 260, ty: 250 }]
+            },
+            text: "Puis elle décida de faire une farce à Livia. Elle attendit qu'elle ait le dos tourné, et cacha son doudou dans le grand buisson."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 340, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'chipie', x: 600, y: 522, s: 1, mood: 'wow' }
+              ],
+              sfx: [{ t: 'MON DOUDOU…', x: 400, y: 180, fs: 30, rot: -5, color: '#6d5847' }]
+            },
+            text: "Livia chercha partout. Elle ne riait pas du tout. Ses yeux devinrent brillants, et sa bouche fit une drôle de forme. Madame Chipie sentit son propre rire s'éteindre."
+          },
+          {
+            scene: {
+              bg: 'village',
+              back: [{ t: 'bush', x: 660, y: 526, s: 1.2 }],
+              items: [
+                { t: 'chipie', x: 320, y: 522, s: 1, pose: 'hold', mood: 'sad' },
+                { t: 'livia', x: 540, y: 524, s: 1.05, pose: 'hold' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 310, t: 'Pardon. Je ne savais pas que ça piquait.', tx: 320, ty: 250 }]
+            },
+            text: "Madame Chipie courut au buisson, rapporta le doudou et le rendit à Livia. « Pardon », dit-elle. « Je croyais que c'était drôle. Je ne savais pas que ça piquait. »"
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'chipie', x: 320, y: 522, s: 1, pose: 'wave' },
+                { t: 'livia', x: 560, y: 524, s: 1.05, pose: 'wave' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'On rit à deux, ou on ne rit pas.', tx: 560, ty: 250 }]
+            },
+            text: "Depuis, Madame Chipie fait toujours des farces. Mais avant, elle se pose une question : est-ce qu'on va rire à deux ? Si la réponse est non, elle en cherche une autre."
+          }
+        ]
+      },
+
+      /* ---------- 3 ---------- */
+      {
+        id: 'etourdi',
+        title: 'Monsieur Étourdi perd tout',
+        subtitle: 'Une place pour chaque chose',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'etourdi', x: 320, y: 506, s: 1, pose: 'shrug' },
+            { t: 'livia', x: 540, y: 508, s: 1.05, pose: 'point' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'etourdi', x: 400, y: 508, s: 1.1, pose: 'shrug' }],
+              sfx: [{ t: 'OÙ EST MON CHAPEAU ?', x: 400, y: 150, fs: 26, rot: -4, color: '#7ab648' }]
+            },
+            text: "Monsieur Étourdi perdait tout. Ses clés. Ses chaussures. Une fois, il a perdu son chapeau alors qu'il l'avait sur la tête. Il a cherché toute la journée."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'etourdi', x: 280, y: 508, s: 1, mood: 'wow' },
+                { t: 'livia', x: 540, y: 510, s: 1.05, pose: 'point' }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Il est sur ta tête !', tx: 540, ty: 236 }]
+            },
+            text: "Livia le trouva assis par terre, au milieu d'un grand désordre. « Il est sur ta tête », dit-elle. Monsieur Étourdi toucha sa tête. Le chapeau y était."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.05, pose: 'hold' },
+                { t: 'etourdi', x: 560, y: 508, s: 1, pose: 'hold' },
+                { t: 'suitcase', x: 690, y: 518, s: .8 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 310, t: 'Une place pour chaque chose.', tx: 300, ty: 240 }]
+            },
+            text: "« J'ai un secret », dit Livia. « Une place pour chaque chose, et chaque chose à sa place. » Les clés sur le crochet. Les chaussures près de la porte. Le chapeau sur la tête."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'etourdi', x: 340, y: 508, s: 1, pose: 'point' },
+                { t: 'livia', x: 580, y: 510, s: 1.05 }
+              ],
+              sfx: [{ t: 'ET HOP !', x: 620, y: 160, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Ils rangèrent tout l'après-midi. Chaque objet trouva son endroit. Monsieur Étourdi était très fier. Il avait même inventé une place pour son parapluie."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'etourdi', x: 360, y: 522, s: 1, pose: 'shrug', mood: 'wow', sansChapeau: true },
+                { t: 'livia', x: 600, y: 524, s: 1.05 }
+              ],
+              sfx: [{ t: 'ENCORE LE CHAPEAU !', x: 380, y: 170, fs: 26, rot: -4, color: '#7ab648' }]
+            },
+            text: "Le lendemain matin, Monsieur Étourdi sortit de chez lui d'un pas décidé. Puis il s'arrêta. Il avait oublié son chapeau. Il était bien rangé, sur le crochet de l'entrée."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'etourdi', x: 340, y: 522, s: 1, pose: 'wave', sansChapeau: true },
+                { t: 'livia', x: 580, y: 524, s: 1.05, pose: 'wave' }
+              ],
+              bubbles: [{ x: 420, y: 26, w: 310, t: 'Au moins, tu sais où il est !', tx: 580, ty: 250 }]
+            },
+            text: "« Au moins, tu sais où il est ! » dit Livia. Monsieur Étourdi trouva que c'était un très bon point. Il retourna le chercher en chantant."
+          }
+        ]
+      },
+
+      /* ---------- 4 ---------- */
+      {
+        id: 'timide',
+        title: 'Madame Timide dit bonjour',
+        subtitle: 'Le mot le plus difficile du monde',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'timide', x: 320, y: 522, s: 1, mood: 'sad' },
+            { t: 'livia', x: 540, y: 524, s: 1.05, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'forest',
+              items: [{ t: 'timide', x: 420, y: 518, s: 1.05, mood: 'sad' }],
+              sfx: [{ t: 'CHUUUT…', x: 200, y: 240, fs: 34, rot: -5, color: '#f2a0c2' }]
+            },
+            text: "Madame Timide était timide. Très timide. Tellement timide qu'elle habitait au fond des bois, dans une maison que personne ne trouvait jamais."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'timide', x: 300, y: 518, s: 1, mood: 'wow' },
+                { t: 'livia', x: 560, y: 520, s: 1.05, pose: 'wave' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 280, t: 'Bonjour ! Je suis Livia.', tx: 560, ty: 244 }]
+            },
+            text: "Un jour, quelqu'un frappa à sa porte. C'était Livia, qui s'était perdue en cherchant des châtaignes. Madame Timide devint toute rouge. Puis elle se cacha derrière la porte."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 320, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'timide', x: 580, y: 518, s: 1, pose: 'shrug', mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 310, t: 'Tu peux juste faire coucou de la main.', tx: 320, ty: 244 }]
+            },
+            text: "« Ce n'est pas grave », dit Livia. « Tu peux juste faire coucou de la main. » Madame Timide y réfléchit très longtemps. Puis elle leva une toute petite main."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'timide', x: 340, y: 518, s: 1, pose: 'wave' },
+                { t: 'livia', x: 580, y: 520, s: 1.05, pose: 'wave' }
+              ],
+              sfx: [{ t: 'COUCOU !', x: 420, y: 176, fs: 34, rot: -6, color: '#f7c518' }]
+            },
+            text: "Livia fit coucou aussi. Elles restèrent là, à se faire coucou, pendant un temps ridicule. Et Madame Timide s'aperçut que son cœur battait moins fort qu'avant."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'timide', x: 300, y: 522, s: 1, pose: 'shrug' },
+                { t: 'bonheur', x: 520, y: 522, s: .95, pose: 'wave' },
+                { t: 'livia', x: 700, y: 524, s: 1.05 }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 290, t: 'B… bonjour.', tx: 300, ty: 248 }]
+            },
+            text: "Le lendemain, Livia l'emmena au village. Il y avait du monde partout. Madame Timide serra très fort la main de Livia. Puis elle dit, tout bas : « B… bonjour. »"
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'timide', x: 330, y: 522, s: 1 },
+                { t: 'livia', x: 570, y: 524, s: 1.05, pose: 'hold' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'C\'était le plus dur. Le reste est facile.', tx: 330, ty: 248 }]
+            },
+            text: "Personne ne se moqua. Personne ne fit d'histoires. Quelqu'un répondit simplement : « Bonjour ! » « C'était le plus dur », dit Livia. « Maintenant, le reste est facile. »"
+          }
+        ]
+      },
+
+      /* ---------- 5 ---------- */
+      {
+        id: 'rapide-lent',
+        title: 'Monsieur Rapide et Monsieur Lent',
+        subtitle: 'Deux vitesses, une seule promenade',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'road',
+          items: [
+            { t: 'rapide', x: 280, y: 522, s: 1, pose: 'run' },
+            { t: 'lent', x: 540, y: 520, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'rapide', x: 250, y: 524, s: 1.05, pose: 'run' },
+                { t: 'lent', x: 570, y: 522, s: 1.05 }
+              ],
+              sfx: [{ t: 'ZOUUUM !', x: 420, y: 190, fs: 36, rot: -8, color: '#f0862c' }]
+            },
+            text: "Monsieur Rapide faisait tout vite. Monsieur Lent faisait tout lentement. Monsieur Rapide avait déjà fini son petit-déjeuner que Monsieur Lent cherchait encore sa cuillère."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'livia', x: 250, y: 518, s: 1.05, pose: 'point' },
+                { t: 'rapide', x: 470, y: 516, s: 1 },
+                { t: 'lent', x: 684, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'On se promène tous les trois ?', tx: 260, ty: 244 }]
+            },
+            text: "Un matin, Livia leur proposa une promenade. Tous les trois. Monsieur Rapide dit oui avant la fin de la question. Monsieur Lent dit oui bien après."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 640, y: 516, s: 1, pose: 'run' },
+                { t: 'livia', x: 380, y: 518, s: 1.05 },
+                { t: 'lent', x: 160, y: 516, s: 1 }
+              ],
+              sfx: [{ t: 'ATTENDEZ-MOI…', x: 300, y: 176, fs: 28, rot: -4, color: '#9a7fc4' }]
+            },
+            text: "Au bout de dix pas, Monsieur Rapide était déjà en haut de la colline. Au bout de dix pas, Monsieur Lent était encore en bas. Livia était au milieu, toute seule."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 300, y: 518, s: 1, pose: 'shrug', mood: 'sad' },
+                { t: 'lent', x: 560, y: 518, s: 1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'CE N\'EST PAS DRÔLE.', x: 420, y: 176, fs: 26, rot: -4, color: '#6d5847' }]
+            },
+            text: "Monsieur Rapide arriva le premier. Il n'y avait personne pour regarder le paysage avec lui. Monsieur Lent arriva le dernier. Il n'y avait plus personne pour l'attendre."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 260, y: 518, s: 1, pose: 'hold' },
+                { t: 'livia', x: 460, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'lent', x: 660, y: 518, s: 1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 250, y: 26, w: 310, t: 'On va à la vitesse du milieu !', tx: 460, ty: 246 }]
+            },
+            text: "Alors Livia eut une idée. « On va à la vitesse du milieu. » Monsieur Rapide ralentit un peu. Monsieur Lent accéléra un peu. Ce fut un peu difficile pour les deux."
+          },
+          {
+            scene: {
+              bg: 'hill', time: 'sunset',
+              items: [
+                { t: 'rapide', x: 290, y: 518, s: 1 },
+                { t: 'livia', x: 480, y: 520, s: 1.05 },
+                { t: 'lent', x: 670, y: 518, s: 1 }
+              ]
+            },
+            text: "Ils marchèrent côte à côte jusqu'au sommet. Ils virent le même coucher de soleil, en même temps. Monsieur Rapide trouva que c'était très long. Et très bien."
+          }
+        ]
+      },
+
+      /* ---------- 6 ---------- */
+      {
+        id: 'rangetout',
+        title: 'Madame Range-Tout et le grand désordre',
+        subtitle: 'Quand tout est trop bien rangé',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'rangetout', x: 320, y: 506, s: 1, pose: 'point' },
+            { t: 'livia', x: 540, y: 508, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'rangetout', x: 400, y: 508, s: 1.1, pose: 'point' }],
+              sfx: [{ t: 'TOUT DROIT !', x: 400, y: 150, fs: 30, rot: -4, color: '#3fb3b0' }]
+            },
+            text: "Chez Madame Range-Tout, tout était rangé. Les livres par ordre de taille. Les crayons par ordre de couleur. Les petits pois par ordre de rondeur."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 290, y: 508, s: 1, mood: 'wow' },
+                { t: 'livia', x: 550, y: 510, s: 1.05, pose: 'hold' },
+                { t: 'tourcubes', x: 690, y: 508, s: .7, n: 3 },
+                { t: 'ball', x: 640, y: 506, s: .7 }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 290, t: 'On joue à quelque chose ?', tx: 560, ty: 236 }]
+            },
+            text: "Livia vint jouer chez elle. Elle apporta des cubes, des crayons et un ballon. Madame Range-Tout regarda tout cela avec un peu d'inquiétude."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 320, y: 510, s: 1.05, pose: 'armsup' },
+                { t: 'rangetout', x: 580, y: 508, s: 1, mood: 'wow' }
+              ],
+              front: [
+                { t: 'cube', x: 150, y: 522, s: .8, rot: -14, color: '#e0453c' },
+                { t: 'cube', x: 440, y: 528, s: .8, rot: 18, color: '#4a7fc1' },
+                { t: 'cube', x: 700, y: 524, s: .8, rot: -8, color: '#7ab648' },
+                { t: 'cube', x: 250, y: 546, s: .7, rot: 26, color: '#f7c518' }
+              ],
+              sfx: [{ t: 'PATATRAS !', x: 420, y: 156, fs: 34, rot: -8, color: '#e0453c' }]
+            },
+            text: "Elles construisirent une tour. Puis un pont. Puis un château qui s'écroula sur le tapis. Il y avait des cubes partout. Madame Range-Tout ne respirait plus très bien."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 340, y: 508, s: 1, pose: 'shrug' },
+                { t: 'livia', x: 580, y: 510, s: 1.05, pose: 'point' }
+              ],
+              bubbles: [{ x: 410, y: 26, w: 310, t: 'On range après. Pas pendant.', tx: 580, ty: 240 }]
+            },
+            text: "« On range après », dit Livia. « Pas pendant. Sinon on ne joue jamais. » Madame Range-Tout trouva cette phrase très dérangeante. Et un peu vraie."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 340, y: 508, s: 1, pose: 'jump' },
+                { t: 'livia', x: 580, y: 510, s: 1.05, pose: 'jump' }
+              ],
+              front: [
+                { t: 'cube', x: 120, y: 528, s: .8, rot: 12, color: '#4a7fc1' },
+                { t: 'cube', x: 470, y: 534, s: .8, rot: -20, color: '#e0453c' },
+                { t: 'cube', x: 720, y: 526, s: .8, rot: 8, color: '#f7c518' }
+              ],
+              sfx: [{ t: 'ENCORE !', x: 420, y: 150, fs: 34, rot: -6, color: '#f7c518' }]
+            },
+            text: "Alors elle essaya. Elle laissa un cube par terre. Puis deux. Puis elle renversa la tour elle-même, exprès, en riant très fort. C'était absolument délicieux."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 320, y: 508, s: 1, pose: 'hold' },
+                { t: 'livia', x: 560, y: 510, s: 1.05, pose: 'hold' }
+              ],
+              front: [{ t: 'cube', x: 710, y: 530, s: .8, rot: -10, color: '#e0453c' }],
+              bubbles: [{ x: 160, y: 26, w: 300, t: 'Et maintenant, on range !', tx: 320, ty: 240 }]
+            },
+            text: "Le soir, elles rangèrent tout, ensemble, en dix minutes. « Voilà », dit Madame Range-Tout. « Après. » Et elle laissa un seul cube dehors, juste pour voir."
+          }
+        ]
+      },
+
+      /* ---------- 7 ---------- */
+      {
+        id: 'costaud',
+        title: 'Monsieur Costaud n\'y arrive pas',
+        subtitle: 'Demander de l\'aide, c\'est permis',
+        tag: 'Humeurs',
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'costaud', x: 320, y: 520, s: 1.05, pose: 'shrug' },
+            { t: 'livia', x: 560, y: 522, s: 1.05, pose: 'point' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'costaud', x: 400, y: 522, s: 1.15, pose: 'armsup' }],
+              sfx: [{ t: 'FASTOCHE !', x: 640, y: 200, fs: 34, rot: -6, color: '#c4453c' }]
+            },
+            text: "Monsieur Costaud était le plus fort de tous. Il soulevait les arbres. Il portait les maisons. Une fois, il a déplacé une colline parce qu'elle le gênait."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'costaud', x: 340, y: 522, s: 1.1, pose: 'hold' },
+                { t: 'rock', x: 600, y: 528, s: 1.4 }
+              ],
+              sfx: [{ t: 'HHHHNNN…', x: 480, y: 200, fs: 32, rot: -6, color: '#c4453c' }]
+            },
+            text: "Ce jour-là, il trouva un rocher. Il tira. Le rocher ne bougea pas. Il tira encore. Le rocher ne bougea toujours pas. Monsieur Costaud devint tout rouge."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'costaud', x: 320, y: 522, s: 1.1, pose: 'shrug', mood: 'sad' },
+                { t: 'livia', x: 600, y: 524, s: 1.05 }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Tu veux un coup de main ?', tx: 600, ty: 250 }]
+            },
+            text: "Livia passa par là. « Tu veux un coup de main ? » Monsieur Costaud répondit non. Il était Monsieur Costaud. Monsieur Costaud n'avait besoin de personne."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'costaud', x: 400, y: 522, s: 1.1, pose: 'hold', mood: 'fache' },
+                { t: 'rock', x: 640, y: 528, s: 1.4 }
+              ],
+              sfx: [{ t: 'ENCORE !', x: 260, y: 210, fs: 34, rot: -8, color: '#c4453c' }]
+            },
+            text: "Il tira toute la matinée. Il tira tout l'après-midi. Le rocher resta exactement où il était. Le soir, Monsieur Costaud était encore devant lui, très fatigué et un peu triste."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rock', x: 100, y: 530, s: 1.4 },
+                { t: 'costaud', x: 280, y: 522, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 470, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'grognon', x: 660, y: 522, s: .95, pose: 'hold' }
+              ],
+              sfx: [{ t: 'À TROIS !', x: 470, y: 180, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Alors il dit une phrase toute petite : « Tu peux m'aider ? » Livia appela Monsieur Grognon, qui grogna, mais qui vint. Ils poussèrent tous les trois. « Un, deux, trois ! »"
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'rock', x: 96, y: 468, s: 1.2, rot: 24 },
+                { t: 'costaud', x: 320, y: 522, s: 1.05, pose: 'armsup' },
+                { t: 'livia', x: 510, y: 524, s: 1.05, pose: 'armsup' },
+                { t: 'grognon', x: 690, y: 522, s: .95 }
+              ],
+              sfx: [{ t: 'ÇA BOUGE !', x: 470, y: 170, fs: 34, rot: -6, color: '#f7c518' }]
+            },
+            text: "Le rocher bougea. Puis il roula. Puis il descendit la colline tout seul. « Je suis toujours le plus fort », dit Monsieur Costaud. « Mais à trois, c'est encore mieux. »"
+          }
+        ]
+      },
+
+      /* ---------- 8 ---------- */
+      {
+        id: 'bonheur',
+        title: 'Madame Bonheur et le jour gris',
+        subtitle: 'Ce qu\'on fait quand rien ne va',
+        tag: 'Humeurs',
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'bonheur', x: 320, y: 522, s: 1.05, pose: 'armsup' },
+            { t: 'livia', x: 540, y: 524, s: 1.05, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'bonheur', x: 400, y: 524, s: 1.15, pose: 'armsup' }],
+              sfx: [{ t: 'QUELLE BELLE JOURNÉE !', x: 400, y: 176, fs: 26, rot: -4, color: '#f7c518' }]
+            },
+            text: "Madame Bonheur était heureuse. Tous les jours. Sans exception. Même sous la pluie, elle trouvait que les flaques faisaient de jolis miroirs."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 400, y: 524, s: 1.15, mood: 'sad' }
+              ],
+              sfx: [{ t: 'ET PUIS UN JOUR…', x: 400, y: 170, fs: 28, rot: -4, color: '#6d5847' }]
+            },
+            text: "Et puis un matin, elle se réveilla toute grise. Elle ne savait pas pourquoi. Rien de grave n'était arrivé. Simplement, le bonheur n'était pas venu."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 300, y: 524, s: 1.05, pose: 'shrug', mood: 'sad' },
+                { t: 'livia', x: 560, y: 526, s: 1.05 }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Tu veux qu\'on reste là un peu ?', tx: 560, ty: 252 }]
+            },
+            text: "Livia la trouva devant sa porte, sans rien faire. Elle ne dit pas « souris ». Elle ne dit pas « ce n'est rien ». Elle demanda seulement : « Tu veux qu'on reste là un peu ? »"
+          },
+          {
+            scene: {
+              bg: 'village', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 340, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 560, y: 526, s: 1.05 }
+              ],
+              sfx: [{ t: '. . .', x: 460, y: 186, fs: 34, rot: 0, color: '#8a7768' }]
+            },
+            text: "Elles restèrent là un long moment, sans rien dire. Le ciel était gris. Le vent était froid. Livia ne partit pas. C'était tout ce qu'il y avait à faire."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'gris',
+              items: [
+                { t: 'grognon', x: 200, y: 524, s: .95 },
+                { t: 'timide', x: 400, y: 524, s: .95, pose: 'wave' },
+                { t: 'costaud', x: 600, y: 524, s: .95, pose: 'hold' },
+                { t: 'flower', x: 730, y: 534, s: 1.4 }
+              ],
+              bubbles: [{ x: 220, y: 26, w: 300, t: 'On est venus, c\'est tout.', tx: 400, ty: 246 }]
+            },
+            text: "Puis les autres arrivèrent. Monsieur Grognon apporta un caillou, parce qu'il ne savait pas quoi apporter. Madame Timide dit bonjour. Monsieur Costaud apporta une fleur."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'bonheur', x: 292, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 508, y: 526, s: 1.05, pose: 'hold' },
+                { t: 'grognon', x: 688, y: 524, s: .95 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 310, t: 'Demain, ça ira peut-être mieux.', tx: 300, ty: 252 }]
+            },
+            text: "Le soir venu, Madame Bonheur n'était pas redevenue joyeuse. Mais elle n'était plus toute seule. « Demain, ça ira peut-être mieux », dit-elle. Et le lendemain, ça allait mieux."
+          }
+        ]
+      }
+    ]
   }
 ];
+
+/* ============================================================
+   games.js — les jeux de Livia (3 à 5 ans)
+
+   Trois règles ont guidé ces jeux :
+   on ne perd jamais, on ne lit jamais rien (tout est dit à voix
+   haute et montré en image), et une manche tient en un seul geste.
+   ============================================================ */
+(function (global) {
+  'use strict';
+
+  /* ---------------- petites aides ---------------- */
+  function el(tag, cls, html) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html !== undefined) n.innerHTML = html;
+    return n;
+  }
+  function melange(a) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+  function piocher(a, n) { return melange(a).slice(0, n); }
+  function entier(min, max) { return min + Math.floor(Math.random() * (max - min + 1)); }
+
+  /* ---------------- la voix ---------------- */
+  var voixActive = true;
+  function dire(texte) {
+    if (!voixActive || !('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    var u = new SpeechSynthesisUtterance(texte);
+    u.lang = 'fr-FR'; u.rate = .9; u.pitch = 1.1;
+    window.speechSynthesis.speak(u);
+  }
+  function taire() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
+
+  /* ============================================================
+     LE CADRE : manches, étoiles, félicitations
+     ============================================================ */
+  function jouer(stage, def, onQuit) {
+    var gagnees = 0;
+    stage.innerHTML = '';
+
+    var barre = el('div', 'jeu-etoiles');
+    var consigne = el('p', 'jeu-consigne');
+    var zone = el('div', 'jeu-zone');
+    stage.appendChild(barre);
+    stage.appendChild(consigne);
+    stage.appendChild(zone);
+
+    function majEtoiles() {
+      barre.innerHTML = '';
+      for (var i = 0; i < def.manches; i++) {
+        barre.appendChild(el('i', 'etoile' + (i < gagnees ? ' on' : '')));
+      }
+    }
+
+    function feter(suite) {
+      var mots = ['Bravo !', 'Super !', 'Bien joué !', 'Youpi !', 'Parfait !'];
+      var m = mots[entier(0, mots.length - 1)];
+      var f = el('div', 'jeu-bravo', '<div class="bravo-etoile">⭐</div><b>' + m + '</b>');
+      zone.appendChild(f);
+      dire(m);
+      setTimeout(function () { if (f.parentNode) f.parentNode.removeChild(f); suite(); }, 1100);
+    }
+
+    function manche() {
+      if (gagnees >= def.manches) return fin();
+      majEtoiles();
+      zone.innerHTML = '';
+      def.manche(zone, gagnees, {
+        consigne: function (texte) { consigne.textContent = texte; dire(texte); },
+        reussi: function () { gagnees++; majEtoiles(); feter(manche); }
+      });
+    }
+
+    function fin() {
+      majEtoiles();
+      consigne.textContent = '';
+      zone.innerHTML = '';
+      var f = el('div', 'jeu-fin',
+        '<div class="fin-etoiles">⭐⭐⭐</div>' +
+        '<h3>Bravo Livia !</h3>' +
+        '<p>' + def.felicitation + '</p>' +
+        '<div class="jeu-actions">' +
+        '<button class="primary" data-act="rejouer">Rejouer</button>' +
+        '<button data-act="autres">Les autres jeux</button></div>');
+      zone.appendChild(f);
+      dire('Bravo Livia ! Tu as gagné toutes les étoiles.');
+      f.addEventListener('click', function (e) {
+        var a = e.target.getAttribute && e.target.getAttribute('data-act');
+        if (a === 'rejouer') { gagnees = 0; manche(); }
+        else if (a === 'autres') onQuit();
+      });
+    }
+
+    manche();
+  }
+
+  /* ============================================================
+     JEU 1 — RELIER : chaque héros retrouve son objet
+     ============================================================ */
+  var PAIRES = [
+    { nom: 'Peppa', objet: 'la flaque de boue',
+      a: { t: 'peppa', ds: .66, dy: 184 }, b: { t: 'mudpuddle', ds: .95, dy: 110 } },
+    { nom: 'George', objet: 'le dinosaure',
+      a: { t: 'george', ds: .66, dy: 184 }, b: { t: 'dino', ds: 2, dy: 150 } },
+    { nom: 'Livia', objet: 'le cerf-volant',
+      a: { t: 'livia', ds: .66, dy: 184 }, b: { t: 'kite', ds: 1.15, dy: 70 } },
+    { nom: 'Elsa', objet: 'le flocon',
+      a: { t: 'elsa', ds: .66, dy: 184 }, b: { t: 'snowflake', ds: 1, dy: 100, r: 62, color: '#5aa9d0' } },
+    { nom: 'Olaf', objet: 'la boule de neige',
+      a: { t: 'olaf', ds: .95, dy: 182 }, b: { t: 'snowball', ds: 1, dy: 100, r: 52 } },
+    { nom: 'Papa Pig', objet: 'la voiture',
+      a: { t: 'daddy', ds: .66, dy: 184 }, b: { t: 'car', ds: .68, dy: 122 } },
+    { nom: 'Bluey', objet: 'le ballon',
+      a: { t: 'bluey', ds: .62, dy: 184 }, b: { t: 'ball', ds: 1.1, dy: 122 } },
+    { nom: 'Madame Bonheur', objet: 'la fleur',
+      a: { t: 'bonheur', ds: .62, dy: 180 }, b: { t: 'flower', ds: 2.2, dy: 120 } },
+    { nom: 'Monsieur Grognon', objet: 'le caillou',
+      a: { t: 'grognon', ds: .62, dy: 180 }, b: { t: 'rock', ds: 1.5, dy: 130 } },
+    { nom: 'Madame Range-Tout', objet: 'le cube',
+      a: { t: 'rangetout', ds: .62, dy: 180 }, b: { t: 'cube', ds: 1.5, dy: 136 } }
+  ];
+
+  function jeuRelier(zone, n, api) {
+    var lot = piocher(PAIRES, 3);
+    api.consigne('Touche un personnage, puis son objet.');
+
+    var plateau = el('div', 'relier');
+    var colA = el('div', 'relier-col');
+    var colB = el('div', 'relier-col');
+    var traits = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    traits.setAttribute('class', 'relier-traits');
+    plateau.appendChild(traits);
+    plateau.appendChild(colA);
+    plateau.appendChild(colB);
+    zone.appendChild(plateau);
+
+    function carte(item, cle, col) {
+      var c = el('button', 'carte');
+      c.innerHTML = Art.sticker(item);
+      c.dataset.cle = cle;
+      col.appendChild(c);
+      return c;
+    }
+
+    melange(lot).forEach(function (p) { carte(p.a, p.nom, colA); });
+    melange(lot).forEach(function (p) { carte(p.b, p.nom, colB); });
+
+    var choisie = null, trouvees = 0;
+
+    function relier(c1, c2) {
+      var r0 = plateau.getBoundingClientRect();
+      var r1 = c1.getBoundingClientRect(), r2 = c2.getBoundingClientRect();
+      var l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      l.setAttribute('x1', r1.right - r0.left - 6);
+      l.setAttribute('y1', r1.top + r1.height / 2 - r0.top);
+      l.setAttribute('x2', r2.left - r0.left + 6);
+      l.setAttribute('y2', r2.top + r2.height / 2 - r0.top);
+      traits.appendChild(l);
+    }
+
+    plateau.addEventListener('click', function (e) {
+      var c = e.target.closest ? e.target.closest('.carte') : null;
+      if (!c || c.classList.contains('ok')) return;
+      var estGauche = c.parentNode === colA;
+
+      if (estGauche) {
+        if (choisie) choisie.classList.remove('choisie');
+        choisie = c; c.classList.add('choisie');
+        return;
+      }
+      if (!choisie) { c.classList.add('secoue'); setTimeout(function () { c.classList.remove('secoue'); }, 400); return; }
+
+      if (choisie.dataset.cle === c.dataset.cle) {
+        relier(choisie, c);
+        choisie.classList.add('ok'); c.classList.add('ok');
+        choisie.classList.remove('choisie');
+        choisie = null;
+        trouvees++;
+        if (trouvees === lot.length) setTimeout(function () { api.reussi(); }, 450);
+      } else {
+        c.classList.add('secoue');
+        var g = choisie;
+        setTimeout(function () {
+          c.classList.remove('secoue');
+          g.classList.remove('choisie');
+        }, 420);
+        choisie = null;
+      }
+    });
+  }
+
+  /* ============================================================
+     JEU 2 — COMPTER : combien y en a-t-il ?
+     ============================================================ */
+  var A_COMPTER = [
+    { t: 'shell', pluriel: 'coquillages', bg: 'beach', s: 2.2, y: 500 },
+    { t: 'starfish', pluriel: 'étoiles de mer', bg: 'beach', s: 1.9, y: 505 },
+    { t: 'crab', pluriel: 'crabes', bg: 'beach', s: 1.7, y: 515 },
+    { t: 'flower', pluriel: 'fleurs', bg: 'garden', s: 2.4, y: 525 },
+    { t: 'ball', pluriel: 'ballons', bg: 'garden', s: 1.2, y: 505 },
+    { t: 'butterfly', pluriel: 'papillons', bg: 'garden', s: 2.2, y: 330 },
+    { t: 'snowball', pluriel: 'boules de neige', bg: 'snow', s: 1.6, y: 500, r: 26 },
+    { t: 'cube', pluriel: 'cubes', bg: 'bedroom', s: 1.3, y: 520 }
+  ];
+
+  function jeuCompter(zone, n, api) {
+    var o = piocher(A_COMPTER, 1)[0];
+    var combien = Math.min(6, 2 + n);          // on monte doucement : 2, 3, 4, 5, 6
+    api.consigne('Combien y a-t-il de ' + o.pluriel + ' ?');
+
+    /* Livia montre du doigt, les objets s'étalent bien à plat pour être comptés */
+    var items = [{ t: 'livia', x: 90, y: 522, s: .9, pose: 'point' }];
+    var gauche = 250, largeur = 480;
+    for (var i = 0; i < combien; i++) {
+      items.push({
+        t: o.t,
+        x: combien === 1 ? gauche + largeur / 2 : gauche + largeur * i / (combien - 1),
+        y: o.y + (i % 2 ? 28 : 0),
+        s: o.s, r: o.r
+      });
+    }
+
+    var tableau = el('div', 'jeu-tableau');
+    tableau.innerHTML = Art.scene({ bg: o.bg, items: items }, {});
+    zone.appendChild(tableau);
+
+    var choix = melange([combien, Math.max(1, combien - 1), combien + 1]);
+    var rangee = el('div', 'chiffres');
+    choix.forEach(function (c) {
+      var b = el('button', 'chiffre', String(c));
+      b.onclick = function () {
+        if (c === combien) {
+          b.classList.add('ok');
+          setTimeout(function () { api.reussi(); }, 350);
+        } else {
+          b.classList.add('secoue');
+          setTimeout(function () { b.classList.remove('secoue'); }, 420);
+          dire('Essaie encore. Compte avec ton doigt !');
+        }
+      };
+      rangee.appendChild(b);
+    });
+    zone.appendChild(rangee);
+  }
+
+  /* ============================================================
+     JEU 3 — ÉCRIRE : tracer les lettres de son prénom
+     ============================================================ */
+  var LETTRES = {
+    L: [[[32, 16], [32, 82]], [[32, 82], [72, 82]]],
+    I: [[[50, 16], [50, 82]]],
+    V: [[[28, 16], [50, 82]], [[50, 82], [72, 16]]],
+    A: [[[30, 82], [50, 16]], [[50, 16], [70, 82]], [[38, 58], [62, 58]]]
+  };
+  var PRENOM = ['L', 'I', 'V', 'I', 'A'];
+
+  function points(seg, pas) {
+    var res = [], dx = seg[1][0] - seg[0][0], dy = seg[1][1] - seg[0][1];
+    var d = Math.sqrt(dx * dx + dy * dy), n = Math.max(2, Math.round(d / pas));
+    for (var i = 0; i <= n; i++) {
+      res.push({ x: seg[0][0] + dx * i / n, y: seg[0][1] + dy * i / n, vu: false });
+    }
+    return res;
+  }
+
+  function jeuEcrire(zone, n, api) {
+    var lettre = PRENOM[n % PRENOM.length];
+    var segments = LETTRES[lettre];
+    api.consigne('Trace la lettre ' + lettre + ' avec ton doigt.');
+
+    var cadre = el('div', 'trace');
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 100 100');
+    cadre.appendChild(svg);
+    zone.appendChild(cadre);
+
+    var NS = 'http://www.w3.org/2000/svg';
+    function ligne(seg, cls, w) {
+      var l = document.createElementNS(NS, 'line');
+      l.setAttribute('x1', seg[0][0]); l.setAttribute('y1', seg[0][1]);
+      l.setAttribute('x2', seg[1][0]); l.setAttribute('y2', seg[1][1]);
+      l.setAttribute('class', cls); l.setAttribute('stroke-width', w);
+      svg.appendChild(l);
+      return l;
+    }
+
+    var guides = segments.map(function (s) { return ligne(s, 'guide', 13); });
+    segments.forEach(function (s) { ligne(s, 'pointille', 1.6); });
+
+    var depart = document.createElementNS(NS, 'circle');
+    depart.setAttribute('class', 'depart'); depart.setAttribute('r', 5);
+    svg.appendChild(depart);
+
+    var encre = document.createElementNS(NS, 'polyline');
+    encre.setAttribute('class', 'encre');
+    svg.appendChild(encre);
+
+    var seg = 0;
+    var jalons = points(segments[0], 7);
+    var trace = [];
+
+    function majDepart() {
+      if (seg >= segments.length) { depart.style.display = 'none'; return; }
+      depart.setAttribute('cx', segments[seg][0][0]);
+      depart.setAttribute('cy', segments[seg][0][1]);
+    }
+    majDepart();
+
+    function coord(e) {
+      var r = svg.getBoundingClientRect();
+      return { x: (e.clientX - r.left) / r.width * 100, y: (e.clientY - r.top) / r.height * 100 };
+    }
+
+    var dessine = false;
+    function debut(e) {
+      if (seg >= segments.length) return;
+      dessine = true; trace = []; encre.setAttribute('points', '');
+      svg.setPointerCapture && svg.setPointerCapture(e.pointerId);
+      bouge(e);
+    }
+    function bouge(e) {
+      if (!dessine) return;
+      e.preventDefault();
+      var p = coord(e);
+      trace.push(p.x.toFixed(1) + ',' + p.y.toFixed(1));
+      encre.setAttribute('points', trace.join(' '));
+      var vus = 0;
+      jalons.forEach(function (j) {
+        if (!j.vu) {
+          var dx = j.x - p.x, dy = j.y - p.y;
+          if (dx * dx + dy * dy < 100) j.vu = true;   // rayon 10
+        }
+        if (j.vu) vus++;
+      });
+      if (vus / jalons.length >= .8) fini();
+    }
+    function fin(e) { dessine = false; }
+
+    function fini() {
+      dessine = false;
+      guides[seg].classList.add('fait');
+      var g = document.createElementNS(NS, 'line');
+      g.setAttribute('x1', segments[seg][0][0]); g.setAttribute('y1', segments[seg][0][1]);
+      g.setAttribute('x2', segments[seg][1][0]); g.setAttribute('y2', segments[seg][1][1]);
+      g.setAttribute('class', 'ecrit'); g.setAttribute('stroke-width', 11);
+      svg.appendChild(g);
+      encre.setAttribute('points', '');
+      seg++;
+      if (seg >= segments.length) {
+        majDepart();
+        setTimeout(function () { api.reussi(); }, 400);
+      } else {
+        jalons = points(segments[seg], 7);
+        majDepart();
+        dire('Encore un trait !');
+      }
+    }
+
+    svg.addEventListener('pointerdown', debut);
+    svg.addEventListener('pointermove', bouge);
+    svg.addEventListener('pointerup', fin);
+    svg.addEventListener('pointercancel', fin);
+  }
+
+  /* ============================================================
+     LE CATALOGUE
+     ============================================================ */
+  var JEUX = [
+    {
+      id: 'relier', nom: 'Relie les amis', emoji: '🔗',
+      sous: 'Chaque héros retrouve son objet',
+      vignette: { t: 'peppa', ds: .66, dy: 184 },
+      def: { manches: 4, manche: jeuRelier, felicitation: 'Tu as relié tous les amis !' }
+    },
+    {
+      id: 'compter', nom: 'Compte avec Livia', emoji: '🔢',
+      sous: 'Combien y en a-t-il ?',
+      vignette: { t: 'livia', ds: .66, dy: 184 },
+      def: { manches: 5, manche: jeuCompter, felicitation: 'Tu sais compter jusqu\'à 6 !' }
+    },
+    {
+      id: 'ecrire', nom: 'Écris ton prénom', emoji: '✏️',
+      sous: 'Trace les lettres de L I V I A',
+      vignette: { t: 'elsa', ds: .66, dy: 184 },
+      def: { manches: 5, manche: jeuEcrire, felicitation: 'Tu as écrit ton prénom en entier !' }
+    }
+  ];
+
+  global.Jeux = {
+    liste: JEUX,
+    trouver: function (id) {
+      for (var i = 0; i < JEUX.length; i++) if (JEUX[i].id === id) return JEUX[i];
+      return null;
+    },
+    lancer: function (stage, jeu, onQuit) { jouer(stage, jeu.def, onQuit); },
+    voix: function (v) { if (v !== undefined) { voixActive = v; if (!v) taire(); } return voixActive; },
+    taire: taire
+  };
+})(window);
 
 /* ============================================================
    app.js — navigation, Cover Flow infini et lecteur de BD

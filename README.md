@@ -23,7 +23,8 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   un cadrage unique couperait les personnages sur un téléphone.
 * **Un logo Kid Cartoon** présent partout, qui ramène à l'accueil d'un doigt
 * **Deux rubriques** — Histoires et Jeux ; sous Histoires, les univers
-  (Peppa Pig, La Reine des Neiges, Bluey… faciles à compléter)
+  (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame… faciles à
+  compléter)
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
@@ -81,6 +82,19 @@ autour d'une émotion nommée et d'une réparation concrète, sans morale plaqu�
 | La chasse au trésor du jardin | 7 |
 | Le pique-nique tout en haut | 7 |
 | La nuit des lucioles | 7 |
+
+**Les Monsieur Madame** (huit histoires, une humeur chacune)
+
+| Histoire | Ce qu'elle raconte |
+|---|---|
+| Monsieur Grognon et le sourire perdu | on peut être grognon, et se laisser attraper |
+| Madame Chipie fait une farce | une farce n'est drôle que si on rit à deux |
+| Monsieur Étourdi perd tout | une place pour chaque chose |
+| Madame Timide dit bonjour | commencer tout petit |
+| Monsieur Rapide et Monsieur Lent | la vitesse du milieu |
+| Madame Range-Tout et le grand désordre | on range après, pas pendant |
+| Monsieur Costaud n'y arrive pas | demander de l'aide |
+| Madame Bonheur et le jour gris | rester là quand ça ne va pas |
 
 ---
 
@@ -152,7 +166,7 @@ dans le tableau `stories` de l'univers voulu :
 ```js
 scene: {
   bg: 'beach',          // le décor
-  time: 'sunset',       // day (défaut) | morning | sunset | night
+  time: 'sunset',       // day (défaut) | morning | sunset | night | gris (ciel couvert)
   aurora: true,         // (décor 'snow' de nuit uniquement) affiche une aurore boréale
 
   back:  [ /* éléments dessinés derrière les personnages */ ],
@@ -192,15 +206,18 @@ Chaque élément s'écrit :
 
 **Personnages**
 `peppa`, `george`, `mummy`, `daddy`, `suzy`, `livia`, `liviaPrincess`, `elsa`, `anna`,
-`olaf`, `dino`, et la famille bouvier : `bluey`, `bingo`, `bandit`, `chilli`,
-`muffin`, `coco`
+`olaf`, `dino`, la famille bouvier : `bluey`, `bingo`, `bandit`, `chilli`,
+`muffin`, `coco`, et les Monsieur Madame : `grognon`, `chipie`, `etourdi`,
+`timide`, `rapide`, `lent`, `rangetout`, `costaud`, `bonheur`, `curieux`
+*(ces derniers acceptent `sansChapeau: true` quand l'histoire leur fait perdre
+leur chapeau)*
 
 **Poses** (`pose`)
 `stand`, `wave`, `armsup`, `jump`, `run`, `sit`, `point`, `hold`, `shrug`, `swim`,
 `magic` *(pour Elsa)*
 
 **Humeurs** (`mood`)
-`happy` (défaut), `wow`, `sad`, `sleep`
+`happy` (défaut), `wow`, `sad`, `sleep`, `fache`
 
 **Objets et décors secondaires**
 `sun`, `moon`, `cloud`, `palm`, `parasol`, `ball`, `sandcastle`, `bucket`, `spade`,
@@ -209,7 +226,8 @@ Chaque élément s'écrit :
 `kite`, `tether` *(la ficelle d'un cerf-volant)*, `boat`, `car`, `suitcase`,
 `marshmallow`, `hedgehog`, `snowball`, `star`, `snowflake`, `rock`, `fish`, `slide`,
 `pool`, `sled`, `castleIce`, `house`, `sparkle`, `splash`, `lantern`, `balloon`,
-`mudpuddle`, `wave`, `aurora`, `sprinkler`, `trampoline`, `mangue`, `esky`
+`mudpuddle`, `wave`, `aurora`, `sprinkler`, `trampoline`, `mangue`, `esky`,
+`cube`, `tourcubes`
 
 La plupart acceptent une `color` (`{ t: 'flower', x: 90, y: 520, color: '#ffd93d' }`),
 `tether` prend `dx` / `dy` (et éventuellement `qx` / `qy` pour la courbure).
