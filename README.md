@@ -21,7 +21,7 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   courant qui se met à jour tout seul. L'illustration existe en deux compositions,
   une pour les écrans larges et une pour les écrans hauts, choisies à l'ouverture :
   un cadrage unique couperait les personnages sur un téléphone.
-* **Un logo Kid Cartoon** présent partout, qui ramène à l'accueil d'un doigt
+* **Le nom Kid Cartoon** en haut de chaque page, qui ramène à l'accueil d'un doigt
 * **Deux rubriques** — Histoires et Jeux ; sous Histoires, les univers
   (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame, les cross-over,
   les copines… faciles à compléter)
@@ -139,6 +139,26 @@ Pablo apparaît aussi dans **Pablo veut faire pareil** (Peppa Pig, série *Grand
 | On donne la main | Peppa Pig | la règle qui ne se discute pas |
 | Quand Maman dit non | Peppa Pig | un non qui tient, et la colère qui redescend |
 | Les règles du jeu | Les copines | changer les règles en cours de partie |
+| Chacun son tour de parler | Peppa Pig | on ne coupe pas, même quand c'est urgent |
+| Maman est prise | Peppa Pig | attendre son tour de câlin |
+| Les jouets qu'on donne | Bluey | se séparer de ce dont on ne joue plus |
+| Le jouet cassé | Les copines | prêter, et que ça finisse mal |
+| Ce qu'on fait après | Peppa Pig | pardon est le début, réparer est la suite |
+| Le jour où Papa s'est trompé | Peppa Pig | les grands aussi disent pardon |
+| Dedans on marche, dehors on court | Bluey | la règle change parce que l'endroit change |
+| À la bibliothèque | Les copines | chuchoter, la règle qui protège les autres |
+| Chez Mamie, ce n'est pas pareil | Peppa Pig | deux maisons, deux règles |
+
+**Les émotions et la famille**
+
+| Histoire | Univers | Ce qu'elle raconte |
+|---|---|---|
+| Devant tout le monde | Peppa Pig | la honte, et comment elle s'en va |
+| Le jour où Pablo est arrivé | Peppa Pig | devenir grande sœur, ça ne se décide pas |
+| Tout le monde regarde Pablo | Les copines | la jalousie a un nom |
+| La nuit chez Livia | Les copines | avoir peur du noir sans qu'on se moque |
+| Isadora s'en va | Les copines | une amie qui déménage |
+| Je m'ennuie | Bluey | ce qu'on trouve quand il n'y a rien à faire |
 
 ---
 
@@ -258,8 +278,9 @@ Chaque élément s'écrit :
 *(ces derniers acceptent `sansChapeau: true` quand l'histoire leur fait perdre
 leur chapeau)*, les vraies copines : `roxane` *(brune au carré)*, `juliette`
 *(blonde, queue de cheval haute)*, `isadora` *(châtain, queue de cheval)*,
-et `pablo`, le petit frère *(un bébé : plus petit, grosse tête, cheveux très
-courts ; poses `stand`, `sit`, `wave`, `armsup`, `hold`, `quatrepattes`)*
+`mamie` *(carré gris et lunettes)*, et `pablo`, le petit frère *(un bébé :
+plus petit, grosse tête, cheveux très courts ; poses `stand`, `sit`, `wave`,
+`armsup`, `hold`, `quatrepattes`)*
 
 **Poses** (`pose`)
 `stand`, `wave`, `armsup`, `jump`, `run`, `sit`, `point`, `hold`, `shrug`, `swim`,
@@ -276,8 +297,9 @@ courts ; poses `stand`, `sit`, `wave`, `armsup`, `hold`, `quatrepattes`)*
 `marshmallow`, `hedgehog`, `snowball`, `star`, `snowflake`, `rock`, `fish`, `slide`,
 `pool`, `sled`, `castleIce`, `house`, `sparkle`, `splash`, `lantern`, `balloon`,
 `mudpuddle`, `wave`, `aurora`, `sprinkler`, `trampoline`, `mangue`, `esky`,
-`cube`, `tourcubes`, `cabane` *(`toit: '#bfe8f7'` pour le toit de glace,
-`ecroulee: true` pour le tas de branches)*
+`cube`, `tourcubes`, `etagere` *(une rangée de livres)*, `cabane`
+*(`toit: '#bfe8f7'` pour le toit de glace, `ecroulee: true` pour le tas de
+branches)*
 
 La plupart acceptent une `color` (`{ t: 'flower', x: 90, y: 520, color: '#ffd93d' }`),
 `tether` prend `dx` / `dy` (et éventuellement `qx` / `qy` pour la courbure).

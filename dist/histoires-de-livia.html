@@ -113,10 +113,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   transition: transform .12s;
 }
 .logo:active { transform: scale(.96); }
-.logo-mark {
-  flex: 0 0 auto; width: 40px; height: 40px; display: block;
-}
-.logo-mark svg { display: block; width: 100%; height: 100%; }
 .logo-txt {
   display: flex; flex-direction: column; line-height: .92; min-width: 0;
 }
@@ -200,7 +196,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   margin-bottom: 8px; color: #fff6e4;
   font-size: 13px; font-weight: 600; letter-spacing: 2.4px;
 }
-.cover-logo .logo-mark { width: 30px; height: 30px; }
 .cover-head h1 {
   margin: 0; font-size: clamp(30px, 8.5vw, 44px); font-weight: 700;
   line-height: .98; letter-spacing: -.5px; text-wrap: balance;
@@ -271,7 +266,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   .cover-head { padding: 12px 16px 10px; }
   .cover-head h1 { font-size: clamp(34px, 3.6vw, 48px); }
   .cover-logo { margin-bottom: 4px; font-size: 12px; }
-  .cover-logo .logo-mark { width: 24px; height: 24px; }
   .cover-meta { margin-top: 3px; font-size: 11.5px; }
   .cover-foot { padding: 10px 16px 14px; }
   .cover-nav { margin-top: 9px; }
@@ -772,7 +766,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 @media (min-width: 720px) {
   .logo-txt b { font-size: 26px; }
   .logo-txt i { font-size: 17px; }
-  .logo-mark { width: 48px; height: 48px; }
   .mainnav button { font-size: 17px; padding: 10px 28px; }
   .view { padding: 16px 24px 50px; max-width: 1100px; margin: 0 auto; }
   .uni-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
@@ -802,7 +795,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 
 <header class="topbar">
   <button class="logo" id="btnLogo" aria-label="Retour à l'accueil">
-    <span class="logo-mark" id="logoMark"></span>
     <span class="logo-txt"><b>KID</b><i>CARTOON</i></span>
   </button>
   <button class="icon-btn" id="btnRandom" aria-label="Histoire au hasard">🎲</button>
@@ -821,7 +813,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   <section class="cover" id="viewCover">
     <div class="cover-sheet">
       <div class="cover-head">
-        <div class="cover-logo"><span class="logo-mark" id="coverMark"></span><span>KID CARTOON</span></div>
+        <div class="cover-logo">KID CARTOON</div>
         <h1>Les histoires de <b>Livia</b></h1>
         <div class="cover-meta" id="coverMeta"></div>
         <nav class="cover-nav" id="coverNav" aria-label="Rubriques">
@@ -1204,6 +1196,12 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     if (mood === 'wow') s += '<ellipse cx="0" cy="-22" rx="8" ry="10" fill="#b8355c" stroke="' + INK + '" stroke-width="3.5"/>';
     else if (mood === 'sad') s += line('M -12,-18 q 12,-10 24,0', INK, 4);
     else s += line('M -14,-26 q 14,16 28,0', INK, 4.5);
+    if (o.lunettes) {
+      s += '<circle cx="-15" cy="-48" r="14" fill="none" stroke="' + INK + '" stroke-width="4"/>' +
+        '<circle cx="15" cy="-48" r="14" fill="none" stroke="' + INK + '" stroke-width="4"/>' +
+        line('M -1,-48 L 1,-48', INK, 4) +
+        line('M -29,-50 L -42,-54 M 29,-50 L 42,-54', INK, 3.5);
+    }
     if (o.crown) {
       s += U(['<path d="M -26,-92 L -30,-118 L -12,-104 L 0,-124 L 12,-104 L 30,-118 L 26,-92 Z" fill="%F%" %S%/>'], o.crown, 7);
     }
@@ -1300,7 +1298,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     t += line('M -20,-136 q 20,16 40,0', shade(dress, -0.25), 4);
     t += g('translate(0,-130)', girlHead({
       skin: skin, hair: hair, hairstyle: o.hairstyle, mood: o.mood,
-      crown: o.crown, bows: o.bows, clip: o.clip
+      crown: o.crown, bows: o.bows, clip: o.clip, lunettes: o.lunettes
     }));
     if (o.hat) t += g('translate(0,-130)', sunHat(o.hat));
     return s + (sit ? g('translate(-6,42)', t) : t);
@@ -2068,6 +2066,21 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     return s;
   };
 
+  /* une étagère de livres : de quoi poser une bibliothèque derrière les têtes */
+  P.etagere = function (o) {
+    var c = o.color || '#a9773f';
+    var dos = ['#e0453c', '#4a7fc1', '#7ab648', '#f7c518', '#a98cf0', '#3fb3b0', '#f0862c'];
+    var s = U(['<rect x="-96" y="-16" width="192" height="16" rx="4" fill="%F%" %S%/>'], c, 6);
+    var i, x = -86;
+    for (i = 0; i < 8; i++) {
+      var h = 52 + (i * 37 % 5) * 6, w = 16 + (i * 23 % 3) * 4;
+      s += '<rect x="' + x + '" y="' + (-16 - h) + '" width="' + w + '" height="' + h +
+        '" rx="3" fill="' + dos[i % dos.length] + '" stroke="' + INK + '" stroke-width="3.5"/>';
+      x += w + 3;
+    }
+    return s;
+  };
+
   P.rock = function (o) {
     return U(['<path d="M -34,0 C -40,-22 -20,-38 0,-36 C 22,-34 36,-20 32,0 Z" fill="%F%" %S%/>'], o.color || '#b9b3ae', 7);
   };
@@ -2527,6 +2540,12 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
         pose: o.pose, mood: o.mood, hat: o.hat, trim: '#e6f6ea'
       });
     },
+    mamie: function (o) {
+      return girl({
+        skin: '#f0d7bd', hair: '#e4e2dc', dress: o.dress || '#a98cf0', hairstyle: 'carre',
+        lunettes: true, pose: o.pose, mood: o.mood, hat: o.hat, trim: '#efe4ff'
+      });
+    },
     pablo: function (o) {
       return bebe({
         skin: '#f6cba6', hair: '#f7dc8a', body: o.body || '#8ec9f0',
@@ -2658,21 +2677,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }
 
-  /* la marque du site : une bulle de BD qui sourit */
-  function marqueSVG() {
-    var s = U([
-      '<rect x="10" y="12" width="80" height="62" rx="20" fill="%F%" %S%/>',
-      '<path d="M 30,68 L 26,92 L 52,72 Z" fill="%F%" %S%/>'
-    ], '#f7c518', 9);
-    s += '<circle cx="38" cy="40" r="7" fill="' + INK + '"/>' +
-      '<circle cx="64" cy="40" r="7" fill="' + INK + '"/>' +
-      '<circle cx="40.5" cy="37.5" r="2.4" fill="#fff"/>' +
-      '<circle cx="66.5" cy="37.5" r="2.4" fill="#fff"/>';
-    s += line('M 36,54 q 14,14 30,2', INK, 6);
-    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" ' +
-      'preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + s + '</svg>';
-  }
-
   /* une vignette : un seul élément, sans décor, pour les jeux */
   function stickerSVG(it) {
     var fn = ITEMS[it.t];
@@ -2687,7 +2691,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   global.Art = {
     scene: sceneSVG,
     sticker: stickerSVG,
-    marque: marqueSVG,
     INK: INK,
     W: VW,
     H: VH,
@@ -4326,6 +4329,605 @@ var UNIVERSES = [
             text: "En sortant, Livia tenait la liste dans sa poche. Le petit cheval était resté au magasin. Il n'avait pas bougé, et Livia savait maintenant où le retrouver."
           }
         ]
+      },
+
+      /* ---------- 15 : le tour de parole ---------- */
+      {
+        id: 'tour-de-parole',
+        title: 'Chacun son tour de parler',
+        subtitle: 'On ne coupe pas, même quand c\'est urgent',
+        tag: 'Grandir',
+        themes: ['Partager', 'Règles', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'mummy', x: 260, y: 506, s: 1.35, pose: 'hold' },
+            { t: 'livia', x: 500, y: 510, s: 1.1, pose: 'point' },
+            { t: 'george', x: 680, y: 512, s: .95 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 240, y: 506, s: 1.35 },
+                { t: 'peppa', x: 470, y: 508, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 680, y: 510, s: 1.1, pose: 'point' }
+              ],
+              sfx: [{ t: 'ET MOI ! ET MOI !', x: 430, y: 148, fs: 28, rot: -5, color: '#e8436e' }]
+            },
+            text: "À table, tout le monde avait quelque chose de très important à raconter. Peppa parlait. Livia parlait par-dessus. Maman n'entendait ni l'une ni l'autre."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 300, y: 508, s: 1.15, mood: 'sad' },
+                { t: 'livia', x: 560, y: 510, s: 1.15, pose: 'point' }
+              ],
+              bubbles: [{ x: 320, y: 22, w: 330, t: 'Tu me coupes tout le temps !', tx: 560, ty: 238 }]
+            },
+            text: "« Tu me coupes tout le temps ! » dit Peppa. Livia répondit qu'elle avait fini. Ce n'était pas vrai : Peppa n'avait dit que le début, et le début n'est pas la fin."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 506, s: 1.4, pose: 'hold' },
+                { t: 'livia', x: 560, y: 510, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'LA CUILLÈRE !', x: 430, y: 146, fs: 30, rot: -5, color: '#f2803d' }]
+            },
+            text: "Alors Maman posa une grande cuillère en bois au milieu de la table. « Celui qui a la cuillère parle », dit-elle. « Les autres écoutent. Puis on la passe. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 280, y: 508, s: 1.2, pose: 'hold' },
+                { t: 'livia', x: 560, y: 510, s: 1.15, mood: 'sad' }
+              ],
+              sfx: [{ t: 'MMMMH !', x: 430, y: 148, fs: 32, rot: -6, color: '#6d5847' }]
+            },
+            text: "Peppa prit la cuillère et raconta toute son histoire, du début à la fin. Livia serra les lèvres très fort. Attendre son tour de parler, c'est presque aussi dur qu'attendre son tour de toboggan."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 280, y: 508, s: 1.15 },
+                { t: 'livia', x: 540, y: 510, s: 1.2, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'À moi ! Alors, dans le jardin, il y avait…', tx: 545, ty: 238 }]
+            },
+            text: "Puis ce fut son tour. Et là, quelque chose d'étonnant arriva : tout le monde se tut, et tout le monde l'écouta jusqu'au bout. Livia n'avait jamais été écoutée aussi longtemps."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 250, y: 506, s: 1.35, pose: 'hold' },
+                { t: 'peppa', x: 470, y: 508, s: 1.1, pose: 'hold' },
+                { t: 'livia', x: 680, y: 510, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Depuis, la cuillère reste sur la table. On ne s'en sert presque plus. Il suffit de la regarder pour se rappeler qu'une histoire a un début, un milieu et une fin."
+          }
+        ]
+      },
+
+      /* ---------- 16 : partager sa maman ---------- */
+      {
+        id: 'maman-est-prise',
+        title: 'Maman est prise',
+        subtitle: 'Quand il faut attendre son tour de câlin',
+        tag: 'Grandir',
+        themes: ['Partager', 'Famille', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'mummy', x: 280, y: 506, s: 1.35, pose: 'hold' },
+            { t: 'pablo', x: 460, y: 512, s: 1.05, pose: 'hold' },
+            { t: 'livia', x: 650, y: 510, s: 1.1, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 510, s: 1.25, pose: 'hold' }
+              ],
+              sfx: [{ t: 'REGARDE MON DESSIN !', x: 400, y: 146, fs: 26, rot: -4, color: '#3ec9c9' }]
+            },
+            text: "Livia avait fait un dessin. Un vrai, avec un soleil, un chien et une maison qui tenait debout. Elle courut le montrer à Maman tout de suite, parce que tout de suite c'est important."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 506, s: 1.4, pose: 'hold' },
+                { t: 'pablo', x: 500, y: 512, s: 1.05, pose: 'hold', mood: 'sad' },
+                { t: 'livia', x: 690, y: 510, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'OUIN ! OUIN !', x: 400, y: 146, fs: 30, rot: -6, color: '#8ec9f0' }]
+            },
+            text: "Mais Maman avait Pablo dans les bras. Pablo pleurait. Pablo pleure souvent, et quand il pleure, il prend toute la place, tous les bras et toutes les oreilles."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 510, s: 1.25, mood: 'sad' }
+              ],
+              sfx: [{ t: 'DANS DEUX MINUTES…', x: 400, y: 148, fs: 26, rot: -4, color: '#6d5847' }]
+            },
+            text: "« Dans deux minutes, ma chérie. » Deux minutes, c'est très court quand on joue, et très long quand on attend. Livia s'assit par terre avec son dessin sur les genoux."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 494, s: 1.2, pose: 'sit' }
+              ],
+              front: [{ t: 'cube', x: 620, y: 540, s: .8, rot: 12, color: '#e0453c' }],
+              sfx: [{ t: 'ET SI J\'AJOUTAIS…', x: 400, y: 146, fs: 26, rot: -4, color: '#f7c518' }]
+            },
+            text: "Alors, en attendant, elle ajouta un chat sur le toit. Puis un arbre. Puis un bonhomme avec un chapeau. Le dessin devint beaucoup plus beau qu'avant."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 494, s: 1.35, pose: 'sit' },
+                { t: 'livia', x: 570, y: 494, s: 1.15, pose: 'sit' }
+              ],
+              bubbles: [{ x: 320, y: 22, w: 340, t: 'Voilà. Maintenant je suis toute à toi.', tx: 320, ty: 236 }]
+            },
+            text: "Pablo s'endormit. Maman s'assit à côté de Livia. « Voilà », dit-elle. « Maintenant je suis toute à toi. » Et elle regarda le dessin très longtemps, en montrant chaque chose du doigt."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 280, y: 506, s: 1.35, pose: 'hold' },
+                { t: 'livia', x: 520, y: 510, s: 1.15, pose: 'hold' },
+                { t: 'pablo', x: 700, y: 512, s: 1, mood: 'sleep' }
+              ]
+            },
+            text: "« Tu as attendu », dit Maman. « C'est difficile, d'attendre. » Livia répondit que oui, mais que ça lui avait laissé le temps d'ajouter le chat. Les deux étaient vraies."
+          }
+        ]
+      },
+
+      /* ---------- 17 : réparer ---------- */
+      {
+        id: 'reparer',
+        title: 'Ce qu\'on fait après',
+        subtitle: 'Pardon, c\'est le début, pas la fin',
+        tag: 'Grandir',
+        themes: ['Règles', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 300, y: 522, s: 1.15, mood: 'sad' },
+            { t: 'daddy', x: 550, y: 518, s: 1.4 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 400, y: 522, s: 1.25, pose: 'point' }
+              ],
+              front: [{ t: 'flower', x: 640, y: 540, s: 2 }],
+              sfx: [{ t: 'INTERDIT DE CUEILLIR', x: 400, y: 166, fs: 26, rot: -4, color: '#7ba450' }]
+            },
+            text: "Dans le jardin, il y avait une règle : on ne cueille pas les fleurs de Papa. Livia connaissait la règle. Elle la connaissait même très bien."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 400, y: 522, s: 1.25, pose: 'hold', mood: 'wow' }
+              ],
+              sfx: [{ t: 'CLAC !', x: 420, y: 164, fs: 34, rot: -7, color: '#e0453c' }]
+            },
+            text: "Elle en cueillit six. Six d'un coup. Elles étaient jaunes et elles sentaient bon, et sur le moment, ça valait vraiment le coup."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'daddy', x: 300, y: 518, s: 1.4, mood: 'sad' },
+                { t: 'livia', x: 570, y: 522, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 300, t: 'Pardon. Pardon, pardon !', tx: 570, ty: 240 }]
+            },
+            text: "Papa vit le trou dans le massif. Livia dit pardon tout de suite, très vite, plusieurs fois. Elle avait remarqué que pardon fait souvent s'arrêter les histoires."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'daddy', x: 300, y: 518, s: 1.4, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 522, s: 1.15, mood: 'wow' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Pardon, c\'est le début. Après, on répare.', tx: 305, ty: 236 }]
+            },
+            text: "« Pardon, c'est le début », dit Papa. « Ce n'est pas la fin. Après pardon, il y a réparer. » Livia ne savait pas qu'il y avait quelque chose après pardon."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'daddy', x: 280, y: 518, s: 1.4, pose: 'hold' },
+                { t: 'livia', x: 540, y: 522, s: 1.15, pose: 'hold' }
+              ],
+              front: [{ t: 'bucket', x: 690, y: 542, s: 1.1 }],
+              sfx: [{ t: 'ON CREUSE !', x: 420, y: 164, fs: 28, rot: -5, color: '#7ba450' }]
+            },
+            text: "Ils allèrent chercher six graines. Livia creusa six trous, avec la petite pelle, à l'endroit exact des six fleurs. Ça prit tout l'après-midi, et c'était fatigant."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'daddy', x: 300, y: 518, s: 1.4 },
+                { t: 'livia', x: 560, y: 522, s: 1.15, pose: 'point' }
+              ],
+              front: [{ t: 'flower', x: 700, y: 542, s: 1.4 }]
+            },
+            text: "Trois semaines plus tard, une première pousse sortit. Livia la surveilla tous les jours. Réparer, c'est plus long que dire pardon. C'est aussi ce dont on se souvient."
+          }
+        ]
+      },
+
+      /* ---------- 18 : quand un adulte se trompe ---------- */
+      {
+        id: 'papa-se-trompe',
+        title: 'Le jour où Papa s\'est trompé',
+        subtitle: 'Les grands aussi disent pardon',
+        tag: 'Grandir',
+        themes: ['Règles', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'daddy', x: 300, y: 504, s: 1.4, mood: 'sad' },
+            { t: 'livia', x: 560, y: 510, s: 1.15, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'daddy', x: 300, y: 504, s: 1.45, mood: 'sad' },
+                { t: 'livia', x: 570, y: 510, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'QUI A FAIT ÇA ?', x: 430, y: 144, fs: 30, rot: -5, color: '#e0453c' }]
+            },
+            text: "Le mur du couloir avait un grand trait de feutre bleu. Papa n'était pas content du tout. « Qui a fait ça ? » demanda-t-il en regardant Livia."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 510, s: 1.25, pose: 'shrug', mood: 'sad' }
+              ],
+              bubbles: [{ x: 210, y: 22, w: 340, t: 'Ce n\'est pas moi. Je te promets.', tx: 400, ty: 236 }]
+            },
+            text: "« Ce n'est pas moi », dit Livia. « Je te promets. » Papa dit que ce n'était pas la peine de mentir. Livia sentit quelque chose de très injuste lui monter dans la gorge."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 494, s: 1.2, pose: 'sit', mood: 'sad' }
+              ],
+              sfx: [{ t: '. . .', x: 430, y: 152, fs: 32, rot: 0, color: '#8a7768' }]
+            },
+            text: "Elle alla dans sa chambre. Elle ne pleura même pas. C'est très particulier, d'être punie pour quelque chose qu'on n'a pas fait : ça ne ressemble à rien d'autre."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'daddy', x: 300, y: 504, s: 1.4, mood: 'wow' },
+                { t: 'pablo', x: 560, y: 510, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'OH…', x: 430, y: 146, fs: 34, rot: -6, color: '#8ec9f0' }]
+            },
+            text: "Un peu plus tard, Papa trouva Pablo dans le couloir, un feutre bleu dans la main, en train d'ajouter un deuxième trait juste à côté du premier."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'daddy', x: 300, y: 494, s: 1.4, pose: 'sit' },
+                { t: 'livia', x: 570, y: 496, s: 1.15, pose: 'sit' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Je me suis trompé. Pardon, Livia.', tx: 305, ty: 236 }]
+            },
+            text: "Papa vint s'asseoir sur le lit. « Je me suis trompé », dit-il. « Je ne t'ai pas crue, et j'aurais dû. Pardon, Livia. » Un papa qui dit pardon, ça fait un drôle d'effet."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'daddy', x: 280, y: 504, s: 1.4, pose: 'hold' },
+                { t: 'livia', x: 520, y: 510, s: 1.15, pose: 'hold' },
+                { t: 'pablo', x: 700, y: 512, s: 1 }
+              ]
+            },
+            text: "Ils nettoyèrent le mur tous les deux. Livia comprit ce jour-là que les grands ne savent pas tout, et que ce n'est pas grave, tant qu'ils savent le dire."
+          }
+        ]
+      },
+
+      /* ---------- 19 : la honte ---------- */
+      {
+        id: 'la-honte',
+        title: 'Devant tout le monde',
+        subtitle: 'La honte, et comment elle s\'en va',
+        tag: 'Grandir',
+        themes: ['Émotions', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'livia', x: 380, y: 522, s: 1.2, mood: 'sad' },
+            { t: 'peppa', x: 620, y: 520, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'peppa', x: 240, y: 520, s: 1.1 },
+                { t: 'livia', x: 450, y: 522, s: 1.15, pose: 'armsup' },
+                { t: 'suzy', x: 660, y: 520, s: 1.05 }
+              ],
+              sfx: [{ t: 'REGARDEZ-MOI !', x: 430, y: 166, fs: 28, rot: -5, color: '#3ec9c9' }]
+            },
+            text: "Livia avait appris à faire la roue. Enfin, presque. Devant toute la classe, elle annonça qu'elle allait la faire, et tout le monde s'arrêta pour regarder."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 400, y: 494, s: 1.25, pose: 'sit', mood: 'wow' }
+              ],
+              sfx: [{ t: 'BADABOUM !', x: 400, y: 164, fs: 36, rot: -8, color: '#e0453c' }]
+            },
+            text: "Elle prit son élan, leva les bras, et tomba sur les fesses. Tout le monde rit. Pas méchamment. Mais tout le monde rit, et elle entendit chaque rire séparément."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 400, y: 522, s: 1.3, mood: 'sad' }
+              ],
+              sfx: [{ t: 'TOUT ROUGE…', x: 400, y: 166, fs: 30, rot: -5, color: '#e0453c' }]
+            },
+            text: "Ses joues devinrent brûlantes. Elle voulut disparaître, devenir toute petite, ou partir vivre ailleurs. C'est ça, la honte : ça chauffe, et ça donne envie de s'en aller."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'peppa', x: 300, y: 500, s: 1.15, pose: 'sit' },
+                { t: 'livia', x: 560, y: 494, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Moi je suis tombée à la piscine. Devant tout le monde.', tx: 305, ty: 236 }]
+            },
+            text: "Peppa vint s'asseoir à côté. « Moi je suis tombée à la piscine », dit-elle. « Devant tout le monde. Deux fois. » Livia releva la tête de deux centimètres."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'suzy', x: 260, y: 520, s: 1.05, pose: 'point' },
+                { t: 'peppa', x: 460, y: 520, s: 1.1 },
+                { t: 'livia', x: 660, y: 522, s: 1.1 }
+              ],
+              sfx: [{ t: 'MOI AUSSI !', x: 400, y: 166, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Alors Suzy raconta la fois du chapeau dans la soupe. Puis quelqu'un d'autre raconta autre chose. Il s'avéra que tout le monde était déjà tombé devant tout le monde."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 300, y: 520, s: 1.1 },
+                { t: 'livia', x: 540, y: 522, s: 1.15, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'ENCORE UNE FOIS !', x: 430, y: 164, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Livia réessaya la roue avant de rentrer. Elle retomba. Elle rit la première, cette fois, et c'était complètement différent. La honte n'aime pas beaucoup qu'on rie avec elle."
+          }
+        ]
+      },
+
+      /* ---------- 20 : devenir grande sœur ---------- */
+      {
+        id: 'grande-soeur',
+        title: 'Le jour où Pablo est arrivé',
+        subtitle: 'Devenir grande sœur, ça ne se décide pas',
+        tag: 'Grandir',
+        themes: ['Famille', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'mummy', x: 300, y: 506, s: 1.35, pose: 'hold' },
+            { t: 'pablo', x: 480, y: 512, s: 1, mood: 'sleep' },
+            { t: 'livia', x: 660, y: 510, s: 1.1, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 506, s: 1.4, pose: 'hold' },
+                { t: 'livia', x: 560, y: 510, s: 1.15 }
+              ],
+              sfx: [{ t: 'UN BÉBÉ !', x: 430, y: 146, fs: 32, rot: -5, color: '#f2a0c2' }]
+            },
+            text: "On avait prévenu Livia longtemps à l'avance : il allait y avoir un bébé. Elle avait dit oui, super, d'accord. Elle imaginait quelqu'un avec qui jouer tout de suite."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 320, y: 506, s: 1.4, pose: 'hold' },
+                { t: 'pablo', x: 520, y: 512, s: 1, mood: 'sleep' },
+                { t: 'livia', x: 700, y: 510, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'IL DORT. ENCORE.', x: 400, y: 146, fs: 26, rot: -4, color: '#6d5847' }]
+            },
+            text: "Pablo arriva. Il ne jouait pas. Il ne parlait pas. Il dormait, il mangeait, il pleurait, et il prenait tous les bras de la maison. C'était très décevant."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 494, s: 1.25, pose: 'sit', mood: 'sad' }
+              ],
+              sfx: [{ t: 'ON PEUT LE RENDRE ?', x: 400, y: 148, fs: 26, rot: -4, color: '#8a7768' }]
+            },
+            text: "Un soir, Livia demanda si on pouvait le rendre. Personne ne se fâcha. Maman dit que non, et qu'on avait le droit de trouver ça difficile, les deux en même temps."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 320, y: 510, s: 1.15, mood: 'wow' },
+                { t: 'pablo', x: 560, y: 512, s: 1.05, mood: 'wow' }
+              ],
+              sfx: [{ t: '…SOURIRE ?', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Et puis un matin, Livia se pencha au-dessus du berceau, comme d'habitude, sans y croire. Et Pablo la regarda dans les yeux. Et Pablo lui sourit."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 320, y: 510, s: 1.15, pose: 'hold' },
+                { t: 'pablo', x: 560, y: 512, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'À MOI !', x: 430, y: 146, fs: 30, rot: -6, color: '#3ec9c9' }]
+            },
+            text: "Pas à Maman. Pas à Papa. À elle. Livia resta là très longtemps, penchée, à refaire toutes les grimaces qu'elle connaissait, pour voir s'il recommençait."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'mummy', x: 280, y: 506, s: 1.35 },
+                { t: 'livia', x: 500, y: 496, s: 1.15, pose: 'sit' },
+                { t: 'pablo', x: 690, y: 500, s: 1, pose: 'sit', mood: 'sleep' }
+              ]
+            },
+            text: "Devenir grande sœur, ça ne se décide pas le jour où le bébé arrive. Ça arrive plus tard, un matin, sans prévenir, quand quelqu'un vous sourit à vous."
+          }
+        ]
+      },
+
+      /* ---------- 21 : chez Mamie ---------- */
+      {
+        id: 'chez-mamie',
+        title: 'Chez Mamie, ce n\'est pas pareil',
+        subtitle: 'Deux maisons, deux règles',
+        tag: 'Grandir',
+        themes: ['Règles', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          back: [{ t: 'etagere', x: 660, y: 400, s: 1 }],
+          items: [
+            { t: 'mamie', x: 300, y: 508, s: 1.25 },
+            { t: 'livia', x: 520, y: 510, s: 1.1, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'etagere', x: 680, y: 396, s: 1 }],
+              items: [
+                { t: 'mamie', x: 300, y: 508, s: 1.3, pose: 'wave' },
+                { t: 'livia', x: 560, y: 510, s: 1.15, pose: 'wave' }
+              ],
+              sfx: [{ t: 'BONJOUR MAMIE !', x: 430, y: 146, fs: 28, rot: -5, color: '#a98cf0' }]
+            },
+            text: "Chez Mamie, ça sent le gâteau et la lessive. Livia y va un dimanche sur deux. Et chez Mamie, les règles ne sont pas exactement les mêmes qu'à la maison."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'etagere', x: 700, y: 396, s: .9 }],
+              items: [
+                { t: 'mamie', x: 300, y: 508, s: 1.3, pose: 'hold' },
+                { t: 'livia', x: 560, y: 510, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'DEUX GÂTEAUX ?!', x: 430, y: 146, fs: 30, rot: -6, color: '#f2803d' }]
+            },
+            text: "Chez Mamie, on a le droit à deux gâteaux. À la maison, c'est un. Livia vérifia trois fois, au cas où ce serait une erreur. Ce n'était pas une erreur."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 510, s: 1.25, pose: 'point' }
+              ],
+              bubbles: [{ x: 200, y: 22, w: 350, t: 'Alors chez Maman aussi, j\'ai le droit !', tx: 400, ty: 236 }]
+            },
+            text: "En rentrant, Livia annonça que désormais, ce serait deux gâteaux partout. Elle avait une preuve. Elle trouvait son raisonnement absolument imparable."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 506, s: 1.4, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 510, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Chez Mamie, c\'est la règle de Mamie.', tx: 305, ty: 236 }]
+            },
+            text: "« Chez Mamie, c'est la règle de Mamie », dit Maman. « Ici, c'est la mienne. Les deux maisons ont le droit. » Livia trouva ça très mal organisé."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'etagere', x: 680, y: 396, s: .9 }],
+              items: [
+                { t: 'mamie', x: 300, y: 508, s: 1.3, pose: 'point' },
+                { t: 'livia', x: 560, y: 510, s: 1.15 }
+              ],
+              bubbles: [{ x: 60, y: 22, w: 330, t: 'Chez ta maman, tu fais comme ta maman.', tx: 305, ty: 236 }]
+            },
+            text: "Le dimanche suivant, Livia posa la question à Mamie. Mamie rit très fort. « Chez ta maman, tu fais comme ta maman », dit-elle. « Et ici, tu fais comme moi. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              back: [{ t: 'etagere', x: 700, y: 396, s: .9 }],
+              items: [
+                { t: 'mamie', x: 300, y: 496, s: 1.25, pose: 'sit' },
+                { t: 'livia', x: 560, y: 496, s: 1.15, pose: 'sit' }
+              ]
+            },
+            text: "Alors Livia mangea son deuxième gâteau, chez Mamie, sans en parler à personne. Certaines règles changent de maison en maison. C'est ce qui rend les dimanches intéressants."
+          }
+        ]
       }
 
     ]
@@ -5820,6 +6422,268 @@ var UNIVERSES = [
               ]
             },
             text: "Le soir, Papa demanda qui avait gagné. Personne ne comprit la question. On ne gagne pas à la balançoire : on y va chacun son tour, et c'est déjà beaucoup."
+          }
+        ]
+      },
+
+      /* ---------- 12 : donner ce dont on ne se sert plus ---------- */
+      {
+        id: 'donner',
+        title: 'Les jouets qu\'on donne',
+        subtitle: 'Se séparer de ce dont on ne joue plus',
+        tag: 'Jardin',
+        themes: ['Partager', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'chilli', x: 280, y: 506, s: 1.4, pose: 'hold' },
+            { t: 'bluey', x: 500, y: 508, s: 1.15, mood: 'sad' },
+            { t: 'livia', x: 690, y: 510, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'chilli', x: 280, y: 506, s: 1.4, pose: 'point' },
+                { t: 'bluey', x: 520, y: 508, s: 1.15 },
+                { t: 'livia', x: 700, y: 510, s: 1.05 }
+              ],
+              front: [{ t: 'tourcubes', x: 620, y: 542, s: .7, n: 3 }],
+              sfx: [{ t: 'ON RANGE LE COFFRE !', x: 420, y: 146, fs: 26, rot: -4, color: '#d87c3a' }]
+            },
+            text: "Le coffre à jouets ne fermait plus. Maman proposa de trier : ce qu'on garde d'un côté, ce qu'on donne de l'autre. Bluey et Livia trouvèrent l'idée très raisonnable, en théorie."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'bluey', x: 320, y: 508, s: 1.2, pose: 'hold' },
+                { t: 'livia', x: 580, y: 510, s: 1.15, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ÇA, JE GARDE !', x: 430, y: 146, fs: 28, rot: -5, color: '#6f9ed8' }]
+            },
+            text: "En pratique, ce fut différent. Chaque jouet sorti du coffre redevenait immédiatement le jouet préféré du monde. Même celui à qui il manquait une roue depuis deux ans."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'chilli', x: 300, y: 506, s: 1.4, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 510, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Quand y as-tu joué la dernière fois ?', tx: 305, ty: 236 }]
+            },
+            text: "« Quand y as-tu joué la dernière fois ? » demanda Maman. Livia réfléchit très fort. Elle ne trouva pas. C'était une question désagréable et très efficace."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'bluey', x: 260, y: 520, s: 1.15, pose: 'hold' },
+                { t: 'livia', x: 480, y: 522, s: 1.1, pose: 'hold' },
+                { t: 'chilli', x: 690, y: 518, s: 1.3, pose: 'hold' }
+              ],
+              front: [{ t: 'suitcase', x: 380, y: 546, s: 1.1 }],
+              sfx: [{ t: 'C\'EST LOURD !', x: 420, y: 166, fs: 28, rot: -5, color: '#e0954e' }]
+            },
+            text: "Elles remplirent quand même un carton. Puis elles le portèrent, toutes les trois, jusqu'à la salle du bas de la rue, où des gens donnent des jouets à des enfants qui n'en ont pas."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, mood: 'wow' },
+                { t: 'bluey', x: 560, y: 520, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'OH ! MERCI !', x: 430, y: 166, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Une petite fille prit le camion à trois roues dans ses bras comme si c'était un trésor. Livia eut envie de dire que c'était le sien. Elle ne le dit pas, et elle regarda."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'bluey', x: 300, y: 496, s: 1.15, pose: 'sit' },
+                { t: 'livia', x: 560, y: 496, s: 1.1, pose: 'sit' }
+              ]
+            },
+            text: "Le soir, le coffre fermait. Il y avait de la place pour jouer par terre. Livia pensa au camion, de temps en temps, et à chaque fois ça lui faisait quelque chose de doux."
+          }
+        ]
+      },
+
+      /* ---------- 13 : dedans, dehors ---------- */
+      {
+        id: 'dedans-dehors',
+        title: 'Dedans on marche, dehors on court',
+        subtitle: 'Les règles changent d\'endroit',
+        tag: 'Jardin',
+        themes: ['Règles', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'bandit', x: 300, y: 504, s: 1.45, pose: 'point' },
+            { t: 'bluey', x: 540, y: 508, s: 1.2, pose: 'run' },
+            { t: 'livia', x: 710, y: 510, s: 1.05, pose: 'run' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'bluey', x: 300, y: 508, s: 1.2, pose: 'run' },
+                { t: 'livia', x: 560, y: 510, s: 1.15, pose: 'run' }
+              ],
+              sfx: [{ t: 'BOUM BOUM BOUM !', x: 430, y: 146, fs: 30, rot: -6, color: '#6f9ed8' }]
+            },
+            text: "Il pleuvait. Alors Bluey et Livia inventèrent la course du couloir : quinze pas, demi-tour, quinze pas. Le sol tremblait un peu, et c'était justement ce qui était bien."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'bandit', x: 300, y: 504, s: 1.45, mood: 'fache' },
+                { t: 'bluey', x: 560, y: 508, s: 1.15, mood: 'sad' },
+                { t: 'livia', x: 720, y: 510, s: 1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'ON NE COURT PAS DEDANS !', x: 420, y: 144, fs: 24, rot: -4, color: '#e0453c' }]
+            },
+            text: "« On ne court pas dedans ! » dit Papa. Bluey répondit qu'hier, au parc, personne ne lui avait rien dit. Elle trouvait ça parfaitement contradictoire."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'bandit', x: 300, y: 494, s: 1.45, pose: 'sit' },
+                { t: 'livia', x: 560, y: 496, s: 1.15, pose: 'sit' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'Dehors, il y a de la place. Dedans, il y a des coins.', tx: 305, ty: 236 }]
+            },
+            text: "« Dehors, il y a de la place », dit Papa. « Dedans, il y a des coins de table, des vases, et un bébé par terre. La règle ne change pas pour t'embêter : elle change parce que l'endroit change. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'bluey', x: 320, y: 508, s: 1.2, mood: 'wow' },
+                { t: 'livia', x: 580, y: 510, s: 1.15, pose: 'point' }
+              ],
+              sfx: [{ t: 'ET DANS L\'ESCALIER ?', x: 430, y: 146, fs: 26, rot: -4, color: '#f7c518' }]
+            },
+            text: "Alors elles firent la liste. Dans l'escalier ? On marche. Au supermarché ? On marche. À la bibliothèque ? On chuchote. Dans le jardin ? On fait ce qu'on veut, ou presque."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 280, y: 518, s: 1.2, pose: 'run' },
+                { t: 'livia', x: 540, y: 522, s: 1.15, pose: 'run' }
+              ],
+              sfx: [{ t: 'LA PLUIE S\'ARRÊTE !', x: 430, y: 164, fs: 26, rot: -5, color: '#3ec9c9' }]
+            },
+            text: "La pluie s'arrêta en fin d'après-midi. Elles sortirent en courant. Personne ne dit rien, parce que dehors, courir est exactement ce qu'il faut faire."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'bandit', x: 280, y: 516, s: 1.45 },
+                { t: 'bluey', x: 520, y: 518, s: 1.15, pose: 'armsup' },
+                { t: 'livia', x: 700, y: 522, s: 1.05, pose: 'armsup' }
+              ]
+            },
+            text: "Le soir, Bluey fit remarquer que la course du couloir aurait été bien meilleure dehors, avec de la place. Papa dit que oui. C'était toute la question depuis le début."
+          }
+        ]
+      },
+
+      /* ---------- 14 : l'ennui ---------- */
+      {
+        id: 'ennui',
+        title: 'Je m\'ennuie',
+        subtitle: 'Ce qu\'on trouve quand il n\'y a rien à faire',
+        tag: 'Jardin',
+        themes: ['Émotions', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'bluey', x: 300, y: 518, s: 1.2, mood: 'sad' },
+            { t: 'livia', x: 540, y: 522, s: 1.15, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 506, s: 1.2, pose: 'sit', mood: 'sad' },
+                { t: 'livia', x: 560, y: 508, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              sfx: [{ t: 'JE M\'ENNUIIIIE…', x: 430, y: 164, fs: 28, rot: -4, color: '#6d5847' }]
+            },
+            text: "C'était un mercredi sans rien. Pas d'école, pas de copains, pas de sortie. Bluey et Livia étaient assises dans l'herbe et n'avaient absolument rien à faire."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'chilli', x: 300, y: 516, s: 1.4, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 522, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 330, t: 'Tant mieux. L\'ennui, c\'est là que ça commence.', tx: 305, ty: 240 }]
+            },
+            text: "Elles allèrent se plaindre à Maman. Maman ne proposa rien du tout. « Tant mieux », dit-elle. « L'ennui, c'est là que ça commence. » Puis elle repartit étendre le linge."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.2, mood: 'sad' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, mood: 'sad' }
+              ],
+              sfx: [{ t: '. . .', x: 430, y: 170, fs: 34, rot: 0, color: '#8a7768' }]
+            },
+            text: "Elles restèrent là un long moment, sans rien faire, ce qui est très inconfortable. Livia arracha trois brins d'herbe. Bluey regarda une fourmi traverser tout le jardin."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.2, pose: 'point', mood: 'wow' },
+                { t: 'livia', x: 560, y: 522, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'ET SI C\'ÉTAIT UNE ÎLE ?', x: 420, y: 164, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Et puis Bluey dit : « Et si l'herbe c'était la mer, et le banc une île ? » Livia répondit que dans ce cas la fourmi était un crocodile. Le mercredi venait de changer complètement."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'cabane', x: 640, y: 522, s: 1.1 }],
+              items: [
+                { t: 'bluey', x: 260, y: 518, s: 1.2, pose: 'armsup' },
+                { t: 'livia', x: 480, y: 522, s: 1.15, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'AU SECOURS, LE CROCODILE !', x: 400, y: 162, fs: 24, rot: -5, color: '#7ba450' }]
+            },
+            text: "Elles construisirent un radeau avec deux planches. Elles fuirent le crocodile. Elles fondèrent un pays sur l'île, avec des lois compliquées et un drapeau en torchon."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'chilli', x: 280, y: 516, s: 1.4 },
+                { t: 'bluey', x: 520, y: 506, s: 1.15, pose: 'sit' },
+                { t: 'livia', x: 700, y: 508, s: 1.05, pose: 'sit' }
+              ]
+            },
+            text: "Le soir, Maman demanda si elles s'étaient ennuyées. Elles dirent que non, pas du tout, pas une seconde. Elles avaient oublié le début de la journée."
           }
         ]
       }
@@ -7810,6 +8674,439 @@ var UNIVERSES = [
             text: "Elles recommencèrent. Cette fois, la maison c'était le banc, et rien d'autre, et tout le monde l'avait dit à voix haute. Le jeu dura jusqu'à la nuit."
           }
         ]
+      },
+
+      /* ---------- 9 : prêter à quelqu'un qui casse ---------- */
+      {
+        id: 'jouet-casse',
+        title: 'Le jouet cassé',
+        subtitle: 'Prêter, et que ça finisse mal',
+        tag: 'Copines',
+        themes: ['Partager', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 300, y: 510, s: 1.1, mood: 'sad' },
+            { t: 'juliette', x: 540, y: 508, s: 1.05, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.15, pose: 'hold' },
+                { t: 'juliette', x: 560, y: 508, s: 1.1, pose: 'point' }
+              ],
+              sfx: [{ t: 'JE PEUX ?', x: 430, y: 146, fs: 30, rot: -5, color: '#a98cf0' }]
+            },
+            text: "Livia avait une boîte à musique. On tournait la clé, et une danseuse tournait aussi. C'était sa plus belle chose. Juliette demanda si elle pouvait la prendre."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.15, mood: 'sad' },
+                { t: 'juliette', x: 560, y: 508, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'DOUCEMENT…', x: 430, y: 146, fs: 28, rot: -4, color: '#6d5847' }]
+            },
+            text: "Livia hésita. Elle dit oui quand même, en ajoutant « fais attention » trois fois de suite, ce qui ne sert à rien mais qu'on dit toujours."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'juliette', x: 320, y: 508, s: 1.1, mood: 'wow' },
+                { t: 'livia', x: 580, y: 510, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'CRAAAC !', x: 430, y: 144, fs: 36, rot: -8, color: '#e0453c' }]
+            },
+            text: "La boîte glissa. Elle tomba sur le carrelage. La danseuse partit d'un côté, la clé de l'autre, et la musique s'arrêta au milieu d'une note."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.2, mood: 'sad' },
+                { t: 'juliette', x: 570, y: 508, s: 1.1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'JE T\'AVAIS DIT !', x: 430, y: 144, fs: 30, rot: -6, color: '#e0453c' }]
+            },
+            text: "Livia cria. Elle dit des choses très fortes, du genre « je t'avais dit » et « c'est de ta faute ». Juliette ne répondit rien. Elle regardait les morceaux par terre."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 492, s: 1.4, pose: 'sit' },
+                { t: 'livia', x: 570, y: 494, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'Elle est cassée. Ça, c\'est vrai. Et Juliette pleure.', tx: 305, ty: 236 }]
+            },
+            text: "Maman ne dit pas que ce n'était pas grave. « Elle est cassée », dit-elle. « Ça, c'est vrai, et tu as le droit d'être triste. Et pendant ce temps-là, Juliette pleure dans le couloir. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.15, pose: 'hold' },
+                { t: 'juliette', x: 560, y: 508, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ON LA RECOLLE ?', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Elles recollèrent la danseuse ensemble. Elle penche un peu, maintenant, et la musique saute une note. Livia dit que c'est comme ça qu'elle la préfère. Ce n'est pas tout à fait vrai, et c'est un peu vrai."
+          }
+        ]
+      },
+
+      /* ---------- 10 : la règle qui protège les autres ---------- */
+      {
+        id: 'bibliotheque',
+        title: 'À la bibliothèque',
+        subtitle: 'Chuchoter, même quand on a envie de crier',
+        tag: 'Copines',
+        themes: ['Règles', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          back: [{ t: 'etagere', x: 620, y: 400, s: 1.2 }],
+          items: [
+            { t: 'livia', x: 280, y: 510, s: 1.1 },
+            { t: 'roxane', x: 480, y: 508, s: 1.05, pose: 'point' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'etagere', x: 640, y: 396, s: 1.2 }],
+              items: [
+                { t: 'livia', x: 260, y: 510, s: 1.15, mood: 'wow' },
+                { t: 'roxane', x: 480, y: 508, s: 1.1, mood: 'wow' }
+              ],
+              sfx: [{ t: 'DES LIVRES PARTOUT !', x: 400, y: 146, fs: 26, rot: -4, color: '#4a7fc1' }]
+            },
+            text: "La bibliothèque du village a trois murs de livres et un tapis rond. Livia et Roxane y allèrent le mercredi. Il y avait plus de livres que dans toutes leurs chambres réunies."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'etagere', x: 660, y: 396, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 280, y: 510, s: 1.15, pose: 'point' },
+                { t: 'roxane', x: 540, y: 508, s: 1.1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'REGARDE CELUI-LÀ !!', x: 420, y: 146, fs: 28, rot: -5, color: '#e0453c' }]
+            },
+            text: "Livia trouva un livre avec un dragon. Elle cria le nom du dragon. Roxane cria encore plus fort qu'elle connaissait ce dragon. Toutes les têtes se levèrent en même temps."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mamie', x: 300, y: 508, s: 1.25, pose: 'point' },
+                { t: 'livia', x: 570, y: 510, s: 1.15, mood: 'sad' }
+              ],
+              sfx: [{ t: 'CHUUUUT.', x: 430, y: 146, fs: 32, rot: -5, color: '#8a7768' }]
+            },
+            text: "La dame de la bibliothèque leva un doigt. « Chut. » Livia trouva ça injuste : elle ne faisait rien de mal, elle était juste contente, et être contente n'est pas interdit."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'etagere', x: 680, y: 396, s: 1 }],
+              items: [
+                { t: 'mamie', x: 280, y: 496, s: 1.2, pose: 'sit' },
+                { t: 'livia', x: 560, y: 496, s: 1.15, pose: 'sit' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'Ici, chacun est dans son histoire. On ne rentre pas dedans.', tx: 305, ty: 236 }]
+            },
+            text: "La dame s'accroupit à sa hauteur. « Ici, chacun est dans son histoire », dit-elle. « Quand tu cries, tu entres dans l'histoire des autres sans frapper. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'etagere', x: 660, y: 396, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 300, y: 496, s: 1.15, pose: 'sit' },
+                { t: 'roxane', x: 560, y: 494, s: 1.1, pose: 'sit' }
+              ],
+              sfx: [{ t: 'psst… le dragon…', x: 430, y: 150, fs: 24, rot: -3, color: '#4a7fc1' }]
+            },
+            text: "Alors elles s'assirent sur le tapis, tout près l'une de l'autre, et se racontèrent le dragon en chuchotant. Chuchoter rend les histoires beaucoup plus secrètes, donc beaucoup mieux."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'roxane', x: 560, y: 522, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'AAAAH !!! LE DRAGON !!!', x: 430, y: 166, fs: 26, rot: -6, color: '#e0453c' }]
+            },
+            text: "Dehors, sur le trottoir, elles crièrent le nom du dragon aussi fort qu'elles voulaient. Une règle qui s'arrête à la porte, c'est une règle qu'on veut bien suivre."
+          }
+        ]
+      },
+
+      /* ---------- 11 : la jalousie du bébé ---------- */
+      {
+        id: 'tout-pour-pablo',
+        title: 'Tout le monde regarde Pablo',
+        subtitle: 'Quand un bébé prend toute la place',
+        tag: 'Copines',
+        themes: ['Émotions', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'roxane', x: 250, y: 508, s: 1.05 },
+            { t: 'pablo', x: 440, y: 512, s: 1.1, pose: 'wave' },
+            { t: 'livia', x: 640, y: 510, s: 1.1, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.15, pose: 'wave' },
+                { t: 'roxane', x: 540, y: 508, s: 1.1, pose: 'wave' }
+              ],
+              sfx: [{ t: 'ON JOUE AU MAGASIN !', x: 430, y: 146, fs: 26, rot: -4, color: '#3ec9c9' }]
+            },
+            text: "Roxane et Isadora venaient jouer. Livia avait tout préparé : le magasin, la caisse, les fausses pièces. Elle attendait ce mercredi depuis lundi."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'roxane', x: 250, y: 508, s: 1.1, mood: 'wow' },
+                { t: 'pablo', x: 450, y: 512, s: 1.1, pose: 'wave' },
+                { t: 'isadora', x: 650, y: 508, s: 1.1, mood: 'wow' }
+              ],
+              sfx: [{ t: 'OOOH, IL EST TROP MIGNON !', x: 420, y: 146, fs: 24, rot: -4, color: '#f2a0c2' }]
+            },
+            text: "Puis Pablo entra. « Oooh ! » firent les deux copines. Et pendant une heure entière, il n'y eut plus de magasin, plus de caisse, plus de fausses pièces. Il n'y eut que Pablo."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 400, y: 510, s: 1.25, mood: 'sad' }
+              ],
+              sfx: [{ t: 'ET MOI ?', x: 400, y: 146, fs: 32, rot: -6, color: '#6d5847' }]
+            },
+            text: "Livia resta debout à côté du magasin. Elle avait dans le ventre quelque chose de piquant qui n'était pas de la tristesse et pas tout à fait de la colère non plus."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.2, mood: 'fache' },
+                { t: 'pablo', x: 560, y: 512, s: 1.1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'VA-T\'EN, TOI !', x: 430, y: 146, fs: 30, rot: -6, color: '#e0453c' }]
+            },
+            text: "Alors elle poussa Pablo. Pas très fort. Assez pour qu'il tombe sur les fesses et qu'il pleure. Et à la seconde où il pleura, Livia sut qu'elle avait fait une bêtise."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 494, s: 1.4, pose: 'sit' },
+                { t: 'livia', x: 570, y: 496, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'Tu es jalouse. Ça a un nom, et ça arrive à tout le monde.', tx: 305, ty: 236 }]
+            },
+            text: "Maman l'emmena dans la chambre. « Ce que tu as là », dit-elle en montrant son ventre, « ça s'appelle la jalousie. Ça arrive à tout le monde. Pousser, non. Le dire, oui. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'roxane', x: 240, y: 508, s: 1.05 },
+                { t: 'livia', x: 450, y: 510, s: 1.15, pose: 'point' },
+                { t: 'isadora', x: 660, y: 508, s: 1.05 }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Vous venez ? Le magasin ouvre.', tx: 450, ty: 236 }]
+            },
+            text: "Livia retourna voir ses copines et leur dit, à voix haute : « Le magasin ouvre. » Elles arrivèrent en courant. Il suffisait de le demander, ce qui est fou quand on y pense."
+          }
+        ]
+      },
+
+      /* ---------- 12 : la peur du noir ---------- */
+      {
+        id: 'peur-du-noir',
+        title: 'La nuit chez Livia',
+        subtitle: 'Avoir peur, sans que personne ne se moque',
+        tag: 'Copines',
+        themes: ['Émotions', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'juliette', x: 300, y: 508, s: 1.1, mood: 'sad' },
+            { t: 'livia', x: 540, y: 510, s: 1.15 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.15, pose: 'armsup' },
+                { t: 'juliette', x: 560, y: 508, s: 1.1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'ON DORT ENSEMBLE !', x: 430, y: 146, fs: 26, rot: -5, color: '#a98cf0' }]
+            },
+            text: "Juliette dormait chez Livia pour la première fois. Elles avaient un matelas par terre, deux lampes de poche et l'autorisation de parler jusqu'à huit heures et demie."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'juliette', x: 300, y: 508, s: 1.1, mood: 'sad' },
+                { t: 'livia', x: 560, y: 510, s: 1.15, mood: 'sleep' }
+              ],
+              sfx: [{ t: 'CLIC.', x: 430, y: 146, fs: 30, rot: -5, color: '#bfe8f7' }]
+            },
+            text: "À huit heures et demie, Maman éteignit. La chambre devint noire d'un coup. Livia bâilla. Juliette, elle, se raidit complètement sous la couverture."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'juliette', x: 400, y: 508, s: 1.25, mood: 'sad' }
+              ],
+              sfx: [{ t: 'ET SI…', x: 400, y: 146, fs: 32, rot: -5, color: '#8a7768' }]
+            },
+            text: "Dans le noir, le portemanteau devenait quelqu'un. Le rideau bougeait tout seul. Juliette connaissait son secret par cœur : elle a encore peur du noir, et elle a honte de l'avoir."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.15, pose: 'point' },
+                { t: 'juliette', x: 560, y: 508, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Tu veux la petite lumière ? Moi je la garde aussi.', tx: 305, ty: 236 }]
+            },
+            text: "Livia sentit qu'elle ne dormait pas. Elle ne dit pas « n'aie pas peur ». Elle dit : « Tu veux la petite lumière ? Moi aussi je la garde, des fois. » Ce n'était même pas un mensonge."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              back: [{ t: 'lantern', x: 660, y: 300, s: 1 }],
+              items: [
+                { t: 'livia', x: 300, y: 496, s: 1.15, pose: 'sit' },
+                { t: 'juliette', x: 550, y: 494, s: 1.1, pose: 'sit' }
+              ],
+              sfx: [{ t: 'C\'EST LE MANTEAU.', x: 420, y: 148, fs: 26, rot: -4, color: '#f7c518' }]
+            },
+            text: "Elles allumèrent la veilleuse et firent le tour de la chambre. Le monsieur était un manteau. Le monstre était une chaise. Le noir garde beaucoup moins de secrets quand on le visite."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'juliette', x: 300, y: 496, s: 1.1, pose: 'sit', mood: 'sleep' },
+                { t: 'livia', x: 550, y: 496, s: 1.15, pose: 'sit', mood: 'sleep' }
+              ],
+              sfx: [{ t: 'ZZZ…', x: 430, y: 150, fs: 30, rot: -6, color: '#bfe8f7' }]
+            },
+            text: "Elles s'endormirent la veilleuse allumée. Au matin, Juliette dit qu'elle n'avait pas eu peur du tout. Livia dit que oui, bien sûr. Les deux savaient très bien à quoi s'en tenir."
+          }
+        ]
+      },
+
+      /* ---------- 13 : le départ d'une amie ---------- */
+      {
+        id: 'demenagement',
+        title: 'Isadora s\'en va',
+        subtitle: 'Quand une amie part habiter loin',
+        tag: 'Copines',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'livia', x: 300, y: 524, s: 1.1, mood: 'sad' },
+            { t: 'isadora', x: 540, y: 522, s: 1.05, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'isadora', x: 300, y: 522, s: 1.1, mood: 'sad' },
+                { t: 'livia', x: 560, y: 524, s: 1.15, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'On déménage. À trois heures de route.', tx: 305, ty: 240 }]
+            },
+            text: "Un lundi, Isadora annonça la nouvelle sur le banc de la cour. « On déménage. À trois heures de route. » Livia ne savait pas ce que ça faisait, trois heures de route."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 400, y: 524, s: 1.25, mood: 'fache' }
+              ],
+              sfx: [{ t: 'C\'EST NUL !', x: 400, y: 166, fs: 34, rot: -6, color: '#e0453c' }]
+            },
+            text: "D'abord, Livia se fâcha. Elle dit que c'était nul, qu'Isadora aurait pu refuser, qu'on ne déménage pas comme ça. Se fâcher, c'est plus facile que d'être triste."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 240, y: 522, s: 1.05, mood: 'sad' },
+                { t: 'isadora', x: 450, y: 522, s: 1.05, mood: 'sad' },
+                { t: 'juliette', x: 660, y: 522, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'PLUS QUE SIX JOURS…', x: 400, y: 166, fs: 26, rot: -4, color: '#6d5847' }]
+            },
+            text: "Il restait six jours. Elles les comptèrent tous les matins, ce qui était une très mauvaise idée. Chaque jour compté partait plus vite que le précédent."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.15, pose: 'hold' },
+                { t: 'roxane', x: 560, y: 508, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ON FABRIQUE QUOI ?', x: 430, y: 146, fs: 26, rot: -5, color: '#3ec9c9' }]
+            },
+            text: "Alors elles fabriquèrent quelque chose. Un carnet, avec un dessin de chacune, la maison de chacune, et une phrase de chacune écrite tout de travers."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'livia', x: 260, y: 522, s: 1.1, pose: 'hold' },
+                { t: 'isadora', x: 480, y: 522, s: 1.1, pose: 'hold', mood: 'sad' },
+                { t: 'roxane', x: 690, y: 522, s: 1.05, mood: 'sad' }
+              ],
+              front: [{ t: 'car', x: 640, y: 500, s: 1 }],
+              sfx: [{ t: 'AU REVOIR…', x: 400, y: 166, fs: 30, rot: -5, color: '#8a7768' }]
+            },
+            text: "Le samedi, la voiture était pleine. Isadora prit le carnet et le serra contre elle. Personne ne trouva de belle phrase à dire. Elles se firent un signe très longtemps."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'livia', x: 400, y: 496, s: 1.2, pose: 'sit' }
+              ],
+              sfx: [{ t: 'DRIIING !', x: 420, y: 150, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Le dimanche soir, le téléphone sonna. C'était Isadora, qui voulait décrire sa nouvelle chambre. Habiter loin, ce n'est pas la même chose que disparaître."
+          }
+        ]
       }
     ]
   }
@@ -8870,7 +10167,7 @@ var UNIVERSES = [
      ============================================================ */
   var els = {
     tabs: $('#tabs'), home: $('#viewHome'), uni: $('#viewUniverse'),
-    logo: $('#btnLogo'), logoMark: $('#logoMark'), coverMark: $('#coverMark'),
+    logo: $('#btnLogo'),
     mainnav: $('#mainnav'),
     cover: $('#viewCover'), coverArt: $('#coverArt'), coverMeta: $('#coverMeta'),
     coverNav: $('#coverNav'), coverSticker: $('#coverSticker'),
@@ -8899,8 +10196,6 @@ var UNIVERSES = [
   var state = { universe: null, story: null, page: 0, speak: false };
 
   /* ---------------- la marque ---------------- */
-  els.logoMark.innerHTML = Art.marque();
-  els.coverMark.innerHTML = Art.marque();
   els.logo.onclick = function () { location.hash = '#/'; };
 
   /* ---------------- le menu principal ---------------- */

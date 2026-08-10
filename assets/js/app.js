@@ -216,7 +216,7 @@
      ============================================================ */
   var els = {
     tabs: $('#tabs'), home: $('#viewHome'), uni: $('#viewUniverse'),
-    logo: $('#btnLogo'), logoMark: $('#logoMark'), coverMark: $('#coverMark'),
+    logo: $('#btnLogo'),
     mainnav: $('#mainnav'),
     cover: $('#viewCover'), coverArt: $('#coverArt'), coverMeta: $('#coverMeta'),
     coverNav: $('#coverNav'), coverSticker: $('#coverSticker'),
@@ -245,8 +245,6 @@
   var state = { universe: null, story: null, page: 0, speak: false };
 
   /* ---------------- la marque ---------------- */
-  els.logoMark.innerHTML = Art.marque();
-  els.coverMark.innerHTML = Art.marque();
   els.logo.onclick = function () { location.hash = '#/'; };
 
   /* ---------------- le menu principal ---------------- */

@@ -304,6 +304,12 @@
     if (mood === 'wow') s += '<ellipse cx="0" cy="-22" rx="8" ry="10" fill="#b8355c" stroke="' + INK + '" stroke-width="3.5"/>';
     else if (mood === 'sad') s += line('M -12,-18 q 12,-10 24,0', INK, 4);
     else s += line('M -14,-26 q 14,16 28,0', INK, 4.5);
+    if (o.lunettes) {
+      s += '<circle cx="-15" cy="-48" r="14" fill="none" stroke="' + INK + '" stroke-width="4"/>' +
+        '<circle cx="15" cy="-48" r="14" fill="none" stroke="' + INK + '" stroke-width="4"/>' +
+        line('M -1,-48 L 1,-48', INK, 4) +
+        line('M -29,-50 L -42,-54 M 29,-50 L 42,-54', INK, 3.5);
+    }
     if (o.crown) {
       s += U(['<path d="M -26,-92 L -30,-118 L -12,-104 L 0,-124 L 12,-104 L 30,-118 L 26,-92 Z" fill="%F%" %S%/>'], o.crown, 7);
     }
@@ -400,7 +406,7 @@
     t += line('M -20,-136 q 20,16 40,0', shade(dress, -0.25), 4);
     t += g('translate(0,-130)', girlHead({
       skin: skin, hair: hair, hairstyle: o.hairstyle, mood: o.mood,
-      crown: o.crown, bows: o.bows, clip: o.clip
+      crown: o.crown, bows: o.bows, clip: o.clip, lunettes: o.lunettes
     }));
     if (o.hat) t += g('translate(0,-130)', sunHat(o.hat));
     return s + (sit ? g('translate(-6,42)', t) : t);
@@ -1168,6 +1174,21 @@
     return s;
   };
 
+  /* une étagère de livres : de quoi poser une bibliothèque derrière les têtes */
+  P.etagere = function (o) {
+    var c = o.color || '#a9773f';
+    var dos = ['#e0453c', '#4a7fc1', '#7ab648', '#f7c518', '#a98cf0', '#3fb3b0', '#f0862c'];
+    var s = U(['<rect x="-96" y="-16" width="192" height="16" rx="4" fill="%F%" %S%/>'], c, 6);
+    var i, x = -86;
+    for (i = 0; i < 8; i++) {
+      var h = 52 + (i * 37 % 5) * 6, w = 16 + (i * 23 % 3) * 4;
+      s += '<rect x="' + x + '" y="' + (-16 - h) + '" width="' + w + '" height="' + h +
+        '" rx="3" fill="' + dos[i % dos.length] + '" stroke="' + INK + '" stroke-width="3.5"/>';
+      x += w + 3;
+    }
+    return s;
+  };
+
   P.rock = function (o) {
     return U(['<path d="M -34,0 C -40,-22 -20,-38 0,-36 C 22,-34 36,-20 32,0 Z" fill="%F%" %S%/>'], o.color || '#b9b3ae', 7);
   };
@@ -1627,6 +1648,12 @@
         pose: o.pose, mood: o.mood, hat: o.hat, trim: '#e6f6ea'
       });
     },
+    mamie: function (o) {
+      return girl({
+        skin: '#f0d7bd', hair: '#e4e2dc', dress: o.dress || '#a98cf0', hairstyle: 'carre',
+        lunettes: true, pose: o.pose, mood: o.mood, hat: o.hat, trim: '#efe4ff'
+      });
+    },
     pablo: function (o) {
       return bebe({
         skin: '#f6cba6', hair: '#f7dc8a', body: o.body || '#8ec9f0',
@@ -1758,21 +1785,6 @@
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }
 
-  /* la marque du site : une bulle de BD qui sourit */
-  function marqueSVG() {
-    var s = U([
-      '<rect x="10" y="12" width="80" height="62" rx="20" fill="%F%" %S%/>',
-      '<path d="M 30,68 L 26,92 L 52,72 Z" fill="%F%" %S%/>'
-    ], '#f7c518', 9);
-    s += '<circle cx="38" cy="40" r="7" fill="' + INK + '"/>' +
-      '<circle cx="64" cy="40" r="7" fill="' + INK + '"/>' +
-      '<circle cx="40.5" cy="37.5" r="2.4" fill="#fff"/>' +
-      '<circle cx="66.5" cy="37.5" r="2.4" fill="#fff"/>';
-    s += line('M 36,54 q 14,14 30,2', INK, 6);
-    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" ' +
-      'preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + s + '</svg>';
-  }
-
   /* une vignette : un seul élément, sans décor, pour les jeux */
   function stickerSVG(it) {
     var fn = ITEMS[it.t];
@@ -1787,7 +1799,6 @@
   global.Art = {
     scene: sceneSVG,
     sticker: stickerSVG,
-    marque: marqueSVG,
     INK: INK,
     W: VW,
     H: VH,
