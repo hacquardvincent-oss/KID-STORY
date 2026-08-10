@@ -253,6 +253,29 @@
         front: ''
       };
     }
+    /* cheveux lisses coupés au carré : une masse nette qui encadre le visage */
+    if (style === 'carre') {
+      return {
+        back: U(['<path d="M -52,-46 C -52,-98 -28,-110 0,-110 C 28,-110 52,-98 52,-46 L 52,-4 L -52,-4 Z" fill="%F%" %S%/>'], hair, 8),
+        fringe: U(['<path d="M -45,-62 C -47,-98 -25,-108 0,-108 C 25,-108 47,-98 45,-62 Z" fill="%F%" %S%/>'], hair, 8) +
+          line('M -36,-76 q 36,-11 72,0', d, 3),
+        front: ''
+      };
+    }
+    /* cheveux lisses tirés en arrière, noués en queue de cheval */
+    if (style === 'queue' || style === 'queuehaute') {
+      var haute = style === 'queuehaute';
+      var ax = haute ? 28 : 50, ay = haute ? -102 : -66;
+      var tresse = haute
+        ? '<path d="M 26,-104 C 60,-124 90,-106 88,-72 C 87,-52 71,-47 65,-61 C 57,-81 40,-95 26,-104 Z" fill="%F%" %S%/>'
+        : '<path d="M 46,-78 C 84,-76 96,-34 82,-6 C 74,10 58,8 56,-6 C 52,-38 38,-64 46,-78 Z" fill="%F%" %S%/>';
+      return {
+        back: U([cap, tresse], hair, 8) +
+          '<circle cx="' + ax + '" cy="' + ay + '" r="8.5" fill="' + d +
+          '" stroke="' + INK + '" stroke-width="3.5"/>',
+        front: ''
+      };
+    }
     // couettes (pigtails)
     return {
       back: U([cap,
@@ -381,6 +404,86 @@
     }));
     if (o.hat) t += g('translate(0,-130)', sunHat(o.hat));
     return s + (sit ? g('translate(-6,42)', t) : t);
+  }
+
+  /* ---------- le petit frère : un bébé, donc une grosse tête ---------- */
+  function bebeTete(o) {
+    var skin = o.skin, hair = o.hair, mood = o.mood || 'happy';
+    var s = U(['<ellipse cx="0" cy="-30" rx="40" ry="38" fill="%F%" %S%/>'], skin, 9);
+    /* les cheveux sont très courts : une calotte posée sur le haut du crâne */
+    s += U(['<path d="M -37,-36 C -41,-66 41,-66 37,-36 C 26,-54 -26,-54 -37,-36 Z" fill="%F%" %S%/>'], hair, 6);
+    s += line('M 2,-62 q 10,-10 17,-1', shade(hair, -0.25), 4);
+    if (mood === 'sleep') {
+      s += line('M -22,-32 q 8,8 16,0', INK, 4) + line('M 6,-32 q 8,8 16,0', INK, 4);
+    } else {
+      var r = mood === 'wow' ? 8.5 : 7;
+      s += '<circle cx="-14" cy="-32" r="' + r + '" fill="' + INK + '"/>' +
+        '<circle cx="14" cy="-32" r="' + r + '" fill="' + INK + '"/>' +
+        '<circle cx="-11.5" cy="-35" r="2.6" fill="#fff"/><circle cx="16.5" cy="-35" r="2.6" fill="#fff"/>';
+    }
+    s += '<circle cx="-26" cy="-18" r="9" fill="#f79cb0" opacity=".75"/>' +
+      '<circle cx="26" cy="-18" r="9" fill="#f79cb0" opacity=".75"/>';
+    if (mood === 'wow') s += '<ellipse cx="0" cy="-10" rx="8" ry="9" fill="#b8355c" stroke="' + INK + '" stroke-width="3.5"/>';
+    else if (mood === 'sad') s += line('M -11,-6 q 11,-9 22,0', INK, 4);
+    else s += line('M -13,-14 q 13,14 26,0', INK, 4.5);
+    return s;
+  }
+
+  function bebe(o) {
+    o = o || {};
+    var skin = o.skin || '#f6cba6';
+    var hair = o.hair || '#f0be48';
+    var body = o.body || '#8ec9f0';
+    var pose = o.pose || 'stand';
+    var assis = pose === 'sit' || pose === 'quatrepattes';
+    var s = '';
+
+    /* jambes courtes, pieds nus */
+    if (pose === 'quatrepattes') {
+      s += limb('M -14,-46 C -22,-32 -30,-22 -34,-14', skin, 15) +
+        limb('M 14,-44 C 22,-30 28,-20 30,-12', skin, 15) +
+        '<ellipse cx="-38" cy="-10" rx="12" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="34" cy="-9" rx="12" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>';
+    } else if (assis) {
+      s += limb('M -6,-22 C 16,-22 32,-18 36,-6', skin, 15) +
+        limb('M 8,-14 C 30,-14 46,-10 50,2', skin, 15) +
+        '<ellipse cx="42" cy="-4" rx="12" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="56" cy="4" rx="12" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>';
+    } else {
+      s += limb('M -12,-42 L -13,-14', skin, 16) + limb('M 12,-42 L 13,-14', skin, 16) +
+        '<ellipse cx="-15" cy="-10" rx="13" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="15" cy="-10" rx="13" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>';
+    }
+
+    var t = '';
+    if (pose === 'armsup' || pose === 'porte') {
+      t += limb('M -22,-92 C -42,-104 -54,-122 -56,-138', skin, 12) +
+        limb('M 22,-92 C 42,-104 54,-122 56,-138', skin, 12) +
+        hand(-58, -142, skin, 10) + hand(58, -142, skin, 10);
+    } else if (pose === 'wave') {
+      t += limb('M -22,-92 C -38,-86 -46,-76 -48,-66', skin, 12) +
+        limb('M 22,-94 C 44,-106 58,-124 60,-142', skin, 12) +
+        hand(-50, -62, skin, 10) + hand(62, -146, skin, 10);
+    } else if (pose === 'hold') {
+      t += limb('M -22,-92 C -38,-88 -46,-80 -46,-70', skin, 12) +
+        limb('M 22,-92 C 38,-88 46,-80 46,-70', skin, 12) +
+        hand(-48, -66, skin, 10) + hand(48, -66, skin, 10);
+    } else if (pose === 'quatrepattes') {
+      t += limb('M -22,-90 C -40,-76 -50,-52 -52,-30', skin, 12) +
+        limb('M 22,-90 C 40,-76 50,-52 52,-30', skin, 12) +
+        hand(-54, -22, skin, 10) + hand(54, -22, skin, 10);
+    } else {
+      t += limb('M -22,-92 C -38,-84 -46,-74 -48,-64', skin, 12) +
+        limb('M 22,-92 C 38,-84 46,-74 48,-64', skin, 12) +
+        hand(-50, -60, skin, 10) + hand(50, -60, skin, 10);
+    }
+
+    /* la grenouillère */
+    t += U(['<path d="M -26,-104 C -33,-80 -35,-56 -31,-38 L 31,-38 C 35,-56 33,-80 26,-104 Z" fill="%F%" %S%/>'], body, 9);
+    if (o.trim) t += line('M -33,-52 L 33,-52', o.trim, 5);
+    t += g('translate(0,-100)', bebeTete({ skin: skin, hair: hair, mood: o.mood }));
+    if (o.hat) t += g('translate(0,-100) scale(.8)', sunHat(o.hat));
+    return s + (assis ? g('translate(-4,' + (pose === 'quatrepattes' ? 22 : 34) + ')', t) : t);
   }
 
   function sunHat(color) {
@@ -1505,6 +1608,32 @@
     },
     olaf: function (o) { return snowman(o); },
 
+    /* les vraies copines de Livia, et son petit frère */
+    roxane: function (o) {
+      return girl({
+        skin: '#f2c49a', hair: '#4a2f22', dress: o.dress || '#e0453c', hairstyle: 'carre',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#ffd9c9'
+      });
+    },
+    juliette: function (o) {
+      return girl({
+        skin: '#f9dcbd', hair: '#f2cf72', dress: o.dress || '#a98cf0', hairstyle: 'queuehaute',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#efe4ff'
+      });
+    },
+    isadora: function (o) {
+      return girl({
+        skin: '#e8b98f', hair: '#9a6a3c', dress: o.dress || '#7ac6a8', hairstyle: 'queue',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#e6f6ea'
+      });
+    },
+    pablo: function (o) {
+      return bebe({
+        skin: '#f6cba6', hair: '#f7dc8a', body: o.body || '#8ec9f0',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#fff1a8'
+      });
+    },
+
     /* les Monsieur Madame */
     grognon: function (o) { return mrm({ couleur: '#4a7fc1', forme: 'carre', chapeau: '#2f5b90', type: 'plat', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood || 'fache' }); },
     chipie: function (o) { return mrm({ couleur: '#e0453c', forme: 'rond', chapeau: '#4f9147', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
@@ -1553,7 +1682,7 @@
   })();
 
   /* ombre portée au sol : ce qui pose vraiment un personnage sur le décor */
-  var OMBRE = { dino: 0, olaf: 34, george: 38 };
+  var OMBRE = { dino: 0, olaf: 34, george: 38, pablo: 34 };
   function ombre(t, pose) {
     if (!CHARS.hasOwnProperty(t) || pose === 'swim' || pose === 'jump') return '';
     var r = OMBRE.hasOwnProperty(t) ? OMBRE[t] : 46;

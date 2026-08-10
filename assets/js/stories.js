@@ -56,6 +56,19 @@ var COUVERTURE = {
   }
 };
 
+/* Les thèmes : ils traversent les univers, c'est tout leur intérêt.
+   Chaque histoire en porte un ou deux dans son champ « themes ». */
+var THEMES = [
+  { id: 'ete', nom: 'Été', emoji: '☀️' },
+  { id: 'amitie', nom: 'Amitié', emoji: '🤝' },
+  { id: 'emotions', nom: 'Émotions', emoji: '💛' },
+  { id: 'grandir', nom: 'Grandir', emoji: '🌱' },
+  { id: 'famille', nom: 'Famille', emoji: '🏡' },
+  { id: 'dehors', nom: 'Dehors', emoji: '🌳' },
+  { id: 'nuit', nom: 'Nuit', emoji: '🌙' },
+  { id: 'betises', nom: 'Bêtises', emoji: '🙃' }
+];
+
 var UNIVERSES = [
 
   /* ==========================================================
@@ -86,6 +99,7 @@ var UNIVERSES = [
         title: 'Livia et Peppa à la plage',
         subtitle: 'Le premier jour des vacances',
         tag: 'Été',
+        themes: ['Été', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'beach',
@@ -227,6 +241,7 @@ var UNIVERSES = [
         title: 'Le camping sous les étoiles',
         subtitle: 'Une nuit dans la forêt',
         tag: 'Été',
+        themes: ['Été', 'Nuit'],
         minutes: 6,
         cover: {
           bg: 'camp', time: 'night',
@@ -372,6 +387,7 @@ var UNIVERSES = [
         title: 'La grande journée à la piscine',
         subtitle: 'Le toboggan géant',
         tag: 'Été',
+        themes: ['Été', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -504,6 +520,7 @@ var UNIVERSES = [
         title: 'Le cerf-volant de l\'été',
         subtitle: 'Un après-midi sur la colline',
         tag: 'Été',
+        themes: ['Été', 'Dehors'],
         minutes: 5,
         cover: {
           bg: 'hill',
@@ -627,6 +644,7 @@ var UNIVERSES = [
         title: 'Le cadeau de George',
         subtitle: 'Quand on voudrait être le seul',
         tag: 'Grandir',
+        themes: ['Émotions', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'bedroom',
@@ -728,6 +746,7 @@ var UNIVERSES = [
         title: 'Le vélo de Livia',
         subtitle: 'Ce qui est plus drôle à deux',
         tag: 'Grandir',
+        themes: ['Émotions', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -828,6 +847,7 @@ var UNIVERSES = [
         title: 'La grosse colère de Peppa',
         subtitle: 'Souffler comme un dragon',
         tag: 'Grandir',
+        themes: ['Émotions', 'Grandir'],
         minutes: 5,
         cover: {
           bg: 'bedroom',
@@ -923,6 +943,7 @@ var UNIVERSES = [
         title: 'La flaque interdite',
         subtitle: 'Pourquoi Maman avait dit non',
         tag: 'Grandir',
+        themes: ['Grandir', 'Bêtises'],
         minutes: 5,
         cover: {
           bg: 'village',
@@ -1021,6 +1042,7 @@ var UNIVERSES = [
         title: 'Le vase de Maman',
         subtitle: 'Le poids d\'un petit mensonge',
         tag: 'Grandir',
+        themes: ['Grandir', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'bedroom',
@@ -1118,6 +1140,7 @@ var UNIVERSES = [
         title: 'La file du toboggan',
         subtitle: 'Attendre sans que ce soit long',
         tag: 'Grandir',
+        themes: ['Grandir', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -1214,6 +1237,110 @@ var UNIVERSES = [
             text: "Et là, ça y est : c'est son tour, pour de vrai. Elle descend en criant, et tout le monde crie avec elle. Attendu, c'était bien meilleur."
           }
         ]
+      },
+
+      /* ---------- 11 : le petit frère ---------- */
+      {
+        id: 'petit-frere',
+        title: 'Pablo veut faire pareil',
+        subtitle: 'Un petit frère qui copie tout',
+        tag: 'Grandir',
+        themes: ['Famille', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 230, y: 520, s: 1.15 },
+            { t: 'livia', x: 440, y: 522, s: 1.1 },
+            { t: 'pablo', x: 640, y: 526, s: 1.1, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 560, y: 520, s: 1.2, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ENFIN TRANQUILLES !', x: 430, y: 168, fs: 26, rot: -4, color: '#e8436e' }]
+            },
+            text: "Peppa était venue jouer chez Livia. Elles avaient sorti les crayons, les cubes et le grand tapis. C'était un après-midi parfait, qui allait durer trois minutes."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 260, y: 522, s: 1.1 },
+                { t: 'peppa', x: 480, y: 520, s: 1.15, mood: 'wow' },
+                { t: 'pablo', x: 690, y: 526, s: 1.1, pose: 'quatrepattes' }
+              ],
+              sfx: [{ t: 'PA-BLO !', x: 400, y: 166, fs: 32, rot: -6, color: '#8ec9f0' }]
+            },
+            text: "Pablo arriva en trottinant, les bras en avant. Pablo est le petit frère de Livia. Il a un an et demi, il ne parle presque pas, et il veut exactement ce que sa grande sœur a dans les mains."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, mood: 'sad' },
+                { t: 'pablo', x: 560, y: 526, s: 1.1, pose: 'hold', mood: 'wow' }
+              ],
+              front: [
+                { t: 'cube', x: 190, y: 546, s: .8, rot: -14, color: '#e0453c' },
+                { t: 'cube', x: 700, y: 542, s: .8, rot: 20, color: '#4a7fc1' }
+              ],
+              sfx: [{ t: 'PATATRAS !', x: 420, y: 164, fs: 34, rot: -8, color: '#e0453c' }]
+            },
+            text: "Il prit le crayon rouge. Il renversa la tour de cubes. Il s'assit au milieu du dessin. À chaque fois, il riait, comme si c'était le jeu le plus drôle du monde."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 400, y: 522, s: 1.25, pose: 'armsup', mood: 'sad' }
+              ],
+              sfx: [{ t: 'IL FAIT TOUT COMME MOI !', x: 400, y: 164, fs: 24, rot: -4, color: '#e0453c' }]
+            },
+            text: "« Il fait tout comme moi ! » cria Livia. « Il ne sait rien faire tout seul ! » Elle avait la voix qui montait, et les joues qui chauffaient."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 280, y: 520, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 540, y: 522, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'George aussi. C\'est comme ça, les petits.', tx: 285, ty: 244 }]
+            },
+            text: "« George aussi faisait ça », dit Peppa. « Il copiait tout. Maintenant, il joue avec moi. » Livia n'avait jamais pensé qu'un petit frère, ça pouvait devenir quelqu'un avec qui jouer."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 280, y: 522, s: 1.1, pose: 'point' },
+                { t: 'peppa', x: 480, y: 520, s: 1.1 },
+                { t: 'pablo', x: 680, y: 526, s: 1.1, pose: 'hold' }
+              ],
+              front: [{ t: 'tourcubes', x: 590, y: 546, s: .7, n: 3 }],
+              sfx: [{ t: 'À TOI, PABLO !', x: 380, y: 168, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Alors Livia essaya autre chose. Elle empila trois cubes et dit : « À toi, Pablo. » Pablo posa le quatrième, tout doucement, la langue sortie. La tour tint debout."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 220, y: 508, s: 1.05, pose: 'sit' },
+                { t: 'livia', x: 430, y: 508, s: 1.05, pose: 'sit' },
+                { t: 'pablo', x: 640, y: 512, s: 1.05, pose: 'sit' }
+              ],
+              front: [{ t: 'cube', x: 730, y: 544, s: .75, rot: 10, color: '#f7c518' }]
+            },
+            text: "Le soir, la tour faisait onze cubes. Pablo en renversa dix. Livia respira un grand coup, et recommença. C'est aussi ça, être une grande sœur."
+          }
+        ]
       }
 
     ]
@@ -1245,6 +1372,7 @@ var UNIVERSES = [
         title: 'Un été à Arendelle',
         subtitle: 'De la neige au mois de juillet',
         tag: 'Été',
+        themes: ['Été', 'Amitié'],
         minutes: 6,
         cover: {
           bg: 'snow',
@@ -1386,6 +1514,7 @@ var UNIVERSES = [
         title: 'La nuit des étoiles glacées',
         subtitle: 'Une aurore pour Livia',
         tag: 'Nuit',
+        themes: ['Nuit', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'snow', time: 'night',
@@ -1530,6 +1659,7 @@ var UNIVERSES = [
         title: 'La grande bataille d\'arroseur',
         subtitle: 'Le jour le plus chaud de l\'été',
         tag: 'Jardin',
+        themes: ['Été', 'Dehors', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -1640,6 +1770,7 @@ var UNIVERSES = [
         title: 'Le ruisseau secret',
         subtitle: 'Des cailloux, des têtards et un barrage',
         tag: 'Été',
+        themes: ['Été', 'Dehors'],
         minutes: 6,
         cover: {
           bg: 'creek',
@@ -1746,6 +1877,7 @@ var UNIVERSES = [
         title: 'Le ballon qui ne doit pas tomber',
         subtitle: 'Une seule règle, et elle est difficile',
         tag: 'Jardin',
+        themes: ['Dehors', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -1855,6 +1987,7 @@ var UNIVERSES = [
         title: 'La plage aux mille crabes',
         subtitle: 'Un trou, un seau et beaucoup de pinces',
         tag: 'Plage',
+        themes: ['Été', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'beach',
@@ -1963,6 +2096,7 @@ var UNIVERSES = [
         title: 'Le camping dans le jardin',
         subtitle: 'Dormir dehors, à trois mètres de la maison',
         tag: 'Nuit',
+        themes: ['Nuit', 'Dehors'],
         minutes: 6,
         cover: {
           bg: 'garden', time: 'night',
@@ -2071,6 +2205,7 @@ var UNIVERSES = [
         title: 'La course des glaces fondues',
         subtitle: 'Manger vite, mais pas trop vite',
         tag: 'Été',
+        themes: ['Été', 'Bêtises'],
         minutes: 5,
         cover: {
           bg: 'village',
@@ -2178,6 +2313,7 @@ var UNIVERSES = [
         title: 'Le toboggan d\'eau du jardin',
         subtitle: 'Une bâche, du savon, et beaucoup de courage',
         tag: 'Jardin',
+        themes: ['Été', 'Bêtises'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -2284,6 +2420,7 @@ var UNIVERSES = [
         title: 'La chasse au trésor du jardin',
         subtitle: 'Une carte dessinée par Bingo',
         tag: 'Jardin',
+        themes: ['Dehors', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -2391,6 +2528,7 @@ var UNIVERSES = [
         title: 'Le pique-nique tout en haut',
         subtitle: 'Une colline, un panier, et beaucoup de vent',
         tag: 'Été',
+        themes: ['Dehors', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'hill',
@@ -2498,6 +2636,7 @@ var UNIVERSES = [
         title: 'La nuit des lucioles',
         subtitle: 'Rester réveillé jusqu\'à la nuit noire',
         tag: 'Nuit',
+        themes: ['Nuit', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'garden', time: 'night',
@@ -2632,6 +2771,7 @@ var UNIVERSES = [
         title: 'Monsieur Grognon et le sourire perdu',
         subtitle: 'On peut être grognon et se laisser attraper',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
         minutes: 4,
         cover: {
           bg: 'garden',
@@ -2714,6 +2854,7 @@ var UNIVERSES = [
         title: 'Madame Chipie fait une farce',
         subtitle: 'La blague qui va trop loin',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Bêtises'],
         minutes: 4,
         cover: {
           bg: 'village',
@@ -2796,6 +2937,7 @@ var UNIVERSES = [
         title: 'Monsieur Étourdi perd tout',
         subtitle: 'Une place pour chaque chose',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Grandir'],
         minutes: 4,
         cover: {
           bg: 'bedroom',
@@ -2878,6 +3020,7 @@ var UNIVERSES = [
         title: 'Madame Timide dit bonjour',
         subtitle: 'Le mot le plus difficile du monde',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
         minutes: 4,
         cover: {
           bg: 'village',
@@ -2960,6 +3103,7 @@ var UNIVERSES = [
         title: 'Monsieur Rapide et Monsieur Lent',
         subtitle: 'Deux vitesses, une seule promenade',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
         minutes: 4,
         cover: {
           bg: 'road',
@@ -3047,6 +3191,7 @@ var UNIVERSES = [
         title: 'Madame Range-Tout et le grand désordre',
         subtitle: 'Quand tout est trop bien rangé',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Bêtises'],
         minutes: 4,
         cover: {
           bg: 'bedroom',
@@ -3142,6 +3287,7 @@ var UNIVERSES = [
         title: 'Monsieur Costaud n\'y arrive pas',
         subtitle: 'Demander de l\'aide, c\'est permis',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Grandir'],
         minutes: 4,
         cover: {
           bg: 'garden',
@@ -3227,6 +3373,7 @@ var UNIVERSES = [
         title: 'Madame Bonheur et le jour gris',
         subtitle: 'Ce qu\'on fait quand rien ne va',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'village',
@@ -3335,6 +3482,7 @@ var UNIVERSES = [
         title: 'Les trois amies de Livia',
         subtitle: 'Trois jeux différents, un seul après-midi',
         tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -3436,6 +3584,7 @@ var UNIVERSES = [
         title: 'De la neige sur la plage',
         subtitle: 'Un cadeau qui fond, et ce qu\'on en fait',
         tag: 'Tous ensemble',
+        themes: ['Été', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'beach',
@@ -3540,6 +3689,7 @@ var UNIVERSES = [
         title: 'La cabane de tous les amis',
         subtitle: 'Chacun apporte ce qu\'il sait faire',
         tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -3648,6 +3798,7 @@ var UNIVERSES = [
         title: 'La grande course des amis',
         subtitle: 'Gagner, ce n\'est pas toujours arriver devant',
         tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
         minutes: 5,
         cover: {
           bg: 'hill',
@@ -3750,6 +3901,7 @@ var UNIVERSES = [
         title: 'La nuit où tout le monde a dormi dehors',
         subtitle: 'Une tente, quatre amis, et le noir',
         tag: 'Tous ensemble',
+        themes: ['Nuit', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'camp',
@@ -3850,6 +4002,557 @@ var UNIVERSES = [
               sfx: [{ t: 'ZZZ…', x: 430, y: 180, fs: 32, rot: -6, color: '#bfe8f7' }]
             },
             text: "Au matin, il restait un peu de givre sur la tente et beaucoup de miettes de chamallow. « On recommence ce soir ? » demanda Bluey. Livia dormait encore. Elle dit oui quand même."
+          }
+        ]
+      }
+    ]
+  },
+
+  /* ==========================================================
+     UNIVERS 6 — LES COPINES DE LIVIA
+     Roxane, Juliette, Isadora. Et Pablo, qui n'a rien demandé.
+     ========================================================== */
+  {
+    id: 'copines',
+    name: 'Les copines de Livia',
+    tagline: 'Roxane, Juliette, Isadora — et le petit frère',
+    emoji: '💛',
+    c1: '#f2a0c2',
+    c2: '#7ac6a8',
+    cover: {
+      bg: 'garden',
+      items: [
+        { t: 'roxane', x: 150, y: 522, s: 1 },
+        { t: 'livia', x: 330, y: 524, s: 1.05, pose: 'wave' },
+        { t: 'juliette', x: 510, y: 522, s: 1 },
+        { t: 'isadora', x: 680, y: 522, s: 1 }
+      ]
+    },
+    stories: [
+
+      /* ---------- 1 ---------- */
+      {
+        id: 'nouvelle',
+        title: 'La nouvelle',
+        subtitle: 'Quand on est déjà deux et qu\'une troisième arrive',
+        tag: 'Copines',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'roxane', x: 220, y: 522, s: 1.05 },
+            { t: 'livia', x: 420, y: 524, s: 1.05 },
+            { t: 'isadora', x: 620, y: 522, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'hold' },
+                { t: 'roxane', x: 540, y: 522, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'LES DEUX INSÉPARABLES', x: 420, y: 168, fs: 24, rot: -4, color: '#e0453c' }]
+            },
+            text: "Livia et Roxane faisaient tout ensemble. Le toboggan ensemble, le goûter ensemble, les bêtises ensemble. On les appelait « les deux »."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 200, y: 522, s: 1 },
+                { t: 'livia', x: 400, y: 524, s: 1.05 },
+                { t: 'isadora', x: 640, y: 522, s: 1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'C\'est qui, celle-là ?', tx: 210, ty: 246 }]
+            },
+            text: "Un lundi, une fille nouvelle arriva. Elle s'appelait Isadora. Elle restait près du portail, avec son manteau encore boutonné. « C'est qui, celle-là ? » demanda Roxane."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 280, y: 524, s: 1.05, pose: 'point' },
+                { t: 'roxane', x: 560, y: 522, s: 1.05, mood: 'sad' }
+              ],
+              bubbles: [{ x: 380, y: 24, w: 320, t: 'Si elle joue, moi je ne joue plus.', tx: 560, ty: 240 }]
+            },
+            text: "Livia voulait l'inviter. Roxane, non. « Si elle joue, moi je ne joue plus », dit Roxane. Livia se retrouva au milieu, avec deux envies qui tiraient dans deux directions."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'isadora', x: 300, y: 508, s: 1.05, pose: 'sit', mood: 'sad' },
+                { t: 'livia', x: 560, y: 506, s: 1.05, pose: 'sit' }
+              ],
+              sfx: [{ t: '. . .', x: 430, y: 180, fs: 32, rot: 0, color: '#8a7768' }]
+            },
+            text: "À la récréation, Livia alla s'asseoir à côté d'Isadora. Elles ne dirent rien pendant longtemps. Puis Isadora sortit de sa poche trois billes, et en donna une."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 250, y: 522, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 460, y: 524, s: 1.05, pose: 'point' },
+                { t: 'isadora', x: 660, y: 522, s: 1 }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 330, t: 'À trois, on peut faire des équipes.', tx: 470, ty: 240 }]
+            },
+            text: "« À trois, on peut faire des équipes », dit Livia. « À deux, on ne peut pas. » Roxane réfléchit. C'était embêtant, parce que c'était vrai."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'roxane', x: 220, y: 522, s: 1, pose: 'hold' },
+                { t: 'livia', x: 420, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'isadora', x: 620, y: 522, s: 1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'LES TROIS !', x: 420, y: 164, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Le soir, elles rentrèrent toutes les trois. Roxane marchait au milieu, ce qui l'arrangeait bien. On ne les appela plus jamais « les deux »."
+          }
+        ]
+      },
+
+      /* ---------- 2 ---------- */
+      {
+        id: 'toboggan',
+        title: 'La dispute du toboggan',
+        subtitle: 'Bouder, c\'est long',
+        tag: 'Copines',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          back: [{ t: 'slide', x: 620, y: 520, s: 1 }],
+          items: [
+            { t: 'livia', x: 250, y: 524, s: 1.05, mood: 'sad' },
+            { t: 'roxane', x: 430, y: 522, s: 1.05, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 640, y: 522, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 220, y: 524, s: 1.1, pose: 'armsup' },
+                { t: 'roxane', x: 420, y: 522, s: 1.1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'WHIII !', x: 300, y: 168, fs: 34, rot: -8, color: '#3ec9c9' }]
+            },
+            text: "Le toboggan du parc était le meilleur du monde. Livia et Roxane y montaient depuis une heure. Tout allait très bien."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 660, y: 522, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 240, y: 524, s: 1.1, mood: 'sad' },
+                { t: 'roxane', x: 440, y: 522, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'C\'était mon tour !', tx: 250, ty: 246 }]
+            },
+            text: "Et puis elles voulurent monter en même temps. « C'était mon tour ! » dit Livia. « Non, c'était le mien ! » dit Roxane. Les deux étaient sûres. Les deux avaient tort, un peu."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 170, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'roxane', x: 660, y: 522, s: 1.05, mood: 'sad', flip: true }
+              ],
+              sfx: [{ t: 'HMPF.', x: 420, y: 172, fs: 34, rot: -5, color: '#6d5847' }]
+            },
+            text: "Alors chacune partit de son côté. Livia s'assit tout à gauche du parc. Roxane s'assit tout à droite. Elles se tournèrent le dos, très fort, pour bien montrer."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 400, y: 500, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              sfx: [{ t: 'C\'EST LONG…', x: 400, y: 172, fs: 28, rot: -4, color: '#6d5847' }]
+            },
+            text: "Bouder, au début, c'est agréable. Après deux minutes, c'est un peu moins agréable. Après cinq minutes, on ne se souvient même plus très bien pourquoi on boude."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.05, pose: 'point' },
+                { t: 'roxane', x: 540, y: 522, s: 1.05, pose: 'point' }
+              ],
+              sfx: [{ t: 'EN MÊME TEMPS !', x: 420, y: 168, fs: 28, rot: -6, color: '#f7c518' }]
+            },
+            text: "Elles se levèrent en même temps. Elles firent trois pas en même temps. Elles ouvrirent la bouche en même temps. Et elles dirent « pardon » en même temps, ce qui les fit rire."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              back: [{ t: 'slide', x: 640, y: 522, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 240, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'roxane', x: 430, y: 522, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Elles remontèrent le toboggan jusqu'au soir, une fois chacune, en comptant à voix haute. Compter, ça ne rend pas le jeu plus rigolo. Mais ça évite les disputes."
+          }
+        ]
+      },
+
+      /* ---------- 3 ---------- */
+      {
+        id: 'secret',
+        title: 'Le secret de Juliette',
+        subtitle: 'Ce qu\'on garde pour soi',
+        tag: 'Copines',
+        themes: ['Amitié', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'forest',
+          items: [
+            { t: 'juliette', x: 300, y: 522, s: 1.05 },
+            { t: 'livia', x: 520, y: 524, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'juliette', x: 300, y: 522, s: 1.1 },
+                { t: 'livia', x: 540, y: 524, s: 1.1, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 320, t: 'Je te dis un secret. Un vrai.', tx: 300, ty: 246 }]
+            },
+            text: "Juliette prit Livia par la manche et l'emmena derrière le grand arbre. « Je te dis un secret », chuchota-t-elle. « Un vrai. Tu ne le répètes à personne. »"
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'juliette', x: 320, y: 522, s: 1.1, mood: 'sad' },
+                { t: 'livia', x: 560, y: 524, s: 1.1 }
+              ],
+              sfx: [{ t: 'CHUUUT…', x: 430, y: 166, fs: 30, rot: -5, color: '#a98cf0' }]
+            },
+            text: "Le secret était que Juliette avait encore peur du noir. Elle en avait un peu honte. Elle ne l'avait dit à personne, jamais, et là elle venait de le dire à Livia."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 260, y: 522, s: 1.05, pose: 'point' },
+                { t: 'livia', x: 520, y: 524, s: 1.05 }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 320, t: 'Alors ? Elle t\'a dit quoi ?', tx: 265, ty: 240 }]
+            },
+            text: "À la récréation, Roxane arriva en courant. « Alors ? Elle t'a dit quoi ? » Livia sentit le secret remuer dans sa bouche comme un bonbon trop gros."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 400, y: 524, s: 1.2, mood: 'sad' }
+              ],
+              sfx: [{ t: 'MMMMH…', x: 400, y: 170, fs: 32, rot: -4, color: '#6d5847' }]
+            },
+            text: "Garder un secret, ce n'est pas ne rien dire. C'est se retenir de dire, pendant tout le temps où on a très envie de le dire. C'est beaucoup plus difficile."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 280, y: 522, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 540, y: 524, s: 1.05, pose: 'shrug' }
+              ],
+              bubbles: [{ x: 360, y: 24, w: 330, t: 'C\'est un secret. Alors je ne dis pas.', tx: 540, ty: 240 }]
+            },
+            text: "« C'est un secret », dit Livia. « Alors je ne dis pas. » Roxane fut vexée pendant huit minutes exactement. Puis elle passa à autre chose."
+          },
+          {
+            scene: {
+              bg: 'forest', time: 'sunset',
+              items: [
+                { t: 'juliette', x: 300, y: 522, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 520, y: 524, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Le soir, Juliette lui glissa : « Tu n'as rien dit. » Livia haussa les épaules, comme si c'était facile. Ce n'était pas facile du tout. C'est pour ça que ça valait quelque chose."
+          }
+        ]
+      },
+
+      /* ---------- 4 ---------- */
+      {
+        id: 'gouter',
+        title: 'Le goûter et le petit frère',
+        subtitle: 'Pablo n\'a pas fait exprès',
+        tag: 'Copines',
+        themes: ['Famille', 'Bêtises'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 240, y: 508, s: 1.05 },
+            { t: 'juliette', x: 430, y: 506, s: 1 },
+            { t: 'pablo', x: 620, y: 512, s: 1.05, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 240, y: 508, s: 1.05, pose: 'hold' },
+                { t: 'roxane', x: 430, y: 506, s: 1, pose: 'hold' },
+                { t: 'juliette', x: 620, y: 506, s: 1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'LE GOÛTER !', x: 430, y: 150, fs: 30, rot: -5, color: '#f2803d' }]
+            },
+            text: "Ce mercredi, Roxane et Juliette venaient goûter. Il y avait des gâteaux, du jus de pomme, et une tour de coussins qu'il ne fallait surtout pas faire tomber."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 280, y: 508, s: 1.05 },
+                { t: 'juliette', x: 480, y: 506, s: 1 },
+                { t: 'pablo', x: 680, y: 512, s: 1.05, pose: 'quatrepattes' }
+              ],
+              sfx: [{ t: 'PABLO ARRIVE…', x: 420, y: 148, fs: 26, rot: -4, color: '#8ec9f0' }]
+            },
+            text: "Puis Pablo arriva. Pablo, c'est le petit frère de Livia. Il a un an et demi. Il ne marche pas encore très droit, et il attrape tout ce qui est à sa hauteur."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'roxane', x: 260, y: 506, s: 1, mood: 'wow' },
+                { t: 'livia', x: 460, y: 508, s: 1.05, mood: 'wow' },
+                { t: 'pablo', x: 660, y: 512, s: 1.05, pose: 'armsup', mood: 'wow' }
+              ],
+              sfx: [{ t: 'PLAAASH !', x: 430, y: 146, fs: 36, rot: -8, color: '#f2803d' }]
+            },
+            text: "En trois secondes, le verre de jus était par terre, la tour de coussins était par terre, et Pablo riait très fort, tout seul, très content de lui."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 508, s: 1.1, mood: 'sad' },
+                { t: 'pablo', x: 560, y: 512, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'PABLO !', x: 420, y: 150, fs: 34, rot: -6, color: '#e0453c' }]
+            },
+            text: "Livia devint toute rouge. Elle avait envie de crier très fort. Devant ses copines, en plus. Elle serra les poings et compta jusqu'à trois, comme sa maman lui avait montré."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'roxane', x: 240, y: 506, s: 1, pose: 'hold' },
+                { t: 'juliette', x: 430, y: 506, s: 1, pose: 'hold' },
+                { t: 'livia', x: 620, y: 508, s: 1.05, pose: 'hold' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'Mon frère fait pareil. C\'est les bébés.', tx: 250, ty: 240 }]
+            },
+            text: "« Mon frère fait pareil », dit Roxane en épongeant. « C'est les bébés. » Juliette ramassa les coussins. À trois, ça alla très vite, et personne ne se fâcha."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 320, y: 508, s: 1.05, pose: 'hold' },
+                { t: 'pablo', x: 560, y: 512, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'BI-YA !', x: 430, y: 150, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: "À la fin, Pablo tendit un coussin à Livia en disant « Bi-ya ! », ce qui voulait dire Livia. C'était son premier mot. Elle décida de ne plus être fâchée du tout."
+          }
+        ]
+      },
+
+      /* ---------- 5 ---------- */
+      {
+        id: 'cabane-copines',
+        title: 'La cabane des quatre',
+        subtitle: 'Quatre idées, une seule cabane',
+        tag: 'Copines',
+        themes: ['Amitié', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'forest',
+          back: [{ t: 'cabane', x: 640, y: 522, s: .9 }],
+          items: [
+            { t: 'livia', x: 200, y: 524, s: 1.05, pose: 'point' },
+            { t: 'isadora', x: 400, y: 522, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 180, y: 524, s: 1, pose: 'point' },
+                { t: 'roxane', x: 360, y: 522, s: 1 },
+                { t: 'juliette', x: 540, y: 522, s: 1 },
+                { t: 'isadora', x: 700, y: 522, s: 1 }
+              ],
+              sfx: [{ t: 'ON FAIT UNE CABANE !', x: 420, y: 166, fs: 26, rot: -4, color: '#7ac6a8' }]
+            },
+            text: "« On fait une cabane », dit Livia. Les quatre étaient d'accord. C'était la dernière fois de la journée qu'elles seraient toutes d'accord."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'roxane', x: 200, y: 522, s: 1.05, pose: 'point' },
+                { t: 'juliette', x: 420, y: 522, s: 1.05, pose: 'point' },
+                { t: 'isadora', x: 640, y: 522, s: 1.05, pose: 'point' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'Non ! Sous le grand arbre !', tx: 210, ty: 246 }]
+            },
+            text: "Roxane voulait la cabane sous le grand arbre. Juliette la voulait près du banc. Isadora, elle, la voulait ronde. Chacune expliqua pourquoi elle avait raison, en même temps."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 400, y: 524, s: 1.2, pose: 'shrug', mood: 'sad' }
+              ],
+              sfx: [{ t: 'BLA BLA BLA BLA', x: 400, y: 168, fs: 28, rot: -5, color: '#6d5847' }]
+            },
+            text: "Au bout d'un moment, il n'y avait toujours pas de cabane. Il y avait juste beaucoup de mots. Livia regarda le tas de branches, qui n'avait pas bougé d'un centimètre."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 250, y: 524, s: 1.05, pose: 'point' },
+                { t: 'roxane', x: 460, y: 522, s: 1 },
+                { t: 'juliette', x: 660, y: 522, s: 1 }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 330, t: 'On vote. Chacune une voix.', tx: 260, ty: 240 }]
+            },
+            text: "« On vote », dit Livia. « Chacune une voix, et on prend celle qui en a le plus. » Personne n'avait jamais essayé. Ça parut étrange, puis raisonnable."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              back: [{ t: 'cabane', x: 420, y: 524, s: 1.7 }],
+              items: [
+                { t: 'roxane', x: 200, y: 522, s: 1, pose: 'hold' },
+                { t: 'juliette', x: 400, y: 522, s: 1, pose: 'hold' },
+                { t: 'isadora', x: 590, y: 522, s: 1, pose: 'hold' },
+                { t: 'livia', x: 726, y: 524, s: .95, pose: 'hold' }
+              ],
+              sfx: [{ t: 'HOP ! HOP !', x: 420, y: 162, fs: 30, rot: -6, color: '#a9773f' }]
+            },
+            text: "Le grand arbre gagna, par deux voix contre une contre une. La cabane fut construite en quarante minutes, ce qui est beaucoup moins long que de discuter."
+          },
+          {
+            scene: {
+              bg: 'forest', time: 'sunset',
+              back: [{ t: 'cabane', x: 400, y: 530, s: 1.9 }],
+              items: [
+                { t: 'roxane', x: 270, y: 508, s: .85, pose: 'sit' },
+                { t: 'livia', x: 410, y: 506, s: .9, pose: 'sit' },
+                { t: 'juliette', x: 550, y: 506, s: .85, pose: 'sit' }
+              ]
+            },
+            text: "Elles s'installèrent dedans. Isadora fit remarquer qu'elle était quand même un peu ronde, la cabane. Tout le monde dit que oui, pour lui faire plaisir. Et c'était un peu vrai."
+          }
+        ]
+      },
+
+      /* ---------- 6 ---------- */
+      {
+        id: 'pas-gentille',
+        title: 'Le jour où Livia n\'a pas été gentille',
+        subtitle: 'Réparer, c\'est plus que dire pardon',
+        tag: 'Copines',
+        themes: ['Amitié', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'livia', x: 300, y: 524, s: 1.05, mood: 'sad' },
+            { t: 'isadora', x: 520, y: 522, s: 1.05, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 240, y: 522, s: 1.05 },
+                { t: 'livia', x: 460, y: 524, s: 1.05, pose: 'point' },
+                { t: 'isadora', x: 660, y: 522, s: 1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'HÉHÉHÉ…', x: 380, y: 166, fs: 30, rot: -6, color: '#e0453c' }]
+            },
+            text: "Isadora avait mis un chapeau un peu bizarre. Roxane fit une grimace. Livia rit, et dit quelque chose de moqueur. Ce n'était pas très méchant. C'était quand même méchant."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'isadora', x: 400, y: 522, s: 1.2, mood: 'sad' }
+              ],
+              sfx: [{ t: '. . .', x: 400, y: 176, fs: 32, rot: 0, color: '#8a7768' }]
+            },
+            text: "Isadora ne dit rien. Elle enleva son chapeau et le mit dans son sac. Puis elle alla jouer toute seule, très loin, avec le dos très droit."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 280, y: 522, s: 1.05 },
+                { t: 'livia', x: 520, y: 524, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'HA HA !', x: 300, y: 168, fs: 30, rot: -5, color: '#c9b9a8' }]
+            },
+            text: "Roxane riait encore. Livia, elle, avait quelque chose de lourd dans le ventre. Le rire était fini depuis longtemps, et la chose lourde restait."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'isadora', x: 540, y: 522, s: 1.05, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 300, t: 'Pardon. C\'était nul.', tx: 300, ty: 240 }]
+            },
+            text: "Livia traversa la cour. C'était très long, cette cour. « Pardon », dit-elle. « C'était nul, ce que j'ai dit. » Isadora haussa une épaule, ce qui ne veut pas dire oui."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'isadora', x: 540, y: 522, s: 1.05, hat: '#f2a0c2' }
+              ],
+              sfx: [{ t: 'ET HOP !', x: 420, y: 166, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Alors Livia sortit le chapeau du sac et le remit sur la tête d'Isadora. Puis elle demanda où on en trouvait un pareil, parce qu'elle en voulait un aussi. Ça, ce n'était plus des mots."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'roxane', x: 230, y: 522, s: 1, hat: '#e0453c' },
+                { t: 'livia', x: 420, y: 524, s: 1.05, hat: '#3ec9c9' },
+                { t: 'isadora', x: 620, y: 522, s: 1, hat: '#f2a0c2' }
+              ]
+            },
+            text: "Le lendemain, elles avaient toutes les trois un chapeau bizarre. Roxane trouva ça très laid. Elle en mit un quand même. C'est ça, réparer."
           }
         ]
       }

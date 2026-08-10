@@ -250,67 +250,120 @@
   }
 
   /* ============================================================
-     JEU 3 — ÉCRIRE : tracer les lettres de son prénom
+     JEU 3 — ÉCRIRE : tracer les lettres d'un prénom
+     Chaque lettre est une suite de tracés SVG. On laisse le navigateur
+     échantillonner le chemin : les courbes sont de vraies courbes, et un
+     enfant qui apprend le O n'apprend pas un polygone.
      ============================================================ */
   var LETTRES = {
-    L: [[[32, 16], [32, 82]], [[32, 82], [72, 82]]],
-    I: [[[50, 16], [50, 82]]],
-    V: [[[28, 16], [50, 82]], [[50, 82], [72, 16]]],
-    A: [[[30, 82], [50, 16]], [[50, 16], [70, 82]], [[38, 58], [62, 58]]]
+    A: ['M 22,86 L 50,14', 'M 50,14 L 78,86', 'M 32,60 L 68,60'],
+    B: ['M 30,14 L 30,86', 'M 30,14 L 54,14 C 74,14 74,48 54,48 L 30,48',
+      'M 30,48 L 58,48 C 80,48 80,86 58,86 L 30,86'],
+    C: ['M 74,28 C 64,16 48,12 38,20 C 24,30 20,40 20,50 C 20,60 24,70 38,80 C 48,88 64,84 74,72'],
+    D: ['M 30,14 L 30,86', 'M 30,14 L 48,14 C 78,14 78,86 48,86 L 30,86'],
+    E: ['M 72,14 L 30,14', 'M 30,14 L 30,86', 'M 30,50 L 64,50', 'M 30,86 L 72,86'],
+    'É': ['M 72,26 L 32,26', 'M 32,26 L 32,86', 'M 32,56 L 64,56', 'M 32,86 L 72,86', 'M 40,16 L 62,4'],
+    'È': ['M 72,26 L 32,26', 'M 32,26 L 32,86', 'M 32,56 L 64,56', 'M 32,86 L 72,86', 'M 62,16 L 40,4'],
+    F: ['M 72,14 L 30,14', 'M 30,14 L 30,86', 'M 30,50 L 62,50'],
+    G: ['M 74,28 C 64,16 48,12 38,20 C 24,30 20,40 20,50 C 20,60 24,70 38,80 C 54,90 74,82 74,64',
+      'M 74,64 L 54,64'],
+    H: ['M 28,14 L 28,86', 'M 72,14 L 72,86', 'M 28,50 L 72,50'],
+    I: ['M 50,14 L 50,86'],
+    J: ['M 64,14 L 64,66 C 64,84 40,90 30,76'],
+    K: ['M 30,14 L 30,86', 'M 72,14 L 34,52', 'M 42,44 L 74,86'],
+    L: ['M 32,14 L 32,86', 'M 32,86 L 70,86'],
+    M: ['M 24,86 L 24,14', 'M 24,14 L 50,58', 'M 50,58 L 76,14', 'M 76,14 L 76,86'],
+    N: ['M 28,86 L 28,14', 'M 28,14 L 72,86', 'M 72,86 L 72,14'],
+    O: ['M 50,14 C 30,14 20,32 20,50 C 20,68 30,86 50,86 C 70,86 80,68 80,50 C 80,32 70,14 50,14'],
+    P: ['M 30,86 L 30,14', 'M 30,14 L 56,14 C 78,14 78,52 56,52 L 30,52'],
+    Q: ['M 50,14 C 30,14 20,32 20,50 C 20,68 30,86 50,86 C 70,86 80,68 80,50 C 80,32 70,14 50,14',
+      'M 58,66 L 80,90'],
+    R: ['M 30,86 L 30,14', 'M 30,14 L 56,14 C 76,14 76,50 56,50 L 30,50', 'M 46,50 L 74,86'],
+    S: ['M 74,26 C 66,14 40,10 32,24 C 25,37 40,46 52,50 C 66,55 80,62 74,76 C 66,91 34,88 26,74'],
+    T: ['M 22,14 L 78,14', 'M 50,14 L 50,86'],
+    U: ['M 26,14 L 26,62 C 26,82 74,82 74,62 L 74,14'],
+    V: ['M 24,14 L 50,86', 'M 50,86 L 76,14'],
+    W: ['M 18,14 L 32,86', 'M 32,86 L 50,38', 'M 50,38 L 68,86', 'M 68,86 L 82,14'],
+    X: ['M 26,14 L 74,86', 'M 74,14 L 26,86'],
+    Y: ['M 26,14 L 50,50', 'M 74,14 L 50,50', 'M 50,50 L 50,86'],
+    Z: ['M 26,14 L 74,14', 'M 74,14 L 26,86', 'M 26,86 L 74,86']
   };
-  var PRENOM = ['L', 'I', 'V', 'I', 'A'];
 
-  function points(seg, pas) {
-    var res = [], dx = seg[1][0] - seg[0][0], dy = seg[1][1] - seg[0][1];
-    var d = Math.sqrt(dx * dx + dy * dy), n = Math.max(2, Math.round(d / pas));
-    for (var i = 0; i <= n; i++) {
-      res.push({ x: seg[0][0] + dx * i / n, y: seg[0][1] + dy * i / n, vu: false });
-    }
-    return res;
-  }
+  /* les prénoms de la maison : Livia d'abord, puis la famille et les copains */
+  var PRENOMS = ['LIVIA', 'PABLO', 'MAMAN', 'PAPA', 'MILA', 'ANTOINE', 'MARTINE',
+    'ERIC', 'CÉCILE', 'ENZO', 'LAURENT', 'BARBARA', 'SAMANTHA', 'MAXIME', 'LAETITIA'];
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var lotPrenoms = null;
 
   function jeuEcrire(zone, n, api) {
-    var lettre = PRENOM[n % PRENOM.length];
-    var segments = LETTRES[lettre];
-    api.consigne('Trace la lettre ' + lettre + ' avec ton doigt.');
+    if (n === 0 || !lotPrenoms) {
+      lotPrenoms = ['LIVIA'].concat(piocher(PRENOMS.slice(1), PRENOMS.length - 1));
+    }
+    var nom = lotPrenoms[n % lotPrenoms.length];
+    var lettres = nom.split('').filter(function (c) { return LETTRES[c]; });
+    api.consigne('Écris ' + nom + '.');
+
+    /* le prénom en toutes lettres, pour savoir où on en est */
+    var bandeau = el('div', 'prenom');
+    lettres.forEach(function (c) { bandeau.appendChild(el('span', null, c)); });
+    zone.appendChild(bandeau);
 
     var cadre = el('div', 'trace');
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    var svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('viewBox', '0 0 100 100');
     cadre.appendChild(svg);
     zone.appendChild(cadre);
 
-    var NS = 'http://www.w3.org/2000/svg';
-    function ligne(seg, cls, w) {
-      var l = document.createElementNS(NS, 'line');
-      l.setAttribute('x1', seg[0][0]); l.setAttribute('y1', seg[0][1]);
-      l.setAttribute('x2', seg[1][0]); l.setAttribute('y2', seg[1][1]);
-      l.setAttribute('class', cls); l.setAttribute('stroke-width', w);
-      svg.appendChild(l);
-      return l;
+    var iLettre = 0, iTrace = 0, jalons = [], trace = [];
+    var chemins = [], depart, encre;
+
+    function chemin(d, cls, w) {
+      var p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', d); p.setAttribute('class', cls);
+      p.setAttribute('stroke-width', w); p.setAttribute('fill', 'none');
+      svg.appendChild(p);
+      return p;
     }
 
-    var guides = segments.map(function (s) { return ligne(s, 'guide', 13); });
-    segments.forEach(function (s) { ligne(s, 'pointille', 1.6); });
-
-    var depart = document.createElementNS(NS, 'circle');
-    depart.setAttribute('class', 'depart'); depart.setAttribute('r', 5);
-    svg.appendChild(depart);
-
-    var encre = document.createElementNS(NS, 'polyline');
-    encre.setAttribute('class', 'encre');
-    svg.appendChild(encre);
-
-    var seg = 0;
-    var jalons = points(segments[0], 7);
-    var trace = [];
-
-    function majDepart() {
-      if (seg >= segments.length) { depart.style.display = 'none'; return; }
-      depart.setAttribute('cx', segments[seg][0][0]);
-      depart.setAttribute('cy', segments[seg][0][1]);
+    /* les points de passage : c'est le navigateur qui mesure la courbe */
+    function jalonsDe(p) {
+      var L = p.getTotalLength(), res = [], pas = 6;
+      var n2 = Math.max(2, Math.round(L / pas));
+      for (var i = 0; i <= n2; i++) {
+        var pt = p.getPointAtLength(L * i / n2);
+        res.push({ x: pt.x, y: pt.y, vu: false });
+      }
+      return res;
     }
-    majDepart();
+
+    function dessinerLettre() {
+      svg.innerHTML = '';
+      chemins = LETTRES[lettres[iLettre]].map(function (d) {
+        return { d: d, guide: chemin(d, 'guide', 13) };
+      });
+      chemins.forEach(function (c) { chemin(c.d, 'pointille', 1.6); });
+      depart = document.createElementNS(NS, 'circle');
+      depart.setAttribute('class', 'depart'); depart.setAttribute('r', 5);
+      svg.appendChild(depart);
+      encre = document.createElementNS(NS, 'polyline');
+      encre.setAttribute('class', 'encre');
+      svg.appendChild(encre);
+      iTrace = 0;
+      majTrace();
+      var sp = bandeau.children;
+      for (var i = 0; i < sp.length; i++) {
+        sp[i].className = i < iLettre ? 'fait' : (i === iLettre ? 'ici' : '');
+      }
+    }
+
+    function majTrace() {
+      if (iTrace >= chemins.length) { depart.style.display = 'none'; return; }
+      jalons = jalonsDe(chemins[iTrace].guide);
+      depart.style.display = '';
+      depart.setAttribute('cx', jalons[0].x);
+      depart.setAttribute('cy', jalons[0].y);
+    }
 
     function coord(e) {
       var r = svg.getBoundingClientRect();
@@ -319,7 +372,7 @@
 
     var dessine = false;
     function debut(e) {
-      if (seg >= segments.length) return;
+      if (iTrace >= chemins.length) return;
       dessine = true; trace = []; encre.setAttribute('points', '');
       svg.setPointerCapture && svg.setPointerCapture(e.pointerId);
       bouge(e);
@@ -334,43 +387,259 @@
       jalons.forEach(function (j) {
         if (!j.vu) {
           var dx = j.x - p.x, dy = j.y - p.y;
-          if (dx * dx + dy * dy < 100) j.vu = true;   // rayon 10
+          if (dx * dx + dy * dy < 121) j.vu = true;   // rayon 11
         }
         if (j.vu) vus++;
       });
-      if (vus / jalons.length >= .8) fini();
+      if (vus / jalons.length >= .8) traceFini();
     }
-    function fin(e) { dessine = false; }
+    function fin() { dessine = false; }
 
-    function fini() {
+    function traceFini() {
       dessine = false;
-      guides[seg].classList.add('fait');
-      var g = document.createElementNS(NS, 'line');
-      g.setAttribute('x1', segments[seg][0][0]); g.setAttribute('y1', segments[seg][0][1]);
-      g.setAttribute('x2', segments[seg][1][0]); g.setAttribute('y2', segments[seg][1][1]);
-      g.setAttribute('class', 'ecrit'); g.setAttribute('stroke-width', 11);
-      svg.appendChild(g);
+      chemins[iTrace].guide.classList.add('fait');
+      chemin(chemins[iTrace].d, 'ecrit', 11);
+      svg.appendChild(depart); svg.appendChild(encre);
       encre.setAttribute('points', '');
-      seg++;
-      if (seg >= segments.length) {
-        majDepart();
-        setTimeout(function () { api.reussi(); }, 400);
-      } else {
-        jalons = points(segments[seg], 7);
-        majDepart();
-        dire('Encore un trait !');
-      }
+      iTrace++;
+      if (iTrace < chemins.length) { majTrace(); dire('Encore un trait !'); return; }
+      majTrace();
+      iLettre++;
+      if (iLettre >= lettres.length) { setTimeout(function () { api.reussi(); }, 450); return; }
+      var sp = bandeau.children;
+      sp[iLettre - 1].className = 'fait';
+      setTimeout(function () {
+        dessinerLettre();
+        dire('Maintenant le ' + lettres[iLettre] + '.');
+      }, 500);
     }
 
     svg.addEventListener('pointerdown', debut);
     svg.addEventListener('pointermove', bouge);
     svg.addEventListener('pointerup', fin);
     svg.addEventListener('pointercancel', fin);
+
+    dessinerLettre();
   }
 
   /* ============================================================
      LE CATALOGUE
      ============================================================ */
+  /* ============================================================
+     JEU 4 — LES 6 DIFFÉRENCES
+     On repart des planches déjà dessinées : à gauche la case d'origine,
+     à droite la même case retouchée en six endroits. Les retouches sont
+     fabriquées à partir de la scène elle-même — rien n'est dessiné à la
+     main, et une nouvelle histoire donne aussitôt une nouvelle planche.
+     ============================================================ */
+  var A_TROUVER = 6;
+
+  var PERSOS = ('peppa george mummy daddy suzy livia liviaPrincess elsa anna olaf ' +
+    'grognon chipie etourdi timide rapide lent rangetout costaud bonheur curieux ' +
+    'bluey bingo bandit chilli muffin coco dino roxane juliette isadora pablo').split(' ');
+
+  var PLANCHES = [
+    { u: 'peppa', s: 'plage', p: 6 },
+    { u: 'peppa', s: 'camping', p: 4 },
+    { u: 'peppa', s: 'piscine', p: 0 },
+    { u: 'peppa', s: 'petit-frere', p: 5 },
+    { u: 'frozen', s: 'ete-arendelle', p: 8 },
+    { u: 'bluey', s: 'lucioles', p: 3 },
+    { u: 'bluey', s: 'crabes', p: 6 },
+    { u: 'monsieurmadame', s: 'rangetout', p: 2 },
+    { u: 'melange', s: 'trois-amies', p: 6 },
+    { u: 'copines', s: 'cabane-copines', p: 4 }
+  ];
+
+  /* de quoi ajouter un élément qui n'a rien à faire là, selon le décor */
+  var AJOUTS = {
+    beach: ['shell', 'starfish', 'crab'], sea: ['shell', 'starfish'],
+    garden: ['flower', 'ball', 'bush'], hill: ['flower', 'bush', 'rock'],
+    creek: ['flower', 'rock', 'bush'], camp: ['flower', 'log', 'bush'],
+    forest: ['flower', 'bush', 'rock'], snow: ['snowball', 'pine', 'snowball'],
+    village: ['flower', 'bush', 'ball'], road: ['flower', 'bush', 'rock'],
+    bedroom: ['cube', 'ball', 'suitcase'], plain: ['flower', 'ball', 'bush']
+  };
+  /* deux rangs : au premier plan, et un peu en retrait dans le décor */
+  var PLACES = [[70, 550], [190, 548], [320, 552], [470, 550], [610, 548], [730, 546],
+    [110, 468], [250, 464], [400, 460], [550, 464], [690, 466]];
+
+  /* un tirage reproductible : une planche donnée pose toujours la même énigme */
+  function graineur(g) {
+    return function () { g = (g * 1103515245 + 12345) % 2147483648; return g / 2147483648; };
+  }
+  function melangeAvec(a, r) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(r() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function trouverScene(uid, sid, p) {
+    for (var i = 0; i < UNIVERSES.length; i++) {
+      if (UNIVERSES[i].id !== uid) continue;
+      var st = UNIVERSES[i].stories;
+      for (var j = 0; j < st.length; j++) {
+        if (st[j].id === sid) return { u: UNIVERSES[i], s: st[j], scene: st[j].pages[p].scene };
+      }
+    }
+    return null;
+  }
+
+  var HUMEURS = ['happy', 'wow', 'sad'];
+
+  function fabriquerDifferences(scene, graine) {
+    var r = graineur(graine);
+    var copie = JSON.parse(JSON.stringify(scene));
+    delete copie.bubbles;
+    var zones = [];
+
+    var persos = [], objets = [];
+    ['back', 'items', 'front'].forEach(function (c) {
+      (copie[c] || []).forEach(function (it) {
+        (PERSOS.indexOf(it.t) >= 0 ? persos : objets).push(it);
+      });
+    });
+
+    /* une seule retouche par élément : deux changements au même endroit,
+       ça ne se voit plus, ça s'annule */
+    var efface = 0;
+    var candidats = melangeAvec(objets, r).map(function (it, k) {
+      /* on n'efface qu'un objet sur trois : une case vidée n'est plus la même case */
+      var quoi = (k % 3 === 0 && efface < 2) ? 'retirer' : 'taille';
+      if (quoi === 'retirer') efface++;
+      return { it: it, quoi: quoi, perso: false };
+    }).concat(melangeAvec(persos, r).map(function (it, k) {
+      return { it: it, quoi: ['pose', 'flip', 'humeur'][k % 3], perso: true };
+    }));
+    /* deux différences côte à côte n'en font qu'une : on les espace */
+    function loin(x, y, d) {
+      return zones.every(function (z) {
+        return (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y) > d * d;
+      });
+    }
+    function centre(c) {
+      return [c.it.x, c.it.y - (c.perso ? 110 * (c.it.s || 1) : 22)];
+    }
+    var melanges = melangeAvec(candidats, r), retenus = [];
+    [130, 90, 55].forEach(function (ecart) {
+      melanges.forEach(function (c) {
+        if (retenus.length >= A_TROUVER || c.pris) return;
+        var p = centre(c);
+        if (!loin(p[0], p[1], ecart)) return;
+        c.pris = true; retenus.push(c); zones.push({ x: p[0], y: p[1] });
+      });
+    });
+    zones.length = 0;
+    candidats = retenus;
+
+    candidats.forEach(function (c) {
+      var it = c.it;
+      var cx = it.x, cy = it.y - (c.perso ? 110 * (it.s || 1) : 22);
+      if (c.quoi === 'retirer') it.t = 'rien';
+      else if (c.quoi === 'taille') it.s = (it.s === undefined ? 1 : it.s) * (r() < .5 ? .55 : 1.5);
+      else if (c.quoi === 'flip') it.flip = !it.flip;
+      else if (c.quoi === 'humeur') {
+        var h = HUMEURS.filter(function (m) { return m !== (it.mood || 'happy'); });
+        it.mood = h[Math.floor(r() * h.length)];
+      } else if (c.quoi === 'pose') {
+        if (it.x > 110 && it.x < 690 && it.pose !== 'sit') it.pose = it.pose === 'armsup' ? 'point' : 'armsup';
+        else { it.flip = !it.flip; }
+      }
+      zones.push({ x: cx, y: cy });
+    });
+
+    /* s'il manque des différences, on ajoute ce qui n'était pas là */
+    var pool = AJOUTS[scene.bg] || AJOUTS.plain;
+    /* on ne pose rien juste devant un visage, le reste peut se chevaucher.
+       Copie des emplacements : les marquer sur PLACES les userait d'une
+       planche à l'autre. */
+    var places = melangeAvec(PLACES, r)
+      .map(function (pl) { return { x: pl[0], y: pl[1], pris: false }; })
+      .filter(function (pl) {
+        return (scene.items || []).every(function (it) { return Math.abs(it.x - pl.x) > 55; });
+      });
+    /* le dernier passage n'impose plus d'écart : mieux vaut six différences
+       serrées que cinq bien réparties */
+    [110, 70, 45, 0].forEach(function (ecart) {
+      places.forEach(function (pl) {
+        if (zones.length >= A_TROUVER || pl.pris) return;
+        if (ecart && !loin(pl.x, pl.y - 24, ecart)) return;
+        pl.pris = true;
+        var t = pool[Math.floor(r() * pool.length)];
+        (copie.front = copie.front || []).push({ t: t, x: pl.x, y: pl.y, s: 1.5 });
+        zones.push({ x: pl.x, y: pl.y - 24 });
+      });
+    });
+    return { scene: copie, zones: zones };
+  }
+
+  var lotPlanches = null;
+
+  function jeuDifferences(zone, n, api) {
+    if (n === 0 || !lotPlanches) lotPlanches = melange(PLANCHES.map(function (p, i) {
+      return { p: p, i: i };
+    }));
+    var choix = lotPlanches[n % lotPlanches.length];
+    var trouve = trouverScene(choix.p.u, choix.p.s, choix.p.p);
+    var fab = fabriquerDifferences(trouve.scene, 1000 + choix.i * 7919);
+    api.consigne('Trouve les 6 différences.');
+
+    var plateau = el('div', 'diff');
+    var vues = [];
+    [trouve.scene, fab.scene].forEach(function (sc) {
+      var v = el('div', 'diff-vue');
+      v.innerHTML = Art.scene(sc, { noBubbles: true });
+      plateau.appendChild(v);
+      vues.push(v);
+    });
+    zone.appendChild(plateau);
+
+    var score = el('p', 'diff-score');
+    zone.appendChild(score);
+
+    var vus = fab.zones.map(function () { return false; });
+    function majScore() {
+      score.innerHTML = '<b>' + vus.filter(Boolean).length + '</b> / ' + A_TROUVER;
+    }
+    majScore();
+
+    function marquer(z) {
+      vues.forEach(function (v) {
+        var sv = v.querySelector('svg');
+        var c = document.createElementNS(NS, 'circle');
+        c.setAttribute('cx', z.x); c.setAttribute('cy', z.y); c.setAttribute('r', 62);
+        c.setAttribute('class', 'diff-marque');
+        sv.appendChild(c);
+      });
+    }
+
+    function toucher(e) {
+      var v = e.currentTarget, r = v.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width * 800;
+      var y = (e.clientY - r.top) / r.height * 560;
+      var best = -1, bd = 1e9;
+      fab.zones.forEach(function (z, i) {
+        if (vus[i]) return;
+        var d = (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y);
+        if (d < bd) { bd = d; best = i; }
+      });
+      if (best < 0 || bd > 105 * 105) {
+        v.classList.add('rate');
+        setTimeout(function () { v.classList.remove('rate'); }, 260);
+        return;
+      }
+      vus[best] = true;
+      marquer(fab.zones[best]);
+      majScore();
+      if (vus.every(Boolean)) setTimeout(function () { api.reussi(); }, 500);
+      else dire(['Oui !', 'Bien vu !', 'Encore une !'][Math.floor(Math.random() * 3)]);
+    }
+    vues.forEach(function (v) { v.addEventListener('click', toucher); });
+  }
+
   var JEUX = [
     {
       id: 'relier', nom: 'Relie les amis', emoji: '🔗',
@@ -385,10 +654,16 @@
       def: { manches: 5, manche: jeuCompter, felicitation: 'Tu sais compter jusqu\'à 6 !' }
     },
     {
-      id: 'ecrire', nom: 'Écris ton prénom', emoji: '✏️',
-      sous: 'Trace les lettres de L I V I A',
+      id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️',
+      sous: 'Livia, Pablo, Maman, Papa…',
       vignette: { t: 'elsa', ds: .66, dy: 184 },
-      def: { manches: 5, manche: jeuEcrire, felicitation: 'Tu as écrit ton prénom en entier !' }
+      def: { manches: 5, manche: jeuEcrire, felicitation: 'Tu as écrit cinq prénoms en entier !' }
+    },
+    {
+      id: 'differences', nom: 'Les 6 différences', emoji: '🔍',
+      sous: 'Deux cases presque pareilles',
+      vignette: { t: 'bluey', ds: .62, dy: 184 },
+      def: { manches: 6, manche: jeuDifferences, felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.' }
     }
   ];
 

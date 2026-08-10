@@ -23,8 +23,11 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   un cadrage unique couperait les personnages sur un téléphone.
 * **Un logo Kid Cartoon** présent partout, qui ramène à l'accueil d'un doigt
 * **Deux rubriques** — Histoires et Jeux ; sous Histoires, les univers
-  (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame, les cross-over…
-  faciles à compléter)
+  (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame, les cross-over,
+  les copines… faciles à compléter)
+* **Deux filtres** — par univers (les onglets) et par thème (Été, Amitié,
+  Émotions, Grandir, Famille, Dehors, Nuit, Bêtises) ; les thèmes traversent
+  les univers, et les onglets filtrent à l'intérieur d'un thème
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
@@ -33,9 +36,11 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Reprise de lecture** — le site se souvient de la page où on s'est arrêté
   et marque les histoires déjà lues d'un ✓
 * **Bouton 🎲** — une histoire au hasard
-* **Trois jeux** pour les 3-5 ans, avec les mêmes héros : relier chaque
-  personnage à son objet, compter jusqu'à six, et tracer les lettres de son
-  prénom au doigt. Aucun texte à lire : tout est dit à voix haute.
+* **Quatre jeux** pour les 3-5 ans, avec les mêmes héros : relier chaque
+  personnage à son objet, compter jusqu'à six, tracer au doigt les prénoms de
+  la maison (Livia, Pablo, Maman, Papa, Mila, Antoine…) et chercher les six
+  différences entre deux cases d'une histoire. Aucun texte à lire : tout est
+  dit à voix haute.
 * **Installable** sur l'écran d'accueil du téléphone (PWA légère)
 
 ### Les histoires déjà écrites
@@ -107,6 +112,19 @@ même dessin animé, et ils se rencontrent quand même
 | La grande course des amis | Peppa, Bluey et Monsieur Rapide |
 | La nuit où tout le monde a dormi dehors | Peppa, Bluey et Elsa sous la tente |
 
+**Les copines de Livia** — Roxane, Juliette, Isadora, et Pablo le petit frère
+
+| Histoire | Ce qu'elle raconte |
+|---|---|
+| La nouvelle | quand on est déjà deux et qu'une troisième arrive |
+| La dispute du toboggan | bouder, c'est long |
+| Le secret de Juliette | se retenir de répéter |
+| Le goûter et le petit frère | un bébé renverse tout, et ce n'est pas grave |
+| La cabane des quatre | décider à plusieurs, en votant |
+| Le jour où Livia n'a pas été gentille | réparer, c'est plus que dire pardon |
+
+Pablo apparaît aussi dans **Pablo veut faire pareil** (Peppa Pig, série *Grandir*).
+
 ---
 
 ## Lancer le site
@@ -159,7 +177,8 @@ dans le tableau `stories` de l'univers voulu :
   id: 'ma-nouvelle-histoire',        // identifiant unique dans l'univers (sert à l'URL)
   title: 'Livia et le grand toboggan',
   subtitle: 'Un mercredi au parc',
-  tag: 'Été',
+  tag: 'Été',                        // l'étiquette affichée sur la vignette
+  themes: ['Été', 'Amitié'],         // les thèmes du filtre (voir THEMES dans stories.js)
   minutes: 5,
   cover: { /* une scène, sert de pochette */ },
   pages: [
@@ -222,7 +241,10 @@ Chaque élément s'écrit :
 `muffin`, `coco`, et les Monsieur Madame : `grognon`, `chipie`, `etourdi`,
 `timide`, `rapide`, `lent`, `rangetout`, `costaud`, `bonheur`, `curieux`
 *(ces derniers acceptent `sansChapeau: true` quand l'histoire leur fait perdre
-leur chapeau)*
+leur chapeau)*, les vraies copines : `roxane` *(brune au carré)*, `juliette`
+*(blonde, queue de cheval haute)*, `isadora` *(châtain, queue de cheval)*,
+et `pablo`, le petit frère *(un bébé : plus petit, grosse tête, cheveux très
+courts ; poses `stand`, `sit`, `wave`, `armsup`, `hold`, `quatrepattes`)*
 
 **Poses** (`pose`)
 `stand`, `wave`, `armsup`, `jump`, `run`, `sit`, `point`, `hold`, `shrug`, `swim`,
@@ -291,7 +313,7 @@ manifest.webmanifest        pour l'installation sur l'écran d'accueil
 assets/css/style.css        toute la mise en page, mobile d'abord
 assets/js/art.js            le moteur de dessin SVG (décors, personnages, objets, bulles)
 assets/js/stories.js        les histoires (c'est ici qu'on écrit)
-assets/js/games.js          les trois jeux et leur cadre commun
+assets/js/games.js          les quatre jeux et leur cadre commun
 assets/js/app.js            navigation, couverture, Cover Flow, lecteur
 assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
 assets/img/grain.png        le grain du papier, en surimpression
@@ -314,6 +336,7 @@ qui déplace légèrement chaque contour. Deux effets qui coûtent presque rien 
 qui suffisent à sortir le dessin du rendu vectoriel trop lisse.
 
 Les adresses suivent la lecture : `#/` la couverture, `#/histoires` les univers,
+`#/theme/emotions` un thème, `#/theme/emotions/peppa` un thème dans un univers,
 `#/u/peppa` le présentoir d'un univers, `#/u/peppa/plage` une histoire ouverte,
 `#/jeux/compter` un jeu. Chaque page a donc son lien direct, partageable tel quel.
 
@@ -321,6 +344,19 @@ Les jeux partagent un même cadre (`jouer()` dans `games.js`) qui gère les manc
 les étoiles et les félicitations ; un jeu n'a qu'à fournir sa fonction `manche()`
 et appeler `api.reussi()`. Trois principes les gouvernent : on ne perd jamais, on
 n'a rien à lire, et une manche se joue en un seul geste.
+
+Deux d'entre eux méritent un mot. **Écrire un prénom** : chaque lettre est une
+suite de tracés SVG, et c'est le navigateur qui échantillonne le chemin
+(`getPointAtLength`) pour poser les points de passage — les courbes sont donc de
+vraies courbes, et un enfant qui apprend le S n'apprend pas un polygone. Pour
+ajouter un prénom, il suffit de l'écrire en majuscules dans `PRENOMS` ; les 26
+lettres plus `É` et `È` sont déjà tracées.
+
+**Les 6 différences** ne sont pas dessinées à la main : le jeu prend une case
+existante et la retouche lui-même (un objet retiré, un autre agrandi, un
+personnage retourné, une humeur changée, un élément ajouté), en veillant à ne
+poser qu'une retouche par élément et à les espacer. Ajouter une planche au jeu
+tient donc en une ligne dans `PLANCHES` : `{ u: 'bluey', s: 'crabes', p: 6 }`.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu

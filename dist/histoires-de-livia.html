@@ -280,7 +280,35 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 
 /* ---------------- le sommaire ---------------- */
 .view { padding: 12px 14px 40px; }
-.hello { margin: 2px 2px 16px; color: var(--ink-soft); font-size: 15px; }
+.hello { margin: 2px 2px 14px; color: var(--ink-soft); font-size: 15px; }
+.hello b { color: var(--ink); }
+
+/* les filtres par thème : ils traversent les univers */
+.filtres { margin: 0 0 16px; }
+.filtres-titre {
+  display: block; margin: 0 2px 7px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.6px;
+  text-transform: uppercase; color: var(--ink-soft);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  font-family: inherit; cursor: pointer; white-space: nowrap;
+  font-size: 13.5px; font-weight: 500; padding: 6px 13px;
+  border: 2.5px solid var(--ink); border-radius: 999px;
+  background: var(--page); color: var(--ink);
+  box-shadow: 0 2px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s, background .12s;
+}
+.chip i { font-style: normal; opacity: .5; font-size: 12px; margin-left: 2px; }
+.chip:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
+.chip.is-active { background: var(--jaune); font-weight: 600; }
+.chip.is-active i { opacity: .7; }
+
+.lien-effacer {
+  font-family: inherit; cursor: pointer; margin-left: 6px;
+  background: none; border: 0; padding: 0; color: var(--ink-soft);
+  font-size: 13.5px; text-decoration: underline; text-underline-offset: 3px;
+}
 
 .uni-grid { display: grid; gap: 18px; }
 
@@ -502,6 +530,44 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .chiffre.secoue { animation: secoue .4s; }
 
 /* écrire */
+/* les 6 différences : deux fois la même case, à un détail près */
+.diff { display: grid; gap: 10px; }
+.diff-vue {
+  position: relative; aspect-ratio: 800 / 560; overflow: hidden;
+  border: 3px solid var(--ink); background: var(--page);
+  box-shadow: 3px 4px 0 rgba(58, 42, 34, .2);
+  cursor: pointer; touch-action: manipulation;
+}
+.diff-vue svg { display: block; width: 100%; height: 100%; }
+.diff-vue.rate { animation: secousse .26s; }
+@keyframes secousse {
+  25% { transform: translateX(-5px); } 75% { transform: translateX(5px); }
+}
+.diff-marque {
+  fill: none; stroke: #e0453c; stroke-width: 9; stroke-linecap: round;
+  stroke-dasharray: 26 16; opacity: .95;
+}
+.diff-score { text-align: center; margin: 10px 0 0; font-size: 17px; color: var(--ink-soft); }
+.diff-score b { font-size: 24px; color: var(--rouge); }
+
+@media (min-width: 760px) {
+  .diff { grid-template-columns: 1fr 1fr; }
+}
+
+/* le prénom en cours d'écriture, lettre par lettre */
+.prenom {
+  display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+  margin: 0 0 12px;
+}
+.prenom span {
+  min-width: 34px; padding: 4px 6px; text-align: center;
+  font-size: 21px; font-weight: 700; color: var(--ink-soft);
+  background: var(--paper-2); border: 2.5px solid var(--paper-3);
+  border-radius: 10px;
+}
+.prenom span.ici { color: var(--ink); background: var(--jaune); border-color: var(--ink); }
+.prenom span.fait { color: #4f8a3d; background: #e3f0d8; border-color: #a9cf94; }
+
 .trace {
   width: min(100%, 340px); margin: 0 auto; aspect-ratio: 1 / 1;
   background: var(--page); border: 3px solid var(--ink);
@@ -730,7 +796,11 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 
   <!-- SOMMAIRE : les univers -->
   <section class="view" id="viewHome">
-    <p class="hello">Choisis un univers, puis fais défiler les histoires.</p>
+    <p class="hello" id="homeHello">Choisis un univers, puis fais défiler les histoires.</p>
+    <div class="filtres">
+      <span class="filtres-titre">Par thème</span>
+      <div class="chips" id="themeChips"></div>
+    </div>
     <div class="uni-grid" id="uniGrid"></div>
     <p class="foot-note">Créé à la maison, pour l'heure du coucher.</p>
   </section>
@@ -1038,6 +1108,29 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
         front: ''
       };
     }
+    /* cheveux lisses coupés au carré : une masse nette qui encadre le visage */
+    if (style === 'carre') {
+      return {
+        back: U(['<path d="M -52,-46 C -52,-98 -28,-110 0,-110 C 28,-110 52,-98 52,-46 L 52,-4 L -52,-4 Z" fill="%F%" %S%/>'], hair, 8),
+        fringe: U(['<path d="M -45,-62 C -47,-98 -25,-108 0,-108 C 25,-108 47,-98 45,-62 Z" fill="%F%" %S%/>'], hair, 8) +
+          line('M -36,-76 q 36,-11 72,0', d, 3),
+        front: ''
+      };
+    }
+    /* cheveux lisses tirés en arrière, noués en queue de cheval */
+    if (style === 'queue' || style === 'queuehaute') {
+      var haute = style === 'queuehaute';
+      var ax = haute ? 28 : 50, ay = haute ? -102 : -66;
+      var tresse = haute
+        ? '<path d="M 26,-104 C 60,-124 90,-106 88,-72 C 87,-52 71,-47 65,-61 C 57,-81 40,-95 26,-104 Z" fill="%F%" %S%/>'
+        : '<path d="M 46,-78 C 84,-76 96,-34 82,-6 C 74,10 58,8 56,-6 C 52,-38 38,-64 46,-78 Z" fill="%F%" %S%/>';
+      return {
+        back: U([cap, tresse], hair, 8) +
+          '<circle cx="' + ax + '" cy="' + ay + '" r="8.5" fill="' + d +
+          '" stroke="' + INK + '" stroke-width="3.5"/>',
+        front: ''
+      };
+    }
     // couettes (pigtails)
     return {
       back: U([cap,
@@ -1166,6 +1259,86 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     }));
     if (o.hat) t += g('translate(0,-130)', sunHat(o.hat));
     return s + (sit ? g('translate(-6,42)', t) : t);
+  }
+
+  /* ---------- le petit frère : un bébé, donc une grosse tête ---------- */
+  function bebeTete(o) {
+    var skin = o.skin, hair = o.hair, mood = o.mood || 'happy';
+    var s = U(['<ellipse cx="0" cy="-30" rx="40" ry="38" fill="%F%" %S%/>'], skin, 9);
+    /* les cheveux sont très courts : une calotte posée sur le haut du crâne */
+    s += U(['<path d="M -37,-36 C -41,-66 41,-66 37,-36 C 26,-54 -26,-54 -37,-36 Z" fill="%F%" %S%/>'], hair, 6);
+    s += line('M 2,-62 q 10,-10 17,-1', shade(hair, -0.25), 4);
+    if (mood === 'sleep') {
+      s += line('M -22,-32 q 8,8 16,0', INK, 4) + line('M 6,-32 q 8,8 16,0', INK, 4);
+    } else {
+      var r = mood === 'wow' ? 8.5 : 7;
+      s += '<circle cx="-14" cy="-32" r="' + r + '" fill="' + INK + '"/>' +
+        '<circle cx="14" cy="-32" r="' + r + '" fill="' + INK + '"/>' +
+        '<circle cx="-11.5" cy="-35" r="2.6" fill="#fff"/><circle cx="16.5" cy="-35" r="2.6" fill="#fff"/>';
+    }
+    s += '<circle cx="-26" cy="-18" r="9" fill="#f79cb0" opacity=".75"/>' +
+      '<circle cx="26" cy="-18" r="9" fill="#f79cb0" opacity=".75"/>';
+    if (mood === 'wow') s += '<ellipse cx="0" cy="-10" rx="8" ry="9" fill="#b8355c" stroke="' + INK + '" stroke-width="3.5"/>';
+    else if (mood === 'sad') s += line('M -11,-6 q 11,-9 22,0', INK, 4);
+    else s += line('M -13,-14 q 13,14 26,0', INK, 4.5);
+    return s;
+  }
+
+  function bebe(o) {
+    o = o || {};
+    var skin = o.skin || '#f6cba6';
+    var hair = o.hair || '#f0be48';
+    var body = o.body || '#8ec9f0';
+    var pose = o.pose || 'stand';
+    var assis = pose === 'sit' || pose === 'quatrepattes';
+    var s = '';
+
+    /* jambes courtes, pieds nus */
+    if (pose === 'quatrepattes') {
+      s += limb('M -14,-46 C -22,-32 -30,-22 -34,-14', skin, 15) +
+        limb('M 14,-44 C 22,-30 28,-20 30,-12', skin, 15) +
+        '<ellipse cx="-38" cy="-10" rx="12" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="34" cy="-9" rx="12" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>';
+    } else if (assis) {
+      s += limb('M -6,-22 C 16,-22 32,-18 36,-6', skin, 15) +
+        limb('M 8,-14 C 30,-14 46,-10 50,2', skin, 15) +
+        '<ellipse cx="42" cy="-4" rx="12" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="56" cy="4" rx="12" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>';
+    } else {
+      s += limb('M -12,-42 L -13,-14', skin, 16) + limb('M 12,-42 L 13,-14', skin, 16) +
+        '<ellipse cx="-15" cy="-10" rx="13" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="15" cy="-10" rx="13" ry="8" fill="' + skin + '" stroke="' + INK + '" stroke-width="4"/>';
+    }
+
+    var t = '';
+    if (pose === 'armsup' || pose === 'porte') {
+      t += limb('M -22,-92 C -42,-104 -54,-122 -56,-138', skin, 12) +
+        limb('M 22,-92 C 42,-104 54,-122 56,-138', skin, 12) +
+        hand(-58, -142, skin, 10) + hand(58, -142, skin, 10);
+    } else if (pose === 'wave') {
+      t += limb('M -22,-92 C -38,-86 -46,-76 -48,-66', skin, 12) +
+        limb('M 22,-94 C 44,-106 58,-124 60,-142', skin, 12) +
+        hand(-50, -62, skin, 10) + hand(62, -146, skin, 10);
+    } else if (pose === 'hold') {
+      t += limb('M -22,-92 C -38,-88 -46,-80 -46,-70', skin, 12) +
+        limb('M 22,-92 C 38,-88 46,-80 46,-70', skin, 12) +
+        hand(-48, -66, skin, 10) + hand(48, -66, skin, 10);
+    } else if (pose === 'quatrepattes') {
+      t += limb('M -22,-90 C -40,-76 -50,-52 -52,-30', skin, 12) +
+        limb('M 22,-90 C 40,-76 50,-52 52,-30', skin, 12) +
+        hand(-54, -22, skin, 10) + hand(54, -22, skin, 10);
+    } else {
+      t += limb('M -22,-92 C -38,-84 -46,-74 -48,-64', skin, 12) +
+        limb('M 22,-92 C 38,-84 46,-74 48,-64', skin, 12) +
+        hand(-50, -60, skin, 10) + hand(50, -60, skin, 10);
+    }
+
+    /* la grenouillère */
+    t += U(['<path d="M -26,-104 C -33,-80 -35,-56 -31,-38 L 31,-38 C 35,-56 33,-80 26,-104 Z" fill="%F%" %S%/>'], body, 9);
+    if (o.trim) t += line('M -33,-52 L 33,-52', o.trim, 5);
+    t += g('translate(0,-100)', bebeTete({ skin: skin, hair: hair, mood: o.mood }));
+    if (o.hat) t += g('translate(0,-100) scale(.8)', sunHat(o.hat));
+    return s + (assis ? g('translate(-4,' + (pose === 'quatrepattes' ? 22 : 34) + ')', t) : t);
   }
 
   function sunHat(color) {
@@ -2290,6 +2463,32 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     },
     olaf: function (o) { return snowman(o); },
 
+    /* les vraies copines de Livia, et son petit frère */
+    roxane: function (o) {
+      return girl({
+        skin: '#f2c49a', hair: '#4a2f22', dress: o.dress || '#e0453c', hairstyle: 'carre',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#ffd9c9'
+      });
+    },
+    juliette: function (o) {
+      return girl({
+        skin: '#f9dcbd', hair: '#f2cf72', dress: o.dress || '#a98cf0', hairstyle: 'queuehaute',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#efe4ff'
+      });
+    },
+    isadora: function (o) {
+      return girl({
+        skin: '#e8b98f', hair: '#9a6a3c', dress: o.dress || '#7ac6a8', hairstyle: 'queue',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#e6f6ea'
+      });
+    },
+    pablo: function (o) {
+      return bebe({
+        skin: '#f6cba6', hair: '#f7dc8a', body: o.body || '#8ec9f0',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#fff1a8'
+      });
+    },
+
     /* les Monsieur Madame */
     grognon: function (o) { return mrm({ couleur: '#4a7fc1', forme: 'carre', chapeau: '#2f5b90', type: 'plat', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood || 'fache' }); },
     chipie: function (o) { return mrm({ couleur: '#e0453c', forme: 'rond', chapeau: '#4f9147', type: 'haut', sansChapeau: o.sansChapeau, pose: o.pose, mood: o.mood }); },
@@ -2338,7 +2537,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   })();
 
   /* ombre portée au sol : ce qui pose vraiment un personnage sur le décor */
-  var OMBRE = { dino: 0, olaf: 34, george: 38 };
+  var OMBRE = { dino: 0, olaf: 34, george: 38, pablo: 34 };
   function ombre(t, pose) {
     if (!CHARS.hasOwnProperty(t) || pose === 'swim' || pose === 'jump') return '';
     var r = OMBRE.hasOwnProperty(t) ? OMBRE[t] : 46;
@@ -2505,6 +2704,19 @@ var COUVERTURE = {
   }
 };
 
+/* Les thèmes : ils traversent les univers, c'est tout leur intérêt.
+   Chaque histoire en porte un ou deux dans son champ « themes ». */
+var THEMES = [
+  { id: 'ete', nom: 'Été', emoji: '☀️' },
+  { id: 'amitie', nom: 'Amitié', emoji: '🤝' },
+  { id: 'emotions', nom: 'Émotions', emoji: '💛' },
+  { id: 'grandir', nom: 'Grandir', emoji: '🌱' },
+  { id: 'famille', nom: 'Famille', emoji: '🏡' },
+  { id: 'dehors', nom: 'Dehors', emoji: '🌳' },
+  { id: 'nuit', nom: 'Nuit', emoji: '🌙' },
+  { id: 'betises', nom: 'Bêtises', emoji: '🙃' }
+];
+
 var UNIVERSES = [
 
   /* ==========================================================
@@ -2535,6 +2747,7 @@ var UNIVERSES = [
         title: 'Livia et Peppa à la plage',
         subtitle: 'Le premier jour des vacances',
         tag: 'Été',
+        themes: ['Été', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'beach',
@@ -2676,6 +2889,7 @@ var UNIVERSES = [
         title: 'Le camping sous les étoiles',
         subtitle: 'Une nuit dans la forêt',
         tag: 'Été',
+        themes: ['Été', 'Nuit'],
         minutes: 6,
         cover: {
           bg: 'camp', time: 'night',
@@ -2821,6 +3035,7 @@ var UNIVERSES = [
         title: 'La grande journée à la piscine',
         subtitle: 'Le toboggan géant',
         tag: 'Été',
+        themes: ['Été', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -2953,6 +3168,7 @@ var UNIVERSES = [
         title: 'Le cerf-volant de l\'été',
         subtitle: 'Un après-midi sur la colline',
         tag: 'Été',
+        themes: ['Été', 'Dehors'],
         minutes: 5,
         cover: {
           bg: 'hill',
@@ -3076,6 +3292,7 @@ var UNIVERSES = [
         title: 'Le cadeau de George',
         subtitle: 'Quand on voudrait être le seul',
         tag: 'Grandir',
+        themes: ['Émotions', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'bedroom',
@@ -3177,6 +3394,7 @@ var UNIVERSES = [
         title: 'Le vélo de Livia',
         subtitle: 'Ce qui est plus drôle à deux',
         tag: 'Grandir',
+        themes: ['Émotions', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -3277,6 +3495,7 @@ var UNIVERSES = [
         title: 'La grosse colère de Peppa',
         subtitle: 'Souffler comme un dragon',
         tag: 'Grandir',
+        themes: ['Émotions', 'Grandir'],
         minutes: 5,
         cover: {
           bg: 'bedroom',
@@ -3372,6 +3591,7 @@ var UNIVERSES = [
         title: 'La flaque interdite',
         subtitle: 'Pourquoi Maman avait dit non',
         tag: 'Grandir',
+        themes: ['Grandir', 'Bêtises'],
         minutes: 5,
         cover: {
           bg: 'village',
@@ -3470,6 +3690,7 @@ var UNIVERSES = [
         title: 'Le vase de Maman',
         subtitle: 'Le poids d\'un petit mensonge',
         tag: 'Grandir',
+        themes: ['Grandir', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'bedroom',
@@ -3567,6 +3788,7 @@ var UNIVERSES = [
         title: 'La file du toboggan',
         subtitle: 'Attendre sans que ce soit long',
         tag: 'Grandir',
+        themes: ['Grandir', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -3663,6 +3885,110 @@ var UNIVERSES = [
             text: "Et là, ça y est : c'est son tour, pour de vrai. Elle descend en criant, et tout le monde crie avec elle. Attendu, c'était bien meilleur."
           }
         ]
+      },
+
+      /* ---------- 11 : le petit frère ---------- */
+      {
+        id: 'petit-frere',
+        title: 'Pablo veut faire pareil',
+        subtitle: 'Un petit frère qui copie tout',
+        tag: 'Grandir',
+        themes: ['Famille', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 230, y: 520, s: 1.15 },
+            { t: 'livia', x: 440, y: 522, s: 1.1 },
+            { t: 'pablo', x: 640, y: 526, s: 1.1, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'peppa', x: 560, y: 520, s: 1.2, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ENFIN TRANQUILLES !', x: 430, y: 168, fs: 26, rot: -4, color: '#e8436e' }]
+            },
+            text: "Peppa était venue jouer chez Livia. Elles avaient sorti les crayons, les cubes et le grand tapis. C'était un après-midi parfait, qui allait durer trois minutes."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 260, y: 522, s: 1.1 },
+                { t: 'peppa', x: 480, y: 520, s: 1.15, mood: 'wow' },
+                { t: 'pablo', x: 690, y: 526, s: 1.1, pose: 'quatrepattes' }
+              ],
+              sfx: [{ t: 'PA-BLO !', x: 400, y: 166, fs: 32, rot: -6, color: '#8ec9f0' }]
+            },
+            text: "Pablo arriva en trottinant, les bras en avant. Pablo est le petit frère de Livia. Il a un an et demi, il ne parle presque pas, et il veut exactement ce que sa grande sœur a dans les mains."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.15, mood: 'sad' },
+                { t: 'pablo', x: 560, y: 526, s: 1.1, pose: 'hold', mood: 'wow' }
+              ],
+              front: [
+                { t: 'cube', x: 190, y: 546, s: .8, rot: -14, color: '#e0453c' },
+                { t: 'cube', x: 700, y: 542, s: .8, rot: 20, color: '#4a7fc1' }
+              ],
+              sfx: [{ t: 'PATATRAS !', x: 420, y: 164, fs: 34, rot: -8, color: '#e0453c' }]
+            },
+            text: "Il prit le crayon rouge. Il renversa la tour de cubes. Il s'assit au milieu du dessin. À chaque fois, il riait, comme si c'était le jeu le plus drôle du monde."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 400, y: 522, s: 1.25, pose: 'armsup', mood: 'sad' }
+              ],
+              sfx: [{ t: 'IL FAIT TOUT COMME MOI !', x: 400, y: 164, fs: 24, rot: -4, color: '#e0453c' }]
+            },
+            text: "« Il fait tout comme moi ! » cria Livia. « Il ne sait rien faire tout seul ! » Elle avait la voix qui montait, et les joues qui chauffaient."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 280, y: 520, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 540, y: 522, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'George aussi. C\'est comme ça, les petits.', tx: 285, ty: 244 }]
+            },
+            text: "« George aussi faisait ça », dit Peppa. « Il copiait tout. Maintenant, il joue avec moi. » Livia n'avait jamais pensé qu'un petit frère, ça pouvait devenir quelqu'un avec qui jouer."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 280, y: 522, s: 1.1, pose: 'point' },
+                { t: 'peppa', x: 480, y: 520, s: 1.1 },
+                { t: 'pablo', x: 680, y: 526, s: 1.1, pose: 'hold' }
+              ],
+              front: [{ t: 'tourcubes', x: 590, y: 546, s: .7, n: 3 }],
+              sfx: [{ t: 'À TOI, PABLO !', x: 380, y: 168, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Alors Livia essaya autre chose. Elle empila trois cubes et dit : « À toi, Pablo. » Pablo posa le quatrième, tout doucement, la langue sortie. La tour tint debout."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 220, y: 508, s: 1.05, pose: 'sit' },
+                { t: 'livia', x: 430, y: 508, s: 1.05, pose: 'sit' },
+                { t: 'pablo', x: 640, y: 512, s: 1.05, pose: 'sit' }
+              ],
+              front: [{ t: 'cube', x: 730, y: 544, s: .75, rot: 10, color: '#f7c518' }]
+            },
+            text: "Le soir, la tour faisait onze cubes. Pablo en renversa dix. Livia respira un grand coup, et recommença. C'est aussi ça, être une grande sœur."
+          }
+        ]
       }
 
     ]
@@ -3694,6 +4020,7 @@ var UNIVERSES = [
         title: 'Un été à Arendelle',
         subtitle: 'De la neige au mois de juillet',
         tag: 'Été',
+        themes: ['Été', 'Amitié'],
         minutes: 6,
         cover: {
           bg: 'snow',
@@ -3835,6 +4162,7 @@ var UNIVERSES = [
         title: 'La nuit des étoiles glacées',
         subtitle: 'Une aurore pour Livia',
         tag: 'Nuit',
+        themes: ['Nuit', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'snow', time: 'night',
@@ -3979,6 +4307,7 @@ var UNIVERSES = [
         title: 'La grande bataille d\'arroseur',
         subtitle: 'Le jour le plus chaud de l\'été',
         tag: 'Jardin',
+        themes: ['Été', 'Dehors', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -4089,6 +4418,7 @@ var UNIVERSES = [
         title: 'Le ruisseau secret',
         subtitle: 'Des cailloux, des têtards et un barrage',
         tag: 'Été',
+        themes: ['Été', 'Dehors'],
         minutes: 6,
         cover: {
           bg: 'creek',
@@ -4195,6 +4525,7 @@ var UNIVERSES = [
         title: 'Le ballon qui ne doit pas tomber',
         subtitle: 'Une seule règle, et elle est difficile',
         tag: 'Jardin',
+        themes: ['Dehors', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -4304,6 +4635,7 @@ var UNIVERSES = [
         title: 'La plage aux mille crabes',
         subtitle: 'Un trou, un seau et beaucoup de pinces',
         tag: 'Plage',
+        themes: ['Été', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'beach',
@@ -4412,6 +4744,7 @@ var UNIVERSES = [
         title: 'Le camping dans le jardin',
         subtitle: 'Dormir dehors, à trois mètres de la maison',
         tag: 'Nuit',
+        themes: ['Nuit', 'Dehors'],
         minutes: 6,
         cover: {
           bg: 'garden', time: 'night',
@@ -4520,6 +4853,7 @@ var UNIVERSES = [
         title: 'La course des glaces fondues',
         subtitle: 'Manger vite, mais pas trop vite',
         tag: 'Été',
+        themes: ['Été', 'Bêtises'],
         minutes: 5,
         cover: {
           bg: 'village',
@@ -4627,6 +4961,7 @@ var UNIVERSES = [
         title: 'Le toboggan d\'eau du jardin',
         subtitle: 'Une bâche, du savon, et beaucoup de courage',
         tag: 'Jardin',
+        themes: ['Été', 'Bêtises'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -4733,6 +5068,7 @@ var UNIVERSES = [
         title: 'La chasse au trésor du jardin',
         subtitle: 'Une carte dessinée par Bingo',
         tag: 'Jardin',
+        themes: ['Dehors', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -4840,6 +5176,7 @@ var UNIVERSES = [
         title: 'Le pique-nique tout en haut',
         subtitle: 'Une colline, un panier, et beaucoup de vent',
         tag: 'Été',
+        themes: ['Dehors', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'hill',
@@ -4947,6 +5284,7 @@ var UNIVERSES = [
         title: 'La nuit des lucioles',
         subtitle: 'Rester réveillé jusqu\'à la nuit noire',
         tag: 'Nuit',
+        themes: ['Nuit', 'Famille'],
         minutes: 5,
         cover: {
           bg: 'garden', time: 'night',
@@ -5081,6 +5419,7 @@ var UNIVERSES = [
         title: 'Monsieur Grognon et le sourire perdu',
         subtitle: 'On peut être grognon et se laisser attraper',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
         minutes: 4,
         cover: {
           bg: 'garden',
@@ -5163,6 +5502,7 @@ var UNIVERSES = [
         title: 'Madame Chipie fait une farce',
         subtitle: 'La blague qui va trop loin',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Bêtises'],
         minutes: 4,
         cover: {
           bg: 'village',
@@ -5245,6 +5585,7 @@ var UNIVERSES = [
         title: 'Monsieur Étourdi perd tout',
         subtitle: 'Une place pour chaque chose',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Grandir'],
         minutes: 4,
         cover: {
           bg: 'bedroom',
@@ -5327,6 +5668,7 @@ var UNIVERSES = [
         title: 'Madame Timide dit bonjour',
         subtitle: 'Le mot le plus difficile du monde',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
         minutes: 4,
         cover: {
           bg: 'village',
@@ -5409,6 +5751,7 @@ var UNIVERSES = [
         title: 'Monsieur Rapide et Monsieur Lent',
         subtitle: 'Deux vitesses, une seule promenade',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
         minutes: 4,
         cover: {
           bg: 'road',
@@ -5496,6 +5839,7 @@ var UNIVERSES = [
         title: 'Madame Range-Tout et le grand désordre',
         subtitle: 'Quand tout est trop bien rangé',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Bêtises'],
         minutes: 4,
         cover: {
           bg: 'bedroom',
@@ -5591,6 +5935,7 @@ var UNIVERSES = [
         title: 'Monsieur Costaud n\'y arrive pas',
         subtitle: 'Demander de l\'aide, c\'est permis',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Grandir'],
         minutes: 4,
         cover: {
           bg: 'garden',
@@ -5676,6 +6021,7 @@ var UNIVERSES = [
         title: 'Madame Bonheur et le jour gris',
         subtitle: 'Ce qu\'on fait quand rien ne va',
         tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'village',
@@ -5784,6 +6130,7 @@ var UNIVERSES = [
         title: 'Les trois amies de Livia',
         subtitle: 'Trois jeux différents, un seul après-midi',
         tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -5885,6 +6232,7 @@ var UNIVERSES = [
         title: 'De la neige sur la plage',
         subtitle: 'Un cadeau qui fond, et ce qu\'on en fait',
         tag: 'Tous ensemble',
+        themes: ['Été', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'beach',
@@ -5989,6 +6337,7 @@ var UNIVERSES = [
         title: 'La cabane de tous les amis',
         subtitle: 'Chacun apporte ce qu\'il sait faire',
         tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
         minutes: 5,
         cover: {
           bg: 'garden',
@@ -6097,6 +6446,7 @@ var UNIVERSES = [
         title: 'La grande course des amis',
         subtitle: 'Gagner, ce n\'est pas toujours arriver devant',
         tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
         minutes: 5,
         cover: {
           bg: 'hill',
@@ -6199,6 +6549,7 @@ var UNIVERSES = [
         title: 'La nuit où tout le monde a dormi dehors',
         subtitle: 'Une tente, quatre amis, et le noir',
         tag: 'Tous ensemble',
+        themes: ['Nuit', 'Amitié'],
         minutes: 5,
         cover: {
           bg: 'camp',
@@ -6299,6 +6650,557 @@ var UNIVERSES = [
               sfx: [{ t: 'ZZZ…', x: 430, y: 180, fs: 32, rot: -6, color: '#bfe8f7' }]
             },
             text: "Au matin, il restait un peu de givre sur la tente et beaucoup de miettes de chamallow. « On recommence ce soir ? » demanda Bluey. Livia dormait encore. Elle dit oui quand même."
+          }
+        ]
+      }
+    ]
+  },
+
+  /* ==========================================================
+     UNIVERS 6 — LES COPINES DE LIVIA
+     Roxane, Juliette, Isadora. Et Pablo, qui n'a rien demandé.
+     ========================================================== */
+  {
+    id: 'copines',
+    name: 'Les copines de Livia',
+    tagline: 'Roxane, Juliette, Isadora — et le petit frère',
+    emoji: '💛',
+    c1: '#f2a0c2',
+    c2: '#7ac6a8',
+    cover: {
+      bg: 'garden',
+      items: [
+        { t: 'roxane', x: 150, y: 522, s: 1 },
+        { t: 'livia', x: 330, y: 524, s: 1.05, pose: 'wave' },
+        { t: 'juliette', x: 510, y: 522, s: 1 },
+        { t: 'isadora', x: 680, y: 522, s: 1 }
+      ]
+    },
+    stories: [
+
+      /* ---------- 1 ---------- */
+      {
+        id: 'nouvelle',
+        title: 'La nouvelle',
+        subtitle: 'Quand on est déjà deux et qu\'une troisième arrive',
+        tag: 'Copines',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'roxane', x: 220, y: 522, s: 1.05 },
+            { t: 'livia', x: 420, y: 524, s: 1.05 },
+            { t: 'isadora', x: 620, y: 522, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'hold' },
+                { t: 'roxane', x: 540, y: 522, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'LES DEUX INSÉPARABLES', x: 420, y: 168, fs: 24, rot: -4, color: '#e0453c' }]
+            },
+            text: "Livia et Roxane faisaient tout ensemble. Le toboggan ensemble, le goûter ensemble, les bêtises ensemble. On les appelait « les deux »."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 200, y: 522, s: 1 },
+                { t: 'livia', x: 400, y: 524, s: 1.05 },
+                { t: 'isadora', x: 640, y: 522, s: 1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'C\'est qui, celle-là ?', tx: 210, ty: 246 }]
+            },
+            text: "Un lundi, une fille nouvelle arriva. Elle s'appelait Isadora. Elle restait près du portail, avec son manteau encore boutonné. « C'est qui, celle-là ? » demanda Roxane."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 280, y: 524, s: 1.05, pose: 'point' },
+                { t: 'roxane', x: 560, y: 522, s: 1.05, mood: 'sad' }
+              ],
+              bubbles: [{ x: 380, y: 24, w: 320, t: 'Si elle joue, moi je ne joue plus.', tx: 560, ty: 240 }]
+            },
+            text: "Livia voulait l'inviter. Roxane, non. « Si elle joue, moi je ne joue plus », dit Roxane. Livia se retrouva au milieu, avec deux envies qui tiraient dans deux directions."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'isadora', x: 300, y: 508, s: 1.05, pose: 'sit', mood: 'sad' },
+                { t: 'livia', x: 560, y: 506, s: 1.05, pose: 'sit' }
+              ],
+              sfx: [{ t: '. . .', x: 430, y: 180, fs: 32, rot: 0, color: '#8a7768' }]
+            },
+            text: "À la récréation, Livia alla s'asseoir à côté d'Isadora. Elles ne dirent rien pendant longtemps. Puis Isadora sortit de sa poche trois billes, et en donna une."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 250, y: 522, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 460, y: 524, s: 1.05, pose: 'point' },
+                { t: 'isadora', x: 660, y: 522, s: 1 }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 330, t: 'À trois, on peut faire des équipes.', tx: 470, ty: 240 }]
+            },
+            text: "« À trois, on peut faire des équipes », dit Livia. « À deux, on ne peut pas. » Roxane réfléchit. C'était embêtant, parce que c'était vrai."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'roxane', x: 220, y: 522, s: 1, pose: 'hold' },
+                { t: 'livia', x: 420, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'isadora', x: 620, y: 522, s: 1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'LES TROIS !', x: 420, y: 164, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Le soir, elles rentrèrent toutes les trois. Roxane marchait au milieu, ce qui l'arrangeait bien. On ne les appela plus jamais « les deux »."
+          }
+        ]
+      },
+
+      /* ---------- 2 ---------- */
+      {
+        id: 'toboggan',
+        title: 'La dispute du toboggan',
+        subtitle: 'Bouder, c\'est long',
+        tag: 'Copines',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          back: [{ t: 'slide', x: 620, y: 520, s: 1 }],
+          items: [
+            { t: 'livia', x: 250, y: 524, s: 1.05, mood: 'sad' },
+            { t: 'roxane', x: 430, y: 522, s: 1.05, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 640, y: 522, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 220, y: 524, s: 1.1, pose: 'armsup' },
+                { t: 'roxane', x: 420, y: 522, s: 1.1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'WHIII !', x: 300, y: 168, fs: 34, rot: -8, color: '#3ec9c9' }]
+            },
+            text: "Le toboggan du parc était le meilleur du monde. Livia et Roxane y montaient depuis une heure. Tout allait très bien."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 660, y: 522, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 240, y: 524, s: 1.1, mood: 'sad' },
+                { t: 'roxane', x: 440, y: 522, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'C\'était mon tour !', tx: 250, ty: 246 }]
+            },
+            text: "Et puis elles voulurent monter en même temps. « C'était mon tour ! » dit Livia. « Non, c'était le mien ! » dit Roxane. Les deux étaient sûres. Les deux avaient tort, un peu."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 170, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'roxane', x: 660, y: 522, s: 1.05, mood: 'sad', flip: true }
+              ],
+              sfx: [{ t: 'HMPF.', x: 420, y: 172, fs: 34, rot: -5, color: '#6d5847' }]
+            },
+            text: "Alors chacune partit de son côté. Livia s'assit tout à gauche du parc. Roxane s'assit tout à droite. Elles se tournèrent le dos, très fort, pour bien montrer."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 400, y: 500, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              sfx: [{ t: 'C\'EST LONG…', x: 400, y: 172, fs: 28, rot: -4, color: '#6d5847' }]
+            },
+            text: "Bouder, au début, c'est agréable. Après deux minutes, c'est un peu moins agréable. Après cinq minutes, on ne se souvient même plus très bien pourquoi on boude."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.05, pose: 'point' },
+                { t: 'roxane', x: 540, y: 522, s: 1.05, pose: 'point' }
+              ],
+              sfx: [{ t: 'EN MÊME TEMPS !', x: 420, y: 168, fs: 28, rot: -6, color: '#f7c518' }]
+            },
+            text: "Elles se levèrent en même temps. Elles firent trois pas en même temps. Elles ouvrirent la bouche en même temps. Et elles dirent « pardon » en même temps, ce qui les fit rire."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              back: [{ t: 'slide', x: 640, y: 522, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 240, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'roxane', x: 430, y: 522, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Elles remontèrent le toboggan jusqu'au soir, une fois chacune, en comptant à voix haute. Compter, ça ne rend pas le jeu plus rigolo. Mais ça évite les disputes."
+          }
+        ]
+      },
+
+      /* ---------- 3 ---------- */
+      {
+        id: 'secret',
+        title: 'Le secret de Juliette',
+        subtitle: 'Ce qu\'on garde pour soi',
+        tag: 'Copines',
+        themes: ['Amitié', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'forest',
+          items: [
+            { t: 'juliette', x: 300, y: 522, s: 1.05 },
+            { t: 'livia', x: 520, y: 524, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'juliette', x: 300, y: 522, s: 1.1 },
+                { t: 'livia', x: 540, y: 524, s: 1.1, mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 320, t: 'Je te dis un secret. Un vrai.', tx: 300, ty: 246 }]
+            },
+            text: "Juliette prit Livia par la manche et l'emmena derrière le grand arbre. « Je te dis un secret », chuchota-t-elle. « Un vrai. Tu ne le répètes à personne. »"
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'juliette', x: 320, y: 522, s: 1.1, mood: 'sad' },
+                { t: 'livia', x: 560, y: 524, s: 1.1 }
+              ],
+              sfx: [{ t: 'CHUUUT…', x: 430, y: 166, fs: 30, rot: -5, color: '#a98cf0' }]
+            },
+            text: "Le secret était que Juliette avait encore peur du noir. Elle en avait un peu honte. Elle ne l'avait dit à personne, jamais, et là elle venait de le dire à Livia."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 260, y: 522, s: 1.05, pose: 'point' },
+                { t: 'livia', x: 520, y: 524, s: 1.05 }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 320, t: 'Alors ? Elle t\'a dit quoi ?', tx: 265, ty: 240 }]
+            },
+            text: "À la récréation, Roxane arriva en courant. « Alors ? Elle t'a dit quoi ? » Livia sentit le secret remuer dans sa bouche comme un bonbon trop gros."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 400, y: 524, s: 1.2, mood: 'sad' }
+              ],
+              sfx: [{ t: 'MMMMH…', x: 400, y: 170, fs: 32, rot: -4, color: '#6d5847' }]
+            },
+            text: "Garder un secret, ce n'est pas ne rien dire. C'est se retenir de dire, pendant tout le temps où on a très envie de le dire. C'est beaucoup plus difficile."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 280, y: 522, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 540, y: 524, s: 1.05, pose: 'shrug' }
+              ],
+              bubbles: [{ x: 360, y: 24, w: 330, t: 'C\'est un secret. Alors je ne dis pas.', tx: 540, ty: 240 }]
+            },
+            text: "« C'est un secret », dit Livia. « Alors je ne dis pas. » Roxane fut vexée pendant huit minutes exactement. Puis elle passa à autre chose."
+          },
+          {
+            scene: {
+              bg: 'forest', time: 'sunset',
+              items: [
+                { t: 'juliette', x: 300, y: 522, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 520, y: 524, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Le soir, Juliette lui glissa : « Tu n'as rien dit. » Livia haussa les épaules, comme si c'était facile. Ce n'était pas facile du tout. C'est pour ça que ça valait quelque chose."
+          }
+        ]
+      },
+
+      /* ---------- 4 ---------- */
+      {
+        id: 'gouter',
+        title: 'Le goûter et le petit frère',
+        subtitle: 'Pablo n\'a pas fait exprès',
+        tag: 'Copines',
+        themes: ['Famille', 'Bêtises'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 240, y: 508, s: 1.05 },
+            { t: 'juliette', x: 430, y: 506, s: 1 },
+            { t: 'pablo', x: 620, y: 512, s: 1.05, pose: 'wave' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 240, y: 508, s: 1.05, pose: 'hold' },
+                { t: 'roxane', x: 430, y: 506, s: 1, pose: 'hold' },
+                { t: 'juliette', x: 620, y: 506, s: 1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'LE GOÛTER !', x: 430, y: 150, fs: 30, rot: -5, color: '#f2803d' }]
+            },
+            text: "Ce mercredi, Roxane et Juliette venaient goûter. Il y avait des gâteaux, du jus de pomme, et une tour de coussins qu'il ne fallait surtout pas faire tomber."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 280, y: 508, s: 1.05 },
+                { t: 'juliette', x: 480, y: 506, s: 1 },
+                { t: 'pablo', x: 680, y: 512, s: 1.05, pose: 'quatrepattes' }
+              ],
+              sfx: [{ t: 'PABLO ARRIVE…', x: 420, y: 148, fs: 26, rot: -4, color: '#8ec9f0' }]
+            },
+            text: "Puis Pablo arriva. Pablo, c'est le petit frère de Livia. Il a un an et demi. Il ne marche pas encore très droit, et il attrape tout ce qui est à sa hauteur."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'roxane', x: 260, y: 506, s: 1, mood: 'wow' },
+                { t: 'livia', x: 460, y: 508, s: 1.05, mood: 'wow' },
+                { t: 'pablo', x: 660, y: 512, s: 1.05, pose: 'armsup', mood: 'wow' }
+              ],
+              sfx: [{ t: 'PLAAASH !', x: 430, y: 146, fs: 36, rot: -8, color: '#f2803d' }]
+            },
+            text: "En trois secondes, le verre de jus était par terre, la tour de coussins était par terre, et Pablo riait très fort, tout seul, très content de lui."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 508, s: 1.1, mood: 'sad' },
+                { t: 'pablo', x: 560, y: 512, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'PABLO !', x: 420, y: 150, fs: 34, rot: -6, color: '#e0453c' }]
+            },
+            text: "Livia devint toute rouge. Elle avait envie de crier très fort. Devant ses copines, en plus. Elle serra les poings et compta jusqu'à trois, comme sa maman lui avait montré."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'roxane', x: 240, y: 506, s: 1, pose: 'hold' },
+                { t: 'juliette', x: 430, y: 506, s: 1, pose: 'hold' },
+                { t: 'livia', x: 620, y: 508, s: 1.05, pose: 'hold' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'Mon frère fait pareil. C\'est les bébés.', tx: 250, ty: 240 }]
+            },
+            text: "« Mon frère fait pareil », dit Roxane en épongeant. « C'est les bébés. » Juliette ramassa les coussins. À trois, ça alla très vite, et personne ne se fâcha."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 320, y: 508, s: 1.05, pose: 'hold' },
+                { t: 'pablo', x: 560, y: 512, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'BI-YA !', x: 430, y: 150, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: "À la fin, Pablo tendit un coussin à Livia en disant « Bi-ya ! », ce qui voulait dire Livia. C'était son premier mot. Elle décida de ne plus être fâchée du tout."
+          }
+        ]
+      },
+
+      /* ---------- 5 ---------- */
+      {
+        id: 'cabane-copines',
+        title: 'La cabane des quatre',
+        subtitle: 'Quatre idées, une seule cabane',
+        tag: 'Copines',
+        themes: ['Amitié', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'forest',
+          back: [{ t: 'cabane', x: 640, y: 522, s: .9 }],
+          items: [
+            { t: 'livia', x: 200, y: 524, s: 1.05, pose: 'point' },
+            { t: 'isadora', x: 400, y: 522, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 180, y: 524, s: 1, pose: 'point' },
+                { t: 'roxane', x: 360, y: 522, s: 1 },
+                { t: 'juliette', x: 540, y: 522, s: 1 },
+                { t: 'isadora', x: 700, y: 522, s: 1 }
+              ],
+              sfx: [{ t: 'ON FAIT UNE CABANE !', x: 420, y: 166, fs: 26, rot: -4, color: '#7ac6a8' }]
+            },
+            text: "« On fait une cabane », dit Livia. Les quatre étaient d'accord. C'était la dernière fois de la journée qu'elles seraient toutes d'accord."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'roxane', x: 200, y: 522, s: 1.05, pose: 'point' },
+                { t: 'juliette', x: 420, y: 522, s: 1.05, pose: 'point' },
+                { t: 'isadora', x: 640, y: 522, s: 1.05, pose: 'point' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'Non ! Sous le grand arbre !', tx: 210, ty: 246 }]
+            },
+            text: "Roxane voulait la cabane sous le grand arbre. Juliette la voulait près du banc. Isadora, elle, la voulait ronde. Chacune expliqua pourquoi elle avait raison, en même temps."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 400, y: 524, s: 1.2, pose: 'shrug', mood: 'sad' }
+              ],
+              sfx: [{ t: 'BLA BLA BLA BLA', x: 400, y: 168, fs: 28, rot: -5, color: '#6d5847' }]
+            },
+            text: "Au bout d'un moment, il n'y avait toujours pas de cabane. Il y avait juste beaucoup de mots. Livia regarda le tas de branches, qui n'avait pas bougé d'un centimètre."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 250, y: 524, s: 1.05, pose: 'point' },
+                { t: 'roxane', x: 460, y: 522, s: 1 },
+                { t: 'juliette', x: 660, y: 522, s: 1 }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 330, t: 'On vote. Chacune une voix.', tx: 260, ty: 240 }]
+            },
+            text: "« On vote », dit Livia. « Chacune une voix, et on prend celle qui en a le plus. » Personne n'avait jamais essayé. Ça parut étrange, puis raisonnable."
+          },
+          {
+            scene: {
+              bg: 'forest',
+              back: [{ t: 'cabane', x: 420, y: 524, s: 1.7 }],
+              items: [
+                { t: 'roxane', x: 200, y: 522, s: 1, pose: 'hold' },
+                { t: 'juliette', x: 400, y: 522, s: 1, pose: 'hold' },
+                { t: 'isadora', x: 590, y: 522, s: 1, pose: 'hold' },
+                { t: 'livia', x: 726, y: 524, s: .95, pose: 'hold' }
+              ],
+              sfx: [{ t: 'HOP ! HOP !', x: 420, y: 162, fs: 30, rot: -6, color: '#a9773f' }]
+            },
+            text: "Le grand arbre gagna, par deux voix contre une contre une. La cabane fut construite en quarante minutes, ce qui est beaucoup moins long que de discuter."
+          },
+          {
+            scene: {
+              bg: 'forest', time: 'sunset',
+              back: [{ t: 'cabane', x: 400, y: 530, s: 1.9 }],
+              items: [
+                { t: 'roxane', x: 270, y: 508, s: .85, pose: 'sit' },
+                { t: 'livia', x: 410, y: 506, s: .9, pose: 'sit' },
+                { t: 'juliette', x: 550, y: 506, s: .85, pose: 'sit' }
+              ]
+            },
+            text: "Elles s'installèrent dedans. Isadora fit remarquer qu'elle était quand même un peu ronde, la cabane. Tout le monde dit que oui, pour lui faire plaisir. Et c'était un peu vrai."
+          }
+        ]
+      },
+
+      /* ---------- 6 ---------- */
+      {
+        id: 'pas-gentille',
+        title: 'Le jour où Livia n\'a pas été gentille',
+        subtitle: 'Réparer, c\'est plus que dire pardon',
+        tag: 'Copines',
+        themes: ['Amitié', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'livia', x: 300, y: 524, s: 1.05, mood: 'sad' },
+            { t: 'isadora', x: 520, y: 522, s: 1.05, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 240, y: 522, s: 1.05 },
+                { t: 'livia', x: 460, y: 524, s: 1.05, pose: 'point' },
+                { t: 'isadora', x: 660, y: 522, s: 1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'HÉHÉHÉ…', x: 380, y: 166, fs: 30, rot: -6, color: '#e0453c' }]
+            },
+            text: "Isadora avait mis un chapeau un peu bizarre. Roxane fit une grimace. Livia rit, et dit quelque chose de moqueur. Ce n'était pas très méchant. C'était quand même méchant."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'isadora', x: 400, y: 522, s: 1.2, mood: 'sad' }
+              ],
+              sfx: [{ t: '. . .', x: 400, y: 176, fs: 32, rot: 0, color: '#8a7768' }]
+            },
+            text: "Isadora ne dit rien. Elle enleva son chapeau et le mit dans son sac. Puis elle alla jouer toute seule, très loin, avec le dos très droit."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 280, y: 522, s: 1.05 },
+                { t: 'livia', x: 520, y: 524, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'HA HA !', x: 300, y: 168, fs: 30, rot: -5, color: '#c9b9a8' }]
+            },
+            text: "Roxane riait encore. Livia, elle, avait quelque chose de lourd dans le ventre. Le rire était fini depuis longtemps, et la chose lourde restait."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.05, mood: 'sad' },
+                { t: 'isadora', x: 540, y: 522, s: 1.05, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 300, t: 'Pardon. C\'était nul.', tx: 300, ty: 240 }]
+            },
+            text: "Livia traversa la cour. C'était très long, cette cour. « Pardon », dit-elle. « C'était nul, ce que j'ai dit. » Isadora haussa une épaule, ce qui ne veut pas dire oui."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'isadora', x: 540, y: 522, s: 1.05, hat: '#f2a0c2' }
+              ],
+              sfx: [{ t: 'ET HOP !', x: 420, y: 166, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Alors Livia sortit le chapeau du sac et le remit sur la tête d'Isadora. Puis elle demanda où on en trouvait un pareil, parce qu'elle en voulait un aussi. Ça, ce n'était plus des mots."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'roxane', x: 230, y: 522, s: 1, hat: '#e0453c' },
+                { t: 'livia', x: 420, y: 524, s: 1.05, hat: '#3ec9c9' },
+                { t: 'isadora', x: 620, y: 522, s: 1, hat: '#f2a0c2' }
+              ]
+            },
+            text: "Le lendemain, elles avaient toutes les trois un chapeau bizarre. Roxane trouva ça très laid. Elle en mit un quand même. C'est ça, réparer."
           }
         ]
       }
@@ -6558,67 +7460,120 @@ var UNIVERSES = [
   }
 
   /* ============================================================
-     JEU 3 — ÉCRIRE : tracer les lettres de son prénom
+     JEU 3 — ÉCRIRE : tracer les lettres d'un prénom
+     Chaque lettre est une suite de tracés SVG. On laisse le navigateur
+     échantillonner le chemin : les courbes sont de vraies courbes, et un
+     enfant qui apprend le O n'apprend pas un polygone.
      ============================================================ */
   var LETTRES = {
-    L: [[[32, 16], [32, 82]], [[32, 82], [72, 82]]],
-    I: [[[50, 16], [50, 82]]],
-    V: [[[28, 16], [50, 82]], [[50, 82], [72, 16]]],
-    A: [[[30, 82], [50, 16]], [[50, 16], [70, 82]], [[38, 58], [62, 58]]]
+    A: ['M 22,86 L 50,14', 'M 50,14 L 78,86', 'M 32,60 L 68,60'],
+    B: ['M 30,14 L 30,86', 'M 30,14 L 54,14 C 74,14 74,48 54,48 L 30,48',
+      'M 30,48 L 58,48 C 80,48 80,86 58,86 L 30,86'],
+    C: ['M 74,28 C 64,16 48,12 38,20 C 24,30 20,40 20,50 C 20,60 24,70 38,80 C 48,88 64,84 74,72'],
+    D: ['M 30,14 L 30,86', 'M 30,14 L 48,14 C 78,14 78,86 48,86 L 30,86'],
+    E: ['M 72,14 L 30,14', 'M 30,14 L 30,86', 'M 30,50 L 64,50', 'M 30,86 L 72,86'],
+    'É': ['M 72,26 L 32,26', 'M 32,26 L 32,86', 'M 32,56 L 64,56', 'M 32,86 L 72,86', 'M 40,16 L 62,4'],
+    'È': ['M 72,26 L 32,26', 'M 32,26 L 32,86', 'M 32,56 L 64,56', 'M 32,86 L 72,86', 'M 62,16 L 40,4'],
+    F: ['M 72,14 L 30,14', 'M 30,14 L 30,86', 'M 30,50 L 62,50'],
+    G: ['M 74,28 C 64,16 48,12 38,20 C 24,30 20,40 20,50 C 20,60 24,70 38,80 C 54,90 74,82 74,64',
+      'M 74,64 L 54,64'],
+    H: ['M 28,14 L 28,86', 'M 72,14 L 72,86', 'M 28,50 L 72,50'],
+    I: ['M 50,14 L 50,86'],
+    J: ['M 64,14 L 64,66 C 64,84 40,90 30,76'],
+    K: ['M 30,14 L 30,86', 'M 72,14 L 34,52', 'M 42,44 L 74,86'],
+    L: ['M 32,14 L 32,86', 'M 32,86 L 70,86'],
+    M: ['M 24,86 L 24,14', 'M 24,14 L 50,58', 'M 50,58 L 76,14', 'M 76,14 L 76,86'],
+    N: ['M 28,86 L 28,14', 'M 28,14 L 72,86', 'M 72,86 L 72,14'],
+    O: ['M 50,14 C 30,14 20,32 20,50 C 20,68 30,86 50,86 C 70,86 80,68 80,50 C 80,32 70,14 50,14'],
+    P: ['M 30,86 L 30,14', 'M 30,14 L 56,14 C 78,14 78,52 56,52 L 30,52'],
+    Q: ['M 50,14 C 30,14 20,32 20,50 C 20,68 30,86 50,86 C 70,86 80,68 80,50 C 80,32 70,14 50,14',
+      'M 58,66 L 80,90'],
+    R: ['M 30,86 L 30,14', 'M 30,14 L 56,14 C 76,14 76,50 56,50 L 30,50', 'M 46,50 L 74,86'],
+    S: ['M 74,26 C 66,14 40,10 32,24 C 25,37 40,46 52,50 C 66,55 80,62 74,76 C 66,91 34,88 26,74'],
+    T: ['M 22,14 L 78,14', 'M 50,14 L 50,86'],
+    U: ['M 26,14 L 26,62 C 26,82 74,82 74,62 L 74,14'],
+    V: ['M 24,14 L 50,86', 'M 50,86 L 76,14'],
+    W: ['M 18,14 L 32,86', 'M 32,86 L 50,38', 'M 50,38 L 68,86', 'M 68,86 L 82,14'],
+    X: ['M 26,14 L 74,86', 'M 74,14 L 26,86'],
+    Y: ['M 26,14 L 50,50', 'M 74,14 L 50,50', 'M 50,50 L 50,86'],
+    Z: ['M 26,14 L 74,14', 'M 74,14 L 26,86', 'M 26,86 L 74,86']
   };
-  var PRENOM = ['L', 'I', 'V', 'I', 'A'];
 
-  function points(seg, pas) {
-    var res = [], dx = seg[1][0] - seg[0][0], dy = seg[1][1] - seg[0][1];
-    var d = Math.sqrt(dx * dx + dy * dy), n = Math.max(2, Math.round(d / pas));
-    for (var i = 0; i <= n; i++) {
-      res.push({ x: seg[0][0] + dx * i / n, y: seg[0][1] + dy * i / n, vu: false });
-    }
-    return res;
-  }
+  /* les prénoms de la maison : Livia d'abord, puis la famille et les copains */
+  var PRENOMS = ['LIVIA', 'PABLO', 'MAMAN', 'PAPA', 'MILA', 'ANTOINE', 'MARTINE',
+    'ERIC', 'CÉCILE', 'ENZO', 'LAURENT', 'BARBARA', 'SAMANTHA', 'MAXIME', 'LAETITIA'];
+
+  var NS = 'http://www.w3.org/2000/svg';
+  var lotPrenoms = null;
 
   function jeuEcrire(zone, n, api) {
-    var lettre = PRENOM[n % PRENOM.length];
-    var segments = LETTRES[lettre];
-    api.consigne('Trace la lettre ' + lettre + ' avec ton doigt.');
+    if (n === 0 || !lotPrenoms) {
+      lotPrenoms = ['LIVIA'].concat(piocher(PRENOMS.slice(1), PRENOMS.length - 1));
+    }
+    var nom = lotPrenoms[n % lotPrenoms.length];
+    var lettres = nom.split('').filter(function (c) { return LETTRES[c]; });
+    api.consigne('Écris ' + nom + '.');
+
+    /* le prénom en toutes lettres, pour savoir où on en est */
+    var bandeau = el('div', 'prenom');
+    lettres.forEach(function (c) { bandeau.appendChild(el('span', null, c)); });
+    zone.appendChild(bandeau);
 
     var cadre = el('div', 'trace');
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    var svg = document.createElementNS(NS, 'svg');
     svg.setAttribute('viewBox', '0 0 100 100');
     cadre.appendChild(svg);
     zone.appendChild(cadre);
 
-    var NS = 'http://www.w3.org/2000/svg';
-    function ligne(seg, cls, w) {
-      var l = document.createElementNS(NS, 'line');
-      l.setAttribute('x1', seg[0][0]); l.setAttribute('y1', seg[0][1]);
-      l.setAttribute('x2', seg[1][0]); l.setAttribute('y2', seg[1][1]);
-      l.setAttribute('class', cls); l.setAttribute('stroke-width', w);
-      svg.appendChild(l);
-      return l;
+    var iLettre = 0, iTrace = 0, jalons = [], trace = [];
+    var chemins = [], depart, encre;
+
+    function chemin(d, cls, w) {
+      var p = document.createElementNS(NS, 'path');
+      p.setAttribute('d', d); p.setAttribute('class', cls);
+      p.setAttribute('stroke-width', w); p.setAttribute('fill', 'none');
+      svg.appendChild(p);
+      return p;
     }
 
-    var guides = segments.map(function (s) { return ligne(s, 'guide', 13); });
-    segments.forEach(function (s) { ligne(s, 'pointille', 1.6); });
-
-    var depart = document.createElementNS(NS, 'circle');
-    depart.setAttribute('class', 'depart'); depart.setAttribute('r', 5);
-    svg.appendChild(depart);
-
-    var encre = document.createElementNS(NS, 'polyline');
-    encre.setAttribute('class', 'encre');
-    svg.appendChild(encre);
-
-    var seg = 0;
-    var jalons = points(segments[0], 7);
-    var trace = [];
-
-    function majDepart() {
-      if (seg >= segments.length) { depart.style.display = 'none'; return; }
-      depart.setAttribute('cx', segments[seg][0][0]);
-      depart.setAttribute('cy', segments[seg][0][1]);
+    /* les points de passage : c'est le navigateur qui mesure la courbe */
+    function jalonsDe(p) {
+      var L = p.getTotalLength(), res = [], pas = 6;
+      var n2 = Math.max(2, Math.round(L / pas));
+      for (var i = 0; i <= n2; i++) {
+        var pt = p.getPointAtLength(L * i / n2);
+        res.push({ x: pt.x, y: pt.y, vu: false });
+      }
+      return res;
     }
-    majDepart();
+
+    function dessinerLettre() {
+      svg.innerHTML = '';
+      chemins = LETTRES[lettres[iLettre]].map(function (d) {
+        return { d: d, guide: chemin(d, 'guide', 13) };
+      });
+      chemins.forEach(function (c) { chemin(c.d, 'pointille', 1.6); });
+      depart = document.createElementNS(NS, 'circle');
+      depart.setAttribute('class', 'depart'); depart.setAttribute('r', 5);
+      svg.appendChild(depart);
+      encre = document.createElementNS(NS, 'polyline');
+      encre.setAttribute('class', 'encre');
+      svg.appendChild(encre);
+      iTrace = 0;
+      majTrace();
+      var sp = bandeau.children;
+      for (var i = 0; i < sp.length; i++) {
+        sp[i].className = i < iLettre ? 'fait' : (i === iLettre ? 'ici' : '');
+      }
+    }
+
+    function majTrace() {
+      if (iTrace >= chemins.length) { depart.style.display = 'none'; return; }
+      jalons = jalonsDe(chemins[iTrace].guide);
+      depart.style.display = '';
+      depart.setAttribute('cx', jalons[0].x);
+      depart.setAttribute('cy', jalons[0].y);
+    }
 
     function coord(e) {
       var r = svg.getBoundingClientRect();
@@ -6627,7 +7582,7 @@ var UNIVERSES = [
 
     var dessine = false;
     function debut(e) {
-      if (seg >= segments.length) return;
+      if (iTrace >= chemins.length) return;
       dessine = true; trace = []; encre.setAttribute('points', '');
       svg.setPointerCapture && svg.setPointerCapture(e.pointerId);
       bouge(e);
@@ -6642,43 +7597,259 @@ var UNIVERSES = [
       jalons.forEach(function (j) {
         if (!j.vu) {
           var dx = j.x - p.x, dy = j.y - p.y;
-          if (dx * dx + dy * dy < 100) j.vu = true;   // rayon 10
+          if (dx * dx + dy * dy < 121) j.vu = true;   // rayon 11
         }
         if (j.vu) vus++;
       });
-      if (vus / jalons.length >= .8) fini();
+      if (vus / jalons.length >= .8) traceFini();
     }
-    function fin(e) { dessine = false; }
+    function fin() { dessine = false; }
 
-    function fini() {
+    function traceFini() {
       dessine = false;
-      guides[seg].classList.add('fait');
-      var g = document.createElementNS(NS, 'line');
-      g.setAttribute('x1', segments[seg][0][0]); g.setAttribute('y1', segments[seg][0][1]);
-      g.setAttribute('x2', segments[seg][1][0]); g.setAttribute('y2', segments[seg][1][1]);
-      g.setAttribute('class', 'ecrit'); g.setAttribute('stroke-width', 11);
-      svg.appendChild(g);
+      chemins[iTrace].guide.classList.add('fait');
+      chemin(chemins[iTrace].d, 'ecrit', 11);
+      svg.appendChild(depart); svg.appendChild(encre);
       encre.setAttribute('points', '');
-      seg++;
-      if (seg >= segments.length) {
-        majDepart();
-        setTimeout(function () { api.reussi(); }, 400);
-      } else {
-        jalons = points(segments[seg], 7);
-        majDepart();
-        dire('Encore un trait !');
-      }
+      iTrace++;
+      if (iTrace < chemins.length) { majTrace(); dire('Encore un trait !'); return; }
+      majTrace();
+      iLettre++;
+      if (iLettre >= lettres.length) { setTimeout(function () { api.reussi(); }, 450); return; }
+      var sp = bandeau.children;
+      sp[iLettre - 1].className = 'fait';
+      setTimeout(function () {
+        dessinerLettre();
+        dire('Maintenant le ' + lettres[iLettre] + '.');
+      }, 500);
     }
 
     svg.addEventListener('pointerdown', debut);
     svg.addEventListener('pointermove', bouge);
     svg.addEventListener('pointerup', fin);
     svg.addEventListener('pointercancel', fin);
+
+    dessinerLettre();
   }
 
   /* ============================================================
      LE CATALOGUE
      ============================================================ */
+  /* ============================================================
+     JEU 4 — LES 6 DIFFÉRENCES
+     On repart des planches déjà dessinées : à gauche la case d'origine,
+     à droite la même case retouchée en six endroits. Les retouches sont
+     fabriquées à partir de la scène elle-même — rien n'est dessiné à la
+     main, et une nouvelle histoire donne aussitôt une nouvelle planche.
+     ============================================================ */
+  var A_TROUVER = 6;
+
+  var PERSOS = ('peppa george mummy daddy suzy livia liviaPrincess elsa anna olaf ' +
+    'grognon chipie etourdi timide rapide lent rangetout costaud bonheur curieux ' +
+    'bluey bingo bandit chilli muffin coco dino roxane juliette isadora pablo').split(' ');
+
+  var PLANCHES = [
+    { u: 'peppa', s: 'plage', p: 6 },
+    { u: 'peppa', s: 'camping', p: 4 },
+    { u: 'peppa', s: 'piscine', p: 0 },
+    { u: 'peppa', s: 'petit-frere', p: 5 },
+    { u: 'frozen', s: 'ete-arendelle', p: 8 },
+    { u: 'bluey', s: 'lucioles', p: 3 },
+    { u: 'bluey', s: 'crabes', p: 6 },
+    { u: 'monsieurmadame', s: 'rangetout', p: 2 },
+    { u: 'melange', s: 'trois-amies', p: 6 },
+    { u: 'copines', s: 'cabane-copines', p: 4 }
+  ];
+
+  /* de quoi ajouter un élément qui n'a rien à faire là, selon le décor */
+  var AJOUTS = {
+    beach: ['shell', 'starfish', 'crab'], sea: ['shell', 'starfish'],
+    garden: ['flower', 'ball', 'bush'], hill: ['flower', 'bush', 'rock'],
+    creek: ['flower', 'rock', 'bush'], camp: ['flower', 'log', 'bush'],
+    forest: ['flower', 'bush', 'rock'], snow: ['snowball', 'pine', 'snowball'],
+    village: ['flower', 'bush', 'ball'], road: ['flower', 'bush', 'rock'],
+    bedroom: ['cube', 'ball', 'suitcase'], plain: ['flower', 'ball', 'bush']
+  };
+  /* deux rangs : au premier plan, et un peu en retrait dans le décor */
+  var PLACES = [[70, 550], [190, 548], [320, 552], [470, 550], [610, 548], [730, 546],
+    [110, 468], [250, 464], [400, 460], [550, 464], [690, 466]];
+
+  /* un tirage reproductible : une planche donnée pose toujours la même énigme */
+  function graineur(g) {
+    return function () { g = (g * 1103515245 + 12345) % 2147483648; return g / 2147483648; };
+  }
+  function melangeAvec(a, r) {
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(r() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function trouverScene(uid, sid, p) {
+    for (var i = 0; i < UNIVERSES.length; i++) {
+      if (UNIVERSES[i].id !== uid) continue;
+      var st = UNIVERSES[i].stories;
+      for (var j = 0; j < st.length; j++) {
+        if (st[j].id === sid) return { u: UNIVERSES[i], s: st[j], scene: st[j].pages[p].scene };
+      }
+    }
+    return null;
+  }
+
+  var HUMEURS = ['happy', 'wow', 'sad'];
+
+  function fabriquerDifferences(scene, graine) {
+    var r = graineur(graine);
+    var copie = JSON.parse(JSON.stringify(scene));
+    delete copie.bubbles;
+    var zones = [];
+
+    var persos = [], objets = [];
+    ['back', 'items', 'front'].forEach(function (c) {
+      (copie[c] || []).forEach(function (it) {
+        (PERSOS.indexOf(it.t) >= 0 ? persos : objets).push(it);
+      });
+    });
+
+    /* une seule retouche par élément : deux changements au même endroit,
+       ça ne se voit plus, ça s'annule */
+    var efface = 0;
+    var candidats = melangeAvec(objets, r).map(function (it, k) {
+      /* on n'efface qu'un objet sur trois : une case vidée n'est plus la même case */
+      var quoi = (k % 3 === 0 && efface < 2) ? 'retirer' : 'taille';
+      if (quoi === 'retirer') efface++;
+      return { it: it, quoi: quoi, perso: false };
+    }).concat(melangeAvec(persos, r).map(function (it, k) {
+      return { it: it, quoi: ['pose', 'flip', 'humeur'][k % 3], perso: true };
+    }));
+    /* deux différences côte à côte n'en font qu'une : on les espace */
+    function loin(x, y, d) {
+      return zones.every(function (z) {
+        return (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y) > d * d;
+      });
+    }
+    function centre(c) {
+      return [c.it.x, c.it.y - (c.perso ? 110 * (c.it.s || 1) : 22)];
+    }
+    var melanges = melangeAvec(candidats, r), retenus = [];
+    [130, 90, 55].forEach(function (ecart) {
+      melanges.forEach(function (c) {
+        if (retenus.length >= A_TROUVER || c.pris) return;
+        var p = centre(c);
+        if (!loin(p[0], p[1], ecart)) return;
+        c.pris = true; retenus.push(c); zones.push({ x: p[0], y: p[1] });
+      });
+    });
+    zones.length = 0;
+    candidats = retenus;
+
+    candidats.forEach(function (c) {
+      var it = c.it;
+      var cx = it.x, cy = it.y - (c.perso ? 110 * (it.s || 1) : 22);
+      if (c.quoi === 'retirer') it.t = 'rien';
+      else if (c.quoi === 'taille') it.s = (it.s === undefined ? 1 : it.s) * (r() < .5 ? .55 : 1.5);
+      else if (c.quoi === 'flip') it.flip = !it.flip;
+      else if (c.quoi === 'humeur') {
+        var h = HUMEURS.filter(function (m) { return m !== (it.mood || 'happy'); });
+        it.mood = h[Math.floor(r() * h.length)];
+      } else if (c.quoi === 'pose') {
+        if (it.x > 110 && it.x < 690 && it.pose !== 'sit') it.pose = it.pose === 'armsup' ? 'point' : 'armsup';
+        else { it.flip = !it.flip; }
+      }
+      zones.push({ x: cx, y: cy });
+    });
+
+    /* s'il manque des différences, on ajoute ce qui n'était pas là */
+    var pool = AJOUTS[scene.bg] || AJOUTS.plain;
+    /* on ne pose rien juste devant un visage, le reste peut se chevaucher.
+       Copie des emplacements : les marquer sur PLACES les userait d'une
+       planche à l'autre. */
+    var places = melangeAvec(PLACES, r)
+      .map(function (pl) { return { x: pl[0], y: pl[1], pris: false }; })
+      .filter(function (pl) {
+        return (scene.items || []).every(function (it) { return Math.abs(it.x - pl.x) > 55; });
+      });
+    /* le dernier passage n'impose plus d'écart : mieux vaut six différences
+       serrées que cinq bien réparties */
+    [110, 70, 45, 0].forEach(function (ecart) {
+      places.forEach(function (pl) {
+        if (zones.length >= A_TROUVER || pl.pris) return;
+        if (ecart && !loin(pl.x, pl.y - 24, ecart)) return;
+        pl.pris = true;
+        var t = pool[Math.floor(r() * pool.length)];
+        (copie.front = copie.front || []).push({ t: t, x: pl.x, y: pl.y, s: 1.5 });
+        zones.push({ x: pl.x, y: pl.y - 24 });
+      });
+    });
+    return { scene: copie, zones: zones };
+  }
+
+  var lotPlanches = null;
+
+  function jeuDifferences(zone, n, api) {
+    if (n === 0 || !lotPlanches) lotPlanches = melange(PLANCHES.map(function (p, i) {
+      return { p: p, i: i };
+    }));
+    var choix = lotPlanches[n % lotPlanches.length];
+    var trouve = trouverScene(choix.p.u, choix.p.s, choix.p.p);
+    var fab = fabriquerDifferences(trouve.scene, 1000 + choix.i * 7919);
+    api.consigne('Trouve les 6 différences.');
+
+    var plateau = el('div', 'diff');
+    var vues = [];
+    [trouve.scene, fab.scene].forEach(function (sc) {
+      var v = el('div', 'diff-vue');
+      v.innerHTML = Art.scene(sc, { noBubbles: true });
+      plateau.appendChild(v);
+      vues.push(v);
+    });
+    zone.appendChild(plateau);
+
+    var score = el('p', 'diff-score');
+    zone.appendChild(score);
+
+    var vus = fab.zones.map(function () { return false; });
+    function majScore() {
+      score.innerHTML = '<b>' + vus.filter(Boolean).length + '</b> / ' + A_TROUVER;
+    }
+    majScore();
+
+    function marquer(z) {
+      vues.forEach(function (v) {
+        var sv = v.querySelector('svg');
+        var c = document.createElementNS(NS, 'circle');
+        c.setAttribute('cx', z.x); c.setAttribute('cy', z.y); c.setAttribute('r', 62);
+        c.setAttribute('class', 'diff-marque');
+        sv.appendChild(c);
+      });
+    }
+
+    function toucher(e) {
+      var v = e.currentTarget, r = v.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width * 800;
+      var y = (e.clientY - r.top) / r.height * 560;
+      var best = -1, bd = 1e9;
+      fab.zones.forEach(function (z, i) {
+        if (vus[i]) return;
+        var d = (z.x - x) * (z.x - x) + (z.y - y) * (z.y - y);
+        if (d < bd) { bd = d; best = i; }
+      });
+      if (best < 0 || bd > 105 * 105) {
+        v.classList.add('rate');
+        setTimeout(function () { v.classList.remove('rate'); }, 260);
+        return;
+      }
+      vus[best] = true;
+      marquer(fab.zones[best]);
+      majScore();
+      if (vus.every(Boolean)) setTimeout(function () { api.reussi(); }, 500);
+      else dire(['Oui !', 'Bien vu !', 'Encore une !'][Math.floor(Math.random() * 3)]);
+    }
+    vues.forEach(function (v) { v.addEventListener('click', toucher); });
+  }
+
   var JEUX = [
     {
       id: 'relier', nom: 'Relie les amis', emoji: '🔗',
@@ -6693,10 +7864,16 @@ var UNIVERSES = [
       def: { manches: 5, manche: jeuCompter, felicitation: 'Tu sais compter jusqu\'à 6 !' }
     },
     {
-      id: 'ecrire', nom: 'Écris ton prénom', emoji: '✏️',
-      sous: 'Trace les lettres de L I V I A',
+      id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️',
+      sous: 'Livia, Pablo, Maman, Papa…',
       vignette: { t: 'elsa', ds: .66, dy: 184 },
-      def: { manches: 5, manche: jeuEcrire, felicitation: 'Tu as écrit ton prénom en entier !' }
+      def: { manches: 5, manche: jeuEcrire, felicitation: 'Tu as écrit cinq prénoms en entier !' }
+    },
+    {
+      id: 'differences', nom: 'Les 6 différences', emoji: '🔍',
+      sous: 'Deux cases presque pareilles',
+      vignette: { t: 'bluey', ds: .62, dy: 184 },
+      def: { manches: 6, manche: jeuDifferences, felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.' }
     }
   ];
 
@@ -6939,6 +8116,7 @@ var UNIVERSES = [
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
     gamesSub: $('#gamesSub'),
     grid: $('#uniGrid'), random: $('#btnRandom'),
+    hello: $('#homeHello'), themeChips: $('#themeChips'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
     cfTags: $('#cfTags'), cfDots: $('#cfDots'), read: $('#btnRead'),
@@ -6976,23 +8154,88 @@ var UNIVERSES = [
   function renderNav(actif) { cablerNav(els.mainnav, actif); }
   cablerNav(els.coverNav, null);
 
-  /* ---------------- onglets ---------------- */
-  function renderTabs(activeId) {
+  /* ---------------- onglets ----------------
+     Hors d'un thème, ils ouvrent l'univers. Dans un thème, ils le filtrent :
+     c'est le même rang de boutons qui sert aux deux axes. */
+  function renderTabs(activeId, theme, dispo) {
     els.tabs.innerHTML = '';
+    var lien = function (uid) {
+      if (!theme) return uid ? '#/u/' + uid : '#/histoires';
+      return '#/theme/' + theme.id + (uid ? '/' + uid : '');
+    };
     var all = document.createElement('button');
     all.className = 'tab' + (activeId ? '' : ' is-active');
     all.textContent = '★ Tous';
-    all.onclick = function () { location.hash = '#/histoires'; };
+    all.onclick = function () { location.hash = lien(null); };
     els.tabs.appendChild(all);
 
     UNIVERSES.forEach(function (u) {
+      if (dispo && dispo.indexOf(u.id) < 0) return;
       var b = document.createElement('button');
       b.className = 'tab' + (activeId === u.id ? ' is-active' : '');
       b.textContent = u.emoji + ' ' + u.name;
-      b.onclick = function () { location.hash = '#/u/' + u.id; };
+      b.onclick = function () { location.hash = lien(u.id); };
       els.tabs.appendChild(b);
     });
+  }
 
+  /* ---------------- les thèmes ---------------- */
+  function themeParId(id) {
+    for (var i = 0; i < THEMES.length; i++) if (THEMES[i].id === id) return THEMES[i];
+    return null;
+  }
+  function histoiresDuTheme(theme, uid) {
+    var out = [];
+    UNIVERSES.forEach(function (u) {
+      if (uid && u.id !== uid) return;
+      u.stories.forEach(function (s) {
+        if (s.themes && s.themes.indexOf(theme.nom) >= 0) out.push({ u: u, s: s });
+      });
+    });
+    return out;
+  }
+  function renderChips(actif) {
+    els.themeChips.innerHTML = '';
+    THEMES.forEach(function (t) {
+      var n = histoiresDuTheme(t).length;
+      if (!n) return;
+      var b = document.createElement('button');
+      b.className = 'chip' + (actif === t.id ? ' is-active' : '');
+      b.innerHTML = t.emoji + ' ' + t.nom + ' <i>' + n + '</i>';
+      b.onclick = function () {
+        location.hash = actif === t.id ? '#/histoires' : '#/theme/' + t.id;
+      };
+      els.themeChips.appendChild(b);
+    });
+  }
+
+  function carteHistoire(u, s) {
+    var card = document.createElement('button');
+    card.className = 'uni-card';
+    card.innerHTML =
+      '<div class="band"><h3>' + u.emoji + ' ' + s.title + '</h3>' +
+      '<span class="num">' + numero(u, s) + '</span></div>' +
+      '<div class="thumb">' + Art.scene(s.cover, { slice: true, noBubbles: true }) + '</div>' +
+      '<div class="cap"><p>' + s.subtitle + '</p>' +
+      '<span class="pill">' + s.pages.length + ' planches</span></div>';
+    card.onclick = function () { location.hash = '#/u/' + u.id + '/' + s.id; };
+    return card;
+  }
+
+  function renderTheme(theme, uid) {
+    var tout = histoiresDuTheme(theme);
+    var dispo = [];
+    tout.forEach(function (h) { if (dispo.indexOf(h.u.id) < 0) dispo.push(h.u.id); });
+    renderTabs(uid, theme, dispo);
+    renderChips(theme.id);
+    var liste = uid ? tout.filter(function (h) { return h.u.id === uid; }) : tout;
+    els.hello.innerHTML = theme.emoji + ' <b>' + theme.nom + '</b> — ' + liste.length +
+      ' histoire' + (liste.length > 1 ? 's' : '') +
+      ' <button class="lien-effacer" id="btnEffacer">tout afficher</button>';
+    els.grid.innerHTML = '';
+    liste.forEach(function (h) { els.grid.appendChild(carteHistoire(h.u, h.s)); });
+    var e = $('#btnEffacer');
+    if (e) e.onclick = function () { location.hash = '#/histoires'; };
   }
 
   /* ---------------- les jeux ---------------- */
@@ -7053,6 +8296,8 @@ var UNIVERSES = [
 
   /* ---------------- sommaire ---------------- */
   function renderHome() {
+    renderChips(null);
+    els.hello.textContent = 'Choisis un univers, ou un thème.';
     els.grid.innerHTML = '';
     UNIVERSES.forEach(function (u) {
       var card = document.createElement('button');
@@ -7267,6 +8512,17 @@ var UNIVERSES = [
     Jeux.taire();
     renderNav('histoires');
     els.tabs.hidden = false;
+
+    if (parts[0] === 'theme') {                  // les histoires d'un thème
+      var th = themeParId(parts[1]);
+      if (!th) { location.hash = '#/histoires'; return; }
+      closeReader();
+      setTheme(null);
+      els.home.hidden = false; els.uni.hidden = true;
+      renderTheme(th, parts[2]);
+      window.scrollTo(0, 0);
+      return;
+    }
 
     if (parts[0] !== 'u') {                      // la liste des univers
       closeReader();

@@ -225,6 +225,7 @@
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
     gamesSub: $('#gamesSub'),
     grid: $('#uniGrid'), random: $('#btnRandom'),
+    hello: $('#homeHello'), themeChips: $('#themeChips'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
     cfTags: $('#cfTags'), cfDots: $('#cfDots'), read: $('#btnRead'),
@@ -262,23 +263,88 @@
   function renderNav(actif) { cablerNav(els.mainnav, actif); }
   cablerNav(els.coverNav, null);
 
-  /* ---------------- onglets ---------------- */
-  function renderTabs(activeId) {
+  /* ---------------- onglets ----------------
+     Hors d'un thème, ils ouvrent l'univers. Dans un thème, ils le filtrent :
+     c'est le même rang de boutons qui sert aux deux axes. */
+  function renderTabs(activeId, theme, dispo) {
     els.tabs.innerHTML = '';
+    var lien = function (uid) {
+      if (!theme) return uid ? '#/u/' + uid : '#/histoires';
+      return '#/theme/' + theme.id + (uid ? '/' + uid : '');
+    };
     var all = document.createElement('button');
     all.className = 'tab' + (activeId ? '' : ' is-active');
     all.textContent = '★ Tous';
-    all.onclick = function () { location.hash = '#/histoires'; };
+    all.onclick = function () { location.hash = lien(null); };
     els.tabs.appendChild(all);
 
     UNIVERSES.forEach(function (u) {
+      if (dispo && dispo.indexOf(u.id) < 0) return;
       var b = document.createElement('button');
       b.className = 'tab' + (activeId === u.id ? ' is-active' : '');
       b.textContent = u.emoji + ' ' + u.name;
-      b.onclick = function () { location.hash = '#/u/' + u.id; };
+      b.onclick = function () { location.hash = lien(u.id); };
       els.tabs.appendChild(b);
     });
+  }
 
+  /* ---------------- les thèmes ---------------- */
+  function themeParId(id) {
+    for (var i = 0; i < THEMES.length; i++) if (THEMES[i].id === id) return THEMES[i];
+    return null;
+  }
+  function histoiresDuTheme(theme, uid) {
+    var out = [];
+    UNIVERSES.forEach(function (u) {
+      if (uid && u.id !== uid) return;
+      u.stories.forEach(function (s) {
+        if (s.themes && s.themes.indexOf(theme.nom) >= 0) out.push({ u: u, s: s });
+      });
+    });
+    return out;
+  }
+  function renderChips(actif) {
+    els.themeChips.innerHTML = '';
+    THEMES.forEach(function (t) {
+      var n = histoiresDuTheme(t).length;
+      if (!n) return;
+      var b = document.createElement('button');
+      b.className = 'chip' + (actif === t.id ? ' is-active' : '');
+      b.innerHTML = t.emoji + ' ' + t.nom + ' <i>' + n + '</i>';
+      b.onclick = function () {
+        location.hash = actif === t.id ? '#/histoires' : '#/theme/' + t.id;
+      };
+      els.themeChips.appendChild(b);
+    });
+  }
+
+  function carteHistoire(u, s) {
+    var card = document.createElement('button');
+    card.className = 'uni-card';
+    card.innerHTML =
+      '<div class="band"><h3>' + u.emoji + ' ' + s.title + '</h3>' +
+      '<span class="num">' + numero(u, s) + '</span></div>' +
+      '<div class="thumb">' + Art.scene(s.cover, { slice: true, noBubbles: true }) + '</div>' +
+      '<div class="cap"><p>' + s.subtitle + '</p>' +
+      '<span class="pill">' + s.pages.length + ' planches</span></div>';
+    card.onclick = function () { location.hash = '#/u/' + u.id + '/' + s.id; };
+    return card;
+  }
+
+  function renderTheme(theme, uid) {
+    var tout = histoiresDuTheme(theme);
+    var dispo = [];
+    tout.forEach(function (h) { if (dispo.indexOf(h.u.id) < 0) dispo.push(h.u.id); });
+    renderTabs(uid, theme, dispo);
+    renderChips(theme.id);
+    var liste = uid ? tout.filter(function (h) { return h.u.id === uid; }) : tout;
+    els.hello.innerHTML = theme.emoji + ' <b>' + theme.nom + '</b> — ' + liste.length +
+      ' histoire' + (liste.length > 1 ? 's' : '') +
+      ' <button class="lien-effacer" id="btnEffacer">tout afficher</button>';
+    els.grid.innerHTML = '';
+    liste.forEach(function (h) { els.grid.appendChild(carteHistoire(h.u, h.s)); });
+    var e = $('#btnEffacer');
+    if (e) e.onclick = function () { location.hash = '#/histoires'; };
   }
 
   /* ---------------- les jeux ---------------- */
@@ -339,6 +405,8 @@
 
   /* ---------------- sommaire ---------------- */
   function renderHome() {
+    renderChips(null);
+    els.hello.textContent = 'Choisis un univers, ou un thème.';
     els.grid.innerHTML = '';
     UNIVERSES.forEach(function (u) {
       var card = document.createElement('button');
@@ -553,6 +621,17 @@
     Jeux.taire();
     renderNav('histoires');
     els.tabs.hidden = false;
+
+    if (parts[0] === 'theme') {                  // les histoires d'un thème
+      var th = themeParId(parts[1]);
+      if (!th) { location.hash = '#/histoires'; return; }
+      closeReader();
+      setTheme(null);
+      els.home.hidden = false; els.uni.hidden = true;
+      renderTheme(th, parts[2]);
+      window.scrollTo(0, 0);
+      return;
+    }
 
     if (parts[0] !== 'u') {                      // la liste des univers
       closeReader();
