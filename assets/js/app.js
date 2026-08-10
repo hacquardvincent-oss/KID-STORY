@@ -297,9 +297,20 @@
   var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
     'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
 
+  var coverForme = null;
+
+  /* l'illustration est recomposée si la forme de l'écran change */
+  function dessinerUne() {
+    var r = els.coverArt.getBoundingClientRect();
+    var forme = (r.width / Math.max(1, r.height)) < 1.15 ? 'haut' : 'large';
+    if (forme === coverForme) return;
+    coverForme = forme;
+    els.coverArt.innerHTML = Art.scene(COUVERTURE[forme], { slice: true, noBubbles: true });
+  }
+
   function renderCover() {
-    if (els.coverArt.childNodes.length) return;   // dessinée une seule fois
-    els.coverArt.innerHTML = Art.scene(COUVERTURE, { slice: true, noBubbles: true });
+    dessinerUne();
+    if (els.coverMeta.textContent) return;        // le reste ne change jamais
 
     var d = new Date();
     els.coverMeta.textContent = MOIS[d.getMonth()] + ' ' + d.getFullYear();
@@ -588,6 +599,13 @@
     var p = pool[Math.floor(Math.random() * pool.length)];
     location.hash = '#/u/' + p[0] + '/' + p[1];
   };
+
+  var minuteurUne;
+  window.addEventListener('resize', function () {
+    if (els.cover.hidden) { coverForme = null; return; }
+    clearTimeout(minuteurUne);
+    minuteurUne = setTimeout(dessinerUne, 150);
+  });
 
   window.addEventListener('hashchange', route);
   route();

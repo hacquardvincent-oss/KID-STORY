@@ -16,9 +16,11 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 
 ## Ce qu'il y a dedans
 
-* **Une couverture** — le site s'ouvre sur la une du mois : gros titre, illustration
-  rassemblant tous les personnages, pastille du nombre d'histoires, et le mois
-  courant qui se met à jour tout seul
+* **Une couverture plein écran** — le site s'ouvre sur la une du mois : gros titre,
+  illustration qui occupe tout l'écran, pastille du nombre d'histoires, et le mois
+  courant qui se met à jour tout seul. L'illustration existe en deux compositions,
+  une pour les écrans larges et une pour les écrans hauts, choisies à l'ouverture :
+  un cadrage unique couperait les personnages sur un téléphone.
 * **Menu des univers** — Peppa Pig, La Reine des Neiges… (facile d'en rajouter)
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
@@ -35,7 +37,7 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 
 ### Les histoires déjà écrites
 
-**Peppa Pig** (spécial vacances d'été)
+**Peppa Pig** — l'été
 
 | Histoire | Planches |
 |---|---|
@@ -43,6 +45,18 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 | Le camping sous les étoiles | 9 |
 | La grande journée à la piscine | 8 |
 | Le cerf-volant de l'été | 8 |
+
+**Peppa Pig** — grandir : six épisodes sur ce qui se joue à trois ans, chacun
+autour d'une émotion nommée et d'une réparation concrète, sans morale plaquée
+
+| Histoire | Ce qu'elle raconte |
+|---|---|
+| Le cadeau de George | la jalousie |
+| Le vélo de Livia | le partage |
+| La grosse colère de Peppa | la colère, et souffler comme un dragon |
+| La flaque interdite | écouter ses parents, et la conséquence |
+| Le vase de Maman | dire la vérité |
+| La file du toboggan | attendre son tour |
 
 **La Reine des Neiges**
 

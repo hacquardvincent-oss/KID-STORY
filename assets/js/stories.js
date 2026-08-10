@@ -10,20 +10,48 @@
 
 /* L'illustration de la une. Comme dans un magazine, elle rassemble les
    personnages de tous les univers du numéro. */
+/* L'illustration de la une, en deux versions : l'écran large montre toute la
+   bande, l'écran de téléphone n'en montre que la moitié centrale. On compose
+   donc deux fois, plutôt que de laisser le cadrage couper les personnages. */
 var COUVERTURE = {
-  bg: 'beach',
-  items: [
-    { t: 'parasol', x: 128, y: 486, s: .9 },
-    { t: 'sandcastle', x: 742, y: 542, s: .72 },
-    { t: 'peppa', x: 252, y: 528, s: 1.22, pose: 'wave' },
-    { t: 'livia', x: 402, y: 538, s: 1.5, pose: 'armsup' },
-    { t: 'bluey', x: 552, y: 530, s: 1.15, pose: 'wave' },
-    { t: 'elsa', x: 668, y: 522, s: 1.02, pose: 'magic' },
-    { t: 'starfish', x: 322, y: 552, s: .9 },
-    { t: 'crab', x: 196, y: 548, s: .9 },
-    { t: 'snowflake', x: 706, y: 156, r: 20 },
-    { t: 'sparkle', x: 214, y: 206, r: 16 }
-  ]
+
+  /* écran large : les quatre héros bien alignés, personne ne se chevauche */
+  large: {
+    bg: 'beach',
+    back: [
+      { t: 'parasol', x: 62, y: 478, s: .66 },
+      { t: 'sandcastle', x: 692, y: 476, s: .44 }
+    ],
+    items: [
+      { t: 'peppa', x: 152, y: 528, s: .95 },
+      { t: 'livia', x: 352, y: 534, s: 1 },
+      { t: 'bluey', x: 548, y: 528, s: .95 },
+      { t: 'elsa', x: 714, y: 520, s: .85 }
+    ],
+    front: [
+      { t: 'crab', x: 252, y: 550, s: .7 },
+      { t: 'starfish', x: 452, y: 554, s: .65 },
+      { t: 'shell', x: 622, y: 548, s: .75 }
+    ]
+  },
+
+  /* écran haut : trois héros seulement, serrés dans la bande visible */
+  haut: {
+    bg: 'beach',
+    back: [
+      { t: 'parasol', x: 118, y: 452, s: .7 },
+      { t: 'sandcastle', x: 688, y: 470, s: .55 }
+    ],
+    items: [
+      { t: 'peppa', x: 266, y: 482, s: .8 },
+      { t: 'bluey', x: 536, y: 482, s: .8 },
+      { t: 'livia', x: 400, y: 548, s: 1.02 }
+    ],
+    front: [
+      { t: 'crab', x: 300, y: 556, s: .7 },
+      { t: 'starfish', x: 500, y: 556, s: .65 }
+    ]
+  }
 };
 
 var UNIVERSES = [
@@ -242,8 +270,8 @@ var UNIVERSES = [
               back: [{ t: 'tent', x: 200, y: 500, s: 1 }],
               items: [
                 { t: 'mummy', x: 420, y: 505, s: 1.2, pose: 'point' },
-                { t: 'suzy', x: 580, y: 505, s: 1, pose: 'wave' },
-                { t: 'livia', x: 740, y: 505, s: 1, pose: 'wave' }
+                { t: 'suzy', x: 560, y: 505, s: 1, pose: 'wave' },
+                { t: 'livia', x: 706, y: 505, s: 1, pose: 'wave' }
               ],
               bubbles: [{ x: 470, y: 34, w: 300, t: 'Coucou ! Je campe à côté !', tx: 590, ty: 250 }]
             },
@@ -376,8 +404,8 @@ var UNIVERSES = [
               back: [{ t: 'pool', x: 380, y: 512, s: 1 }],
               items: [
                 { t: 'slide', x: 180, y: 505, s: 1 },
-                { t: 'peppa', x: 620, y: 512, s: 1, pose: 'point', mood: 'wow' },
-                { t: 'livia', x: 740, y: 512, s: 1, pose: 'stand' }
+                { t: 'peppa', x: 596, y: 512, s: 1, pose: 'point', mood: 'wow' },
+                { t: 'livia', x: 712, y: 512, s: 1, pose: 'stand' }
               ],
               bubbles: [{ x: 400, y: 24, w: 300, t: 'Regarde comme il est haut !', tx: 610, ty: 226 }]
             },
@@ -589,7 +617,603 @@ var UNIVERSES = [
             text: "Pour finir, tout le monde s'installe sur la couverture, en haut de la colline. Pastèque pour tout le monde. Le ciel devient orange, et le cerf-volant se repose à côté d'elles."
           }
         ]
+      },
+
+      /* ---------- 5 — la jalousie ---------- */
+      {
+        id: 'cadeau-george',
+        title: 'Le cadeau de George',
+        subtitle: 'Quand on voudrait être le seul',
+        tag: 'Grandir',
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'peppa', x: 300, y: 500, s: 1.15, mood: 'sad' },
+            { t: 'george', x: 480, y: 500, s: .95, pose: 'hold' },
+            { t: 'dino', x: 560, y: 500, s: .9 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 240, y: 500, s: 1.3, pose: 'hold' },
+                { t: 'george', x: 460, y: 500, s: .95, pose: 'armsup', mood: 'wow' },
+                { t: 'dino', x: 560, y: 500, s: 1 },
+                { t: 'peppa', x: 680, y: 500, s: 1.15 }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 300, t: 'Dine-saure ! Merci Mamie !', tx: 470, ty: 236 }]
+            },
+            text: "Mamie Pig est venue voir George parce qu'il a été très malade toute la semaine. Elle lui a apporté un dinosaure tout neuf, vert, avec des piquants sur le dos."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 300, y: 500, s: 1.2, mood: 'sad' },
+                { t: 'george', x: 560, y: 500, s: .95, pose: 'hold' },
+                { t: 'dino', x: 640, y: 500, s: .9 }
+              ],
+              bubbles: [{ x: 90, y: 26, w: 310, t: 'Et moi alors ? Moi j\'ai rien du tout.', tx: 300, ty: 226 }]
+            },
+            text: "Peppa regarde le dinosaure. Puis elle regarde ses pattes vides. Quelque chose de chaud et de serré monte dans son ventre. « Et moi alors ? » dit-elle tout bas."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 320, y: 500, s: 1.2, pose: 'shrug', mood: 'sad' },
+                { t: 'george', x: 580, y: 500, s: .95, mood: 'sad' }
+              ],
+              sfx: [{ t: 'IL EST MOCHE !', x: 392, y: 142, fs: 26, rot: -4, color: '#e2593c' }]
+            },
+            text: "Alors Peppa dit quelque chose de méchant : « Il est moche, ton dinosaure. » George baisse les oreilles. Et Peppa, aussitôt, se sent encore plus mal qu'avant."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 500, s: 1.3, pose: 'hold' },
+                { t: 'peppa', x: 520, y: 500, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 310, t: 'C\'est lourd, la jalousie. Ça serre le ventre.', tx: 310, ty: 216 }]
+            },
+            text: "Maman Pig s'assoit à côté d'elle. « Tu sais ce que tu as, là, dans le ventre ? Ça s'appelle la jalousie. C'est lourd à porter, et ça ne rend personne joyeux. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 280, y: 500, s: 1.3, pose: 'point' },
+                { t: 'peppa', x: 540, y: 500, s: 1.15 }
+              ],
+              bubbles: [{ x: 320, y: 26, w: 300, t: 'George a eu un cadeau. Toi, tu as la santé.', tx: 290, ty: 216 }]
+            },
+            text: "« George a eu un cadeau parce qu'il a été malade », explique Maman. « Toi, pendant ce temps-là, tu courais dans le jardin. Ça aussi, c'est un beau cadeau. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 340, y: 500, s: 1.15, pose: 'hold' },
+                { t: 'george', x: 540, y: 500, s: .95, pose: 'hold' },
+                { t: 'dino', x: 640, y: 500, s: .9 }
+              ],
+              bubbles: [{ x: 100, y: 26, w: 300, t: 'Pardon George. Il est très beau.', tx: 340, ty: 226 }]
+            },
+            text: "Peppa va voir son petit frère. « Pardon George. Il est très beau, ton dinosaure. » George ne répond rien : il lui met simplement le dinosaure dans les pattes."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 340, y: 514, s: 1.15, pose: 'run' },
+                { t: 'george', x: 520, y: 514, s: .95, pose: 'run' },
+                { t: 'dino', x: 640, y: 516, s: .9 }
+              ],
+              sfx: [{ t: 'GROOOAR !', x: 620, y: 200, fs: 38, rot: -8, color: '#6fbf5c' }]
+            },
+            text: "Il voulait juste jouer avec elle depuis le début. Tout l'après-midi, le dinosaure attaque le jardin en rugissant. Et Peppa, dans son ventre, ne sent plus rien de lourd du tout."
+          }
+        ]
+      },
+
+      /* ---------- 6 — le partage ---------- */
+      {
+        id: 'chacun-son-tour',
+        title: 'Le vélo de Livia',
+        subtitle: 'Ce qui est plus drôle à deux',
+        tag: 'Grandir',
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 320, y: 514, s: 1.15, pose: 'hold' },
+            { t: 'peppa', x: 500, y: 514, s: 1.15, pose: 'point' },
+            { t: 'ball', x: 640, y: 512, s: .8 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 514, s: 1.15, pose: 'wave' },
+                { t: 'peppa', x: 560, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' },
+                { t: 'ball', x: 700, y: 512, s: .85 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'Regarde mon ballon tout neuf !', tx: 300, ty: 226 }]
+            },
+            text: "Livia arrive dans le jardin avec un ballon tout neuf, bleu et jaune, qui rebondit très haut. Peppa n'a jamais vu un aussi beau ballon de toute sa vie."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 340, y: 514, s: 1.2, pose: 'hold' },
+                { t: 'ball', x: 420, y: 512, s: .85 },
+                { t: 'livia', x: 600, y: 514, s: 1.1, pose: 'shrug', mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 290, t: 'C\'est moi qui l\'ai ! C\'est moi !', tx: 340, ty: 226 }]
+            },
+            text: "Peppa attrape le ballon et le serre très fort contre elle. « C'est moi qui l'ai ! » Livia attend. Elle attend encore. Puis elle s'assoit dans l'herbe, toute seule."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 400, y: 514, s: 1.2, pose: 'hold' },
+                { t: 'ball', x: 480, y: 512, s: .85 }
+              ],
+              sfx: [{ t: 'POC… POC… POC…', x: 250, y: 250, fs: 30, rot: -4, color: '#fff' }]
+            },
+            text: "Peppa fait rebondir le ballon toute seule. Poc. Poc. Poc. C'est bizarre : le ballon est toujours aussi beau, mais ce n'est plus drôle du tout."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 516, s: 1.1, pose: 'sit', mood: 'sad' },
+                { t: 'peppa', x: 560, y: 514, s: 1.15, pose: 'stand', mood: 'sad' }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Livia ne joue plus. Livia est triste.', tx: 320, ty: 260 }]
+            },
+            text: "Peppa regarde son amie assise dans l'herbe, le menton sur les genoux. Elle comprend quelque chose : le ballon est à Livia, et Livia ne joue même plus avec."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 330, y: 514, s: 1.15, pose: 'hold' },
+                { t: 'ball', x: 420, y: 512, s: .85 },
+                { t: 'livia', x: 580, y: 516, s: 1.1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 90, y: 26, w: 310, t: 'Tiens. Chacun son tour, d\'accord ?', tx: 330, ty: 226 }]
+            },
+            text: "Alors Peppa se lève et lui tend le ballon. « Chacun son tour, d'accord ? » Livia sourit tellement fort que ses joues deviennent toutes rondes."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 280, y: 514, s: 1.15, pose: 'armsup' },
+                { t: 'ball', x: 430, y: 400, s: .9 },
+                { t: 'livia', x: 580, y: 516, s: 1.1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'À TOI ! À MOI !', x: 430, y: 190, fs: 34, rot: -6, color: '#f7c518' }]
+            },
+            text: "Le ballon vole de l'une à l'autre. « À toi ! » « À moi ! » Elles inventent des règles compliquées, puis elles les oublient, puis elles en inventent d'autres."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 340, y: 516, s: 1.15, pose: 'sit' },
+                { t: 'livia', x: 520, y: 518, s: 1.1, pose: 'sit' },
+                { t: 'ball', x: 660, y: 516, s: .8 }
+              ]
+            },
+            text: "Le soir, elles sont couchées dans l'herbe, essoufflées. « Le ballon était plus rigolo à deux », dit Peppa. « Beaucoup plus », répond Livia. Et le ballon, lui, se repose."
+          }
+        ]
+      },
+
+      /* ---------- 7 — la colère ---------- */
+      {
+        id: 'grosse-colere',
+        title: 'La grosse colère de Peppa',
+        subtitle: 'Souffler comme un dragon',
+        tag: 'Grandir',
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'peppa', x: 340, y: 500, s: 1.25, pose: 'armsup', mood: 'wow' },
+            { t: 'daddy', x: 570, y: 500, s: 1.3, pose: 'hold' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 380, y: 500, s: 1.2, pose: 'armsup' },
+                { t: 'george', x: 600, y: 500, s: .95 }
+              ],
+              bubbles: [{ x: 120, y: 26, w: 310, t: 'C\'est la plus haute tour du monde !', tx: 380, ty: 206 }]
+            },
+            text: "Peppa a construit une tour de cubes immense. Elle a mis presque une heure. Elle est si haute qu'il faut monter sur le tabouret pour poser le dernier cube."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'george', x: 420, y: 500, s: .95, pose: 'shrug', mood: 'sad' },
+                { t: 'peppa', x: 640, y: 500, s: 1.2, mood: 'wow' }
+              ],
+              sfx: [{ t: 'BADABOUM !', x: 300, y: 180, fs: 42, rot: -8, color: '#e2593c' }]
+            },
+            text: "George passe en courant. Sa queue accroche la tour. BADABOUM ! Les cubes roulent partout dans la chambre. George ne l'a pas fait exprès du tout."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 400, y: 500, s: 1.3, pose: 'armsup', mood: 'wow' },
+                { t: 'george', x: 660, y: 500, s: .95, mood: 'sad' }
+              ],
+              sfx: [{ t: 'AAAAAH !', x: 240, y: 190, fs: 46, rot: -10, color: '#e2593c' }]
+            },
+            text: "Alors Peppa devient toute rouge. Elle crie très fort, elle tape du pied, elle jette un cube contre le mur. La colère est arrivée d'un seul coup, comme un orage."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'daddy', x: 320, y: 500, s: 1.3, pose: 'hold' },
+                { t: 'peppa', x: 570, y: 500, s: 1.2, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 310, t: 'Ta colère a le droit d\'être là. Mais pas de faire mal.', tx: 330, ty: 216 }]
+            },
+            text: "Papa Pig entre et s'assoit par terre, sans crier. « Tu as le droit d'être en colère », dit-il. « Ça arrive à tout le monde. Mais la colère n'a pas le droit de faire mal. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'daddy', x: 320, y: 500, s: 1.3, pose: 'shrug' },
+                { t: 'peppa', x: 580, y: 500, s: 1.2, pose: 'shrug' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 300, t: 'On souffle comme un dragon. Trois fois.', tx: 330, ty: 216 }]
+            },
+            text: "« Regarde », dit Papa. « On respire par le nez, très fort, et on souffle par la bouche comme un dragon. Trois fois. » Ils soufflent tous les deux. Ça fait un bruit ridicule."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 380, y: 500, s: 1.2, pose: 'hold' },
+                { t: 'george', x: 600, y: 500, s: .95, pose: 'hold' }
+              ],
+              bubbles: [{ x: 120, y: 26, w: 300, t: 'Pardon d\'avoir crié, George.', tx: 380, ty: 206 }]
+            },
+            text: "Au troisième souffle, l'orage est parti. Peppa va voir George. « Pardon d'avoir crié. » George hausse les épaules : il avait déjà tout oublié."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 360, y: 500, s: 1.15, pose: 'armsup' },
+                { t: 'george', x: 580, y: 500, s: .95, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'ENCORE PLUS HAUTE !', x: 420, y: 180, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: "Ils reconstruisent la tour ensemble. Cette fois, elle est encore plus haute. Et quand elle retombe, à la fin, ce sont eux deux qui la font tomber, exprès, en riant."
+          }
+        ]
+      },
+
+      /* ---------- 8 — écouter ses parents ---------- */
+      {
+        id: 'flaque-interdite',
+        title: 'La flaque interdite',
+        subtitle: 'Pourquoi Maman avait dit non',
+        tag: 'Grandir',
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'mudpuddle', x: 420, y: 522, s: 1.1 },
+            { t: 'peppa', x: 380, y: 500, s: 1.2, pose: 'jump' },
+            { t: 'mummy', x: 630, y: 514, s: 1.3, pose: 'point' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 500, s: 1.3, pose: 'point' },
+                { t: 'peppa', x: 560, y: 500, s: 1.2, pose: 'armsup' }
+              ],
+              bubbles: [{ x: 320, y: 26, w: 310, t: 'Ta belle robe, et pas de flaques : c\'est la fête !', tx: 310, ty: 216 }]
+            },
+            text: "Cet après-midi, c'est la fête de l'école. Maman a sorti la belle robe de Peppa, celle qu'elle ne met presque jamais. « Et pas de flaques aujourd'hui », dit Maman."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'peppa', x: 300, y: 514, s: 1.2, pose: 'stand' },
+                { t: 'mudpuddle', x: 580, y: 524, s: 1.2 },
+                { t: 'livia', x: 700, y: 516, s: 1.05, pose: 'stand' }
+              ],
+              sfx: [{ t: 'OH… UNE FLAQUE.', x: 300, y: 200, fs: 30, rot: -5, color: '#c99a5f' }]
+            },
+            text: "Sur le chemin, il y a une flaque. Pas une petite : une flaque magnifique, toute ronde, toute marron, qui attend là comme si elle avait été faite exprès pour elle."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'peppa', x: 380, y: 516, s: 1.2, pose: 'shrug' },
+                { t: 'livia', x: 620, y: 516, s: 1.05, pose: 'point' }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Ta maman a dit non, Peppa…', tx: 620, ty: 236 }]
+            },
+            text: "« Ta maman a dit non », rappelle Livia. Peppa regarde la flaque. Puis sa robe. Puis la flaque encore. « Juste un tout petit saut », dit-elle. « Un minuscule. »"
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mudpuddle', x: 420, y: 524, s: 1.3 },
+                { t: 'peppa', x: 400, y: 490, s: 1.2, pose: 'jump', mood: 'wow' }
+              ],
+              sfx: [{ t: 'SPLATCH !', x: 620, y: 250, fs: 44, rot: -10, color: '#c99a5f' }]
+            },
+            text: "SPLATCH ! Le saut n'a rien de minuscule. La boue gicle jusqu'aux oreilles. Pendant une seconde, c'est le plus grand bonheur du monde entier."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'peppa', x: 360, y: 516, s: 1.2, pose: 'shrug', mood: 'sad' },
+                { t: 'livia', x: 620, y: 516, s: 1.05, pose: 'stand', mood: 'sad' }
+              ],
+              sfx: [{ t: 'ET LA ROBE ?', x: 400, y: 190, fs: 32, rot: -5, color: '#e2593c' }]
+            },
+            text: "Puis Peppa baisse les yeux. La belle robe est marron du col jusqu'en bas. Le bonheur, lui, est parti aussi vite qu'il était venu."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 320, y: 500, s: 1.3, pose: 'hold' },
+                { t: 'peppa', x: 570, y: 500, s: 1.2, mood: 'sad' }
+              ],
+              bubbles: [{ x: 320, y: 26, w: 310, t: 'Je ne t\'ai pas dit non pour t\'embêter.', tx: 330, ty: 216 }]
+            },
+            text: "À la maison, Maman ne crie pas. Elle dit juste : « Je ne t'avais pas dit non pour t'embêter. C'était pour que tu puisses aller à la fête. » Peppa a la gorge serrée."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 340, y: 516, s: 1.15, pose: 'hold' },
+                { t: 'mummy', x: 560, y: 514, s: 1.3, pose: 'hold' },
+                { t: 'mudpuddle', x: 700, y: 528, s: .9 }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 300, t: 'La prochaine fois, j\'écoute.', tx: 340, ty: 226 }]
+            },
+            text: "Elles arrivent à la fête à la toute fin, en bottes et en habits de tous les jours. « La prochaine fois, j'écoute », dit Peppa. Maman lui prend la patte. « Je sais. »"
+          }
+        ]
+      },
+
+      /* ---------- 9 — dire la vérité ---------- */
+      {
+        id: 'verite',
+        title: 'Le vase de Maman',
+        subtitle: 'Le poids d\'un petit mensonge',
+        tag: 'Grandir',
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'peppa', x: 360, y: 500, s: 1.2, mood: 'sad' },
+            { t: 'ball', x: 520, y: 498, s: .8 },
+            { t: 'george', x: 640, y: 500, s: .95, mood: 'sad' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 320, y: 500, s: 1.2, pose: 'armsup' },
+                { t: 'ball', x: 520, y: 420, s: .85 }
+              ],
+              bubbles: [{ x: 100, y: 26, w: 310, t: 'Un dernier tir et j\'arrête !', tx: 320, ty: 206 }]
+            },
+            text: "On ne joue pas au ballon dans le salon : c'est la règle. Mais Maman est dans le jardin, et Peppa fait juste un tout petit tir. Puis un deuxième. Puis un troisième."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 380, y: 500, s: 1.2, mood: 'wow' },
+                { t: 'ball', x: 620, y: 498, s: .85 }
+              ],
+              sfx: [{ t: 'CRAAAC !', x: 620, y: 200, fs: 44, rot: -10, color: '#e2593c' }]
+            },
+            text: "CRAAAC ! Le vase bleu de Maman tombe de l'étagère et se casse en trois morceaux sur le tapis. Peppa reste immobile. Son cœur bat très, très vite."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 500, s: 1.3, pose: 'point' },
+                { t: 'peppa', x: 540, y: 500, s: 1.2, mood: 'sad' },
+                { t: 'george', x: 700, y: 500, s: .95 }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'Qui a cassé le vase ?', tx: 310, ty: 216 }]
+            },
+            text: "Maman arrive en courant. « Qui a cassé le vase ? » Le salon devient très silencieux. Et Peppa entend sa propre voix dire : « C'est George. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'george', x: 340, y: 500, s: .95, mood: 'sad' },
+                { t: 'peppa', x: 600, y: 500, s: 1.2, mood: 'sad' }
+              ],
+              sfx: [{ t: 'MAIS… C\'EST PAS MOI…', x: 400, y: 180, fs: 26, rot: -4, color: '#e2593c' }]
+            },
+            text: "George ouvre grand les yeux. « C'est pas moi », dit-il tout doucement. Personne ne le croit. Il part dans sa chambre sans dinosaure, et sans jeu jusqu'au soir."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 420, y: 500, s: 1.25, pose: 'shrug', mood: 'sad' }
+              ],
+              sfx: [{ t: 'ÇA SERRE, DANS LE VENTRE…', x: 400, y: 170, fs: 26, rot: -4, color: '#c99a5f' }]
+            },
+            text: "Peppa va jouer dehors, mais rien ne marche. Le toboggan n'est pas drôle. Le goûter n'a pas de goût. Le mensonge est resté dans son ventre, et il pèse de plus en plus lourd."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 320, y: 500, s: 1.3, pose: 'hold' },
+                { t: 'peppa', x: 570, y: 500, s: 1.2, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 300, t: 'Maman… c\'est moi qui l\'ai cassé.', tx: 570, ty: 216 }]
+            },
+            text: "Alors Peppa revient dans le salon. Sa voix tremble un peu. « Maman… c'est moi qui l'ai cassé. » Voilà. C'est dit. Et d'un coup, son ventre redevient léger."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 280, y: 500, s: 1.3, pose: 'hold' },
+                { t: 'peppa', x: 500, y: 500, s: 1.15, pose: 'hold' },
+                { t: 'george', x: 680, y: 500, s: .95, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 310, t: 'Merci de me l\'avoir dit. C\'était courageux.', tx: 290, ty: 216 }]
+            },
+            text: "Maman la serre dans ses bras. « Le vase, ce n'est qu'un vase. Dire la vérité quand c'est difficile, ça, c'est courageux. » Puis Peppa va présenter ses excuses à George."
+          }
+        ]
+      },
+
+      /* ---------- 10 — attendre son tour ---------- */
+      {
+        id: 'attendre-son-tour',
+        title: 'La file du toboggan',
+        subtitle: 'Attendre sans que ce soit long',
+        tag: 'Grandir',
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'slide', x: 220, y: 516, s: 1 },
+            { t: 'peppa', x: 540, y: 514, s: 1.15, pose: 'stand' },
+            { t: 'suzy', x: 680, y: 514, s: 1.05, pose: 'stand' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 200, y: 518, s: 1.05 }],
+              items: [
+                { t: 'suzy', x: 466, y: 514, s: 1.05, pose: 'stand' },
+                { t: 'peppa', x: 606, y: 514, s: 1.15, pose: 'stand' },
+                { t: 'livia', x: 730, y: 516, s: 1.05, pose: 'stand' }
+              ],
+              sfx: [{ t: 'LE TOBOGGAN !', x: 400, y: 200, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Au parc, il n'y a qu'un seul toboggan, et il y a beaucoup de monde. Alors tout le monde fait la queue : Suzy devant, puis Peppa, puis Livia."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 200, y: 518, s: 1.05 }],
+              items: [
+                { t: 'peppa', x: 480, y: 514, s: 1.2, pose: 'shrug', mood: 'sad' },
+                { t: 'livia', x: 680, y: 516, s: 1.05, pose: 'stand' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 300, t: 'C\'est trop long, j\'en peux plus !', tx: 480, ty: 226 }]
+            },
+            text: "La queue avance tout doucement. Peppa se balance d'une patte sur l'autre. « C'est trop long », soupire-t-elle. « Beaucoup trop long. »"
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 220, y: 518, s: 1.05 }],
+              items: [
+                { t: 'peppa', x: 420, y: 514, s: 1.2, pose: 'run' },
+                { t: 'suzy', x: 640, y: 514, s: 1.05, pose: 'shrug', mood: 'sad' }
+              ],
+              sfx: [{ t: 'PEPPA A DOUBLÉ !', x: 460, y: 190, fs: 30, rot: -6, color: '#e2593c' }]
+            },
+            text: "Alors Peppa fait quelque chose de rapide : elle contourne tout le monde et grimpe l'échelle avant son tour. Derrière elle, les autres crient. Suzy croise les bras."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 220, y: 518, s: 1.05 }],
+              items: [
+                { t: 'peppa', x: 520, y: 514, s: 1.2, pose: 'stand', mood: 'sad' },
+                { t: 'suzy', x: 700, y: 514, s: 1.05, pose: 'shrug', mood: 'sad' }
+              ],
+              bubbles: [{ x: 100, y: 26, w: 310, t: 'On ne joue plus avec toi si tu triches.', tx: 700, ty: 226 }]
+            },
+            text: "En bas du toboggan, plus personne ne lui parle. « On ne joue plus avec toi si tu triches », dit Suzy. C'est descendu très vite, et ce n'était même pas amusant."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'mummy', x: 320, y: 514, s: 1.3, pose: 'hold' },
+                { t: 'peppa', x: 570, y: 514, s: 1.15, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 310, t: 'Attendre, ça se remplit. Ça ne se saute pas.', tx: 330, ty: 226 }]
+            },
+            text: "Maman lui explique un secret : quand on attend, on peut remplir l'attente. Compter les nuages. Chanter tout bas. Parler à celui qui est devant."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 200, y: 518, s: 1.05 }],
+              items: [
+                { t: 'suzy', x: 452, y: 514, s: 1.05, pose: 'hold' },
+                { t: 'peppa', x: 596, y: 514, s: 1.15, pose: 'hold' },
+                { t: 'livia', x: 724, y: 516, s: 1.05, pose: 'stand' }
+              ],
+              bubbles: [{ x: 260, y: 26, w: 310, t: 'Un nuage… deux nuages… trois nuages…', tx: 630, ty: 226 }]
+            },
+            text: "Peppa retourne se mettre à la fin de la file. Elle compte les nuages avec Livia. Un, deux, trois… et son tour arrive bien avant le septième."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'slide', x: 200, y: 518, s: 1.05 },
+                { t: 'peppa', x: 520, y: 470, s: 1.15, pose: 'jump' },
+                { t: 'suzy', x: 700, y: 514, s: 1.05, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'WHIIII !', x: 400, y: 220, fs: 40, rot: -8, color: '#f7c518' }]
+            },
+            text: "Et là, ça y est : c'est son tour, pour de vrai. Elle descend en criant, et tout le monde crie avec elle. Attendu, c'était bien meilleur."
+          }
+        ]
       }
+
     ]
   },
 
@@ -946,8 +1570,8 @@ var UNIVERSES = [
               items: [
                 { t: 'bandit', x: 200, y: 516, s: 1.45, pose: 'shrug', mood: 'wow' },
                 { t: 'sprinkler', x: 470, y: 520, s: 1.3 },
-                { t: 'bluey', x: 640, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' },
-                { t: 'livia', x: 760, y: 516, s: 1.05, pose: 'armsup' }
+                { t: 'bluey', x: 596, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' },
+                { t: 'livia', x: 722, y: 516, s: 1.05, pose: 'armsup' }
               ],
               sfx: [{ t: 'TCHIIIII !', x: 430, y: 240, fs: 44, rot: -8, color: '#8fd0e8' }]
             },

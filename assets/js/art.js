@@ -1207,12 +1207,32 @@
     return out;
   };
 
+  /* l'intérieur de la maison ; la fenêtre suit l'heure de la scène */
   BG.bedroom = function (s) {
-    var out = '<rect x="0" y="0" width="800" height="560" fill="#f7d8e6"/>';
-    out += '<rect x="0" y="400" width="800" height="160" fill="#c98a5f"/>';
+    var nuit = s.time === 'night';
+    var out = '<rect x="0" y="0" width="800" height="560" fill="' + (nuit ? '#e6bccd' : '#f7d8e6') + '"/>';
+    out += '<rect x="0" y="0" width="800" height="112" fill="' + (nuit ? '#dcaec2' : '#f2c9dc') + '"/>';
+    out += line('M 0,112 L 800,112', shade('#f2c9dc', -0.18), 4);
+    out += '<rect x="0" y="400" width="800" height="160" fill="' + (nuit ? '#b07a52' : '#c98a5f') + '"/>';
     out += line('M 0,400 L 800,400', INK, 5);
-    out += '<rect x="520" y="120" width="200" height="150" rx="12" fill="#152a52" stroke="' + INK + '" stroke-width="7"/>';
-    out += g('translate(620,196)', stars(0) + P.star({ r: 12 }) + g('translate(-50,-30)', P.star({ r: 8 })) + g('translate(46,26)', P.star({ r: 7 })) + g('translate(30,-40)', P.moon({})));
+    out += line('M 120,400 L 60,560 M 400,400 L 400,560 M 680,400 L 740,560', shade('#c98a5f', -0.12), 4);
+
+    /* la fenêtre */
+    out += '<rect x="520" y="120" width="204" height="152" rx="10" fill="' +
+      (nuit ? '#1b2f57' : '#a9d6e8') + '" stroke="' + INK + '" stroke-width="7"/>';
+    if (nuit) {
+      out += g('translate(622,196)', P.star({ r: 11 }) + g('translate(-52,-30)', P.star({ r: 8 })) +
+        g('translate(48,28)', P.star({ r: 7 })) + g('translate(30,-40)', P.moon({})));
+    } else {
+      out += g('translate(566,168) scale(.42)', P.cloud({}));
+      out += g('translate(682,158) scale(.34)', P.sun({}));
+      out += '<rect x="520" y="228" width="204" height="44" fill="' + (nuit ? '#1b2f57' : '#8fb35c') + '"/>';
+    }
+    out += line('M 622,120 L 622,272 M 520,196 L 724,196', INK, 5);
+
+    /* un cadre au mur */
+    out += U(['<rect x="128" y="146" width="128" height="96" rx="6" fill="%F%" %S%/>'], '#fdf7ea', 8);
+    out += g('translate(192,206) scale(.3)', P.tree({}));
     return out;
   };
 
@@ -1415,7 +1435,9 @@
     var wash = '<rect x="0" y="0" width="' + VW + '" height="' + VH +
       '" fill="#e0c9a0" opacity=".10" style="mix-blend-mode:multiply"/>';
 
-    var par = opts.slice ? 'xMidYMid slice' : 'xMidYMid meet';
+    /* en recadrage, on garde le bas de l'image : c'est là que se tiennent
+       les personnages. Le ciel, lui, peut être rogné sans dommage. */
+    var par = opts.slice ? 'xMidYMax slice' : 'xMidYMid meet';
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + VW + ' ' + VH +
       '" preserveAspectRatio="' + par + '" role="img">' + defs +
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
