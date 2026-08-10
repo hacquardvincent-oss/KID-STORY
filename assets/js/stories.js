@@ -13,16 +13,16 @@
 var COUVERTURE = {
   bg: 'beach',
   items: [
-    { t: 'parasol', x: 150, y: 486, s: .95 },
-    { t: 'sandcastle', x: 680, y: 540, s: .82 },
-    { t: 'peppa', x: 268, y: 528, s: 1.3, pose: 'wave' },
-    { t: 'livia', x: 410, y: 538, s: 1.55, pose: 'armsup' },
-    { t: 'elsa', x: 556, y: 524, s: 1.18, pose: 'magic' },
-    { t: 'olaf', x: 662, y: 536, s: .8 },
-    { t: 'starfish', x: 330, y: 552, s: .9 },
-    { t: 'crab', x: 214, y: 548, s: .95 },
-    { t: 'snowflake', x: 604, y: 150, r: 22 },
-    { t: 'sparkle', x: 226, y: 206, r: 16 }
+    { t: 'parasol', x: 128, y: 486, s: .9 },
+    { t: 'sandcastle', x: 742, y: 542, s: .72 },
+    { t: 'peppa', x: 252, y: 528, s: 1.22, pose: 'wave' },
+    { t: 'livia', x: 402, y: 538, s: 1.5, pose: 'armsup' },
+    { t: 'bluey', x: 552, y: 530, s: 1.15, pose: 'wave' },
+    { t: 'elsa', x: 668, y: 522, s: 1.02, pose: 'magic' },
+    { t: 'starfish', x: 322, y: 552, s: .9 },
+    { t: 'crab', x: 196, y: 548, s: .9 },
+    { t: 'snowflake', x: 706, y: 156, r: 20 },
+    { t: 'sparkle', x: 214, y: 206, r: 16 }
   ]
 };
 
@@ -158,7 +158,7 @@ var UNIVERSES = [
                 { t: 'wave', x: 230, y: 400, s: 1.2 }, { t: 'wave', x: 420, y: 408, s: 1.2 },
                 { t: 'splash', x: 620, y: 452, s: 1.25 }, { t: 'wave', x: 660, y: 420, s: 1.4 }
               ],
-              sfx: [{ t: 'PLOUF !', x: 620, y: 240, fs: 50, rot: -8 }]
+              sfx: [{ t: 'PLOUF !', x: 700, y: 176, fs: 46, rot: -8 }]
             },
             text: "Dans l'eau, Papa Pig fait un plongeon spectaculaire. PLOUF ! Une vague géante arrose absolument tout le monde. « C'est moi le champion ! » dit Papa Pig, très fier de lui."
           },
@@ -417,7 +417,7 @@ var UNIVERSES = [
                 { t: 'peppa', x: 470, y: 430, s: .95, pose: 'jump', mood: 'wow' }
               ],
               front: [{ t: 'splash', x: 600, y: 508, s: 1.1 }],
-              sfx: [{ t: 'SPLAAASH !', x: 610, y: 296, fs: 46, rot: -10, color: '#bfe8f7' }]
+              sfx: [{ t: 'SPLAAASH !', x: 674, y: 248, fs: 44, rot: -10, color: '#bfe8f7' }]
             },
             text: "Une, deux, trois… c'est parti ! Le toboggan tourne à gauche, tourne à droite, et SPLAAASH ! Les deux amies atterrissent dans l'eau au milieu d'une gerbe d'éclaboussures."
           },
@@ -460,7 +460,7 @@ var UNIVERSES = [
                 { t: 'peppa', x: 380, y: 500, s: 1, pose: 'jump' },
                 { t: 'livia', x: 560, y: 505, s: 1, pose: 'wave' }
               ],
-              sfx: [{ t: 'SPLATCH !', x: 300, y: 300, fs: 42, rot: -8, color: '#c99a5f' }],
+              sfx: [{ t: 'SPLATCH !', x: 178, y: 236, fs: 40, rot: -8, color: '#c99a5f' }],
               bubbles: [{ x: 130, y: 34, w: 300, t: 'La meilleure flaque de l\'été !', tx: 370, ty: 250 }]
             },
             text: "Sur le chemin du retour, il y a une magnifique flaque de boue. Peppa saute dedans à pieds joints, évidemment. Livia saute aussi. Et Maman Pig soupire… en riant."
@@ -870,6 +870,1109 @@ var UNIVERSES = [
               bubbles: [{ x: 90, y: 40, w: 300, t: 'Bonne nuit, petite princesse.', tx: 460, ty: 250, fill: '#fff6ec' }]
             },
             text: "Au retour, Livia a les yeux qui se ferment tout seuls. Elsa la borde et pose un flocon de glace sur sa table de nuit : un flocon qui ne fond jamais. « Bonne nuit, petite princesse. »"
+          }
+        ]
+      }
+    ]
+  },
+
+  /* ==========================================================
+     UNIVERS 3 — BLUEY
+     ========================================================== */
+  {
+    id: 'bluey',
+    name: 'Bluey',
+    tagline: 'Livia, Bluey, Bingo et toute la famille Heeler',
+    emoji: '🐶',
+    c1: '#5b9bd5',
+    c2: '#f0a63c',
+    cover: {
+      bg: 'garden',
+      items: [
+        { t: 'sprinkler', x: 140, y: 512, s: 1.1 },
+        { t: 'bluey', x: 320, y: 512, s: 1.25, pose: 'wave' },
+        { t: 'livia', x: 460, y: 514, s: 1.1, pose: 'armsup' },
+        { t: 'bingo', x: 596, y: 512, s: 1, pose: 'jump' },
+        { t: 'ball', x: 700, y: 470, s: .8 }
+      ]
+    },
+    stories: [
+
+      /* ---------- 1 ---------- */
+      {
+        id: 'arroseur',
+        title: 'La grande bataille d\'arroseur',
+        subtitle: 'Le jour le plus chaud de l\'été',
+        tag: 'Jardin',
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'sprinkler', x: 200, y: 516, s: 1.2 },
+            { t: 'bluey', x: 400, y: 514, s: 1.25, pose: 'jump' },
+            { t: 'livia', x: 560, y: 516, s: 1.15, pose: 'armsup' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 514, s: 1.2, pose: 'point' },
+                { t: 'livia', x: 450, y: 516, s: 1.1, pose: 'shrug' },
+                { t: 'bingo', x: 580, y: 514, s: .95, pose: 'stand' },
+                { t: 'flower', x: 110, y: 528 }
+              ],
+              sfx: [{ t: 'OUF, IL FAIT CHAUD !', x: 640, y: 400, fs: 28, rot: -4, color: '#f7c518' }],
+              bubbles: [{ x: 90, y: 30, w: 300, t: 'J\'ai une idée ! Une idée mouillée !', tx: 300, ty: 226 }]
+            },
+            text: "Dans le jardin, l'herbe est chaude et l'air ne bouge pas. Bingo s'est couchée dans l'ombre. Bluey, elle, a le regard de quelqu'un qui a une idée. Une idée très mouillée."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 250, y: 516, s: 1.45, pose: 'hold' },
+                { t: 'sprinkler', x: 480, y: 520, s: 1.1 },
+                { t: 'bluey', x: 640, y: 514, s: 1.15, pose: 'point' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'Papa ! L\'arroseur, s\'il te plaît !', tx: 630, ty: 230 }]
+            },
+            text: "« Papa ! L'arroseur ! » Papa Heeler pose sa tasse en soupirant, mais il sourit déjà. Il visse le tuyau, tourne le robinet… et rien ne se passe. Pas une goutte."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 200, y: 516, s: 1.45, pose: 'shrug', mood: 'wow' },
+                { t: 'sprinkler', x: 470, y: 520, s: 1.3 },
+                { t: 'bluey', x: 640, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' },
+                { t: 'livia', x: 760, y: 516, s: 1.05, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'TCHIIIII !', x: 430, y: 240, fs: 44, rot: -8, color: '#8fd0e8' }]
+            },
+            text: "Papa se penche tout près pour regarder dans le trou. C'est exactement à ce moment que l'arroseur se réveille. TCHIIIII ! Papa reçoit tout, en pleine figure."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'sprinkler', x: 180, y: 520, s: 1.1 },
+                { t: 'bluey', x: 380, y: 514, s: 1.2, pose: 'jump' },
+                { t: 'livia', x: 520, y: 516, s: 1.1, pose: 'jump' },
+                { t: 'bingo', x: 660, y: 514, s: .95, pose: 'stand', mood: 'sad' }
+              ],
+              bubbles: [{ x: 430, y: 26, w: 300, t: 'Viens, Bingo ! C\'est tout doux !', tx: 520, ty: 240 }]
+            },
+            text: "Bluey et Livia sautent par-dessus le jet en criant. Bingo, elle, reste au bord. L'eau fait un bruit de pluie et elle n'est pas sûre du tout que ce soit une bonne idée."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'sprinkler', x: 200, y: 520, s: 1.1 },
+                { t: 'livia', x: 430, y: 516, s: 1.1, pose: 'hold' },
+                { t: 'bingo', x: 560, y: 514, s: .95, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 310, t: 'On y va ensemble ? Je te tiens la patte.', tx: 430, ty: 236 }]
+            },
+            text: "Alors Livia lui tend la main. « On y va ensemble ? » Bingo réfléchit très fort, puis attrape sa patte. Une, deux, trois…"
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'sprinkler', x: 400, y: 520, s: 1.4 },
+                { t: 'bingo', x: 300, y: 500, s: 1, pose: 'jump', mood: 'wow' },
+                { t: 'livia', x: 540, y: 500, s: 1.1, pose: 'jump', mood: 'wow' }
+              ],
+              front: [{ t: 'splash', x: 400, y: 520, s: .9 }],
+              sfx: [{ t: 'YOUHOU !', x: 714, y: 158, fs: 36, rot: -8, color: '#fff' }]
+            },
+            text: "Elles traversent le jet en hurlant de rire. C'est froid ! C'est glacé ! C'est le meilleur froid du monde ! Bingo veut recommencer tout de suite, et encore, et encore."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'chilli', x: 220, y: 518, s: 1.35, pose: 'hold' },
+                { t: 'icecream', x: 300, y: 486, s: 1.1 },
+                { t: 'bluey', x: 450, y: 516, s: 1.15, pose: 'sit' },
+                { t: 'bingo', x: 580, y: 516, s: .95, pose: 'sit' },
+                { t: 'livia', x: 700, y: 518, s: 1.05, pose: 'sit' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 290, t: 'Glaces pour les mouillés !', tx: 230, ty: 236 }]
+            },
+            text: "Le soleil descend et tout le monde dégouline sur la terrasse. Maman arrive avec quatre glaces. « Glaces pour les mouillés ! » Papa, lui, essore encore ses oreilles."
+          }
+        ]
+      },
+
+      /* ---------- 2 ---------- */
+      {
+        id: 'ruisseau',
+        title: 'Le ruisseau secret',
+        subtitle: 'Des cailloux, des têtards et un barrage',
+        tag: 'Été',
+        minutes: 6,
+        cover: {
+          bg: 'creek',
+          items: [
+            { t: 'bluey', x: 260, y: 452, s: 1.2, pose: 'point' },
+            { t: 'livia', x: 400, y: 454, s: 1.1, pose: 'stand' },
+            { t: 'bingo', x: 530, y: 452, s: .95, pose: 'hold' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'creek',
+              items: [
+                { t: 'bandit', x: 200, y: 452, s: 1.4, pose: 'point' },
+                { t: 'bluey', x: 380, y: 452, s: 1.15, pose: 'stand' },
+                { t: 'livia', x: 500, y: 454, s: 1.05, pose: 'stand' },
+                { t: 'bingo', x: 610, y: 452, s: .9, pose: 'stand' }
+              ],
+              bubbles: [{ x: 356, y: 24, w: 290, t: 'Voilà. Le ruisseau secret.', tx: 210, ty: 168 }]
+            },
+            text: "Au fond du jardin, il y a un chemin. Et au bout du chemin, il y a le ruisseau. Papa écarte les branches : « Voilà. Le ruisseau secret. » Personne ne dit rien pendant trois secondes."
+          },
+          {
+            scene: {
+              bg: 'creek',
+              items: [
+                { t: 'bluey', x: 300, y: 520, s: 1.1, pose: 'swim' },
+                { t: 'livia', x: 450, y: 522, s: 1.05, pose: 'swim' }
+              ],
+              front: [{ t: 'wave', x: 300, y: 480, s: 1.1 }, { t: 'wave', x: 450, y: 484, s: 1.1 }],
+              sfx: [{ t: 'BRRR ! ELLE EST FROIDE !', x: 420, y: 230, fs: 28, rot: -4, color: '#fff' }]
+            },
+            text: "L'eau arrive juste aux genoux, et elle est glacée. Les cailloux du fond sont tout lisses et tout glissants. Chaque pas fait « splitch », et chaque « splitch » fait rire."
+          },
+          {
+            scene: {
+              bg: 'creek',
+              items: [
+                { t: 'livia', x: 330, y: 452, s: 1.1, pose: 'point', mood: 'wow' },
+                { t: 'fish', x: 520, y: 500, s: 1.2 },
+                { t: 'bingo', x: 620, y: 452, s: .95, pose: 'stand', mood: 'wow' }
+              ],
+              bubbles: [{ x: 100, y: 26, w: 300, t: 'Regardez ! Un tout petit poisson !', tx: 330, ty: 180 }]
+            },
+            text: "Soudain, Livia s'arrête net et montre l'eau du doigt. Un tout petit poisson tourne entre deux cailloux. Tout le monde se penche, sans bouger, sans respirer."
+          },
+          {
+            scene: {
+              bg: 'creek',
+              items: [
+                { t: 'bingo', x: 300, y: 452, s: .95, pose: 'hold' },
+                { t: 'rock', x: 430, y: 500, s: .8 },
+                { t: 'rock', x: 500, y: 496, s: .7 },
+                { t: 'bluey', x: 620, y: 452, s: 1.15, pose: 'hold' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'On construit un barrage !', tx: 610, ty: 180 }]
+            },
+            text: "Puis Bluey déclare qu'il faut un barrage. Alors tout le monde transporte des cailloux, un par un, en les posant bien droit. Bingo choisit les plus petits, mais elle en apporte le plus."
+          },
+          {
+            scene: {
+              bg: 'creek',
+              items: [
+                { t: 'bandit', x: 300, y: 520, s: 1.35, pose: 'shrug', mood: 'wow' },
+                { t: 'rock', x: 480, y: 496, s: .8 }
+              ],
+              front: [{ t: 'splash', x: 460, y: 512, s: 1.2 }],
+              sfx: [{ t: 'CRAAAC !', x: 560, y: 300, fs: 42, rot: -10, color: '#8fd0e8' }]
+            },
+            text: "Le barrage monte, l'eau s'accumule derrière… et puis CRAAAC ! Tout s'écroule d'un coup. La vague part droit sur Papa, qui s'était assis juste en dessous."
+          },
+          {
+            scene: {
+              bg: 'creek',
+              items: [
+                { t: 'bandit', x: 240, y: 452, s: 1.4, pose: 'shrug', mood: 'sad' },
+                { t: 'bluey', x: 430, y: 452, s: 1.15, pose: 'armsup' },
+                { t: 'livia', x: 560, y: 454, s: 1.05, pose: 'armsup' },
+                { t: 'bingo', x: 680, y: 452, s: .9, pose: 'jump' }
+              ],
+              bubbles: [{ x: 400, y: 26, w: 300, t: 'On en refait un plus grand !', tx: 430, ty: 176 }]
+            },
+            text: "Papa reste immobile, trempé de la truffe à la queue. Les trois autres rient tellement qu'elles n'arrivent plus à se relever. « On en refait un plus grand ! » crie Bluey."
+          },
+          {
+            scene: {
+              bg: 'creek', time: 'sunset',
+              items: [
+                { t: 'bandit', x: 260, y: 452, s: 1.4, pose: 'hold' },
+                { t: 'bluey', x: 420, y: 452, s: 1.15, pose: 'hold' },
+                { t: 'bingo', x: 540, y: 452, s: .9, pose: 'hold' },
+                { t: 'livia', x: 650, y: 454, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Ils rentrent à la nuit tombante, les pieds mouillés et les poches pleines de cailloux plats. « On revient demain ? » demande Bingo. Papa dit oui avant même d'y avoir réfléchi."
+          }
+        ]
+      },
+
+      /* ---------- 3 ---------- */
+      {
+        id: 'ballon',
+        title: 'Le ballon qui ne doit pas tomber',
+        subtitle: 'Une seule règle, et elle est difficile',
+        tag: 'Jardin',
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'ball', x: 400, y: 300, s: 1.1 },
+            { t: 'bluey', x: 280, y: 514, s: 1.2, pose: 'armsup' },
+            { t: 'livia', x: 520, y: 516, s: 1.1, pose: 'armsup' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 320, y: 514, s: 1.2, pose: 'hold' },
+                { t: 'ball', x: 400, y: 470, s: .85 },
+                { t: 'livia', x: 540, y: 516, s: 1.1, pose: 'stand' },
+                { t: 'bingo', x: 670, y: 514, s: .95, pose: 'stand' }
+              ],
+              bubbles: [{ x: 120, y: 26, w: 310, t: 'Une seule règle : il ne touche jamais le sol !', tx: 320, ty: 226 }]
+            },
+            text: "Bluey tient un ballon rouge au bout des pattes. « Une seule règle », annonce-t-elle très sérieusement. « Il ne doit jamais toucher le sol. Jamais. »"
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'ball', x: 420, y: 250, s: 1 },
+                { t: 'bluey', x: 300, y: 514, s: 1.2, pose: 'armsup' },
+                { t: 'bingo', x: 600, y: 514, s: .95, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'POC !', x: 470, y: 330, fs: 40, rot: -8 }]
+            },
+            text: "POC ! Le ballon monte tout droit vers le ciel. Bingo le rattrape du bout de la truffe. POC ! Il repart de l'autre côté. Un, deux, trois… déjà onze coups."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'ball', x: 620, y: 210, s: 1 },
+                { t: 'livia', x: 380, y: 516, s: 1.15, pose: 'run' },
+                { t: 'bluey', x: 220, y: 514, s: 1.1, pose: 'point' }
+              ],
+              sfx: [{ t: 'VITE, LIVIA !', x: 400, y: 200, fs: 32, rot: -6, color: '#fff' }]
+            },
+            text: "Un coup de vent emporte le ballon vers le fond du jardin. Livia part en courant, les bras tendus, la langue sortie par l'effort. Elle l'attrape au tout dernier moment."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'bush', x: 640, y: 520, s: 1.4 }],
+              items: [
+                { t: 'ball', x: 640, y: 470, s: .9 },
+                { t: 'bluey', x: 300, y: 514, s: 1.2, pose: 'shrug', mood: 'sad' },
+                { t: 'bingo', x: 430, y: 514, s: .95, pose: 'shrug', mood: 'sad' }
+              ],
+              sfx: [{ t: 'OH NON…', x: 470, y: 160, fs: 38, rot: -6, color: '#e2593c' }]
+            },
+            text: "Mais au coup suivant, le ballon part de travers et atterrit en plein milieu du gros buisson piquant. Il est posé là, tout rouge au milieu des épines. Personne n'ose y aller."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'bush', x: 620, y: 522, s: 1.4 }],
+              items: [
+                { t: 'bandit', x: 400, y: 470, s: 1.45, pose: 'jump', mood: 'wow' },
+                { t: 'ball', x: 620, y: 476, s: .85 }
+              ],
+              sfx: [{ t: 'PLONGEON !', x: 240, y: 240, fs: 40, rot: -10, color: '#f7c518' }],
+              bubbles: [{ x: 400, y: 24, w: 280, t: 'J\'arriiiive !', tx: 420, ty: 200 }]
+            },
+            text: "C'est là que Papa surgit de la maison en criant « J'arriiiive ! ». Il plonge dans le buisson tête la première. On n'aperçoit plus que sa queue qui dépasse et qui remue."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 320, y: 516, s: 1.45, pose: 'hold' },
+                { t: 'ball', x: 400, y: 476, s: .85 },
+                { t: 'bluey', x: 560, y: 514, s: 1.15, pose: 'armsup' },
+                { t: 'livia', x: 690, y: 516, s: 1.05, pose: 'armsup' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'Il n\'a pas touché le sol !', tx: 330, ty: 226 }]
+            },
+            text: "Papa ressort couvert de brindilles, une feuille sur l'oreille… et le ballon bien serré entre les pattes. « Il n'a pas touché le sol », dit-il, très digne. Tout le monde applaudit."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'ball', x: 420, y: 300, s: 1 },
+                { t: 'bluey', x: 250, y: 516, s: 1.15, pose: 'armsup' },
+                { t: 'bingo', x: 390, y: 516, s: .95, pose: 'armsup' },
+                { t: 'livia', x: 520, y: 518, s: 1.05, pose: 'armsup' },
+                { t: 'bandit', x: 670, y: 516, s: 1.4, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'CENT !', x: 420, y: 190, fs: 46, rot: -6, color: '#f7c518' }]
+            },
+            text: "Ils continuent jusqu'à ce que le ciel devienne orange. Au centième coup, tout le monde crie « CENT ! » en même temps. Et le ballon, lui, n'a toujours pas touché le sol."
+          }
+        ]
+      },
+
+      /* ---------- 4 ---------- */
+      {
+        id: 'crabes',
+        title: 'La plage aux mille crabes',
+        subtitle: 'Un trou, un seau et beaucoup de pinces',
+        tag: 'Plage',
+        minutes: 5,
+        cover: {
+          bg: 'beach',
+          items: [
+            { t: 'bluey', x: 320, y: 512, s: 1.2, pose: 'point' },
+            { t: 'livia', x: 460, y: 514, s: 1.1, pose: 'hold' },
+            { t: 'crab', x: 620, y: 528, s: 1.3 },
+            { t: 'bucket', x: 190, y: 522, s: .9 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'parasol', x: 130, y: 486, s: 1 }],
+              items: [
+                { t: 'bluey', x: 380, y: 512, s: 1.2, pose: 'jump' },
+                { t: 'bingo', x: 520, y: 512, s: .95, pose: 'jump' },
+                { t: 'livia', x: 660, y: 514, s: 1.1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'LA PLAGE !', x: 200, y: 190, fs: 40, rot: -6, color: '#fff' }]
+            },
+            text: "Le sable est si chaud qu'il faut courir sur la pointe des pattes. Bluey, Bingo et Livia foncent droit vers l'eau sans même poser les serviettes."
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'bluey', x: 330, y: 514, s: 1.2, pose: 'point' },
+                { t: 'bucket', x: 460, y: 524, s: 1 },
+                { t: 'livia', x: 600, y: 516, s: 1.1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 100, y: 26, w: 300, t: 'On creuse jusqu\'à l\'autre bout du monde !', tx: 330, ty: 226 }]
+            },
+            text: "Puis Bluey annonce le programme : creuser un trou. Pas un petit trou. Un trou immense, qui descendrait jusqu'à l'autre bout du monde."
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'bandit', x: 300, y: 516, s: 1.45, pose: 'hold' },
+                { t: 'bucket', x: 430, y: 526, s: 1 },
+                { t: 'spade', x: 520, y: 524, s: 1.2 },
+                { t: 'bingo', x: 650, y: 514, s: .95, pose: 'hold' }
+              ]
+            },
+            text: "Papa creuse, parce que Papa creuse toujours. Le sable vole partout, le trou grandit, et bientôt on ne voit plus que ses oreilles qui dépassent."
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'bingo', x: 320, y: 514, s: .95, pose: 'shrug', mood: 'wow' },
+                { t: 'crab', x: 500, y: 526, s: 1.4 },
+                { t: 'bluey', x: 640, y: 514, s: 1.15, pose: 'point', mood: 'wow' }
+              ],
+              sfx: [{ t: 'UN CRABE !', x: 430, y: 220, fs: 38, rot: -8, color: '#e2593c' }]
+            },
+            text: "Et là, au fond du trou, quelque chose bouge. Deux petites pinces, deux yeux sur des tiges. Un crabe ! Bingo fait trois pas en arrière, très vite."
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'crab', x: 260, y: 526, s: 1.2 },
+                { t: 'crab', x: 400, y: 532, s: 1 },
+                { t: 'crab', x: 540, y: 524, s: 1.1 },
+                { t: 'crab', x: 680, y: 530, s: .9 },
+                { t: 'bandit', x: 150, y: 516, s: 1.45, pose: 'armsup', mood: 'wow' }
+              ],
+              sfx: [{ t: 'MILLE CRABES !', x: 470, y: 210, fs: 34, rot: -6, color: '#fff' }]
+            },
+            text: "Puis un deuxième crabe sort. Puis un troisième. Puis toute une famille de crabes qui trottinent de côté. Papa saute sur place en tenant sa queue bien haut."
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'livia', x: 330, y: 516, s: 1.1, pose: 'point' },
+                { t: 'crab', x: 470, y: 528, s: 1.2 },
+                { t: 'bluey', x: 620, y: 514, s: 1.15, pose: 'stand' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'Ils rentrent chez eux, c\'est tout.', tx: 330, ty: 230 }]
+            },
+            text: "« Ils ne sont pas méchants », dit Livia doucement. « On a creusé dans leur maison, c'est tout. » Alors tout le monde s'écarte, et les crabes repartent tranquillement vers la mer."
+          },
+          {
+            scene: {
+              bg: 'beach', time: 'sunset',
+              items: [
+                { t: 'towel', x: 400, y: 528, s: 1.2 },
+                { t: 'bluey', x: 300, y: 512, s: 1.1, pose: 'sit' },
+                { t: 'bingo', x: 440, y: 512, s: .9, pose: 'sit' },
+                { t: 'livia', x: 570, y: 514, s: 1, pose: 'sit' },
+                { t: 'shell', x: 700, y: 528, s: 1.2 }
+              ]
+            },
+            text: "Le soir, ils rebouchent le trou tous ensemble, pour que les crabes retrouvent leur chemin. Bingo garde un coquillage. « C'est pour leur dire pardon », explique-t-elle."
+          }
+        ]
+      },
+
+      /* ---------- 5 ---------- */
+      {
+        id: 'camping-jardin',
+        title: 'Le camping dans le jardin',
+        subtitle: 'Dormir dehors, à trois mètres de la maison',
+        tag: 'Nuit',
+        minutes: 6,
+        cover: {
+          bg: 'garden', time: 'night',
+          items: [
+            { t: 'tent', x: 250, y: 514, s: 1 },
+            { t: 'bluey', x: 480, y: 514, s: 1.2, pose: 'armsup' },
+            { t: 'livia', x: 620, y: 516, s: 1.1, pose: 'stand' },
+            { t: 'lantern', x: 700, y: 400, s: 1.2 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 250, y: 516, s: 1.45, pose: 'hold' },
+                { t: 'tent', x: 500, y: 518, s: 1, rot: 15 },
+                { t: 'bluey', x: 700, y: 514, s: 1.15, pose: 'point' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'Elle penche un peu, Papa.', tx: 690, ty: 226 }]
+            },
+            text: "Ce soir, on dort dans le jardin. Papa monte la tente pendant une heure entière. Quand il a fini, elle penche tellement qu'on dirait qu'elle a sommeil."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'tent', x: 240, y: 518, s: 1 },
+                { t: 'livia', x: 480, y: 516, s: 1.1, pose: 'hold' },
+                { t: 'bingo', x: 610, y: 514, s: .95, pose: 'hold' },
+                { t: 'esky', x: 720, y: 524, s: .9 }
+              ]
+            },
+            text: "Livia arrive avec son sac de couchage sous le bras. Bingo, elle, a apporté onze peluches. « C'est le minimum », explique-t-elle très sérieusement."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'campfire', x: 420, y: 518, s: 1.1 },
+                { t: 'log', x: 250, y: 514 },
+                { t: 'bluey', x: 240, y: 504, s: 1.1, pose: 'hold' },
+                { t: 'log', x: 620, y: 514 },
+                { t: 'livia', x: 610, y: 504, s: 1.05, pose: 'hold' },
+                { t: 'marshmallow', x: 300, y: 470, s: .9 }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 300, t: 'Le mien est parfait !', tx: 250, ty: 250, fill: '#fff6ec' }]
+            },
+            text: "La nuit tombe et Papa allume un petit feu. Chacun fait griller un chamallow au bout d'un bâton. Celui de Bingo tombe dans les braises. Elle en reprend un autre, sans un mot."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              back: [{ t: 'bush', x: 700, y: 518, s: 1.2, color: '#2f4a3a' }],
+              items: [
+                { t: 'bluey', x: 340, y: 514, s: 1.15, pose: 'shrug', mood: 'wow' },
+                { t: 'bingo', x: 470, y: 514, s: .95, pose: 'shrug', mood: 'wow' },
+                { t: 'livia', x: 600, y: 516, s: 1.05, pose: 'point', mood: 'wow' }
+              ],
+              sfx: [{ t: 'FRRRT…', x: 700, y: 400, fs: 34, rot: 6, color: '#f7c518' }]
+            },
+            text: "Puis un bruit sort du buisson. FRRRT. Les trois se serrent l'une contre l'autre. « C'est peut-être un dragon », chuchote Bingo, qui n'y croit pas vraiment. Ou peut-être un peu."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'hedgehog', x: 600, y: 526, s: 1.5 },
+                { t: 'bluey', x: 300, y: 514, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 430, y: 516, s: 1.05, pose: 'stand' }
+              ],
+              bubbles: [{ x: 90, y: 26, w: 300, t: 'C\'est un hérisson ! Il a faim.', tx: 300, ty: 226 }]
+            },
+            text: "Bluey approche la lanterne tout doucement. Ce n'est pas un dragon : c'est un hérisson, venu voir si les chamallows tombaient souvent. Livia lui laisse un morceau de pomme."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'bluey', x: 300, y: 514, s: 1.15, pose: 'armsup' },
+                { t: 'livia', x: 440, y: 516, s: 1.05, pose: 'armsup' },
+                { t: 'bingo', x: 570, y: 514, s: .9, pose: 'armsup' }
+              ],
+              front: [{ t: 'star', x: 200, y: 120, r: 16 }, { t: 'sparkle', x: 560, y: 140, r: 20 }],
+              sfx: [{ t: 'Une étoile filante !', x: 420, y: 190, fs: 32, rot: -5, color: '#fff7d6' }]
+            },
+            text: "Ensuite, tout le monde s'allonge dans l'herbe. Le ciel est plein d'étoiles, bien plus que d'habitude. Une étoile file au-dessus du toit. Chacun fait un vœu, en silence."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'tent', x: 400, y: 518, s: 1.25 },
+                { t: 'campfire', x: 660, y: 518, s: .7 }
+              ],
+              bubbles: [{ x: 100, y: 60, w: 300, t: 'Bonne nuit Bluey… Bonne nuit Livia…', tx: 320, ty: 420, fill: '#fff6ec' }]
+            },
+            text: "Dans la tente, les trois amies parlent encore un peu, de moins en moins fort. Dehors, on entend juste les grillons. Et à trois mètres de là, la maison veille sur elles."
+          }
+        ]
+      },
+
+      /* ---------- 6 ---------- */
+      {
+        id: 'glaces',
+        title: 'La course des glaces fondues',
+        subtitle: 'Manger vite, mais pas trop vite',
+        tag: 'Été',
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'bluey', x: 320, y: 512, s: 1.2, pose: 'hold' },
+            { t: 'icecream', x: 400, y: 482, s: 1.2 },
+            { t: 'livia', x: 540, y: 514, s: 1.1, pose: 'hold' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'chilli', x: 260, y: 514, s: 1.4, pose: 'point' },
+                { t: 'bluey', x: 440, y: 512, s: 1.2, pose: 'armsup' },
+                { t: 'bingo', x: 570, y: 512, s: .95, pose: 'armsup' },
+                { t: 'livia', x: 700, y: 514, s: 1.1, pose: 'armsup' }
+              ],
+              bubbles: [{ x: 320, y: 26, w: 300, t: 'Une glace chacun, ça vous dit ?', tx: 270, ty: 226 }]
+            },
+            text: "Il fait trente-quatre degrés. Maman s'arrête devant le marchand de glaces et propose une glace pour tout le monde. La réponse arrive avant la fin de sa phrase."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'bluey', x: 280, y: 514, s: 1.2, pose: 'hold' },
+                { t: 'icecream', x: 350, y: 484, s: 1.1 },
+                { t: 'bingo', x: 480, y: 514, s: .95, pose: 'hold' },
+                { t: 'icecream', x: 540, y: 486, s: 1, color: '#a97ce0' },
+                { t: 'livia', x: 660, y: 516, s: 1.1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 100, y: 26, w: 290, t: 'Trois boules pour moi !', tx: 280, ty: 226 }]
+            },
+            text: "Bluey prend fraise-vanille-chocolat. Bingo prend trois fois la même parfum myrtille, pour être sûre. Livia hésite si longtemps que le marchand s'assoit."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'bluey', x: 320, y: 514, s: 1.2, pose: 'point', mood: 'wow' },
+                { t: 'icecream', x: 480, y: 490, s: 1.2 },
+                { t: 'livia', x: 620, y: 516, s: 1.1, pose: 'stand', mood: 'wow' }
+              ],
+              sfx: [{ t: 'ÇA COULE !', x: 598, y: 194, fs: 34, rot: -8, color: '#e2593c' }]
+            },
+            text: "Mais dehors, le soleil ne plaisante pas. Au bout de dix secondes, les glaces commencent à couler sur les pattes. « Course ! » crie Bluey. « Le dernier propre a perdu ! »"
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'bingo', x: 300, y: 514, s: .95, pose: 'shrug', mood: 'sad' },
+                { t: 'icecream', x: 430, y: 520, s: 1.1 },
+                { t: 'bluey', x: 600, y: 514, s: 1.15, pose: 'stand', mood: 'sad' }
+              ],
+              sfx: [{ t: 'PLOP.', x: 500, y: 300, fs: 40, rot: -6, color: '#fff' }]
+            },
+            text: "Et puis, PLOP. La boule du haut de Bingo tombe par terre. Tout devient très silencieux. Bingo regarde sa glace, puis le trottoir, puis sa glace encore."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 330, y: 516, s: 1.1, pose: 'hold' },
+                { t: 'icecream', x: 420, y: 486, s: 1.2 },
+                { t: 'bingo', x: 560, y: 514, s: .95, pose: 'stand' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'Tiens, on partage la mienne.', tx: 330, ty: 230 }]
+            },
+            text: "Alors Livia tend sa glace à Bingo. « On partage, elle est trop grande pour moi. » Bingo regarde Livia comme si elle venait d'inventer quelque chose de très important."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'bandit', x: 300, y: 514, s: 1.45, pose: 'shrug', mood: 'wow' },
+                { t: 'icecream', x: 460, y: 522, s: 1.1 },
+                { t: 'bluey', x: 620, y: 514, s: 1.15, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'SPLOTCH !', x: 640, y: 182, fs: 38, rot: -10, color: '#f7c518' }]
+            },
+            text: "C'est le moment que choisit la glace de Papa pour tomber entièrement. Toutes les boules d'un coup, sur sa chaussure. Cette fois, c'est lui qui a l'air d'avoir quatre ans."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'bluey', x: 280, y: 516, s: 1.15, pose: 'hold' },
+                { t: 'bingo', x: 410, y: 516, s: .95, pose: 'hold' },
+                { t: 'livia', x: 540, y: 518, s: 1.05, pose: 'hold' },
+                { t: 'bandit', x: 690, y: 516, s: 1.4, pose: 'hold' }
+              ],
+              bubbles: [{ x: 400, y: 26, w: 300, t: 'On en reprend une, plus petite ?', tx: 690, ty: 230 }]
+            },
+            text: "Le marchand, qui avait tout vu, en offre une nouvelle à Papa. Une toute petite, avec une seule boule. « Comme ça elle tiendra », dit-il. Elle a tenu douze secondes."
+          }
+        ]
+      },
+
+      /* ---------- 7 ---------- */
+      {
+        id: 'toboggan-eau',
+        title: 'Le toboggan d\'eau du jardin',
+        subtitle: 'Une bâche, du savon, et beaucoup de courage',
+        tag: 'Jardin',
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'slide', x: 240, y: 516, s: 1, color: '#5b9bd5' },
+            { t: 'bluey', x: 520, y: 470, s: 1.15, pose: 'jump', mood: 'wow' },
+            { t: 'pool', x: 620, y: 526, s: .9 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 280, y: 516, s: 1.45, pose: 'hold' },
+                { t: 'bluey', x: 470, y: 514, s: 1.2, pose: 'point' },
+                { t: 'livia', x: 620, y: 516, s: 1.1, pose: 'stand' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 310, t: 'On étale la bâche sur la pente !', tx: 470, ty: 226 }]
+            },
+            text: "Papa a trouvé une grande bâche bleue dans le garage. Bluey, elle, a trouvé quoi en faire : l'étaler sur la pente du jardin et verser de l'eau dessus."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'pool', x: 640, y: 528, s: .9 }],
+              items: [
+                { t: 'slide', x: 220, y: 518, s: 1.05, color: '#5b9bd5' },
+                { t: 'bingo', x: 560, y: 514, s: .95, pose: 'stand', mood: 'wow' }
+              ],
+              sfx: [{ t: 'ET DU SAVON !', x: 470, y: 210, fs: 32, rot: -6, color: '#8fd0e8' }]
+            },
+            text: "Puis Livia ajoute une idée : du savon. Beaucoup de savon. La bâche devient si glissante qu'on ne peut même plus marcher à côté sans partir en arrière."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'pool', x: 640, y: 528, s: .9 }],
+              items: [
+                { t: 'slide', x: 220, y: 518, s: 1.05, color: '#5b9bd5' },
+                { t: 'bluey', x: 470, y: 440, s: 1.1, pose: 'jump', mood: 'wow' }
+              ],
+              front: [{ t: 'splash', x: 630, y: 520, s: 1 }],
+              sfx: [{ t: 'WOUUUUH !', x: 250, y: 246, fs: 40, rot: -10, color: '#fff' }]
+            },
+            text: "Bluey passe la première. Elle prend de l'élan, saute sur la bâche et file comme une fusée jusque dans la pataugeoire du bas. WOUUUUH !"
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 220, y: 518, s: 1.05, color: '#5b9bd5' }],
+              items: [
+                { t: 'bingo', x: 500, y: 514, s: .95, pose: 'shrug', mood: 'sad' },
+                { t: 'livia', x: 640, y: 516, s: 1.1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 26, w: 300, t: 'C\'est trop rapide pour moi…', tx: 500, ty: 236 }]
+            },
+            text: "Bingo monte en haut de la pente. Elle regarde en bas. Elle redescend. Elle remonte. « C'est trop rapide pour moi », dit-elle tout bas."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 220, y: 518, s: 1.05, color: '#5b9bd5' }],
+              items: [
+                { t: 'livia', x: 470, y: 442, s: 1.05, pose: 'jump' },
+                { t: 'bingo', x: 590, y: 446, s: .9, pose: 'jump', mood: 'wow' }
+              ],
+              front: [{ t: 'splash', x: 680, y: 522, s: .9 }],
+              bubbles: [{ x: 260, y: 24, w: 300, t: 'À deux, on va moins vite !', tx: 470, ty: 200 }]
+            },
+            text: "Alors Livia s'assoit derrière elle et l'entoure de ses bras. « À deux, on va moins vite », promet-elle. Ce n'est pas vrai du tout, mais ça marche quand même."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'slide', x: 200, y: 518, s: 1.05, color: '#5b9bd5' }],
+              items: [
+                { t: 'bandit', x: 480, y: 460, s: 1.5, pose: 'armsup', mood: 'wow' }
+              ],
+              front: [{ t: 'splash', x: 660, y: 522, s: 1.2 }],
+              sfx: [{ t: 'ATTENTIOOON !', x: 214, y: 274, fs: 32, rot: -10, color: '#e2593c' }]
+            },
+            text: "Papa voulait juste ramasser une chaussette au bord de la bâche. Il ne l'a jamais ramassée. On l'a retrouvé assis dans la pataugeoire, l'air très surpris."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'towel', x: 400, y: 528, s: 1.2 },
+                { t: 'bluey', x: 300, y: 512, s: 1.1, pose: 'sit' },
+                { t: 'bingo', x: 440, y: 512, s: .9, pose: 'sit' },
+                { t: 'livia', x: 570, y: 514, s: 1, pose: 'sit' },
+                { t: 'mangue', x: 690, y: 524, s: 1.1 }
+              ]
+            },
+            text: "Le soir, tout le monde s'enroule dans une serviette sur la terrasse, les cheveux qui sentent le savon. Maman coupe une mangue en morceaux. C'est la fin parfaite d'une journée trempée."
+          }
+        ]
+      },
+
+      /* ---------- 8 ---------- */
+      {
+        id: 'tresor',
+        title: 'La chasse au trésor du jardin',
+        subtitle: 'Une carte dessinée par Bingo',
+        tag: 'Jardin',
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'bingo', x: 320, y: 514, s: 1.05, pose: 'point' },
+            { t: 'livia', x: 470, y: 516, s: 1.1, pose: 'hold' },
+            { t: 'bluey', x: 610, y: 514, s: 1.2, pose: 'stand' },
+            { t: 'suitcase', x: 730, y: 526, s: .8 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bingo', x: 340, y: 514, s: 1, pose: 'hold' },
+                { t: 'bluey', x: 490, y: 514, s: 1.2, pose: 'stand' },
+                { t: 'livia', x: 630, y: 516, s: 1.1, pose: 'stand' }
+              ],
+              bubbles: [{ x: 100, y: 26, w: 310, t: 'J\'ai dessiné une carte au trésor !', tx: 340, ty: 230 }]
+            },
+            text: "Bingo a passé toute la matinée à dessiner une carte. Il y a un arbre, une croix, un serpent et quelque chose qui pourrait être un dragon. « C'est un caillou », précise-t-elle."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'tree', x: 620, y: 500, s: 1.2 }],
+              items: [
+                { t: 'bluey', x: 300, y: 514, s: 1.2, pose: 'point' },
+                { t: 'bingo', x: 440, y: 514, s: 1, pose: 'stand' },
+                { t: 'livia', x: 560, y: 516, s: 1.1, pose: 'stand' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 290, t: 'Sept pas vers le grand arbre !', tx: 300, ty: 226 }]
+            },
+            text: "Première étape : sept pas vers le grand arbre. Ils comptent tous ensemble, très fort. Bingo fait des pas minuscules, alors elle arrive bien après les autres."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bush', x: 250, y: 520, s: 1.3 },
+                { t: 'livia', x: 460, y: 516, s: 1.1, pose: 'point' },
+                { t: 'butterfly', x: 620, y: 320, s: 1.5 },
+                { t: 'bingo', x: 640, y: 514, s: 1, pose: 'armsup' }
+              ]
+            },
+            text: "Deuxième étape : suivre le papillon orange. Ce n'était pas écrit sur la carte, mais le papillon passait par là, alors ça devenait forcément une étape."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 320, y: 514, s: 1.2, pose: 'shrug', mood: 'sad' },
+                { t: 'bingo', x: 470, y: 514, s: 1, pose: 'shrug', mood: 'sad' },
+                { t: 'livia', x: 610, y: 516, s: 1.1, pose: 'shrug' }
+              ],
+              sfx: [{ t: 'ET MAINTENANT ?', x: 430, y: 158, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: "Troisième étape : la croix rouge. Sauf qu'au bon endroit, il n'y a rien du tout. Juste de l'herbe. Bingo retourne la carte dans tous les sens, l'air très ennuyé."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 360, y: 516, s: 1.1, pose: 'point', mood: 'wow' },
+                { t: 'suitcase', x: 560, y: 526, s: 1 },
+                { t: 'bluey', x: 680, y: 514, s: 1.15, pose: 'armsup', mood: 'wow' }
+              ],
+              bubbles: [{ x: 90, y: 26, w: 300, t: 'La carte était à l\'envers !', tx: 360, ty: 230 }]
+            },
+            text: "C'est Livia qui comprend : la carte était à l'envers. En la retournant, la croix tombe pile sur le vieux coffre en bois, près de la remise. Il est là depuis toujours."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'suitcase', x: 400, y: 524, s: 1.2 },
+                { t: 'bluey', x: 260, y: 514, s: 1.15, pose: 'hold' },
+                { t: 'bingo', x: 560, y: 514, s: 1, pose: 'hold', mood: 'wow' },
+                { t: 'livia', x: 690, y: 516, s: 1.1, pose: 'stand', mood: 'wow' }
+              ],
+              sfx: [{ t: 'CRIIIC…', x: 400, y: 300, fs: 34, rot: -6, color: '#fff' }]
+            },
+            text: "Le couvercle grince en s'ouvrant. À l'intérieur : trois vieilles photos, une balle de tennis toute plate, et un dessin fait par Papa quand il avait leur âge."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'bandit', x: 280, y: 516, s: 1.45, pose: 'hold' },
+                { t: 'bluey', x: 450, y: 516, s: 1.15, pose: 'sit' },
+                { t: 'bingo', x: 580, y: 516, s: .95, pose: 'sit' },
+                { t: 'livia', x: 700, y: 518, s: 1.05, pose: 'sit' }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 300, t: 'C\'était mon trésor à moi.', tx: 290, ty: 230 }]
+            },
+            text: "Papa s'assoit dans l'herbe avec le dessin dans les pattes. « C'était mon trésor à moi », dit-il doucement. Bingo décide alors que la carte servira encore demain."
+          }
+        ]
+      },
+
+      /* ---------- 9 ---------- */
+      {
+        id: 'pique-nique',
+        title: 'Le pique-nique tout en haut',
+        subtitle: 'Une colline, un panier, et beaucoup de vent',
+        tag: 'Été',
+        minutes: 5,
+        cover: {
+          bg: 'hill',
+          items: [
+            { t: 'towel', x: 400, y: 522, s: 1.2 },
+            { t: 'bluey', x: 300, y: 508, s: 1.15, pose: 'sit' },
+            { t: 'livia', x: 480, y: 510, s: 1.05, pose: 'sit' },
+            { t: 'kite', x: 640, y: 200, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'chilli', x: 240, y: 514, s: 1.4, pose: 'hold' },
+                { t: 'esky', x: 340, y: 524, s: .9 },
+                { t: 'bluey', x: 480, y: 512, s: 1.2, pose: 'run' },
+                { t: 'bingo', x: 620, y: 512, s: .95, pose: 'run' }
+              ],
+              sfx: [{ t: 'LE PREMIER EN HAUT !', x: 470, y: 150, fs: 30, rot: -6, color: '#fff' }]
+            },
+            text: "La colline est haute et l'herbe sèche crisse sous les pattes. « Le premier en haut ! » crie Bluey. Maman monte tranquillement derrière, avec la glacière."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'bandit', x: 320, y: 514, s: 1.45, pose: 'shrug', mood: 'sad' },
+                { t: 'esky', x: 470, y: 524, s: 1 },
+                { t: 'livia', x: 620, y: 516, s: 1.1, pose: 'point' }
+              ],
+              bubbles: [{ x: 380, y: 26, w: 300, t: 'Papa, tu es tout rouge !', tx: 620, ty: 230 }]
+            },
+            text: "Papa arrive bon dernier, la glacière dans une patte et le parasol dans l'autre. Il s'assoit dans l'herbe sans un mot pendant un long moment."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'towel', x: 400, y: 522, s: 1.3 },
+                { t: 'bluey', x: 290, y: 506, s: 1.1, pose: 'sit' },
+                { t: 'bingo', x: 430, y: 506, s: .9, pose: 'sit' },
+                { t: 'livia', x: 560, y: 508, s: 1.05, pose: 'sit' },
+                { t: 'watermelon', x: 680, y: 522, s: .9 }
+              ]
+            },
+            text: "La nappe est étalée, et le festin commence : sandwiches, pastèque, chips et jus de fruits. On voit toute la ville en bas, minuscule, avec les toits qui brillent."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'bingo', x: 300, y: 514, s: .95, pose: 'shrug', mood: 'wow' },
+                { t: 'towel', x: 560, y: 524, s: 1.2, rot: 12 }
+              ],
+              sfx: [{ t: 'FFFOUUU !', x: 500, y: 220, fs: 38, rot: -8, color: '#fff' }]
+            },
+            text: "Et puis le vent se lève. D'un seul coup, la nappe décolle avec tout ce qu'il y avait dessus. Les serviettes partent vers le bas de la colline, en tourbillonnant."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'bandit', x: 300, y: 516, s: 1.45, pose: 'run' },
+                { t: 'bluey', x: 470, y: 514, s: 1.15, pose: 'run' },
+                { t: 'livia', x: 620, y: 516, s: 1.1, pose: 'run' }
+              ],
+              sfx: [{ t: 'ATTRAPEZ TOUT !', x: 566, y: 166, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Tout le monde part à la poursuite du pique-nique. Papa court après une serviette, Bluey après un sandwich, et Livia rattrape le sachet de chips en plein vol."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'kite', x: 560, y: 180, s: 1.1 },
+                { t: 'livia', x: 300, y: 514, s: 1.1, pose: 'hold' },
+                { t: 'tether', x: 360, y: 408, dx: 190, dy: -170, qx: 130, qy: -40 },
+                { t: 'bingo', x: 440, y: 514, s: .95, pose: 'armsup' }
+              ],
+              bubbles: [{ x: 90, y: 26, w: 300, t: 'Un vent pareil, ça se mérite !', tx: 300, ty: 230 }]
+            },
+            text: "Mais un vent pareil, ça ne se gâche pas. Livia sort le cerf-volant du sac. Il monte du premier coup, si haut qu'il devient un petit point rouge dans le bleu."
+          },
+          {
+            scene: {
+              bg: 'hill', time: 'sunset',
+              items: [
+                { t: 'towel', x: 420, y: 524, s: 1.3 },
+                { t: 'bandit', x: 280, y: 508, s: 1.35, pose: 'sit' },
+                { t: 'bluey', x: 430, y: 508, s: 1.1, pose: 'sit' },
+                { t: 'bingo', x: 550, y: 508, s: .9, pose: 'sit' },
+                { t: 'livia', x: 670, y: 510, s: 1.05, pose: 'sit' }
+              ]
+            },
+            text: "Ils restent tout en haut jusqu'à ce que le soleil touche les toits. Personne ne parle. En bas, les lumières de la ville s'allument une par une, comme des étoiles à l'envers."
+          }
+        ]
+      },
+
+      /* ---------- 10 ---------- */
+      {
+        id: 'lucioles',
+        title: 'La nuit des lucioles',
+        subtitle: 'Rester réveillé jusqu\'à la nuit noire',
+        tag: 'Nuit',
+        minutes: 5,
+        cover: {
+          bg: 'garden', time: 'night',
+          items: [
+            { t: 'bluey', x: 320, y: 514, s: 1.2, pose: 'point' },
+            { t: 'livia', x: 470, y: 516, s: 1.1, pose: 'armsup' },
+            { t: 'bingo', x: 600, y: 514, s: .95, pose: 'stand' },
+            { t: 'lantern', x: 700, y: 380, s: 1.3 },
+            { t: 'sparkle', x: 180, y: 200, r: 18 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'chilli', x: 280, y: 516, s: 1.4, pose: 'point' },
+                { t: 'bluey', x: 460, y: 514, s: 1.2, pose: 'stand' },
+                { t: 'bingo', x: 600, y: 514, s: .95, pose: 'stand' },
+                { t: 'livia', x: 720, y: 516, s: 1.1, pose: 'stand' }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 310, t: 'Ce soir, vous vous couchez plus tard.', tx: 290, ty: 226 }]
+            },
+            text: "Ce soir, Maman a dit une phrase incroyable : « Vous vous couchez plus tard. » Personne n'a osé demander pourquoi, de peur qu'elle change d'avis."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'bluey', x: 320, y: 514, s: 1.2, pose: 'shrug' },
+                { t: 'bingo', x: 460, y: 514, s: .95, pose: 'shrug' },
+                { t: 'livia', x: 590, y: 516, s: 1.1, pose: 'stand' }
+              ],
+              sfx: [{ t: 'IL N\'Y A RIEN…', x: 430, y: 156, fs: 30, rot: -5, color: '#fff' }]
+            },
+            text: "Ils attendent dans le jardin, assis en rond dans l'herbe. Il ne se passe rien. Rien du tout. Bingo commence à se demander si Maman s'est trompée."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'livia', x: 380, y: 516, s: 1.1, pose: 'point', mood: 'wow' },
+                { t: 'lantern', x: 600, y: 400, s: 1.1 },
+                { t: 'bluey', x: 640, y: 514, s: 1.15, pose: 'stand', mood: 'wow' }
+              ],
+              bubbles: [{ x: 60, y: 26, w: 290, t: 'Là ! Une petite lumière !', tx: 380, ty: 230 }]
+            },
+            text: "Et puis Livia voit la première : une minuscule lumière verte, qui s'allume et s'éteint au-dessus de l'herbe. Une luciole. Puis deux. Puis dix."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'bluey', x: 300, y: 514, s: 1.2, pose: 'armsup' },
+                { t: 'bingo', x: 440, y: 514, s: .95, pose: 'jump' },
+                { t: 'livia', x: 580, y: 516, s: 1.1, pose: 'armsup' }
+              ],
+              front: [
+                { t: 'lantern', x: 200, y: 340, s: .7 }, { t: 'lantern', x: 520, y: 280, s: .6 },
+                { t: 'lantern', x: 690, y: 380, s: .8 }, { t: 'sparkle', x: 380, y: 240, r: 14 }
+              ]
+            },
+            text: "Le jardin entier se met à clignoter. Les trois amies tournent sur elles-mêmes, les bras en l'air, au milieu des petites lumières qui montent et qui descendent."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'bingo', x: 400, y: 514, s: 1, pose: 'hold' },
+                { t: 'lantern', x: 400, y: 420, s: .8 },
+                { t: 'livia', x: 580, y: 516, s: 1.1, pose: 'stand' }
+              ],
+              bubbles: [{ x: 100, y: 26, w: 300, t: 'Elle s\'est posée sur ma patte !', tx: 400, ty: 236 }]
+            },
+            text: "Une luciole se pose sur la patte de Bingo. Bingo ne bouge plus du tout, même pas les oreilles. La lumière s'allume, s'éteint, s'allume encore. Puis elle repart."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'bandit', x: 300, y: 516, s: 1.45, pose: 'point' },
+                { t: 'bluey', x: 480, y: 514, s: 1.15, pose: 'stand' },
+                { t: 'bingo', x: 610, y: 514, s: .95, pose: 'stand' },
+                { t: 'livia', x: 720, y: 516, s: 1.05, pose: 'stand' }
+              ],
+              bubbles: [{ x: 340, y: 26, w: 310, t: 'Elles font ça deux semaines par an.', tx: 300, ty: 226 }]
+            },
+            text: "Papa explique tout bas que les lucioles ne brillent que quelques nuits dans l'année. « Alors c'est une nuit rare », dit Bluey. Papa hoche la tête : « Très rare. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'bluey', x: 300, y: 500, s: 1.15, pose: 'stand', mood: 'sleep' },
+                { t: 'bingo', x: 430, y: 500, s: .95, pose: 'stand', mood: 'sleep' },
+                { t: 'livia', x: 560, y: 502, s: 1.05, pose: 'stand', mood: 'sleep' },
+                { t: 'sparkle', x: 700, y: 330, r: 16 }
+              ],
+              bubbles: [{ x: 90, y: 40, w: 300, t: 'Bonne nuit les lucioles…', tx: 300, ty: 250, fill: '#fff6ec' }]
+            },
+            text: "Dans la chambre, les trois amies ont encore des petites lumières plein les yeux. « Bonne nuit les lucioles », murmure Bingo. Elles dorment avant la fin de la phrase."
           }
         ]
       }

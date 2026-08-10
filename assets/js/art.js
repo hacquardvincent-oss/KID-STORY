@@ -390,6 +390,126 @@
     ], color, 8) + line('M -32,-92 q 32,10 64,0', shade(color, -0.3), 5);
   }
 
+  /* ---------- chiens bouviers (la famille Heeler) ---------- */
+  function paw(x, y, fur, r) {
+    r = r || 12;
+    return '<circle cx="' + x + '" cy="' + y + '" r="' + r + '" fill="' + fur +
+      '" stroke="' + INK + '" stroke-width="4"/>';
+  }
+
+  function dogLegs(pose, fur, pale) {
+    var pied = function (x, y, rot) {
+      return '<ellipse cx="' + x + '" cy="' + y + '" rx="17" ry="10" fill="' + pale +
+        '" stroke="' + INK + '" stroke-width="4"' + (rot ? ' transform="rotate(' + rot + ' ' + x + ' ' + y + ')"' : '') + '/>';
+    };
+    if (pose === 'jump') {
+      return limb('M -14,-62 C -26,-44 -40,-34 -50,-30', fur, 16) +
+        limb('M 14,-62 C 26,-44 40,-36 50,-32', fur, 16) + pied(-54, -28, -25) + pied(54, -30, 25);
+    }
+    if (pose === 'run') {
+      return limb('M -12,-60 C -24,-44 -34,-24 -36,-12', fur, 16) +
+        limb('M 12,-60 C 22,-46 26,-28 24,-12', fur, 16) + pied(-40, -9) + pied(28, -9);
+    }
+    if (pose === 'sit') {
+      return limb('M -6,-24 C 22,-24 42,-22 48,-6 C 51,4 52,16 52,26', fur, 16) +
+        limb('M 6,-16 C 34,-16 56,-14 62,2 C 65,12 66,22 66,32', fur, 16) + pied(56, 30) + pied(70, 36);
+    }
+    if (pose === 'swim') return '';
+    return limb('M -15,-60 L -15,-14', fur, 16) + limb('M 15,-60 L 15,-14', fur, 16) +
+      pied(-17, -10) + pied(17, -10);
+  }
+
+  function dogArms(pose, fur) {
+    if (pose === 'wave') {
+      return limb('M -26,-124 C -54,-116 -68,-104 -70,-90', fur, 14) +
+        limb('M 26,-126 C 62,-138 90,-158 96,-184', fur, 14) + paw(-72, -86, fur) + paw(100, -190, fur, 13);
+    }
+    if (pose === 'armsup' || pose === 'jump') {
+      return limb('M -28,-124 C -60,-138 -86,-160 -92,-184', fur, 14) +
+        limb('M 28,-124 C 60,-138 86,-160 92,-184', fur, 14) + paw(-96, -190, fur) + paw(96, -190, fur);
+    }
+    if (pose === 'point') {
+      return limb('M -26,-124 C -54,-114 -68,-100 -70,-88', fur, 14) +
+        limb('M 26,-126 C 58,-132 84,-140 104,-148', fur, 14) + paw(-72, -84, fur) + paw(108, -150, fur);
+    }
+    if (pose === 'hold') {
+      return limb('M -26,-124 C -52,-120 -66,-110 -68,-98', fur, 14) +
+        limb('M 26,-124 C 52,-120 66,-110 68,-98', fur, 14) + paw(-70, -94, fur) + paw(70, -94, fur);
+    }
+    if (pose === 'swim') {
+      return limb('M -28,-124 C -52,-134 -68,-132 -80,-126', fur, 14) +
+        limb('M 28,-124 C 52,-134 68,-132 80,-126', fur, 14) + paw(-84, -124, fur) + paw(84, -124, fur);
+    }
+    if (pose === 'shrug') {
+      return limb('M -26,-126 C -56,-132 -74,-124 -80,-114', fur, 14) +
+        limb('M 26,-126 C 56,-132 74,-124 80,-114', fur, 14) + paw(-84, -112, fur) + paw(84, -112, fur);
+    }
+    return limb('M -26,-124 C -54,-116 -68,-104 -70,-90', fur, 14) +
+      limb('M 26,-124 C 54,-116 68,-104 70,-90', fur, 14) + paw(-72, -86, fur) + paw(72, -86, fur);
+  }
+
+  function dogHead(o) {
+    var fur = o.fur, pale = o.pale, mask = o.mask || shade(fur, -0.24);
+    var mood = o.mood || 'happy';
+    var s = U([
+      '<path d="M -36,-72 L -47,-118 L -8,-90 Z" fill="%F%" %S%/>',
+      '<path d="M 10,-80 L 27,-122 L 42,-82 Z" fill="%F%" %S%/>',
+      '<ellipse cx="0" cy="-50" rx="43" ry="40" fill="%F%" %S%/>',
+      '<ellipse cx="47" cy="-30" rx="27" ry="20" fill="%F%" %S%/>'
+    ], fur, 9);
+
+    /* le masque foncé du bouvier : dessus de tête et contour des yeux */
+    s += '<path d="M -42,-58 C -41,-84 -22,-94 0,-94 C 22,-94 41,-82 43,-52 ' +
+      'C 32,-68 12,-66 -4,-60 C -20,-54 -33,-54 -42,-58 Z" fill="' + mask + '"/>';
+    s += '<path d="M -36,-72 L -47,-118 L -20,-98 Z" fill="' + mask + '"/>';
+    s += '<path d="M 18,-92 L 27,-122 L 38,-90 Z" fill="' + mask + '"/>';
+
+    /* museau clair */
+    s += '<ellipse cx="47" cy="-30" rx="26" ry="19" fill="' + pale + '"/>';
+    s += '<ellipse cx="70" cy="-36" rx="9.5" ry="7.5" fill="' + INK + '"/>';
+    s += line('M 66,-28 q 4,10 -6,12', INK, 3.5);
+
+    /* yeux, bien au-dessus du museau */
+    s += '<circle cx="12" cy="-62" r="12" fill="#fff" stroke="' + INK + '" stroke-width="3.5"/>' +
+      '<circle cx="37" cy="-58" r="12" fill="#fff" stroke="' + INK + '" stroke-width="3.5"/>';
+    if (mood === 'sleep') {
+      s += line('M 4,-62 q 8,7 16,0', INK, 4) + line('M 29,-58 q 8,7 16,0', INK, 4);
+    } else if (mood === 'wow') {
+      s += '<circle cx="14" cy="-62" r="6" fill="' + INK + '"/><circle cx="39" cy="-58" r="6" fill="' + INK + '"/>';
+    } else {
+      s += '<circle cx="16" cy="-61" r="5.2" fill="' + INK + '"/><circle cx="41" cy="-57" r="5.2" fill="' + INK + '"/>';
+    }
+    if (mood === 'happy' || mood === 'wow') {
+      s += '<path d="M 40,-18 q 9,12 19,3" fill="#e07a8a" stroke="' + INK + '" stroke-width="3"/>';
+    }
+    return s;
+  }
+
+  function dog(o) {
+    o = o || {};
+    var fur = o.fur || '#7aa6d8';
+    var pale = o.pale || '#dbe8f5';
+    var pose = o.pose || 'stand';
+    var sit = pose === 'sit';
+    var s = '';
+    if (pose !== 'swim') s += dogLegs(pose, fur, pale);
+
+    /* la queue, derrière */
+    var t = line('M -32,-92 C -64,-96 -80,-118 -76,-140', fur, 15) +
+      '<circle cx="-76" cy="-144" r="9" fill="' + pale + '" stroke="' + INK + '" stroke-width="4"/>';
+    t += dogArms(pose, fur);
+    t += U(['<path d="M -29,-142 C -36,-114 -38,-78 -34,-52 L 34,-52 C 38,-78 36,-114 29,-142 Z" fill="%F%" %S%/>'], fur, 9);
+    t += '<ellipse cx="4" cy="-82" rx="23" ry="30" fill="' + pale + '"/>';
+    if (o.taches) {
+      t += '<circle cx="-24" cy="-108" r="8" fill="' + shade(fur, -0.2) + '"/>' +
+        '<circle cx="26" cy="-120" r="6" fill="' + shade(fur, -0.2) + '"/>' +
+        '<circle cx="-30" cy="-68" r="5" fill="' + shade(fur, -0.2) + '"/>';
+    }
+    t += g('translate(0,-136)', dogHead({ fur: fur, pale: pale, mask: o.mask, mood: o.mood }));
+    if (o.hat) t += g('translate(0,-136)', sunHat(o.hat));
+    return s + (sit ? g('translate(-6,44)', t) : t);
+  }
+
   /* ---------- mouton (Suzy) ---------- */
   function sheep(o) {
     o = o || {};
@@ -724,6 +844,44 @@
       '<rect x="76" y="-64" width="18" height="18" rx="5" fill="#ffe8d0" stroke="' + INK + '" stroke-width="3.5"/>';
   };
 
+  /* l'arroseur du jardin */
+  P.sprinkler = function (o) {
+    var c = o.color || '#4f8a3d';
+    var s = line('M 0,0 L 0,-34', c, 8) +
+      U(['<ellipse cx="0" cy="-2" rx="24" ry="8" fill="%F%" %S%/>'], c, 6) +
+      '<circle cx="0" cy="-38" r="9" fill="' + c + '" stroke="' + INK + '" stroke-width="4"/>';
+    var i;
+    for (i = -2; i <= 2; i++) {
+      var a1 = i * 22;
+      s += line('M 0,-42 q ' + (a1 * 1.8) + ',-40 ' + (a1 * 3.4) + ',-6', '#8fd0e8', 5, 'opacity=".85"');
+    }
+    return s;
+  };
+
+  /* le trampoline du jardin */
+  P.trampoline = function (o) {
+    var c = o.color || '#3f6ea8';
+    return line('M -78,0 L -62,-34 M 78,0 L 62,-34 M -40,0 L -34,-34 M 40,0 L 34,-34', '#8a97a8', 7) +
+      U(['<ellipse cx="0" cy="-38" rx="96" ry="22" fill="%F%" %S%/>'], c, 8) +
+      '<ellipse cx="0" cy="-40" rx="78" ry="15" fill="#4a4550" stroke="' + INK + '" stroke-width="5"/>';
+  };
+
+  /* la mangue, fruit de l'été */
+  P.mangue = function (o) {
+    return U(['<path d="M 0,0 C -26,-4 -32,-30 -18,-44 C -4,-58 24,-52 28,-32 C 32,-14 20,2 0,0 Z" fill="%F%" %S%/>'], o.color || '#f2b93f', 7) +
+      '<path d="M 10,-44 C 24,-38 30,-20 22,-8 C 16,0 6,0 2,-2 C 18,-10 22,-30 10,-44 Z" fill="#e2593c"/>' +
+      '<path d="M 4,-6 C -14,-10 -20,-28 -10,-40" fill="none" stroke="#e8a83c" stroke-width="5" stroke-linecap="round"/>' +
+      line('M 12,-50 q 4,-12 -4,-16', '#6f9147', 5);
+  };
+
+  /* la glacière */
+  P.esky = function (o) {
+    var c = o.color || '#4f9cb5';
+    return U(['<rect x="-46" y="-40" width="92" height="40" rx="6" fill="%F%" %S%/>'], c, 8) +
+      U(['<rect x="-50" y="-52" width="100" height="14" rx="5" fill="%F%" %S%/>'], '#fdf7ea', 8) +
+      line('M -20,-46 L 20,-46', shade(c, -0.3), 4);
+  };
+
   P.hedgehog = function (o) {
     var c = o.color || '#8a6a4a';
     var spikes = '<path d="M -44,-2 L -38,-30 L -31,-15 L -25,-38 L -18,-21 L -10,-46 L -3,-29 L 4,-50 ' +
@@ -988,6 +1146,25 @@
     return out;
   };
 
+  /* le ruisseau au fond du jardin : cailloux, eau claire, eucalyptus */
+  BG.creek = function (s) {
+    var time = s.time || 'day';
+    var out = skyRect(time);
+    if (time !== 'night') out += g('translate(700,86)', P.sun({})) + g('translate(180,104)', P.cloud({}));
+    out += g('translate(90,360) scale(1.25)', P.tree({ color: '#7f9e63' })) +
+      g('translate(690,352) scale(1.1)', P.tree({ color: '#6f9147' }));
+    out += '<path d="M 0,320 C 200,300 400,336 600,318 C 700,308 760,330 800,318 L 800,400 L 0,400 Z" fill="#8fb35c"/>';
+    out += '<rect x="0" y="380" width="800" height="180" fill="#9cbd66"/>';
+    /* l'eau */
+    out += '<path d="M -20,470 C 140,430 300,500 460,462 C 600,428 720,476 820,452 L 820,560 L -20,560 Z" fill="#5fa8bd"/>';
+    out += line('M -20,470 C 140,430 300,500 460,462 C 600,428 720,476 820,452', '#4a8ba0', 5);
+    out += g('translate(180,510)', P.wave({})) + g('translate(560,528)', P.wave({}));
+    /* les cailloux */
+    out += g('translate(120,470) scale(.7)', P.rock({})) + g('translate(300,452) scale(.55)', P.rock({})) +
+      g('translate(640,462) scale(.65)', P.rock({})) + g('translate(470,440) scale(.45)', P.rock({}));
+    return out;
+  };
+
   BG.snow = function (s) {
     var time = s.time === 'night' ? 'snownight' : 'snow';
     var out = skyRect(time);
@@ -1138,6 +1315,32 @@
       });
     },
     olaf: function (o) { return snowman(o); },
+
+    /* la famille bouvier */
+    bluey: function (o) {
+      return dog({ fur: '#6f9ed8', pale: '#dfeaf6', mask: '#3f6ea8', taches: true,
+        pose: o.pose, mood: o.mood, hat: o.hat });
+    },
+    bingo: function (o) {
+      return dog({ fur: '#e0954e', pale: '#fae2c2', mask: '#b96e2f',
+        pose: o.pose, mood: o.mood, hat: o.hat });
+    },
+    bandit: function (o) {
+      return dog({ fur: '#4f7cb4', pale: '#d2e0ef', mask: '#33578a', taches: true,
+        pose: o.pose, mood: o.mood, hat: o.hat });
+    },
+    chilli: function (o) {
+      return dog({ fur: '#d87c3a', pale: '#f7dcbb', mask: '#a85c26',
+        pose: o.pose, mood: o.mood, hat: o.hat });
+    },
+    muffin: function (o) {
+      return dog({ fur: '#a7c6e4', pale: '#eef4fa', mask: '#7699c2',
+        pose: o.pose, mood: o.mood, hat: o.hat });
+    },
+    coco: function (o) {
+      return dog({ fur: '#e8b98f', pale: '#f9e7d5', mask: '#c9905f',
+        pose: o.pose, mood: o.mood, hat: o.hat });
+    },
     dino: function (o) { return dino(o); }
   };
 

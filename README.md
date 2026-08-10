@@ -51,6 +51,21 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 | Un été à Arendelle | 9 |
 | La nuit des étoiles glacées | 8 |
 
+**Bluey** (dix histoires, tout l'été australien)
+
+| Histoire | Planches |
+|---|---|
+| La grande bataille d'arroseur | 7 |
+| Le ruisseau secret | 7 |
+| Le ballon qui ne doit pas tomber | 7 |
+| La plage aux mille crabes | 7 |
+| Le camping dans le jardin | 7 |
+| La course des glaces fondues | 7 |
+| Le toboggan d'eau du jardin | 7 |
+| La chasse au trésor du jardin | 7 |
+| Le pique-nique tout en haut | 7 |
+| La nuit des lucioles | 7 |
+
 ---
 
 ## Lancer le site
@@ -156,12 +171,13 @@ Chaque élément s'écrit :
 ### Les briques disponibles
 
 **Décors (`bg`)**
-`beach`, `sea`, `garden`, `hill`, `camp`, `forest`, `snow`, `village`, `road`,
-`bedroom`, `plain`
+`beach`, `sea`, `garden`, `hill`, `creek` *(le ruisseau)*, `camp`, `forest`, `snow`,
+`village`, `road`, `bedroom`, `plain`
 
 **Personnages**
 `peppa`, `george`, `mummy`, `daddy`, `suzy`, `livia`, `liviaPrincess`, `elsa`, `anna`,
-`olaf`, `dino`
+`olaf`, `dino`, et la famille bouvier : `bluey`, `bingo`, `bandit`, `chilli`,
+`muffin`, `coco`
 
 **Poses** (`pose`)
 `stand`, `wave`, `armsup`, `jump`, `run`, `sit`, `point`, `hold`, `shrug`, `swim`,
@@ -177,7 +193,7 @@ Chaque élément s'écrit :
 `kite`, `tether` *(la ficelle d'un cerf-volant)*, `boat`, `car`, `suitcase`,
 `marshmallow`, `hedgehog`, `snowball`, `star`, `snowflake`, `rock`, `fish`, `slide`,
 `pool`, `sled`, `castleIce`, `house`, `sparkle`, `splash`, `lantern`, `balloon`,
-`mudpuddle`, `wave`, `aurora`
+`mudpuddle`, `wave`, `aurora`, `sprinkler`, `trampoline`, `mangue`, `esky`
 
 La plupart acceptent une `color` (`{ t: 'flower', x: 90, y: 520, color: '#ffd93d' }`),
 `tether` prend `dx` / `dy` (et éventuellement `qx` / `qy` pour la courbure).
