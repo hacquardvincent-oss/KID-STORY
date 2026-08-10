@@ -21,7 +21,9 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   courant qui se met à jour tout seul. L'illustration existe en deux compositions,
   une pour les écrans larges et une pour les écrans hauts, choisies à l'ouverture :
   un cadrage unique couperait les personnages sur un téléphone.
-* **Menu des univers** — Peppa Pig, La Reine des Neiges… (facile d'en rajouter)
+* **Un logo Kid Cartoon** présent partout, qui ramène à l'accueil d'un doigt
+* **Deux rubriques** — Histoires et Jeux ; sous Histoires, les univers
+  (Peppa Pig, La Reine des Neiges, Bluey… faciles à compléter)
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
@@ -280,7 +282,7 @@ Le grain de papier est un carré de bruit de 64 pixels, répété et posé en
 qui déplace légèrement chaque contour. Deux effets qui coûtent presque rien et
 qui suffisent à sortir le dessin du rendu vectoriel trop lisse.
 
-Les adresses suivent la lecture : `#/` la couverture, `#/sommaire` les univers,
+Les adresses suivent la lecture : `#/` la couverture, `#/histoires` les univers,
 `#/u/peppa` le présentoir d'un univers, `#/u/peppa/plage` une histoire ouverte,
 `#/jeux/compter` un jeu. Chaque page a donc son lien direct, partageable tel quel.
 

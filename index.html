@@ -18,13 +18,17 @@
 <div class="grain-layer" aria-hidden="true"></div>
 
 <header class="topbar">
-  <button class="icon-btn" id="btnBack" aria-label="Retour" hidden>‹</button>
-  <div class="brand">
-    <span class="brand-moon" aria-hidden="true">🌙</span>
-    <span class="brand-txt">Les histoires de <b>Livia</b></span>
-  </div>
+  <button class="logo" id="btnLogo" aria-label="Retour à l'accueil">
+    <span class="logo-mark" id="logoMark"></span>
+    <span class="logo-txt"><b>KID</b><i>CARTOON</i></span>
+  </button>
   <button class="icon-btn" id="btnRandom" aria-label="Histoire au hasard">🎲</button>
 </header>
+
+<nav class="mainnav" id="mainnav" aria-label="Rubriques">
+  <button data-nav="histoires">📖 Histoires</button>
+  <button data-nav="jeux">🎮 Jeux</button>
+</nav>
 
 <nav class="tabs" id="tabs" aria-label="Univers"></nav>
 
@@ -34,12 +38,14 @@
   <section class="cover" id="viewCover">
     <div class="cover-sheet">
       <div class="cover-head">
+        <div class="cover-logo"><span class="logo-mark" id="coverMark"></span><span>KID CARTOON</span></div>
         <div class="cover-kicker">+ tes BD préférées</div>
         <h1>Les histoires de <b>Livia</b></h1>
         <div class="cover-meta" id="coverMeta"></div>
       </div>
-      <div class="cover-art" id="coverArt"></div>
-      <div class="cover-sticker" id="coverSticker"></div>
+      <div class="cover-art" id="coverArt">
+        <div class="cover-sticker" id="coverSticker"></div>
+      </div>
       <div class="cover-foot">
         <div class="cover-lines" id="coverLines"></div>
         <button class="cta" id="btnOpen">Ouvrir le sommaire</button>

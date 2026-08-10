@@ -216,6 +216,8 @@
      ============================================================ */
   var els = {
     tabs: $('#tabs'), home: $('#viewHome'), uni: $('#viewUniverse'),
+    logo: $('#btnLogo'), logoMark: $('#logoMark'), coverMark: $('#coverMark'),
+    mainnav: $('#mainnav'),
     cover: $('#viewCover'), coverArt: $('#coverArt'), coverMeta: $('#coverMeta'),
     coverLines: $('#coverLines'), coverSticker: $('#coverSticker'),
     topbar: document.querySelector('.topbar'),
@@ -223,7 +225,7 @@
     coverGames: $('#btnCoverGames'),
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
     gamesSub: $('#gamesSub'),
-    grid: $('#uniGrid'), back: $('#btnBack'), random: $('#btnRandom'),
+    grid: $('#uniGrid'), random: $('#btnRandom'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
     cfTags: $('#cfTags'), cfDots: $('#cfDots'), read: $('#btnRead'),
@@ -242,13 +244,30 @@
 
   var state = { universe: null, story: null, page: 0, speak: false };
 
+  /* ---------------- la marque ---------------- */
+  els.logoMark.innerHTML = Art.marque();
+  els.coverMark.innerHTML = Art.marque();
+  els.logo.onclick = function () { location.hash = '#/'; };
+
+  /* ---------------- le menu principal ---------------- */
+  function renderNav(actif) {
+    var b = els.mainnav.children;
+    for (var i = 0; i < b.length; i++) {
+      var nav = b[i].getAttribute('data-nav');
+      b[i].className = nav === actif ? 'is-active' : '';
+      b[i].onclick = (function (n) {
+        return function () { location.hash = n === 'jeux' ? '#/jeux' : '#/histoires'; };
+      })(nav);
+    }
+  }
+
   /* ---------------- onglets ---------------- */
   function renderTabs(activeId) {
     els.tabs.innerHTML = '';
     var all = document.createElement('button');
     all.className = 'tab' + (activeId ? '' : ' is-active');
-    all.textContent = '★ Tout';
-    all.onclick = function () { location.hash = '#/sommaire'; };
+    all.textContent = '★ Tous';
+    all.onclick = function () { location.hash = '#/histoires'; };
     els.tabs.appendChild(all);
 
     UNIVERSES.forEach(function (u) {
@@ -259,11 +278,6 @@
       els.tabs.appendChild(b);
     });
 
-    var j = document.createElement('button');
-    j.className = 'tab' + (activeId === 'jeux' ? ' is-active' : '');
-    j.textContent = '🎮 Jeux';
-    j.onclick = function () { location.hash = '#/jeux'; };
-    els.tabs.appendChild(j);
   }
 
   /* ---------------- les jeux ---------------- */
@@ -305,7 +319,9 @@
     var forme = (r.width / Math.max(1, r.height)) < 1.15 ? 'haut' : 'large';
     if (forme === coverForme) return;
     coverForme = forme;
+    var pastille = els.coverSticker;
     els.coverArt.innerHTML = Art.scene(COUVERTURE[forme], { slice: true, noBubbles: true });
+    els.coverArt.appendChild(pastille);        // la pastille reste par-dessus
   }
 
   function renderCover() {
@@ -513,22 +529,22 @@
       setTheme(null);
       els.cover.hidden = false; els.home.hidden = true; els.uni.hidden = true;
       els.games.hidden = true; Jeux.taire();
-      els.topbar.hidden = true; els.tabs.hidden = true;
+      els.topbar.hidden = true; els.tabs.hidden = true; els.mainnav.hidden = true;
       renderCover();
       window.scrollTo(0, 0);
       return;
     }
 
     els.cover.hidden = true;
-    els.topbar.hidden = false; els.tabs.hidden = false;
+    els.topbar.hidden = false; els.mainnav.hidden = false;
 
     if (parts[0] === 'jeux') {                   // les jeux
       closeReader();
       Jeux.taire();
-      renderTabs('jeux');
+      renderNav('jeux');
       setTheme(null);
+      els.tabs.hidden = true;
       els.home.hidden = true; els.uni.hidden = true; els.games.hidden = false;
-      els.back.hidden = false;
       var jeu = parts[1] && Jeux.trouver(parts[1]);
       if (jeu) { renderGames(); openGame(jeu); }
       else renderGames();
@@ -537,22 +553,24 @@
     }
     els.games.hidden = true;
     Jeux.taire();
+    renderNav('histoires');
+    els.tabs.hidden = false;
 
-    if (parts[0] !== 'u') {                      // le sommaire
+    if (parts[0] !== 'u') {                      // la liste des univers
       closeReader();
       renderTabs(null);
       setTheme(null);
-      els.home.hidden = false; els.uni.hidden = true; els.back.hidden = false;
+      els.home.hidden = false; els.uni.hidden = true;
       renderHome();
       window.scrollTo(0, 0);
       return;
     }
 
     var u = findUniverse(parts[1]);
-    if (!u) { location.hash = '#/sommaire'; return; }
+    if (!u) { location.hash = '#/histoires'; return; }
 
     renderTabs(u.id);
-    els.home.hidden = true; els.uni.hidden = false; els.back.hidden = false;
+    els.home.hidden = true; els.uni.hidden = false;
 
     var storyId = parts[2];
     if (state.universe !== u) renderUniverse(u, storyId);
@@ -578,16 +596,9 @@
     }
   }
 
-  els.back.onclick = function () {
-    if (!els.reader.hidden) location.hash = '#/u/' + state.universe.id;
-    else if (!els.games.hidden) location.hash = els.gameStage.hidden ? '#/sommaire' : '#/jeux';
-    else if (els.home.hidden) location.hash = '#/sommaire';
-    else location.hash = '#/';
-  };
-
   els.coverGames.onclick = function () { location.hash = '#/jeux'; };
 
-  els.open.onclick = function () { location.hash = '#/sommaire'; };
+  els.open.onclick = function () { location.hash = '#/histoires'; };
 
   els.coverRandom.onclick = function () { els.random.onclick(); };
 

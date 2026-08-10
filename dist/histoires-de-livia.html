@@ -95,7 +95,7 @@ body {
   mix-blend-mode: multiply;
 }
 
-main, .topbar, .tabs { position: relative; z-index: 1; }
+main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 
 /* ---------------- le bandeau du magazine ---------------- */
 .topbar {
@@ -105,17 +105,45 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
   border-bottom: 3px solid var(--ink);
   box-shadow: 0 3px 0 rgba(58, 42, 34, .12);
 }
-.brand { flex: 1; display: flex; align-items: center; gap: 8px; min-width: 0; }
-.brand-moon { font-size: 21px; }
-.brand-txt {
-  font-size: 20px; letter-spacing: .2px; white-space: nowrap;
-  overflow: hidden; text-overflow: ellipsis; font-weight: 600;
-  color: #fff6e4;
+/* le logo : partout, il ramène à l'accueil */
+.logo {
+  flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: inherit; color: inherit; text-align: left;
+  transition: transform .12s;
 }
-.brand-txt b {
-  font-weight: 700; color: var(--jaune);
-  -webkit-text-stroke: .6px var(--ink);
+.logo:active { transform: scale(.96); }
+.logo-mark {
+  flex: 0 0 auto; width: 40px; height: 40px; display: block;
 }
+.logo-mark svg { display: block; width: 100%; height: 100%; }
+.logo-txt {
+  display: flex; flex-direction: column; line-height: .92; min-width: 0;
+}
+.logo-txt b {
+  font-size: 21px; font-weight: 700; color: #fff6e4; letter-spacing: .5px;
+}
+.logo-txt i {
+  font-style: normal; font-size: 15px; font-weight: 600; letter-spacing: 2.6px;
+  color: var(--jaune);
+}
+
+/* ---------------- le menu principal ---------------- */
+.mainnav {
+  position: relative; z-index: 1;
+  display: flex; gap: 10px; justify-content: center;
+  padding: 12px 14px 2px;
+}
+.mainnav button {
+  flex: 0 1 auto; font-family: inherit; cursor: pointer;
+  font-size: 16px; font-weight: 600; padding: 9px 22px;
+  border: 3px solid var(--ink); border-radius: 999px;
+  background: var(--page); color: var(--ink);
+  box-shadow: 0 3px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s, background .15s;
+}
+.mainnav button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
+.mainnav button.is-active { background: var(--jaune); }
 
 .icon-btn {
   flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
@@ -134,6 +162,7 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
   display: flex; gap: 8px; overflow-x: auto; padding: 12px 14px 4px;
   scrollbar-width: none;
 }
+.tabs::before, .tabs::after { content: ''; flex: 0 0 2px; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab {
   flex: 0 0 auto; border: 2.5px solid var(--ink);
@@ -166,6 +195,12 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
   border-bottom: 4px solid var(--ink);
   text-align: center;
 }
+.cover-logo {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-bottom: 8px; color: #fff6e4;
+  font-size: 13px; font-weight: 600; letter-spacing: 2.4px;
+}
+.cover-logo .logo-mark { width: 30px; height: 30px; }
 .cover-kicker {
   display: inline-block; background: var(--jaune); color: var(--ink);
   font-size: 11.5px; font-weight: 600; letter-spacing: .3px;
@@ -201,7 +236,7 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
 
 /* la pastille du kiosque */
 .cover-sticker {
-  position: absolute; top: 4%; right: 14px; z-index: 3;
+  position: absolute; top: 5%; left: 16px; z-index: 3;
   width: 84px; height: 84px; border-radius: 50%;
   background: var(--jaune); border: 3px solid var(--ink);
   box-shadow: 3px 3px 0 rgba(58, 42, 34, .35);
@@ -230,12 +265,22 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
   font-size: 13.5px; text-decoration: underline; text-underline-offset: 3px;
 }
 
+/* sur un écran large, le bandeau et le pied se resserrent : chaque pixel
+   rendu à l'illustration, c'est du ciel qu'on cesse de rogner */
 @media (min-width: 720px) {
-  .cover-sticker { width: 108px; height: 108px; right: 26px; top: 5%; }
-  .cover-sticker b { font-size: 34px; }
-  .cover-head h1 { font-size: clamp(38px, 4.4vw, 58px); }
+  .cover-sticker { width: 104px; height: 104px; left: 30px; top: 5%; }
+  .cover-sticker b { font-size: 33px; }
+  .cover-head { padding: 12px 16px 10px; }
+  .cover-head h1 { font-size: clamp(34px, 3.6vw, 48px); }
+  .cover-logo { margin-bottom: 4px; font-size: 12px; }
+  .cover-logo .logo-mark { width: 24px; height: 24px; }
+  .cover-kicker { margin-bottom: 4px; }
+  .cover-meta { margin-top: 3px; font-size: 11.5px; }
+  .cover-foot { padding: 10px 16px 14px; }
+  .cover-lines { margin-bottom: 9px; }
   .cover-lines span { font-size: 15px; padding: 4px 14px; }
-  .cover-foot .cta { max-width: 380px; font-size: 18px; }
+  .cover-foot .cta { max-width: 380px; font-size: 18px; padding: 11px 30px; }
+  .cover-liens { margin-top: 7px; }
 }
 
 /* ---------------- le sommaire ---------------- */
@@ -622,7 +667,10 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
 
 /* ---------------- écrans larges ---------------- */
 @media (min-width: 720px) {
-  .brand-txt { font-size: 23px; }
+  .logo-txt b { font-size: 26px; }
+  .logo-txt i { font-size: 17px; }
+  .logo-mark { width: 48px; height: 48px; }
+  .mainnav button { font-size: 17px; padding: 10px 28px; }
   .view { padding: 16px 24px 50px; max-width: 1100px; margin: 0 auto; }
   .uni-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
   .cf-stage { height: min(52vh, 390px); margin: 12px 0 0; }
@@ -650,13 +698,17 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
 <div class="grain-layer" aria-hidden="true"></div>
 
 <header class="topbar">
-  <button class="icon-btn" id="btnBack" aria-label="Retour" hidden>‹</button>
-  <div class="brand">
-    <span class="brand-moon" aria-hidden="true">🌙</span>
-    <span class="brand-txt">Les histoires de <b>Livia</b></span>
-  </div>
+  <button class="logo" id="btnLogo" aria-label="Retour à l'accueil">
+    <span class="logo-mark" id="logoMark"></span>
+    <span class="logo-txt"><b>KID</b><i>CARTOON</i></span>
+  </button>
   <button class="icon-btn" id="btnRandom" aria-label="Histoire au hasard">🎲</button>
 </header>
+
+<nav class="mainnav" id="mainnav" aria-label="Rubriques">
+  <button data-nav="histoires">📖 Histoires</button>
+  <button data-nav="jeux">🎮 Jeux</button>
+</nav>
 
 <nav class="tabs" id="tabs" aria-label="Univers"></nav>
 
@@ -666,12 +718,14 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
   <section class="cover" id="viewCover">
     <div class="cover-sheet">
       <div class="cover-head">
+        <div class="cover-logo"><span class="logo-mark" id="coverMark"></span><span>KID CARTOON</span></div>
         <div class="cover-kicker">+ tes BD préférées</div>
         <h1>Les histoires de <b>Livia</b></h1>
         <div class="cover-meta" id="coverMeta"></div>
       </div>
-      <div class="cover-art" id="coverArt"></div>
-      <div class="cover-sticker" id="coverSticker"></div>
+      <div class="cover-art" id="coverArt">
+        <div class="cover-sticker" id="coverSticker"></div>
+      </div>
       <div class="cover-foot">
         <div class="cover-lines" id="coverLines"></div>
         <button class="cta" id="btnOpen">Ouvrir le sommaire</button>
@@ -1814,7 +1868,10 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
     var sea = time === 'sunset' ? '#dd8460' : '#4f9cb5';
     var out = skyRect(time);
     if (time === 'night') out += stars(22, 220);
-    if (time === 'sunset') out += g('translate(640,190)', P.sun({ color: '#ffdf6b' }));
+    /* une scène peut poser son propre soleil (utile quand le cadrage
+       plein écran rogne le haut du ciel) : voir COUVERTURE */
+    if (s.noSun) { /* la scène s'en charge */ }
+    else if (time === 'sunset') out += g('translate(640,190)', P.sun({ color: '#ffdf6b' }));
     else if (time !== 'night') out += g('translate(690,96)', P.sun({}));
     else out += g('translate(690,96)', P.moon({}));
     if (time !== 'night') {
@@ -2183,6 +2240,21 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }
 
+  /* la marque du site : une bulle de BD qui sourit */
+  function marqueSVG() {
+    var s = U([
+      '<rect x="10" y="12" width="80" height="62" rx="20" fill="%F%" %S%/>',
+      '<path d="M 30,68 L 26,92 L 52,72 Z" fill="%F%" %S%/>'
+    ], '#f7c518', 9);
+    s += '<circle cx="38" cy="40" r="7" fill="' + INK + '"/>' +
+      '<circle cx="64" cy="40" r="7" fill="' + INK + '"/>' +
+      '<circle cx="40.5" cy="37.5" r="2.4" fill="#fff"/>' +
+      '<circle cx="66.5" cy="37.5" r="2.4" fill="#fff"/>';
+    s += line('M 36,54 q 14,14 30,2', INK, 6);
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" ' +
+      'preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + s + '</svg>';
+  }
+
   /* une vignette : un seul élément, sans décor, pour les jeux */
   function stickerSVG(it) {
     var fn = ITEMS[it.t];
@@ -2197,6 +2269,7 @@ main, .topbar, .tabs { position: relative; z-index: 1; }
   global.Art = {
     scene: sceneSVG,
     sticker: stickerSVG,
+    marque: marqueSVG,
     INK: INK,
     W: VW,
     H: VH,
@@ -2223,8 +2296,9 @@ var COUVERTURE = {
 
   /* écran large : les quatre héros bien alignés, personne ne se chevauche */
   large: {
-    bg: 'beach',
+    bg: 'beach', noSun: true,
     back: [
+      { t: 'sun', x: 688, y: 292, s: .68 },
       { t: 'parasol', x: 62, y: 478, s: .66 },
       { t: 'sandcastle', x: 692, y: 476, s: .44 }
     ],
@@ -2243,8 +2317,9 @@ var COUVERTURE = {
 
   /* écran haut : trois héros seulement, serrés dans la bande visible */
   haut: {
-    bg: 'beach',
+    bg: 'beach', noSun: true,
     back: [
+      { t: 'sun', x: 516, y: 190, s: .75 },
       { t: 'parasol', x: 118, y: 452, s: .7 },
       { t: 'sandcastle', x: 688, y: 470, s: .55 }
     ],
@@ -5028,6 +5103,8 @@ var UNIVERSES = [
      ============================================================ */
   var els = {
     tabs: $('#tabs'), home: $('#viewHome'), uni: $('#viewUniverse'),
+    logo: $('#btnLogo'), logoMark: $('#logoMark'), coverMark: $('#coverMark'),
+    mainnav: $('#mainnav'),
     cover: $('#viewCover'), coverArt: $('#coverArt'), coverMeta: $('#coverMeta'),
     coverLines: $('#coverLines'), coverSticker: $('#coverSticker'),
     topbar: document.querySelector('.topbar'),
@@ -5035,7 +5112,7 @@ var UNIVERSES = [
     coverGames: $('#btnCoverGames'),
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
     gamesSub: $('#gamesSub'),
-    grid: $('#uniGrid'), back: $('#btnBack'), random: $('#btnRandom'),
+    grid: $('#uniGrid'), random: $('#btnRandom'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
     cfTags: $('#cfTags'), cfDots: $('#cfDots'), read: $('#btnRead'),
@@ -5054,13 +5131,30 @@ var UNIVERSES = [
 
   var state = { universe: null, story: null, page: 0, speak: false };
 
+  /* ---------------- la marque ---------------- */
+  els.logoMark.innerHTML = Art.marque();
+  els.coverMark.innerHTML = Art.marque();
+  els.logo.onclick = function () { location.hash = '#/'; };
+
+  /* ---------------- le menu principal ---------------- */
+  function renderNav(actif) {
+    var b = els.mainnav.children;
+    for (var i = 0; i < b.length; i++) {
+      var nav = b[i].getAttribute('data-nav');
+      b[i].className = nav === actif ? 'is-active' : '';
+      b[i].onclick = (function (n) {
+        return function () { location.hash = n === 'jeux' ? '#/jeux' : '#/histoires'; };
+      })(nav);
+    }
+  }
+
   /* ---------------- onglets ---------------- */
   function renderTabs(activeId) {
     els.tabs.innerHTML = '';
     var all = document.createElement('button');
     all.className = 'tab' + (activeId ? '' : ' is-active');
-    all.textContent = '★ Tout';
-    all.onclick = function () { location.hash = '#/sommaire'; };
+    all.textContent = '★ Tous';
+    all.onclick = function () { location.hash = '#/histoires'; };
     els.tabs.appendChild(all);
 
     UNIVERSES.forEach(function (u) {
@@ -5071,11 +5165,6 @@ var UNIVERSES = [
       els.tabs.appendChild(b);
     });
 
-    var j = document.createElement('button');
-    j.className = 'tab' + (activeId === 'jeux' ? ' is-active' : '');
-    j.textContent = '🎮 Jeux';
-    j.onclick = function () { location.hash = '#/jeux'; };
-    els.tabs.appendChild(j);
   }
 
   /* ---------------- les jeux ---------------- */
@@ -5117,7 +5206,9 @@ var UNIVERSES = [
     var forme = (r.width / Math.max(1, r.height)) < 1.15 ? 'haut' : 'large';
     if (forme === coverForme) return;
     coverForme = forme;
+    var pastille = els.coverSticker;
     els.coverArt.innerHTML = Art.scene(COUVERTURE[forme], { slice: true, noBubbles: true });
+    els.coverArt.appendChild(pastille);        // la pastille reste par-dessus
   }
 
   function renderCover() {
@@ -5325,22 +5416,22 @@ var UNIVERSES = [
       setTheme(null);
       els.cover.hidden = false; els.home.hidden = true; els.uni.hidden = true;
       els.games.hidden = true; Jeux.taire();
-      els.topbar.hidden = true; els.tabs.hidden = true;
+      els.topbar.hidden = true; els.tabs.hidden = true; els.mainnav.hidden = true;
       renderCover();
       window.scrollTo(0, 0);
       return;
     }
 
     els.cover.hidden = true;
-    els.topbar.hidden = false; els.tabs.hidden = false;
+    els.topbar.hidden = false; els.mainnav.hidden = false;
 
     if (parts[0] === 'jeux') {                   // les jeux
       closeReader();
       Jeux.taire();
-      renderTabs('jeux');
+      renderNav('jeux');
       setTheme(null);
+      els.tabs.hidden = true;
       els.home.hidden = true; els.uni.hidden = true; els.games.hidden = false;
-      els.back.hidden = false;
       var jeu = parts[1] && Jeux.trouver(parts[1]);
       if (jeu) { renderGames(); openGame(jeu); }
       else renderGames();
@@ -5349,22 +5440,24 @@ var UNIVERSES = [
     }
     els.games.hidden = true;
     Jeux.taire();
+    renderNav('histoires');
+    els.tabs.hidden = false;
 
-    if (parts[0] !== 'u') {                      // le sommaire
+    if (parts[0] !== 'u') {                      // la liste des univers
       closeReader();
       renderTabs(null);
       setTheme(null);
-      els.home.hidden = false; els.uni.hidden = true; els.back.hidden = false;
+      els.home.hidden = false; els.uni.hidden = true;
       renderHome();
       window.scrollTo(0, 0);
       return;
     }
 
     var u = findUniverse(parts[1]);
-    if (!u) { location.hash = '#/sommaire'; return; }
+    if (!u) { location.hash = '#/histoires'; return; }
 
     renderTabs(u.id);
-    els.home.hidden = true; els.uni.hidden = false; els.back.hidden = false;
+    els.home.hidden = true; els.uni.hidden = false;
 
     var storyId = parts[2];
     if (state.universe !== u) renderUniverse(u, storyId);
@@ -5390,16 +5483,9 @@ var UNIVERSES = [
     }
   }
 
-  els.back.onclick = function () {
-    if (!els.reader.hidden) location.hash = '#/u/' + state.universe.id;
-    else if (!els.games.hidden) location.hash = els.gameStage.hidden ? '#/sommaire' : '#/jeux';
-    else if (els.home.hidden) location.hash = '#/sommaire';
-    else location.hash = '#/';
-  };
-
   els.coverGames.onclick = function () { location.hash = '#/jeux'; };
 
-  els.open.onclick = function () { location.hash = '#/sommaire'; };
+  els.open.onclick = function () { location.hash = '#/histoires'; };
 
   els.coverRandom.onclick = function () { els.random.onclick(); };
 

@@ -17,8 +17,9 @@ var COUVERTURE = {
 
   /* écran large : les quatre héros bien alignés, personne ne se chevauche */
   large: {
-    bg: 'beach',
+    bg: 'beach', noSun: true,
     back: [
+      { t: 'sun', x: 688, y: 292, s: .68 },
       { t: 'parasol', x: 62, y: 478, s: .66 },
       { t: 'sandcastle', x: 692, y: 476, s: .44 }
     ],
@@ -37,8 +38,9 @@ var COUVERTURE = {
 
   /* écran haut : trois héros seulement, serrés dans la bande visible */
   haut: {
-    bg: 'beach',
+    bg: 'beach', noSun: true,
     back: [
+      { t: 'sun', x: 516, y: 190, s: .75 },
       { t: 'parasol', x: 118, y: 452, s: .7 },
       { t: 'sandcastle', x: 688, y: 470, s: .55 }
     ],

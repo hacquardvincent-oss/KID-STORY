@@ -1074,7 +1074,10 @@
     var sea = time === 'sunset' ? '#dd8460' : '#4f9cb5';
     var out = skyRect(time);
     if (time === 'night') out += stars(22, 220);
-    if (time === 'sunset') out += g('translate(640,190)', P.sun({ color: '#ffdf6b' }));
+    /* une scène peut poser son propre soleil (utile quand le cadrage
+       plein écran rogne le haut du ciel) : voir COUVERTURE */
+    if (s.noSun) { /* la scène s'en charge */ }
+    else if (time === 'sunset') out += g('translate(640,190)', P.sun({ color: '#ffdf6b' }));
     else if (time !== 'night') out += g('translate(690,96)', P.sun({}));
     else out += g('translate(690,96)', P.moon({}));
     if (time !== 'night') {
@@ -1443,6 +1446,21 @@
       '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
   }
 
+  /* la marque du site : une bulle de BD qui sourit */
+  function marqueSVG() {
+    var s = U([
+      '<rect x="10" y="12" width="80" height="62" rx="20" fill="%F%" %S%/>',
+      '<path d="M 30,68 L 26,92 L 52,72 Z" fill="%F%" %S%/>'
+    ], '#f7c518', 9);
+    s += '<circle cx="38" cy="40" r="7" fill="' + INK + '"/>' +
+      '<circle cx="64" cy="40" r="7" fill="' + INK + '"/>' +
+      '<circle cx="40.5" cy="37.5" r="2.4" fill="#fff"/>' +
+      '<circle cx="66.5" cy="37.5" r="2.4" fill="#fff"/>';
+    s += line('M 36,54 q 14,14 30,2', INK, 6);
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" ' +
+      'preserveAspectRatio="xMidYMid meet" aria-hidden="true">' + s + '</svg>';
+  }
+
   /* une vignette : un seul élément, sans décor, pour les jeux */
   function stickerSVG(it) {
     var fn = ITEMS[it.t];
@@ -1457,6 +1475,7 @@
   global.Art = {
     scene: sceneSVG,
     sticker: stickerSVG,
+    marque: marqueSVG,
     INK: INK,
     W: VW,
     H: VH,
