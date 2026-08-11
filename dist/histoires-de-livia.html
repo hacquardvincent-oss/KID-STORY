@@ -167,6 +167,15 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   box-shadow: 0 2px 0 var(--ink);
 }
 .soir-choix button:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
+.soir-regle { display: flex; align-items: center; gap: 10px; }
+.soir-pm {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2.5px solid var(--ink); background: var(--jaune); color: var(--ink);
+  font-family: inherit; font-size: 20px; font-weight: 700; line-height: 1; cursor: pointer;
+  box-shadow: 0 2px 0 var(--ink);
+}
+.soir-pm:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
+.soir-pm[disabled] { opacity: .35; box-shadow: none; }
 .soir-changer {
   font-family: inherit; cursor: pointer; background: none; border: 0; padding: 0;
   color: var(--ink-soft); font-size: 13.5px;
@@ -478,6 +487,35 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 }
 .cta:active { transform: translateY(4px); box-shadow: 0 0 0 var(--ink); }
 
+/* le grand bouton de lecture : une flèche qu'on reconnaît sans savoir lire */
+.cta-lire {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 9px 26px 9px 10px;
+}
+.cta-img {
+  width: 44px; height: 44px; border-radius: 50%; flex: 0 0 auto;
+  background: #fff6e4; color: var(--rouge);
+  display: grid; place-content: center;
+  font-size: 21px; line-height: 1; padding-left: 3px;
+  border: 3px solid var(--ink);
+}
+.cta-mot { font-size: 18px; }
+
+/* boutons illustrés : la grande image d'abord, le mot en petit dessous */
+.bi {
+  font-family: inherit; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  width: 88px; padding: 9px 4px 7px;
+  border: 3px solid var(--ink); border-radius: 18px;
+  background: var(--page); color: var(--ink); box-shadow: 0 4px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s;
+}
+.bi:active { transform: translateY(4px); box-shadow: 0 0 0 var(--ink); }
+.bi.primary { background: var(--jaune); }
+.bi-img { font-size: 30px; line-height: 1.05; }
+.bi-mot { font-size: 12.5px; font-weight: 600; letter-spacing: .2px; }
+
+
 .cf-dots { display: flex; gap: 7px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
 .cf-dots i {
   width: 8px; height: 8px; border-radius: 50%; background: var(--paper-3);
@@ -556,6 +594,30 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .chiffre.secoue { animation: secoue .4s; }
 
 /* écrire */
+/* un jeu à l'écran entier : plus de bandeau, plus de titre, rien à faire
+   défiler — c'est la seule façon de tenir deux cases sur un téléphone */
+.jeu-plein {
+  position: fixed; inset: 0; z-index: 60; margin: 0; max-width: none;
+  background: var(--paper); background-image: var(--grain);
+  background-size: 96px 96px;
+  display: flex; flex-direction: column;
+  padding: calc(var(--safe-top) + 10px) 8px calc(var(--safe-bot) + 8px);
+}
+.jeu-plein .jeu-etoiles { flex: 0 0 auto; margin: 0 44px 6px 0; }
+.jeu-plein .jeu-consigne { flex: 0 0 auto; margin: 0 0 6px; font-size: 16px; }
+.jeu-plein .jeu-zone { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.jeu-plein .diff { flex: 1 1 auto; min-height: 0; margin: 0; grid-template-rows: 1fr 1fr; }
+.jeu-plein .diff-vue { aspect-ratio: auto; height: 100%; min-height: 0; }
+.jeu-plein .diff-score { flex: 0 0 auto; margin: 6px 0 0; }
+.jeu-fermer {
+  position: absolute; top: calc(var(--safe-top) + 8px); right: 10px; z-index: 3;
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 2.5px solid var(--ink); background: var(--page); color: var(--ink);
+  font-family: inherit; font-size: 17px; line-height: 1; cursor: pointer;
+  box-shadow: 0 2px 0 var(--ink);
+}
+.jeu-fermer:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
+
 /* les 6 différences : deux fois la même case, à un détail près */
 /* sur un téléphone, la case va d'un bord à l'autre : chaque pixel compte
    pour viser un détail du doigt */
@@ -580,6 +642,7 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 
 @media (min-width: 760px) {
   .diff { grid-template-columns: 1fr 1fr; margin: 0; gap: 12px; }
+  .jeu-plein .diff { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
 }
 
 /* le rang de jeux, pour passer de l'un à l'autre */
@@ -890,7 +953,9 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
       <div class="cf-tags" id="cfTags"></div>
       <h3 id="cfTitle"></h3>
       <p id="cfSubtitle"></p>
-      <button class="cta" id="btnRead">Lire l'histoire</button>
+      <button class="cta cta-lire" id="btnRead" aria-label="Lire l'histoire">
+        <span class="cta-img">▶</span><span class="cta-mot">Lire l'histoire</span>
+      </button>
     </div>
 
     <div class="cf-dots" id="cfDots"></div>
@@ -9196,12 +9261,30 @@ var UNIVERSES = [
   }
   function taire() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
 
+  /* Un bouton d'abord visuel : une grande image, le mot en petit dessous.
+     À quatre ans on ne lit pas encore, mais on reconnaît une flèche. */
+  function bi(act, image, mot, fort) {
+    return '<button class="bi' + (fort ? ' primary' : '') + '" data-act="' + act +
+      '" aria-label="' + mot + '"><span class="bi-img">' + image +
+      '</span><span class="bi-mot">' + mot + '</span></button>';
+  }
+
   /* ============================================================
      LE CADRE : manches, étoiles, félicitations
      ============================================================ */
   function jouer(stage, def, onQuit) {
     var gagnees = 0, total = 0, valeur = null;
     stage.innerHTML = '';
+
+    /* certains jeux se jouent à l'écran entier : rien à faire défiler, tout
+       est atteignable du pouce */
+    stage.classList.toggle('jeu-plein', !!def.plein);
+    if (def.plein) {
+      var fermer = el('button', 'jeu-fermer', '✕');
+      fermer.setAttribute('aria-label', 'Fermer le jeu');
+      fermer.onclick = function () { onQuit(); };
+      stage.appendChild(fermer);
+    }
 
     var barre = el('div', 'jeu-etoiles');
     var consigne = el('p', 'jeu-consigne');
@@ -9259,9 +9342,9 @@ var UNIVERSES = [
         '<h3>Bravo Livia !</h3>' +
         '<p>' + def.felicitation + '</p>' +
         '<div class="jeu-actions">' +
-        '<button class="primary" data-act="rejouer">Rejouer</button>' +
-        (def.choisir ? '<button data-act="choisir">' + (def.choixBouton || 'Changer') + '</button>' : '') +
-        '<button data-act="autres">Les autres jeux</button></div>');
+        bi('rejouer', '↻', 'Rejouer', true) +
+        (def.choisir ? bi('choisir', '✎', def.choixBouton || 'Changer', false) : '') +
+        bi('autres', '⌂', 'Les jeux', false) + '</div>');
       zone.appendChild(f);
       dire('Bravo Livia ! Tu as gagné toutes les étoiles.');
       f.addEventListener('click', function (e) {
@@ -9746,8 +9829,9 @@ var UNIVERSES = [
      dessin deux fois plus gros. Si on n'y trouve pas six différences, on
      élargit d'un cran.
      ------------------------------------------------------------ */
-  function fabriquerDifferences(scene, graine) {
+  function fabriquerDifferences(scene, graine, format) {
     var W = 800, H = 560;
+    format = format || W / H;
     var r = graineur(graine);
     var copie = JSON.parse(JSON.stringify(scene));
     delete copie.bubbles;
@@ -9767,7 +9851,10 @@ var UNIVERSES = [
     var pv = pivots.length ? pivots[Math.floor(r() * pivots.length)] : { x: W / 2, y: 380 };
 
     function fenetre(largeur) {
-      var w = Math.min(largeur, W), h = w * H / W;
+      /* la fenêtre prend le format de la case à l'écran : sur un téléphone
+         en plein écran, elle est plus haute que large */
+      var w = Math.min(largeur, W), h = w / format;
+      if (h > H) { h = H; w = Math.min(W, h * format); }
       return {
         x: Math.min(Math.max(pv.x - w / 2, 0), W - w),
         y: Math.min(Math.max(pv.y - h * 0.42, 0), H - h),
@@ -9875,22 +9962,25 @@ var UNIVERSES = [
     }));
     var choix = lotPlanches[n % lotPlanches.length];
     var trouve = trouverScene(choix.p.u, choix.p.s, choix.p.p);
-    var fab = fabriquerDifferences(trouve.scene, 1000 + choix.i * 7919);
     api.consigne('Trouve les 6 différences.');
 
-    var cadre = fab.cadre;
+    /* On pose d'abord les deux cases vides, on mesure la place réellement
+       disponible, et seulement ensuite on choisit le cadrage : c'est ce qui
+       permet de tout tenir à l'écran sans faire défiler la page. */
     var plateau = el('div', 'diff');
-    var vues = [];
-    [trouve.scene, fab.scene].forEach(function (sc) {
-      var v = el('div', 'diff-vue');
-      v.innerHTML = Art.scene(sc, { noBubbles: true, cadre: cadre });
-      plateau.appendChild(v);
-      vues.push(v);
-    });
+    var vues = [el('div', 'diff-vue'), el('div', 'diff-vue')];
+    vues.forEach(function (v) { plateau.appendChild(v); });
     zone.appendChild(plateau);
 
     var score = el('p', 'diff-score');
     zone.appendChild(score);
+
+    var boite = vues[0].getBoundingClientRect();
+    var format = (boite.width > 20 && boite.height > 20) ? boite.width / boite.height : 800 / 560;
+    var fab = fabriquerDifferences(trouve.scene, 1000 + choix.i * 7919, format);
+    var cadre = fab.cadre;
+    vues[0].innerHTML = Art.scene(trouve.scene, { noBubbles: true, cadre: cadre });
+    vues[1].innerHTML = Art.scene(fab.scene, { noBubbles: true, cadre: cadre });
 
     var vus = fab.zones.map(function () { return false; });
     function majScore() {
@@ -9965,7 +10055,10 @@ var UNIVERSES = [
       id: 'differences', nom: 'Les 6 différences', emoji: '🔍',
       sous: 'Deux cases presque pareilles',
       vignette: { t: 'bluey', ds: .62, dy: 184 },
-      def: { manches: 6, manche: jeuDifferences, felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.' }
+      def: {
+        manches: 6, manche: jeuDifferences, plein: true,
+        felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.'
+      }
     },
     {
       id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤',
@@ -10054,6 +10147,15 @@ var UNIVERSES = [
         if (!o) return null;
         var cle = u.id + '/' + s.id;
         if (o.faites.indexOf(cle) < 0) { o.faites.push(cle); ecrire(o); }
+        return reste(o);
+      },
+      /* « allez, encore une » : on ajuste le total en cours de soirée sans
+         perdre ce qui a déjà été lu */
+      ajuster: function (d) {
+        var o = lire();
+        if (!o) return null;
+        o.total = Math.max(o.faites.length, Math.min(9, o.total + d));
+        ecrire(o);
         return reste(o);
       }
     };
@@ -10283,7 +10385,7 @@ var UNIVERSES = [
   els.logo.onclick = function () { location.hash = '#/'; };
 
   /* ---------------- l'affichage du compte du soir ---------------- */
-  var CHOIX_SOIR = [1, 2, 3, 4, 5];
+  var CHOIX_SOIR = [1, 2, 3, 4, 5, 6];
 
   function majSoir() {
     var r = Soir.reste();
@@ -10308,14 +10410,24 @@ var UNIVERSES = [
         }).join('') + '</span>';
     } else {
       var r = Math.max(0, o.total - o.faites.length);
-      els.soirCover.innerHTML = '<span class="soir-titre">' +
+      els.soirCover.innerHTML =
+        '<span class="soir-regle">' +
+        '<button class="soir-pm" data-ajuste="-1" aria-label="une histoire de moins"' +
+        (o.total <= o.faites.length ? ' disabled' : '') + '>−</button>' +
+        '<span class="soir-titre">' +
         (r > 0
           ? 'Encore <b>' + r + '</b> histoire' + (r > 1 ? 's' : '') + ' ce soir'
           : '<b>Terminé</b> pour ce soir') +
-        '</span><button class="soir-changer" data-soir="0">changer</button>';
+        '</span>' +
+        '<button class="soir-pm" data-ajuste="1" aria-label="une histoire de plus">+</button>' +
+        '</span><button class="soir-changer" data-soir="0">remettre à zéro</button>';
     }
     els.soirCover.onclick = function (e) {
-      var n = e.target.getAttribute && e.target.getAttribute('data-soir');
+      var b = e.target;
+      if (!b.getAttribute) return;
+      var d = b.getAttribute('data-ajuste');
+      if (d !== null) { Soir.ajuster(parseInt(d, 10)); majSoir(); return; }
+      var n = b.getAttribute('data-soir');
       if (n === null) return;
       Soir.definir(parseInt(n, 10));
       majSoir();
@@ -10623,6 +10735,15 @@ var UNIVERSES = [
     requestAnimationFrame(function () { goPage(saved, true); syncPage(); });
   }
 
+  /* Les boutons que l'enfant utilise sont d'abord des images : à quatre ans
+     on ne lit pas encore, mais on reconnaît une flèche et une maison. Le mot
+     reste dessous, en petit, pour l'adulte. */
+  function bouton(act, image, mot, fort) {
+    return '<button class="bi' + (fort ? ' primary' : '') + '" data-act="' + act +
+      '" aria-label="' + mot + '"><span class="bi-img">' + image +
+      '</span><span class="bi-mot">' + mot + '</span></button>';
+  }
+
   /* la page finale : elle change de discours selon ce qu'il reste à lire */
   function majFin(reste) {
     if (!state.end) return;
@@ -10643,9 +10764,9 @@ var UNIVERSES = [
     }
     corps.innerHTML = '<h4>' + titre + '</h4><p>' + mot + '</p>' +
       '<div class="end-actions">' +
-      (suite ? '<button class="primary" data-act="next">Histoire suivante</button>' : '') +
-      '<button' + (suite ? '' : ' class="primary"') + ' data-act="again">Relire</button>' +
-      '<button data-act="close">Retour aux histoires</button></div>';
+      (suite ? bouton('next', '▶', 'Une autre', true) : '') +
+      bouton('again', '↻', 'Relire', !suite) +
+      bouton('close', '⌂', 'Le sommaire', false) + '</div>';
   }
 
   function closeReader() {

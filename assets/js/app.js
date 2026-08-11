@@ -59,6 +59,15 @@
         var cle = u.id + '/' + s.id;
         if (o.faites.indexOf(cle) < 0) { o.faites.push(cle); ecrire(o); }
         return reste(o);
+      },
+      /* « allez, encore une » : on ajuste le total en cours de soirée sans
+         perdre ce qui a déjà été lu */
+      ajuster: function (d) {
+        var o = lire();
+        if (!o) return null;
+        o.total = Math.max(o.faites.length, Math.min(9, o.total + d));
+        ecrire(o);
+        return reste(o);
       }
     };
   })();
@@ -287,7 +296,7 @@
   els.logo.onclick = function () { location.hash = '#/'; };
 
   /* ---------------- l'affichage du compte du soir ---------------- */
-  var CHOIX_SOIR = [1, 2, 3, 4, 5];
+  var CHOIX_SOIR = [1, 2, 3, 4, 5, 6];
 
   function majSoir() {
     var r = Soir.reste();
@@ -312,14 +321,24 @@
         }).join('') + '</span>';
     } else {
       var r = Math.max(0, o.total - o.faites.length);
-      els.soirCover.innerHTML = '<span class="soir-titre">' +
+      els.soirCover.innerHTML =
+        '<span class="soir-regle">' +
+        '<button class="soir-pm" data-ajuste="-1" aria-label="une histoire de moins"' +
+        (o.total <= o.faites.length ? ' disabled' : '') + '>−</button>' +
+        '<span class="soir-titre">' +
         (r > 0
           ? 'Encore <b>' + r + '</b> histoire' + (r > 1 ? 's' : '') + ' ce soir'
           : '<b>Terminé</b> pour ce soir') +
-        '</span><button class="soir-changer" data-soir="0">changer</button>';
+        '</span>' +
+        '<button class="soir-pm" data-ajuste="1" aria-label="une histoire de plus">+</button>' +
+        '</span><button class="soir-changer" data-soir="0">remettre à zéro</button>';
     }
     els.soirCover.onclick = function (e) {
-      var n = e.target.getAttribute && e.target.getAttribute('data-soir');
+      var b = e.target;
+      if (!b.getAttribute) return;
+      var d = b.getAttribute('data-ajuste');
+      if (d !== null) { Soir.ajuster(parseInt(d, 10)); majSoir(); return; }
+      var n = b.getAttribute('data-soir');
       if (n === null) return;
       Soir.definir(parseInt(n, 10));
       majSoir();
@@ -627,6 +646,15 @@
     requestAnimationFrame(function () { goPage(saved, true); syncPage(); });
   }
 
+  /* Les boutons que l'enfant utilise sont d'abord des images : à quatre ans
+     on ne lit pas encore, mais on reconnaît une flèche et une maison. Le mot
+     reste dessous, en petit, pour l'adulte. */
+  function bouton(act, image, mot, fort) {
+    return '<button class="bi' + (fort ? ' primary' : '') + '" data-act="' + act +
+      '" aria-label="' + mot + '"><span class="bi-img">' + image +
+      '</span><span class="bi-mot">' + mot + '</span></button>';
+  }
+
   /* la page finale : elle change de discours selon ce qu'il reste à lire */
   function majFin(reste) {
     if (!state.end) return;
@@ -647,9 +675,9 @@
     }
     corps.innerHTML = '<h4>' + titre + '</h4><p>' + mot + '</p>' +
       '<div class="end-actions">' +
-      (suite ? '<button class="primary" data-act="next">Histoire suivante</button>' : '') +
-      '<button' + (suite ? '' : ' class="primary"') + ' data-act="again">Relire</button>' +
-      '<button data-act="close">Retour aux histoires</button></div>';
+      (suite ? bouton('next', '▶', 'Une autre', true) : '') +
+      bouton('again', '↻', 'Relire', !suite) +
+      bouton('close', '⌂', 'Le sommaire', false) + '</div>';
   }
 
   function closeReader() {

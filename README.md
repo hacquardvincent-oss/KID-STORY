@@ -37,10 +37,15 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   et marque les histoires déjà lues d'un ✓
 * **Bouton 🎲** — une histoire au hasard
 * **Le compte du soir** — sur la couverture, on choisit combien d'histoires on
-  lit ce soir. Un 🌙 dans le bandeau montre ce qu'il reste ; il diminue quand
-  une histoire est terminée (relire la même n'en consomme pas une deuxième),
-  et la dernière page annonce « C'était la dernière ». Le compte s'efface tout
-  seul le lendemain.
+  lit ce soir (1 à 6). Un 🌙 dans le bandeau montre ce qu'il reste ; il diminue
+  quand une histoire est terminée (relire la même n'en consomme pas une
+  deuxième), et la dernière page annonce « C'était la dernière ». Les boutons
+  **− et +** ajustent le total en cours de soirée, pour le « allez, encore
+  une » — sans effacer ce qui a déjà été lu. Le compte disparaît tout seul le
+  lendemain.
+* **Des boutons d'abord visuels** — à quatre ans on ne lit pas encore : les
+  boutons que l'enfant utilise portent une grande image (▶ ↻ ⌂), le mot reste
+  dessous en petit pour l'adulte.
 * **Cinq jeux** pour les 3-5 ans, avec les mêmes héros : relier chaque
   personnage à son objet, compter jusqu'à six, tracer au doigt les prénoms de
   la maison (Livia, Pablo, Maman, Papa, Mila, Antoine…), apprendre l'alphabet
@@ -429,6 +434,12 @@ trouve. C'est l'inverse de l'intuition, mais c'est ce qui garantit un dessin
 assez grand sur un téléphone : une fenêtre de 520 unités sur 800, c'est un
 dessin une fois et demie plus gros. Si six différences n'y tiennent pas, la
 fenêtre s'élargit d'un cran.
+
+Ce jeu se joue **à l'écran entier** (`plein: true` dans sa définition) : ni
+bandeau, ni titre, ni défilement. Les deux cases vides sont posées d'abord, on
+mesure la place réellement disponible, et la fenêtre prend ce format-là — sur
+un téléphone elle est donc plus haute que large. Un enfant de quatre ans ne
+fait pas défiler une page pour trouver le reste du jeu.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu

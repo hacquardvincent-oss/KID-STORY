@@ -37,12 +37,30 @@
   }
   function taire() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
 
+  /* Un bouton d'abord visuel : une grande image, le mot en petit dessous.
+     À quatre ans on ne lit pas encore, mais on reconnaît une flèche. */
+  function bi(act, image, mot, fort) {
+    return '<button class="bi' + (fort ? ' primary' : '') + '" data-act="' + act +
+      '" aria-label="' + mot + '"><span class="bi-img">' + image +
+      '</span><span class="bi-mot">' + mot + '</span></button>';
+  }
+
   /* ============================================================
      LE CADRE : manches, étoiles, félicitations
      ============================================================ */
   function jouer(stage, def, onQuit) {
     var gagnees = 0, total = 0, valeur = null;
     stage.innerHTML = '';
+
+    /* certains jeux se jouent à l'écran entier : rien à faire défiler, tout
+       est atteignable du pouce */
+    stage.classList.toggle('jeu-plein', !!def.plein);
+    if (def.plein) {
+      var fermer = el('button', 'jeu-fermer', '✕');
+      fermer.setAttribute('aria-label', 'Fermer le jeu');
+      fermer.onclick = function () { onQuit(); };
+      stage.appendChild(fermer);
+    }
 
     var barre = el('div', 'jeu-etoiles');
     var consigne = el('p', 'jeu-consigne');
@@ -100,9 +118,9 @@
         '<h3>Bravo Livia !</h3>' +
         '<p>' + def.felicitation + '</p>' +
         '<div class="jeu-actions">' +
-        '<button class="primary" data-act="rejouer">Rejouer</button>' +
-        (def.choisir ? '<button data-act="choisir">' + (def.choixBouton || 'Changer') + '</button>' : '') +
-        '<button data-act="autres">Les autres jeux</button></div>');
+        bi('rejouer', '↻', 'Rejouer', true) +
+        (def.choisir ? bi('choisir', '✎', def.choixBouton || 'Changer', false) : '') +
+        bi('autres', '⌂', 'Les jeux', false) + '</div>');
       zone.appendChild(f);
       dire('Bravo Livia ! Tu as gagné toutes les étoiles.');
       f.addEventListener('click', function (e) {
@@ -587,8 +605,9 @@
      dessin deux fois plus gros. Si on n'y trouve pas six différences, on
      élargit d'un cran.
      ------------------------------------------------------------ */
-  function fabriquerDifferences(scene, graine) {
+  function fabriquerDifferences(scene, graine, format) {
     var W = 800, H = 560;
+    format = format || W / H;
     var r = graineur(graine);
     var copie = JSON.parse(JSON.stringify(scene));
     delete copie.bubbles;
@@ -608,7 +627,10 @@
     var pv = pivots.length ? pivots[Math.floor(r() * pivots.length)] : { x: W / 2, y: 380 };
 
     function fenetre(largeur) {
-      var w = Math.min(largeur, W), h = w * H / W;
+      /* la fenêtre prend le format de la case à l'écran : sur un téléphone
+         en plein écran, elle est plus haute que large */
+      var w = Math.min(largeur, W), h = w / format;
+      if (h > H) { h = H; w = Math.min(W, h * format); }
       return {
         x: Math.min(Math.max(pv.x - w / 2, 0), W - w),
         y: Math.min(Math.max(pv.y - h * 0.42, 0), H - h),
@@ -716,22 +738,25 @@
     }));
     var choix = lotPlanches[n % lotPlanches.length];
     var trouve = trouverScene(choix.p.u, choix.p.s, choix.p.p);
-    var fab = fabriquerDifferences(trouve.scene, 1000 + choix.i * 7919);
     api.consigne('Trouve les 6 différences.');
 
-    var cadre = fab.cadre;
+    /* On pose d'abord les deux cases vides, on mesure la place réellement
+       disponible, et seulement ensuite on choisit le cadrage : c'est ce qui
+       permet de tout tenir à l'écran sans faire défiler la page. */
     var plateau = el('div', 'diff');
-    var vues = [];
-    [trouve.scene, fab.scene].forEach(function (sc) {
-      var v = el('div', 'diff-vue');
-      v.innerHTML = Art.scene(sc, { noBubbles: true, cadre: cadre });
-      plateau.appendChild(v);
-      vues.push(v);
-    });
+    var vues = [el('div', 'diff-vue'), el('div', 'diff-vue')];
+    vues.forEach(function (v) { plateau.appendChild(v); });
     zone.appendChild(plateau);
 
     var score = el('p', 'diff-score');
     zone.appendChild(score);
+
+    var boite = vues[0].getBoundingClientRect();
+    var format = (boite.width > 20 && boite.height > 20) ? boite.width / boite.height : 800 / 560;
+    var fab = fabriquerDifferences(trouve.scene, 1000 + choix.i * 7919, format);
+    var cadre = fab.cadre;
+    vues[0].innerHTML = Art.scene(trouve.scene, { noBubbles: true, cadre: cadre });
+    vues[1].innerHTML = Art.scene(fab.scene, { noBubbles: true, cadre: cadre });
 
     var vus = fab.zones.map(function () { return false; });
     function majScore() {
@@ -806,7 +831,10 @@
       id: 'differences', nom: 'Les 6 différences', emoji: '🔍',
       sous: 'Deux cases presque pareilles',
       vignette: { t: 'bluey', ds: .62, dy: 184 },
-      def: { manches: 6, manche: jeuDifferences, felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.' }
+      def: {
+        manches: 6, manche: jeuDifferences, plein: true,
+        felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.'
+      }
     },
     {
       id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤',
