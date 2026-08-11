@@ -137,6 +137,38 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .mainnav button:active { transform: translateY(3px); box-shadow: 0 0 0 var(--ink); }
 .mainnav button.is-active { background: var(--jaune); }
 
+/* le compte du soir : combien d'histoires il reste à lire */
+.soir-badge {
+  flex: 0 0 auto; height: 40px; padding: 0 13px; border-radius: 999px;
+  border: 2.5px solid var(--ink); background: var(--jaune); color: var(--ink);
+  font-family: inherit; font-size: 15px; cursor: pointer;
+  display: flex; align-items: center; gap: 5px;
+  box-shadow: 0 2px 0 var(--ink); margin-right: 8px;
+}
+.soir-badge b { font-size: 19px; font-weight: 700; }
+.soir-badge.fini { background: var(--page); color: var(--ink-soft); }
+.soir-badge:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
+
+.soir {
+  display: flex; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 8px; margin: 0 0 10px;
+}
+.soir-titre { font-size: 14.5px; color: var(--ink-soft); }
+.soir-titre b { color: var(--ink); font-size: 17px; }
+.soir-choix { display: flex; gap: 6px; }
+.soir-choix button {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2.5px solid var(--ink); background: var(--page); color: var(--ink);
+  font-family: inherit; font-size: 16px; font-weight: 600; cursor: pointer;
+  box-shadow: 0 2px 0 var(--ink);
+}
+.soir-choix button:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
+.soir-changer {
+  font-family: inherit; cursor: pointer; background: none; border: 0; padding: 0;
+  color: var(--ink-soft); font-size: 13.5px;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+
 .icon-btn {
   flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
   border: 2.5px solid var(--ink);

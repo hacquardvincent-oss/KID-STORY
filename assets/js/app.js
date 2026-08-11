@@ -25,6 +25,44 @@
   }
   function isRead(u, s) { return store('read.' + u.id + '.' + s.id) === '1'; }
 
+  /* ---------------- le compte du soir ----------------
+     Un parent décide combien d'histoires on lit ce soir ; le compte
+     s'efface tout seul le lendemain. On décompte les histoires TERMINÉES,
+     pas les ouvertures : rouvrir la même n'en consomme pas une deuxième.
+     La journée démarre à 4 h du matin, pour qu'une histoire finie à
+     minuit dix appartienne encore à la soirée de la veille. */
+  var Soir = (function () {
+    function jour() {
+      var d = new Date(Date.now() - 4 * 3600 * 1000);
+      return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    }
+    function lire() {
+      try {
+        var o = JSON.parse(store('soiree') || 'null');
+        return (o && o.jour === jour()) ? o : null;
+      } catch (e) { return null; }
+    }
+    function ecrire(o) { store('soiree', JSON.stringify(o)); }
+    function reste(o) { return o ? Math.max(0, o.total - o.faites.length) : null; }
+    return {
+      etat: lire,
+      reste: function () { return reste(lire()); },
+      definir: function (n) {
+        if (!n) { store('soiree', ''); return null; }
+        var o = { jour: jour(), total: n, faites: [] };
+        ecrire(o);
+        return o;
+      },
+      compter: function (u, s) {
+        var o = lire();
+        if (!o) return null;
+        var cle = u.id + '/' + s.id;
+        if (o.faites.indexOf(cle) < 0) { o.faites.push(cle); ecrire(o); }
+        return reste(o);
+      }
+    };
+  })();
+
   /* chaque histoire porte un numéro, comme les numéros d'un magazine */
   var NUMERO = {};
   (function () {
@@ -225,6 +263,7 @@
     games: $('#viewGames'), gamesGrid: $('#gamesGrid'), gameStage: $('#gameStage'),
     gamesSub: $('#gamesSub'), jeuxNav: $('#jeuxNav'),
     grid: $('#uniGrid'), random: $('#btnRandom'),
+    soirBadge: $('#soirBadge'), soirCover: $('#soirCover'),
     hello: $('#homeHello'), themeChips: $('#themeChips'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
@@ -246,6 +285,48 @@
 
   /* ---------------- la marque ---------------- */
   els.logo.onclick = function () { location.hash = '#/'; };
+
+  /* ---------------- l'affichage du compte du soir ---------------- */
+  var CHOIX_SOIR = [1, 2, 3, 4, 5];
+
+  function majSoir() {
+    var r = Soir.reste();
+    els.soirBadge.hidden = (r === null);
+    if (r !== null) {
+      els.soirBadge.innerHTML = '🌙 <b>' + r + '</b>';
+      els.soirBadge.setAttribute('aria-label',
+        r > 0 ? (r + ' histoire' + (r > 1 ? 's' : '') + ' restante' + (r > 1 ? 's' : '') + ' ce soir')
+          : 'plus d\'histoire ce soir');
+      els.soirBadge.classList.toggle('fini', r === 0);
+    }
+    renderSoirCover();
+  }
+
+  function renderSoirCover() {
+    if (!els.soirCover) return;
+    var o = Soir.etat();
+    if (!o) {
+      els.soirCover.innerHTML = '<span class="soir-titre">Ce soir, on lit…</span>' +
+        '<span class="soir-choix">' + CHOIX_SOIR.map(function (n) {
+          return '<button data-soir="' + n + '">' + n + '</button>';
+        }).join('') + '</span>';
+    } else {
+      var r = Math.max(0, o.total - o.faites.length);
+      els.soirCover.innerHTML = '<span class="soir-titre">' +
+        (r > 0
+          ? 'Encore <b>' + r + '</b> histoire' + (r > 1 ? 's' : '') + ' ce soir'
+          : '<b>Terminé</b> pour ce soir') +
+        '</span><button class="soir-changer" data-soir="0">changer</button>';
+    }
+    els.soirCover.onclick = function (e) {
+      var n = e.target.getAttribute && e.target.getAttribute('data-soir');
+      if (n === null) return;
+      Soir.definir(parseInt(n, 10));
+      majSoir();
+    };
+  }
+
+  els.soirBadge.onclick = function () { location.hash = '#/'; };
 
   /* ---------------- le menu principal ---------------- */
   function cablerNav(zone, actif) {
@@ -412,6 +493,7 @@
 
   function renderCover() {
     dessinerUne();
+    renderSoirCover();
     if (els.coverMeta.textContent) return;        // le reste ne change jamais
 
     var d = new Date();
@@ -487,6 +569,9 @@
     setTheme(u);
     els.rTitle.textContent = s.title;
     els.pages.innerHTML = '';
+    /* on repart du début : sans cette remise à zéro, ouvrir une histoire
+       depuis la fin de la précédente la montre déjà terminée */
+    els.pages.scrollLeft = 0;
 
     s.pages.forEach(function (p, i) {
       var a = document.createElement('article');
@@ -501,14 +586,24 @@
     // page finale
     var end = document.createElement('article');
     end.className = 'page page-end';
-    end.innerHTML =
-      '<div class="end-badge">🌟</div><h4>Fin !</h4>' +
-      '<p>Bonne nuit… et à demain pour une nouvelle histoire.</p>' +
-      '<div class="end-actions">' +
-      '<button class="primary" data-act="again">Relire</button>' +
-      '<button data-act="next">Histoire suivante</button>' +
-      '<button data-act="close">Retour aux histoires</button></div>';
+    end.innerHTML = '<div class="end-badge">🌟</div><div class="end-corps"></div>';
     els.pages.appendChild(end);
+    state.end = end;
+    majFin(null);
+
+    /* Le décompte du soir se déclenche quand la page « Fin ! » est vraiment à
+       l'écran. On l'observe plutôt que d'écouter le défilement : un doigt
+       rapide peut sauter une page, un observateur, non. Compter deux fois la
+       même histoire est sans effet (voir Soir.compter). */
+    if (state.obs) { state.obs.disconnect(); state.obs = null; }
+    if (window.IntersectionObserver) {
+      state.obs = new IntersectionObserver(function (vues) {
+        for (var v = 0; v < vues.length; v++) {
+          if (vues[v].isIntersecting) { majFin(Soir.compter(u, s)); majSoir(); }
+        }
+      }, { root: els.pages, threshold: 0.6 });
+      state.obs.observe(end);
+    }
 
     end.addEventListener('click', function (e) {
       var act = e.target.getAttribute && e.target.getAttribute('data-act');
@@ -532,11 +627,37 @@
     requestAnimationFrame(function () { goPage(saved, true); syncPage(); });
   }
 
+  /* la page finale : elle change de discours selon ce qu'il reste à lire */
+  function majFin(reste) {
+    if (!state.end) return;
+    var corps = state.end.querySelector('.end-corps');
+    if (!corps) return;
+    if (reste === null || reste === undefined) reste = Soir.reste();
+    var titre, mot, suite = true;
+    if (reste === null) {
+      titre = 'Fin !';
+      mot = 'Bonne nuit… et à demain pour une nouvelle histoire.';
+    } else if (reste > 0) {
+      titre = 'Fin !';
+      mot = 'Encore <b>' + reste + '</b> histoire' + (reste > 1 ? 's' : '') + ' ce soir.';
+    } else {
+      titre = 'C\'était la dernière';
+      mot = 'On éteint. Bonne nuit, Livia.';
+      suite = false;
+    }
+    corps.innerHTML = '<h4>' + titre + '</h4><p>' + mot + '</p>' +
+      '<div class="end-actions">' +
+      (suite ? '<button class="primary" data-act="next">Histoire suivante</button>' : '') +
+      '<button' + (suite ? '' : ' class="primary"') + ' data-act="again">Relire</button>' +
+      '<button data-act="close">Retour aux histoires</button></div>';
+  }
+
   function closeReader() {
     if (els.reader.hidden) return;
     els.reader.hidden = true;
     els.pages.innerHTML = '';
-    state.story = null;
+    state.story = null; state.end = null;
+    if (state.obs) { state.obs.disconnect(); state.obs = null; }
     document.body.style.overflow = '';
     stopSpeak();
   }
@@ -562,6 +683,8 @@
 
     if (i < total) store('page.' + state.universe.id + '.' + s.id, String(i));
     if (i >= total - 1) store('read.' + state.universe.id + '.' + s.id, '1');
+    /* l'histoire est finie quand la dernière page — celle du « Fin ! » — s'affiche */
+    if (i >= total) { majFin(Soir.compter(state.universe, s)); majSoir(); }
 
     stopSpeak();
     if (state.speak && i < total) speak(s.pages[i].text);
@@ -711,5 +834,6 @@
   });
 
   window.addEventListener('hashchange', route);
+  majSoir();
   route();
 })();

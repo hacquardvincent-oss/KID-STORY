@@ -36,6 +36,11 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Reprise de lecture** — le site se souvient de la page où on s'est arrêté
   et marque les histoires déjà lues d'un ✓
 * **Bouton 🎲** — une histoire au hasard
+* **Le compte du soir** — sur la couverture, on choisit combien d'histoires on
+  lit ce soir. Un 🌙 dans le bandeau montre ce qu'il reste ; il diminue quand
+  une histoire est terminée (relire la même n'en consomme pas une deuxième),
+  et la dernière page annonce « C'était la dernière ». Le compte s'efface tout
+  seul le lendemain.
 * **Cinq jeux** pour les 3-5 ans, avec les mêmes héros : relier chaque
   personnage à son objet, compter jusqu'à six, tracer au doigt les prénoms de
   la maison (Livia, Pablo, Maman, Papa, Mila, Antoine…), apprendre l'alphabet
@@ -43,7 +48,9 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   histoire. Aucun texte à lire : tout est dit à voix haute. Un rang de boutons
   permet de passer d'un jeu à l'autre sans revenir en arrière, et les jeux de
   lettres commencent par un choix : quel prénom, quelle lettre.
-* **Installable** sur l'écran d'accueil du téléphone (PWA légère)
+* **Installable** sur l'écran d'accueil du téléphone : icône, plein écran, et
+  **fonctionnement hors connexion** — un service worker garde tout le site en
+  cache, y compris les polices et les images
 
 ### Les histoires déjà écrites
 
@@ -186,6 +193,24 @@ node outils/construire-page-unique.js
 
 Le fichier est déjà présent dans `dist/` ; il suffit de relancer la commande après
 avoir ajouté une histoire.
+
+### L'installer sur un téléphone
+
+Le site est une **PWA** : il s'installe sans passer par un store.
+
+* **iPhone** — ouvrir le lien dans **Safari** (pas Chrome), bouton Partager,
+  « Sur l'écran d'accueil ».
+* **Android** — ouvrir dans Chrome ; une bannière « Installer » apparaît, ou
+  menu ⋮ → « Installer l'application ».
+
+Chacun l'installe depuis le même lien, sur autant d'appareils qu'il veut : il
+n'y a ni compte, ni licence, ni synchronisation. En revanche, la progression de
+lecture et le compte du soir vivent dans le téléphone : chaque appareil a le
+sien.
+
+Après une mise à jour, il faut changer `VERSION` en tête de `sw.js`, sinon les
+appareils déjà installés continuent de servir l'ancienne version depuis leur
+cache.
 
 ### Le mettre en ligne (GitHub Pages)
 
@@ -354,6 +379,8 @@ assets/js/games.js          les cinq jeux et leur cadre commun
 assets/js/app.js            navigation, couverture, Cover Flow, lecteur
 assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
 assets/img/grain.png        le grain du papier, en surimpression
+sw.js                       le service worker : mise en cache et hors connexion
+assets/icons/               les icônes de l'application (visage de Livia)
 outils/apercu-histoire.html planche de contrôle pour les dessins
 outils/construire-page-unique.js  replie tout le site dans un fichier
 dist/histoires-de-livia.html      le résultat, prêt à partager

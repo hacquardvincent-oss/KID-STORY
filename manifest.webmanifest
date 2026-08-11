@@ -1,14 +1,20 @@
 {
+  "id": "/KID-STORY/",
   "name": "Les histoires de Livia",
-  "short_name": "Histoires",
-  "description": "La bibliothèque des histoires du soir de Livia, en bandes dessinées.",
-  "start_url": "./index.html",
+  "short_name": "Livia",
+  "description": "La bibliothèque des histoires du soir de Livia, en bandes dessinées, avec ses jeux.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#1a1030",
-  "theme_color": "#1a1030",
+  "background_color": "#f6ecd9",
+  "theme_color": "#d8342b",
+  "categories": ["education", "kids", "books"],
   "icons": [
-    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+    { "src": "assets/icons/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
