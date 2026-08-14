@@ -1286,6 +1286,31 @@
     return s;
   };
 
+  /* La cabane dans l'arbre — l'autre est un portique de branches, celle-ci
+     est une vraie maison perchée, avec l'échelle qui manque toujours un
+     barreau. On la dessine de bas en haut : le tronc, les feuilles, puis la
+     cabane par-dessus, pour que le toit sorte du feuillage. */
+  P.cabanearbre = function (o) {
+    var bois = o.color || '#b5834a';
+    var feuilles = o.feuilles || '#5f9350';
+    var echelle = '#8a5a3b';
+    return line('M 0,0 L 0,-150', echelle, 26) +
+      U(['<circle cx="-70" cy="-246" r="44" fill="%F%" %S%/>',
+        '<circle cx="60" cy="-254" r="46" fill="%F%" %S%/>',
+        '<circle cx="-6" cy="-286" r="46" fill="%F%" %S%/>',
+        '<circle cx="86" cy="-214" r="34" fill="%F%" %S%/>',
+        '<circle cx="-94" cy="-206" r="34" fill="%F%" %S%/>'], feuilles, 9) +
+      U(['<rect x="-84" y="-130" width="168" height="14" rx="4" fill="%F%" %S%/>'], echelle, 7) +
+      U(['<rect x="-62" y="-192" width="124" height="62" fill="%F%" %S%/>'], bois, 8) +
+      U(['<path d="M -82,-188 L 0,-242 L 82,-188 Z" fill="%F%" %S%/>'], o.toit || '#c9622f', 8) +
+      '<rect x="-20" y="-180" width="40" height="34" rx="5" fill="#bfe8f7" stroke="' +
+      INK + '" stroke-width="5"/>' +
+      line('M -58,-4 L -46,-126', echelle, 8) + line('M -22,-4 L -14,-126', echelle, 8) +
+      line('M -55,-34 L -20,-33', echelle, 6) +
+      line('M -51,-66 L -17,-65', echelle, 6) +
+      line('M -48,-98 L -15,-97', echelle, 6);
+  };
+
   /* une étagère de livres : de quoi poser une bibliothèque derrière les têtes */
   P.etagere = function (o) {
     var c = o.color || '#a9773f';
@@ -1926,20 +1951,135 @@
       groupe + wash + letters + '</svg>';
   }
 
+  /* ============================================================
+     LES VIGNETTES
+     Un élément est dessiné à l'échelle d'une planche de 800 × 560 : un
+     ballon y fait soixante pixels, une cabane deux cents. Sorti de là et
+     posé seul dans un bouton, il faut le recadrer. Ces réglages ont été
+     mesurés une fois pour toutes, en relevant la vraie boîte de chaque
+     dessin dans le navigateur, puis en calculant l'échelle et le décalage
+     qui le font remplir un carré de 200. On ne les devine pas à l'œil.
+     ============================================================ */
+  var VIGNETTES = {
+    anna: { ds: 0.71, dy: 180 },   /* 148×242 */
+    aurora: { ds: 0.21, dy: 45, dx: -2 },   /* 820×265 */
+    ball: { ds: 2.87, dy: 186 },   /* 60×60 */
+    balloon: { ds: 1.79, dy: 121 },   /* 48×96 */
+    bandit: { ds: 0.65, dy: 182 },   /* 169×266 */
+    bingo: { ds: 0.65, dy: 182 },   /* 169×266 */
+    bluey: { ds: 0.65, dy: 182 },   /* 169×266 */
+    boat: { ds: 1.23, dy: 157 },   /* 140×132 */
+    bonheur: { ds: 0.69, dy: 180 },   /* 226×248 */
+    bucket: { ds: 1.99, dy: 148, dx: -32 },   /* 81×87 */
+    bush: { ds: 1.48, dy: 88, dx: -9 },   /* 116×58 */
+    butterfly: { ds: 3.07, dy: 88 },   /* 56×38 */
+    cabane: { ds: 0.8, dy: 148 },
+    cabanearbre: { ds: 0.52, dy: 187, dx: 2 },   /* 216×168 */
+    campfire: { ds: 1.91, dy: 197 },   /* 88×90 */
+    car: { ds: 0.75, dy: 80, dx: 4 },   /* 230×116 */
+    castleIce: { ds: 0.49, dy: 186 },   /* 260×352 */
+    chilli: { ds: 0.65, dy: 182 },   /* 169×266 */
+    chipie: { ds: 0.66, dy: 182 },   /* 226×262 */
+    cloud: { ds: 1.23, dy: 63, dx: -2 },   /* 140×68 */
+    coco: { ds: 0.65, dy: 182 },   /* 169×266 */
+    costaud: { ds: 0.74, dy: 181 },   /* 226×233 */
+    crab: { ds: 2.06, dy: 109 },   /* 84×54 */
+    cube: { ds: 3.91, dy: 186 },   /* 44×44 */
+    curieux: { ds: 0.65, dy: 180 },   /* 226×264 */
+    daddy: { ds: 0.68, dy: 181, dx: -1 },   /* 162×253 */
+    dino: { ds: 1.87, dy: 139, dx: 7 },   /* 92×71 */
+    elsa: { ds: 0.71, dy: 180 },   /* 148×242 */
+    esky: { ds: 1.72, dy: 103 },   /* 100×52 */
+    etagere: { ds: 0.9, dy: 97 },   /* 192×92 */
+    etourdi: { ds: 0.64, dy: 180 },   /* 226×268 */
+    fish: { ds: 2.46, dy: 53, dx: -22 },   /* 70×32 */
+    float: { ds: 2.53, dy: 186 },   /* 68×68 */
+    flower: { ds: 3.87, dy: 186, dx: -4 },   /* 36×45 */
+    george: { ds: 0.68, dy: 181, dx: -1 },   /* 162×251 */
+    grognon: { ds: 0.74, dy: 181 },   /* 226×233 */
+    hedgehog: { ds: 1.44, dy: 86, dx: -23 },   /* 120×55 */
+    house: { ds: 0.81, dy: 168 },   /* 212×190 */
+    icecream: { ds: 1.7, dy: 159 },   /* 54×101 */
+    isadora: { ds: 0.71, dy: 180, dx: -5 },   /* 162×242 */
+    juliette: { ds: 0.69, dy: 181, dx: -5 },   /* 162×250 */
+    kite: { ds: 1, dy: 60 },   /* 64×172 */
+    lantern: { ds: 3.19, dy: 122 },   /* 40×54 */
+    lent: { ds: 0.64, dy: 180 },   /* 226×268 */
+    livia: { ds: 0.64, dy: 182 },   /* 163×270 */
+    liviaPrincess: { ds: 0.64, dy: 182 },   /* 163×270 */
+    log: { ds: 1.42, dy: 48, dx: -6 },   /* 121×24 */
+    maman: { ds: 0.67, dy: 180, dx: -8 },   /* 172×256 */
+    mamie: { ds: 0.69, dy: 180 },   /* 148×248 */
+    mangue: { ds: 2.6, dy: 186, dx: -4 },   /* 54×66 */
+    marshmallow: { ds: 1.83, dy: 131, dx: -86 },   /* 94×64 */
+    moon: { ds: 2.26, dy: 100, dx: 21 },   /* 55×76 */
+    mudpuddle: { ds: 0.96, dy: 39 },   /* 180×52 */
+    muffin: { ds: 0.65, dy: 182 },   /* 169×266 */
+    mummy: { ds: 0.68, dy: 181, dx: -1 },   /* 162×253 */
+    olaf: { ds: 1.09, dy: 180 },   /* 124×157 */
+    pablo: { ds: 1, dy: 182 },   /* 120×173 */
+    palm: { ds: 1.01, dy: 177, dx: 14 },   /* 171×162 */
+    papa: { ds: 0.59, dy: 183 },   /* 192×294 */
+    parasol: { ds: 0.9, dy: 170 },   /* 192×173 */
+    peppa: { ds: 0.68, dy: 181, dx: -1 },   /* 162×253 */
+    pine: { ds: 1.23, dy: 186 },   /* 108×140 */
+    pool: { ds: 0.36, dy: 38 },   /* 480×132 */
+    rangetout: { ds: 0.74, dy: 180 },   /* 226×232 */
+    rapide: { ds: 0.73, dy: 180 },   /* 226×235 */
+    rock: { ds: 2.54, dy: 106, dx: 3 },   /* 68×36 */
+    roxane: { ds: 0.69, dy: 180 },   /* 148×248 */
+    sandcastle: { ds: 0.96, dy: 133 },   /* 180×124 */
+    seagull: { ds: 3.91, dy: 41 },   /* 44×7 */
+    shell: { ds: 4.09, dy: 153 },   /* 42×34 */
+    sled: { ds: 1.41, dy: 51 },   /* 122×20 */
+    slide: { ds: 0.68, dy: 147, dx: -16 },   /* 254×214 */
+    snowball: { ds: 6.14, dy: 100 },   /* 28×28 */
+    snowflake: { ds: 5.88, dy: 96 },   /* 29×28 */
+    snowpine: { ds: 1.23, dy: 186 },   /* 108×140 */
+    spade: { ds: 1.99, dy: 148, dx: -61 },   /* 52×87 */
+    sparkle: { ds: 5.38, dy: 100 },   /* 32×32 */
+    splash: { ds: 1.34, dy: 133 },   /* 128×97 */
+    sprinkler: { ds: 0.57, dy: 50 },   /* 299×70 */
+    star: { ds: 10, dy: 104 },   /* 17×16 */
+    starfish: { ds: 3.77, dy: 104 },   /* 46×43 */
+    suitcase: { ds: 2.15, dy: 145 },   /* 80×61 */
+    sun: { ds: 1.19, dy: 100 },   /* 144×144 */
+    suzy: { ds: 0.76, dy: 180 },   /* 148×226 */
+    tent: { ds: 0.73, dy: 109 },   /* 236×130 */
+    timide: { ds: 0.69, dy: 180 },   /* 226×248 */
+    tourcubes: { ds: 1, dy: 185 },   /* 57×172 */
+    towel: { ds: 1.08, dy: 42 },   /* 160×26 */
+    trampoline: { ds: 0.9, dy: 68 },   /* 192×60 */
+    tree: { ds: 1.15, dy: 187, dx: -1 },   /* 146×150 */
+    watermelon: { ds: 1.87, dy: 100 },   /* 92×92 */
+    wave: { ds: 1.43, dy: 25, dx: 29 },   /* 120×16 */
+  };
+
+  /* le cadrage d'un élément, prêt à passer à sticker() */
+  function vignette(t, o) {
+    var v = VIGNETTES[t] || { ds: 1, dy: 180 };
+    var it = { t: t, ds: v.ds, dy: v.dy, dx: v.dx || 0 };
+    if (o) for (var k in o) if (o.hasOwnProperty(k)) it[k] = o[k];
+    return it;
+  }
+
   /* une vignette : un seul élément, sans décor, pour les jeux */
   function stickerSVG(it) {
     var fn = ITEMS[it.t];
     if (!fn) return '';
     var sc = it.ds === undefined ? 1 : it.ds;
     var y = it.dy === undefined ? 180 : it.dy;
+    var x = 100 + (it.dx || 0);
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" ' +
       'preserveAspectRatio="xMidYMid meet" role="img" aria-label="' + (it.nom || '') + '">' +
-      '<g transform="translate(100,' + y + ') scale(' + sc + ')">' + fn(it) + '</g></svg>';
+      '<g transform="translate(' + x + ',' + y + ') scale(' + sc + ')">' + fn(it) + '</g></svg>';
   }
 
   global.Art = {
     scene: sceneSVG,
     sticker: stickerSVG,
+    items: function () { return ITEMS; },
+    vignette: vignette,
     INK: INK,
     W: VW,
     H: VH,

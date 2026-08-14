@@ -24,10 +24,14 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Le nom Kid Cartoon** en haut de chaque page, qui ramène à l'accueil d'un doigt
 * **Deux rubriques** — Histoires et Jeux ; sous Histoires, les univers
   (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame, les cross-over,
-  les copines… faciles à compléter)
+  les copines, les histoires à choix… faciles à compléter)
 * **Des onglets illustrés** — chaque univers est un rond dessiné (Peppa, Elsa,
   Bluey, Monsieur Bonheur, Olaf, Roxane) et non un mot : un enfant qui ne lit
   pas choisit son univers du premier coup d'œil. Le nom reste dessous, en petit.
+* **Des histoires où l'enfant décide** — l'univers « Tu choisis ! ». Deux fois
+  par histoire, la planche s'arrête et propose deux grands boutons dessinés :
+  la cabane ou la rivière, la lampe ou Maman. Quatre fins par histoire, aucun
+  choix qui punit — et on peut revenir en arrière pour prendre l'autre chemin.
 * **Deux filtres** — par univers (les onglets) et par thème (Été, Amitié,
   Émotions, Grandir, Partager, Règles, Famille, Dehors, Nuit, Bêtises) ; les
   thèmes traversent les univers, et les onglets filtrent à l'intérieur d'un
@@ -169,6 +173,20 @@ bout : *Papá no tiene frío*, *El hielo que cruje*, *Mamá llega tarde* et
 bibliothèque se remplit une histoire à la fois (les consignes des jeux, elles,
 restent en français pour le moment).
 
+**Tu choisis !** — trois histoires à embranchements, quatre fins chacune
+
+| Histoire | Le premier choix | Ce qu'elle travaille |
+|---|---|---|
+| La cabane ou la rivière | la cabane dans l'arbre, ou l'eau en bas | la règle qu'on garde en tête quand personne ne regarde |
+| Le ballon tout neuf | j'appelle Isadora, ou je joue un peu d'abord | partager un peu plus tard n'est pas partager un peu moins |
+| Le bruit dans le couloir | la petite lampe, ou appeler Maman | se rassurer seule, et avoir le droit d'appeler |
+
+Chaque histoire fait quatorze planches écrites pour six planches lues : quatre
+chemins, quatre fins, toutes bonnes. **Aucun choix n'est un piège** — c'est la
+règle du genre ici. Celui qui a l'air moins sage ne fait pas perdre l'enfant,
+il raconte simplement autre chose, et un adulte y répare quelque chose sans
+gronder.
+
 **Partager et les règles** — la série la plus demandée à la maison
 
 | Histoire | Univers | Ce qu'elle raconte |
@@ -289,6 +307,67 @@ et un `es:` à côté du `text:` de **chaque** page. L'histoire n'apparaît en m
 espagnol que si les trois y sont, page par page — une traduction à moitié faite
 reste invisible plutôt que de mélanger les deux langues.
 
+### Écrire une histoire à choix
+
+Au lieu d'un tableau `pages`, on écrit des **blocs** nommés. Une histoire à
+choix remplace `pages:` par `debut:` et `blocs:` — tout le reste (titre,
+thèmes, couverture) ne change pas.
+
+```js
+{
+  id: 'la-cabane-ou-la-riviere',
+  title: 'La cabane ou la rivière',
+  themes: ['Règles', 'Dehors'],
+  cover: { /* … */ },
+
+  debut: 'depart',        // le bloc par lequel on commence
+  blocs: {
+    depart: {
+      pages: [
+        { scene: { /* … */ }, text: "…" },
+        {
+          scene: { /* … */ }, text: "Alors ? On va où ?",
+          /* un choix se pose TOUJOURS sur la dernière page d'un bloc */
+          choix: {
+            options: [
+              { v: 'cabanearbre', mot: 'La cabane',  vers: 'cabane' },
+              { v: 'splash',      mot: 'La rivière', vers: 'riviere' }
+            ]
+          }
+        }
+      ]
+    },
+    cabane:  { pages: [ /* …, dernière page avec un second choix */ ] },
+    riviere: { pages: [ /* … */ ] },
+    cab_papa: { pages: [ /* pas de choix : c'est une fin */ ] }
+    // …
+  }
+}
+```
+
+Une option porte trois choses : `v`, le **nom** de l'élément à dessiner dans le
+bouton (le moteur sait le cadrer tout seul, voir *les vignettes* plus bas),
+`mot`, le mot écrit dessous pour l'adulte, et `vers`, le bloc qui suit.
+`fond: 'nuit'` pose le dessin sur un rond bleu nuit — une lune crème sur du
+papier crème ne se voit pas.
+
+Trois règles tiennent l'ensemble, et l'outil de contrôle les vérifie :
+
+1. **tous les chemins font la même longueur.** C'est ce qui permet d'afficher
+   « 4 / 6 » et les points de progression sans mentir ;
+2. **un choix est toujours sur la dernière page de son bloc** — sinon l'enfant
+   reste bloquée sur des boutons qui ne mènent nulle part ;
+3. **un bloc sans choix est une fin**, et aucun bloc écrit ne doit être
+   inatteignable.
+
+Le contrôle se lance avec `node outils/verifier-choix.js` (il liste les blocs,
+les fins, la longueur des chemins, et refuse les boucles).
+
+Deux détails de comportement, côté lecteur : une histoire à choix **repart
+toujours du début** (reprendre au milieu d'un chemin oublié n'a pas de sens), et
+revenir sur une planche de choix pour prendre l'autre bouton **efface la suite
+et réécrit le chemin** — c'est la moitié du plaisir.
+
 ### Écrire une scène
 
 ```js
@@ -363,11 +442,21 @@ gauche)* et `maman` *(rousse, un peu plus petite, queue de cheval en bataille)*
 `pool`, `sled`, `castleIce`, `house`, `sparkle`, `splash`, `lantern`, `balloon`,
 `mudpuddle`, `wave`, `aurora`, `sprinkler`, `trampoline`, `mangue`, `esky`,
 `cube`, `tourcubes`, `etagere` *(une rangée de livres)*, `cabane`
-*(`toit: '#bfe8f7'` pour le toit de glace, `ecroulee: true` pour le tas de
-branches)*
+*(le portique de branches du jardin ; `toit: '#bfe8f7'` pour le toit de glace,
+`ecroulee: true` pour le tas de branches)*, `cabanearbre` *(la vraie cabane
+perchée, avec son échelle ; `feuilles` et `toit` se règlent)*
 
 La plupart acceptent une `color` (`{ t: 'flower', x: 90, y: 520, color: '#ffd93d' }`),
 `tether` prend `dx` / `dy` (et éventuellement `qx` / `qy` pour la courbure).
+
+**Les vignettes.** Un élément est dessiné à l'échelle d'une planche de
+800 × 560 : un ballon y fait soixante pixels, une cabane trois cents. Sorti de
+là et posé seul dans un bouton, il faut le recadrer — et le faire à l'œil donne
+des dessins minuscules ou tronqués. `Art.vignette('cabanearbre')` rend le
+cadrage juste, prêt à passer à `Art.sticker()`. La table qui le porte a été
+**mesurée** : on relève la vraie boîte de chaque dessin dans le navigateur, puis
+on calcule l'échelle et le décalage qui le font remplir un carré de 200. Les
+quatre-vingt-onze éléments y sont.
 
 ### Changer la couverture
 
@@ -427,6 +516,7 @@ assets/img/grain.png        le grain du papier, en surimpression
 sw.js                       le service worker : mise en cache et hors connexion
 assets/icons/               les icônes de l'application (visage de Livia)
 outils/apercu-histoire.html planche de contrôle pour les dessins
+outils/verifier-choix.js    contrôle le réseau des histoires à choix
 outils/construire-page-unique.js  replie tout le site dans un fichier
 dist/histoires-de-livia.html      le résultat, prêt à partager
 ```
@@ -512,6 +602,14 @@ grille est juste, et une case posée en trop s'enlève en la retouchant.
 Ces trois-là ne dépendent d'aucune histoire : ce sont des tableaux de nombres
 et de coordonnées, et une figure de plus tient en une ligne dans `FIGURES`,
 `MODELES` ou `SYMETRIES`.
+
+**Les histoires à choix** ne préparent pas les quatre chemins d'avance : le
+lecteur ne contient à tout instant que **le chemin suivi**. Choisir ajoute le
+bloc suivant à la suite des planches déjà là ; revenir en arrière et prendre
+l'autre bouton coupe tout ce qui suivait et réécrit la fin. C'est ce qui permet
+de garder le défilement horizontal, les points de progression et le compte du
+soir sans rien changer au reste du lecteur — une histoire ordinaire est le cas
+particulier où il n'y a qu'un seul chemin.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu

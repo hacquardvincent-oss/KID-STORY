@@ -6781,5 +6781,707 @@ var UNIVERSES = [
         ]
       }
     ]
+  },
+
+  /* ==========================================================
+     UNIVERS 7 — LES HISTOIRES OÙ TU CHOISIS
+     Chaque histoire est un petit réseau : la dernière planche d'un bloc
+     propose deux boutons dessinés, et chaque bouton mène ailleurs. Tous
+     les chemins font six planches — l'outil de contrôle le vérifie.
+     Aucun choix n'est un piège : les quatre fins sont bonnes, elles ne
+     racontent simplement pas la même chose.
+     ========================================================== */
+  {
+    id: 'choix',
+    name: 'Tu choisis !',
+    tagline: "C'est Livia qui décide comment l'histoire continue",
+    emoji: '🔀',
+    vignette: { t: 'livia', ds: .5, dy: 178 },
+    c1: '#8a79c4',
+    c2: '#f7c518',
+    cover: {
+      bg: 'garden',
+      items: [
+        { t: 'cabanearbre', x: 150, y: 512, s: .62 },
+        { t: 'livia', x: 420, y: 524, s: 1.15, pose: 'shrug' },
+        { t: 'roxane', x: 640, y: 522, s: 1 }
+      ]
+    },
+    stories: [
+
+      /* ---------- 1 : la cabane ou la rivière ---------- */
+      {
+        id: 'cabane-ou-riviere',
+        title: 'La cabane ou la rivière',
+        subtitle: 'Une règle, un jardin, et deux chemins',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Dehors'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'cabanearbre', x: 180, y: 496, s: .85 },
+            { t: 'livia', x: 460, y: 524, s: 1.15 },
+            { t: 'roxane', x: 660, y: 522, s: 1.05 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'mamie', x: 280, y: 522, s: 1.15, pose: 'point' },
+                    { t: 'livia', x: 520, y: 524, s: 1.1 },
+                    { t: 'roxane', x: 700, y: 522, s: 1 }
+                  ],
+                  bubbles: [{ x: 40, y: 22, w: 360, t: "Partout où vous voulez. Sauf au bord de l'eau sans un grand.", tx: 290, ty: 240 }]
+                },
+                text: "Chez Mamie, le jardin descend jusqu'à la rivière. « Partout où vous voulez », dit Mamie. « Sauf au bord de l'eau sans un grand. » Puis elle rentra faire des crêpes."
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 524, s: 1.15, pose: 'shrug' },
+                    { t: 'roxane', x: 560, y: 522, s: 1.05 }
+                  ],
+                  sfx: [{ t: 'ON VA OÙ ?', x: 430, y: 150, fs: 30, rot: -5, color: '#8a79c4' }]
+                },
+                text: "Les voilà toutes les deux au milieu de l'herbe. D'un côté, la vieille cabane dans le grand arbre. De l'autre, le bruit de l'eau, tout en bas. Alors ? On va où ?",
+                choix: {
+                  options: [
+                    { v: 'cabanearbre', mot: 'La cabane', vers: 'cabane' },
+                    { v: 'splash', mot: 'La rivière', vers: 'riviere' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          /* --- branche A : la cabane --- */
+          cabane: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  back: [{ t: 'cabanearbre', x: 200, y: 500, s: 1.05 }],
+                  items: [
+                    { t: 'livia', x: 480, y: 524, s: 1.1, pose: 'armsup' },
+                    { t: 'roxane', x: 690, y: 522, s: 1, pose: 'armsup' }
+                  ],
+                  sfx: [{ t: 'À NOUS !', x: 480, y: 148, fs: 30, rot: -6, color: '#4f8a3d' }]
+                },
+                text: "Elles montèrent à l'échelle, une main après l'autre. En haut, ça sentait le bois chaud et un peu la fourmi. De là-haut, le jardin n'avait plus du tout la même tête."
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  back: [{ t: 'cabanearbre', x: 220, y: 500, s: 1 }],
+                  items: [
+                    { t: 'livia', x: 500, y: 524, s: 1.1, mood: 'sad' },
+                    { t: 'roxane', x: 700, y: 522, s: 1 }
+                  ],
+                  sfx: [{ t: 'ÇA PENCHE…', x: 480, y: 148, fs: 27, rot: -4, color: '#8a5a3b' }]
+                },
+                text: "Une planche manquait dans le mur, et la table penchait tellement que les cailloux glissaient tout seuls. Il fallait décider quelque chose.",
+                choix: {
+                  options: [
+                    { v: 'papa', mot: 'Appeler Papa', vers: 'cab_papa' },
+                    { v: 'roxane', mot: 'Se débrouiller', vers: 'cab_deux' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          cab_papa: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  back: [{ t: 'cabanearbre', x: 190, y: 500, s: 1 }],
+                  items: [
+                    { t: 'papa', x: 470, y: 520, s: 1.05, pose: 'hold' },
+                    { t: 'livia', x: 690, y: 524, s: 1.05, pose: 'point' }
+                  ],
+                  sfx: [{ t: 'TOC ! TOC !', x: 470, y: 148, fs: 30, rot: -6, color: '#4a7fc1' }]
+                },
+                text: "Livia cria le nom de Papa depuis la fenêtre de la cabane. Il arriva avec une planche sous le bras et son marteau. Il ne dit pas « poussez-vous » : il demanda où elles voulaient la mettre."
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  back: [{ t: 'cabanearbre', x: 200, y: 500, s: 1 }],
+                  items: [
+                    { t: 'papa', x: 440, y: 520, s: 1.05 },
+                    { t: 'livia', x: 640, y: 524, s: 1.05, pose: 'hold' },
+                    { t: 'roxane', x: 726, y: 522, s: .95, pose: 'hold' }
+                  ]
+                },
+                text: "À trois, le mur fut refermé avant les crêpes. Papa redescendit, mais il resta assis au pied de l'arbre un bon moment, à faire semblant de ne pas écouter ce qui se disait au-dessus."
+              }
+            ]
+          },
+
+          cab_deux: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  back: [{ t: 'cabanearbre', x: 200, y: 500, s: 1 }],
+                  items: [
+                    { t: 'livia', x: 470, y: 524, s: 1.1, pose: 'hold' },
+                    { t: 'roxane', x: 690, y: 522, s: 1, pose: 'hold' }
+                  ],
+                  sfx: [{ t: 'ET SI ON…', x: 460, y: 148, fs: 28, rot: -5, color: '#7ac6a8' }]
+                },
+                text: "« On n'a qu'à mettre le tapis de l'entrée », dit Roxane, ce qui était une très mauvaise idée et une très bonne idée en même temps. Elles calèrent la table avec trois cailloux et un livre."
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  back: [{ t: 'cabanearbre', x: 210, y: 500, s: 1 }],
+                  items: [
+                    { t: 'livia', x: 500, y: 524, s: 1.1 },
+                    { t: 'roxane', x: 700, y: 522, s: 1 }
+                  ]
+                },
+                text: "La table penchait encore un peu. Le mur avait toujours son trou, par lequel on voyait un bout de ciel. Elles trouvèrent que c'était mieux comme ça, et elles avaient tout fait toutes seules."
+              }
+            ]
+          },
+
+          /* --- branche B : la rivière --- */
+          riviere: {
+            pages: [
+              {
+                scene: {
+                  bg: 'creek',
+                  items: [
+                    { t: 'livia', x: 320, y: 522, s: 1.15 },
+                    { t: 'roxane', x: 580, y: 520, s: 1.05, pose: 'point' }
+                  ],
+                  sfx: [{ t: 'GLOU… GLOU…', x: 450, y: 150, fs: 28, rot: -4, color: '#3fa3c4' }]
+                },
+                text: "Le sentier descendait tout seul. En bas, l'eau passait sur les cailloux en faisant un bruit de bouche pleine. C'était joli. C'était vraiment très joli."
+              },
+              {
+                scene: {
+                  bg: 'creek',
+                  items: [{ t: 'livia', x: 400, y: 522, s: 1.25, mood: 'sad' }],
+                  sfx: [{ t: 'SANS UN GRAND…', x: 400, y: 150, fs: 26, rot: -4, color: '#6d5847' }]
+                },
+                text: "Livia s'arrêta net. La phrase de Mamie était revenue toute seule dans sa tête, sans qu'elle l'appelle : sans un grand. Roxane, elle, avait déjà un pied sur la première pierre.",
+                choix: {
+                  options: [
+                    { v: 'mamie', mot: 'Chercher Mamie', vers: 'riv_mamie' },
+                    { v: 'splash', mot: 'Juste les pieds', vers: 'riv_seules' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          riv_mamie: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'point' },
+                    { t: 'mamie', x: 560, y: 522, s: 1.15 }
+                  ],
+                  bubbles: [{ x: 300, y: 22, w: 340, t: 'On peut y aller si tu viens ?', tx: 310, ty: 238 }]
+                },
+                text: "Elles remontèrent en courant, essoufflées, pour poser une question de sept mots : « On peut y aller si tu viens ? » Mamie posa sa poêle et prit ses bottes sans discuter."
+              },
+              {
+                scene: {
+                  bg: 'creek', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 260, y: 520, s: 1.1 },
+                    { t: 'livia', x: 480, y: 522, s: 1.1, pose: 'jump' },
+                    { t: 'roxane', x: 690, y: 520, s: 1 }
+                  ],
+                  sfx: [{ t: 'SPLATCH !', x: 460, y: 148, fs: 32, rot: -7, color: '#3fa3c4' }]
+                },
+                text: "Avec Mamie sur la berge, elles allèrent bien plus loin qu'elles n'auraient osé toutes seules — jusqu'à la grosse pierre plate. Demander, ce jour-là, avait agrandi la rivière."
+              }
+            ]
+          },
+
+          riv_seules: {
+            pages: [
+              {
+                scene: {
+                  bg: 'creek',
+                  items: [
+                    { t: 'livia', x: 330, y: 522, s: 1.15, mood: 'wow' },
+                    { t: 'roxane', x: 590, y: 520, s: 1.05, mood: 'wow' }
+                  ],
+                  sfx: [{ t: 'SPLOTCH !', x: 460, y: 150, fs: 34, rot: -8, color: '#4a7fc1' }]
+                },
+                text: "Juste les pieds, avait dit Roxane. La pierre était glissante comme du savon. Livia se retrouva avec une chaussure au fond de l'eau et le cœur qui tapait beaucoup trop vite."
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 508, s: 1.15, pose: 'sit' },
+                    { t: 'livia', x: 560, y: 500, s: 1.1, pose: 'sit', mood: 'sad' }
+                  ],
+                  bubbles: [{ x: 300, y: 22, w: 350, t: "La règle n'est pas contre toi. Elle est devant toi.", tx: 305, ty: 236 }]
+                },
+                text: "Mamie ne cria pas. Elle mit la chaussure près du radiateur et s'assit à côté. « La règle n'est pas contre toi », dit-elle. « Elle est devant toi. » Livia mit longtemps à comprendre, et elle a compris."
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 2 : le ballon tout neuf ---------- */
+      {
+        id: 'ballon-tout-neuf',
+        title: 'Le ballon tout neuf',
+        subtitle: 'Partager, oui — mais quand ?',
+        tag: 'Tu choisis',
+        themes: ['Partager', 'Amitié'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'hill',
+          items: [
+            { t: 'livia', x: 340, y: 524, s: 1.15 },
+            { t: 'ball', x: 520, y: 540, s: 1.1 },
+            { t: 'isadora', x: 660, y: 522, s: 1.05 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 400, y: 524, s: 1.25, pose: 'hold' },
+                    { t: 'ball', x: 610, y: 542, s: 1.2 }
+                  ],
+                  sfx: [{ t: 'TOUT NEUF !', x: 400, y: 148, fs: 30, rot: -6, color: '#f2803d' }]
+                },
+                text: "Le ballon était neuf du matin même. Il rebondissait plus haut que les vieux, et il faisait un bruit net, comme un tambour. Livia l'avait porté jusqu'au parc dans ses deux bras."
+              },
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'hold' },
+                    { t: 'isadora', x: 580, y: 522, s: 1.05 }
+                  ],
+                  sfx: [{ t: 'ELLE REGARDE…', x: 440, y: 148, fs: 26, rot: -4, color: '#8a79c4' }]
+                },
+                text: "Isadora arriva sur le chemin, les mains vides. Elle ne demanda rien du tout. Elle s'assit sur le banc et elle regarda le ballon, exactement comme on regarde un gâteau.",
+                choix: {
+                  options: [
+                    { v: 'isadora', mot: 'Je l\'appelle', vers: 'ensemble' },
+                    { v: 'ball', mot: 'Je joue un peu', vers: 'seule' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          /* --- branche A : je l'appelle tout de suite --- */
+          ensemble: {
+            pages: [
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'wave' },
+                    { t: 'ball', x: 460, y: 542, s: 1 },
+                    { t: 'isadora', x: 640, y: 522, s: 1.05, pose: 'armsup' }
+                  ],
+                  sfx: [{ t: 'ISA ! VIENS !', x: 440, y: 148, fs: 30, rot: -5, color: '#7ac6a8' }]
+                },
+                text: "« Isa ! Viens ! » Le mot était sorti avant que Livia ait fini d'y penser. Isadora traversa la pelouse si vite qu'elle perdit une chaussure en route, et elle s'en fichait complètement."
+              },
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 290, y: 524, s: 1.1 },
+                    { t: 'ball', x: 470, y: 528, s: .9 },
+                    { t: 'isadora', x: 650, y: 522, s: 1.05 }
+                  ],
+                  sfx: [{ t: 'ET MAINTENANT ?', x: 460, y: 148, fs: 27, rot: -4, color: '#8a79c4' }]
+                },
+                text: "Le ballon était au milieu de l'herbe, entre elles deux, et il attendait. Il restait une chose à décider, et cette fois elles la décideraient ensemble.",
+                choix: {
+                  options: [
+                    { v: 'ball', mot: 'Des passes', vers: 'ens_passes' },
+                    { v: 'tree', mot: 'Un jeu à nous', vers: 'ens_jeu' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          ens_passes: {
+            pages: [
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 260, y: 524, s: 1.1, pose: 'point' },
+                    { t: 'ball', x: 460, y: 470, s: .95 },
+                    { t: 'isadora', x: 660, y: 522, s: 1.05, pose: 'armsup' }
+                  ],
+                  sfx: [{ t: 'POM ! POM !', x: 450, y: 148, fs: 32, rot: -6, color: '#f2803d' }]
+                },
+                text: "Elles se mirent loin l'une de l'autre et se firent des passes. Au début le ballon partait n'importe où, dans les orties, sous le banc, dans le dos d'un monsieur qui lisait."
+              },
+              {
+                scene: {
+                  bg: 'hill', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'hold' },
+                    { t: 'isadora', x: 560, y: 522, s: 1.05, pose: 'hold' }
+                  ],
+                  sfx: [{ t: 'VINGT-SIX !', x: 430, y: 148, fs: 30, rot: -5, color: '#4f8a3d' }]
+                },
+                text: "Puis elles en réussirent deux d'affilée. Puis six. Puis vingt-six, en comptant très fort. Un ballon neuf tout seul rebondit haut ; à deux, il compte jusqu'à vingt-six."
+              }
+            ]
+          },
+
+          ens_jeu: {
+            pages: [
+              {
+                scene: {
+                  bg: 'hill',
+                  back: [{ t: 'tree', x: 170, y: 470, s: 1 }, { t: 'tree', x: 660, y: 470, s: .95 }],
+                  items: [
+                    { t: 'livia', x: 340, y: 524, s: 1.1, pose: 'point' },
+                    { t: 'isadora', x: 540, y: 522, s: 1.05 }
+                  ],
+                  sfx: [{ t: 'RÈGLE NUMÉRO UN…', x: 440, y: 148, fs: 25, rot: -4, color: '#8a79c4' }]
+                },
+                text: "« On invente », dit Isadora. Les deux arbres devinrent des buts. Un pied dans la flaque, c'était moins un point. Toucher le banc, c'était rejouer. Les règles se rallongeaient à chaque tour."
+              },
+              {
+                scene: {
+                  bg: 'hill', time: 'sunset',
+                  back: [{ t: 'tree', x: 180, y: 470, s: 1 }],
+                  items: [
+                    { t: 'livia', x: 380, y: 524, s: 1.1, pose: 'hold' },
+                    { t: 'isadora', x: 610, y: 522, s: 1.05, pose: 'hold' }
+                  ]
+                },
+                text: "À la fin, plus personne ne savait le score, et le jeu n'avait toujours pas de nom. Elles le rejouèrent tous les mercredis de cet été-là, sans jamais réussir à l'expliquer à quelqu'un d'autre."
+              }
+            ]
+          },
+
+          /* --- branche B : je joue un peu d'abord --- */
+          seule: {
+            pages: [
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 330, y: 524, s: 1.15, pose: 'jump' },
+                    { t: 'ball', x: 520, y: 460, s: 1 }
+                  ],
+                  sfx: [{ t: 'BOING ! BOING !', x: 430, y: 148, fs: 31, rot: -6, color: '#f7c518' }]
+                },
+                text: "Livia fit rebondir le ballon toute seule. Un tir haut. Un tir contre le mur. Un tir de la tête, raté. C'était bien. C'était très bien même, pendant un moment."
+              },
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 300, y: 524, s: 1.1 },
+                    { t: 'isadora', x: 600, y: 508, s: 1.05, pose: 'sit', mood: 'sad' }
+                  ],
+                  sfx: [{ t: '. . .', x: 450, y: 150, fs: 34, rot: 0, color: '#8a7768' }]
+                },
+                text: "Puis Livia se retourna. Isadora était toujours sur le banc, avec ses mains posées à plat sur les genoux. Le ballon, tout à coup, rebondissait un peu moins haut.",
+                choix: {
+                  options: [
+                    { v: 'isadora', mot: 'Tout de suite', vers: 'seul_maintenant' },
+                    { v: 'ball', mot: 'Encore trois tirs', vers: 'seul_trois' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          seul_maintenant: {
+            pages: [
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'hold' },
+                    { t: 'isadora', x: 570, y: 522, s: 1.05, mood: 'wow' }
+                  ],
+                  sfx: [{ t: 'TIENS !', x: 430, y: 148, fs: 32, rot: -6, color: '#7ac6a8' }]
+                },
+                text: "Livia prit le ballon et marcha jusqu'au banc. Elle ne dit pas de longue phrase. Elle dit « tiens », et elle le posa sur les genoux d'Isadora, qui n'en revenait pas."
+              },
+              {
+                scene: {
+                  bg: 'hill', time: 'sunset',
+                  items: [
+                    { t: 'isadora', x: 320, y: 522, s: 1.05, pose: 'jump' },
+                    { t: 'ball', x: 500, y: 468, s: .95 },
+                    { t: 'livia', x: 660, y: 524, s: 1.1, pose: 'armsup' }
+                  ]
+                },
+                text: "Isadora tirait fort et complètement de travers. Elles coururent après le ballon plus longtemps qu'elles ne jouèrent avec. C'est souvent comme ça, et c'est très bien comme ça."
+              }
+            ]
+          },
+
+          seul_trois: {
+            pages: [
+              {
+                scene: {
+                  bg: 'hill',
+                  items: [
+                    { t: 'livia', x: 340, y: 524, s: 1.15, pose: 'point' },
+                    { t: 'ball', x: 540, y: 466, s: .95 }
+                  ],
+                  sfx: [{ t: 'UN… DEUX… TROIS.', x: 430, y: 148, fs: 27, rot: -4, color: '#f2803d' }]
+                },
+                text: "« Encore trois », se dit Livia, et elle les compta pour de vrai. Un. Deux. Trois. Ce n'était pas beaucoup de temps, mais elle savait exactement quand ça s'arrêterait."
+              },
+              {
+                scene: {
+                  bg: 'hill', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 320, y: 522, s: 1.1, pose: 'hold' },
+                    { t: 'isadora', x: 580, y: 520, s: 1.05, pose: 'hold' }
+                  ],
+                  bubbles: [{ x: 300, y: 22, w: 330, t: 'Je te regardais. Tu tires fort.', tx: 320, ty: 238 }]
+                },
+                text: "Au troisième, elle appela Isadora. « Je te regardais », dit Isadora en arrivant. « Tu tires fort. » Partager un peu plus tard, ce n'est pas partager un peu moins."
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 3 : le bruit dans le couloir ---------- */
+      {
+        id: 'bruit-dans-le-couloir',
+        title: 'Le bruit dans le couloir',
+        subtitle: 'Il est minuit et quelque chose a fait toc',
+        tag: 'Tu choisis',
+        themes: ['Nuit', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom', time: 'night',
+          items: [
+            { t: 'livia', x: 360, y: 512, s: 1.2, pose: 'sit', mood: 'sad' },
+            { t: 'lantern', x: 590, y: 500, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 508, s: 1.25, pose: 'sit', mood: 'wow' }],
+                  sfx: [{ t: 'TOC.', x: 400, y: 146, fs: 38, rot: -6, color: '#bfa8e0' }]
+                },
+                text: "Toc. Un seul bruit, dans le couloir, et Livia fut assise dans son lit sans se souvenir de s'être réveillée. La maison était noire et parfaitement silencieuse, maintenant."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 380, y: 508, s: 1.2, pose: 'sit' }],
+                  back: [{ t: 'lantern', x: 630, y: 496, s: .95 }],
+                  sfx: [{ t: 'ET SI…', x: 380, y: 146, fs: 30, rot: -5, color: '#8a79c4' }]
+                },
+                text: "Sur la table de nuit, il y avait la petite lampe. De l'autre côté du couloir, il y avait la chambre de Maman. Les deux étaient à la même distance : quatre pas.",
+                choix: {
+                  options: [
+                    { v: 'lantern', mot: 'La lampe', vers: 'lampe' },
+                    { v: 'maman', mot: 'Appeler Maman', vers: 'maman' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          /* --- branche A : la lampe --- */
+          lampe: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  back: [{ t: 'lantern', x: 620, y: 496, s: 1.05 }],
+                  items: [{ t: 'livia', x: 340, y: 508, s: 1.2, pose: 'sit' }],
+                  sfx: [{ t: 'CLIC.', x: 360, y: 146, fs: 32, rot: -5, color: '#f7c518' }]
+                },
+                text: "Clic. La chambre revint d'un coup : les livres, le tapis, la girafe en bois sur l'étagère. Rien n'avait bougé d'un millimètre. C'était rassurant et un peu vexant."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  back: [{ t: 'lantern', x: 640, y: 496, s: 1 }],
+                  items: [{ t: 'livia', x: 340, y: 508, s: 1.2, pose: 'sit', mood: 'wow' }],
+                  sfx: [{ t: 'TOC.', x: 400, y: 146, fs: 34, rot: -7, color: '#bfa8e0' }]
+                },
+                text: "Et puis, dans le couloir : toc. Encore. Exactement le même, ni plus fort ni plus doux. La lampe éclairait la chambre, mais elle n'éclairait pas du tout le couloir.",
+                choix: {
+                  options: [
+                    { v: 'house', mot: 'Aller voir', vers: 'lamp_voir' },
+                    { v: 'moon', fond: 'nuit', mot: 'Écouter', vers: 'lamp_ecouter' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          lamp_voir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 520, s: 1.2, pose: 'point' }],
+                  sfx: [{ t: 'FLOP… FLOP…', x: 400, y: 146, fs: 28, rot: -4, color: '#9ecfe0' }]
+                },
+                text: "Livia posa un pied, puis l'autre, puis toute Livia. Dans le couloir, le grand rideau bougeait tout seul, gonflait, et retombait contre le mur. Flop. La fenêtre était restée entrouverte."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 508, s: 1.2, pose: 'sit' }],
+                  sfx: [{ t: 'VOILÀ.', x: 400, y: 146, fs: 30, rot: -5, color: '#7ac6a8' }]
+                },
+                text: "Elle tira la fenêtre, et le toc s'arrêta pour de bon. En se recouchant, Livia repensa au monstre qu'elle avait imaginé, et elle se trouva un peu bête — ce qui est une façon très agréable de s'endormir."
+              }
+            ]
+          },
+
+          lamp_ecouter: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  back: [{ t: 'lantern', x: 630, y: 496, s: 1 }],
+                  items: [{ t: 'livia', x: 360, y: 508, s: 1.2, pose: 'sit' }],
+                  sfx: [{ t: 'TOC… TOC… TOC…', x: 400, y: 146, fs: 26, rot: -4, color: '#bfa8e0' }]
+                },
+                text: "Livia resta assise, la couette jusqu'au menton, et elle écouta pour de bon. Toc. Un temps. Toc. Un temps. Toc. Toujours pareil, toujours au même moment. Les monstres ne sont jamais réguliers."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 508, s: 1.2, pose: 'sit' }],
+                  sfx: [{ t: 'AH, C\'EST LE RADIATEUR.', x: 400, y: 146, fs: 22, rot: -4, color: '#7ac6a8' }]
+                },
+                text: "C'était le radiateur du couloir, qui fait ça chaque nuit quand le chauffage s'arrête. Livia se rallongea. Le bruit continua encore longtemps, mais il n'était plus le même bruit du tout."
+              }
+            ]
+          },
+
+          /* --- branche B : appeler Maman --- */
+          maman: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'livia', x: 300, y: 508, s: 1.15, pose: 'sit' },
+                    { t: 'maman', x: 570, y: 520, s: 1.2 }
+                  ],
+                  sfx: [{ t: 'MAMAAAN…', x: 430, y: 146, fs: 30, rot: -5, color: '#d4622c' }]
+                },
+                text: "« Mamaaan… » Ce n'était pas un cri, c'était juste assez fort. Maman arriva avec les cheveux dans tous les sens et sans allumer, parce qu'elle connaît le chemin par cœur."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'maman', x: 300, y: 506, s: 1.15, pose: 'sit' },
+                    { t: 'livia', x: 560, y: 508, s: 1.15, pose: 'sit' }
+                  ],
+                  bubbles: [{ x: 40, y: 22, w: 350, t: 'On va voir, ou je reste un peu ?', tx: 300, ty: 238 }]
+                },
+                text: "Elle s'assit au bord du lit sans rien dire pendant un moment. Puis elle demanda, tout bas : « On va voir ce que c'est, ou je reste un peu ? » Les deux étaient permis.",
+                choix: {
+                  options: [
+                    { v: 'house', mot: 'On va voir', vers: 'mam_voir' },
+                    { v: 'maman', mot: 'Reste un peu', vers: 'mam_reste' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          mam_voir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'maman', x: 320, y: 520, s: 1.15, pose: 'hold' },
+                    { t: 'livia', x: 560, y: 522, s: 1.1, pose: 'hold' }
+                  ],
+                  sfx: [{ t: 'FLOP… FLOP…', x: 440, y: 146, fs: 28, rot: -4, color: '#9ecfe0' }]
+                },
+                text: "Elles y allèrent la main dans la main, ce qui n'est pas de la triche. Dans le couloir, le grand rideau se gonflait et retombait contre le mur. La fenêtre était restée entrouverte."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'maman', x: 320, y: 506, s: 1.15, pose: 'sit' },
+                    { t: 'livia', x: 560, y: 508, s: 1.15, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'PFFF !', x: 440, y: 146, fs: 30, rot: -6, color: '#7ac6a8' }]
+                },
+                text: "Elles rirent toutes les deux, un peu trop fort pour l'heure qu'il était. En repartant se coucher, Livia savait maintenant à quoi ressemblait ce bruit-là. Elle ne l'a plus jamais entendu pareil."
+              }
+            ]
+          },
+
+          mam_reste: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'maman', x: 320, y: 506, s: 1.15, pose: 'sit' },
+                    { t: 'livia', x: 560, y: 508, s: 1.15, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'DEUX MINUTES.', x: 440, y: 146, fs: 26, rot: -4, color: '#d4622c' }]
+                },
+                text: "« Deux minutes », dit Maman, et elle resta assise dans le noir, une main posée sur la couette. Elle ne raconta rien. Elle ne chanta rien. Elle était juste là, et ça suffisait largement."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 508, s: 1.2, pose: 'sit' }],
+                  sfx: [{ t: '. . .', x: 400, y: 146, fs: 34, rot: 0, color: '#8a7768' }]
+                },
+                text: "Le toc revint deux ou trois fois. Livia l'entendit de moins en moins fort, puis plus du tout. Les deux minutes de Maman avaient duré bien plus longtemps que deux minutes."
+              }
+            ]
+          }
+        }
+      }
+    ]
   }
 ];

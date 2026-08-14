@@ -43,7 +43,8 @@
       bonneNuit: 'Bonne nuit… et à demain pour une nouvelle histoire.',
       autre: 'Une autre', relire: 'Relire', sommaire: 'Le sommaire',
       encore: function (n) { return 'Encore <b>' + n + '</b> histoire' + (n > 1 ? 's' : '') + ' ce soir.'; },
-      planches: 'planches', histoires: 'histoires', tous: 'Tous', langue: 'Langue'
+      planches: 'planches', histoires: 'histoires', tous: 'Tous', langue: 'Langue',
+      rejouer: 'Autres choix'
     },
     es: {
       choisis: 'Elige un mundo.', filtrer: 'Filtrar por tema',
@@ -52,16 +53,47 @@
       bonneNuit: 'Buenas noches… y hasta mañana para otro cuento.',
       autre: 'Otro', relire: 'Releer', sommaire: 'El índice',
       encore: function (n) { return 'Todavía <b>' + n + '</b> cuento' + (n > 1 ? 's' : '') + ' esta noche.'; },
-      planches: 'láminas', histoires: 'cuentos', tous: 'Todos', langue: 'Idioma'
+      planches: 'láminas', histoires: 'cuentos', tous: 'Todos', langue: 'Idioma',
+      rejouer: 'Otras opciones'
     }
   };
   function mot(k) { return (MOTS[LANGUE] && MOTS[LANGUE][k]) || MOTS.fr[k]; }
+
+  /* ---------------- les histoires à choix ----------------
+     Une histoire ordinaire est une suite de pages. Une histoire à choix est
+     un petit réseau de blocs : la dernière page d'un bloc propose deux
+     boutons, chacun menant à un autre bloc. Tous les chemins ont la même
+     longueur — c'est ce qui permet de garder les points de progression et le
+     numéro de page. L'outil de contrôle le vérifie. */
+  function branchu(st) { return !!st.blocs; }
+
+  /* toutes les pages écrites, tous chemins confondus : pour compter et pour
+     savoir si la traduction est complète */
+  function toutesLesPages(st) {
+    if (!branchu(st)) return st.pages;
+    var out = [], k;
+    for (k in st.blocs) if (st.blocs.hasOwnProperty(k)) out = out.concat(st.blocs[k].pages);
+    return out;
+  }
+
+  /* le nombre de planches d'un chemin : on en suit un, ils font tous la même
+     longueur */
+  function nbPages(st) {
+    if (!branchu(st)) return st.pages.length;
+    var n = 0, bloc = st.blocs[st.debut], garde = 0;
+    while (bloc && garde++ < 40) {
+      n += bloc.pages.length;
+      var fin = bloc.pages[bloc.pages.length - 1];
+      bloc = fin && fin.choix ? st.blocs[fin.choix.options[0].vers] : null;
+    }
+    return n;
+  }
 
   /* une histoire n'existe dans une langue que si tout y est traduit */
   function dispo(st) {
     if (LANGUE === 'fr') return true;
     if (!st['title_' + LANGUE]) return false;
-    return st.pages.every(function (p) { return !!p[LANGUE]; });
+    return toutesLesPages(st).every(function (p) { return !!p[LANGUE]; });
   }
   function histoiresDe(u) { return u.stories.filter(dispo); }
   function titre(st) { return st['title_' + LANGUE] || st.title; }
@@ -334,7 +366,8 @@
     }
   });
 
-  var state = { universe: null, story: null, page: 0, speak: false };
+  var state = { universe: null, story: null, page: 0, speak: false,
+    chemin: [], total: 0, end: null, obs: null };
 
   /* ---------------- la marque ---------------- */
   els.logo.onclick = function () { location.hash = '#/'; };
@@ -421,7 +454,7 @@
       UNIVERSES.forEach(function (u) {
         u.stories.forEach(function (st) {
           if (l.id === 'fr' || (st['title_' + l.id] &&
-            st.pages.every(function (p) { return !!p[l.id]; }))) n++;
+            toutesLesPages(st).every(function (p) { return !!p[l.id]; }))) n++;
         });
       });
       var b = document.createElement('button');
@@ -529,7 +562,7 @@
       '<span class="num">' + numero(u, s) + '</span></div>' +
       '<div class="thumb">' + Art.scene(s.cover, { slice: true, noBubbles: true }) + '</div>' +
       '<div class="cap"><p>' + soustitre(s) + '</p>' +
-      '<span class="pill">' + s.pages.length + ' ' + mot('planches') + '</span></div>';
+      '<span class="pill">' + nbPages(s) + ' ' + mot('planches') + '</span></div>';
     card.onclick = function () { location.hash = '#/u/' + u.id + '/' + s.id; };
     return card;
   }
@@ -676,7 +709,7 @@
       if (startId && s.id === startId) start = i;
       return {
         scene: s.cover, label: titre(s), num: numero(u, s), tag: s.tag,
-        badge: isRead(u, s) ? '✓' : String(s.pages.length) + ' p.'
+        badge: isRead(u, s) ? '✓' : String(nbPages(s)) + ' p.'
       };
     });
 
@@ -694,7 +727,7 @@
     els.cfTitle.textContent = titre(s);
     els.cfSub.textContent = soustitre(s);
     els.cfTags.innerHTML =
-      '<span>' + numero(u, s) + '</span><span>' + s.pages.length + ' pages</span>' +
+      '<span>' + numero(u, s) + '</span><span>' + nbPages(s) + ' pages</span>' +
       '<span>≈ ' + s.minutes + ' min</span>' + (isRead(u, s) ? '<span>✓ déjà lue</span>' : '');
     var dots = els.cfDots.children;
     for (var k = 0; k < dots.length; k++) dots[k].className = k === i ? 'on' : '';
@@ -704,26 +737,65 @@
   /* ============================================================
      LECTEUR DE BD
      ============================================================ */
-  function openReader(u, s) {
-    state.universe = u; state.story = s;
-    setTheme(u);
-    els.rTitle.textContent = titre(s);
-    els.pages.innerHTML = '';
-    /* on repart du début : sans cette remise à zéro, ouvrir une histoire
-       depuis la fin de la précédente la montre déjà terminée */
-    els.pages.scrollLeft = 0;
+  /* Une planche, à la place qu'elle occupe sur le chemin suivi. Dans une
+     histoire à choix, ce chemin s'allonge au fur et à mesure des décisions ;
+     le total, lui, est connu d'avance puisque tous les chemins font la même
+     longueur. */
+  function ajouterPage(p, i, total) {
+    var a = document.createElement('article');
+    a.className = 'page' + (p.choix ? ' page-choix' : '');
+    a.innerHTML =
+      '<div class="panel">' + Art.scene(p.scene) + '</div>' +
+      '<p class="ptext">' + texte(p) + '</p>' +
+      (p.choix ? boutonsChoix(p.choix) : '') +
+      '<div class="pnum">' + (i + 1) + ' / ' + total + '</div>';
+    els.pages.appendChild(a);
+    state.chemin.push(p);
+    return a;
+  }
 
-    s.pages.forEach(function (p, i) {
-      var a = document.createElement('article');
-      a.className = 'page';
-      a.innerHTML =
-        '<div class="panel">' + Art.scene(p.scene) + '</div>' +
-        '<p class="ptext">' + texte(p) + '</p>' +
-        '<div class="pnum">' + (i + 1) + ' / ' + s.pages.length + '</div>';
-      els.pages.appendChild(a);
-    });
+  /* Deux grands boutons dessinés. L'enfant ne lit pas : ce qu'elle reconnaît,
+     c'est l'image — la cabane, la rivière, la lampe. Le mot reste dessous. */
+  function boutonsChoix(c) {
+    return '<div class="choix">' + c.options.map(function (o, k) {
+      /* l'option ne nomme que l'élément : c'est le moteur qui sait le cadrer.
+         « fond » sert aux dessins pâles — une lune crème sur du papier crème
+         ne se voit pas, sur un rond de nuit elle éclaire. */
+      return '<button class="choix-b" data-choix="' + k + '" aria-label="' + o.mot + '">' +
+        '<span class="choix-img' + (o.fond ? ' ' + o.fond : '') + '">' +
+        Art.sticker(Art.vignette(o.v, o.pose && { pose: o.pose })) +
+        '</span><span class="choix-mot">' + o.mot + '</span></button>';
+    }).join('') + '</div>';
+  }
 
-    // page finale
+  /* Ajouter un bloc entier, puis la suite : soit un autre choix attend à la
+     dernière page, soit c'est la fin de l'histoire. */
+  function ajouterBloc(s, nom) {
+    var bloc = s.blocs[nom], total = state.total;
+    bloc.pages.forEach(function (p) { ajouterPage(p, state.chemin.length, total); });
+    var derniere = bloc.pages[bloc.pages.length - 1];
+    if (!derniere.choix) ajouterFin(s);
+  }
+
+  /* On change d'avis : tout ce qui suivait le choix est effacé et le chemin
+     se réécrit. C'est la moitié du plaisir — « et si on avait pris l'autre ? » */
+  function choisir(s, page, k) {
+    var i = state.chemin.indexOf(page);
+    if (i < 0) return;
+    while (els.pages.children.length > i + 1) {
+      els.pages.removeChild(els.pages.lastChild);
+    }
+    state.chemin.length = i + 1;
+    state.end = null;
+    var art = els.pages.children[i];
+    var bs = art.querySelectorAll('.choix-b');
+    for (var b = 0; b < bs.length; b++) bs[b].classList.toggle('pris', b === k);
+    ajouterBloc(s, page.choix.options[k].vers);
+    requestAnimationFrame(function () { goPage(i + 1); });
+  }
+
+  function ajouterFin(s) {
+    var u = state.universe;
     var end = document.createElement('article');
     end.className = 'page page-end';
     end.innerHTML = '<div class="end-badge">🌟</div><div class="end-corps"></div>';
@@ -749,7 +821,7 @@
       /* le clic tombe sur l'image ou le mot : on remonte jusqu'au bouton */
       var cible = e.target.closest && e.target.closest('[data-act]');
       var act = cible && cible.getAttribute('data-act');
-      if (act === 'again') goPage(0);
+      if (act === 'again') { if (branchu(s)) openReader(u, s); else goPage(0); }
       else if (act === 'close') location.hash = '#/u/' + u.id;
       else if (act === 'next') {
         var liste = histoiresDe(u);
@@ -758,16 +830,48 @@
         location.hash = '#/u/' + u.id + '/' + nx.id;
       }
     });
+  }
+
+  function openReader(u, s) {
+    state.universe = u; state.story = s;
+    setTheme(u);
+    els.rTitle.textContent = titre(s);
+    els.pages.innerHTML = '';
+    /* on repart du début : sans cette remise à zéro, ouvrir une histoire
+       depuis la fin de la précédente la montre déjà terminée */
+    els.pages.scrollLeft = 0;
+    state.chemin = [];
+    state.total = nbPages(s);
+    state.page = -1;
+    state.end = null;
+
+    if (branchu(s)) ajouterBloc(s, s.debut);
+    else {
+      s.pages.forEach(function (p, i) { ajouterPage(p, i, state.total); });
+      ajouterFin(s);
+    }
 
     els.rDots.innerHTML = '';
-    for (var k = 0; k <= s.pages.length; k++) els.rDots.appendChild(document.createElement('i'));
+    for (var k = 0; k <= state.total; k++) els.rDots.appendChild(document.createElement('i'));
 
     els.reader.hidden = false;
     document.body.style.overflow = 'hidden';
 
-    var saved = parseInt(store('page.' + u.id + '.' + s.id) || '0', 10);
-    if (!(saved > 0 && saved < s.pages.length)) saved = 0;
+    /* Une histoire à choix repart toujours du début : reprendre au milieu
+       d'un chemin qu'on ne connaît plus n'aurait pas de sens. */
+    var saved = branchu(s) ? 0 : parseInt(store('page.' + u.id + '.' + s.id) || '0', 10);
+    if (!(saved > 0 && saved < state.total)) saved = 0;
     requestAnimationFrame(function () { goPage(saved, true); syncPage(); });
+  }
+
+  /* le clic sur un bouton de choix, écouté une seule fois pour tout le lecteur */
+  function clicChoix(e) {
+    var b = e.target.closest && e.target.closest('.choix-b');
+    if (!b || !state.story || !branchu(state.story)) return;
+    var art = b.closest('.page');
+    var i = [].indexOf.call(els.pages.children, art);
+    if (i < 0) return;
+    choisir(state.story, state.chemin[i], +b.getAttribute('data-choix'));
   }
 
   /* Les boutons que l'enfant utilise sont d'abord des images : à quatre ans
@@ -800,7 +904,11 @@
     corps.innerHTML = '<h4>' + titre + '</h4><p>' + phrase + '</p>' +
       '<div class="end-actions">' +
       (suite ? bouton('next', '▶', mot('autre'), true) : '') +
-      bouton('again', '↻', mot('relire'), !suite) +
+      /* dans une histoire à choix, « relire » veut dire « reprendre les
+         chemins qu'on n'a pas pris » — c'est la moitié du plaisir */
+      (branchu(state.story)
+        ? bouton('again', '🔀', mot('rejouer'), !suite)
+        : bouton('again', '↻', mot('relire'), !suite)) +
       bouton('close', '⌂', mot('sommaire'), false) + '</div>';
   }
 
@@ -808,7 +916,7 @@
     if (els.reader.hidden) return;
     els.reader.hidden = true;
     els.pages.innerHTML = '';
-    state.story = null; state.end = null;
+    state.story = null; state.end = null; state.chemin = [];
     if (state.obs) { state.obs.disconnect(); state.obs = null; }
     document.body.style.overflow = '';
     stopSpeak();
@@ -824,28 +932,34 @@
     if (!s) return;
     var w = els.pages.clientWidth || 1;
     var i = Math.round(els.pages.scrollLeft / w);
-    var total = s.pages.length;
+    var total = state.total;
+    /* le chemin déjà déroulé : dans une histoire à choix, il s'arrête au
+       prochain choix tant qu'il n'est pas fait */
+    var pose = state.chemin.length;
     if (i === state.page) return;
     state.page = i;
 
     var dots = els.rDots.children;
     for (var k = 0; k < dots.length; k++) dots[k].className = k === i ? 'on' : '';
     els.rPrev.disabled = i <= 0;
-    els.rNext.disabled = i >= total;
+    /* on ne passe pas un choix sans l'avoir fait : le bouton « suivant » est
+       éteint tant que le chemin ne va pas plus loin */
+    els.rNext.disabled = i >= (state.end ? total : pose - 1);
 
-    if (i < total) store('page.' + state.universe.id + '.' + s.id, String(i));
+    if (i < total && !branchu(s)) store('page.' + state.universe.id + '.' + s.id, String(i));
     if (i >= total - 1) store('read.' + state.universe.id + '.' + s.id, '1');
     /* l'histoire est finie quand la dernière page — celle du « Fin ! » — s'affiche */
     if (i >= total) { majFin(Soir.compter(state.universe, s)); majSoir(); }
 
     stopSpeak();
-    if (state.speak && i < total) speak(texte(s.pages[i]));
+    if (state.speak && i < pose) speak(texte(state.chemin[i]));
   }
 
   els.pages.addEventListener('scroll', function () {
     clearTimeout(els.pages._t);
     els.pages._t = setTimeout(syncPage, 90);
   });
+  els.pages.addEventListener('click', clicChoix);
   els.rPrev.onclick = function () { goPage(Math.max(0, state.page - 1)); };
   els.rNext.onclick = function () { goPage(state.page + 1); };
   els.rClose.onclick = function () { location.hash = '#/u/' + state.universe.id; };
@@ -918,8 +1032,8 @@
     state.speak = !state.speak;
     els.rSpeak.classList.toggle('on', state.speak);
     stopSpeak();
-    if (state.speak && state.story && state.page < state.story.pages.length) {
-      speak(state.story.pages[state.page].text);
+    if (state.speak && state.page < state.chemin.length) {
+      speak(texte(state.chemin[state.page]));
     }
   };
 
@@ -1004,7 +1118,7 @@
     } else {
       // retour depuis le lecteur : on rafraîchit les pastilles « déjà lue »
       histoiresDe(u).forEach(function (s, i) {
-        flow.setBadge(i, isRead(u, s) ? '✓' : s.pages.length + ' p.');
+        flow.setBadge(i, isRead(u, s) ? '✓' : nbPages(s) + ' p.');
       });
       renderMeta(flow.current());
     }

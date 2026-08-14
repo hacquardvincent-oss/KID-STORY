@@ -950,6 +950,26 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   padding-bottom: 2px;
 }
 
+/* la page où l'enfant décide : deux grands boutons dessinés, parce qu'elle
+   ne lit pas encore — ce qu'elle reconnaît, c'est l'image */
+.choix { display: flex; gap: 12px; justify-content: center; }
+.choix-b {
+  flex: 1 1 0; min-width: 0; max-width: 220px; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 8px 6px 6px; font-family: inherit; color: var(--ink);
+  background: var(--page); border: 3px solid var(--ink); border-radius: 14px;
+  box-shadow: 0 5px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s, background .2s;
+}
+.choix-b:active { transform: translateY(5px); box-shadow: 0 0 0 var(--ink); }
+.choix-img { display: block; width: 100%; border-radius: 12px; }
+.choix-img svg { display: block; width: 100%; height: 82px; }
+/* un dessin de nuit a besoin de sa nuit derrière lui */
+.choix-img.nuit { background: #25304f; }
+.choix-mot { font-size: 15px; font-weight: 600; line-height: 1.15; text-align: center; }
+/* celui qu'on a pris reste allumé : en revenant en arrière, on voit son choix */
+.choix-b.pris { background: var(--jaune); }
+
 /* la dernière page */
 .page-end { justify-content: center; align-items: center; text-align: center; gap: 16px; }
 .end-badge { font-size: 54px; }
