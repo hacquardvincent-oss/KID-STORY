@@ -90,8 +90,8 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 | La grande journée à la piscine | 8 |
 | Le cerf-volant de l'été | 8 |
 
-**Peppa Pig** — grandir : six épisodes sur ce qui se joue à trois ans, chacun
-autour d'une émotion nommée et d'une réparation concrète, sans morale plaquée
+**Peppa Pig** — grandir : ce qui se joue à trois ans, chaque épisode autour
+d'une émotion nommée et d'une réparation concrète, sans morale plaquée
 
 | Histoire | Ce qu'elle raconte |
 |---|---|
@@ -101,6 +101,8 @@ autour d'une émotion nommée et d'une réparation concrète, sans morale plaqu�
 | La flaque interdite | écouter ses parents, et la conséquence |
 | Le vase de Maman | dire la vérité |
 | La file du toboggan | attendre son tour |
+| La télé s'éteint | un non qui ne se négocie pas, et la colère qui redescend |
+| Le bain de George | s'occuper d'un petit, et découvrir que c'est du travail |
 
 **La Reine des Neiges**
 
@@ -110,8 +112,11 @@ autour d'une émotion nommée et d'une réparation concrète, sans morale plaqu�
 | La nuit des étoiles glacées | 8 |
 | Papa n'a pas froid | 6 |
 | La glace qui craque | 6 |
+| Le secret d'Anna | 6 |
+| Olaf a trop chaud | 6 |
+| La couronne cassée | 6 |
 
-**Bluey** (dix histoires, tout l'été australien)
+**Bluey** (l'été australien, et deux histoires de règles)
 
 | Histoire | Planches |
 |---|---|
@@ -125,8 +130,10 @@ autour d'une émotion nommée et d'une réparation concrète, sans morale plaqu�
 | La chasse au trésor du jardin | 7 |
 | Le pique-nique tout en haut | 7 |
 | La nuit des lucioles | 7 |
+| Le jeu qui s'arrête | 6 |
+| Bingo a peur du noir | 6 |
 
-**Les Monsieur Madame** (huit histoires, une humeur chacune)
+**Les Monsieur Madame** (une humeur chacune)
 
 | Histoire | Ce qu'elle raconte |
 |---|---|
@@ -138,6 +145,8 @@ autour d'une émotion nommée et d'une réparation concrète, sans morale plaqu�
 | Madame Range-Tout et le grand désordre | on range après, pas pendant |
 | Monsieur Costaud n'y arrive pas | demander de l'aide |
 | Madame Bonheur et le jour gris | rester là quand ça ne va pas |
+| Madame Chipie dit pardon | le mot le plus court et le plus lourd |
+| Monsieur Lent arrive quand même | aller à son rythme, jusqu'au bout |
 
 **Le grand mélange** — les cross-over : les amis de Livia ne viennent pas du
 même dessin animé, et ils se rencontrent quand même
@@ -149,6 +158,8 @@ même dessin animé, et ils se rencontrent quand même
 | La cabane de tous les amis | Bluey, Peppa, Elsa et Monsieur Costaud |
 | La grande course des amis | Peppa, Bluey et Monsieur Rapide |
 | La nuit où tout le monde a dormi dehors | Peppa, Bluey et Elsa sous la tente |
+| Le goûter à quatre | cinq gâteaux, quatre invités, et un couteau |
+| Chacun ses règles | chez toi on saute sur le lit, chez moi non |
 
 **Les copines de Livia** — Roxane, Juliette, Isadora, et Pablo le petit frère
 
@@ -164,6 +175,8 @@ même dessin animé, et ils se rencontrent quand même
 | Les règles du jeu | on les dit avant, pas pendant |
 | Maman est en retard | attendre sans savoir combien de temps |
 | Le gâteau de Papa | à quatre mains, c'est plus salissant et plus rigolo |
+| Isadora ne veut pas jouer | un non qui n'est pas contre toi |
+| Le tour de Pablo | changer la règle pour que le petit joue aussi |
 
 Pablo apparaît aussi dans **Pablo veut faire pareil** (Peppa Pig, série *Grandir*).
 
@@ -173,13 +186,15 @@ bout : *Papá no tiene frío*, *El hielo que cruje*, *Mamá llega tarde* et
 bibliothèque se remplit une histoire à la fois (les consignes des jeux, elles,
 restent en français pour le moment).
 
-**Tu choisis !** — trois histoires à embranchements, quatre fins chacune
+**Tu choisis !** — cinq histoires à embranchements, quatre fins chacune
 
 | Histoire | Le premier choix | Ce qu'elle travaille |
 |---|---|---|
 | La cabane ou la rivière | la cabane dans l'arbre, ou l'eau en bas | la règle qu'on garde en tête quand personne ne regarde |
 | Le ballon tout neuf | j'appelle Isadora, ou je joue un peu d'abord | partager un peu plus tard n'est pas partager un peu moins |
 | Le bruit dans le couloir | la petite lampe, ou appeler Maman | se rassurer seule, et avoir le droit d'appeler |
+| Le chien du voisin | aller demander, ou il a l'air gentil | demander avant de toucher, toujours |
+| Le dernier carré de chocolat | je le donne, ou je le mange | partager, ce n'est pas ne rien vouloir |
 
 Chaque histoire fait quatorze planches écrites pour six planches lues : quatre
 chemins, quatre fins, toutes bonnes. **Aucun choix n'est un piège** — c'est la

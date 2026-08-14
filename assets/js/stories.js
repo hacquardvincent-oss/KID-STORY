@@ -136,8 +136,8 @@ var UNIVERSES = [
               items: [
                 { t: 'car', x: 430, y: 490, s: 1.3 },
                 { t: 'daddy', x: 120, y: 505, s: 1.15, pose: 'hold' },
-                { t: 'george', x: 700, y: 505, s: .8, pose: 'hold' },
-                { t: 'dino', x: 740, y: 505, s: .75 }
+                { t: 'george', x: 664, y: 505, s: .8, pose: 'hold' },
+                { t: 'dino', x: 746, y: 505, s: .75 }
               ],
               bubbles: [{ x: 40, y: 30, w: 280, t: 'Tout le monde à bord !', tx: 120, ty: 220 }]
             },
@@ -264,7 +264,7 @@ var UNIVERSES = [
                 { t: 'car', x: 180, y: 470, s: .85 },
                 { t: 'daddy', x: 430, y: 500, s: 1.25, pose: 'hold' },
                 { t: 'peppa', x: 590, y: 500, s: 1, pose: 'jump' },
-                { t: 'livia', x: 694, y: 500, s: 1, pose: 'jump' },
+                { t: 'livia', x: 700, y: 500, s: .96, pose: 'jump' },
                 { t: 'suitcase', x: 300, y: 505, s: .8 }
               ],
               bubbles: [{ x: 330, y: 34, w: 300, t: 'Ce soir, on dort dans la tente !', tx: 430, ty: 210 }]
@@ -2230,7 +2230,176 @@ var UNIVERSES = [
           }
         ]
       }
+,
 
+      /* ---------- 22 : la télé s'éteint ---------- */
+      {
+        id: 'la-tele-seteint',
+        title: "La télé s'éteint",
+        subtitle: "Un non qui ne se négocie pas",
+        tag: 'Grandir',
+        themes: ['Règles', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'mummy', x: 300, y: 508, s: 1.1 },
+            { t: 'livia', x: 540, y: 512, s: 1.1, mood: 'sad' },
+            { t: 'peppa', x: 708, y: 508, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 496, s: 1.1, pose: 'sit' },
+                { t: 'peppa', x: 560, y: 492, s: 1.05, pose: 'sit' }
+              ],
+              sfx: [{ t: 'ENCORE UN ÉPISODE ?', x: 430, y: 146, fs: 24, rot: -4, color: '#a98cf0' }]
+            },
+            text: "Livia et Peppa étaient assises très près de l'écran, la bouche un peu ouverte. L'épisode se terminait. Un autre commençait tout seul, sans rien demander à personne."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 508, s: 1.15, pose: 'point' },
+                { t: 'livia', x: 570, y: 496, s: 1.1, pose: 'sit' }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 300, t: 'Celui-là, et on éteint.', tx: 300, ty: 240 }]
+            },
+            text: "« Celui-là, et on éteint », dit Maman Pig depuis la cuisine. Livia dit oui sans écouter, comme on dit oui quand on regarde ailleurs, et elle oublia la phrase en trois secondes."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 508, s: 1.15 },
+                { t: 'livia', x: 570, y: 512, s: 1.1, mood: 'fache' }
+              ],
+              sfx: [{ t: 'CLIC.', x: 430, y: 146, fs: 34, rot: -6, color: '#e0453c' }]
+            },
+            text: "Clic. L'écran devint noir et refléta deux petites filles très en colère. « Mais il était PAS FINI ! » cria Livia, avec la voix qu'elle n'a que dans ces moments-là."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 512, s: 1.25, mood: 'fache' }],
+              sfx: [{ t: 'C\'EST PAS JUSTE !', x: 400, y: 146, fs: 30, rot: -7, color: '#e0453c' }]
+            },
+            text: "Elle dit que ce n'était pas juste. Elle dit qu'elle n'avait rien demandé. Elle dit une chose méchante, aussi, qu'elle regretta avant même d'avoir fini de la dire."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 490, s: 1.1, pose: 'sit' },
+                { t: 'livia', x: 570, y: 496, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'Tu peux être fâchée. La télé reste éteinte.', tx: 305, ty: 236 }]
+            },
+            text: "Maman Pig s'assit à côté d'elle sans rien enlever et sans rien ajouter. « Tu peux être fâchée », dit-elle. « La télé reste éteinte. » Les deux phrases tenaient ensemble, curieusement."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 300, y: 512, s: 1.05, pose: 'jump' },
+                { t: 'livia', x: 560, y: 516, s: 1.1, pose: 'jump' }
+              ],
+              sfx: [{ t: 'SPLATCH !', x: 430, y: 146, fs: 32, rot: -7, color: '#8a5a3b' }]
+            },
+            text: "La colère mit onze minutes à partir. Ensuite, elles allèrent sauter dans les flaques. Livia n'a jamais su comment se terminait l'épisode, et ça ne lui a jamais manqué une seule fois."
+          }
+        ]
+      },
+
+      /* ---------- 23 : le bain de George ---------- */
+      {
+        id: 'le-bain-de-george',
+        title: 'Le bain de George',
+        subtitle: "Aider un petit, c'est un vrai travail",
+        tag: 'Grandir',
+        themes: ['Famille', 'Partager'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 320, y: 512, s: 1.15 },
+            { t: 'george', x: 570, y: 514, s: .95 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'mummy', x: 300, y: 508, s: 1.1, pose: 'point' },
+                { t: 'livia', x: 570, y: 512, s: 1.1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 330, t: 'Tu peux surveiller George deux minutes ?', tx: 300, ty: 240 }]
+            },
+            text: "« Tu peux surveiller George deux minutes ? » demanda Maman Pig. Livia se redressa d'un coup. On ne lui avait encore jamais confié un enfant entier, même pour deux minutes."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 512, s: 1.1 },
+                { t: 'george', x: 560, y: 514, s: 1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'DINO ! DINO !', x: 430, y: 146, fs: 30, rot: -5, color: '#7ab648' }]
+            },
+            text: "George voulait son dinosaure dans le bain. Le dinosaure était en bas, dans le panier, sous une pile de choses. George le voulait maintenant, et il le fit savoir avec beaucoup de conviction."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'george', x: 300, y: 514, s: 1, mood: 'fache' },
+                { t: 'livia', x: 560, y: 512, s: 1.1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'OUIIIIIN !', x: 430, y: 146, fs: 34, rot: -7, color: '#e0453c' }]
+            },
+            text: "Livia dit non, parce qu'il ne fallait pas quitter la pièce. George se mit à hurler. Deux minutes, découvrit-elle, ça peut être extrêmement long quand on est responsable de quelqu'un."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 512, s: 1.15, pose: 'point' },
+                { t: 'george', x: 570, y: 514, s: 1, mood: 'wow' }
+              ],
+              sfx: [{ t: 'REGARDE LA MOUSSE !', x: 430, y: 146, fs: 24, rot: -4, color: '#7fd8f0' }]
+            },
+            text: "Alors elle prit une poignée de mousse et se fit une barbe blanche. George s'arrêta net, la bouche encore ouverte sur un cri qui ne sortit jamais. Puis il rit, et il voulut une barbe aussi."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 512, s: 1.1 },
+                { t: 'george', x: 560, y: 514, s: 1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'HA HA HA !', x: 430, y: 146, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Ils firent une barbe, des sourcils, et un chapeau de mousse. Le dinosaure fut complètement oublié, ce qui est le plus grand exploit qu'on puisse accomplir avec George."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'mummy', x: 280, y: 508, s: 1.1 },
+                { t: 'livia', x: 520, y: 512, s: 1.1 },
+                { t: 'george', x: 720, y: 514, s: .95, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 300, t: 'Tu as fait ça toute seule ?', tx: 300, ty: 240 }]
+            },
+            text: "Maman Pig revint dans une salle de bain plus mouillée qu'elle ne l'avait laissée, et beaucoup plus calme. « Tu as fait ça toute seule ? » Livia dit oui, sans en rajouter. Elle n'en avait pas besoin."
+          }
+        ]
+      }
     ]
   },
 
@@ -2699,6 +2868,251 @@ var UNIVERSES = [
             es: "Algunas reglas se explican y se entienden enseguida. Otras esperan a que hayas oído el crujido. Livia nunca volvió a pisar el lago."
           }
         ]
+      },
+
+      /* ---------- 5 : le secret d'Anna ---------- */
+      {
+        id: 'secret-danna',
+        title: "Le secret d'Anna",
+        subtitle: 'Tenir sa langue quand ça démange',
+        tag: 'Amitié',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'anna', x: 320, y: 518, s: 1.15 },
+            { t: 'liviaPrincess', x: 560, y: 522, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'anna', x: 300, y: 518, s: 1.15, pose: 'point' },
+                { t: 'liviaPrincess', x: 560, y: 522, s: 1.1, mood: 'wow' }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "Je prépare une surprise pour Elsa. Tu ne dis rien ?", tx: 300, ty: 240 }]
+            },
+            text: "Anna prit Livia par le bras et l'emmena derrière la grande porte. « Je prépare une surprise pour Elsa », chuchota-t-elle. « Tu ne dis rien ? » Livia fit non de la tête, très fort."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'elsa', x: 320, y: 516, s: 1.15 },
+                { t: 'liviaPrincess', x: 580, y: 522, s: 1.1, mood: 'wow' }
+              ],
+              sfx: [{ t: 'ÇA GRATTE DEDANS !', x: 450, y: 150, fs: 25, rot: -4, color: '#8a79c4' }]
+            },
+            text: "Deux minutes plus tard, Elsa arriva. Le secret se mit à gratter à l'intérieur de Livia, juste derrière les dents, comme une chose vivante qui veut sortir."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'elsa', x: 300, y: 516, s: 1.15, pose: 'point' },
+                { t: 'liviaPrincess', x: 570, y: 522, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 330, t: "Tu as l'air bizarre. Il se passe quelque chose ?", tx: 300, ty: 240 }]
+            },
+            text: "« Tu as l'air bizarre », dit Elsa. « Il se passe quelque chose ? » C'était la question la plus difficile de toute la journée, et Livia n'avait rien préparé du tout."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'liviaPrincess', x: 400, y: 522, s: 1.25 }],
+              sfx: [{ t: 'OUI. MAIS JE NE PEUX PAS.', x: 400, y: 150, fs: 22, rot: -4, color: '#4a7fc1' }]
+            },
+            text: "Livia respira un grand coup. « Oui », dit-elle. « Mais je ne peux pas te le dire. » Ce n'était pas un mensonge, et ce n'était pas non plus le secret. C'était juste la vérité, en plus petit."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'elsa', x: 300, y: 516, s: 1.15 },
+                { t: 'liviaPrincess', x: 570, y: 522, s: 1.1 }
+              ],
+              sfx: [{ t: 'ALORS J\'ATTENDRAI.', x: 440, y: 150, fs: 24, rot: -4, color: '#7fd8f0' }]
+            },
+            text: "Elsa la regarda un moment. Puis elle sourit. « Alors j'attendrai », dit-elle, et elle parla d'autre chose, ce qui est une façon très élégante de laisser quelqu'un tranquille."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'anna', x: 260, y: 518, s: 1.1, pose: 'armsup' },
+                { t: 'elsa', x: 480, y: 516, s: 1.1, mood: 'wow' },
+                { t: 'liviaPrincess', x: 690, y: 522, s: 1.05, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'SURPRISE !', x: 450, y: 150, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Le soir, la surprise sortit enfin de sa cachette. Elsa fit semblant de ne pas s'y attendre. Livia, elle, avait gardé quelque chose de lourd pendant tout un après-midi — et elle avait tenu."
+          }
+        ]
+      },
+
+      /* ---------- 6 : Olaf a trop chaud ---------- */
+      {
+        id: 'olaf-a-trop-chaud',
+        title: 'Olaf a trop chaud',
+        subtitle: "Aider, même quand ça ne nous arrange pas",
+        tag: 'Été',
+        themes: ['Amitié', 'Été'],
+        minutes: 5,
+        cover: {
+          bg: 'snow',
+          items: [
+            { t: 'olaf', x: 320, y: 520, s: 1.2, mood: 'sad' },
+            { t: 'liviaPrincess', x: 560, y: 522, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'snow',
+              back: [{ t: 'slide', x: 620, y: 500, s: .9 }],
+              items: [
+                { t: 'liviaPrincess', x: 280, y: 522, s: 1.15, pose: 'jump' },
+                { t: 'olaf', x: 470, y: 520, s: 1.05 }
+              ],
+              sfx: [{ t: 'LA GLISSADE !', x: 380, y: 150, fs: 28, rot: -5, color: '#7fd8f0' }]
+            },
+            text: "Elsa avait fabriqué une glissade de glace qui descendait jusqu'en bas de la colline. Livia s'apprêtait à la prendre pour la sixième fois quand elle entendit quelqu'un souffler."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [{ t: 'olaf', x: 400, y: 520, s: 1.3, mood: 'sad' }],
+              sfx: [{ t: 'PFOUUU…', x: 400, y: 148, fs: 32, rot: -5, color: '#f2803d' }]
+            },
+            text: "C'était Olaf. Il s'était assis au soleil, et il avait la tête un peu penchée, comme une bougie qu'on aurait laissée trop près du feu. « Ça va », dit-il, ce qui n'était pas vrai du tout."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'liviaPrincess', x: 300, y: 522, s: 1.15 },
+                { t: 'olaf', x: 570, y: 520, s: 1.1, mood: 'sad' }
+              ],
+              sfx: [{ t: 'ENCORE UNE FOIS… OU PAS.', x: 440, y: 150, fs: 22, rot: -4, color: '#6d5847' }]
+            },
+            text: "Livia regarda la glissade. Puis Olaf. Puis la glissade. Personne ne lui demandait rien, et c'est bien ça qui était embêtant : elle aurait pu partir, et personne n'aurait rien su."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'liviaPrincess', x: 300, y: 522, s: 1.15, pose: 'hold' },
+                { t: 'olaf', x: 560, y: 520, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ON VA À L\'OMBRE.', x: 430, y: 150, fs: 25, rot: -4, color: '#4a7fc1' }]
+            },
+            text: "Elle prit Olaf par le bâton qui lui sert de bras et l'emmena derrière le grand rocher, là où la neige reste dure toute la journée. Le trajet dura longtemps : Olaf ne va pas vite."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              back: [{ t: 'snowpine', x: 660, y: 500, s: 1 }],
+              items: [
+                { t: 'liviaPrincess', x: 300, y: 506, s: 1.1, pose: 'sit' },
+                { t: 'olaf', x: 540, y: 520, s: 1.15 }
+              ],
+              sfx: [{ t: 'AAAH.', x: 420, y: 148, fs: 30, rot: -5, color: '#bfe8f7' }]
+            },
+            text: "À l'ombre, Olaf se redressa d'un coup, comme une plante qu'on arrose. « Aaah », dit-il. Ils restèrent là un moment, à ne rien faire, ce qui est parfois exactement ce qu'il faut faire."
+          },
+          {
+            scene: {
+              bg: 'snow', time: 'sunset',
+              back: [{ t: 'slide', x: 660, y: 500, s: .85 }],
+              items: [
+                { t: 'olaf', x: 300, y: 520, s: 1.05 },
+                { t: 'liviaPrincess', x: 540, y: 522, s: 1.15, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'WHIIII !', x: 440, y: 150, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "La glissade était toujours là après. Livia la prit trois fois, avec Olaf qui comptait en bas. Ce qu'elle avait laissé passer ne s'était pas perdu — ça l'attendait, tout simplement."
+          }
+        ]
+      },
+
+      /* ---------- 7 : la couronne cassée ---------- */
+      {
+        id: 'couronne-cassee',
+        title: 'La couronne cassée',
+        subtitle: "Le dire avant qu'on le découvre",
+        tag: 'Nuit',
+        themes: ['Règles', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'liviaPrincess', x: 340, y: 510, s: 1.2, mood: 'sad' },
+            { t: 'elsa', x: 580, y: 506, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'etagere', x: 620, y: 400, s: .9 }],
+              items: [{ t: 'liviaPrincess', x: 360, y: 512, s: 1.25, pose: 'point' }],
+              sfx: [{ t: 'JUSTE UNE FOIS…', x: 400, y: 146, fs: 25, rot: -4, color: '#a98cf0' }]
+            },
+            text: "La couronne d'Elsa était posée sur l'étagère du haut. On n'y touche pas, c'était dit depuis longtemps. Livia n'y toucha pas non plus : elle monta seulement sur le tabouret pour mieux la voir."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'liviaPrincess', x: 400, y: 512, s: 1.25, mood: 'wow' }],
+              sfx: [{ t: 'CLING !', x: 400, y: 146, fs: 40, rot: -8, color: '#e0453c' }]
+            },
+            text: "Le tabouret glissa. La couronne fit un bruit très court et très clair en touchant le sol, et une petite branche de glace se détacha net. La chambre devint extrêmement silencieuse."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'liviaPrincess', x: 400, y: 498, s: 1.2, pose: 'sit', mood: 'sad' }],
+              sfx: [{ t: 'PERSONNE N\'A VU.', x: 400, y: 146, fs: 24, rot: -4, color: '#6d5847' }]
+            },
+            text: "Personne n'avait rien vu. Livia remit la couronne en place, le morceau caché derrière. On ne voyait rien, vraiment rien. Elle s'assit par terre et ce fut le plus long moment de sa vie."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'liviaPrincess', x: 300, y: 512, s: 1.15, mood: 'sad' },
+                { t: 'elsa', x: 570, y: 506, s: 1.1 }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 320, t: "J'ai cassé ta couronne.", tx: 300, ty: 240 }]
+            },
+            text: "Quand Elsa entra, Livia dit tout, très vite, avant que le courage ne reparte : « J'ai cassé ta couronne. » Elle avait préparé les larmes, et elles arrivèrent quand même."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'elsa', x: 300, y: 490, s: 1.1, pose: 'sit' },
+                { t: 'liviaPrincess', x: 570, y: 496, s: 1.15, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "Ça, je peux le réparer. L'autre chose, non.", tx: 300, ty: 236 }]
+            },
+            text: "Elsa s'assit à côté d'elle et regarda le morceau au creux de sa main. « Ça, je peux le réparer », dit-elle. « L'autre chose, non. Et l'autre chose, tu ne l'as pas faite. »"
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'elsa', x: 300, y: 506, s: 1.1, pose: 'magic' },
+                { t: 'liviaPrincess', x: 570, y: 512, s: 1.15, mood: 'wow' }
+              ],
+              sfx: [{ t: 'TSSING…', x: 440, y: 146, fs: 30, rot: -5, color: '#7fd8f0' }]
+            },
+            text: "La glace se recolla toute seule sous les doigts d'Elsa. On voit encore le trait, si on cherche bien. Livia le cherche à chaque fois, et à chaque fois elle est contente de le trouver."
+          }
+        ]
       }
     ]
   },
@@ -2717,7 +3131,7 @@ var UNIVERSES = [
     cover: {
       bg: 'garden',
       items: [
-        { t: 'sprinkler', x: 140, y: 512, s: 1.1 },
+        { t: 'sprinkler', x: 172, y: 512, s: 1.1 },
         { t: 'bluey', x: 320, y: 512, s: 1.25, pose: 'wave' },
         { t: 'livia', x: 460, y: 514, s: 1.1, pose: 'armsup' },
         { t: 'bingo', x: 596, y: 512, s: 1, pose: 'jump' },
@@ -3393,7 +3807,7 @@ var UNIVERSES = [
           items: [
             { t: 'slide', x: 240, y: 516, s: 1, color: '#5b9bd5' },
             { t: 'bluey', x: 520, y: 470, s: 1.15, pose: 'jump', mood: 'wow' },
-            { t: 'pool', x: 620, y: 526, s: .9 }
+            { t: 'pool', x: 586, y: 508, s: .78 }
           ]
         },
         pages: [
@@ -4172,6 +4586,179 @@ var UNIVERSES = [
             text: "Le soir, Maman demanda si elles s'étaient ennuyées. Elles dirent que non, pas du tout, pas une seconde. Elles avaient oublié le début de la journée."
           }
         ]
+      },
+
+      /* ---------- 15 : le jeu qui s'arrête ---------- */
+      {
+        id: 'le-jeu-sarrete',
+        title: "Le jeu qui s'arrête",
+        subtitle: "Encore cinq minutes, et puis vraiment plus",
+        tag: 'Bluey',
+        themes: ['Règles', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'bandit', x: 280, y: 512, s: 1.1 },
+            { t: 'bluey', x: 500, y: 512, s: 1.05, mood: 'sad' },
+            { t: 'livia', x: 690, y: 520, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'trampoline', x: 640, y: 500, s: 1 }],
+              items: [
+                { t: 'bluey', x: 280, y: 512, s: 1.05, pose: 'jump' },
+                { t: 'livia', x: 500, y: 520, s: 1.1, pose: 'jump' }
+              ],
+              sfx: [{ t: 'LE JEU DU CHÂTEAU !', x: 400, y: 146, fs: 25, rot: -5, color: '#4ea8f0' }]
+            },
+            text: "Le jeu du château durait depuis une heure. Il avait des rois, des dragons, un pont qui s'écroule, et surtout il n'était pas fini : personne ne savait encore comment il devait se terminer."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 300, y: 512, s: 1.15, pose: 'point' },
+                { t: 'bluey', x: 570, y: 512, s: 1.05 },
+                { t: 'livia', x: 712, y: 520, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 320, t: 'Cinq minutes, et on rentre.', tx: 300, ty: 240 }]
+            },
+            text: "Papa apparut à la porte. « Cinq minutes », dit-il, « et on rentre. » Il ne cria pas, il ne discuta pas. Il dit cinq minutes, et il retourna à l'intérieur."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 512, s: 1.1, pose: 'point' },
+                { t: 'livia', x: 570, y: 520, s: 1.1 }
+              ],
+              sfx: [{ t: 'VITE ! LE DRAGON !', x: 430, y: 146, fs: 26, rot: -5, color: '#f2803d' }]
+            },
+            text: "Les cinq minutes devinrent les plus remplies de la journée. Le dragon fut vaincu, le pont réparé, la princesse changée en boulangère. On peut faire énormément de choses en cinq minutes."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bandit', x: 300, y: 512, s: 1.15 },
+                { t: 'bluey', x: 570, y: 512, s: 1.05, mood: 'sad' }
+              ],
+              sfx: [{ t: 'C\'EST L\'HEURE.', x: 430, y: 146, fs: 28, rot: -4, color: '#6d5847' }]
+            },
+            text: "Puis Papa revint. « C'est l'heure. » Bluey sentit monter la chose chaude et injuste qui monte toujours à ce moment-là, et il ouvrit la bouche pour dire que ce n'était pas juste."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 520, s: 1.1, pose: 'point' },
+                { t: 'bluey', x: 570, y: 512, s: 1.05 }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'On le laisse là. Il nous attend, le château.', tx: 305, ty: 240 }]
+            },
+            text: "Livia le prit de vitesse. « On le laisse là », dit-elle. « Il nous attend, le château. » Elle posa la couronne en carton sur la marche, bien en évidence, comme un signet dans un livre."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'bandit', x: 300, y: 512, s: 1.15, pose: 'hold' },
+                { t: 'bluey', x: 530, y: 512, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 720, y: 520, s: 1.05 }
+              ]
+            },
+            text: "Ils rentrèrent sans crier. Le lendemain, la couronne était toujours sur la marche, un peu humide de rosée. Le jeu reprit exactement où il s'était arrêté, ce qui n'arrive presque jamais."
+          }
+        ]
+      },
+
+      /* ---------- 16 : Bingo a peur du noir ---------- */
+      {
+        id: 'bingo-a-peur-du-noir',
+        title: 'Bingo a peur du noir',
+        subtitle: "Être la grande, pour une fois",
+        tag: 'Nuit',
+        themes: ['Nuit', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom', time: 'night',
+          items: [
+            { t: 'bingo', x: 320, y: 508, s: 1.1, mood: 'sad' },
+            { t: 'livia', x: 570, y: 516, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'bluey', x: 260, y: 496, s: 1, pose: 'sit' },
+                { t: 'livia', x: 480, y: 502, s: 1.05, pose: 'sit' },
+                { t: 'bingo', x: 700, y: 496, s: .95, pose: 'sit' }
+              ],
+              sfx: [{ t: 'BONNE NUIT !', x: 400, y: 146, fs: 27, rot: -5, color: '#a98cf0' }]
+            },
+            text: "Livia dormait chez Bluey. Trois matelas par terre, une lampe éteinte, et l'excitation terrible de dormir ailleurs que chez soi. Bonne nuit, dit Chilli en fermant la porte."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [{ t: 'bingo', x: 400, y: 496, s: 1.2, pose: 'sit', mood: 'sad' }],
+              sfx: [{ t: 'SNIF.', x: 400, y: 146, fs: 30, rot: -5, color: '#bfa8e0' }]
+            },
+            text: "Au bout d'un moment, il y eut un petit bruit dans le noir. Ce n'était pas un monstre : c'était Bingo, qui reniflait le plus discrètement possible, ce qui ne marche jamais très bien."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'livia', x: 300, y: 502, s: 1.1, pose: 'sit' },
+                { t: 'bingo', x: 570, y: 496, s: 1.05, pose: 'sit', mood: 'sad' }
+              ],
+              sfx: [{ t: 'MOI AUSSI, DES FOIS.', x: 430, y: 146, fs: 23, rot: -4, color: '#7ac6a8' }]
+            },
+            text: "Livia s'assit. Elle allait dire « n'aie pas peur », et puis elle se souvint que ça n'aide personne. Alors elle dit : « moi aussi, des fois. » Le reniflement s'arrêta une seconde."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              back: [{ t: 'lantern', x: 660, y: 490, s: 1 }],
+              items: [
+                { t: 'livia', x: 300, y: 502, s: 1.1, pose: 'point' },
+                { t: 'bingo', x: 570, y: 496, s: 1.05, pose: 'sit' }
+              ],
+              sfx: [{ t: 'ÇA, C\'EST LE MANTEAU.', x: 430, y: 146, fs: 23, rot: -4, color: '#f7c518' }]
+            },
+            text: "Elles allumèrent la petite lampe et firent le tour de la chambre en nommant tout : ça, c'est le manteau ; ça, c'est la chaise ; ça, c'est le poisson en peluche. Les choses nommées deviennent plus petites."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'bluey', x: 300, y: 496, s: 1, pose: 'sit' },
+                { t: 'bingo', x: 540, y: 496, s: 1, pose: 'sit' },
+                { t: 'livia', x: 710, y: 502, s: 1, pose: 'sit' }
+              ],
+              sfx: [{ t: 'JE DORMAIS PAS NON PLUS.', x: 400, y: 146, fs: 21, rot: -4, color: '#4ea8f0' }]
+            },
+            text: "« Je ne dormais pas non plus », dit une voix depuis le troisième matelas. Bluey était réveillé depuis le début, et il n'avait rien dit, pour laisser Livia s'en occuper."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'bluey', x: 300, y: 496, s: 1, pose: 'sit', mood: 'sleep' },
+                { t: 'bingo', x: 540, y: 496, s: 1, pose: 'sit', mood: 'sleep' },
+                { t: 'livia', x: 710, y: 502, s: 1, pose: 'sit', mood: 'sleep' }
+              ]
+            },
+            text: "Ils laissèrent la lampe allumée, tout en bas. Livia s'endormit la dernière, et elle eut le temps de penser qu'être la grande, ce n'est pas ne pas avoir peur : c'est le dire en premier."
+          }
+        ]
       }
     ]
   },
@@ -4882,6 +5469,183 @@ var UNIVERSES = [
             text: "Le soir venu, Madame Bonheur n'était pas redevenue joyeuse. Mais elle n'était plus toute seule. « Demain, ça ira peut-être mieux », dit-elle. Et le lendemain, ça allait mieux."
           }
         ]
+      },
+
+      /* ---------- 9 : Madame Chipie dit pardon ---------- */
+      {
+        id: 'chipie-dit-pardon',
+        title: 'Madame Chipie dit pardon',
+        subtitle: "Le mot le plus court et le plus lourd",
+        tag: 'Monsieur Madame',
+        themes: ['Émotions', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'chipie', x: 300, y: 508, s: 1.05, mood: 'sad' },
+            { t: 'livia', x: 560, y: 516, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'tourcubes', x: 640, y: 496, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 300, y: 516, s: 1.1, pose: 'armsup' },
+                { t: 'timide', x: 540, y: 508, s: 1.05 }
+              ],
+              sfx: [{ t: 'DOUZE CUBES !', x: 400, y: 146, fs: 27, rot: -5, color: '#7ab648' }]
+            },
+            text: "Livia et Monsieur Timide avaient empilé douze cubes. C'était la plus haute tour de la matinée, et il avait fallu s'y mettre à deux, en retenant sa respiration sur les trois derniers."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'chipie', x: 340, y: 508, s: 1.1, pose: 'point' },
+                { t: 'livia', x: 600, y: 516, s: 1.05, mood: 'wow' }
+              ],
+              sfx: [{ t: 'BADABOUM !', x: 430, y: 146, fs: 34, rot: -8, color: '#e0453c' }]
+            },
+            text: "Madame Chipie passa par là. Elle donna un tout petit coup de pied — vraiment tout petit — et les douze cubes se répandirent dans l'herbe avec un bruit magnifique."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'chipie', x: 400, y: 508, s: 1.2 }
+              ],
+              sfx: [{ t: 'HÉ HÉ !', x: 400, y: 146, fs: 32, rot: -6, color: '#f2803d' }]
+            },
+            text: "Elle rit très fort pendant deux secondes. Puis elle regarda autour d'elle. Personne d'autre ne riait. C'est un moment que Madame Chipie connaît bien, et qu'elle n'aime pas du tout."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'timide', x: 280, y: 508, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 520, y: 516, s: 1.1, mood: 'sad' },
+                { t: 'chipie', x: 678, y: 508, s: 1 }
+              ],
+              sfx: [{ t: '. . .', x: 400, y: 146, fs: 34, rot: 0, color: '#8a7768' }]
+            },
+            text: "Monsieur Timide ne dit rien, ce qui est sa spécialité. Livia non plus. Elles se mirent simplement à ramasser les cubes, l'une après l'autre, sans regarder Madame Chipie."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'chipie', x: 300, y: 490, s: 1.1, pose: 'sit' },
+                { t: 'livia', x: 570, y: 498, s: 1.1, pose: 'sit' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 300, t: 'Pardon. Je peux aider ?', tx: 300, ty: 236 }]
+            },
+            text: "Madame Chipie s'accroupit à côté d'eux. Le mot mit longtemps à sortir, et il sortit tout petit : « pardon ». Puis, encore plus petit : « je peux aider ? »"
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              back: [{ t: 'tourcubes', x: 650, y: 496, s: 1.1 }],
+              items: [
+                { t: 'chipie', x: 280, y: 508, s: 1.05, pose: 'armsup' },
+                { t: 'livia', x: 500, y: 516, s: 1.1, pose: 'armsup' },
+                { t: 'timide', x: 678, y: 508, s: 1 }
+              ],
+              sfx: [{ t: 'QUATORZE !', x: 400, y: 146, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: "La deuxième tour monta jusqu'à quatorze cubes, parce qu'ils étaient trois. Madame Chipie tint le bas pendant que les autres posaient le haut. Elle ne donna aucun coup de pied."
+          }
+        ]
+      },
+
+      /* ---------- 10 : Monsieur Lent arrive quand même ---------- */
+      {
+        id: 'lent-arrive-quand-meme',
+        title: 'Monsieur Lent arrive quand même',
+        subtitle: "Aller à son rythme, jusqu'au bout",
+        tag: 'Monsieur Madame',
+        themes: ['Grandir', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'hill',
+          items: [
+            { t: 'rapide', x: 300, y: 512, s: 1.05, pose: 'run' },
+            { t: 'lent', x: 560, y: 512, s: 1.05 },
+            { t: 'livia', x: 710, y: 520, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 260, y: 512, s: 1.05, pose: 'point' },
+                { t: 'livia', x: 500, y: 520, s: 1.1 },
+                { t: 'lent', x: 678, y: 512, s: 1 }
+              ],
+              sfx: [{ t: 'JUSQU\'AU GRAND ARBRE !', x: 400, y: 148, fs: 24, rot: -4, color: '#f2803d' }]
+            },
+            text: "« Course jusqu'au grand arbre ! » cria Monsieur Rapide, et il était déjà parti avant la fin de sa phrase. Livia partit deuxième. Monsieur Lent leva une jambe."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              back: [{ t: 'tree', x: 700, y: 486, s: 1.1 }],
+              items: [
+                { t: 'rapide', x: 300, y: 512, s: 1.05, pose: 'armsup' },
+                { t: 'livia', x: 540, y: 520, s: 1.1 }
+              ],
+              sfx: [{ t: 'GAGNÉ !', x: 400, y: 148, fs: 32, rot: -6, color: '#f7c518' }]
+            },
+            text: "Monsieur Rapide toucha l'arbre, puis retourna au départ, puis revint à l'arbre, pour occuper le temps. Livia arriva deuxième, essoufflée et contente."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [{ t: 'lent', x: 400, y: 512, s: 1.2 }],
+              sfx: [{ t: 'UN PAS. PUIS UN PAS.', x: 400, y: 148, fs: 24, rot: -4, color: '#6d5847' }]
+            },
+            text: "Monsieur Lent, lui, en était au quatrième pas. Un pas. Puis un pas. Il ne regardait ni derrière ni devant : il regardait exactement là où il posait le pied."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'rapide', x: 300, y: 512, s: 1.05, pose: 'shrug' },
+                { t: 'livia', x: 560, y: 520, s: 1.1, pose: 'point' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 330, t: 'On l\'attend ou on recommence sans lui ?', tx: 310, ty: 240 }]
+            },
+            text: "« On l'attend, ou on recommence sans lui ? » demanda Monsieur Rapide, qui n'était pas méchant, seulement pressé. Livia s'assit dans l'herbe et dit : « on attend. »"
+          },
+          {
+            scene: {
+              bg: 'hill',
+              back: [{ t: 'tree', x: 700, y: 486, s: 1.1 }],
+              items: [
+                { t: 'livia', x: 280, y: 504, s: 1.1, pose: 'sit' },
+                { t: 'rapide', x: 520, y: 496, s: 1.05, pose: 'sit' },
+                { t: 'lent', x: 678, y: 512, s: 1 }
+              ],
+              sfx: [{ t: 'ENCORE UN PEU…', x: 400, y: 148, fs: 24, rot: -4, color: '#7ac6a8' }]
+            },
+            text: "Ils attendirent longtemps. Assis, ils remarquèrent trois choses qu'ils n'avaient jamais vues en courant : un nid, une pierre en forme de cœur, et une fourmi qui portait une miette énorme."
+          },
+          {
+            scene: {
+              bg: 'hill', time: 'sunset',
+              back: [{ t: 'tree', x: 690, y: 486, s: 1.1 }],
+              items: [
+                { t: 'rapide', x: 280, y: 512, s: 1.05, pose: 'armsup' },
+                { t: 'livia', x: 500, y: 520, s: 1.1, pose: 'armsup' },
+                { t: 'lent', x: 678, y: 512, s: 1 }
+              ],
+              sfx: [{ t: 'BRAVOOO !', x: 400, y: 148, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Quand Monsieur Lent toucha enfin l'arbre, ils crièrent tous les deux comme s'il avait gagné. D'une certaine façon, il avait gagné : il était le seul à ne s'être arrêté à aucun moment."
+          }
+        ]
       }
     ]
   },
@@ -5436,6 +6200,186 @@ var UNIVERSES = [
               sfx: [{ t: 'ZZZ…', x: 430, y: 180, fs: 32, rot: -6, color: '#bfe8f7' }]
             },
             text: "Au matin, il restait un peu de givre sur la tente et beaucoup de miettes de chamallow. « On recommence ce soir ? » demanda Bluey. Livia dormait encore. Elle dit oui quand même."
+          }
+        ]
+      },
+
+      /* ---------- 6 : le goûter à quatre ---------- */
+      {
+        id: 'gouter-a-quatre',
+        title: 'Le goûter à quatre',
+        subtitle: "Une part de plus qu'il n'y a de mains",
+        tag: 'Mélange',
+        themes: ['Partager', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 190, y: 512, s: .95 },
+            { t: 'livia', x: 380, y: 516, s: 1.05 },
+            { t: 'bluey', x: 570, y: 512, s: .95 },
+            { t: 'elsa', x: 730, y: 508, s: .9 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 200, y: 512, s: 1 },
+                { t: 'livia', x: 400, y: 516, s: 1.05, pose: 'hold' },
+                { t: 'bluey', x: 600, y: 512, s: 1 },
+                { t: 'elsa', x: 724, y: 508, s: .9 }
+              ],
+              sfx: [{ t: 'CINQ GÂTEAUX !', x: 400, y: 148, fs: 27, rot: -5, color: '#f2803d' }]
+            },
+            text: "Il y avait cinq gâteaux sur l'assiette, et quatre invités autour. Peppa fit le calcul à voix haute, deux fois, pour être bien sûre du problème."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 240, y: 512, s: 1.05, pose: 'point' },
+                { t: 'bluey', x: 520, y: 512, s: 1.05, pose: 'point' }
+              ],
+              sfx: [{ t: 'MOI D\'ABORD ! NON, MOI !', x: 400, y: 148, fs: 24, rot: -4, color: '#e0453c' }]
+            },
+            text: "Peppa dit que le cinquième revenait à celle qui avait apporté l'assiette. Bluey dit qu'il revenait à celui qui avait mis la table. Les deux avaient raison, ce qui n'aidait absolument personne."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'elsa', x: 300, y: 508, s: 1.05, pose: 'point' },
+                { t: 'livia', x: 570, y: 516, s: 1.1 }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'On peut aussi le couper en quatre.', tx: 310, ty: 236 }]
+            },
+            text: "Elsa attendit que ça se calme. « On peut aussi le couper en quatre », dit-elle. Personne n'y avait pensé, parce que tout le monde était très occupé à avoir raison."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 400, y: 516, s: 1.2, pose: 'point' }
+              ],
+              sfx: [{ t: 'CROC. CROC. CROC. CROC.', x: 400, y: 148, fs: 23, rot: -4, color: '#8a5a3b' }]
+            },
+            text: "Livia coupa. Ce n'était pas très droit : un morceau était nettement plus gros que les autres, et tout le monde le vit en même temps, avec beaucoup d'attention."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 220, y: 512, s: 1, pose: 'hold' },
+                { t: 'livia', x: 400, y: 516, s: 1.05, pose: 'hold' },
+                { t: 'bluey', x: 590, y: 512, s: 1, pose: 'hold' },
+                { t: 'elsa', x: 724, y: 508, s: .9, pose: 'hold' }
+              ],
+              sfx: [{ t: 'À TOI.', x: 400, y: 148, fs: 28, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "Peppa prit le plus gros. Puis elle le regarda, soupira, et le posa dans la main de Bluey. « À toi », dit-elle très vite, comme on arrache un pansement."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 200, y: 512, s: 1 },
+                { t: 'livia', x: 390, y: 516, s: 1.05 },
+                { t: 'bluey', x: 580, y: 512, s: 1 },
+                { t: 'elsa', x: 724, y: 508, s: .9 }
+              ]
+            },
+            text: "Les quatre parts furent mangées en trois minutes. Personne ne se souvient de qui a eu la plus grosse. Tout le monde se souvient que Peppa l'a donnée, et c'est une chose qui reste."
+          }
+        ]
+      },
+
+      /* ---------- 7 : chacun ses règles ---------- */
+      {
+        id: 'chacun-ses-regles',
+        title: 'Chacun ses règles',
+        subtitle: "Chez toi ce n'est pas pareil que chez moi",
+        tag: 'Mélange',
+        themes: ['Règles', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 260, y: 512, s: 1.1 },
+            { t: 'bluey', x: 470, y: 508, s: 1 },
+            { t: 'peppa', x: 660, y: 508, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              back: [{ t: 'tourcubes', x: 660, y: 500, s: 1 }],
+              items: [
+                { t: 'livia', x: 280, y: 512, s: 1.1, pose: 'armsup' },
+                { t: 'bluey', x: 500, y: 508, s: 1.05, pose: 'jump' }
+              ],
+              sfx: [{ t: 'CHEZ LIVIA !', x: 400, y: 146, fs: 28, rot: -5, color: '#4ea8f0' }]
+            },
+            text: "Bluey et Peppa venaient jouer à la maison pour la première fois. Ils entrèrent en courant, et Bluey sauta sur le lit avant même d'avoir enlevé ses chaussures."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 512, s: 1.15, mood: 'wow', pose: 'point' },
+                { t: 'bluey', x: 570, y: 508, s: 1.05 }
+              ],
+              sfx: [{ t: 'PAS SUR LE LIT !', x: 430, y: 146, fs: 28, rot: -5, color: '#e0453c' }]
+            },
+            text: "« Pas sur le lit ! » Le cri sortit tout seul de Livia, plus fort qu'elle ne voulait. Bluey descendit d'un bond, l'air surpris. Chez lui, on saute sur le lit. C'est même le jeu principal."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'bluey', x: 300, y: 508, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 570, y: 512, s: 1.1, mood: 'sad' }
+              ],
+              sfx: [{ t: '. . .', x: 430, y: 146, fs: 34, rot: 0, color: '#8a7768' }]
+            },
+            text: "Il y eut un silence pas agréable du tout. Livia se sentit méchante, et Bluey se sentit bête, alors que ni l'un ni l'autre n'avait rien fait de mal."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 300, y: 508, s: 1.05, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 512, s: 1.1 }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Chez moi non plus on ne saute pas. Mais on crie.', tx: 310, ty: 236 }]
+            },
+            text: "Peppa haussa les épaules. « Chez moi non plus on ne saute pas », dit-elle. « Mais on a le droit de crier. » Il apparut que chaque maison avait ses règles, et qu'aucune n'était la bonne."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 280, y: 512, s: 1.1, pose: 'point' },
+                { t: 'bluey', x: 500, y: 508, s: 1.05 },
+                { t: 'peppa', x: 690, y: 508, s: 1 }
+              ],
+              sfx: [{ t: 'ICI : LE TAPIS.', x: 400, y: 146, fs: 26, rot: -4, color: '#7ab648' }]
+            },
+            text: "Livia montra le tapis. « Ici, on saute là », dit-elle. « C'est mou et Maman ne dit rien. » Bluey trouva que c'était une règle très acceptable, et il l'essaya immédiatement."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'bluey', x: 260, y: 508, s: 1.05, pose: 'jump' },
+                { t: 'livia', x: 480, y: 512, s: 1.1, pose: 'jump' },
+                { t: 'peppa', x: 690, y: 508, s: 1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'BOUM ! BOUM ! BOUM !', x: 420, y: 146, fs: 27, rot: -6, color: '#f7c518' }]
+            },
+            text: "Ils sautèrent sur le tapis jusqu'à ce qu'on leur demande d'arrêter. Depuis, quand Livia va chez quelqu'un, elle commence par demander : « chez toi, on fait comment ? »"
           }
         ]
       }
@@ -6779,6 +7723,177 @@ var UNIVERSES = [
             es: "El pastel salió un poco torcido y crujía al morderlo, por la cáscara. Se lo comieron entero. Nadie ha pedido nunca un pastel más recto."
           }
         ]
+      },
+
+      /* ---------- 16 : Isadora ne veut pas ---------- */
+      {
+        id: 'isadora-ne-veut-pas',
+        title: 'Isadora ne veut pas jouer',
+        subtitle: "Un non qui n'est pas contre toi",
+        tag: 'Copines',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 320, y: 524, s: 1.15, mood: 'sad' },
+            { t: 'isadora', x: 570, y: 506, s: 1.05, pose: 'sit' }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.15, pose: 'wave' },
+                { t: 'isadora', x: 570, y: 506, s: 1.05, pose: 'sit' }
+              ],
+              sfx: [{ t: 'ISA ! ON JOUE ?', x: 430, y: 148, fs: 27, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "Dans la cour, Isadora était assise contre le mur, toute seule, en train de regarder ses chaussures. Livia arriva en courant. « Isa ! On joue ? »"
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'isadora', x: 300, y: 506, s: 1.1, pose: 'sit' },
+                { t: 'livia', x: 570, y: 524, s: 1.1, mood: 'wow' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 280, t: 'Non. Pas maintenant.', tx: 300, ty: 238 }]
+            },
+            text: "« Non », dit Isadora. « Pas maintenant. » Elle ne dit pas pourquoi, elle ne leva même pas la tête. Le non tomba sur Livia comme une porte qui se ferme sans prévenir."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 524, s: 1.25, mood: 'sad' }],
+              sfx: [{ t: 'ELLE M\'AIME PLUS ?', x: 400, y: 148, fs: 25, rot: -4, color: '#6d5847' }]
+            },
+            text: "Livia s'éloigna avec une question qui pesait lourd : est-ce qu'Isadora ne l'aimait plus ? Elle repassa la matinée dans sa tête pour trouver ce qu'elle avait fait de mal. Elle ne trouva rien."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 300, y: 522, s: 1.1, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 524, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Son chat est malade. Ça n\'a rien à voir avec toi.', tx: 310, ty: 238 }]
+            },
+            text: "Roxane, qui sait tout, expliqua : « son chat est malade. » Voilà. Le non n'était pas contre Livia. Il n'était même pas contre le jeu. Il était juste posé là, en attendant que ça passe."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'isadora', x: 300, y: 506, s: 1.1, pose: 'sit' },
+                { t: 'livia', x: 560, y: 502, s: 1.15, pose: 'sit' }
+              ],
+              sfx: [{ t: '. . .', x: 430, y: 148, fs: 34, rot: 0, color: '#8a7768' }]
+            },
+            text: "Livia revint. Elle ne redemanda pas si on jouait. Elle s'assit contre le mur, à côté, à la bonne distance, et elle regarda ses chaussures aussi. Elles restèrent comme ça un long moment."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'isadora', x: 300, y: 522, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 560, y: 524, s: 1.1, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ON JOUE ?', x: 430, y: 148, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Au bout d'un temps qu'aucune des deux n'a compté, Isadora se leva et dit : « on joue ? » Il n'avait rien fallu de plus que rester assise à côté sans rien demander."
+          }
+        ]
+      },
+
+      /* ---------- 17 : le tour de Pablo ---------- */
+      {
+        id: 'le-tour-de-pablo',
+        title: 'Le tour de Pablo',
+        subtitle: "Le plus petit joue aussi",
+        tag: 'Copines',
+        themes: ['Famille', 'Partager'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'roxane', x: 260, y: 522, s: 1 },
+            { t: 'livia', x: 450, y: 524, s: 1.05 },
+            { t: 'pablo', x: 640, y: 528, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'ball', x: 690, y: 540, s: 1 }],
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'point' },
+                { t: 'roxane', x: 560, y: 522, s: 1.05 }
+              ],
+              sfx: [{ t: 'CHACUNE SON TOUR !', x: 430, y: 148, fs: 25, rot: -5, color: '#4ea8f0' }]
+            },
+            text: "Le jeu était simple : on lance le ballon dans le grand seau, chacune son tour, et on compte les points. Livia menait par trois à deux. Roxane contestait le premier point depuis dix minutes."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 300, y: 522, s: 1.05 },
+                { t: 'livia', x: 520, y: 524, s: 1.05 },
+                { t: 'pablo', x: 710, y: 528, s: 1, pose: 'quatrepattes' }
+              ],
+              sfx: [{ t: 'BA ! BA !', x: 430, y: 148, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: "Pablo arriva à quatre pattes, à sa vitesse de bébé, qui est lente et absolument déterminée. Il montra le ballon avec toute sa main. « Ba ! Ba ! »"
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 300, y: 522, s: 1.1, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 524, s: 1.1 }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Il va tout rater. On va plus jamais finir.', tx: 310, ty: 238 }]
+            },
+            text: "« Il va tout rater », dit Roxane, ce qui était rigoureusement exact. « On ne va plus jamais finir la partie. » Ça aussi, c'était vrai. Les deux filles se regardèrent."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1, pose: 'hold' },
+                { t: 'pablo', x: 560, y: 528, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'ON CHANGE LA RÈGLE.', x: 430, y: 148, fs: 24, rot: -4, color: '#7ac6a8' }]
+            },
+            text: "« On change la règle », dit Livia. « Pablo tire de tout près. » Elle porta le seau jusqu'à trente centimètres de son frère, ce qui n'était pas du tout dans l'esprit du jeu d'origine."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 280, y: 522, s: 1.05, pose: 'armsup' },
+                { t: 'livia', x: 500, y: 524, s: 1.05, pose: 'armsup' },
+                { t: 'pablo', x: 700, y: 528, s: 1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'DEDANS !!!', x: 430, y: 148, fs: 32, rot: -7, color: '#e0453c' }]
+            },
+            text: "Pablo poussa le ballon des deux mains. Il tomba dans le seau. Le cri que poussèrent les deux grandes fit sortir Maman sur le pas de la porte pour vérifier que personne n'était blessé."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'roxane', x: 280, y: 522, s: 1.05 },
+                { t: 'livia', x: 490, y: 524, s: 1.05, pose: 'hold' },
+                { t: 'pablo', x: 690, y: 528, s: 1, pose: 'hold' }
+              ]
+            },
+            text: "La partie ne fut jamais finie et le score fut perdu. Pablo, lui, a marqué un point ce jour-là, et il ne le sait même pas. Les deux grandes, elles, s'en souviennent parfaitement."
+          }
+        ]
       }
     ]
   },
@@ -7477,6 +8592,448 @@ var UNIVERSES = [
                   sfx: [{ t: '. . .', x: 400, y: 146, fs: 34, rot: 0, color: '#8a7768' }]
                 },
                 text: "Le toc revint deux ou trois fois. Livia l'entendit de moins en moins fort, puis plus du tout. Les deux minutes de Maman avaient duré bien plus longtemps que deux minutes."
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 4 : le chien du voisin ---------- */
+      {
+        id: 'le-chien-du-voisin',
+        title: 'Le chien du voisin',
+        subtitle: "Demander avant, toujours",
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Dehors'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'road',
+          items: [
+            { t: 'livia', x: 340, y: 524, s: 1.15, mood: 'wow' },
+            { t: 'bluey', x: 580, y: 520, s: 1.05 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'livia', x: 320, y: 524, s: 1.15, mood: 'wow' },
+                    { t: 'bluey', x: 600, y: 504, s: 1.1, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'OH !', x: 450, y: 148, fs: 34, rot: -6, color: '#f7c518' }]
+                },
+                text: "Devant la maison d'à côté, il y avait un chien. Un vrai, gros, avec des oreilles molles et une langue rose qui pendait. Il était attaché près du portail et il regardait Livia."
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'livia', x: 340, y: 524, s: 1.2, pose: 'shrug' },
+                    { t: 'bluey', x: 620, y: 504, s: 1.05, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'IL EST TOUT SEUL…', x: 440, y: 148, fs: 24, rot: -4, color: '#8a79c4' }]
+                },
+                text: "Il n'y avait personne dans le jardin. Le chien remua la queue, ce qui ressemble beaucoup à une invitation. Les mains de Livia se levèrent toutes seules, à mi-chemin.",
+                choix: {
+                  options: [
+                    { v: 'house', mot: 'Aller demander', vers: 'demander' },
+                    { v: 'bluey', mot: 'Il a l\'air gentil', vers: 'toucher' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          demander: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  back: [{ t: 'house', x: 660, y: 480, s: .8 }],
+                  items: [{ t: 'livia', x: 340, y: 524, s: 1.2, pose: 'point' }],
+                  sfx: [{ t: 'TOC TOC TOC.', x: 400, y: 148, fs: 28, rot: -5, color: '#8a5a3b' }]
+                },
+                text: "Livia baissa les mains et alla frapper à la porte. Il fallut attendre longtemps, se dandiner d'un pied sur l'autre, et frapper une deuxième fois plus fort."
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'papa', x: 300, y: 520, s: 1.1, pose: 'point' },
+                    { t: 'livia', x: 570, y: 524, s: 1.1 }
+                  ],
+                  bubbles: [{ x: 40, y: 22, w: 350, t: "Il adore ça. Mais pas la tête : le dos.", tx: 300, ty: 240 }]
+                },
+                text: "Le voisin ouvrit, écouta la question, et sourit. « Il adore ça », dit-il. Puis il ajouta quelque chose que Livia n'aurait jamais deviné toute seule.",
+                choix: {
+                  options: [
+                    { v: 'papa', mot: 'Il me montre', vers: 'dem_montre' },
+                    { v: 'bluey', mot: "J'y vais doucement", vers: 'dem_seule' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          dem_montre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'papa', x: 300, y: 520, s: 1.1, pose: 'point' },
+                    { t: 'bluey', x: 540, y: 504, s: 1.1, pose: 'sit' },
+                    { t: 'livia', x: 720, y: 524, s: 1.05 }
+                  ],
+                  sfx: [{ t: 'LA MAIN À PLAT.', x: 430, y: 148, fs: 24, rot: -4, color: '#4a7fc1' }]
+                },
+                text: "Le voisin s'accroupit et montra : la main à plat, en dessous du museau, pour que le chien la sente d'abord. « On ne surprend jamais un chien par-dessus la tête », dit-il. « Même gentil. »"
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 340, y: 524, s: 1.15, pose: 'hold' },
+                    { t: 'bluey', x: 600, y: 520, s: 1.1 }
+                  ],
+                  sfx: [{ t: 'SLURP !', x: 440, y: 148, fs: 32, rot: -6, color: '#f2803d' }]
+                },
+                text: "Le chien renifla la main de Livia longuement, puis la lécha d'un coup de langue énorme et mouillé. Livia sait maintenant caresser tous les chiens du monde, et elle le sait pour de bon."
+              }
+            ]
+          },
+
+          dem_seule: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'livia', x: 340, y: 524, s: 1.2, pose: 'point' },
+                    { t: 'bluey', x: 620, y: 504, s: 1.1, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'TOUT DOUCEMENT…', x: 440, y: 148, fs: 24, rot: -4, color: '#7ac6a8' }]
+                },
+                text: "Livia s'approcha toute seule, très lentement, en s'arrêtant à chaque pas. Le chien ne bougea pas. Il attendait, exactement comme elle, et c'était à celle des deux qui bougerait la première."
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 340, y: 506, s: 1.15, pose: 'sit' },
+                    { t: 'bluey', x: 600, y: 504, s: 1.1, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'AAAH…', x: 440, y: 148, fs: 30, rot: -5, color: '#f7c518' }]
+                },
+                text: "Sa main se posa enfin sur le dos, et le chien ferma les yeux à moitié. Livia resta accroupie très longtemps, sans bouger, pour ne pas gâcher ce qu'elle venait de gagner elle-même."
+              }
+            ]
+          },
+
+          toucher: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'livia', x: 340, y: 524, s: 1.2, pose: 'point' },
+                    { t: 'bluey', x: 620, y: 520, s: 1.1 }
+                  ],
+                  sfx: [{ t: 'WAF !!!', x: 440, y: 148, fs: 38, rot: -8, color: '#e0453c' }]
+                },
+                text: "La main de Livia arriva par-dessus la tête du chien, d'un coup. Le chien ne l'avait pas vue venir. Il aboya une fois, très fort, et se leva d'un bond."
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 524, s: 1.25, mood: 'sad' }],
+                  sfx: [{ t: 'BOUM-BOUM-BOUM.', x: 400, y: 148, fs: 26, rot: -5, color: '#6d5847' }]
+                },
+                text: "Livia recula de trois pas d'un seul mouvement. Il ne s'était rien passé de grave : le chien était attaché, il n'avait même pas montré les dents. Mais son cœur, lui, tapait à toute vitesse.",
+                choix: {
+                  options: [
+                    { v: 'house', mot: 'Le dire', vers: 'tou_dire' },
+                    { v: 'livia', mot: 'Rentrer vite', vers: 'tou_rentrer' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          tou_dire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'maman', x: 300, y: 504, s: 1.15, pose: 'sit' },
+                    { t: 'livia', x: 570, y: 506, s: 1.1, pose: 'sit', mood: 'sad' }
+                  ],
+                  bubbles: [{ x: 300, y: 22, w: 350, t: "Tu as bien fait de me le dire. Il a eu peur, lui aussi.", tx: 305, ty: 236 }]
+                },
+                text: "Livia raconta tout à Maman, même la partie où elle n'avait rien demandé. « Tu as bien fait de me le dire », dit Maman. « Il a eu peur aussi, tu sais. Vous avez eu peur tous les deux. »"
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 520, s: 1.1 },
+                    { t: 'livia', x: 520, y: 524, s: 1.1, pose: 'hold' },
+                    { t: 'bluey', x: 710, y: 504, s: 1.05, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'ON Y RETOURNE ENSEMBLE.', x: 400, y: 148, fs: 21, rot: -4, color: '#7ac6a8' }]
+                },
+                text: "Elles y retournèrent ensemble, sonnèrent, demandèrent. Le voisin montra la main à plat, sous le museau. Le chien lécha la main de Livia, et la peur du matin ne resta nulle part."
+              }
+            ]
+          },
+
+          tou_rentrer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 508, s: 1.25, pose: 'sit', mood: 'sad' }],
+                  sfx: [{ t: 'JE DIS RIEN.', x: 400, y: 146, fs: 28, rot: -5, color: '#6d5847' }]
+                },
+                text: "Livia rentra sans rien dire et alla s'asseoir sur son lit. L'aboiement revenait dans sa tête toutes les cinq minutes, chaque fois un peu plus fort que la fois d'avant."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 506, s: 1.15, pose: 'sit' },
+                    { t: 'livia', x: 570, y: 500, s: 1.15, pose: 'sit' }
+                  ],
+                  bubbles: [{ x: 40, y: 22, w: 350, t: "Une peur qu'on garde grossit. Une peur qu'on dit rétrécit.", tx: 300, ty: 236 }]
+                },
+                text: "Au dîner, ça sortit tout seul, en pleurant un peu. Maman écouta jusqu'au bout. « Une peur qu'on garde grossit », dit-elle. « Une peur qu'on dit rétrécit. » Ça marcha presque tout de suite."
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 5 : le dernier carré ---------- */
+      {
+        id: 'le-dernier-carre',
+        title: 'Le dernier carré de chocolat',
+        subtitle: "Il en reste un, et vous êtes deux",
+        tag: 'Tu choisis',
+        themes: ['Partager', 'Famille'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 340, y: 512, s: 1.15 },
+            { t: 'pablo', x: 590, y: 516, s: 1.05 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 512, s: 1.25, pose: 'hold' }],
+                  sfx: [{ t: 'LE DERNIER !', x: 400, y: 146, fs: 30, rot: -5, color: '#8a5a3b' }]
+                },
+                text: "Dans la tablette, il restait un carré. Un seul. Livia le tenait entre deux doigts et il commençait déjà à fondre un tout petit peu, ce qui donne un sentiment d'urgence."
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 512, s: 1.15, pose: 'hold' },
+                    { t: 'pablo', x: 570, y: 516, s: 1.05, pose: 'armsup' }
+                  ],
+                  sfx: [{ t: 'AH ! AH !', x: 430, y: 146, fs: 30, rot: -5, color: '#f7c518' }]
+                },
+                text: "Pablo entra dans la cuisine à ce moment précis, comme si quelqu'un l'avait prévenu. Il tendit les deux bras vers le carré et fit le bruit qu'il fait quand il veut quelque chose.",
+                choix: {
+                  options: [
+                    { v: 'pablo', mot: 'Je lui donne', vers: 'donner' },
+                    { v: 'mangue', mot: 'Je le mange', vers: 'manger' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          donner: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 512, s: 1.15, pose: 'hold' },
+                    { t: 'pablo', x: 570, y: 516, s: 1.05, pose: 'hold' }
+                  ],
+                  sfx: [{ t: 'MMMM !', x: 430, y: 146, fs: 32, rot: -6, color: '#8a5a3b' }]
+                },
+                text: "Livia posa le carré dans la petite main. Pablo le mit en bouche entier, papier compris, et fit une tête de bonheur si totale qu'elle en était presque insultante."
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 340, y: 512, s: 1.2, mood: 'sad' },
+                    { t: 'pablo', x: 610, y: 516, s: 1 }
+                  ],
+                  sfx: [{ t: 'ET MOI, ALORS ?', x: 440, y: 146, fs: 25, rot: -4, color: '#6d5847' }]
+                },
+                text: "Puis Livia resta là, les mains vides. C'était bien, ce qu'elle avait fait. C'était bien, et en même temps il n'y avait plus de chocolat du tout, et ces deux choses étaient vraies ensemble.",
+                choix: {
+                  options: [
+                    { v: 'maman', mot: 'Je le dis', vers: 'don_dire' },
+                    { v: 'pablo', mot: 'Tant pis', vers: 'don_tantpis' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          don_dire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 508, s: 1.15, pose: 'sit' },
+                    { t: 'livia', x: 570, y: 500, s: 1.15, pose: 'sit' }
+                  ],
+                  bubbles: [{ x: 300, y: 22, w: 340, t: "J'ai donné, mais ça m'a fait tout drôle.", tx: 310, ty: 236 }]
+                },
+                text: "« J'ai donné », dit Livia à Maman, « mais ça m'a fait tout drôle. » Elle avait peur que ça annule le geste. Maman lui expliqua que non : ça le rendait même plus grand."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 520, s: 1.1, pose: 'hold' },
+                    { t: 'livia', x: 560, y: 524, s: 1.1, pose: 'hold' }
+                  ],
+                  sfx: [{ t: 'ON EN RACHÈTE DEMAIN.', x: 430, y: 146, fs: 22, rot: -4, color: '#7ac6a8' }]
+                },
+                text: "« Partager, ce n'est pas ne rien vouloir », dit Maman. « C'est vouloir, et donner quand même. » Le lendemain, elles rachetèrent une tablette, et Livia eut le premier carré."
+              }
+            ]
+          },
+
+          don_tantpis: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 512, s: 1.15 },
+                    { t: 'pablo', x: 570, y: 516, s: 1.05, pose: 'hold' }
+                  ],
+                  sfx: [{ t: 'BON.', x: 430, y: 146, fs: 30, rot: -5, color: '#8a7768' }]
+                },
+                text: "Livia haussa les épaules et alla faire autre chose. Elle repensa au carré deux ou trois fois pendant l'après-midi, de moins en moins fort, comme un bruit qui s'éloigne."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 320, y: 512, s: 1.15, pose: 'hold' },
+                    { t: 'pablo', x: 590, y: 516, s: 1.05, pose: 'hold' }
+                  ],
+                  sfx: [{ t: 'IL M\'EN A GARDÉ UN BOUT.', x: 430, y: 146, fs: 21, rot: -4, color: '#f7c518' }]
+                },
+                text: "Le soir, Pablo lui tendit un bout de sa biscotte, tout mou et plein de bave. Ce n'était pas du chocolat, mais Livia comprit très bien de quoi il s'agissait. Elle le mangea."
+              }
+            ]
+          },
+
+          manger: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 512, s: 1.2 },
+                    { t: 'pablo', x: 590, y: 516, s: 1.05, mood: 'sad' }
+                  ],
+                  sfx: [{ t: 'CROC.', x: 430, y: 146, fs: 34, rot: -6, color: '#8a5a3b' }]
+                },
+                text: "Livia mangea le carré. Il était très bon. Il était vraiment très bon, pendant environ quatre secondes, et ensuite il n'y avait plus rien du tout dans sa bouche."
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'pablo', x: 300, y: 516, s: 1.05, mood: 'sad' },
+                    { t: 'livia', x: 570, y: 512, s: 1.15, mood: 'sad' }
+                  ],
+                  sfx: [{ t: '. . .', x: 430, y: 146, fs: 34, rot: 0, color: '#8a7768' }]
+                },
+                text: "Pablo ne pleura même pas. Il baissa les bras et repartit à quatre pattes vers le salon, sans rien dire, ce qui était nettement pire qu'un cri.",
+                choix: {
+                  options: [
+                    { v: 'mangue', mot: 'Trouver autre chose', vers: 'man_autre' },
+                    { v: 'pablo', mot: 'Aller le voir', vers: 'man_voir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          man_autre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 512, s: 1.2, pose: 'point' }],
+                  sfx: [{ t: 'IL Y A DES MANGUES !', x: 400, y: 146, fs: 24, rot: -4, color: '#f2803d' }]
+                },
+                text: "Livia ouvrit le placard, puis le frigo, puis le placard encore. Elle trouva une mangue. Elle demanda à Maman de la couper, ce qui prit un temps considérable et beaucoup de patience."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 320, y: 512, s: 1.15, pose: 'hold' },
+                    { t: 'pablo', x: 590, y: 516, s: 1.05, pose: 'hold' }
+                  ],
+                  sfx: [{ t: 'MIAM !', x: 430, y: 146, fs: 32, rot: -6, color: '#f7c518' }]
+                },
+                text: "Pablo mangea la mangue avec les mains, les joues, et un peu les cheveux. Réparer prend plus de temps que partager tout de suite. Ça marche quand même très bien."
+              }
+            ]
+          },
+
+          man_voir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'pablo', x: 300, y: 516, s: 1.05, pose: 'sit' },
+                    { t: 'livia', x: 570, y: 500, s: 1.15, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'PARDON, PABLO.', x: 430, y: 146, fs: 25, rot: -4, color: '#7ac6a8' }]
+                },
+                text: "Livia le rejoignit dans le salon et s'assit par terre à côté de lui. « Pardon, Pablo. » Il ne comprend pas les mots, à son âge. Il comprend très bien qu'on vienne s'asseoir à côté."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 320, y: 500, s: 1.15, pose: 'sit' },
+                    { t: 'pablo', x: 590, y: 516, s: 1.05, pose: 'sit' }
+                  ],
+                  sfx: [{ t: 'BRRRM ! BRRRM !', x: 430, y: 146, fs: 26, rot: -5, color: '#4a7fc1' }]
+                },
+                text: "Ils firent rouler la petite voiture bleue l'un vers l'autre pendant une demi-heure. La prochaine fois qu'il restera un carré, Livia sait déjà ce qu'elle en fera. Enfin, elle croit."
               }
             ]
           }
