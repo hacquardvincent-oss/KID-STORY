@@ -58,16 +58,15 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Des boutons d'abord visuels** — à quatre ans on ne lit pas encore : les
   boutons que l'enfant utilise portent une grande image (▶ ↻ ⌂), le mot reste
   dessous en petit pour l'adulte.
-* **Huit jeux** pour les 3-5 ans, rangés en **cinq familles** — Observer,
-  Lettres, Nombres, Créer, Réfléchir :
+* **Onze jeux** pour les 3-5 ans, rangés en **cinq familles** :
 
   | Famille | Jeux |
   |---|---|
-  | 👀 Observer | relier chaque personnage à son objet, les 6 différences |
-  | 🔤 Lettres | écrire les prénoms de la maison, apprendre l'alphabet |
-  | 🔢 Nombres | compter jusqu'à six |
-  | 🎨 Créer | le coloriage, le puzzle |
-  | 🧩 Réfléchir | le labyrinthe |
+  | 🔍 Regarder | relier chaque personnage à son objet · les 6 différences |
+  | 🔤 Les lettres | écrire les prénoms de la maison · apprendre l'alphabet |
+  | 🔢 Les nombres | compter jusqu'à six · les points à relier |
+  | 🎨 Créer | le coloriage · la grille de dessins |
+  | 🧩 Réfléchir | le puzzle · le labyrinthe · la symétrie |
 
   Aucun texte à lire : tout est dit à voix haute. Un rang de boutons permet de
   passer d'un jeu à l'autre sans revenir en arrière, et les jeux de lettres
@@ -421,7 +420,7 @@ manifest.webmanifest        pour l'installation sur l'écran d'accueil
 assets/css/style.css        toute la mise en page, mobile d'abord
 assets/js/art.js            le moteur de dessin SVG (décors, personnages, objets, bulles)
 assets/js/stories.js        les histoires (c'est ici qu'on écrit)
-assets/js/games.js          les huit jeux, leurs familles et leur cadre commun
+assets/js/games.js          les onze jeux, leurs familles et leur cadre commun
 assets/js/app.js            navigation, couverture, Cover Flow, lecteur
 assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
 assets/img/grain.png        le grain du papier, en surimpression
@@ -496,6 +495,23 @@ glisser-déposer, qui demande une précision qu'on n'a pas à quatre ans.
 **Le labyrinthe** est engendré à chaque partie (parcours en profondeur avec
 retour arrière), donc jamais deux fois le même. On garde le doigt appuyé et on
 avance case par case ; les murs arrêtent le trait au lieu de faire perdre.
+
+**Les points à relier** n'acceptent que le point suivant : se tromper ne fait
+rien, ni bruit ni pénalité, et le prochain point est toujours celui qui
+clignote en jaune. Chaque figure est un polygone de six à onze sommets, et
+aucune arête ne descend sous douze unités sur les cent que compte la feuille —
+deux points plus proches que ça se toucheraient du même doigt. Quand le tour
+est bouclé, les numéros s'effacent et la forme se remplit de couleur.
+
+**La grille de dessins** et **la symétrie** partagent le même damier, dessiné
+en SVG comme le reste : d'un côté on recopie un modèle case par case, de
+l'autre on complète une moitié de papillon derrière un miroir en pointillés.
+Les deux se corrigent tout seuls — la manche est gagnée à l'instant où la
+grille est juste, et une case posée en trop s'enlève en la retouchant.
+
+Ces trois-là ne dépendent d'aucune histoire : ce sont des tableaux de nombres
+et de coordonnées, et une figure de plus tient en une ligne dans `FIGURES`,
+`MODELES` ou `SYMETRIES`.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu

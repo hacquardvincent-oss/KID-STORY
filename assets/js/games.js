@@ -1068,6 +1068,249 @@
     svg.addEventListener('pointercancel', function () { trace = false; });
   }
 
+  /* ============================================================
+     JEU 9 — LES POINTS À RELIER
+     Un dessin caché dans des points numérotés. On ne peut toucher que le
+     point suivant : l'ordre des nombres est la règle du jeu, et se tromper
+     ne coûte rien — il ne se passe simplement rien.
+     ============================================================ */
+  var NOMBRES = ['', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six',
+    'sept', 'huit', 'neuf', 'dix', 'onze', 'douze'];
+
+  /* Deux points trop proches se touchent du même doigt : aucune arête ne
+     descend sous une douzaine d'unités sur les cent que compte la feuille. */
+  var FIGURES = [
+    { nom: 'une tente', c: '#4f8a3d',
+      p: [[50, 14], [88, 86], [66, 86], [50, 50], [34, 86], [12, 86]] },
+    { nom: 'une maison', c: '#e0453c',
+      p: [[22, 92], [22, 52], [50, 26], [62, 37], [62, 18], [74, 18], [78, 52], [78, 92]] },
+    { nom: 'un bateau', c: '#4a7fc1',
+      p: [[8, 66], [44, 66], [50, 8], [84, 52], [56, 52], [56, 66], [92, 66], [76, 92], [24, 92]] },
+    { nom: 'un chat', c: '#f2803d',
+      p: [[22, 20], [36, 40], [64, 40], [78, 20], [84, 52], [74, 76], [50, 88], [24, 76], [18, 52]] },
+    { nom: 'un poisson', c: '#3fa3c4',
+      p: [[14, 52], [38, 30], [66, 32], [76, 44], [94, 26], [94, 74], [76, 58], [62, 72], [34, 70]] },
+    { nom: 'une étoile', c: '#f7c518',
+      p: [[50, 8], [61, 37], [92, 38], [67, 58], [76, 88], [50, 70], [24, 88], [33, 58], [8, 38], [39, 37]] },
+    { nom: 'un cœur', c: '#e0453c',
+      p: [[50, 90], [14, 54], [10, 38], [18, 24], [34, 22], [50, 34], [66, 22], [82, 24], [90, 38], [86, 54]] },
+    { nom: 'la lune', c: '#8a79c4',
+      p: [[56, 8], [34, 14], [18, 32], [14, 54], [24, 76], [46, 90], [62, 88], [40, 72], [32, 50], [38, 26]] },
+    { nom: 'un sapin', c: '#4f8a3d',
+      p: [[50, 10], [72, 50], [60, 50], [80, 84], [57, 84], [57, 96], [43, 96], [43, 84], [20, 84], [40, 50], [28, 50]] }
+  ];
+  var lotPoints = null;
+
+  /* Ranger un lot du plus simple au plus long, puis n'en garder que quatre
+     bien étalés : prendre les quatre premiers donnerait quatre manches de
+     même difficulté, et la partie n'irait nulle part. */
+  function etaler(lot, n, manches) {
+    return lot[Math.round(n * (lot.length - 1) / Math.max(1, manches - 1)) % lot.length];
+  }
+
+  function jeuPoints(zone, n, api) {
+    if (n === 0 || !lotPoints) {
+      lotPoints = melange(FIGURES).sort(function (a, b) { return a.p.length - b.p.length; });
+    }
+    var f = etaler(lotPoints, n, 4);
+    var pts = f.p, N = pts.length;
+    api.consigne('Relie les points, du 1 jusqu\'au ' + N + '.');
+
+    var cx = 0, cy = 0;
+    pts.forEach(function (p) { cx += p[0]; cy += p[1]; });
+    cx /= N; cy /= N;
+
+    var svgTxt = '<svg viewBox="-17 -17 134 134" preserveAspectRatio="xMidYMid meet">' +
+      '<polygon class="pts-forme" points="' +
+      pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ') + '" fill="' + f.c + '"/>' +
+      '<polyline class="pts-trait" points="" stroke="' + f.c + '"/>';
+    pts.forEach(function (p, i) {
+      /* le numéro se pose du côté extérieur du dessin, jamais dessus */
+      var dx = p[0] - cx, dy = p[1] - cy;
+      var d = Math.sqrt(dx * dx + dy * dy) || 1;
+      svgTxt += '<text class="pts-num" x="' + (p[0] + dx / d * 9.5).toFixed(1) +
+        '" y="' + (p[1] + dy / d * 9.5 + 2.4).toFixed(1) + '" text-anchor="middle">' + (i + 1) + '</text>' +
+        '<circle class="pts-point" data-i="' + i + '" cx="' + p[0] + '" cy="' + p[1] + '" r="3"/>' +
+        '<circle class="pts-cible" data-i="' + i + '" cx="' + p[0] + '" cy="' + p[1] + '" r="9"/>';
+    });
+    svgTxt += '</svg>';
+
+    var cadre = el('div', 'pts', svgTxt);
+    zone.appendChild(cadre);
+
+    var svg = cadre.querySelector('svg');
+    var trait = cadre.querySelector('.pts-trait');
+    var forme = cadre.querySelector('.pts-forme');
+    var ronds = [].slice.call(cadre.querySelectorAll('.pts-point'));
+    var etape = 0, fini = false;
+
+    function maj() {
+      trait.setAttribute('points', pts.slice(0, etape).map(function (p) {
+        return p[0] + ',' + p[1];
+      }).join(' '));
+      ronds.forEach(function (r, i) {
+        r.classList.toggle('fait', i < etape);
+        r.classList.toggle('suivant', i === etape);
+      });
+    }
+    maj();
+
+    svg.addEventListener('click', function (e) {
+      if (fini || !e.target.getAttribute) return;
+      var i = e.target.getAttribute('data-i');
+      if (i === null) return;
+      if (+i !== etape) return;              /* on ne perd rien : il ne se passe rien */
+      etape++;
+      dire(NOMBRES[etape] || String(etape));
+      maj();
+      if (etape === N) {
+        fini = true;
+        trait.setAttribute('points', trait.getAttribute('points') + ' ' + pts[0][0] + ',' + pts[0][1]);
+        cadre.classList.add('devoile');
+        forme.classList.add('on');
+        setTimeout(function () { dire('Bravo ! C\'est ' + f.nom + '.'); }, 420);
+        setTimeout(function () { api.reussi(); }, 1700);
+      }
+    });
+  }
+
+  /* ============================================================
+     LES GRILLES — un damier de cases à remplir
+     Le même damier sert à copier un modèle et à finir une symétrie ;
+     il est dessiné en SVG, comme le reste, pour tenir dans n'importe
+     quelle place sans jamais se déformer.
+     ============================================================ */
+  function lireGrille(g) {
+    var cols = g[0].length, rangs = g.length, t = [], x, y;
+    for (y = 0; y < rangs; y++) for (x = 0; x < cols; x++) t.push(g[y][x] === '#');
+    return { cols: cols, rangs: rangs, cases: t };
+  }
+
+  function grilleSVG(cols, rangs, cases, couleur, o) {
+    o = o || {};
+    var U = 10, s = '', i;
+    for (i = 0; i < cols * rangs; i++) {
+      /* o.libre dit quelles cases se touchent ; sans lui, la grille se
+         regarde seulement — c'est le cas du modèle */
+      s += '<rect class="gc' + (o.libre && o.libre(i) ? ' libre' : '') + '" data-i="' + i +
+        '" x="' + ((i % cols) * U) + '" y="' + (Math.floor(i / cols) * U) +
+        '" width="' + U + '" height="' + U + '" rx="1.4" fill="' +
+        (cases[i] ? couleur : '#fffdf6') + '" stroke="#cdbfb0" stroke-width=".5"/>';
+    }
+    if (o.miroir) {
+      s += '<line class="gril-axe" x1="' + (o.miroir * U) + '" y1="-2" x2="' +
+        (o.miroir * U) + '" y2="' + (rangs * U + 2) + '"/>';
+    }
+    s += '<rect x="0" y="0" width="' + (cols * U) + '" height="' + (rangs * U) +
+      '" fill="none" stroke="#3a2a22" stroke-width="1.5" rx="1.6"/>';
+    return '<svg viewBox="-2 -2 ' + (cols * U + 4) + ' ' + (rangs * U + 4) +
+      '" preserveAspectRatio="xMidYMid meet">' + s + '</svg>';
+  }
+
+  /* ============================================================
+     JEU 10 — LA GRILLE DE DESSINS
+     Un modèle en haut, une grille vide en dessous : on recopie case par
+     case. Toucher une case la remplit, la retoucher l'efface.
+     ============================================================ */
+  var MODELES = [
+    { nom: 'une fenêtre', c: '#4a7fc1', g: ['####', '#..#', '#..#', '####'] },
+    { nom: 'un escalier', c: '#f2803d', g: ['#...', '##..', '###.', '####'] },
+    { nom: 'un petit cœur', c: '#e0453c', g: ['.#.#', '####', '.###', '..#.'] },
+    { nom: 'un sapin', c: '#4f8a3d', g: ['..#..', '.###.', '#####', '..#..', '..#..'] },
+    { nom: 'une maison', c: '#e0453c', g: ['..#..', '.###.', '#####', '#.#.#', '#.#.#'] },
+    { nom: 'un poisson', c: '#3fa3c4', g: ['.....', '.####', '#####', '.####', '.....'] },
+    { nom: 'une étoile', c: '#f7c518', g: ['..#..', '#####', '.###.', '.#.#.', '#...#'] },
+    { nom: 'un chat', c: '#8a5a3b', g: ['#....#', '######', '#.##.#', '######', '.####.', '..##..'] }
+  ];
+  var lotGrille = null;
+
+  function jeuGrille(zone, n, api) {
+    if (n === 0 || !lotGrille) {
+      lotGrille = melange(MODELES).sort(function (a, b) { return a.g.length - b.g.length; });
+    }
+    var m = etaler(lotGrille, n, 4);
+    var g = lireGrille(m.g);
+    api.consigne('Refais le même dessin sur la grille vide.');
+
+    var mien = g.cases.map(function () { return false; });
+    var plateau = el('div', 'gril');
+    var haut = el('div', 'gril-vue', '<div class="gril-titre">👀</div>' +
+      grilleSVG(g.cols, g.rangs, g.cases, m.c));
+    var bas = el('div', 'gril-vue jouable', '<div class="gril-titre">✋</div>' +
+      grilleSVG(g.cols, g.rangs, mien, m.c, { libre: function () { return true; } }));
+    plateau.appendChild(haut);
+    plateau.appendChild(bas);
+    zone.appendChild(plateau);
+
+    var svg = bas.querySelector('svg'), fini = false;
+    svg.addEventListener('click', function (e) {
+      if (fini || !e.target.getAttribute) return;
+      var brut = e.target.getAttribute('data-i');
+      if (brut === null) return;          /* le cadre et le miroir ne sont pas des cases */
+      var i = +brut;
+      mien[i] = !mien[i];
+      e.target.setAttribute('fill', mien[i] ? m.c : '#fffdf6');
+      if (mien.every(function (v, k) { return v === g.cases[k]; })) {
+        fini = true;
+        setTimeout(function () { dire('C\'est ' + m.nom + ' !'); }, 200);
+        setTimeout(function () { api.reussi(); }, 900);
+      }
+    });
+  }
+
+  /* ============================================================
+     JEU 11 — LA SYMÉTRIE
+     Une moitié de dessin, un miroir au milieu, et l'autre moitié à
+     inventer. La règle ne s'explique pas : on la voit apparaître.
+     ============================================================ */
+  var SYMETRIES = [
+    { nom: 'un papillon', c: '#f2803d', g: ['##..', '###.', '.###', '.###', '###.', '##..'] },
+    { nom: 'un cœur', c: '#e0453c', g: ['.##.', '####', '####', '.###', '..##', '...#'] },
+    { nom: 'un sapin', c: '#4f8a3d', g: ['...#', '..##', '.###', '####', '...#', '...#'] },
+    { nom: 'une maison', c: '#4a7fc1', g: ['...#', '..##', '.###', '####', '#.##', '#.#.'] }
+  ];
+  var lotSym = null;
+
+  function jeuSymetrie(zone, n, api) {
+    if (n === 0 || !lotSym) lotSym = melange(SYMETRIES);
+    var m = lotSym[n % lotSym.length];
+    var demi = lireGrille(m.g);
+    var moitie = demi.cols, cols = moitie * 2, rangs = demi.rangs;
+
+    var cible = [], x, y;
+    for (y = 0; y < rangs; y++) {
+      for (x = 0; x < cols; x++) {
+        cible.push(demi.cases[y * moitie + (x < moitie ? x : cols - 1 - x)]);
+      }
+    }
+    /* au départ, seule la moitié gauche est dessinée */
+    var etat = cible.map(function (v, i) { return (i % cols) < moitie ? v : false; });
+    api.consigne('Fais le même dessin de l\'autre côté du miroir.');
+
+    var plateau = el('div', 'sym', grilleSVG(cols, rangs, etat, m.c, {
+      miroir: moitie,
+      libre: function (i) { return (i % cols) >= moitie; }
+    }));
+    zone.appendChild(plateau);
+
+    var svg = plateau.querySelector('svg'), fini = false;
+    svg.addEventListener('click', function (e) {
+      if (fini || !e.target.getAttribute) return;
+      var brut = e.target.getAttribute('data-i');
+      if (brut === null) return;
+      var i = +brut;
+      if ((i % cols) < moitie) return;          /* la moitié dessinée ne bouge pas */
+      etat[i] = !etat[i];
+      e.target.setAttribute('fill', etat[i] ? m.c : '#fffdf6');
+      if (etat.every(function (v, k) { return v === cible[k]; })) {
+        fini = true;
+        plateau.classList.add('devoile');
+        setTimeout(function () { dire('Regarde, ' + m.nom + ' !'); }, 200);
+        setTimeout(function () { api.reussi(); }, 1100);
+      }
+    });
+  }
+
   var CATEGORIES = [
     { id: 'observer', nom: 'Regarder', emoji: '🔍' },
     { id: 'lettres', nom: 'Les lettres', emoji: '🔤' },
@@ -1141,6 +1384,24 @@
       sous: 'Trouve le chemin jusqu\'à l\'étoile',
       vignette: { t: 'papa', ds: .42, dy: 176 },
       def: { manches: 4, manche: jeuLabyrinthe, plein: true, felicitation: 'Tu retrouves toujours ton chemin !' }
+    },
+    {
+      id: 'points', nom: 'Les points à relier', emoji: '🔟', cat: 'nombres',
+      sous: 'Du 1 au 12, et le dessin apparaît',
+      vignette: { t: 'anna', ds: .62, dy: 184 },
+      def: { manches: 4, manche: jeuPoints, plein: true, felicitation: 'Tu comptes dans le bon ordre !' }
+    },
+    {
+      id: 'grille', nom: 'La grille de dessins', emoji: '🧱', cat: 'creer',
+      sous: 'Recopie le modèle, case par case',
+      vignette: { t: 'roxane', ds: .62, dy: 184 },
+      def: { manches: 4, manche: jeuGrille, plein: true, felicitation: 'Quatre dessins recopiés sans une erreur !' }
+    },
+    {
+      id: 'symetrie', nom: 'La symétrie', emoji: '🦋', cat: 'reflechir',
+      sous: 'Termine le dessin de l\'autre côté',
+      vignette: { t: 'isadora', ds: .62, dy: 184 },
+      def: { manches: 4, manche: jeuSymetrie, plein: true, felicitation: 'Tes deux moitiés sont parfaites !' }
     }
   ];
 
