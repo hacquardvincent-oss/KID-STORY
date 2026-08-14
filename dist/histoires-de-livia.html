@@ -212,6 +212,25 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .tab:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
 .tab.is-active { background: var(--tc2, var(--jaune)); font-weight: 600; }
 
+/* un onglet, c'est d'abord un visage */
+.tab-img {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 6px 8px 5px; border-radius: 18px; width: 76px;
+}
+.tab-rond {
+  width: 52px; height: 52px; border-radius: 50%; overflow: hidden;
+  background: var(--tab-c, var(--paper-2));
+  border: 2.5px solid var(--ink);
+  display: grid; place-items: center;
+}
+.tab-rond svg { display: block; width: 100%; height: 100%; }
+.tab-tous { font-size: 24px; color: var(--ink); background: var(--jaune); }
+.tab-mot {
+  font-size: 10.5px; font-weight: 600; line-height: 1.1; text-align: center;
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.tab-img.is-active .tab-rond { box-shadow: 0 0 0 3px var(--jaune); }
+
 /* ---------------- LA UNE ---------------- */
 .cover {
   height: 100vh; height: 100svh;
@@ -318,14 +337,28 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .hello { margin: 2px 2px 14px; color: var(--ink-soft); font-size: 15px; }
 .hello b { color: var(--ink); }
 
-/* les filtres par thème : ils traversent les univers */
-.filtres { margin: 0 0 16px; }
-.filtres-titre {
-  display: block; margin: 0 2px 7px;
-  font-size: 12px; font-weight: 600; letter-spacing: 1.6px;
-  text-transform: uppercase; color: var(--ink-soft);
+/* les filtres par thème : rangés derrière un bouton discret, parce qu'ils
+   servent à l'adulte, pas à l'enfant */
+.filtres { margin: 0 0 14px; }
+.filtres-bouton {
+  display: flex; align-items: center; gap: 6px;
+  font-family: inherit; cursor: pointer; background: none; border: 0; padding: 2px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--ink-soft); opacity: .75;
 }
-.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.filtres-bouton i {
+  width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-top: 6px solid currentColor; transition: transform .18s;
+}
+.filtres.ouvert .filtres-bouton i { transform: rotate(180deg); }
+.chips { display: none; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+.filtres.ouvert .chips { display: flex; }
+.langues { align-items: center; }
+.langue-titre {
+  font-size: 12px; font-weight: 600; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--ink-soft); opacity: .75; margin-right: 2px;
+}
+.chip[disabled] { opacity: .4; }
 .chip {
   font-family: inherit; cursor: pointer; white-space: nowrap;
   font-size: 13.5px; font-weight: 500; padding: 6px 13px;
@@ -594,6 +627,61 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .chiffre.secoue { animation: secoue .4s; }
 
 /* écrire */
+/* les familles de jeux */
+.jeu-famille {
+  grid-column: 1 / -1; margin: 14px 2px 2px;
+  font-size: 15px; font-weight: 600; letter-spacing: .4px; color: var(--ink-soft);
+  display: flex; align-items: center; gap: 7px;
+}
+.jeu-famille span { font-size: 19px; }
+.jeu-famille:first-child { margin-top: 0; }
+
+/* le coloriage */
+.colo-feuille {
+  flex: 1 1 auto; min-height: 0; overflow: hidden;
+  background: #fffdf6; border: 3px solid var(--ink);
+  box-shadow: 3px 4px 0 rgba(58, 42, 34, .18);
+}
+.colo-feuille svg { display: block; width: 100%; height: 100%; }
+.colo-feuille .z, .colo-feuille .zs { cursor: pointer; }
+.colo-palette {
+  flex: 0 0 auto; display: flex; flex-wrap: wrap; gap: 7px;
+  justify-content: center; margin: 9px 0 0;
+}
+.colo-pot {
+  width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+  border: 3px solid var(--ink); box-shadow: 0 2px 0 var(--ink);
+}
+.colo-pot.choisi { box-shadow: 0 0 0 4px var(--jaune), 0 2px 0 var(--ink); transform: scale(1.08); }
+.colo-actions { flex: 0 0 auto; display: flex; gap: 10px; justify-content: center; margin-top: 9px; }
+
+/* le puzzle */
+.puz {
+  flex: 1 1 auto; min-height: 0; display: grid; gap: 6px; align-content: center;
+}
+.puz-piece {
+  position: relative; cursor: pointer; overflow: hidden;
+  border: 3px solid var(--ink); border-radius: 8px; background: var(--page);
+  box-shadow: 0 3px 0 rgba(58, 42, 34, .25);
+  transition: transform .12s;
+}
+.puz-piece svg { display: block; width: 100%; height: 100%; }
+.puz-piece.choisi { box-shadow: 0 0 0 4px var(--jaune), 0 3px 0 rgba(58, 42, 34, .25); transform: scale(.96); }
+.puz-piece.bonne { border-color: #4f8a3d; }
+
+/* le labyrinthe */
+.laby {
+  flex: 1 1 auto; min-height: 0; display: grid; place-items: center;
+  touch-action: none;
+}
+/* « > » indispensable : le héros est un dessin imbriqué dans le labyrinthe,
+   une règle trop large lui donnerait toute la surface */
+.laby > svg { display: block; width: 100%; height: 100%; }
+.laby-trait {
+  fill: none; stroke: var(--rouge); stroke-width: 22; opacity: .5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
 /* un jeu à l'écran entier : plus de bandeau, plus de titre, rien à faire
    défiler — c'est la seule façon de tenir deux cases sur un téléphone */
 .jeu-plein {
@@ -930,9 +1018,12 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   <!-- SOMMAIRE : les univers -->
   <section class="view" id="viewHome">
     <p class="hello" id="homeHello">Choisis un univers, puis fais défiler les histoires.</p>
-    <div class="filtres">
-      <span class="filtres-titre">Par thème</span>
+    <div class="filtres" id="filtres">
+      <button class="filtres-bouton" id="btnFiltres" aria-expanded="false">
+        <span>Filtrer par thème</span><i></i>
+      </button>
       <div class="chips" id="themeChips"></div>
+      <div class="chips langues" id="langues"></div>
     </div>
     <div class="uni-grid" id="uniGrid"></div>
     <p class="foot-note">Créé à la maison, pour l'heure du coucher.</p>
@@ -1264,6 +1355,19 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         front: ''
       };
     }
+    /* la même queue de cheval, mais ébouriffée : quelques mèches s'échappent */
+    if (style === 'queuebataille') {
+      return {
+        back: U([cap,
+          '<path d="M 46,-78 C 86,-78 100,-34 84,-4 C 76,12 58,10 56,-6 C 52,-38 38,-64 46,-78 Z" fill="%F%" %S%/>',
+          '<circle cx="72" cy="-52" r="15" fill="%F%" %S%/>',
+          '<circle cx="86" cy="-24" r="12" fill="%F%" %S%/>',
+          '<circle cx="-44" cy="-88" r="11" fill="%F%" %S%/>',
+          '<circle cx="18" cy="-108" r="10" fill="%F%" %S%/>'], hair, 8) +
+          '<circle cx="50" cy="-66" r="8.5" fill="' + d + '" stroke="' + INK + '" stroke-width="3.5"/>',
+        front: line('M -30,-92 q 12,-10 24,-3 M 6,-100 q 12,-8 22,2', d, 3.5)
+      };
+    }
     /* cheveux lisses tirés en arrière, noués en queue de cheval */
     if (style === 'queue' || style === 'queuehaute') {
       var haute = style === 'queuehaute';
@@ -1412,6 +1516,105 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     }));
     if (o.hat) t += g('translate(0,-130)', sunHat(o.hat));
     return s + (sit ? g('translate(-6,42)', t) : t);
+  }
+
+  /* ---------- un grand adulte : plus haut, plus large, barbu ---------- */
+  function hommeTete(o) {
+    var skin = o.skin, cheveux = o.cheveux, mood = o.mood || 'happy';
+    var s = U(['<path d="M -44,-58 C -46,-96 -22,-108 0,-108 C 22,-108 46,-96 44,-58 Z" fill="%F%" %S%/>'], cheveux, 8);
+    s += U(['<ellipse cx="0" cy="-50" rx="44" ry="46" fill="%F%" %S%/>'], skin, 9);
+    /* la barbe : elle enveloppe le bas du visage */
+    s += U(['<path d="M -44,-56 C -46,-16 -26,4 0,4 C 26,4 46,-16 44,-56 C 40,-30 24,-22 0,-22 C -24,-22 -40,-30 -44,-56 Z" fill="%F%" %S%/>'], cheveux, 8);
+    s += U(['<path d="M -44,-60 C -46,-98 -22,-110 0,-110 C 22,-110 46,-98 44,-60 C 34,-80 18,-88 0,-86 C -18,-92 -36,-80 -44,-60 Z" fill="%F%" %S%/>'], cheveux, 8);
+    if (mood === 'sleep') {
+      s += line('M -26,-52 q 10,9 20,0', INK, 4.5) + line('M 6,-52 q 10,9 20,0', INK, 4.5);
+    } else {
+      var r = mood === 'wow' ? 8 : 7;
+      s += '<circle cx="-17" cy="-54" r="' + r + '" fill="' + INK + '"/>' +
+        '<circle cx="17" cy="-54" r="' + r + '" fill="' + INK + '"/>' +
+        '<circle cx="-14" cy="-57" r="2.5" fill="#fff"/><circle cx="20" cy="-57" r="2.5" fill="#fff"/>';
+      s += line('M -32,-72 L -8,-68 M 32,-72 L 8,-68', shade(cheveux, -0.2), 5);
+    }
+    if (mood === 'wow') s += '<ellipse cx="0" cy="-26" rx="9" ry="11" fill="#b8355c" stroke="' + INK + '" stroke-width="3.5"/>';
+    else if (mood === 'sad') s += line('M -14,-22 q 14,-11 28,0', INK, 4.5);
+    else s += line('M -16,-30 q 16,17 32,0', INK, 4.5);
+    if (o.lunettes) {
+      s += '<circle cx="-17" cy="-54" r="15" fill="none" stroke="' + INK + '" stroke-width="4"/>' +
+        '<circle cx="17" cy="-54" r="15" fill="none" stroke="' + INK + '" stroke-width="4"/>' +
+        line('M -2,-54 L 2,-54', INK, 4);
+    }
+    return s;
+  }
+
+  function homme(o) {
+    o = o || {};
+    var skin = o.skin || '#f0c49a';
+    var cheveux = o.cheveux || '#c9622f';
+    var haut = o.haut || '#4a7fc1';
+    var bas = o.bas || '#3f5b86';
+    var pose = o.pose || 'stand';
+    var assis = pose === 'sit';
+    var s = '';
+
+    /* jambes : un pantalon, plus large qu'une jambe d'enfant */
+    if (assis) {
+      s += limb('M -8,-30 C 24,-30 50,-28 58,-8 C 62,4 63,18 63,30', bas, 20) +
+        limb('M 8,-20 C 40,-20 66,-18 74,2 C 78,14 79,26 79,38', bas, 20) +
+        '<ellipse cx="68" cy="34" rx="19" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="84" cy="42" rx="19" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>';
+    } else if (pose === 'run') {
+      s += limb('M -14,-74 C -28,-52 -40,-30 -42,-14', bas, 20) + limb('M 14,-74 C 26,-54 30,-32 28,-14', bas, 20) +
+        '<ellipse cx="-46" cy="-10" rx="20" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="32" cy="-10" rx="20" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>';
+    } else {
+      s += limb('M -17,-76 L -18,-16', bas, 21) + limb('M 17,-76 L 18,-16', bas, 21) +
+        '<ellipse cx="-20" cy="-11" rx="20" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="20" cy="-11" rx="20" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>';
+    }
+
+    var t = '';
+    /* bras : c'est le gauche (à droite de l'image quand on lui fait face)
+       qui portera le tatouage */
+    var bg, bd, mg, md;
+    if (pose === 'armsup' || pose === 'jump') {
+      bg = 'M -36,-168 C -66,-186 -92,-212 -98,-238'; bd = 'M 36,-168 C 66,-186 92,-212 98,-238';
+      mg = [-102, -244]; md = [102, -244];
+    } else if (pose === 'wave') {
+      bg = 'M -36,-166 C -60,-156 -74,-142 -76,-126'; bd = 'M 36,-168 C 68,-188 94,-216 100,-242';
+      mg = [-80, -122]; md = [104, -248];
+    } else if (pose === 'point') {
+      bg = 'M -36,-166 C -60,-154 -72,-138 -74,-122'; bd = 'M 36,-168 C 70,-172 98,-180 122,-190';
+      mg = [-78, -118]; md = [128, -192];
+    } else if (pose === 'hold') {
+      bg = 'M -36,-164 C -58,-158 -72,-148 -72,-132'; bd = 'M 36,-164 C 58,-158 72,-148 72,-132';
+      mg = [-76, -128]; md = [76, -128];
+    } else if (pose === 'shrug') {
+      bg = 'M -36,-170 C -62,-178 -80,-170 -86,-156'; bd = 'M 36,-170 C 62,-178 80,-170 86,-156';
+      mg = [-90, -152]; md = [90, -152];
+    } else {
+      bg = 'M -36,-166 C -62,-156 -76,-140 -78,-124'; bd = 'M 36,-166 C 62,-156 76,-140 78,-124';
+      mg = [-82, -120]; md = [82, -120];
+    }
+    t += limb(bg, skin, 20) + limb(bd, skin, 20);
+    t += '<circle cx="' + mg[0] + '" cy="' + mg[1] + '" r="14" fill="' + skin + '" stroke="' + INK + '" stroke-width="4.5"/>';
+    t += '<circle cx="' + md[0] + '" cy="' + md[1] + '" r="14" fill="' + skin + '" stroke="' + INK + '" stroke-width="4.5"/>';
+
+    /* le torse : large, un tee-shirt sans manches pour laisser voir le bras */
+    t += U(['<path d="M -40,-182 C -46,-150 -48,-110 -44,-76 L 44,-76 C 48,-110 46,-150 40,-182 Z" fill="%F%" %S%/>'], haut, 9);
+    if (o.trim) t += line('M -46,-92 L 46,-92', o.trim, 5);
+    t += line('M -24,-180 q 24,18 48,0', shade(haut, -0.25), 4.5);
+
+    /* le tatouage, sur son bras gauche — donc à droite quand on le regarde */
+    if (o.tatouage) {
+      var c = o.tatouage;
+      t += g('translate(60,-142) rotate(12) scale(1.15)',
+        line('M -10,-14 C 0,-26 16,-19 16,-6 C 16,7 2,16 -10,25 C -22,16 -36,7 -36,-6 C -36,-19 -20,-26 -10,-14 Z', c, 5.5) +
+        line('M -30,30 q 20,10 40,0 M -26,38 q 16,8 32,0', c, 4));
+    }
+
+    t += g('translate(0,-176)', hommeTete({ skin: skin, cheveux: cheveux, mood: o.mood, lunettes: o.lunettes }));
+    if (o.hat) t += g('translate(0,-176) scale(1.1)', sunHat(o.hat));
+    return s + (assis ? g('translate(-8,52)', t) : t);
   }
 
   /* ---------- le petit frère : un bébé, donc une grosse tête ---------- */
@@ -2650,6 +2853,18 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
         pose: o.pose, mood: o.mood, hat: o.hat, trim: '#e6f6ea'
       });
     },
+    papa: function (o) {
+      return homme({
+        skin: '#f0c49a', cheveux: '#c9622f', haut: o.haut || '#4a7fc1', bas: '#3f5b86',
+        tatouage: '#2f4f7a', pose: o.pose, mood: o.mood, hat: o.hat, trim: '#8fb8e8'
+      });
+    },
+    maman: function (o) {
+      return girl({
+        skin: '#f7d3b0', hair: '#d4622c', dress: o.dress || '#3f8a6b', hairstyle: 'queuebataille',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#bfe8cf'
+      });
+    },
     mamie: function (o) {
       return girl({
         skin: '#f0d7bd', hair: '#e4e2dc', dress: o.dress || '#a98cf0', hairstyle: 'carre',
@@ -2747,7 +2962,7 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
     var bgFn = BG[s.bg] || BG.plain;
 
     /* le dessin : décor, personnages, objets */
-    var art = bgFn(s);
+    var art = opts.contour ? '' : bgFn(s);
     if (s.neige) art += flocons(s.neige === true ? 26 : s.neige);
     art += renderItems(s.back);
     art += renderItems(s.items);
@@ -2771,8 +2986,23 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
       '<feDisplacementMap in="SourceGraphic" in2="t" scale="3" xChannelSelector="R" yChannelSelector="G"/>' +
       '</filter></defs>';
 
+    /* Le mode « à colorier » : on vide toutes les couleurs pour ne garder que
+       le trait. Chaque forme devient une zone blanche cliquable ; l'encre, les
+       yeux et les traits de détail restent noirs. */
+    if (opts.contour) {
+      art = art.replace(/fill="(?!none)[^"]*"/g, function (m) {
+        return m.indexOf(INK) > 0 ? m : 'fill="#fffdf6" class="z"';
+      }).replace(/stroke="(?!none)[^"]*"/g, function (m) {
+        /* un membre est un trait épais posé sur un trait d'encre plus épais :
+           en le blanchissant, il ne reste que les deux bords — donc un contour */
+        return m.indexOf(INK) > 0 ? m : 'stroke="#fffdf6" class="zs"';
+      });
+      art = '<rect x="0" y="0" width="' + VW + '" height="' + VH + '" fill="#fffdf6"/>' + art;
+    }
+
     /* voile chaud : tout est imprimé sur le même papier crème */
-    var wash = '<rect x="0" y="0" width="' + VW + '" height="' + VH +
+    var wash = opts.contour ? '' :
+      '<rect x="0" y="0" width="' + VW + '" height="' + VH +
       '" fill="#e0c9a0" opacity=".10" style="mix-blend-mode:multiply"/>';
 
     /* en recadrage, on garde le bas de l'image : c'est là que se tiennent
@@ -2782,9 +3012,11 @@ if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
        agrandit le dessin dans le jeu des différences */
     var c = opts.cadre;
     var vb = c ? (c.x + ' ' + c.y + ' ' + c.w + ' ' + c.h) : ('0 0 ' + VW + ' ' + VH);
+    var groupe = opts.contour ? '<g>' + art + '</g>'
+      : '<g filter="url(#pl' + id + ')">' + art + '</g>';
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + vb +
-      '" preserveAspectRatio="' + par + '" role="img">' + defs +
-      '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
+      '" preserveAspectRatio="' + par + '" role="img">' + (opts.contour ? '' : defs) +
+      groupe + wash + letters + '</svg>';
   }
 
   /* une vignette : un seul élément, sans décor, pour les jeux */
@@ -2891,6 +3123,7 @@ var UNIVERSES = [
     name: 'Peppa Pig',
     tagline: 'Livia, Peppa et toute la famille Pig',
     emoji: '🐷',
+    vignette: { t: 'peppa', ds: .5, dy: 178 },
     c1: '#ff6fa5',
     c2: '#ffd166',
     cover: {
@@ -5051,6 +5284,7 @@ var UNIVERSES = [
     name: 'La Reine des Neiges',
     tagline: 'Livia, Elsa, Anna et Olaf',
     emoji: '❄️',
+    vignette: { t: 'elsa', ds: .5, dy: 178 },
     c1: '#5fb8f0',
     c2: '#b39ff5',
     cover: {
@@ -5324,6 +5558,189 @@ var UNIVERSES = [
             text: "Au retour, Livia a les yeux qui se ferment tout seuls. Elsa la borde et pose un flocon de glace sur sa table de nuit : un flocon qui ne fond jamais. « Bonne nuit, petite princesse. »"
           }
         ]
+      },
+
+      /* ---------- 3 : Papa à Arendelle ---------- */
+      {
+        id: 'papa-na-pas-froid',
+        title: 'Papa n\'a pas froid',
+        title_es: 'Papá no tiene frío',
+        subtitle: 'Dire qu\'on a froid, c\'est déjà se réchauffer',
+        subtitle_es: 'Decir que tienes frío ya es empezar a calentarte',
+        tag: 'Nuit',
+        themes: ['Famille', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'snow',
+          items: [
+            { t: 'papa', x: 250, y: 520, s: 1 },
+            { t: 'livia', x: 460, y: 522, s: 1.05 },
+            { t: 'elsa', x: 640, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'papa', x: 300, y: 520, s: 1.05 },
+                { t: 'livia', x: 560, y: 522, s: 1.1 }
+              ],
+              sfx: [{ t: 'MOI, JAMAIS FROID !', x: 430, y: 168, fs: 26, rot: -4, color: '#4a7fc1' }]
+            },
+            text: "Papa était venu à Arendelle en tee-shirt. « Moi, je n'ai jamais froid », dit-il en montrant ses bras. Livia regarda la neige, puis les bras de Papa, et ne dit rien.",
+            es: "Papá había venido a Arendelle en camiseta. «Yo nunca tengo frío», dijo enseñando los brazos. Livia miró la nieve, luego los brazos de papá, y no dijo nada."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'elsa', x: 280, y: 516, s: 1.05, pose: 'magic' },
+                { t: 'papa', x: 540, y: 520, s: 1.05, mood: 'wow' }
+              ],
+              neige: 26,
+              sfx: [{ t: 'FRIIIISSS !', x: 420, y: 164, fs: 34, rot: -7, color: '#7fd8f0' }]
+            },
+            text: "Elsa leva une main pour dire bonjour. Il se mit à neiger un peu plus fort, comme ça, sans prévenir. Papa fit un sourire qui tremblait légèrement aux commissures.",
+            es: "Elsa levantó una mano para saludar. Empezó a nevar un poco más fuerte, así, sin avisar. Papá sonrió con una sonrisa que temblaba un poquito en las esquinas."
+          },
+          {
+            scene: {
+              bg: 'snow', neige: 20,
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.1, pose: 'point' },
+                { t: 'papa', x: 560, y: 520, s: 1.05, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 320, t: 'Tu as les lèvres toutes bleues.', tx: 300, ty: 240 }]
+            },
+            text: "« Tu as les lèvres toutes bleues », dit Livia. Papa répondit que c'était la lumière. La lumière n'y était pour rien : il claquait des dents depuis une bonne minute.",
+            es: "«Tienes los labios azules», dijo Livia. Papá contestó que era la luz. La luz no tenía nada que ver: le castañeteaban los dientes desde hacía un buen rato."
+          },
+          {
+            scene: {
+              bg: 'snow', neige: 18,
+              items: [
+                { t: 'anna', x: 260, y: 518, s: 1.05, pose: 'hold' },
+                { t: 'papa', x: 520, y: 520, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 700, y: 522, s: 1 }
+              ],
+              sfx: [{ t: 'BRRRRR…', x: 420, y: 164, fs: 32, rot: -6, color: '#bfe8f7' }]
+            },
+            text: "Anna arriva avec une grosse couverture. Elle ne dit pas « je te l'avais bien dit ». Elle la posa simplement sur les épaules de Papa, et attendit.",
+            es: "Anna llegó con una manta muy gorda. No dijo «te lo dije». Simplemente se la puso sobre los hombros a papá, y esperó."
+          },
+          {
+            scene: {
+              bg: 'snow', neige: 14,
+              items: [
+                { t: 'papa', x: 300, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 560, y: 522, s: 1.1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 340, t: 'Bon. J\'ai un peu froid.', tx: 305, ty: 240 }]
+            },
+            text: "« Bon », dit Papa. « J'ai un peu froid. » Ce n'était que quatre mots, et il fallut pourtant qu'il les prépare longtemps dans sa tête avant de les faire sortir.",
+            es: "«Bueno», dijo papá. «Tengo un poco de frío.» Solo eran cinco palabras, y sin embargo tuvo que prepararlas mucho rato en la cabeza antes de dejarlas salir."
+          },
+          {
+            scene: {
+              bg: 'snow', time: 'sunset',
+              items: [
+                { t: 'elsa', x: 240, y: 516, s: 1 },
+                { t: 'papa', x: 450, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 660, y: 522, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Ils rentrèrent boire un chocolat tous ensemble. Livia remarqua que Papa, sous la couverture, avait retrouvé sa vraie couleur. Et qu'il souriait pour de bon, cette fois.",
+            es: "Volvieron todos juntos a tomar un chocolate. Livia notó que papá, debajo de la manta, había recuperado su color de verdad. Y que sonreía en serio, esta vez."
+          }
+        ]
+      },
+
+      /* ---------- 4 : la règle du lac ---------- */
+      {
+        id: 'glace-qui-craque',
+        title: 'La glace qui craque',
+        title_es: 'El hielo que cruje',
+        subtitle: 'Une règle qu\'on ne comprend qu\'après',
+        subtitle_es: 'Una regla que solo se entiende después',
+        tag: 'Nuit',
+        themes: ['Règles', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'snow',
+          items: [
+            { t: 'elsa', x: 280, y: 516, s: 1.05, pose: 'point' },
+            { t: 'livia', x: 520, y: 522, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'elsa', x: 280, y: 516, s: 1.1, pose: 'point' },
+                { t: 'livia', x: 560, y: 522, s: 1.1 }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'On ne marche jamais sur le lac.', tx: 290, ty: 240 }]
+            },
+            text: "« On ne marche jamais sur le lac », dit Elsa. Livia demanda pourquoi. Elsa répondit : « Parce que la glace ment. » Ce n'était pas une réponse très claire.",
+            es: "«Nunca se camina sobre el lago», dijo Elsa. Livia preguntó por qué. Elsa contestó: «Porque el hielo miente.» No era una respuesta muy clara."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [{ t: 'livia', x: 400, y: 522, s: 1.2 }],
+              sfx: [{ t: 'ELLE A L\'AIR SOLIDE…', x: 400, y: 168, fs: 26, rot: -4, color: '#6d5847' }]
+            },
+            text: "Le lendemain, Livia retourna voir le lac toute seule. La glace était blanche, lisse et parfaitement immobile. Elle avait vraiment l'air solide. C'est bien ça, le problème.",
+            es: "Al día siguiente, Livia volvió al lago sola. El hielo estaba blanco, liso y completamente quieto. Parecía de verdad muy sólido. Ese es justamente el problema."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [{ t: 'livia', x: 400, y: 522, s: 1.2, mood: 'wow' }],
+              sfx: [{ t: 'CRAAAC.', x: 400, y: 164, fs: 40, rot: -8, color: '#4a7fc1' }]
+            },
+            text: "Elle posa un pied. Puis deux. Au troisième pas, quelque chose craqua sous elle, un bruit sec et très net, qui n'avait rien d'un bruit de jeu.",
+            es: "Puso un pie. Luego dos. Al tercer paso, algo crujió debajo de ella, un ruido seco y muy claro, que no tenía nada de ruido de juego."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'livia', x: 320, y: 522, s: 1.15, mood: 'sad' },
+                { t: 'elsa', x: 580, y: 516, s: 1.1, pose: 'point' }
+              ],
+              sfx: [{ t: 'NE BOUGE PLUS !', x: 430, y: 164, fs: 30, rot: -6, color: '#e0453c' }]
+            },
+            text: "« Ne bouge plus ! » cria Elsa depuis la rive. Livia ne bougea plus du tout. Elsa tendit la main, doucement, et la glace se referma sous ses pieds comme on recoud un tissu.",
+            es: "«¡No te muevas!», gritó Elsa desde la orilla. Livia no se movió nada. Elsa extendió la mano, despacito, y el hielo se cerró bajo sus pies como quien cose una tela."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'elsa', x: 300, y: 500, s: 1.05, pose: 'sit' },
+                { t: 'livia', x: 560, y: 502, s: 1.1, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'La glace ment : elle est belle et elle est mince.', tx: 305, ty: 236 }]
+            },
+            text: "Elles s'assirent au bord. « La glace ment », répéta Elsa. « Elle est belle, elle est blanche, et par endroits elle est mince comme une feuille. » Cette fois, Livia comprit.",
+            es: "Se sentaron en la orilla. «El hielo miente», repitió Elsa. «Es bonito, es blanco, y en algunos sitios es fino como una hoja.» Esta vez, Livia lo entendió."
+          },
+          {
+            scene: {
+              bg: 'snow', time: 'sunset',
+              items: [
+                { t: 'elsa', x: 280, y: 516, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 500, y: 522, s: 1.05, pose: 'hold' },
+                { t: 'olaf', x: 690, y: 520, s: 1 }
+              ]
+            },
+            text: "Certaines règles s'expliquent, et on les comprend tout de suite. D'autres attendent qu'on ait entendu le craquement. Livia n'est jamais retournée sur le lac.",
+            es: "Algunas reglas se explican y se entienden enseguida. Otras esperan a que hayas oído el crujido. Livia nunca volvió a pisar el lago."
+          }
+        ]
       }
     ]
   },
@@ -5336,6 +5753,7 @@ var UNIVERSES = [
     name: 'Bluey',
     tagline: 'Livia, Bluey, Bingo et toute la famille Heeler',
     emoji: '🐶',
+    vignette: { t: 'bluey', ds: .48, dy: 176 },
     c1: '#5b9bd5',
     c2: '#f0a63c',
     cover: {
@@ -6808,6 +7226,7 @@ var UNIVERSES = [
     name: 'Les Monsieur Madame',
     tagline: 'Livia et les petits bonshommes ronds',
     emoji: '🟡',
+    vignette: { t: 'bonheur', ds: .46, dy: 176 },
     c1: '#f7c518',
     c2: '#5fb8d8',
     cover: {
@@ -7519,6 +7938,7 @@ var UNIVERSES = [
     name: 'Le grand mélange',
     tagline: 'Quand tous les amis de Livia se retrouvent',
     emoji: '🌈',
+    vignette: { t: 'olaf', ds: .62, dy: 180 },
     c1: '#7ac6a8',
     c2: '#f2a0c2',
     cover: {
@@ -8073,6 +8493,7 @@ var UNIVERSES = [
     name: 'Les copines de Livia',
     tagline: 'Roxane, Juliette, Isadora — et le petit frère',
     emoji: '💛',
+    vignette: { t: 'roxane', ds: .5, dy: 178 },
     c1: '#f2a0c2',
     c2: '#7ac6a8',
     cover: {
@@ -9217,6 +9638,189 @@ var UNIVERSES = [
             text: "Le dimanche soir, le téléphone sonna. C'était Isadora, qui voulait décrire sa nouvelle chambre. Habiter loin, ce n'est pas la même chose que disparaître."
           }
         ]
+      },
+
+      /* ---------- 14 : Maman est en retard ---------- */
+      {
+        id: 'maman-en-retard',
+        title: 'Maman est en retard',
+        title_es: 'Mamá llega tarde',
+        subtitle: 'Attendre quand on ne sait pas combien de temps',
+        subtitle_es: 'Esperar sin saber cuánto tiempo',
+        tag: 'Copines',
+        themes: ['Famille', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'livia', x: 320, y: 524, s: 1.1, mood: 'sad' },
+            { t: 'maman', x: 560, y: 522, s: 1.2 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1 },
+                { t: 'roxane', x: 540, y: 522, s: 1.05, pose: 'wave' }
+              ],
+              sfx: [{ t: 'À DEMAIN !', x: 430, y: 166, fs: 28, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "À la sortie de l'école, les enfants partent les uns après les autres. Roxane partit en courant vers son papa. Puis Juliette. Puis tous les autres.",
+            es: "A la salida del colegio, los niños se van uno detrás de otro. Roxane salió corriendo hacia su papá. Luego Juliette. Luego todos los demás."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'livia', x: 400, y: 524, s: 1.2, mood: 'sad' }],
+              sfx: [{ t: '. . .', x: 400, y: 172, fs: 34, rot: 0, color: '#8a7768' }]
+            },
+            text: "Livia resta seule devant le portail. Le trottoir était vide. Elle regarda le bout de la rue, très fort, comme si regarder pouvait faire apparaître une voiture.",
+            es: "Livia se quedó sola delante de la verja. La acera estaba vacía. Miró el final de la calle, muy fuerte, como si mirar pudiera hacer aparecer un coche."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'livia', x: 400, y: 500, s: 1.2, pose: 'sit', mood: 'sad' }],
+              sfx: [{ t: 'ET SI ELLE M\'AVAIT OUBLIÉE ?', x: 400, y: 166, fs: 22, rot: -4, color: '#6d5847' }]
+            },
+            text: "Dans sa tête, une petite phrase commença à tourner : « et si elle m'avait oubliée ? » Elle savait que c'était idiot. Ça tournait quand même, de plus en plus vite.",
+            es: "En su cabeza empezó a dar vueltas una frasecita: «¿y si se ha olvidado de mí?». Sabía que era una tontería. Pero daba vueltas igual, cada vez más deprisa."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mamie', x: 300, y: 508, s: 1.2, pose: 'sit' },
+                { t: 'livia', x: 560, y: 500, s: 1.1, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'On compte les voitures rouges en attendant ?', tx: 305, ty: 236 }]
+            },
+            text: "La maîtresse vint s'asseoir à côté d'elle. Elle ne dit pas « ne t'inquiète pas ». Elle dit : « On compte les voitures rouges en attendant ? » Livia en compta quatre.",
+            es: "La maestra se sentó a su lado. No dijo «no te preocupes». Dijo: «¿Contamos los coches rojos mientras esperamos?» Livia contó cuatro."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'maman', x: 300, y: 522, s: 1.25, pose: 'armsup', mood: 'wow' },
+                { t: 'livia', x: 570, y: 524, s: 1.1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'ME VOILÀ !', x: 430, y: 164, fs: 32, rot: -6, color: '#d4622c' }]
+            },
+            text: "À la cinquième voiture rouge, Maman arriva en courant, décoiffée, avec des excuses plein la bouche. Livia lui sauta dessus sans écouter un seul mot de ses excuses.",
+            es: "En el quinto coche rojo, mamá llegó corriendo, despeinada, con la boca llena de disculpas. Livia se le echó encima sin escuchar ni una sola de sus disculpas."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'maman', x: 320, y: 522, s: 1.25, pose: 'hold' },
+                { t: 'livia', x: 570, y: 524, s: 1.1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Je viens toujours. Même en retard.', tx: 320, ty: 236 }]
+            },
+            text: "Sur le chemin, Maman dit : « Je viens toujours. Même en retard, je viens toujours. » Livia rangea cette phrase quelque part, et la ressortit chaque fois qu'il le fallut.",
+            es: "De camino, mamá dijo: «Yo siempre vengo. Aunque llegue tarde, siempre vengo.» Livia guardó esa frase en algún sitio, y la sacó cada vez que hizo falta."
+          }
+        ]
+      },
+
+      /* ---------- 15 : la cuisine de Papa ---------- */
+      {
+        id: 'papa-cuisine',
+        title: 'Le gâteau de Papa',
+        title_es: 'El pastel de papá',
+        subtitle: 'À quatre mains, c\'est plus salissant et plus rigolo',
+        subtitle_es: 'A cuatro manos, se mancha más y es más divertido',
+        tag: 'Copines',
+        themes: ['Famille', 'Partager', 'Bêtises'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'papa', x: 280, y: 508, s: 1 },
+            { t: 'livia', x: 500, y: 510, s: 1.1 },
+            { t: 'roxane', x: 680, y: 508, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'papa', x: 300, y: 508, s: 1.05, pose: 'point' },
+                { t: 'livia', x: 560, y: 510, s: 1.1 }
+              ],
+              sfx: [{ t: 'ON FAIT UN GÂTEAU !', x: 430, y: 146, fs: 26, rot: -4, color: '#f2803d' }]
+            },
+            text: "« On fait un gâteau », annonça Papa en remontant ses manches. Sur son bras, le tatouage se plissa. Livia sortit le grand saladier, celui des grandes occasions.",
+            es: "«Vamos a hacer un pastel», anunció papá subiéndose las mangas. En su brazo, el tatuaje se arrugó. Livia sacó el bol grande, el de las grandes ocasiones."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'papa', x: 260, y: 508, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 480, y: 510, s: 1.1, pose: 'hold' },
+                { t: 'roxane', x: 690, y: 508, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'MOI ! MOI !', x: 430, y: 146, fs: 30, rot: -5, color: '#e0453c' }]
+            },
+            text: "Roxane était venue jouer. Deux enfants, un saladier, une cuillère en bois. « Moi ! Moi ! » dirent les deux en même temps, ce qui n'aide jamais personne.",
+            es: "Roxane había venido a jugar. Dos niñas, un bol, una cuchara de madera. «¡Yo! ¡Yo!», dijeron las dos a la vez, lo cual nunca ayuda a nadie."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'papa', x: 300, y: 508, s: 1.05, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 510, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'Il y a quatre choses à faire. Deux chacune.', tx: 305, ty: 236 }]
+            },
+            text: "Papa posa la cuillère. « Il y a quatre choses à faire », dit-il. « Casser, verser, mélanger, lécher le plat. Deux chacune. Vous choisissez dans quel ordre. »",
+            es: "Papá dejó la cuchara. «Hay cuatro cosas que hacer», dijo. «Romper, verter, mezclar y rebañar el bol. Dos cada una. Vosotras elegís en qué orden.»"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.1, mood: 'wow' },
+                { t: 'roxane', x: 560, y: 508, s: 1.05, mood: 'wow' }
+              ],
+              sfx: [{ t: 'FLOTCH !', x: 430, y: 146, fs: 34, rot: -8, color: '#f7c518' }]
+            },
+            text: "Livia cassa les œufs. Un morceau de coquille tomba dedans. Roxane versa la farine trop vite, et un nuage blanc monta jusqu'au plafond. Personne ne se fâcha.",
+            es: "Livia rompió los huevos. Un trocito de cáscara se cayó dentro. Roxane echó la harina demasiado rápido, y una nube blanca subió hasta el techo. Nadie se enfadó."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'papa', x: 280, y: 508, s: 1.05 },
+                { t: 'livia', x: 500, y: 510, s: 1.1, pose: 'hold' },
+                { t: 'roxane', x: 690, y: 508, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'MIAM.', x: 430, y: 146, fs: 32, rot: -6, color: '#8a5a3b' }]
+            },
+            text: "Elles léchèrent le plat toutes les deux, chacune d'un côté, ce qui est la meilleure partie et tout le monde le sait. Papa fit semblant de ne pas regarder.",
+            es: "Rebañaron el bol las dos, cada una por un lado, que es la mejor parte y todo el mundo lo sabe. Papá hizo como que no miraba."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'papa', x: 280, y: 508, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 500, y: 510, s: 1.1, pose: 'hold' },
+                { t: 'roxane', x: 690, y: 508, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Le gâteau était un peu tordu et il craquait sous la dent, à cause de la coquille. Il fut mangé en entier. Personne n'a jamais réclamé de gâteau plus droit.",
+            es: "El pastel salió un poco torcido y crujía al morderlo, por la cáscara. Se lo comieron entero. Nadie ha pedido nunca un pastel más recto."
+          }
+        ]
       }
     ]
   }
@@ -9348,7 +9952,9 @@ var UNIVERSES = [
       zone.appendChild(f);
       dire('Bravo Livia ! Tu as gagné toutes les étoiles.');
       f.addEventListener('click', function (e) {
-        var a = e.target.getAttribute && e.target.getAttribute('data-act');
+        /* le clic tombe sur l'image ou le mot : on remonte jusqu'au bouton */
+        var cible = e.target.closest && e.target.closest('[data-act]');
+        var a = cible && cible.getAttribute('data-act');
         if (a === 'rejouer') demarrer(valeur);
         else if (a === 'choisir') choisir();
         else if (a === 'autres') onQuit();
@@ -9811,7 +10417,10 @@ var UNIVERSES = [
       if (UNIVERSES[i].id !== uid) continue;
       var st = UNIVERSES[i].stories;
       for (var j = 0; j < st.length; j++) {
-        if (st[j].id === sid) return { u: UNIVERSES[i], s: st[j], scene: st[j].pages[p].scene };
+        if (st[j].id === sid) {
+          var pg = st[j].pages[p];
+          return { u: UNIVERSES[i], s: st[j], scene: pg ? pg.scene : st[j].cover };
+        }
       }
     }
     return null;
@@ -10025,21 +10634,291 @@ var UNIVERSES = [
     vues.forEach(function (v) { v.addEventListener('click', toucher); });
   }
 
+  /* ============================================================
+     JEU 6 — LE COLORIAGE
+     On reprend une planche existante, vidée de ses couleurs : il ne reste
+     que le trait. Chaque forme est une zone à remplir. Rien à réussir, rien
+     à rater — on s'arrête quand on a fini.
+     ============================================================ */
+  var COULEURS = ['#e0453c', '#f0862c', '#f7c518', '#7ab648', '#3fb3b0',
+    '#4a7fc1', '#a98cf0', '#f2a0c2', '#c9622f', '#8a5a3b', '#3a2a22', '#fffdf6'];
+
+  var A_COLORIER = [
+    { u: 'copines', s: 'nouvelle' }, { u: 'peppa', s: 'petit-frere' },
+    { u: 'bluey', s: 'balancoire' }, { u: 'monsieurmadame', s: 'bonheur' },
+    { u: 'melange', s: 'trois-amies' }, { u: 'frozen', s: 'ete-arendelle' },
+    { u: 'copines', s: 'cabane-copines' }, { u: 'peppa', s: 'dernier-gateau' }
+  ];
+  var lotColoriage = null;
+
+  /* Cadrer une scène sur ses personnages, au format de la boîte à l'écran :
+     un dessin à colorier doit remplir la feuille, pas flotter au milieu. */
+  function cadreAutour(scene, format) {
+    var W = 800, H = 560, m = 130;
+    var xs = (scene.items || []).map(function (it) { return it.x; });
+    if (!xs.length) return null;
+    var x0 = Math.min.apply(null, xs) - m, x1 = Math.max.apply(null, xs) + m;
+    var w = Math.max(x1 - x0, W * 0.45), h = w / format;
+    if (h > H) { h = H; w = Math.min(W, h * format); }
+    if (w > W) { w = W; h = w / format; }
+    var cx = (x0 + x1) / 2;
+    return {
+      x: Math.min(Math.max(cx - w / 2, 0), W - w),
+      y: Math.min(Math.max(H - h, 0), H - h),
+      w: w, h: h
+    };
+  }
+
+  function jeuColoriage(zone, n, api) {
+    if (n === 0 || !lotColoriage) lotColoriage = melange(A_COLORIER);
+    var choix = lotColoriage[n % lotColoriage.length];
+    var trouve = trouverScene(choix.u, choix.s, -1);
+    api.consigne('Colorie le dessin.');
+
+    var feuille = el('div', 'colo-feuille');
+    zone.appendChild(feuille);
+    var b = feuille.getBoundingClientRect();
+    var fmt = (b.width > 20 && b.height > 20) ? b.width / b.height : 800 / 560;
+    feuille.innerHTML = Art.scene(trouve.s.cover, {
+      contour: true, noBubbles: true, cadre: cadreAutour(trouve.s.cover, fmt)
+    });
+
+    var teinte = COULEURS[0];
+    var palette = el('div', 'colo-palette');
+    COULEURS.forEach(function (c, i) {
+      var b = el('button', 'colo-pot' + (i === 0 ? ' choisi' : ''));
+      b.style.background = c;
+      b.setAttribute('aria-label', 'couleur');
+      b.onclick = function () {
+        teinte = c;
+        [].forEach.call(palette.children, function (x) { x.classList.remove('choisi'); });
+        b.classList.add('choisi');
+      };
+      palette.appendChild(b);
+    });
+    zone.appendChild(palette);
+
+    /* on peint une forme d'un doigt : les aplats se remplissent, les membres
+       — qui sont des traits épais — changent de trait */
+    feuille.addEventListener('click', function (e) {
+      var c = e.target;
+      if (!c.classList) return;
+      if (c.classList.contains('z')) c.setAttribute('fill', teinte);
+      else if (c.classList.contains('zs')) c.setAttribute('stroke', teinte);
+    });
+
+    var actions = el('div', 'colo-actions');
+    var fini = el('button', 'bi primary');
+    fini.innerHTML = '<span class="bi-img">✓</span><span class="bi-mot">J\'ai fini</span>';
+    fini.onclick = function () { api.reussi(); };
+    var vider = el('button', 'bi');
+    vider.innerHTML = '<span class="bi-img">✻</span><span class="bi-mot">Effacer</span>';
+    vider.onclick = function () {
+      [].forEach.call(feuille.querySelectorAll('.z'), function (x) { x.setAttribute('fill', '#fffdf6'); });
+      [].forEach.call(feuille.querySelectorAll('.zs'), function (x) { x.setAttribute('stroke', '#fffdf6'); });
+    };
+    actions.appendChild(vider); actions.appendChild(fini);
+    zone.appendChild(actions);
+  }
+
+  /* ============================================================
+     JEU 7 — LE PUZZLE
+     Une planche découpée en morceaux. On touche deux morceaux pour les
+     échanger : pas de glisser-déposer, qui rate une fois sur deux à quatre ans.
+     ============================================================ */
+  var lotPuzzle = null;
+
+  function jeuPuzzle(zone, n, api) {
+    if (n === 0 || !lotPuzzle) lotPuzzle = melange(A_COLORIER);
+    var choix = lotPuzzle[n % lotPuzzle.length];
+    var trouve = trouverScene(choix.u, choix.s, -1);
+    var cols = n < 2 ? 2 : 3, rangs = n < 2 ? 2 : 2;   /* 4 morceaux, puis 6 */
+    api.consigne('Remets le dessin dans l\'ordre.');
+
+    var n2 = cols * rangs;
+    var pieces = [];
+    for (var i = 0; i < n2; i++) {
+      pieces.push(Art.scene(trouve.s.cover, {
+        noBubbles: true,
+        cadre: {
+          x: (i % cols) * (800 / cols), y: Math.floor(i / cols) * (560 / rangs),
+          w: 800 / cols, h: 560 / rangs
+        }
+      }));
+    }
+
+    /* un ordre mélangé, jamais déjà résolu */
+    var ordre = melange(pieces.map(function (_, i) { return i; }));
+    var range = function () { return ordre.every(function (v, i) { return v === i; }); };
+    while (range()) ordre = melange(ordre);
+
+    var plateau = el('div', 'puz');
+    plateau.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+    zone.appendChild(plateau);
+
+    var choisi = -1;
+    function dessiner() {
+      plateau.innerHTML = '';
+      ordre.forEach(function (p, i) {
+        var c = el('div', 'puz-piece' + (i === choisi ? ' choisi' : '') + (p === i ? ' bonne' : ''));
+        c.innerHTML = pieces[p];
+        c.onclick = function () {
+          if (choisi < 0) { choisi = i; dessiner(); return; }
+          if (choisi === i) { choisi = -1; dessiner(); return; }
+          var t = ordre[choisi]; ordre[choisi] = ordre[i]; ordre[i] = t;
+          choisi = -1;
+          dessiner();
+          if (range()) setTimeout(function () { api.reussi(); }, 450);
+        };
+        plateau.appendChild(c);
+      });
+    }
+    dessiner();
+  }
+
+  /* ============================================================
+     JEU 8 — LE LABYRINTHE
+     Un labyrinthe fabriqué à chaque manche, parcouru du doigt. On ne peut
+     pas traverser un mur : le trait s'arrête, il n'y a rien à perdre.
+     ============================================================ */
+  function fabriquerLabyrinthe(cols, rangs) {
+    var cases = [], i;
+    for (i = 0; i < cols * rangs; i++) cases.push({ n: true, e: true, s: true, o: true, vu: false });
+    var pile = [0];
+    cases[0].vu = true;
+    while (pile.length) {
+      var c = pile[pile.length - 1];
+      var x = c % cols, y = Math.floor(c / cols);
+      var voisins = [];
+      if (y > 0 && !cases[c - cols].vu) voisins.push([c - cols, 'n', 's']);
+      if (y < rangs - 1 && !cases[c + cols].vu) voisins.push([c + cols, 's', 'n']);
+      if (x > 0 && !cases[c - 1].vu) voisins.push([c - 1, 'o', 'e']);
+      if (x < cols - 1 && !cases[c + 1].vu) voisins.push([c + 1, 'e', 'o']);
+      if (!voisins.length) { pile.pop(); continue; }
+      var v = voisins[Math.floor(Math.random() * voisins.length)];
+      cases[c][v[1]] = false;
+      cases[v[0]][v[2]] = false;
+      cases[v[0]].vu = true;
+      pile.push(v[0]);
+    }
+    return cases;
+  }
+
+  function jeuLabyrinthe(zone, n, api) {
+    var cols = 5 + Math.min(2, n), rangs = 7 + Math.min(2, n);
+    var cases = fabriquerLabyrinthe(cols, rangs);
+    var depart = 0, arrivee = cols * rangs - 1;
+    api.consigne('Amène Livia jusqu\'à l\'étoile, sans traverser les murs.');
+
+    var P = 100;                       /* côté d'une case, en unités de dessin */
+    var W = cols * P, H = rangs * P;
+    var mur = '';
+    cases.forEach(function (c, i) {
+      var x = (i % cols) * P, y = Math.floor(i / cols) * P;
+      if (c.n) mur += 'M ' + x + ',' + y + ' L ' + (x + P) + ',' + y + ' ';
+      if (c.o) mur += 'M ' + x + ',' + y + ' L ' + x + ',' + (y + P) + ' ';
+      if (i % cols === cols - 1) mur += 'M ' + (x + P) + ',' + y + ' L ' + (x + P) + ',' + (y + P) + ' ';
+      if (Math.floor(i / cols) === rangs - 1) mur += 'M ' + x + ',' + (y + P) + ' L ' + (x + P) + ',' + (y + P) + ' ';
+    });
+
+    var cadre = el('div', 'laby');
+    cadre.innerHTML = '<svg viewBox="' + (-6) + ' ' + (-6) + ' ' + (W + 12) + ' ' + (H + 12) +
+      '" preserveAspectRatio="xMidYMid meet">' +
+      '<rect width="' + W + '" height="' + H + '" fill="#fffaf0"/>' +
+      '<rect x="' + ((arrivee % cols) * P + 8) + '" y="' + (Math.floor(arrivee / cols) * P + 8) +
+      '" width="' + (P - 16) + '" height="' + (P - 16) + '" rx="10" fill="#f7c518" opacity=".55"/>' +
+      '<polyline class="laby-trait" points=""/>' +
+      '<path d="' + mur + '" fill="none" stroke="#3a2a22" stroke-width="9" stroke-linecap="round"/>' +
+      '<g class="laby-heros" transform="translate(0,0)">' +
+      /* un dessin imbriqué dans un dessin : il lui faut sa taille, sinon il
+         occupe toute la surface */
+      Art.sticker({ t: 'livia', ds: .7, dy: 186 }).replace('<svg ',
+        '<svg x="' + (P * 0.14) + '" y="' + (P * 0.1) + '" width="' + (P * 0.72) +
+        '" height="' + (P * 0.72) + '" ') + '</g>' +
+      '<text x="' + ((arrivee % cols) * P + P / 2) + '" y="' + (Math.floor(arrivee / cols) * P + P * 0.68) +
+      '" text-anchor="middle" font-size="' + (P * 0.5) + '">⭐</text>' +
+      '</svg>';
+    zone.appendChild(cadre);
+
+    var svg = cadre.querySelector('svg');
+    var trait = cadre.querySelector('.laby-trait');
+    var heros = cadre.querySelector('.laby-heros');
+    var chemin = [depart];
+
+    function majTrait() {
+      trait.setAttribute('points', chemin.map(function (c) {
+        return ((c % cols) * P + P / 2) + ',' + (Math.floor(c / cols) * P + P / 2);
+      }).join(' '));
+      var d = chemin[chemin.length - 1];
+      heros.setAttribute('transform', 'translate(' + ((d % cols) * P) +
+        ',' + (Math.floor(d / cols) * P) + ')');
+    }
+    majTrait();
+
+    function caseSous(e) {
+      var r = svg.getBoundingClientRect();
+      var x = Math.floor((e.clientX - r.left) / r.width * cols);
+      var y = Math.floor((e.clientY - r.top) / r.height * rangs);
+      if (x < 0 || y < 0 || x >= cols || y >= rangs) return -1;
+      return y * cols + x;
+    }
+    function ouvert(a, b) {
+      var c = cases[a];
+      if (b === a - cols) return !c.n;
+      if (b === a + cols) return !c.s;
+      if (b === a - 1) return !c.o;
+      if (b === a + 1) return !c.e;
+      return false;
+    }
+    function avancer(c) {
+      if (c < 0) return;
+      var d = chemin[chemin.length - 1];
+      if (c === d) return;
+      if (chemin.length > 1 && c === chemin[chemin.length - 2]) { chemin.pop(); majTrait(); return; }
+      if (!ouvert(d, c)) return;
+      chemin.push(c);
+      majTrait();
+      if (c === arrivee) { fini = true; setTimeout(function () { api.reussi(); }, 400); }
+    }
+
+    var trace = false, fini = false;
+    svg.addEventListener('pointerdown', function (e) {
+      if (fini) return;
+      trace = true; svg.setPointerCapture && svg.setPointerCapture(e.pointerId);
+      avancer(caseSous(e));
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!trace || fini) return;
+      e.preventDefault();
+      avancer(caseSous(e));
+    });
+    svg.addEventListener('pointerup', function () { trace = false; });
+    svg.addEventListener('pointercancel', function () { trace = false; });
+  }
+
+  var CATEGORIES = [
+    { id: 'observer', nom: 'Regarder', emoji: '🔍' },
+    { id: 'lettres', nom: 'Les lettres', emoji: '🔤' },
+    { id: 'nombres', nom: 'Les nombres', emoji: '🔢' },
+    { id: 'creer', nom: 'Créer', emoji: '🎨' },
+    { id: 'reflechir', nom: 'Réfléchir', emoji: '🧩' }
+  ];
+
   var JEUX = [
     {
-      id: 'relier', nom: 'Relie les amis', emoji: '🔗',
+      id: 'relier', nom: 'Relie les amis', emoji: '🔗', cat: 'observer',
       sous: 'Chaque héros retrouve son objet',
       vignette: { t: 'peppa', ds: .66, dy: 184 },
       def: { manches: 4, manche: jeuRelier, felicitation: 'Tu as relié tous les amis !' }
     },
     {
-      id: 'compter', nom: 'Compte avec Livia', emoji: '🔢',
+      id: 'compter', nom: 'Compte avec Livia', emoji: '🔢', cat: 'nombres',
       sous: 'Combien y en a-t-il ?',
       vignette: { t: 'livia', ds: .66, dy: 184 },
       def: { manches: 5, manche: jeuCompter, felicitation: 'Tu sais compter jusqu\'à 6 !' }
     },
     {
-      id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️',
+      id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️', cat: 'lettres',
       sous: 'Livia, Pablo, Maman, Papa…',
       vignette: { t: 'elsa', ds: .66, dy: 184 },
       def: {
@@ -10052,7 +10931,7 @@ var UNIVERSES = [
       }
     },
     {
-      id: 'differences', nom: 'Les 6 différences', emoji: '🔍',
+      id: 'differences', nom: 'Les 6 différences', emoji: '🔍', cat: 'observer',
       sous: 'Deux cases presque pareilles',
       vignette: { t: 'bluey', ds: .62, dy: 184 },
       def: {
@@ -10061,7 +10940,7 @@ var UNIVERSES = [
       }
     },
     {
-      id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤',
+      id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤', cat: 'lettres',
       sous: 'Reconnaître puis tracer chaque lettre',
       vignette: { t: 'juliette', ds: .62, dy: 184 },
       def: {
@@ -10072,11 +10951,30 @@ var UNIVERSES = [
         choixBouton: 'Une autre lettre',
         felicitation: 'Tu connais tes lettres !'
       }
+    },
+    {
+      id: 'coloriage', nom: 'Le coloriage', emoji: '🎨', cat: 'creer',
+      sous: 'Une planche à peindre au doigt',
+      vignette: { t: 'maman', ds: .58, dy: 182 },
+      def: { manches: 3, manche: jeuColoriage, plein: true, felicitation: 'Trois beaux dessins !' }
+    },
+    {
+      id: 'puzzle', nom: 'Le puzzle', emoji: '🧩', cat: 'reflechir',
+      sous: 'Remets le dessin dans l\'ordre',
+      vignette: { t: 'pablo', ds: .62, dy: 186 },
+      def: { manches: 4, manche: jeuPuzzle, plein: true, felicitation: 'Quatre dessins remis d\'aplomb !' }
+    },
+    {
+      id: 'labyrinthe', nom: 'Le labyrinthe', emoji: '🌀', cat: 'reflechir',
+      sous: 'Trouve le chemin jusqu\'à l\'étoile',
+      vignette: { t: 'papa', ds: .42, dy: 176 },
+      def: { manches: 4, manche: jeuLabyrinthe, plein: true, felicitation: 'Tu retrouves toujours ton chemin !' }
     }
   ];
 
   global.Jeux = {
     liste: JEUX,
+    categories: CATEGORIES,
     trouver: function (id) {
       for (var i = 0; i < JEUX.length; i++) if (JEUX[i].id === id) return JEUX[i];
       return null;
@@ -10113,6 +11011,49 @@ var UNIVERSES = [
     return null;
   }
   function isRead(u, s) { return store('read.' + u.id + '.' + s.id) === '1'; }
+
+  /* ---------------- la langue ----------------
+     L'espagnol se met en place histoire par histoire : une histoire n'est
+     proposée dans une langue que si elle y est entièrement traduite. Mieux
+     vaut quatre histoires vraiment en espagnol qu'un mélange des deux. */
+  var LANGUES = [
+    { id: 'fr', nom: 'Français', drapeau: '🇫🇷', voix: 'fr' },
+    { id: 'es', nom: 'Español', drapeau: '🇪🇸', voix: 'es' }
+  ];
+  var LANGUE = store('langue') === 'es' ? 'es' : 'fr';
+
+  var MOTS = {
+    fr: {
+      choisis: 'Choisis un univers.', filtrer: 'Filtrer par thème',
+      lire: "Lire l'histoire", soir: 'Ce soir, on lit…', hasard: 'Une histoire au hasard',
+      fin: 'Fin !', derniere: "C'était la dernière", eteint: 'On éteint. Bonne nuit, Livia.',
+      bonneNuit: 'Bonne nuit… et à demain pour une nouvelle histoire.',
+      autre: 'Une autre', relire: 'Relire', sommaire: 'Le sommaire',
+      encore: function (n) { return 'Encore <b>' + n + '</b> histoire' + (n > 1 ? 's' : '') + ' ce soir.'; },
+      planches: 'planches', histoires: 'histoires', tous: 'Tous', langue: 'Langue'
+    },
+    es: {
+      choisis: 'Elige un mundo.', filtrer: 'Filtrar por tema',
+      lire: 'Leer el cuento', soir: 'Esta noche leemos…', hasard: 'Un cuento al azar',
+      fin: '¡Fin!', derniere: 'Era el último', eteint: 'Apagamos. Buenas noches, Livia.',
+      bonneNuit: 'Buenas noches… y hasta mañana para otro cuento.',
+      autre: 'Otro', relire: 'Releer', sommaire: 'El índice',
+      encore: function (n) { return 'Todavía <b>' + n + '</b> cuento' + (n > 1 ? 's' : '') + ' esta noche.'; },
+      planches: 'láminas', histoires: 'cuentos', tous: 'Todos', langue: 'Idioma'
+    }
+  };
+  function mot(k) { return (MOTS[LANGUE] && MOTS[LANGUE][k]) || MOTS.fr[k]; }
+
+  /* une histoire n'existe dans une langue que si tout y est traduit */
+  function dispo(st) {
+    if (LANGUE === 'fr') return true;
+    if (!st['title_' + LANGUE]) return false;
+    return st.pages.every(function (p) { return !!p[LANGUE]; });
+  }
+  function histoiresDe(u) { return u.stories.filter(dispo); }
+  function titre(st) { return st['title_' + LANGUE] || st.title; }
+  function soustitre(st) { return st['subtitle_' + LANGUE] || st.subtitle; }
+  function texte(p) { return p[LANGUE] || p.text; }
 
   /* ---------------- le compte du soir ----------------
      Un parent décide combien d'histoires on lit ce soir ; le compte
@@ -10363,6 +11304,7 @@ var UNIVERSES = [
     grid: $('#uniGrid'), random: $('#btnRandom'),
     soirBadge: $('#soirBadge'), soirCover: $('#soirCover'),
     hello: $('#homeHello'), themeChips: $('#themeChips'),
+    filtres: $('#filtres'), btnFiltres: $('#btnFiltres'), langues: $('#langues'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
     cfTags: $('#cfTags'), cfDots: $('#cfDots'), read: $('#btnRead'),
@@ -10404,7 +11346,7 @@ var UNIVERSES = [
     if (!els.soirCover) return;
     var o = Soir.etat();
     if (!o) {
-      els.soirCover.innerHTML = '<span class="soir-titre">Ce soir, on lit…</span>' +
+      els.soirCover.innerHTML = '<span class="soir-titre">' + mot('soir') + '</span>' +
         '<span class="soir-choix">' + CHOIX_SOIR.map(function (n) {
           return '<button data-soir="' + n + '">' + n + '</button>';
         }).join('') + '</span>';
@@ -10436,6 +11378,60 @@ var UNIVERSES = [
 
   els.soirBadge.onclick = function () { location.hash = '#/'; };
 
+  /* Les thèmes servent à l'adulte qui cherche « une histoire sur le partage ».
+     Repliés par défaut : l'enfant voit une page nette, sans texte à déchiffrer. */
+  function ouvrirFiltres(ouvert) {
+    els.filtres.classList.toggle('ouvert', ouvert);
+    els.btnFiltres.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  }
+  els.btnFiltres.onclick = function () {
+    ouvrirFiltres(!els.filtres.classList.contains('ouvert'));
+  };
+
+  /* Le choix de la langue est rangé avec les filtres : c'est un réglage de
+     parent, pas un bouton que l'enfant doit rencontrer. */
+  /* les quelques mots figés dans la page suivent eux aussi la langue */
+  function majMots() {
+    var m = els.read.querySelector('.cta-mot');
+    if (m) m.textContent = mot('lire');
+    var f = els.btnFiltres.querySelector('span');
+    if (f) f.textContent = mot('filtrer');
+    if (els.coverRandom) els.coverRandom.textContent = '🎲 ' + mot('hasard');
+  }
+
+  function renderLangues() {
+    var z = els.langues;
+    if (!z) return;
+    z.innerHTML = '<span class="langue-titre">' + mot('langue') + '</span>';
+    LANGUES.forEach(function (l) {
+      var n = 0;
+      UNIVERSES.forEach(function (u) {
+        u.stories.forEach(function (st) {
+          if (l.id === 'fr' || (st['title_' + l.id] &&
+            st.pages.every(function (p) { return !!p[l.id]; }))) n++;
+        });
+      });
+      var b = document.createElement('button');
+      b.className = 'chip' + (LANGUE === l.id ? ' is-active' : '');
+      b.innerHTML = l.drapeau + ' ' + l.nom + ' <i>' + n + '</i>';
+      b.disabled = !n;
+      b.onclick = function () {
+        if (LANGUE === l.id) return;
+        LANGUE = l.id;
+        store('langue', l.id);
+        laVoix = null; voixCherchee = false;
+        document.documentElement.lang = l.id;
+        majMots();
+        renderTabs(null);
+        renderHome();
+        ouvrirFiltres(true);
+      };
+      z.appendChild(b);
+    });
+  }
+  document.documentElement.lang = LANGUE;
+  majMots();
+
   /* ---------------- le menu principal ---------------- */
   function cablerNav(zone, actif) {
     var b = zone.children;
@@ -10459,17 +11455,24 @@ var UNIVERSES = [
       if (!theme) return uid ? '#/u/' + uid : '#/histoires';
       return '#/theme/' + theme.id + (uid ? '/' + uid : '');
     };
+    /* On choisit un univers en reconnaissant un visage, pas en lisant son
+       nom : à quatre ans, c'est la seule navigation qui marche. */
     var all = document.createElement('button');
-    all.className = 'tab' + (activeId ? '' : ' is-active');
-    all.textContent = '★ Tous';
+    all.className = 'tab tab-img' + (activeId ? '' : ' is-active');
+    all.innerHTML = '<span class="tab-rond tab-tous">★</span><span class="tab-mot">' + mot('tous') + '</span>';
+    all.setAttribute('aria-label', 'Tous les univers');
     all.onclick = function () { location.hash = lien(null); };
     els.tabs.appendChild(all);
 
     UNIVERSES.forEach(function (u) {
       if (dispo && dispo.indexOf(u.id) < 0) return;
+      if (!histoiresDe(u).length) return;
       var b = document.createElement('button');
-      b.className = 'tab' + (activeId === u.id ? ' is-active' : '');
-      b.textContent = u.emoji + ' ' + u.name;
+      b.className = 'tab tab-img' + (activeId === u.id ? ' is-active' : '');
+      b.innerHTML = '<span class="tab-rond">' + Art.sticker(u.vignette) + '</span>' +
+        '<span class="tab-mot">' + u.name + '</span>';
+      b.setAttribute('aria-label', u.name);
+      b.style.setProperty('--tab-c', u.c1);
       b.onclick = function () { location.hash = lien(u.id); };
       els.tabs.appendChild(b);
     });
@@ -10484,7 +11487,7 @@ var UNIVERSES = [
     var out = [];
     UNIVERSES.forEach(function (u) {
       if (uid && u.id !== uid) return;
-      u.stories.forEach(function (s) {
+      histoiresDe(u).forEach(function (s) {
         if (s.themes && s.themes.indexOf(theme.nom) >= 0) out.push({ u: u, s: s });
       });
     });
@@ -10509,11 +11512,11 @@ var UNIVERSES = [
     var card = document.createElement('button');
     card.className = 'uni-card';
     card.innerHTML =
-      '<div class="band"><h3>' + u.emoji + ' ' + s.title + '</h3>' +
+      '<div class="band"><h3>' + u.emoji + ' ' + titre(s) + '</h3>' +
       '<span class="num">' + numero(u, s) + '</span></div>' +
       '<div class="thumb">' + Art.scene(s.cover, { slice: true, noBubbles: true }) + '</div>' +
-      '<div class="cap"><p>' + s.subtitle + '</p>' +
-      '<span class="pill">' + s.pages.length + ' planches</span></div>';
+      '<div class="cap"><p>' + soustitre(s) + '</p>' +
+      '<span class="pill">' + s.pages.length + ' ' + mot('planches') + '</span></div>';
     card.onclick = function () { location.hash = '#/u/' + u.id + '/' + s.id; };
     return card;
   }
@@ -10524,6 +11527,7 @@ var UNIVERSES = [
     tout.forEach(function (h) { if (dispo.indexOf(h.u.id) < 0) dispo.push(h.u.id); });
     renderTabs(uid, theme, dispo);
     renderChips(theme.id);
+    ouvrirFiltres(true);
     var liste = uid ? tout.filter(function (h) { return h.u.id === uid; }) : tout;
     els.hello.innerHTML = theme.emoji + ' <b>' + theme.nom + '</b> — ' + liste.length +
       ' histoire' + (liste.length > 1 ? 's' : '') +
@@ -10562,16 +11566,28 @@ var UNIVERSES = [
     els.gamesSub.textContent = 'Pour jouer tout seul, dès 3 ans';
     renderJeuxNav(null);
 
-    Jeux.liste.forEach(function (jeu) {
-      var c = document.createElement('button');
-      c.className = 'jeu-carte';
-      c.innerHTML =
-        '<div class="jeu-vignette">' + Art.sticker(jeu.vignette) + '</div>' +
-        '<div class="jeu-texte"><h3>' + jeu.emoji + ' ' + jeu.nom + '</h3>' +
-        '<p>' + jeu.sous + '</p></div>';
-      c.onclick = function () { location.hash = '#/jeux/' + jeu.id; };
-      els.gamesGrid.appendChild(c);
+    /* rangés par famille : une enfant trouve plus vite « les lettres » qu'un
+       jeu précis dans une liste de huit */
+    Jeux.categories.forEach(function (cat) {
+      var jeux = Jeux.liste.filter(function (j) { return j.cat === cat.id; });
+      if (!jeux.length) return;
+      var titre = document.createElement('h3');
+      titre.className = 'jeu-famille';
+      titre.innerHTML = '<span>' + cat.emoji + '</span> ' + cat.nom;
+      els.gamesGrid.appendChild(titre);
+      jeux.forEach(function (jeu) { els.gamesGrid.appendChild(carteJeu(jeu)); });
     });
+  }
+
+  function carteJeu(jeu) {
+    var c = document.createElement('button');
+    c.className = 'jeu-carte';
+    c.innerHTML =
+      '<div class="jeu-vignette">' + Art.sticker(jeu.vignette) + '</div>' +
+      '<div class="jeu-texte"><h3>' + jeu.emoji + ' ' + jeu.nom + '</h3>' +
+      '<p>' + jeu.sous + '</p></div>';
+    c.onclick = function () { location.hash = '#/jeux/' + jeu.id; };
+    return c;
   }
 
   function openGame(jeu) {
@@ -10608,19 +11624,22 @@ var UNIVERSES = [
     els.coverMeta.textContent = MOIS[d.getMonth()] + ' ' + d.getFullYear();
 
     var total = 0;
-    UNIVERSES.forEach(function (u) { total += u.stories.length; });
+    UNIVERSES.forEach(function (u) { total += histoiresDe(u).length; });
     els.coverSticker.innerHTML = '<b>' + total + '</b><span>histoires<br>du soir</span>';
   }
 
   /* ---------------- sommaire ---------------- */
   function renderHome() {
     renderChips(null);
-    els.hello.textContent = 'Choisis un univers, ou un thème.';
+    renderLangues();
+    ouvrirFiltres(false);
+    els.hello.textContent = mot('choisis');
     els.grid.innerHTML = '';
     UNIVERSES.forEach(function (u) {
+      var n = histoiresDe(u).length;
+      if (!n) return;
       var card = document.createElement('button');
       card.className = 'uni-card';
-      var n = u.stories.length;
       card.innerHTML =
         '<div class="band"><h3>' + u.emoji + ' ' + u.name + '</h3>' +
         '<span class="num">' + plageNumeros(u) + '</span></div>' +
@@ -10640,10 +11659,10 @@ var UNIVERSES = [
     els.uniTagline.textContent = u.tagline;
 
     var start = 0;
-    var items = u.stories.map(function (s, i) {
+    var items = histoiresDe(u).map(function (s, i) {
       if (startId && s.id === startId) start = i;
       return {
-        scene: s.cover, label: s.title, num: numero(u, s), tag: s.tag,
+        scene: s.cover, label: titre(s), num: numero(u, s), tag: s.tag,
         badge: isRead(u, s) ? '✓' : String(s.pages.length) + ' p.'
       };
     });
@@ -10658,9 +11677,9 @@ var UNIVERSES = [
   function renderMeta(i) {
     var u = state.universe;
     if (!u || i < 0) return;
-    var s = u.stories[i];
-    els.cfTitle.textContent = s.title;
-    els.cfSub.textContent = s.subtitle;
+    var s = histoiresDe(u)[i];
+    els.cfTitle.textContent = titre(s);
+    els.cfSub.textContent = soustitre(s);
     els.cfTags.innerHTML =
       '<span>' + numero(u, s) + '</span><span>' + s.pages.length + ' pages</span>' +
       '<span>≈ ' + s.minutes + ' min</span>' + (isRead(u, s) ? '<span>✓ déjà lue</span>' : '');
@@ -10675,7 +11694,7 @@ var UNIVERSES = [
   function openReader(u, s) {
     state.universe = u; state.story = s;
     setTheme(u);
-    els.rTitle.textContent = s.title;
+    els.rTitle.textContent = titre(s);
     els.pages.innerHTML = '';
     /* on repart du début : sans cette remise à zéro, ouvrir une histoire
        depuis la fin de la précédente la montre déjà terminée */
@@ -10686,7 +11705,7 @@ var UNIVERSES = [
       a.className = 'page';
       a.innerHTML =
         '<div class="panel">' + Art.scene(p.scene) + '</div>' +
-        '<p class="ptext">' + p.text + '</p>' +
+        '<p class="ptext">' + texte(p) + '</p>' +
         '<div class="pnum">' + (i + 1) + ' / ' + s.pages.length + '</div>';
       els.pages.appendChild(a);
     });
@@ -10714,12 +11733,15 @@ var UNIVERSES = [
     }
 
     end.addEventListener('click', function (e) {
-      var act = e.target.getAttribute && e.target.getAttribute('data-act');
+      /* le clic tombe sur l'image ou le mot : on remonte jusqu'au bouton */
+      var cible = e.target.closest && e.target.closest('[data-act]');
+      var act = cible && cible.getAttribute('data-act');
       if (act === 'again') goPage(0);
       else if (act === 'close') location.hash = '#/u/' + u.id;
       else if (act === 'next') {
-        var i = u.stories.indexOf(s);
-        var nx = u.stories[(i + 1) % u.stories.length];
+        var liste = histoiresDe(u);
+        var i = liste.indexOf(s);
+        var nx = liste[(i + 1) % liste.length];
         location.hash = '#/u/' + u.id + '/' + nx.id;
       }
     });
@@ -10750,23 +11772,23 @@ var UNIVERSES = [
     var corps = state.end.querySelector('.end-corps');
     if (!corps) return;
     if (reste === null || reste === undefined) reste = Soir.reste();
-    var titre, mot, suite = true;
+    var titre, phrase, suite = true;
     if (reste === null) {
-      titre = 'Fin !';
-      mot = 'Bonne nuit… et à demain pour une nouvelle histoire.';
+      titre = mot('fin');
+      phrase = mot('bonneNuit');
     } else if (reste > 0) {
-      titre = 'Fin !';
-      mot = 'Encore <b>' + reste + '</b> histoire' + (reste > 1 ? 's' : '') + ' ce soir.';
+      titre = mot('fin');
+      phrase = mot('encore')(reste);
     } else {
-      titre = 'C\'était la dernière';
-      mot = 'On éteint. Bonne nuit, Livia.';
+      titre = mot('derniere');
+      phrase = mot('eteint');
       suite = false;
     }
-    corps.innerHTML = '<h4>' + titre + '</h4><p>' + mot + '</p>' +
+    corps.innerHTML = '<h4>' + titre + '</h4><p>' + phrase + '</p>' +
       '<div class="end-actions">' +
-      (suite ? bouton('next', '▶', 'Une autre', true) : '') +
-      bouton('again', '↻', 'Relire', !suite) +
-      bouton('close', '⌂', 'Le sommaire', false) + '</div>';
+      (suite ? bouton('next', '▶', mot('autre'), true) : '') +
+      bouton('again', '↻', mot('relire'), !suite) +
+      bouton('close', '⌂', mot('sommaire'), false) + '</div>';
   }
 
   function closeReader() {
@@ -10804,7 +11826,7 @@ var UNIVERSES = [
     if (i >= total) { majFin(Soir.compter(state.universe, s)); majSoir(); }
 
     stopSpeak();
-    if (state.speak && i < total) speak(s.pages[i].text);
+    if (state.speak && i < total) speak(texte(s.pages[i]));
   }
 
   els.pages.addEventListener('scroll', function () {
@@ -10816,11 +11838,64 @@ var UNIVERSES = [
   els.rClose.onclick = function () { location.hash = '#/u/' + state.universe.id; };
 
   /* ---------------- lecture à voix haute ---------------- */
-  function speak(text) {
+  /* ---------------- la voix ----------------
+     La qualité vient d'abord du choix de la voix : les téléphones embarquent
+     souvent plusieurs voix françaises, dont une nettement meilleure que celle
+     par défaut. On la cherche une fois, on la garde.
+
+     Le reste est une affaire de rythme : on découpe le texte en phrases et on
+     les fait lire l'une après l'autre, avec une petite respiration entre les
+     deux. Une seule longue chaîne est lue d'un trait, sans ponctuation
+     audible — c'est ce qui donne l'impression de robot. */
+  var laVoix = null, voixCherchee = false;
+
+  function choisirVoix() {
+    if (!('speechSynthesis' in window)) return null;
+    var toutes = window.speechSynthesis.getVoices() || [];
+    if (!toutes.length) return null;
+    voixCherchee = true;
+    var prefixe = LANGUE === 'es' ? 'es' : 'fr';
+    var fr = toutes.filter(function (v) { return v.lang.toLowerCase().indexOf(prefixe) === 0; });
+    if (!fr.length) return null;
+    /* les voix « améliorées » et les voix installées sur l'appareil sonnent
+       mieux que les voix de secours ; les noms varient d'un système à l'autre */
+    var bonnes = /(enhanced|premium|améliorée|amelioree|mejorada|siri|natural|neural|google|thomas|amélie|amelie|audrey|marie|monica|mónica|paulina|jorge)/i;
+    fr.sort(function (a, b) {
+      var na = (bonnes.test(a.name) ? 2 : 0) + (a.localService ? 1 : 0);
+      var nb = (bonnes.test(b.name) ? 2 : 0) + (b.localService ? 1 : 0);
+      return nb - na;
+    });
+    return fr[0];
+  }
+
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = function () { laVoix = choisirVoix(); };
+  }
+
+  function phrases(texte) {
+    return texte
+      .replace(/…/g, '...')
+      .replace(/[«»]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .split(/(?<=[.!?])\s+/)
+      .map(function (p) { return p.trim(); })
+      .filter(Boolean);
+  }
+
+  function speak(texte) {
     if (!('speechSynthesis' in window)) return;
-    var u = new SpeechSynthesisUtterance(text.replace(/…/g, '...'));
-    u.lang = 'fr-FR'; u.rate = .92; u.pitch = 1.06;
-    window.speechSynthesis.speak(u);
+    if (!laVoix && !voixCherchee) laVoix = choisirVoix();
+    var lot = phrases(texte);
+    lot.forEach(function (p, i) {
+      var u = new SpeechSynthesisUtterance(p);
+      if (laVoix) u.voice = laVoix;
+      u.lang = (laVoix && laVoix.lang) || (LANGUE === 'es' ? 'es-ES' : 'fr-FR');
+      u.rate = 0.9;
+      u.pitch = 1.0;
+      /* la dernière phrase d'un paragraphe se pose un peu plus bas */
+      if (i === lot.length - 1) u.pitch = 0.97;
+      window.speechSynthesis.speak(u);
+    });
   }
   function stopSpeak() {
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
@@ -10911,11 +11986,11 @@ var UNIVERSES = [
     var storyId = parts[2];
     if (state.universe !== u) renderUniverse(u, storyId);
     else if (storyId) {
-      var idx = u.stories.indexOf(findStory(u, storyId));
+      var idx = histoiresDe(u).indexOf(findStory(u, storyId));
       if (idx >= 0 && flow.current() !== idx) flow.go(idx);
     } else {
       // retour depuis le lecteur : on rafraîchit les pastilles « déjà lue »
-      u.stories.forEach(function (s, i) {
+      histoiresDe(u).forEach(function (s, i) {
         flow.setBadge(i, isRead(u, s) ? '✓' : s.pages.length + ' p.');
       });
       renderMeta(flow.current());
@@ -10937,7 +12012,7 @@ var UNIVERSES = [
   els.random.onclick = function () {
     var pool = [];
     UNIVERSES.forEach(function (u) {
-      u.stories.forEach(function (s) { pool.push([u.id, s.id]); });
+      histoiresDe(u).forEach(function (s) { pool.push([u.id, s.id]); });
     });
     var p = pool[Math.floor(Math.random() * pool.length)];
     location.hash = '#/u/' + p[0] + '/' + p[1];

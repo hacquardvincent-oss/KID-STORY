@@ -124,7 +124,9 @@
       zone.appendChild(f);
       dire('Bravo Livia ! Tu as gagné toutes les étoiles.');
       f.addEventListener('click', function (e) {
-        var a = e.target.getAttribute && e.target.getAttribute('data-act');
+        /* le clic tombe sur l'image ou le mot : on remonte jusqu'au bouton */
+        var cible = e.target.closest && e.target.closest('[data-act]');
+        var a = cible && cible.getAttribute('data-act');
         if (a === 'rejouer') demarrer(valeur);
         else if (a === 'choisir') choisir();
         else if (a === 'autres') onQuit();
@@ -587,7 +589,10 @@
       if (UNIVERSES[i].id !== uid) continue;
       var st = UNIVERSES[i].stories;
       for (var j = 0; j < st.length; j++) {
-        if (st[j].id === sid) return { u: UNIVERSES[i], s: st[j], scene: st[j].pages[p].scene };
+        if (st[j].id === sid) {
+          var pg = st[j].pages[p];
+          return { u: UNIVERSES[i], s: st[j], scene: pg ? pg.scene : st[j].cover };
+        }
       }
     }
     return null;
@@ -801,21 +806,291 @@
     vues.forEach(function (v) { v.addEventListener('click', toucher); });
   }
 
+  /* ============================================================
+     JEU 6 — LE COLORIAGE
+     On reprend une planche existante, vidée de ses couleurs : il ne reste
+     que le trait. Chaque forme est une zone à remplir. Rien à réussir, rien
+     à rater — on s'arrête quand on a fini.
+     ============================================================ */
+  var COULEURS = ['#e0453c', '#f0862c', '#f7c518', '#7ab648', '#3fb3b0',
+    '#4a7fc1', '#a98cf0', '#f2a0c2', '#c9622f', '#8a5a3b', '#3a2a22', '#fffdf6'];
+
+  var A_COLORIER = [
+    { u: 'copines', s: 'nouvelle' }, { u: 'peppa', s: 'petit-frere' },
+    { u: 'bluey', s: 'balancoire' }, { u: 'monsieurmadame', s: 'bonheur' },
+    { u: 'melange', s: 'trois-amies' }, { u: 'frozen', s: 'ete-arendelle' },
+    { u: 'copines', s: 'cabane-copines' }, { u: 'peppa', s: 'dernier-gateau' }
+  ];
+  var lotColoriage = null;
+
+  /* Cadrer une scène sur ses personnages, au format de la boîte à l'écran :
+     un dessin à colorier doit remplir la feuille, pas flotter au milieu. */
+  function cadreAutour(scene, format) {
+    var W = 800, H = 560, m = 130;
+    var xs = (scene.items || []).map(function (it) { return it.x; });
+    if (!xs.length) return null;
+    var x0 = Math.min.apply(null, xs) - m, x1 = Math.max.apply(null, xs) + m;
+    var w = Math.max(x1 - x0, W * 0.45), h = w / format;
+    if (h > H) { h = H; w = Math.min(W, h * format); }
+    if (w > W) { w = W; h = w / format; }
+    var cx = (x0 + x1) / 2;
+    return {
+      x: Math.min(Math.max(cx - w / 2, 0), W - w),
+      y: Math.min(Math.max(H - h, 0), H - h),
+      w: w, h: h
+    };
+  }
+
+  function jeuColoriage(zone, n, api) {
+    if (n === 0 || !lotColoriage) lotColoriage = melange(A_COLORIER);
+    var choix = lotColoriage[n % lotColoriage.length];
+    var trouve = trouverScene(choix.u, choix.s, -1);
+    api.consigne('Colorie le dessin.');
+
+    var feuille = el('div', 'colo-feuille');
+    zone.appendChild(feuille);
+    var b = feuille.getBoundingClientRect();
+    var fmt = (b.width > 20 && b.height > 20) ? b.width / b.height : 800 / 560;
+    feuille.innerHTML = Art.scene(trouve.s.cover, {
+      contour: true, noBubbles: true, cadre: cadreAutour(trouve.s.cover, fmt)
+    });
+
+    var teinte = COULEURS[0];
+    var palette = el('div', 'colo-palette');
+    COULEURS.forEach(function (c, i) {
+      var b = el('button', 'colo-pot' + (i === 0 ? ' choisi' : ''));
+      b.style.background = c;
+      b.setAttribute('aria-label', 'couleur');
+      b.onclick = function () {
+        teinte = c;
+        [].forEach.call(palette.children, function (x) { x.classList.remove('choisi'); });
+        b.classList.add('choisi');
+      };
+      palette.appendChild(b);
+    });
+    zone.appendChild(palette);
+
+    /* on peint une forme d'un doigt : les aplats se remplissent, les membres
+       — qui sont des traits épais — changent de trait */
+    feuille.addEventListener('click', function (e) {
+      var c = e.target;
+      if (!c.classList) return;
+      if (c.classList.contains('z')) c.setAttribute('fill', teinte);
+      else if (c.classList.contains('zs')) c.setAttribute('stroke', teinte);
+    });
+
+    var actions = el('div', 'colo-actions');
+    var fini = el('button', 'bi primary');
+    fini.innerHTML = '<span class="bi-img">✓</span><span class="bi-mot">J\'ai fini</span>';
+    fini.onclick = function () { api.reussi(); };
+    var vider = el('button', 'bi');
+    vider.innerHTML = '<span class="bi-img">✻</span><span class="bi-mot">Effacer</span>';
+    vider.onclick = function () {
+      [].forEach.call(feuille.querySelectorAll('.z'), function (x) { x.setAttribute('fill', '#fffdf6'); });
+      [].forEach.call(feuille.querySelectorAll('.zs'), function (x) { x.setAttribute('stroke', '#fffdf6'); });
+    };
+    actions.appendChild(vider); actions.appendChild(fini);
+    zone.appendChild(actions);
+  }
+
+  /* ============================================================
+     JEU 7 — LE PUZZLE
+     Une planche découpée en morceaux. On touche deux morceaux pour les
+     échanger : pas de glisser-déposer, qui rate une fois sur deux à quatre ans.
+     ============================================================ */
+  var lotPuzzle = null;
+
+  function jeuPuzzle(zone, n, api) {
+    if (n === 0 || !lotPuzzle) lotPuzzle = melange(A_COLORIER);
+    var choix = lotPuzzle[n % lotPuzzle.length];
+    var trouve = trouverScene(choix.u, choix.s, -1);
+    var cols = n < 2 ? 2 : 3, rangs = n < 2 ? 2 : 2;   /* 4 morceaux, puis 6 */
+    api.consigne('Remets le dessin dans l\'ordre.');
+
+    var n2 = cols * rangs;
+    var pieces = [];
+    for (var i = 0; i < n2; i++) {
+      pieces.push(Art.scene(trouve.s.cover, {
+        noBubbles: true,
+        cadre: {
+          x: (i % cols) * (800 / cols), y: Math.floor(i / cols) * (560 / rangs),
+          w: 800 / cols, h: 560 / rangs
+        }
+      }));
+    }
+
+    /* un ordre mélangé, jamais déjà résolu */
+    var ordre = melange(pieces.map(function (_, i) { return i; }));
+    var range = function () { return ordre.every(function (v, i) { return v === i; }); };
+    while (range()) ordre = melange(ordre);
+
+    var plateau = el('div', 'puz');
+    plateau.style.gridTemplateColumns = 'repeat(' + cols + ', 1fr)';
+    zone.appendChild(plateau);
+
+    var choisi = -1;
+    function dessiner() {
+      plateau.innerHTML = '';
+      ordre.forEach(function (p, i) {
+        var c = el('div', 'puz-piece' + (i === choisi ? ' choisi' : '') + (p === i ? ' bonne' : ''));
+        c.innerHTML = pieces[p];
+        c.onclick = function () {
+          if (choisi < 0) { choisi = i; dessiner(); return; }
+          if (choisi === i) { choisi = -1; dessiner(); return; }
+          var t = ordre[choisi]; ordre[choisi] = ordre[i]; ordre[i] = t;
+          choisi = -1;
+          dessiner();
+          if (range()) setTimeout(function () { api.reussi(); }, 450);
+        };
+        plateau.appendChild(c);
+      });
+    }
+    dessiner();
+  }
+
+  /* ============================================================
+     JEU 8 — LE LABYRINTHE
+     Un labyrinthe fabriqué à chaque manche, parcouru du doigt. On ne peut
+     pas traverser un mur : le trait s'arrête, il n'y a rien à perdre.
+     ============================================================ */
+  function fabriquerLabyrinthe(cols, rangs) {
+    var cases = [], i;
+    for (i = 0; i < cols * rangs; i++) cases.push({ n: true, e: true, s: true, o: true, vu: false });
+    var pile = [0];
+    cases[0].vu = true;
+    while (pile.length) {
+      var c = pile[pile.length - 1];
+      var x = c % cols, y = Math.floor(c / cols);
+      var voisins = [];
+      if (y > 0 && !cases[c - cols].vu) voisins.push([c - cols, 'n', 's']);
+      if (y < rangs - 1 && !cases[c + cols].vu) voisins.push([c + cols, 's', 'n']);
+      if (x > 0 && !cases[c - 1].vu) voisins.push([c - 1, 'o', 'e']);
+      if (x < cols - 1 && !cases[c + 1].vu) voisins.push([c + 1, 'e', 'o']);
+      if (!voisins.length) { pile.pop(); continue; }
+      var v = voisins[Math.floor(Math.random() * voisins.length)];
+      cases[c][v[1]] = false;
+      cases[v[0]][v[2]] = false;
+      cases[v[0]].vu = true;
+      pile.push(v[0]);
+    }
+    return cases;
+  }
+
+  function jeuLabyrinthe(zone, n, api) {
+    var cols = 5 + Math.min(2, n), rangs = 7 + Math.min(2, n);
+    var cases = fabriquerLabyrinthe(cols, rangs);
+    var depart = 0, arrivee = cols * rangs - 1;
+    api.consigne('Amène Livia jusqu\'à l\'étoile, sans traverser les murs.');
+
+    var P = 100;                       /* côté d'une case, en unités de dessin */
+    var W = cols * P, H = rangs * P;
+    var mur = '';
+    cases.forEach(function (c, i) {
+      var x = (i % cols) * P, y = Math.floor(i / cols) * P;
+      if (c.n) mur += 'M ' + x + ',' + y + ' L ' + (x + P) + ',' + y + ' ';
+      if (c.o) mur += 'M ' + x + ',' + y + ' L ' + x + ',' + (y + P) + ' ';
+      if (i % cols === cols - 1) mur += 'M ' + (x + P) + ',' + y + ' L ' + (x + P) + ',' + (y + P) + ' ';
+      if (Math.floor(i / cols) === rangs - 1) mur += 'M ' + x + ',' + (y + P) + ' L ' + (x + P) + ',' + (y + P) + ' ';
+    });
+
+    var cadre = el('div', 'laby');
+    cadre.innerHTML = '<svg viewBox="' + (-6) + ' ' + (-6) + ' ' + (W + 12) + ' ' + (H + 12) +
+      '" preserveAspectRatio="xMidYMid meet">' +
+      '<rect width="' + W + '" height="' + H + '" fill="#fffaf0"/>' +
+      '<rect x="' + ((arrivee % cols) * P + 8) + '" y="' + (Math.floor(arrivee / cols) * P + 8) +
+      '" width="' + (P - 16) + '" height="' + (P - 16) + '" rx="10" fill="#f7c518" opacity=".55"/>' +
+      '<polyline class="laby-trait" points=""/>' +
+      '<path d="' + mur + '" fill="none" stroke="#3a2a22" stroke-width="9" stroke-linecap="round"/>' +
+      '<g class="laby-heros" transform="translate(0,0)">' +
+      /* un dessin imbriqué dans un dessin : il lui faut sa taille, sinon il
+         occupe toute la surface */
+      Art.sticker({ t: 'livia', ds: .7, dy: 186 }).replace('<svg ',
+        '<svg x="' + (P * 0.14) + '" y="' + (P * 0.1) + '" width="' + (P * 0.72) +
+        '" height="' + (P * 0.72) + '" ') + '</g>' +
+      '<text x="' + ((arrivee % cols) * P + P / 2) + '" y="' + (Math.floor(arrivee / cols) * P + P * 0.68) +
+      '" text-anchor="middle" font-size="' + (P * 0.5) + '">⭐</text>' +
+      '</svg>';
+    zone.appendChild(cadre);
+
+    var svg = cadre.querySelector('svg');
+    var trait = cadre.querySelector('.laby-trait');
+    var heros = cadre.querySelector('.laby-heros');
+    var chemin = [depart];
+
+    function majTrait() {
+      trait.setAttribute('points', chemin.map(function (c) {
+        return ((c % cols) * P + P / 2) + ',' + (Math.floor(c / cols) * P + P / 2);
+      }).join(' '));
+      var d = chemin[chemin.length - 1];
+      heros.setAttribute('transform', 'translate(' + ((d % cols) * P) +
+        ',' + (Math.floor(d / cols) * P) + ')');
+    }
+    majTrait();
+
+    function caseSous(e) {
+      var r = svg.getBoundingClientRect();
+      var x = Math.floor((e.clientX - r.left) / r.width * cols);
+      var y = Math.floor((e.clientY - r.top) / r.height * rangs);
+      if (x < 0 || y < 0 || x >= cols || y >= rangs) return -1;
+      return y * cols + x;
+    }
+    function ouvert(a, b) {
+      var c = cases[a];
+      if (b === a - cols) return !c.n;
+      if (b === a + cols) return !c.s;
+      if (b === a - 1) return !c.o;
+      if (b === a + 1) return !c.e;
+      return false;
+    }
+    function avancer(c) {
+      if (c < 0) return;
+      var d = chemin[chemin.length - 1];
+      if (c === d) return;
+      if (chemin.length > 1 && c === chemin[chemin.length - 2]) { chemin.pop(); majTrait(); return; }
+      if (!ouvert(d, c)) return;
+      chemin.push(c);
+      majTrait();
+      if (c === arrivee) { fini = true; setTimeout(function () { api.reussi(); }, 400); }
+    }
+
+    var trace = false, fini = false;
+    svg.addEventListener('pointerdown', function (e) {
+      if (fini) return;
+      trace = true; svg.setPointerCapture && svg.setPointerCapture(e.pointerId);
+      avancer(caseSous(e));
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!trace || fini) return;
+      e.preventDefault();
+      avancer(caseSous(e));
+    });
+    svg.addEventListener('pointerup', function () { trace = false; });
+    svg.addEventListener('pointercancel', function () { trace = false; });
+  }
+
+  var CATEGORIES = [
+    { id: 'observer', nom: 'Regarder', emoji: '🔍' },
+    { id: 'lettres', nom: 'Les lettres', emoji: '🔤' },
+    { id: 'nombres', nom: 'Les nombres', emoji: '🔢' },
+    { id: 'creer', nom: 'Créer', emoji: '🎨' },
+    { id: 'reflechir', nom: 'Réfléchir', emoji: '🧩' }
+  ];
+
   var JEUX = [
     {
-      id: 'relier', nom: 'Relie les amis', emoji: '🔗',
+      id: 'relier', nom: 'Relie les amis', emoji: '🔗', cat: 'observer',
       sous: 'Chaque héros retrouve son objet',
       vignette: { t: 'peppa', ds: .66, dy: 184 },
       def: { manches: 4, manche: jeuRelier, felicitation: 'Tu as relié tous les amis !' }
     },
     {
-      id: 'compter', nom: 'Compte avec Livia', emoji: '🔢',
+      id: 'compter', nom: 'Compte avec Livia', emoji: '🔢', cat: 'nombres',
       sous: 'Combien y en a-t-il ?',
       vignette: { t: 'livia', ds: .66, dy: 184 },
       def: { manches: 5, manche: jeuCompter, felicitation: 'Tu sais compter jusqu\'à 6 !' }
     },
     {
-      id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️',
+      id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️', cat: 'lettres',
       sous: 'Livia, Pablo, Maman, Papa…',
       vignette: { t: 'elsa', ds: .66, dy: 184 },
       def: {
@@ -828,7 +1103,7 @@
       }
     },
     {
-      id: 'differences', nom: 'Les 6 différences', emoji: '🔍',
+      id: 'differences', nom: 'Les 6 différences', emoji: '🔍', cat: 'observer',
       sous: 'Deux cases presque pareilles',
       vignette: { t: 'bluey', ds: .62, dy: 184 },
       def: {
@@ -837,7 +1112,7 @@
       }
     },
     {
-      id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤',
+      id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤', cat: 'lettres',
       sous: 'Reconnaître puis tracer chaque lettre',
       vignette: { t: 'juliette', ds: .62, dy: 184 },
       def: {
@@ -848,11 +1123,30 @@
         choixBouton: 'Une autre lettre',
         felicitation: 'Tu connais tes lettres !'
       }
+    },
+    {
+      id: 'coloriage', nom: 'Le coloriage', emoji: '🎨', cat: 'creer',
+      sous: 'Une planche à peindre au doigt',
+      vignette: { t: 'maman', ds: .58, dy: 182 },
+      def: { manches: 3, manche: jeuColoriage, plein: true, felicitation: 'Trois beaux dessins !' }
+    },
+    {
+      id: 'puzzle', nom: 'Le puzzle', emoji: '🧩', cat: 'reflechir',
+      sous: 'Remets le dessin dans l\'ordre',
+      vignette: { t: 'pablo', ds: .62, dy: 186 },
+      def: { manches: 4, manche: jeuPuzzle, plein: true, felicitation: 'Quatre dessins remis d\'aplomb !' }
+    },
+    {
+      id: 'labyrinthe', nom: 'Le labyrinthe', emoji: '🌀', cat: 'reflechir',
+      sous: 'Trouve le chemin jusqu\'à l\'étoile',
+      vignette: { t: 'papa', ds: .42, dy: 176 },
+      def: { manches: 4, manche: jeuLabyrinthe, plein: true, felicitation: 'Tu retrouves toujours ton chemin !' }
     }
   ];
 
   global.Jeux = {
     liste: JEUX,
+    categories: CATEGORIES,
     trouver: function (id) {
       for (var i = 0; i < JEUX.length; i++) if (JEUX[i].id === id) return JEUX[i];
       return null;

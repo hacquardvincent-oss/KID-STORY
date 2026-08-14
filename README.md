@@ -25,14 +25,26 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Deux rubriques** — Histoires et Jeux ; sous Histoires, les univers
   (Peppa Pig, La Reine des Neiges, Bluey, les Monsieur Madame, les cross-over,
   les copines… faciles à compléter)
+* **Des onglets illustrés** — chaque univers est un rond dessiné (Peppa, Elsa,
+  Bluey, Monsieur Bonheur, Olaf, Roxane) et non un mot : un enfant qui ne lit
+  pas choisit son univers du premier coup d'œil. Le nom reste dessous, en petit.
 * **Deux filtres** — par univers (les onglets) et par thème (Été, Amitié,
   Émotions, Grandir, Partager, Règles, Famille, Dehors, Nuit, Bêtises) ; les
-  thèmes traversent les univers, et les onglets filtrent à l'intérieur d'un thème
+  thèmes traversent les univers, et les onglets filtrent à l'intérieur d'un
+  thème. Le filtre par thème est **replié** derrière un bouton discret : c'est
+  un réglage d'adulte, il ne doit pas encombrer le chemin de l'enfant.
+* **Français et espagnol** — un sélecteur de langue dans le même volet replié.
+  En espagnol, l'interface et le texte des histoires changent, et la voix passe
+  en `es-ES`. Une histoire n'apparaît que si elle est **entièrement traduite** :
+  mieux vaut une bibliothèque plus courte qu'une histoire à moitié en français.
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
   navigation au doigt (swipe), aux flèches, ou avec les boutons
-* **Lecture à voix haute** (bouton 🔊) via la synthèse vocale du téléphone
+* **Lecture à voix haute** (bouton 🔊) via la synthèse vocale du téléphone —
+  le texte est découpé en phrases et envoyé une par une, un peu ralenti, avec la
+  voix la plus soignée que le téléphone propose dans la langue courante : on
+  gagne les respirations entre les phrases, qui manquaient le plus
 * **Reprise de lecture** — le site se souvient de la page où on s'est arrêté
   et marque les histoires déjà lues d'un ✓
 * **Bouton 🎲** — une histoire au hasard
@@ -46,13 +58,20 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Des boutons d'abord visuels** — à quatre ans on ne lit pas encore : les
   boutons que l'enfant utilise portent une grande image (▶ ↻ ⌂), le mot reste
   dessous en petit pour l'adulte.
-* **Cinq jeux** pour les 3-5 ans, avec les mêmes héros : relier chaque
-  personnage à son objet, compter jusqu'à six, tracer au doigt les prénoms de
-  la maison (Livia, Pablo, Maman, Papa, Mila, Antoine…), apprendre l'alphabet
-  lettre par lettre, et chercher les six différences entre deux cases d'une
-  histoire. Aucun texte à lire : tout est dit à voix haute. Un rang de boutons
-  permet de passer d'un jeu à l'autre sans revenir en arrière, et les jeux de
-  lettres commencent par un choix : quel prénom, quelle lettre.
+* **Huit jeux** pour les 3-5 ans, rangés en **cinq familles** — Observer,
+  Lettres, Nombres, Créer, Réfléchir :
+
+  | Famille | Jeux |
+  |---|---|
+  | 👀 Observer | relier chaque personnage à son objet, les 6 différences |
+  | 🔤 Lettres | écrire les prénoms de la maison, apprendre l'alphabet |
+  | 🔢 Nombres | compter jusqu'à six |
+  | 🎨 Créer | le coloriage, le puzzle |
+  | 🧩 Réfléchir | le labyrinthe |
+
+  Aucun texte à lire : tout est dit à voix haute. Un rang de boutons permet de
+  passer d'un jeu à l'autre sans revenir en arrière, et les jeux de lettres
+  commencent par un choix : quel prénom, quelle lettre.
 * **Installable** sur l'écran d'accueil du téléphone : icône, plein écran, et
   **fonctionnement hors connexion** — un service worker garde tout le site en
   cache, y compris les polices et les images
@@ -86,6 +105,8 @@ autour d'une émotion nommée et d'une réparation concrète, sans morale plaqu�
 |---|---|
 | Un été à Arendelle | 9 |
 | La nuit des étoiles glacées | 8 |
+| Papa n'a pas froid | 6 |
+| La glace qui craque | 6 |
 
 **Bluey** (dix histoires, tout l'été australien)
 
@@ -138,8 +159,16 @@ même dessin animé, et ils se rencontrent quand même
 | Le jour où Livia n'a pas été gentille | réparer, c'est plus que dire pardon |
 | Prêter son doudou | prêter ce à quoi on tient le plus |
 | Les règles du jeu | on les dit avant, pas pendant |
+| Maman est en retard | attendre sans savoir combien de temps |
+| Le gâteau de Papa | à quatre mains, c'est plus salissant et plus rigolo |
 
 Pablo apparaît aussi dans **Pablo veut faire pareil** (Peppa Pig, série *Grandir*).
+
+**En espagnol** — quatre histoires sont pour l'instant traduites de bout en
+bout : *Papá no tiene frío*, *El hielo que cruje*, *Mamá llega tarde* et
+*El pastel de papá*. Elles n'apparaissent qu'en mode espagnol, et le reste de la
+bibliothèque se remplit une histoire à la fois (les consignes des jeux, elles,
+restent en français pour le moment).
 
 **Partager et les règles** — la série la plus demandée à la maison
 
@@ -193,7 +222,7 @@ garder sur le téléphone sans connexion, on peut tout replier dans un seul fich
 
 ```bash
 node outils/construire-page-unique.js
-# → dist/histoires-de-livia.html  (~170 Ko, aucune requête vers l'extérieur)
+# → dist/histoires-de-livia.html  (~700 Ko, aucune requête vers l'extérieur)
 ```
 
 Le fichier est déjà présent dans `dist/` ; il suffit de relancer la commande après
@@ -256,6 +285,11 @@ dans le tableau `stories` de l'univers voulu :
 }
 ```
 
+**La traduire.** Trois champs facultatifs suffisent : `title_es`, `subtitle_es`,
+et un `es:` à côté du `text:` de **chaque** page. L'histoire n'apparaît en mode
+espagnol que si les trois y sont, page par page — une traduction à moitié faite
+reste invisible plutôt que de mélanger les deux langues.
+
 ### Écrire une scène
 
 ```js
@@ -310,7 +344,9 @@ leur chapeau)*, les vraies copines : `roxane` *(brune au carré)*, `juliette`
 *(blonde, queue de cheval haute)*, `isadora` *(châtain, queue de cheval)*,
 `mamie` *(carré gris et lunettes)*, et `pablo`, le petit frère *(un bébé :
 plus petit, grosse tête, cheveux très courts ; poses `stand`, `sit`, `wave`,
-`armsup`, `hold`, `quatrepattes`)*
+`armsup`, `hold`, `quatrepattes`)*, enfin les parents : `papa` *(grand et
+large, barbe rousse qui suit la mâchoire, débardeur, et un tatouage sur le bras
+gauche)* et `maman` *(rousse, un peu plus petite, queue de cheval en bataille)*
 
 **Poses** (`pose`)
 `stand`, `wave`, `armsup`, `jump`, `run`, `sit`, `point`, `hold`, `shrug`, `swim`,
@@ -353,10 +389,15 @@ Toujours dans `stories.js`, un nouvel objet en haut du tableau `UNIVERSES` :
   emoji: '🐶',
   c1: '#4ea8f0',            // les deux couleurs du dégradé de l'univers
   c2: '#ffd166',
+  vignette: { t: 'stella', ds: 1, dy: 0 },   // le personnage du rond illustré
   cover: { /* une scène */ },
   stories: [ /* … */ ]
 }
 ```
+
+`vignette` désigne le personnage qui représente l'univers dans les onglets :
+`t` est son nom, `ds` ajuste l'échelle et `dy` le recentre verticalement (le
+rond cadre sur le visage, un personnage plus grand demande un `ds` plus petit).
 
 Le menu, la page d'accueil et les couleurs se mettent à jour tout seuls.
 
@@ -380,7 +421,7 @@ manifest.webmanifest        pour l'installation sur l'écran d'accueil
 assets/css/style.css        toute la mise en page, mobile d'abord
 assets/js/art.js            le moteur de dessin SVG (décors, personnages, objets, bulles)
 assets/js/stories.js        les histoires (c'est ici qu'on écrit)
-assets/js/games.js          les cinq jeux et leur cadre commun
+assets/js/games.js          les huit jeux, leurs familles et leur cadre commun
 assets/js/app.js            navigation, couverture, Cover Flow, lecteur
 assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
 assets/img/grain.png        le grain du papier, en surimpression
@@ -440,6 +481,21 @@ bandeau, ni titre, ni défilement. Les deux cases vides sont posées d'abord, on
 mesure la place réellement disponible, et la fenêtre prend ce format-là — sur
 un téléphone elle est donc plus haute que large. Un enfant de quatre ans ne
 fait pas défiler une page pour trouver le reste du jeu.
+
+**Le coloriage** ne demande pas de dessins supplémentaires : le moteur sait
+rendre n'importe quelle case **en mode contour** (`contour: true`), c'est-à-dire
+en remplaçant tous les remplissages de couleur par du blanc et en ne gardant que
+le trait d'encre. Une histoire de plus, c'est donc un coloriage de plus, sans
+rien redessiner. L'enfant touche une zone, elle prend la couleur de la palette.
+
+**Le puzzle** découpe la même case en morceaux grâce au cadrage libre du moteur
+(`cadre`), chaque pièce étant simplement la même scène vue par une autre
+fenêtre. On échange deux pièces en les touchant l'une après l'autre — pas de
+glisser-déposer, qui demande une précision qu'on n'a pas à quatre ans.
+
+**Le labyrinthe** est engendré à chaque partie (parcours en profondeur avec
+retour arrière), donc jamais deux fois le même. On garde le doigt appuyé et on
+avance case par case ; les murs arrêtent le trait au lieu de faire perdre.
 
 Le Cover Flow, lui, calcule pour chaque pochette son **écart circulaire** à la
 position courante : c'est ce qui le rend infini dans les deux sens, avec aussi peu

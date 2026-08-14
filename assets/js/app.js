@@ -25,6 +25,49 @@
   }
   function isRead(u, s) { return store('read.' + u.id + '.' + s.id) === '1'; }
 
+  /* ---------------- la langue ----------------
+     L'espagnol se met en place histoire par histoire : une histoire n'est
+     proposée dans une langue que si elle y est entièrement traduite. Mieux
+     vaut quatre histoires vraiment en espagnol qu'un mélange des deux. */
+  var LANGUES = [
+    { id: 'fr', nom: 'Français', drapeau: '🇫🇷', voix: 'fr' },
+    { id: 'es', nom: 'Español', drapeau: '🇪🇸', voix: 'es' }
+  ];
+  var LANGUE = store('langue') === 'es' ? 'es' : 'fr';
+
+  var MOTS = {
+    fr: {
+      choisis: 'Choisis un univers.', filtrer: 'Filtrer par thème',
+      lire: "Lire l'histoire", soir: 'Ce soir, on lit…', hasard: 'Une histoire au hasard',
+      fin: 'Fin !', derniere: "C'était la dernière", eteint: 'On éteint. Bonne nuit, Livia.',
+      bonneNuit: 'Bonne nuit… et à demain pour une nouvelle histoire.',
+      autre: 'Une autre', relire: 'Relire', sommaire: 'Le sommaire',
+      encore: function (n) { return 'Encore <b>' + n + '</b> histoire' + (n > 1 ? 's' : '') + ' ce soir.'; },
+      planches: 'planches', histoires: 'histoires', tous: 'Tous', langue: 'Langue'
+    },
+    es: {
+      choisis: 'Elige un mundo.', filtrer: 'Filtrar por tema',
+      lire: 'Leer el cuento', soir: 'Esta noche leemos…', hasard: 'Un cuento al azar',
+      fin: '¡Fin!', derniere: 'Era el último', eteint: 'Apagamos. Buenas noches, Livia.',
+      bonneNuit: 'Buenas noches… y hasta mañana para otro cuento.',
+      autre: 'Otro', relire: 'Releer', sommaire: 'El índice',
+      encore: function (n) { return 'Todavía <b>' + n + '</b> cuento' + (n > 1 ? 's' : '') + ' esta noche.'; },
+      planches: 'láminas', histoires: 'cuentos', tous: 'Todos', langue: 'Idioma'
+    }
+  };
+  function mot(k) { return (MOTS[LANGUE] && MOTS[LANGUE][k]) || MOTS.fr[k]; }
+
+  /* une histoire n'existe dans une langue que si tout y est traduit */
+  function dispo(st) {
+    if (LANGUE === 'fr') return true;
+    if (!st['title_' + LANGUE]) return false;
+    return st.pages.every(function (p) { return !!p[LANGUE]; });
+  }
+  function histoiresDe(u) { return u.stories.filter(dispo); }
+  function titre(st) { return st['title_' + LANGUE] || st.title; }
+  function soustitre(st) { return st['subtitle_' + LANGUE] || st.subtitle; }
+  function texte(p) { return p[LANGUE] || p.text; }
+
   /* ---------------- le compte du soir ----------------
      Un parent décide combien d'histoires on lit ce soir ; le compte
      s'efface tout seul le lendemain. On décompte les histoires TERMINÉES,
@@ -274,6 +317,7 @@
     grid: $('#uniGrid'), random: $('#btnRandom'),
     soirBadge: $('#soirBadge'), soirCover: $('#soirCover'),
     hello: $('#homeHello'), themeChips: $('#themeChips'),
+    filtres: $('#filtres'), btnFiltres: $('#btnFiltres'), langues: $('#langues'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
     cfTags: $('#cfTags'), cfDots: $('#cfDots'), read: $('#btnRead'),
@@ -315,7 +359,7 @@
     if (!els.soirCover) return;
     var o = Soir.etat();
     if (!o) {
-      els.soirCover.innerHTML = '<span class="soir-titre">Ce soir, on lit…</span>' +
+      els.soirCover.innerHTML = '<span class="soir-titre">' + mot('soir') + '</span>' +
         '<span class="soir-choix">' + CHOIX_SOIR.map(function (n) {
           return '<button data-soir="' + n + '">' + n + '</button>';
         }).join('') + '</span>';
@@ -347,6 +391,60 @@
 
   els.soirBadge.onclick = function () { location.hash = '#/'; };
 
+  /* Les thèmes servent à l'adulte qui cherche « une histoire sur le partage ».
+     Repliés par défaut : l'enfant voit une page nette, sans texte à déchiffrer. */
+  function ouvrirFiltres(ouvert) {
+    els.filtres.classList.toggle('ouvert', ouvert);
+    els.btnFiltres.setAttribute('aria-expanded', ouvert ? 'true' : 'false');
+  }
+  els.btnFiltres.onclick = function () {
+    ouvrirFiltres(!els.filtres.classList.contains('ouvert'));
+  };
+
+  /* Le choix de la langue est rangé avec les filtres : c'est un réglage de
+     parent, pas un bouton que l'enfant doit rencontrer. */
+  /* les quelques mots figés dans la page suivent eux aussi la langue */
+  function majMots() {
+    var m = els.read.querySelector('.cta-mot');
+    if (m) m.textContent = mot('lire');
+    var f = els.btnFiltres.querySelector('span');
+    if (f) f.textContent = mot('filtrer');
+    if (els.coverRandom) els.coverRandom.textContent = '🎲 ' + mot('hasard');
+  }
+
+  function renderLangues() {
+    var z = els.langues;
+    if (!z) return;
+    z.innerHTML = '<span class="langue-titre">' + mot('langue') + '</span>';
+    LANGUES.forEach(function (l) {
+      var n = 0;
+      UNIVERSES.forEach(function (u) {
+        u.stories.forEach(function (st) {
+          if (l.id === 'fr' || (st['title_' + l.id] &&
+            st.pages.every(function (p) { return !!p[l.id]; }))) n++;
+        });
+      });
+      var b = document.createElement('button');
+      b.className = 'chip' + (LANGUE === l.id ? ' is-active' : '');
+      b.innerHTML = l.drapeau + ' ' + l.nom + ' <i>' + n + '</i>';
+      b.disabled = !n;
+      b.onclick = function () {
+        if (LANGUE === l.id) return;
+        LANGUE = l.id;
+        store('langue', l.id);
+        laVoix = null; voixCherchee = false;
+        document.documentElement.lang = l.id;
+        majMots();
+        renderTabs(null);
+        renderHome();
+        ouvrirFiltres(true);
+      };
+      z.appendChild(b);
+    });
+  }
+  document.documentElement.lang = LANGUE;
+  majMots();
+
   /* ---------------- le menu principal ---------------- */
   function cablerNav(zone, actif) {
     var b = zone.children;
@@ -370,17 +468,24 @@
       if (!theme) return uid ? '#/u/' + uid : '#/histoires';
       return '#/theme/' + theme.id + (uid ? '/' + uid : '');
     };
+    /* On choisit un univers en reconnaissant un visage, pas en lisant son
+       nom : à quatre ans, c'est la seule navigation qui marche. */
     var all = document.createElement('button');
-    all.className = 'tab' + (activeId ? '' : ' is-active');
-    all.textContent = '★ Tous';
+    all.className = 'tab tab-img' + (activeId ? '' : ' is-active');
+    all.innerHTML = '<span class="tab-rond tab-tous">★</span><span class="tab-mot">' + mot('tous') + '</span>';
+    all.setAttribute('aria-label', 'Tous les univers');
     all.onclick = function () { location.hash = lien(null); };
     els.tabs.appendChild(all);
 
     UNIVERSES.forEach(function (u) {
       if (dispo && dispo.indexOf(u.id) < 0) return;
+      if (!histoiresDe(u).length) return;
       var b = document.createElement('button');
-      b.className = 'tab' + (activeId === u.id ? ' is-active' : '');
-      b.textContent = u.emoji + ' ' + u.name;
+      b.className = 'tab tab-img' + (activeId === u.id ? ' is-active' : '');
+      b.innerHTML = '<span class="tab-rond">' + Art.sticker(u.vignette) + '</span>' +
+        '<span class="tab-mot">' + u.name + '</span>';
+      b.setAttribute('aria-label', u.name);
+      b.style.setProperty('--tab-c', u.c1);
       b.onclick = function () { location.hash = lien(u.id); };
       els.tabs.appendChild(b);
     });
@@ -395,7 +500,7 @@
     var out = [];
     UNIVERSES.forEach(function (u) {
       if (uid && u.id !== uid) return;
-      u.stories.forEach(function (s) {
+      histoiresDe(u).forEach(function (s) {
         if (s.themes && s.themes.indexOf(theme.nom) >= 0) out.push({ u: u, s: s });
       });
     });
@@ -420,11 +525,11 @@
     var card = document.createElement('button');
     card.className = 'uni-card';
     card.innerHTML =
-      '<div class="band"><h3>' + u.emoji + ' ' + s.title + '</h3>' +
+      '<div class="band"><h3>' + u.emoji + ' ' + titre(s) + '</h3>' +
       '<span class="num">' + numero(u, s) + '</span></div>' +
       '<div class="thumb">' + Art.scene(s.cover, { slice: true, noBubbles: true }) + '</div>' +
-      '<div class="cap"><p>' + s.subtitle + '</p>' +
-      '<span class="pill">' + s.pages.length + ' planches</span></div>';
+      '<div class="cap"><p>' + soustitre(s) + '</p>' +
+      '<span class="pill">' + s.pages.length + ' ' + mot('planches') + '</span></div>';
     card.onclick = function () { location.hash = '#/u/' + u.id + '/' + s.id; };
     return card;
   }
@@ -435,6 +540,7 @@
     tout.forEach(function (h) { if (dispo.indexOf(h.u.id) < 0) dispo.push(h.u.id); });
     renderTabs(uid, theme, dispo);
     renderChips(theme.id);
+    ouvrirFiltres(true);
     var liste = uid ? tout.filter(function (h) { return h.u.id === uid; }) : tout;
     els.hello.innerHTML = theme.emoji + ' <b>' + theme.nom + '</b> — ' + liste.length +
       ' histoire' + (liste.length > 1 ? 's' : '') +
@@ -473,16 +579,28 @@
     els.gamesSub.textContent = 'Pour jouer tout seul, dès 3 ans';
     renderJeuxNav(null);
 
-    Jeux.liste.forEach(function (jeu) {
-      var c = document.createElement('button');
-      c.className = 'jeu-carte';
-      c.innerHTML =
-        '<div class="jeu-vignette">' + Art.sticker(jeu.vignette) + '</div>' +
-        '<div class="jeu-texte"><h3>' + jeu.emoji + ' ' + jeu.nom + '</h3>' +
-        '<p>' + jeu.sous + '</p></div>';
-      c.onclick = function () { location.hash = '#/jeux/' + jeu.id; };
-      els.gamesGrid.appendChild(c);
+    /* rangés par famille : une enfant trouve plus vite « les lettres » qu'un
+       jeu précis dans une liste de huit */
+    Jeux.categories.forEach(function (cat) {
+      var jeux = Jeux.liste.filter(function (j) { return j.cat === cat.id; });
+      if (!jeux.length) return;
+      var titre = document.createElement('h3');
+      titre.className = 'jeu-famille';
+      titre.innerHTML = '<span>' + cat.emoji + '</span> ' + cat.nom;
+      els.gamesGrid.appendChild(titre);
+      jeux.forEach(function (jeu) { els.gamesGrid.appendChild(carteJeu(jeu)); });
     });
+  }
+
+  function carteJeu(jeu) {
+    var c = document.createElement('button');
+    c.className = 'jeu-carte';
+    c.innerHTML =
+      '<div class="jeu-vignette">' + Art.sticker(jeu.vignette) + '</div>' +
+      '<div class="jeu-texte"><h3>' + jeu.emoji + ' ' + jeu.nom + '</h3>' +
+      '<p>' + jeu.sous + '</p></div>';
+    c.onclick = function () { location.hash = '#/jeux/' + jeu.id; };
+    return c;
   }
 
   function openGame(jeu) {
@@ -519,19 +637,22 @@
     els.coverMeta.textContent = MOIS[d.getMonth()] + ' ' + d.getFullYear();
 
     var total = 0;
-    UNIVERSES.forEach(function (u) { total += u.stories.length; });
+    UNIVERSES.forEach(function (u) { total += histoiresDe(u).length; });
     els.coverSticker.innerHTML = '<b>' + total + '</b><span>histoires<br>du soir</span>';
   }
 
   /* ---------------- sommaire ---------------- */
   function renderHome() {
     renderChips(null);
-    els.hello.textContent = 'Choisis un univers, ou un thème.';
+    renderLangues();
+    ouvrirFiltres(false);
+    els.hello.textContent = mot('choisis');
     els.grid.innerHTML = '';
     UNIVERSES.forEach(function (u) {
+      var n = histoiresDe(u).length;
+      if (!n) return;
       var card = document.createElement('button');
       card.className = 'uni-card';
-      var n = u.stories.length;
       card.innerHTML =
         '<div class="band"><h3>' + u.emoji + ' ' + u.name + '</h3>' +
         '<span class="num">' + plageNumeros(u) + '</span></div>' +
@@ -551,10 +672,10 @@
     els.uniTagline.textContent = u.tagline;
 
     var start = 0;
-    var items = u.stories.map(function (s, i) {
+    var items = histoiresDe(u).map(function (s, i) {
       if (startId && s.id === startId) start = i;
       return {
-        scene: s.cover, label: s.title, num: numero(u, s), tag: s.tag,
+        scene: s.cover, label: titre(s), num: numero(u, s), tag: s.tag,
         badge: isRead(u, s) ? '✓' : String(s.pages.length) + ' p.'
       };
     });
@@ -569,9 +690,9 @@
   function renderMeta(i) {
     var u = state.universe;
     if (!u || i < 0) return;
-    var s = u.stories[i];
-    els.cfTitle.textContent = s.title;
-    els.cfSub.textContent = s.subtitle;
+    var s = histoiresDe(u)[i];
+    els.cfTitle.textContent = titre(s);
+    els.cfSub.textContent = soustitre(s);
     els.cfTags.innerHTML =
       '<span>' + numero(u, s) + '</span><span>' + s.pages.length + ' pages</span>' +
       '<span>≈ ' + s.minutes + ' min</span>' + (isRead(u, s) ? '<span>✓ déjà lue</span>' : '');
@@ -586,7 +707,7 @@
   function openReader(u, s) {
     state.universe = u; state.story = s;
     setTheme(u);
-    els.rTitle.textContent = s.title;
+    els.rTitle.textContent = titre(s);
     els.pages.innerHTML = '';
     /* on repart du début : sans cette remise à zéro, ouvrir une histoire
        depuis la fin de la précédente la montre déjà terminée */
@@ -597,7 +718,7 @@
       a.className = 'page';
       a.innerHTML =
         '<div class="panel">' + Art.scene(p.scene) + '</div>' +
-        '<p class="ptext">' + p.text + '</p>' +
+        '<p class="ptext">' + texte(p) + '</p>' +
         '<div class="pnum">' + (i + 1) + ' / ' + s.pages.length + '</div>';
       els.pages.appendChild(a);
     });
@@ -625,12 +746,15 @@
     }
 
     end.addEventListener('click', function (e) {
-      var act = e.target.getAttribute && e.target.getAttribute('data-act');
+      /* le clic tombe sur l'image ou le mot : on remonte jusqu'au bouton */
+      var cible = e.target.closest && e.target.closest('[data-act]');
+      var act = cible && cible.getAttribute('data-act');
       if (act === 'again') goPage(0);
       else if (act === 'close') location.hash = '#/u/' + u.id;
       else if (act === 'next') {
-        var i = u.stories.indexOf(s);
-        var nx = u.stories[(i + 1) % u.stories.length];
+        var liste = histoiresDe(u);
+        var i = liste.indexOf(s);
+        var nx = liste[(i + 1) % liste.length];
         location.hash = '#/u/' + u.id + '/' + nx.id;
       }
     });
@@ -661,23 +785,23 @@
     var corps = state.end.querySelector('.end-corps');
     if (!corps) return;
     if (reste === null || reste === undefined) reste = Soir.reste();
-    var titre, mot, suite = true;
+    var titre, phrase, suite = true;
     if (reste === null) {
-      titre = 'Fin !';
-      mot = 'Bonne nuit… et à demain pour une nouvelle histoire.';
+      titre = mot('fin');
+      phrase = mot('bonneNuit');
     } else if (reste > 0) {
-      titre = 'Fin !';
-      mot = 'Encore <b>' + reste + '</b> histoire' + (reste > 1 ? 's' : '') + ' ce soir.';
+      titre = mot('fin');
+      phrase = mot('encore')(reste);
     } else {
-      titre = 'C\'était la dernière';
-      mot = 'On éteint. Bonne nuit, Livia.';
+      titre = mot('derniere');
+      phrase = mot('eteint');
       suite = false;
     }
-    corps.innerHTML = '<h4>' + titre + '</h4><p>' + mot + '</p>' +
+    corps.innerHTML = '<h4>' + titre + '</h4><p>' + phrase + '</p>' +
       '<div class="end-actions">' +
-      (suite ? bouton('next', '▶', 'Une autre', true) : '') +
-      bouton('again', '↻', 'Relire', !suite) +
-      bouton('close', '⌂', 'Le sommaire', false) + '</div>';
+      (suite ? bouton('next', '▶', mot('autre'), true) : '') +
+      bouton('again', '↻', mot('relire'), !suite) +
+      bouton('close', '⌂', mot('sommaire'), false) + '</div>';
   }
 
   function closeReader() {
@@ -715,7 +839,7 @@
     if (i >= total) { majFin(Soir.compter(state.universe, s)); majSoir(); }
 
     stopSpeak();
-    if (state.speak && i < total) speak(s.pages[i].text);
+    if (state.speak && i < total) speak(texte(s.pages[i]));
   }
 
   els.pages.addEventListener('scroll', function () {
@@ -727,11 +851,64 @@
   els.rClose.onclick = function () { location.hash = '#/u/' + state.universe.id; };
 
   /* ---------------- lecture à voix haute ---------------- */
-  function speak(text) {
+  /* ---------------- la voix ----------------
+     La qualité vient d'abord du choix de la voix : les téléphones embarquent
+     souvent plusieurs voix françaises, dont une nettement meilleure que celle
+     par défaut. On la cherche une fois, on la garde.
+
+     Le reste est une affaire de rythme : on découpe le texte en phrases et on
+     les fait lire l'une après l'autre, avec une petite respiration entre les
+     deux. Une seule longue chaîne est lue d'un trait, sans ponctuation
+     audible — c'est ce qui donne l'impression de robot. */
+  var laVoix = null, voixCherchee = false;
+
+  function choisirVoix() {
+    if (!('speechSynthesis' in window)) return null;
+    var toutes = window.speechSynthesis.getVoices() || [];
+    if (!toutes.length) return null;
+    voixCherchee = true;
+    var prefixe = LANGUE === 'es' ? 'es' : 'fr';
+    var fr = toutes.filter(function (v) { return v.lang.toLowerCase().indexOf(prefixe) === 0; });
+    if (!fr.length) return null;
+    /* les voix « améliorées » et les voix installées sur l'appareil sonnent
+       mieux que les voix de secours ; les noms varient d'un système à l'autre */
+    var bonnes = /(enhanced|premium|améliorée|amelioree|mejorada|siri|natural|neural|google|thomas|amélie|amelie|audrey|marie|monica|mónica|paulina|jorge)/i;
+    fr.sort(function (a, b) {
+      var na = (bonnes.test(a.name) ? 2 : 0) + (a.localService ? 1 : 0);
+      var nb = (bonnes.test(b.name) ? 2 : 0) + (b.localService ? 1 : 0);
+      return nb - na;
+    });
+    return fr[0];
+  }
+
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = function () { laVoix = choisirVoix(); };
+  }
+
+  function phrases(texte) {
+    return texte
+      .replace(/…/g, '...')
+      .replace(/[«»]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .split(/(?<=[.!?])\s+/)
+      .map(function (p) { return p.trim(); })
+      .filter(Boolean);
+  }
+
+  function speak(texte) {
     if (!('speechSynthesis' in window)) return;
-    var u = new SpeechSynthesisUtterance(text.replace(/…/g, '...'));
-    u.lang = 'fr-FR'; u.rate = .92; u.pitch = 1.06;
-    window.speechSynthesis.speak(u);
+    if (!laVoix && !voixCherchee) laVoix = choisirVoix();
+    var lot = phrases(texte);
+    lot.forEach(function (p, i) {
+      var u = new SpeechSynthesisUtterance(p);
+      if (laVoix) u.voice = laVoix;
+      u.lang = (laVoix && laVoix.lang) || (LANGUE === 'es' ? 'es-ES' : 'fr-FR');
+      u.rate = 0.9;
+      u.pitch = 1.0;
+      /* la dernière phrase d'un paragraphe se pose un peu plus bas */
+      if (i === lot.length - 1) u.pitch = 0.97;
+      window.speechSynthesis.speak(u);
+    });
   }
   function stopSpeak() {
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
@@ -822,11 +999,11 @@
     var storyId = parts[2];
     if (state.universe !== u) renderUniverse(u, storyId);
     else if (storyId) {
-      var idx = u.stories.indexOf(findStory(u, storyId));
+      var idx = histoiresDe(u).indexOf(findStory(u, storyId));
       if (idx >= 0 && flow.current() !== idx) flow.go(idx);
     } else {
       // retour depuis le lecteur : on rafraîchit les pastilles « déjà lue »
-      u.stories.forEach(function (s, i) {
+      histoiresDe(u).forEach(function (s, i) {
         flow.setBadge(i, isRead(u, s) ? '✓' : s.pages.length + ' p.');
       });
       renderMeta(flow.current());
@@ -848,7 +1025,7 @@
   els.random.onclick = function () {
     var pool = [];
     UNIVERSES.forEach(function (u) {
-      u.stories.forEach(function (s) { pool.push([u.id, s.id]); });
+      histoiresDe(u).forEach(function (s) { pool.push([u.id, s.id]); });
     });
     var p = pool[Math.floor(Math.random() * pool.length)];
     location.hash = '#/u/' + p[0] + '/' + p[1];

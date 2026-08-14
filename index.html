@@ -61,9 +61,12 @@
   <!-- SOMMAIRE : les univers -->
   <section class="view" id="viewHome">
     <p class="hello" id="homeHello">Choisis un univers, puis fais défiler les histoires.</p>
-    <div class="filtres">
-      <span class="filtres-titre">Par thème</span>
+    <div class="filtres" id="filtres">
+      <button class="filtres-bouton" id="btnFiltres" aria-expanded="false">
+        <span>Filtrer par thème</span><i></i>
+      </button>
       <div class="chips" id="themeChips"></div>
+      <div class="chips langues" id="langues"></div>
     </div>
     <div class="uni-grid" id="uniGrid"></div>
     <p class="foot-note">Créé à la maison, pour l'heure du coucher.</p>

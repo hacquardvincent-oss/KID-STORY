@@ -81,6 +81,7 @@ var UNIVERSES = [
     name: 'Peppa Pig',
     tagline: 'Livia, Peppa et toute la famille Pig',
     emoji: '🐷',
+    vignette: { t: 'peppa', ds: .5, dy: 178 },
     c1: '#ff6fa5',
     c2: '#ffd166',
     cover: {
@@ -2241,6 +2242,7 @@ var UNIVERSES = [
     name: 'La Reine des Neiges',
     tagline: 'Livia, Elsa, Anna et Olaf',
     emoji: '❄️',
+    vignette: { t: 'elsa', ds: .5, dy: 178 },
     c1: '#5fb8f0',
     c2: '#b39ff5',
     cover: {
@@ -2514,6 +2516,189 @@ var UNIVERSES = [
             text: "Au retour, Livia a les yeux qui se ferment tout seuls. Elsa la borde et pose un flocon de glace sur sa table de nuit : un flocon qui ne fond jamais. « Bonne nuit, petite princesse. »"
           }
         ]
+      },
+
+      /* ---------- 3 : Papa à Arendelle ---------- */
+      {
+        id: 'papa-na-pas-froid',
+        title: 'Papa n\'a pas froid',
+        title_es: 'Papá no tiene frío',
+        subtitle: 'Dire qu\'on a froid, c\'est déjà se réchauffer',
+        subtitle_es: 'Decir que tienes frío ya es empezar a calentarte',
+        tag: 'Nuit',
+        themes: ['Famille', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'snow',
+          items: [
+            { t: 'papa', x: 250, y: 520, s: 1 },
+            { t: 'livia', x: 460, y: 522, s: 1.05 },
+            { t: 'elsa', x: 640, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'papa', x: 300, y: 520, s: 1.05 },
+                { t: 'livia', x: 560, y: 522, s: 1.1 }
+              ],
+              sfx: [{ t: 'MOI, JAMAIS FROID !', x: 430, y: 168, fs: 26, rot: -4, color: '#4a7fc1' }]
+            },
+            text: "Papa était venu à Arendelle en tee-shirt. « Moi, je n'ai jamais froid », dit-il en montrant ses bras. Livia regarda la neige, puis les bras de Papa, et ne dit rien.",
+            es: "Papá había venido a Arendelle en camiseta. «Yo nunca tengo frío», dijo enseñando los brazos. Livia miró la nieve, luego los brazos de papá, y no dijo nada."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'elsa', x: 280, y: 516, s: 1.05, pose: 'magic' },
+                { t: 'papa', x: 540, y: 520, s: 1.05, mood: 'wow' }
+              ],
+              neige: 26,
+              sfx: [{ t: 'FRIIIISSS !', x: 420, y: 164, fs: 34, rot: -7, color: '#7fd8f0' }]
+            },
+            text: "Elsa leva une main pour dire bonjour. Il se mit à neiger un peu plus fort, comme ça, sans prévenir. Papa fit un sourire qui tremblait légèrement aux commissures.",
+            es: "Elsa levantó una mano para saludar. Empezó a nevar un poco más fuerte, así, sin avisar. Papá sonrió con una sonrisa que temblaba un poquito en las esquinas."
+          },
+          {
+            scene: {
+              bg: 'snow', neige: 20,
+              items: [
+                { t: 'livia', x: 300, y: 522, s: 1.1, pose: 'point' },
+                { t: 'papa', x: 560, y: 520, s: 1.05, mood: 'sad' }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 320, t: 'Tu as les lèvres toutes bleues.', tx: 300, ty: 240 }]
+            },
+            text: "« Tu as les lèvres toutes bleues », dit Livia. Papa répondit que c'était la lumière. La lumière n'y était pour rien : il claquait des dents depuis une bonne minute.",
+            es: "«Tienes los labios azules», dijo Livia. Papá contestó que era la luz. La luz no tenía nada que ver: le castañeteaban los dientes desde hacía un buen rato."
+          },
+          {
+            scene: {
+              bg: 'snow', neige: 18,
+              items: [
+                { t: 'anna', x: 260, y: 518, s: 1.05, pose: 'hold' },
+                { t: 'papa', x: 520, y: 520, s: 1.05, mood: 'sad' },
+                { t: 'livia', x: 700, y: 522, s: 1 }
+              ],
+              sfx: [{ t: 'BRRRRR…', x: 420, y: 164, fs: 32, rot: -6, color: '#bfe8f7' }]
+            },
+            text: "Anna arriva avec une grosse couverture. Elle ne dit pas « je te l'avais bien dit ». Elle la posa simplement sur les épaules de Papa, et attendit.",
+            es: "Anna llegó con una manta muy gorda. No dijo «te lo dije». Simplemente se la puso sobre los hombros a papá, y esperó."
+          },
+          {
+            scene: {
+              bg: 'snow', neige: 14,
+              items: [
+                { t: 'papa', x: 300, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 560, y: 522, s: 1.1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 24, w: 340, t: 'Bon. J\'ai un peu froid.', tx: 305, ty: 240 }]
+            },
+            text: "« Bon », dit Papa. « J'ai un peu froid. » Ce n'était que quatre mots, et il fallut pourtant qu'il les prépare longtemps dans sa tête avant de les faire sortir.",
+            es: "«Bueno», dijo papá. «Tengo un poco de frío.» Solo eran cinco palabras, y sin embargo tuvo que prepararlas mucho rato en la cabeza antes de dejarlas salir."
+          },
+          {
+            scene: {
+              bg: 'snow', time: 'sunset',
+              items: [
+                { t: 'elsa', x: 240, y: 516, s: 1 },
+                { t: 'papa', x: 450, y: 520, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 660, y: 522, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Ils rentrèrent boire un chocolat tous ensemble. Livia remarqua que Papa, sous la couverture, avait retrouvé sa vraie couleur. Et qu'il souriait pour de bon, cette fois.",
+            es: "Volvieron todos juntos a tomar un chocolate. Livia notó que papá, debajo de la manta, había recuperado su color de verdad. Y que sonreía en serio, esta vez."
+          }
+        ]
+      },
+
+      /* ---------- 4 : la règle du lac ---------- */
+      {
+        id: 'glace-qui-craque',
+        title: 'La glace qui craque',
+        title_es: 'El hielo que cruje',
+        subtitle: 'Une règle qu\'on ne comprend qu\'après',
+        subtitle_es: 'Una regla que solo se entiende después',
+        tag: 'Nuit',
+        themes: ['Règles', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'snow',
+          items: [
+            { t: 'elsa', x: 280, y: 516, s: 1.05, pose: 'point' },
+            { t: 'livia', x: 520, y: 522, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'elsa', x: 280, y: 516, s: 1.1, pose: 'point' },
+                { t: 'livia', x: 560, y: 522, s: 1.1 }
+              ],
+              bubbles: [{ x: 60, y: 24, w: 330, t: 'On ne marche jamais sur le lac.', tx: 290, ty: 240 }]
+            },
+            text: "« On ne marche jamais sur le lac », dit Elsa. Livia demanda pourquoi. Elsa répondit : « Parce que la glace ment. » Ce n'était pas une réponse très claire.",
+            es: "«Nunca se camina sobre el lago», dijo Elsa. Livia preguntó por qué. Elsa contestó: «Porque el hielo miente.» No era una respuesta muy clara."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [{ t: 'livia', x: 400, y: 522, s: 1.2 }],
+              sfx: [{ t: 'ELLE A L\'AIR SOLIDE…', x: 400, y: 168, fs: 26, rot: -4, color: '#6d5847' }]
+            },
+            text: "Le lendemain, Livia retourna voir le lac toute seule. La glace était blanche, lisse et parfaitement immobile. Elle avait vraiment l'air solide. C'est bien ça, le problème.",
+            es: "Al día siguiente, Livia volvió al lago sola. El hielo estaba blanco, liso y completamente quieto. Parecía de verdad muy sólido. Ese es justamente el problema."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [{ t: 'livia', x: 400, y: 522, s: 1.2, mood: 'wow' }],
+              sfx: [{ t: 'CRAAAC.', x: 400, y: 164, fs: 40, rot: -8, color: '#4a7fc1' }]
+            },
+            text: "Elle posa un pied. Puis deux. Au troisième pas, quelque chose craqua sous elle, un bruit sec et très net, qui n'avait rien d'un bruit de jeu.",
+            es: "Puso un pie. Luego dos. Al tercer paso, algo crujió debajo de ella, un ruido seco y muy claro, que no tenía nada de ruido de juego."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'livia', x: 320, y: 522, s: 1.15, mood: 'sad' },
+                { t: 'elsa', x: 580, y: 516, s: 1.1, pose: 'point' }
+              ],
+              sfx: [{ t: 'NE BOUGE PLUS !', x: 430, y: 164, fs: 30, rot: -6, color: '#e0453c' }]
+            },
+            text: "« Ne bouge plus ! » cria Elsa depuis la rive. Livia ne bougea plus du tout. Elsa tendit la main, doucement, et la glace se referma sous ses pieds comme on recoud un tissu.",
+            es: "«¡No te muevas!», gritó Elsa desde la orilla. Livia no se movió nada. Elsa extendió la mano, despacito, y el hielo se cerró bajo sus pies como quien cose una tela."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'elsa', x: 300, y: 500, s: 1.05, pose: 'sit' },
+                { t: 'livia', x: 560, y: 502, s: 1.1, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'La glace ment : elle est belle et elle est mince.', tx: 305, ty: 236 }]
+            },
+            text: "Elles s'assirent au bord. « La glace ment », répéta Elsa. « Elle est belle, elle est blanche, et par endroits elle est mince comme une feuille. » Cette fois, Livia comprit.",
+            es: "Se sentaron en la orilla. «El hielo miente», repitió Elsa. «Es bonito, es blanco, y en algunos sitios es fino como una hoja.» Esta vez, Livia lo entendió."
+          },
+          {
+            scene: {
+              bg: 'snow', time: 'sunset',
+              items: [
+                { t: 'elsa', x: 280, y: 516, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 500, y: 522, s: 1.05, pose: 'hold' },
+                { t: 'olaf', x: 690, y: 520, s: 1 }
+              ]
+            },
+            text: "Certaines règles s'expliquent, et on les comprend tout de suite. D'autres attendent qu'on ait entendu le craquement. Livia n'est jamais retournée sur le lac.",
+            es: "Algunas reglas se explican y se entienden enseguida. Otras esperan a que hayas oído el crujido. Livia nunca volvió a pisar el lago."
+          }
+        ]
       }
     ]
   },
@@ -2526,6 +2711,7 @@ var UNIVERSES = [
     name: 'Bluey',
     tagline: 'Livia, Bluey, Bingo et toute la famille Heeler',
     emoji: '🐶',
+    vignette: { t: 'bluey', ds: .48, dy: 176 },
     c1: '#5b9bd5',
     c2: '#f0a63c',
     cover: {
@@ -3998,6 +4184,7 @@ var UNIVERSES = [
     name: 'Les Monsieur Madame',
     tagline: 'Livia et les petits bonshommes ronds',
     emoji: '🟡',
+    vignette: { t: 'bonheur', ds: .46, dy: 176 },
     c1: '#f7c518',
     c2: '#5fb8d8',
     cover: {
@@ -4709,6 +4896,7 @@ var UNIVERSES = [
     name: 'Le grand mélange',
     tagline: 'Quand tous les amis de Livia se retrouvent',
     emoji: '🌈',
+    vignette: { t: 'olaf', ds: .62, dy: 180 },
     c1: '#7ac6a8',
     c2: '#f2a0c2',
     cover: {
@@ -5263,6 +5451,7 @@ var UNIVERSES = [
     name: 'Les copines de Livia',
     tagline: 'Roxane, Juliette, Isadora — et le petit frère',
     emoji: '💛',
+    vignette: { t: 'roxane', ds: .5, dy: 178 },
     c1: '#f2a0c2',
     c2: '#7ac6a8',
     cover: {
@@ -6405,6 +6594,189 @@ var UNIVERSES = [
               sfx: [{ t: 'DRIIING !', x: 420, y: 150, fs: 30, rot: -6, color: '#f7c518' }]
             },
             text: "Le dimanche soir, le téléphone sonna. C'était Isadora, qui voulait décrire sa nouvelle chambre. Habiter loin, ce n'est pas la même chose que disparaître."
+          }
+        ]
+      },
+
+      /* ---------- 14 : Maman est en retard ---------- */
+      {
+        id: 'maman-en-retard',
+        title: 'Maman est en retard',
+        title_es: 'Mamá llega tarde',
+        subtitle: 'Attendre quand on ne sait pas combien de temps',
+        subtitle_es: 'Esperar sin saber cuánto tiempo',
+        tag: 'Copines',
+        themes: ['Famille', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'livia', x: 320, y: 524, s: 1.1, mood: 'sad' },
+            { t: 'maman', x: 560, y: 522, s: 1.2 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 300, y: 524, s: 1.1 },
+                { t: 'roxane', x: 540, y: 522, s: 1.05, pose: 'wave' }
+              ],
+              sfx: [{ t: 'À DEMAIN !', x: 430, y: 166, fs: 28, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "À la sortie de l'école, les enfants partent les uns après les autres. Roxane partit en courant vers son papa. Puis Juliette. Puis tous les autres.",
+            es: "A la salida del colegio, los niños se van uno detrás de otro. Roxane salió corriendo hacia su papá. Luego Juliette. Luego todos los demás."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'livia', x: 400, y: 524, s: 1.2, mood: 'sad' }],
+              sfx: [{ t: '. . .', x: 400, y: 172, fs: 34, rot: 0, color: '#8a7768' }]
+            },
+            text: "Livia resta seule devant le portail. Le trottoir était vide. Elle regarda le bout de la rue, très fort, comme si regarder pouvait faire apparaître une voiture.",
+            es: "Livia se quedó sola delante de la verja. La acera estaba vacía. Miró el final de la calle, muy fuerte, como si mirar pudiera hacer aparecer un coche."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'livia', x: 400, y: 500, s: 1.2, pose: 'sit', mood: 'sad' }],
+              sfx: [{ t: 'ET SI ELLE M\'AVAIT OUBLIÉE ?', x: 400, y: 166, fs: 22, rot: -4, color: '#6d5847' }]
+            },
+            text: "Dans sa tête, une petite phrase commença à tourner : « et si elle m'avait oubliée ? » Elle savait que c'était idiot. Ça tournait quand même, de plus en plus vite.",
+            es: "En su cabeza empezó a dar vueltas una frasecita: «¿y si se ha olvidado de mí?». Sabía que era una tontería. Pero daba vueltas igual, cada vez más deprisa."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'mamie', x: 300, y: 508, s: 1.2, pose: 'sit' },
+                { t: 'livia', x: 560, y: 500, s: 1.1, pose: 'sit', mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'On compte les voitures rouges en attendant ?', tx: 305, ty: 236 }]
+            },
+            text: "La maîtresse vint s'asseoir à côté d'elle. Elle ne dit pas « ne t'inquiète pas ». Elle dit : « On compte les voitures rouges en attendant ? » Livia en compta quatre.",
+            es: "La maestra se sentó a su lado. No dijo «no te preocupes». Dijo: «¿Contamos los coches rojos mientras esperamos?» Livia contó cuatro."
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'maman', x: 300, y: 522, s: 1.25, pose: 'armsup', mood: 'wow' },
+                { t: 'livia', x: 570, y: 524, s: 1.1, pose: 'armsup' }
+              ],
+              sfx: [{ t: 'ME VOILÀ !', x: 430, y: 164, fs: 32, rot: -6, color: '#d4622c' }]
+            },
+            text: "À la cinquième voiture rouge, Maman arriva en courant, décoiffée, avec des excuses plein la bouche. Livia lui sauta dessus sans écouter un seul mot de ses excuses.",
+            es: "En el quinto coche rojo, mamá llegó corriendo, despeinada, con la boca llena de disculpas. Livia se le echó encima sin escuchar ni una sola de sus disculpas."
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'maman', x: 320, y: 522, s: 1.25, pose: 'hold' },
+                { t: 'livia', x: 570, y: 524, s: 1.1, pose: 'hold' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 340, t: 'Je viens toujours. Même en retard.', tx: 320, ty: 236 }]
+            },
+            text: "Sur le chemin, Maman dit : « Je viens toujours. Même en retard, je viens toujours. » Livia rangea cette phrase quelque part, et la ressortit chaque fois qu'il le fallut.",
+            es: "De camino, mamá dijo: «Yo siempre vengo. Aunque llegue tarde, siempre vengo.» Livia guardó esa frase en algún sitio, y la sacó cada vez que hizo falta."
+          }
+        ]
+      },
+
+      /* ---------- 15 : la cuisine de Papa ---------- */
+      {
+        id: 'papa-cuisine',
+        title: 'Le gâteau de Papa',
+        title_es: 'El pastel de papá',
+        subtitle: 'À quatre mains, c\'est plus salissant et plus rigolo',
+        subtitle_es: 'A cuatro manos, se mancha más y es más divertido',
+        tag: 'Copines',
+        themes: ['Famille', 'Partager', 'Bêtises'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'papa', x: 280, y: 508, s: 1 },
+            { t: 'livia', x: 500, y: 510, s: 1.1 },
+            { t: 'roxane', x: 680, y: 508, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'papa', x: 300, y: 508, s: 1.05, pose: 'point' },
+                { t: 'livia', x: 560, y: 510, s: 1.1 }
+              ],
+              sfx: [{ t: 'ON FAIT UN GÂTEAU !', x: 430, y: 146, fs: 26, rot: -4, color: '#f2803d' }]
+            },
+            text: "« On fait un gâteau », annonça Papa en remontant ses manches. Sur son bras, le tatouage se plissa. Livia sortit le grand saladier, celui des grandes occasions.",
+            es: "«Vamos a hacer un pastel», anunció papá subiéndose las mangas. En su brazo, el tatuaje se arrugó. Livia sacó el bol grande, el de las grandes ocasiones."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'papa', x: 260, y: 508, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 480, y: 510, s: 1.1, pose: 'hold' },
+                { t: 'roxane', x: 690, y: 508, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'MOI ! MOI !', x: 430, y: 146, fs: 30, rot: -5, color: '#e0453c' }]
+            },
+            text: "Roxane était venue jouer. Deux enfants, un saladier, une cuillère en bois. « Moi ! Moi ! » dirent les deux en même temps, ce qui n'aide jamais personne.",
+            es: "Roxane había venido a jugar. Dos niñas, un bol, una cuchara de madera. «¡Yo! ¡Yo!», dijeron las dos a la vez, lo cual nunca ayuda a nadie."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'papa', x: 300, y: 508, s: 1.05, pose: 'shrug' },
+                { t: 'livia', x: 570, y: 510, s: 1.1, mood: 'sad' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: 'Il y a quatre choses à faire. Deux chacune.', tx: 305, ty: 236 }]
+            },
+            text: "Papa posa la cuillère. « Il y a quatre choses à faire », dit-il. « Casser, verser, mélanger, lécher le plat. Deux chacune. Vous choisissez dans quel ordre. »",
+            es: "Papá dejó la cuchara. «Hay cuatro cosas que hacer», dijo. «Romper, verter, mezclar y rebañar el bol. Dos cada una. Vosotras elegís en qué orden.»"
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 510, s: 1.1, mood: 'wow' },
+                { t: 'roxane', x: 560, y: 508, s: 1.05, mood: 'wow' }
+              ],
+              sfx: [{ t: 'FLOTCH !', x: 430, y: 146, fs: 34, rot: -8, color: '#f7c518' }]
+            },
+            text: "Livia cassa les œufs. Un morceau de coquille tomba dedans. Roxane versa la farine trop vite, et un nuage blanc monta jusqu'au plafond. Personne ne se fâcha.",
+            es: "Livia rompió los huevos. Un trocito de cáscara se cayó dentro. Roxane echó la harina demasiado rápido, y una nube blanca subió hasta el techo. Nadie se enfadó."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'papa', x: 280, y: 508, s: 1.05 },
+                { t: 'livia', x: 500, y: 510, s: 1.1, pose: 'hold' },
+                { t: 'roxane', x: 690, y: 508, s: 1.05, pose: 'hold' }
+              ],
+              sfx: [{ t: 'MIAM.', x: 430, y: 146, fs: 32, rot: -6, color: '#8a5a3b' }]
+            },
+            text: "Elles léchèrent le plat toutes les deux, chacune d'un côté, ce qui est la meilleure partie et tout le monde le sait. Papa fit semblant de ne pas regarder.",
+            es: "Rebañaron el bol las dos, cada una por un lado, que es la mejor parte y todo el mundo lo sabe. Papá hizo como que no miraba."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'papa', x: 280, y: 508, s: 1.05, pose: 'hold' },
+                { t: 'livia', x: 500, y: 510, s: 1.1, pose: 'hold' },
+                { t: 'roxane', x: 690, y: 508, s: 1.05, pose: 'hold' }
+              ]
+            },
+            text: "Le gâteau était un peu tordu et il craquait sous la dent, à cause de la coquille. Il fut mangé en entier. Personne n'a jamais réclamé de gâteau plus droit.",
+            es: "El pastel salió un poco torcido y crujía al morderlo, por la cáscara. Se lo comieron entero. Nadie ha pedido nunca un pastel más recto."
           }
         ]
       }

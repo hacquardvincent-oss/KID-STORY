@@ -262,6 +262,19 @@
         front: ''
       };
     }
+    /* la même queue de cheval, mais ébouriffée : quelques mèches s'échappent */
+    if (style === 'queuebataille') {
+      return {
+        back: U([cap,
+          '<path d="M 46,-78 C 86,-78 100,-34 84,-4 C 76,12 58,10 56,-6 C 52,-38 38,-64 46,-78 Z" fill="%F%" %S%/>',
+          '<circle cx="72" cy="-52" r="15" fill="%F%" %S%/>',
+          '<circle cx="86" cy="-24" r="12" fill="%F%" %S%/>',
+          '<circle cx="-44" cy="-88" r="11" fill="%F%" %S%/>',
+          '<circle cx="18" cy="-108" r="10" fill="%F%" %S%/>'], hair, 8) +
+          '<circle cx="50" cy="-66" r="8.5" fill="' + d + '" stroke="' + INK + '" stroke-width="3.5"/>',
+        front: line('M -30,-92 q 12,-10 24,-3 M 6,-100 q 12,-8 22,2', d, 3.5)
+      };
+    }
     /* cheveux lisses tirés en arrière, noués en queue de cheval */
     if (style === 'queue' || style === 'queuehaute') {
       var haute = style === 'queuehaute';
@@ -410,6 +423,105 @@
     }));
     if (o.hat) t += g('translate(0,-130)', sunHat(o.hat));
     return s + (sit ? g('translate(-6,42)', t) : t);
+  }
+
+  /* ---------- un grand adulte : plus haut, plus large, barbu ---------- */
+  function hommeTete(o) {
+    var skin = o.skin, cheveux = o.cheveux, mood = o.mood || 'happy';
+    var s = U(['<path d="M -44,-58 C -46,-96 -22,-108 0,-108 C 22,-108 46,-96 44,-58 Z" fill="%F%" %S%/>'], cheveux, 8);
+    s += U(['<ellipse cx="0" cy="-50" rx="44" ry="46" fill="%F%" %S%/>'], skin, 9);
+    /* la barbe : elle enveloppe le bas du visage */
+    s += U(['<path d="M -44,-56 C -46,-16 -26,4 0,4 C 26,4 46,-16 44,-56 C 40,-30 24,-22 0,-22 C -24,-22 -40,-30 -44,-56 Z" fill="%F%" %S%/>'], cheveux, 8);
+    s += U(['<path d="M -44,-60 C -46,-98 -22,-110 0,-110 C 22,-110 46,-98 44,-60 C 34,-80 18,-88 0,-86 C -18,-92 -36,-80 -44,-60 Z" fill="%F%" %S%/>'], cheveux, 8);
+    if (mood === 'sleep') {
+      s += line('M -26,-52 q 10,9 20,0', INK, 4.5) + line('M 6,-52 q 10,9 20,0', INK, 4.5);
+    } else {
+      var r = mood === 'wow' ? 8 : 7;
+      s += '<circle cx="-17" cy="-54" r="' + r + '" fill="' + INK + '"/>' +
+        '<circle cx="17" cy="-54" r="' + r + '" fill="' + INK + '"/>' +
+        '<circle cx="-14" cy="-57" r="2.5" fill="#fff"/><circle cx="20" cy="-57" r="2.5" fill="#fff"/>';
+      s += line('M -32,-72 L -8,-68 M 32,-72 L 8,-68', shade(cheveux, -0.2), 5);
+    }
+    if (mood === 'wow') s += '<ellipse cx="0" cy="-26" rx="9" ry="11" fill="#b8355c" stroke="' + INK + '" stroke-width="3.5"/>';
+    else if (mood === 'sad') s += line('M -14,-22 q 14,-11 28,0', INK, 4.5);
+    else s += line('M -16,-30 q 16,17 32,0', INK, 4.5);
+    if (o.lunettes) {
+      s += '<circle cx="-17" cy="-54" r="15" fill="none" stroke="' + INK + '" stroke-width="4"/>' +
+        '<circle cx="17" cy="-54" r="15" fill="none" stroke="' + INK + '" stroke-width="4"/>' +
+        line('M -2,-54 L 2,-54', INK, 4);
+    }
+    return s;
+  }
+
+  function homme(o) {
+    o = o || {};
+    var skin = o.skin || '#f0c49a';
+    var cheveux = o.cheveux || '#c9622f';
+    var haut = o.haut || '#4a7fc1';
+    var bas = o.bas || '#3f5b86';
+    var pose = o.pose || 'stand';
+    var assis = pose === 'sit';
+    var s = '';
+
+    /* jambes : un pantalon, plus large qu'une jambe d'enfant */
+    if (assis) {
+      s += limb('M -8,-30 C 24,-30 50,-28 58,-8 C 62,4 63,18 63,30', bas, 20) +
+        limb('M 8,-20 C 40,-20 66,-18 74,2 C 78,14 79,26 79,38', bas, 20) +
+        '<ellipse cx="68" cy="34" rx="19" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="84" cy="42" rx="19" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>';
+    } else if (pose === 'run') {
+      s += limb('M -14,-74 C -28,-52 -40,-30 -42,-14', bas, 20) + limb('M 14,-74 C 26,-54 30,-32 28,-14', bas, 20) +
+        '<ellipse cx="-46" cy="-10" rx="20" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="32" cy="-10" rx="20" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>';
+    } else {
+      s += limb('M -17,-76 L -18,-16', bas, 21) + limb('M 17,-76 L 18,-16', bas, 21) +
+        '<ellipse cx="-20" cy="-11" rx="20" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>' +
+        '<ellipse cx="20" cy="-11" rx="20" ry="11" fill="' + SHOE + '" stroke="' + INK + '" stroke-width="4"/>';
+    }
+
+    var t = '';
+    /* bras : c'est le gauche (à droite de l'image quand on lui fait face)
+       qui portera le tatouage */
+    var bg, bd, mg, md;
+    if (pose === 'armsup' || pose === 'jump') {
+      bg = 'M -36,-168 C -66,-186 -92,-212 -98,-238'; bd = 'M 36,-168 C 66,-186 92,-212 98,-238';
+      mg = [-102, -244]; md = [102, -244];
+    } else if (pose === 'wave') {
+      bg = 'M -36,-166 C -60,-156 -74,-142 -76,-126'; bd = 'M 36,-168 C 68,-188 94,-216 100,-242';
+      mg = [-80, -122]; md = [104, -248];
+    } else if (pose === 'point') {
+      bg = 'M -36,-166 C -60,-154 -72,-138 -74,-122'; bd = 'M 36,-168 C 70,-172 98,-180 122,-190';
+      mg = [-78, -118]; md = [128, -192];
+    } else if (pose === 'hold') {
+      bg = 'M -36,-164 C -58,-158 -72,-148 -72,-132'; bd = 'M 36,-164 C 58,-158 72,-148 72,-132';
+      mg = [-76, -128]; md = [76, -128];
+    } else if (pose === 'shrug') {
+      bg = 'M -36,-170 C -62,-178 -80,-170 -86,-156'; bd = 'M 36,-170 C 62,-178 80,-170 86,-156';
+      mg = [-90, -152]; md = [90, -152];
+    } else {
+      bg = 'M -36,-166 C -62,-156 -76,-140 -78,-124'; bd = 'M 36,-166 C 62,-156 76,-140 78,-124';
+      mg = [-82, -120]; md = [82, -120];
+    }
+    t += limb(bg, skin, 20) + limb(bd, skin, 20);
+    t += '<circle cx="' + mg[0] + '" cy="' + mg[1] + '" r="14" fill="' + skin + '" stroke="' + INK + '" stroke-width="4.5"/>';
+    t += '<circle cx="' + md[0] + '" cy="' + md[1] + '" r="14" fill="' + skin + '" stroke="' + INK + '" stroke-width="4.5"/>';
+
+    /* le torse : large, un tee-shirt sans manches pour laisser voir le bras */
+    t += U(['<path d="M -40,-182 C -46,-150 -48,-110 -44,-76 L 44,-76 C 48,-110 46,-150 40,-182 Z" fill="%F%" %S%/>'], haut, 9);
+    if (o.trim) t += line('M -46,-92 L 46,-92', o.trim, 5);
+    t += line('M -24,-180 q 24,18 48,0', shade(haut, -0.25), 4.5);
+
+    /* le tatouage, sur son bras gauche — donc à droite quand on le regarde */
+    if (o.tatouage) {
+      var c = o.tatouage;
+      t += g('translate(60,-142) rotate(12) scale(1.15)',
+        line('M -10,-14 C 0,-26 16,-19 16,-6 C 16,7 2,16 -10,25 C -22,16 -36,7 -36,-6 C -36,-19 -20,-26 -10,-14 Z', c, 5.5) +
+        line('M -30,30 q 20,10 40,0 M -26,38 q 16,8 32,0', c, 4));
+    }
+
+    t += g('translate(0,-176)', hommeTete({ skin: skin, cheveux: cheveux, mood: o.mood, lunettes: o.lunettes }));
+    if (o.hat) t += g('translate(0,-176) scale(1.1)', sunHat(o.hat));
+    return s + (assis ? g('translate(-8,52)', t) : t);
   }
 
   /* ---------- le petit frère : un bébé, donc une grosse tête ---------- */
@@ -1648,6 +1760,18 @@
         pose: o.pose, mood: o.mood, hat: o.hat, trim: '#e6f6ea'
       });
     },
+    papa: function (o) {
+      return homme({
+        skin: '#f0c49a', cheveux: '#c9622f', haut: o.haut || '#4a7fc1', bas: '#3f5b86',
+        tatouage: '#2f4f7a', pose: o.pose, mood: o.mood, hat: o.hat, trim: '#8fb8e8'
+      });
+    },
+    maman: function (o) {
+      return girl({
+        skin: '#f7d3b0', hair: '#d4622c', dress: o.dress || '#3f8a6b', hairstyle: 'queuebataille',
+        pose: o.pose, mood: o.mood, hat: o.hat, trim: '#bfe8cf'
+      });
+    },
     mamie: function (o) {
       return girl({
         skin: '#f0d7bd', hair: '#e4e2dc', dress: o.dress || '#a98cf0', hairstyle: 'carre',
@@ -1745,7 +1869,7 @@
     var bgFn = BG[s.bg] || BG.plain;
 
     /* le dessin : décor, personnages, objets */
-    var art = bgFn(s);
+    var art = opts.contour ? '' : bgFn(s);
     if (s.neige) art += flocons(s.neige === true ? 26 : s.neige);
     art += renderItems(s.back);
     art += renderItems(s.items);
@@ -1769,8 +1893,23 @@
       '<feDisplacementMap in="SourceGraphic" in2="t" scale="3" xChannelSelector="R" yChannelSelector="G"/>' +
       '</filter></defs>';
 
+    /* Le mode « à colorier » : on vide toutes les couleurs pour ne garder que
+       le trait. Chaque forme devient une zone blanche cliquable ; l'encre, les
+       yeux et les traits de détail restent noirs. */
+    if (opts.contour) {
+      art = art.replace(/fill="(?!none)[^"]*"/g, function (m) {
+        return m.indexOf(INK) > 0 ? m : 'fill="#fffdf6" class="z"';
+      }).replace(/stroke="(?!none)[^"]*"/g, function (m) {
+        /* un membre est un trait épais posé sur un trait d'encre plus épais :
+           en le blanchissant, il ne reste que les deux bords — donc un contour */
+        return m.indexOf(INK) > 0 ? m : 'stroke="#fffdf6" class="zs"';
+      });
+      art = '<rect x="0" y="0" width="' + VW + '" height="' + VH + '" fill="#fffdf6"/>' + art;
+    }
+
     /* voile chaud : tout est imprimé sur le même papier crème */
-    var wash = '<rect x="0" y="0" width="' + VW + '" height="' + VH +
+    var wash = opts.contour ? '' :
+      '<rect x="0" y="0" width="' + VW + '" height="' + VH +
       '" fill="#e0c9a0" opacity=".10" style="mix-blend-mode:multiply"/>';
 
     /* en recadrage, on garde le bas de l'image : c'est là que se tiennent
@@ -1780,9 +1919,11 @@
        agrandit le dessin dans le jeu des différences */
     var c = opts.cadre;
     var vb = c ? (c.x + ' ' + c.y + ' ' + c.w + ' ' + c.h) : ('0 0 ' + VW + ' ' + VH);
+    var groupe = opts.contour ? '<g>' + art + '</g>'
+      : '<g filter="url(#pl' + id + ')">' + art + '</g>';
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + vb +
-      '" preserveAspectRatio="' + par + '" role="img">' + defs +
-      '<g filter="url(#pl' + id + ')">' + art + '</g>' + wash + letters + '</svg>';
+      '" preserveAspectRatio="' + par + '" role="img">' + (opts.contour ? '' : defs) +
+      groupe + wash + letters + '</svg>';
   }
 
   /* une vignette : un seul élément, sans décor, pour les jeux */

@@ -208,6 +208,25 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .tab:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
 .tab.is-active { background: var(--tc2, var(--jaune)); font-weight: 600; }
 
+/* un onglet, c'est d'abord un visage */
+.tab-img {
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 6px 8px 5px; border-radius: 18px; width: 76px;
+}
+.tab-rond {
+  width: 52px; height: 52px; border-radius: 50%; overflow: hidden;
+  background: var(--tab-c, var(--paper-2));
+  border: 2.5px solid var(--ink);
+  display: grid; place-items: center;
+}
+.tab-rond svg { display: block; width: 100%; height: 100%; }
+.tab-tous { font-size: 24px; color: var(--ink); background: var(--jaune); }
+.tab-mot {
+  font-size: 10.5px; font-weight: 600; line-height: 1.1; text-align: center;
+  max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.tab-img.is-active .tab-rond { box-shadow: 0 0 0 3px var(--jaune); }
+
 /* ---------------- LA UNE ---------------- */
 .cover {
   height: 100vh; height: 100svh;
@@ -314,14 +333,28 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .hello { margin: 2px 2px 14px; color: var(--ink-soft); font-size: 15px; }
 .hello b { color: var(--ink); }
 
-/* les filtres par thème : ils traversent les univers */
-.filtres { margin: 0 0 16px; }
-.filtres-titre {
-  display: block; margin: 0 2px 7px;
-  font-size: 12px; font-weight: 600; letter-spacing: 1.6px;
-  text-transform: uppercase; color: var(--ink-soft);
+/* les filtres par thème : rangés derrière un bouton discret, parce qu'ils
+   servent à l'adulte, pas à l'enfant */
+.filtres { margin: 0 0 14px; }
+.filtres-bouton {
+  display: flex; align-items: center; gap: 6px;
+  font-family: inherit; cursor: pointer; background: none; border: 0; padding: 2px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--ink-soft); opacity: .75;
 }
-.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.filtres-bouton i {
+  width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent;
+  border-top: 6px solid currentColor; transition: transform .18s;
+}
+.filtres.ouvert .filtres-bouton i { transform: rotate(180deg); }
+.chips { display: none; flex-wrap: wrap; gap: 7px; margin-top: 9px; }
+.filtres.ouvert .chips { display: flex; }
+.langues { align-items: center; }
+.langue-titre {
+  font-size: 12px; font-weight: 600; letter-spacing: 1.4px;
+  text-transform: uppercase; color: var(--ink-soft); opacity: .75; margin-right: 2px;
+}
+.chip[disabled] { opacity: .4; }
 .chip {
   font-family: inherit; cursor: pointer; white-space: nowrap;
   font-size: 13.5px; font-weight: 500; padding: 6px 13px;
@@ -590,6 +623,61 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 .chiffre.secoue { animation: secoue .4s; }
 
 /* écrire */
+/* les familles de jeux */
+.jeu-famille {
+  grid-column: 1 / -1; margin: 14px 2px 2px;
+  font-size: 15px; font-weight: 600; letter-spacing: .4px; color: var(--ink-soft);
+  display: flex; align-items: center; gap: 7px;
+}
+.jeu-famille span { font-size: 19px; }
+.jeu-famille:first-child { margin-top: 0; }
+
+/* le coloriage */
+.colo-feuille {
+  flex: 1 1 auto; min-height: 0; overflow: hidden;
+  background: #fffdf6; border: 3px solid var(--ink);
+  box-shadow: 3px 4px 0 rgba(58, 42, 34, .18);
+}
+.colo-feuille svg { display: block; width: 100%; height: 100%; }
+.colo-feuille .z, .colo-feuille .zs { cursor: pointer; }
+.colo-palette {
+  flex: 0 0 auto; display: flex; flex-wrap: wrap; gap: 7px;
+  justify-content: center; margin: 9px 0 0;
+}
+.colo-pot {
+  width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+  border: 3px solid var(--ink); box-shadow: 0 2px 0 var(--ink);
+}
+.colo-pot.choisi { box-shadow: 0 0 0 4px var(--jaune), 0 2px 0 var(--ink); transform: scale(1.08); }
+.colo-actions { flex: 0 0 auto; display: flex; gap: 10px; justify-content: center; margin-top: 9px; }
+
+/* le puzzle */
+.puz {
+  flex: 1 1 auto; min-height: 0; display: grid; gap: 6px; align-content: center;
+}
+.puz-piece {
+  position: relative; cursor: pointer; overflow: hidden;
+  border: 3px solid var(--ink); border-radius: 8px; background: var(--page);
+  box-shadow: 0 3px 0 rgba(58, 42, 34, .25);
+  transition: transform .12s;
+}
+.puz-piece svg { display: block; width: 100%; height: 100%; }
+.puz-piece.choisi { box-shadow: 0 0 0 4px var(--jaune), 0 3px 0 rgba(58, 42, 34, .25); transform: scale(.96); }
+.puz-piece.bonne { border-color: #4f8a3d; }
+
+/* le labyrinthe */
+.laby {
+  flex: 1 1 auto; min-height: 0; display: grid; place-items: center;
+  touch-action: none;
+}
+/* « > » indispensable : le héros est un dessin imbriqué dans le labyrinthe,
+   une règle trop large lui donnerait toute la surface */
+.laby > svg { display: block; width: 100%; height: 100%; }
+.laby-trait {
+  fill: none; stroke: var(--rouge); stroke-width: 22; opacity: .5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
 /* un jeu à l'écran entier : plus de bandeau, plus de titre, rien à faire
    défiler — c'est la seule façon de tenir deux cases sur un téléphone */
 .jeu-plein {
