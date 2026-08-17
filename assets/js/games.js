@@ -45,7 +45,8 @@
       cinqHasard: '🎲 Cinq au hasard',
 
       relierConsigne: 'Touche un personnage, puis son objet.',
-      compterConsigne: 'Combien y a-t-il de %s ?',
+      /* « de étoiles » ne se dit pas : l'élision voyage avec le mot */
+      compterConsigne: 'Combien y a-t-il %s ?',
       compterRate: 'Essaie encore. Compte avec ton doigt !',
       ecrireConsigne: 'Écris %s.',
       ecrireTrait: 'Encore un trait !',
@@ -99,9 +100,9 @@
         'sept', 'huit', 'neuf', 'dix', 'onze', 'douze'],
       /* les objets qu'on compte, au pluriel */
       objets: {
-        shell: 'coquillages', starfish: 'étoiles de mer', crab: 'crabes',
-        flower: 'fleurs', ball: 'ballons', butterfly: 'papillons',
-        snowball: 'boules de neige', cube: 'cubes'
+        shell: 'de coquillages', starfish: "d'étoiles de mer", crab: 'de crabes',
+        flower: 'de fleurs', ball: 'de ballons', butterfly: 'de papillons',
+        snowball: 'de boules de neige', cube: 'de cubes'
       },
       /* ce que dessinent les points à relier, les grilles et les symétries */
       formes: {
@@ -121,7 +122,9 @@
       cinqHasard: '🎲 Cinco al azar',
 
       relierConsigne: 'Toca un personaje y luego su objeto.',
-      compterConsigne: '¿Cuántos %s hay?',
+      /* en espagnol, « cuántos » s'accorde : le mot interrogatif voyage donc
+         avec l'objet, dans la table ci-dessous, plutôt que dans la phrase */
+      compterConsigne: '¿%s hay?',
       compterRate: 'Inténtalo otra vez. ¡Cuenta con el dedo!',
       ecrireConsigne: 'Escribe %s.',
       ecrireTrait: '¡Otro trazo!',
@@ -173,9 +176,10 @@
       nombres: ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis',
         'siete', 'ocho', 'nueve', 'diez', 'once', 'doce'],
       objets: {
-        shell: 'conchas', starfish: 'estrellas de mar', crab: 'cangrejos',
-        flower: 'flores', ball: 'pelotas', butterfly: 'mariposas',
-        snowball: 'bolas de nieve', cube: 'cubos'
+        shell: 'Cuántas conchas', starfish: 'Cuántas estrellas de mar',
+        crab: 'Cuántos cangrejos', flower: 'Cuántas flores',
+        ball: 'Cuántas pelotas', butterfly: 'Cuántas mariposas',
+        snowball: 'Cuántas bolas de nieve', cube: 'Cuántos cubos'
       },
       formes: {
         tente: 'una tienda de campaña', maison: 'una casa', bateau: 'un barco',

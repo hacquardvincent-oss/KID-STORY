@@ -37,14 +37,13 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   thèmes traversent les univers, et les onglets filtrent à l'intérieur d'un
   thème. Le filtre par thème est **replié** derrière un bouton discret : c'est
   un réglage d'adulte, il ne doit pas encombrer le chemin de l'enfant.
-* **Trois langues** — français, espagnol, anglais, au choix dans le volet
-  replié. Tout bascule : l'interface, les titres, les étiquettes, **les onze
-  jeux** (consignes, félicitations, noms des formes et des objets comptés) et
-  la voix de synthèse (`fr-FR`, `es-ES`, `en-GB`). Une histoire n'apparaît
-  dans une langue que si elle y est **entièrement traduite** — titre,
-  sous-titre et chaque planche : mieux vaut une bibliothèque plus courte
-  qu'une histoire qui bascule en français au milieu. `node outils/traductions.js`
-  dit où on en est.
+* **Trois langues, complètes** — français, espagnol, anglais, au choix dans le
+  volet replié. **Les 85 histoires et les onze jeux existent dans les trois** :
+  titres, textes, étiquettes, consignes, félicitations, et la voix de synthèse
+  qui suit (`fr-FR`, `es-ES`, `en-GB`). Le site vérifie qu'une histoire est
+  entièrement traduite avant de la proposer dans une langue — une traduction à
+  moitié faite reste invisible plutôt que de mélanger deux langues sur la même
+  planche. `node outils/traductions.js` le contrôle.
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
@@ -184,21 +183,19 @@ même dessin animé, et ils se rencontrent quand même
 
 Pablo apparaît aussi dans **Pablo veut faire pareil** (Peppa Pig, série *Grandir*).
 
-**Les traductions** — l'interface et les onze jeux sont traduits **de bout en
-bout** en espagnol et en anglais. Les histoires suivent univers par univers :
+**Les traductions** — **tout est traduit**, en espagnol et en anglais : les
+85 histoires (591 planches, plus les mots des boutons de choix), les onze jeux
+(72 entrées : consignes, encouragements, félicitations, noms des formes, mots
+des nombres, pluriels des objets qu'on compte) et l'interface entière.
 
-| | espagnol | anglais |
-|---|---|---|
-| La Reine des Neiges | 7 / 7 ✅ | 7 / 7 ✅ |
-| Le grand mélange | 7 / 7 ✅ | 7 / 7 ✅ |
-| Les copines | 2 / 17 | — |
-| le reste | — | — |
-| **total** | **16 / 85** | **14 / 85** |
+| | français | espagnol | anglais |
+|---|---|---|---|
+| histoires | 85 / 85 | 85 / 85 | 85 / 85 |
+| jeux | 72 / 72 | 72 / 72 | 72 / 72 |
+| lexique | 30 / 30 | 30 / 30 | 30 / 30 |
 
-Un univers entier vaut mieux que des morceaux partout : un enfant qui choisit
-l'anglais tombe sur deux mondes complets plutôt que sur une bibliothèque
-trouée. La suite se fait univers par univers, avec `node outils/traductions.js`
-comme tableau de bord.
+`node outils/traductions.js` le vérifie et signale toute histoire qu'on
+commencerait sans la finir — celles-là restent invisibles.
 
 **Tu choisis !** — cinq histoires à embranchements, quatre fins chacune
 

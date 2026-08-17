@@ -9,7 +9,7 @@
    Pour publier une mise à jour : changer VERSION. L'ancien cache est
    effacé, le nouveau se remplit, et la page se recharge d'elle-même.
    ============================================================ */
-var VERSION = 'livia-2026-08-14d';
+var VERSION = 'livia-2026-08-14e';
 
 var FICHIERS = [
   './',

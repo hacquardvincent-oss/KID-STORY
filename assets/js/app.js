@@ -800,10 +800,11 @@
       /* l'option ne nomme que l'élément : c'est le moteur qui sait le cadrer.
          « fond » sert aux dessins pâles — une lune crème sur du papier crème
          ne se voit pas, sur un rond de nuit elle éclaire. */
-      return '<button class="choix-b" data-choix="' + k + '" aria-label="' + o.mot + '">' +
+      var m = o['mot_' + LANGUE] || o.mot;
+      return '<button class="choix-b" data-choix="' + k + '" aria-label="' + m + '">' +
         '<span class="choix-img' + (o.fond ? ' ' + o.fond : '') + '">' +
         Art.sticker(Art.vignette(o.v, o.pose && { pose: o.pose })) +
-        '</span><span class="choix-mot">' + o.mot + '</span></button>';
+        '</span><span class="choix-mot">' + m + '</span></button>';
     }).join('') + '</div>';
   }
 
