@@ -145,7 +145,11 @@ var UNIVERSES = [
       {
         id: 'plage',
         title: 'Livia et Peppa à la plage',
+        title_en: "Livia and Peppa at the beach",
+        title_es: "Livia y Peppa en la playa",
         subtitle: 'Le premier jour des vacances',
+        subtitle_en: "The first day of the holidays",
+        subtitle_es: "El primer día de vacaciones",
         tag: 'Été',
         themes: ['Été', 'Amitié'],
         minutes: 5,
@@ -172,7 +176,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 330, y: 40, w: 300, t: 'Livia ! Aujourd\'hui on va à la plage !', tx: 430, ty: 218 }]
             },
-            text: "Le soleil se lève sur la maison de Peppa. C'est le tout premier jour des grandes vacances ! Livia sonne à la porte avec son sac de plage et son plus beau chapeau."
+            text: "Le soleil se lève sur la maison de Peppa. C'est le tout premier jour des grandes vacances ! Livia sonne à la porte avec son sac de plage et son plus beau chapeau.",
+            es: "El sol sale sobre la casa de Peppa. ¡Es el primerísimo día de las vacaciones de verano! Livia llama a la puerta con su bolsa de playa y su sombrero más bonito.",
+            en: "The sun rises over Peppa's house. It is the very first day of the summer holidays! Livia rings the doorbell with her beach bag and her best hat."
           },
           {
             scene: {
@@ -186,7 +192,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 40, y: 30, w: 280, t: 'Tout le monde à bord !', tx: 120, ty: 220 }]
             },
-            text: "Papa Pig charge la voiture rouge : le parasol, les serviettes, la glacière et un ballon énorme. George, lui, serre très fort son dinosaure. Il ne part jamais sans lui."
+            text: "Papa Pig charge la voiture rouge : le parasol, les serviettes, la glacière et un ballon énorme. George, lui, serre très fort son dinosaure. Il ne part jamais sans lui.",
+            es: "Papá Pig carga el coche rojo: la sombrilla, las toallas, la nevera y una pelota enorme. George abraza fuerte a su dinosaurio. Nunca se va sin él.",
+            en: "Daddy Pig loads the red car: the parasol, the towels, the cool box and an enormous ball. George is holding his dinosaur very tight. He never goes anywhere without him."
           },
           {
             scene: {
@@ -195,7 +203,9 @@ var UNIVERSES = [
               sfx: [{ t: 'VROUM !', x: 150, y: 380, fs: 52, rot: -10 }],
               bubbles: [{ x: 430, y: 50, w: 300, t: 'La mer ! Je vois la mer !', tx: 420, ty: 400 }]
             },
-            text: "En route ! Pendant tout le trajet, Livia et Peppa chantent à tue-tête. Et puis, tout en haut de la colline, la mer apparaît : toute bleue, toute brillante."
+            text: "En route ! Pendant tout le trajet, Livia et Peppa chantent à tue-tête. Et puis, tout en haut de la colline, la mer apparaît : toute bleue, toute brillante.",
+            es: "¡En marcha! Durante todo el viaje, Livia y Peppa cantan a grito pelado. Y entonces, en lo alto de la colina, aparece el mar: todo azul, todo brillante.",
+            en: "Off they go! For the whole journey, Livia and Peppa sing at the tops of their voices. And then, at the top of the hill, the sea appears: all blue, all shiny."
           },
           {
             scene: {
@@ -208,7 +218,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'YOUPI !', x: 500, y: 190, fs: 46, rot: -6, color: '#fff' }]
             },
-            text: "Le sable est tout chaud sous les pieds. Peppa plante le parasol, Livia étale les serviettes, et toutes les deux se mettent à sauter partout. Les vacances, ça commence fort !"
+            text: "Le sable est tout chaud sous les pieds. Peppa plante le parasol, Livia étale les serviettes, et toutes les deux se mettent à sauter partout. Les vacances, ça commence fort !",
+            es: "La arena está calentita bajo los pies. Peppa clava la sombrilla, Livia extiende las toallas, y las dos se ponen a saltar por todas partes. ¡Las vacaciones empiezan fuerte!",
+            en: "The sand is warm underfoot. Peppa plants the parasol, Livia lays out the towels, and both of them start jumping about everywhere. The holidays are off to a strong start!"
           },
           {
             scene: {
@@ -221,7 +233,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 34, w: 290, t: 'Et là, il faut un pont-levis !', tx: 470, ty: 240 }]
             },
-            text: "Ensemble, elles construisent un immense château de sable : cinq tours, un drapeau tout en haut, un fossé et même un pont-levis. C'est le plus beau château de toute la plage."
+            text: "Ensemble, elles construisent un immense château de sable : cinq tours, un drapeau tout en haut, un fossé et même un pont-levis. C'est le plus beau château de toute la plage.",
+            es: "Juntas construyen un castillo de arena inmenso: cinco torres, una bandera arriba del todo, un foso y hasta un puente levadizo. Es el castillo más bonito de toda la playa.",
+            en: "Together they build an enormous sandcastle: five towers, a flag right at the top, a moat and even a drawbridge. It is the finest castle on the whole beach."
           },
           {
             scene: {
@@ -235,7 +249,9 @@ var UNIVERSES = [
               sfx: [{ t: 'SPLOUCH !', x: 645, y: 288, fs: 44, rot: -12, color: '#bfe8f7' }],
               bubbles: [{ x: 210, y: 34, w: 280, t: 'Oh non ! Ma tour !', tx: 320, ty: 250 }]
             },
-            text: "Mais une petite vague coquine arrive sur la pointe des pieds… et emporte une tour ! Peppa ouvre grand la bouche. Puis Livia éclate de rire, et tout le monde rigole avec elle."
+            text: "Mais une petite vague coquine arrive sur la pointe des pieds… et emporte une tour ! Peppa ouvre grand la bouche. Puis Livia éclate de rire, et tout le monde rigole avec elle.",
+            es: "Pero llega una olita traviesa de puntillas… ¡y se lleva una torre! Peppa abre mucho la boca. Y entonces Livia se echa a reír, y todo el mundo se ríe con ella.",
+            en: "But a cheeky little wave creeps up on tiptoe… and carries off a tower! Peppa's mouth falls open. Then Livia bursts out laughing, and everybody laughs with her."
           },
           {
             scene: {
@@ -252,7 +268,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PLOUF !', x: 700, y: 176, fs: 46, rot: -8 }]
             },
-            text: "Dans l'eau, Papa Pig fait un plongeon spectaculaire. PLOUF ! Une vague géante arrose absolument tout le monde. « C'est moi le champion ! » dit Papa Pig, très fier de lui."
+            text: "Dans l'eau, Papa Pig fait un plongeon spectaculaire. PLOUF ! Une vague géante arrose absolument tout le monde. « C'est moi le champion ! » dit Papa Pig, très fier de lui.",
+            es: "En el agua, papá Pig hace un salto espectacular. ¡PLAF! Una ola gigante salpica absolutamente a todos. «¡Soy el campeón!», dice papá Pig, orgullosísimo.",
+            en: "In the water, Daddy Pig performs a spectacular dive. SPLASH! A giant wave soaks absolutely everybody. «I'm the champion!» says Daddy Pig, very pleased with himself."
           },
           {
             scene: {
@@ -266,7 +284,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 420, y: 34, w: 300, t: 'Trois boules, s\'il te plaît !', tx: 300, ty: 250 }]
             },
-            text: "Après la baignade, c'est l'heure du goûter : des tranches de pastèque bien fraîches et une glace à trois boules. Livia choisit fraise, vanille et myrtille. Peppa prend la même chose."
+            text: "Après la baignade, c'est l'heure du goûter : des tranches de pastèque bien fraîches et une glace à trois boules. Livia choisit fraise, vanille et myrtille. Peppa prend la même chose.",
+            es: "Después del baño llega la merienda: rodajas de sandía bien fresquitas y un helado de tres bolas. Livia elige fresa, vainilla y arándano. Peppa pide lo mismo.",
+            en: "After the swim it is time for a snack: cool slices of watermelon and a three-scoop ice cream. Livia chooses strawberry, vanilla and blueberry. Peppa has the same."
           },
           {
             scene: {
@@ -278,7 +298,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 40, w: 300, t: 'Vivement demain, Livia !', tx: 340, ty: 250 }]
             },
-            text: "Le soleil descend tout doucement dans la mer. Livia a trouvé un coquillage rose : elle le gardera pour toujours. « Vivement demain », chuchote Peppa. Et voilà, l'été ne fait que commencer."
+            text: "Le soleil descend tout doucement dans la mer. Livia a trouvé un coquillage rose : elle le gardera pour toujours. « Vivement demain », chuchote Peppa. Et voilà, l'été ne fait que commencer.",
+            es: "El sol baja despacito hacia el mar. Livia ha encontrado una concha rosa: la guardará para siempre. «Que llegue ya mañana», susurra Peppa. Y el verano no ha hecho más que empezar.",
+            en: "The sun slips gently down into the sea. Livia has found a pink shell: she will keep it forever. «I can't wait for tomorrow,» whispers Peppa. And the summer has only just begun."
           }
         ]
       },
@@ -287,7 +309,11 @@ var UNIVERSES = [
       {
         id: 'camping',
         title: 'Le camping sous les étoiles',
+        title_en: "Camping under the stars",
+        title_es: "El campamento bajo las estrellas",
         subtitle: 'Une nuit dans la forêt',
+        subtitle_en: "A night in the forest",
+        subtitle_es: "Una noche en el bosque",
         tag: 'Été',
         themes: ['Été', 'Nuit'],
         minutes: 6,
@@ -314,7 +340,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 330, y: 34, w: 300, t: 'Ce soir, on dort dans la tente !', tx: 430, ty: 210 }]
             },
-            text: "La voiture s'arrête au bord de la forêt. Ce soir, personne ne dort dans un lit : tout le monde dort sous la tente ! Peppa et Livia sautent de joie dans l'herbe."
+            text: "La voiture s'arrête au bord de la forêt. Ce soir, personne ne dort dans un lit : tout le monde dort sous la tente ! Peppa et Livia sautent de joie dans l'herbe.",
+            es: "El coche se para al borde del bosque. Esta noche nadie duerme en una cama: ¡todo el mundo duerme en la tienda! Peppa y Livia dan saltos de alegría en la hierba.",
+            en: "The car stops at the edge of the forest. Tonight nobody is sleeping in a bed: everybody is sleeping in the tent! Peppa and Livia jump for joy in the grass."
           },
           {
             scene: {
@@ -327,7 +355,9 @@ var UNIVERSES = [
               sfx: [{ t: 'BADABOUM !', x: 400, y: 210, fs: 46, rot: -8 }],
               bubbles: [{ x: 500, y: 40, w: 260, t: 'Papa ? Ça va ?', tx: 660, ty: 250 }]
             },
-            text: "Papa Pig veut monter la tente tout seul. Il tire une ficelle, il pousse un piquet… et BADABOUM ! La tente s'écroule sur lui. On ne voit plus qu'un gros tas orange qui bouge."
+            text: "Papa Pig veut monter la tente tout seul. Il tire une ficelle, il pousse un piquet… et BADABOUM ! La tente s'écroule sur lui. On ne voit plus qu'un gros tas orange qui bouge.",
+            es: "Papá Pig quiere montar la tienda él solo. Tira de una cuerda, empuja una estaca… ¡y CATAPLÚN! La tienda se le viene encima. Solo se ve un bulto naranja que se mueve.",
+            en: "Daddy Pig wants to put the tent up by himself. He pulls a string, he pushes a peg… and CRASH! The tent collapses on top of him. All you can see is a big orange heap wriggling."
           },
           {
             scene: {
@@ -340,7 +370,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 470, y: 34, w: 300, t: 'Coucou ! Je campe à côté !', tx: 590, ty: 250 }]
             },
-            text: "Heureusement, Maman Pig sait monter les tentes en trois minutes. Et devinez qui campe juste à côté ? Suzy Mouton ! La bande est au complet."
+            text: "Heureusement, Maman Pig sait monter les tentes en trois minutes. Et devinez qui campe juste à côté ? Suzy Mouton ! La bande est au complet.",
+            es: "Por suerte, mamá Pig sabe montar tiendas en tres minutos. ¿Y adivináis quién acampa justo al lado? ¡Suzy Oveja! La pandilla está completa.",
+            en: "Luckily, Mummy Pig can put up a tent in three minutes. And guess who is camping right next door? Suzy Sheep! The gang is complete."
           },
           {
             scene: {
@@ -353,7 +385,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 34, w: 300, t: 'On cherche du bois pour le feu !', tx: 320, ty: 250 }]
             },
-            text: "Il faut du bois pour le feu de camp. Dans la forêt, Livia ramasse les plus grosses branches et Peppa les plus petites. Un papillon orange les accompagne tout le long du chemin."
+            text: "Il faut du bois pour le feu de camp. Dans la forêt, Livia ramasse les plus grosses branches et Peppa les plus petites. Un papillon orange les accompagne tout le long du chemin.",
+            es: "Hace falta leña para la hoguera. En el bosque, Livia recoge las ramas más gordas y Peppa las más pequeñas. Una mariposa naranja las acompaña todo el camino.",
+            en: "They need wood for the campfire. In the forest, Livia gathers the biggest branches and Peppa the smallest. An orange butterfly keeps them company the whole way."
           },
           {
             scene: {
@@ -369,7 +403,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 30, w: 300, t: 'Le mien est tout doré !', tx: 320, ty: 250, fill: '#fff6ec' }]
             },
-            text: "La nuit tombe et le feu de camp crépite. Chacun fait griller un chamallow au bout d'un bâton. Celui de Livia est doré à point. Celui de Papa Pig est… tout noir."
+            text: "La nuit tombe et le feu de camp crépite. Chacun fait griller un chamallow au bout d'un bâton. Celui de Livia est doré à point. Celui de Papa Pig est… tout noir.",
+            es: "Cae la noche y la hoguera crepita. Cada uno tuesta una nube de azúcar en la punta de un palo. La de Livia queda dorada. La de papá Pig queda… completamente negra.",
+            en: "Night falls and the campfire crackles. Everybody toasts a marshmallow on the end of a stick. Livia's comes out perfectly golden. Daddy Pig's comes out… completely black."
           },
           {
             scene: {
@@ -383,7 +419,9 @@ var UNIVERSES = [
               sfx: [{ t: 'CRAC…', x: 660, y: 372, fs: 38, rot: 6, color: '#ffd93d' }],
               bubbles: [{ x: 300, y: 30, w: 300, t: 'Il y a quelque chose là-bas…', tx: 520, ty: 250, fill: '#fff' }]
             },
-            text: "Soudain, CRAC ! Un bruit dans les buissons. Peppa se cache derrière Livia. Livia se cache derrière Peppa. Personne n'ose plus bouger un seul cil."
+            text: "Soudain, CRAC ! Un bruit dans les buissons. Peppa se cache derrière Livia. Livia se cache derrière Peppa. Personne n'ose plus bouger un seul cil.",
+            es: "De pronto, ¡CRAC! Un ruido entre los matorrales. Peppa se esconde detrás de Livia. Livia se esconde detrás de Peppa. Nadie se atreve a mover ni una pestaña.",
+            en: "Suddenly, CRACK! A noise in the bushes. Peppa hides behind Livia. Livia hides behind Peppa. Nobody dares move a single eyelash."
           },
           {
             scene: {
@@ -395,7 +433,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 120, y: 30, w: 300, t: 'C\'est un tout petit hérisson !', tx: 300, ty: 250 }]
             },
-            text: "Les buissons s'écartent… et un tout petit hérisson sort son museau. Il vient juste renifler les chamallows. Livia lui dit bonsoir tout doucement, et il repart en trottinant."
+            text: "Les buissons s'écartent… et un tout petit hérisson sort son museau. Il vient juste renifler les chamallows. Livia lui dit bonsoir tout doucement, et il repart en trottinant.",
+            es: "Los matorrales se abren… y asoma el morro un erizo pequeñísimo. Solo viene a oler las nubes de azúcar. Livia le da las buenas noches muy bajito, y él se va trotando.",
+            en: "The bushes part… and a very small hedgehog pokes his nose out. He has only come to sniff the marshmallows. Livia says good evening very softly, and off he trots."
           },
           {
             scene: {
@@ -412,7 +452,9 @@ var UNIVERSES = [
               sfx: [{ t: 'Une étoile filante !', x: 400, y: 158, fs: 34, rot: -5, color: '#fff7d6' }],
               bubbles: [{ x: 460, y: 30, w: 280, t: 'Vite, fais un vœu !', tx: 460, ty: 240 }]
             },
-            text: "Puis tout le monde s'allonge dans l'herbe pour regarder le ciel. Il y a des milliers d'étoiles. Une étoile file très vite au-dessus des arbres. « Vite, fais un vœu ! » dit Peppa."
+            text: "Puis tout le monde s'allonge dans l'herbe pour regarder le ciel. Il y a des milliers d'étoiles. Une étoile file très vite au-dessus des arbres. « Vite, fais un vœu ! » dit Peppa.",
+            es: "Después todos se tumban en la hierba a mirar el cielo. Hay miles de estrellas. Una estrella cruza muy rápido por encima de los árboles. «¡Rápido, pide un deseo!», dice Peppa.",
+            en: "Then everybody lies down in the grass to look at the sky. There are thousands of stars. One shoots very fast above the trees. «Quick, make a wish!» says Peppa."
           },
           {
             scene: {
@@ -424,7 +466,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 90, y: 60, w: 300, t: 'Bonne nuit Livia… Bonne nuit Peppa…', tx: 300, ty: 400, fill: '#fff6ec' }]
             },
-            text: "Dans la tente, les deux amies se glissent dans leurs sacs de couchage. Dehors, on entend juste les grillons. « Bonne nuit Livia. » « Bonne nuit Peppa. » Et tout le monde s'endort en souriant."
+            text: "Dans la tente, les deux amies se glissent dans leurs sacs de couchage. Dehors, on entend juste les grillons. « Bonne nuit Livia. » « Bonne nuit Peppa. » Et tout le monde s'endort en souriant.",
+            es: "Dentro de la tienda, las dos amigas se meten en sus sacos de dormir. Fuera solo se oyen los grillos. «Buenas noches, Livia.» «Buenas noches, Peppa.» Y todos se duermen sonriendo.",
+            en: "In the tent, the two friends wriggle into their sleeping bags. Outside there are only crickets. «Good night, Livia.» «Good night, Peppa.» And everybody falls asleep smiling."
           }
         ]
       },
@@ -433,7 +477,11 @@ var UNIVERSES = [
       {
         id: 'piscine',
         title: 'La grande journée à la piscine',
+        title_en: "The big day at the pool",
+        title_es: "El gran día en la piscina",
         subtitle: 'Le toboggan géant',
+        subtitle_en: "The giant slide",
+        subtitle_es: "El tobogán gigante",
         tag: 'Été',
         themes: ['Été', 'Amitié'],
         minutes: 5,
@@ -462,7 +510,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'IL FAIT SI CHAUD !', x: 400, y: 130, fs: 34, rot: -4, color: '#ffd93d' }]
             },
-            text: "Aujourd'hui, il fait vraiment très très chaud. Même les papillons cherchent de l'ombre. Alors Maman Pig a une idée formidable : direction la piscine !"
+            text: "Aujourd'hui, il fait vraiment très très chaud. Même les papillons cherchent de l'ombre. Alors Maman Pig a une idée formidable : direction la piscine !",
+            es: "Hoy hace muchísimo, muchísimo calor. Hasta las mariposas buscan sombra. Así que mamá Pig tiene una idea estupenda: ¡a la piscina!",
+            en: "Today it is really, really hot. Even the butterflies are looking for shade. So Mummy Pig has a brilliant idea: off to the pool!"
           },
           {
             scene: {
@@ -475,7 +525,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 400, y: 24, w: 300, t: 'Regarde comme il est haut !', tx: 610, ty: 226 }]
             },
-            text: "Au milieu du parc, il y a un toboggan orange. Un ÉNORME toboggan. Il monte si haut qu'on dirait qu'il touche les nuages."
+            text: "Au milieu du parc, il y a un toboggan orange. Un ÉNORME toboggan. Il monte si haut qu'on dirait qu'il touche les nuages.",
+            es: "En medio del parque hay un tobogán naranja. Un tobogán ENORME. Sube tan alto que parece que toca las nubes.",
+            en: "In the middle of the park there is an orange slide. An ENORMOUS slide. It goes up so high that it looks like it touches the clouds."
           },
           {
             scene: {
@@ -487,7 +539,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 34, w: 290, t: 'Je crois que… je préfère regarder.', tx: 470, ty: 250 }]
             },
-            text: "Peppa s'approche des marches. Puis elle regarde tout en haut. Puis elle regarde ses pieds. « Je crois que je préfère regarder », dit-elle tout doucement."
+            text: "Peppa s'approche des marches. Puis elle regarde tout en haut. Puis elle regarde ses pieds. « Je crois que je préfère regarder », dit-elle tout doucement.",
+            es: "Peppa se acerca a los escalones. Luego mira hacia arriba del todo. Luego se mira los pies. «Creo que prefiero mirar», dice muy bajito.",
+            en: "Peppa goes over to the steps. Then she looks right to the top. Then she looks at her feet. «I think I'd rather watch,» she says very quietly."
           },
           {
             scene: {
@@ -499,7 +553,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 330, y: 30, w: 320, t: 'On descend ensemble, je te tiens la main !', tx: 470, ty: 250 }]
             },
-            text: "Alors Livia vient tout près et lui prend la main. « On y va ensemble », dit-elle. « Toi devant, moi derrière. Et si tu as peur, tu fermes les yeux. »"
+            text: "Alors Livia vient tout près et lui prend la main. « On y va ensemble », dit-elle. « Toi devant, moi derrière. Et si tu as peur, tu fermes les yeux. »",
+            es: "Entonces Livia se acerca y le da la mano. «Vamos juntas», dice. «Tú delante, yo detrás. Y si te da miedo, cierras los ojos.»",
+            en: "So Livia comes right over and takes her hoof. «We'll go together,» she says. «You in front, me behind. And if you're scared, you close your eyes.»"
           },
           {
             scene: {
@@ -513,7 +569,9 @@ var UNIVERSES = [
               front: [{ t: 'splash', x: 600, y: 508, s: 1.1 }],
               sfx: [{ t: 'SPLAAASH !', x: 658, y: 248, fs: 44, rot: -10, color: '#bfe8f7' }]
             },
-            text: "Une, deux, trois… c'est parti ! Le toboggan tourne à gauche, tourne à droite, et SPLAAASH ! Les deux amies atterrissent dans l'eau au milieu d'une gerbe d'éclaboussures."
+            text: "Une, deux, trois… c'est parti ! Le toboggan tourne à gauche, tourne à droite, et SPLAAASH ! Les deux amies atterrissent dans l'eau au milieu d'une gerbe d'éclaboussures.",
+            es: "Una, dos, tres… ¡allá vamos! El tobogán gira a la izquierda, gira a la derecha, y ¡PLAAAF! Las dos amigas aterrizan en el agua entre una lluvia de salpicaduras.",
+            en: "One, two, three… off they go! The slide turns left, turns right, and SPLAAASH! The two friends land in the water in a great fountain of spray."
           },
           {
             scene: {
@@ -529,7 +587,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 470, y: 30, w: 300, t: 'Encore ! Encore ! Encore !', tx: 520, ty: 230 }]
             },
-            text: "Peppa remonte à la surface, les oreilles pleines d'eau, et elle crie : « ENCORE ! » Elles refont le toboggan onze fois. Onze !"
+            text: "Peppa remonte à la surface, les oreilles pleines d'eau, et elle crie : « ENCORE ! » Elles refont le toboggan onze fois. Onze !",
+            es: "Peppa sale a la superficie con las orejas llenas de agua, y grita: «¡OTRA VEZ!» Repiten el tobogán once veces. ¡Once!",
+            en: "Peppa comes up with her ears full of water, and shouts: «AGAIN!» They go down the slide eleven times. Eleven!"
           },
           {
             scene: {
@@ -544,7 +604,9 @@ var UNIVERSES = [
               front: [{ t: 'wave', x: 610, y: 470, s: 1.3 }],
               bubbles: [{ x: 70, y: 30, w: 260, t: 'Dine-saure !', tx: 270, ty: 250 }]
             },
-            text: "George, lui, ne quitte pas sa bouée. Il a mis son dinosaure dedans, bien assis au milieu. « Dine-saure ! » dit George. Papa Pig fait la planche et ronfle un peu."
+            text: "George, lui, ne quitte pas sa bouée. Il a mis son dinosaure dedans, bien assis au milieu. « Dine-saure ! » dit George. Papa Pig fait la planche et ronfle un peu.",
+            es: "George no suelta su flotador. Ha metido dentro a su dinosaurio, bien sentado en el centro. «¡Dino-saurio!», dice George. Papá Pig hace el muerto y ronca un poquito.",
+            en: "George will not leave his rubber ring. He has put his dinosaur inside it, sitting up nicely in the middle. «Dine-saur!» says George. Daddy Pig floats on his back and snores a little."
           },
           {
             scene: {
@@ -557,7 +619,9 @@ var UNIVERSES = [
               sfx: [{ t: 'SPLATCH !', x: 178, y: 236, fs: 40, rot: -8, color: '#c99a5f' }],
               bubbles: [{ x: 130, y: 34, w: 300, t: 'La meilleure flaque de l\'été !', tx: 370, ty: 250 }]
             },
-            text: "Sur le chemin du retour, il y a une magnifique flaque de boue. Peppa saute dedans à pieds joints, évidemment. Livia saute aussi. Et Maman Pig soupire… en riant."
+            text: "Sur le chemin du retour, il y a une magnifique flaque de boue. Peppa saute dedans à pieds joints, évidemment. Livia saute aussi. Et Maman Pig soupire… en riant.",
+            es: "De vuelta a casa hay un charco de barro magnífico. Peppa salta dentro con los dos pies, por supuesto. Livia salta también. Y mamá Pig suspira… riéndose.",
+            en: "On the way home there is a magnificent muddy puddle. Peppa jumps in with both feet, obviously. Livia jumps in too. And Mummy Pig sighs… while laughing."
           }
         ]
       },
@@ -566,7 +630,11 @@ var UNIVERSES = [
       {
         id: 'cerf-volant',
         title: 'Le cerf-volant de l\'été',
+        title_en: "The summer kite",
+        title_es: "La cometa del verano",
         subtitle: 'Un après-midi sur la colline',
+        subtitle_en: "An afternoon on the hill",
+        subtitle_es: "Una tarde en la colina",
         tag: 'Été',
         themes: ['Été', 'Dehors'],
         minutes: 5,
@@ -590,7 +658,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'FFFOU…', x: 640, y: 200, fs: 36, rot: -6, color: '#fff' }]
             },
-            text: "Ce matin, le vent souffle sur la colline. Il fait danser l'herbe et décoiffe tout le monde. « Un vent pareil », dit Livia, « c'est un vent à cerf-volant ! »"
+            text: "Ce matin, le vent souffle sur la colline. Il fait danser l'herbe et décoiffe tout le monde. « Un vent pareil », dit Livia, « c'est un vent à cerf-volant ! »",
+            es: "Esta mañana sopla el viento en la colina. Hace bailar la hierba y despeina a todo el mundo. «Un viento así», dice Livia, «¡es un viento de cometa!»",
+            en: "This morning the wind is blowing on the hill. It makes the grass dance and messes up everybody's hair. «A wind like that,» says Livia, «is a kite wind!»"
           },
           {
             scene: {
@@ -602,7 +672,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 30, w: 300, t: 'Deux bâtons, du papier, une ficelle !', tx: 300, ty: 250 }]
             },
-            text: "Alors elles en fabriquent un : deux bâtons en croix, du papier rouge, une longue ficelle et une queue en rubans. Papa Pig aide un peu. Enfin… il essaie."
+            text: "Alors elles en fabriquent un : deux bâtons en croix, du papier rouge, une longue ficelle et une queue en rubans. Papa Pig aide un peu. Enfin… il essaie.",
+            es: "Así que fabrican una: dos palos en cruz, papel rojo, un cordel largo y una cola de cintas. Papá Pig ayuda un poco. Bueno… lo intenta.",
+            en: "So they make one: two sticks crossed over, red paper, a long string and a tail made of ribbons. Daddy Pig helps a bit. Well… he tries."
           },
           {
             scene: {
@@ -614,7 +686,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PLOUF… par terre.', x: 570, y: 372, fs: 27, rot: -4, color: '#fff' }]
             },
-            text: "Premier essai : le cerf-volant monte de trois centimètres… et retombe dans l'herbe. Deuxième essai : pareil. Troisième essai : encore pareil."
+            text: "Premier essai : le cerf-volant monte de trois centimètres… et retombe dans l'herbe. Deuxième essai : pareil. Troisième essai : encore pareil.",
+            es: "Primer intento: la cometa sube tres centímetros… y vuelve a caer en la hierba. Segundo intento: igual. Tercer intento: otra vez igual.",
+            en: "First go: the kite rises three centimetres… and falls back into the grass. Second go: the same. Third go: exactly the same again."
           },
           {
             scene: {
@@ -627,7 +701,9 @@ var UNIVERSES = [
               sfx: [{ t: 'ÇA MONTE !', x: 420, y: 150, fs: 42, rot: -8 }],
               bubbles: [{ x: 60, y: 34, w: 280, t: 'Cours, Livia, cours !', tx: 260, ty: 250 }]
             },
-            text: "Alors Livia se met à courir. Elle court, elle court, la ficelle se tend… et d'un coup, le cerf-volant s'envole ! Il monte, il monte, plus haut que les arbres."
+            text: "Alors Livia se met à courir. Elle court, elle court, la ficelle se tend… et d'un coup, le cerf-volant s'envole ! Il monte, il monte, plus haut que les arbres.",
+            es: "Entonces Livia se pone a correr. Corre, corre, el cordel se tensa… ¡y de golpe la cometa despega! Sube, sube, más alto que los árboles.",
+            en: "So Livia starts to run. She runs and runs, the string goes tight… and all at once the kite takes off! Up it goes, up and up, higher than the trees."
           },
           {
             scene: {
@@ -640,7 +716,9 @@ var UNIVERSES = [
                 { t: 'seagull', x: 180, y: 160, s: 1.6 }
               ]
             },
-            text: "Le cerf-volant rouge danse dans le ciel bleu. Il tourne, il plonge, il remonte. Les oiseaux viennent voir de plus près qui est ce drôle de nouvel ami."
+            text: "Le cerf-volant rouge danse dans le ciel bleu. Il tourne, il plonge, il remonte. Les oiseaux viennent voir de plus près qui est ce drôle de nouvel ami.",
+            es: "La cometa roja baila en el cielo azul. Gira, se lanza en picado, vuelve a subir. Los pájaros se acercan a ver quién es ese amigo nuevo tan raro.",
+            en: "The red kite dances in the blue sky. It turns, it dives, it climbs again. The birds come for a closer look at this odd new friend."
           },
           {
             scene: {
@@ -654,7 +732,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'OH NON !', x: 400, y: 180, fs: 42, rot: -8, color: '#ff8a5c' }]
             },
-            text: "Et puis, une grosse rafale ! Le cerf-volant part de travers et se coince tout en haut du grand arbre. Impossible de l'attraper, même sur la pointe des pieds."
+            text: "Et puis, une grosse rafale ! Le cerf-volant part de travers et se coince tout en haut du grand arbre. Impossible de l'attraper, même sur la pointe des pieds.",
+            es: "Y entonces, ¡una ráfaga! La cometa se va de lado y se engancha en lo más alto del árbol grande. Imposible alcanzarla, ni de puntillas.",
+            en: "And then, a big gust! The kite goes sideways and gets stuck right at the top of the big tree. Impossible to reach, even on tiptoe."
           },
           {
             scene: {
@@ -668,7 +748,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 120, y: 30, w: 300, t: 'Papa Pig au secours !', tx: 250, ty: 240 }]
             },
-            text: "Mais Papa Pig connaît un secret : il sait grimper aux arbres. Il monte branche après branche, tend le bras… et hop ! Le cerf-volant est sauvé. Tout le monde applaudit."
+            text: "Mais Papa Pig connaît un secret : il sait grimper aux arbres. Il monte branche après branche, tend le bras… et hop ! Le cerf-volant est sauvé. Tout le monde applaudit.",
+            es: "Pero papá Pig tiene un secreto: sabe trepar a los árboles. Sube rama a rama, estira el brazo… ¡y hop! La cometa está salvada. Todo el mundo aplaude.",
+            en: "But Daddy Pig has a secret: he can climb trees. Up he goes branch by branch, stretches out an arm… and there! The kite is saved. Everybody claps."
           },
           {
             scene: {
@@ -681,7 +763,9 @@ var UNIVERSES = [
                 { t: 'kite', x: 700, y: 420, s: .7, rot: 15 }
               ]
             },
-            text: "Pour finir, tout le monde s'installe sur la couverture, en haut de la colline. Pastèque pour tout le monde. Le ciel devient orange, et le cerf-volant se repose à côté d'elles."
+            text: "Pour finir, tout le monde s'installe sur la couverture, en haut de la colline. Pastèque pour tout le monde. Le ciel devient orange, et le cerf-volant se repose à côté d'elles.",
+            es: "Para acabar, todos se instalan en la manta, arriba de la colina. Sandía para todos. El cielo se pone naranja, y la cometa descansa a su lado.",
+            en: "To finish, everybody settles on the blanket at the top of the hill. Watermelon for all. The sky turns orange, and the kite rests beside them."
           }
         ]
       },
@@ -690,7 +774,11 @@ var UNIVERSES = [
       {
         id: 'cadeau-george',
         title: 'Le cadeau de George',
+        title_en: "George's present",
+        title_es: "El regalo de George",
         subtitle: 'Quand on voudrait être le seul',
+        subtitle_en: "When you'd rather be the only one",
+        subtitle_es: "Cuando querrías ser el único",
         tag: 'Grandir',
         themes: ['Émotions', 'Famille'],
         minutes: 5,
@@ -714,7 +802,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 26, w: 300, t: 'Dine-saure ! Merci Mamie !', tx: 470, ty: 236 }]
             },
-            text: "Mamie Pig est venue voir George parce qu'il a été très malade toute la semaine. Elle lui a apporté un dinosaure tout neuf, vert, avec des piquants sur le dos."
+            text: "Mamie Pig est venue voir George parce qu'il a été très malade toute la semaine. Elle lui a apporté un dinosaure tout neuf, vert, avec des piquants sur le dos.",
+            es: "La abuela Pig ha venido a ver a George porque ha estado muy malito toda la semana. Le ha traído un dinosaurio nuevecito, verde, con pinchos en la espalda.",
+            en: "Granny Pig has come to see George because he has been very poorly all week. She has brought him a brand new dinosaur, green, with spikes down its back."
           },
           {
             scene: {
@@ -726,7 +816,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 90, y: 26, w: 310, t: 'Et moi alors ? Moi j\'ai rien du tout.', tx: 300, ty: 226 }]
             },
-            text: "Peppa regarde le dinosaure. Puis elle regarde ses pattes vides. Quelque chose de chaud et de serré monte dans son ventre. « Et moi alors ? » dit-elle tout bas."
+            text: "Peppa regarde le dinosaure. Puis elle regarde ses pattes vides. Quelque chose de chaud et de serré monte dans son ventre. « Et moi alors ? » dit-elle tout bas.",
+            es: "Peppa mira el dinosaurio. Luego se mira las manos vacías. Algo caliente y apretado le sube por la barriga. «¿Y yo qué?», dice bajito.",
+            en: "Peppa looks at the dinosaur. Then she looks at her empty hooves. Something hot and tight rises in her tummy. «What about me?» she says quietly."
           },
           {
             scene: {
@@ -737,7 +829,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'IL EST MOCHE !', x: 392, y: 142, fs: 26, rot: -4, color: '#e2593c' }]
             },
-            text: "Alors Peppa dit quelque chose de méchant : « Il est moche, ton dinosaure. » George baisse les oreilles. Et Peppa, aussitôt, se sent encore plus mal qu'avant."
+            text: "Alors Peppa dit quelque chose de méchant : « Il est moche, ton dinosaure. » George baisse les oreilles. Et Peppa, aussitôt, se sent encore plus mal qu'avant.",
+            es: "Entonces Peppa dice algo feo: «Es feísimo, tu dinosaurio.» George baja las orejas. Y Peppa, en el acto, se siente todavía peor que antes.",
+            en: "So Peppa says something unkind: «Your dinosaur is ugly.» George's ears droop. And straight away Peppa feels even worse than before."
           },
           {
             scene: {
@@ -748,7 +842,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 26, w: 310, t: 'C\'est lourd, la jalousie. Ça serre le ventre.', tx: 310, ty: 216 }]
             },
-            text: "Maman Pig s'assoit à côté d'elle. « Tu sais ce que tu as, là, dans le ventre ? Ça s'appelle la jalousie. C'est lourd à porter, et ça ne rend personne joyeux. »"
+            text: "Maman Pig s'assoit à côté d'elle. « Tu sais ce que tu as, là, dans le ventre ? Ça s'appelle la jalousie. C'est lourd à porter, et ça ne rend personne joyeux. »",
+            es: "Mamá Pig se sienta a su lado. «¿Sabes lo que tienes ahí, en la barriga? Eso se llama celos. Pesa mucho de llevar, y no pone contento a nadie.»",
+            en: "Mummy Pig sits down beside her. «Do you know what that is, there, in your tummy? It's called jealousy. It's heavy to carry, and it makes nobody happy.»"
           },
           {
             scene: {
@@ -759,7 +855,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 320, y: 26, w: 300, t: 'George a eu un cadeau. Toi, tu as la santé.', tx: 290, ty: 216 }]
             },
-            text: "« George a eu un cadeau parce qu'il a été malade », explique Maman. « Toi, pendant ce temps-là, tu courais dans le jardin. Ça aussi, c'est un beau cadeau. »"
+            text: "« George a eu un cadeau parce qu'il a été malade », explique Maman. « Toi, pendant ce temps-là, tu courais dans le jardin. Ça aussi, c'est un beau cadeau. »",
+            es: "«George ha tenido un regalo porque ha estado enfermo», explica mamá. «Tú, mientras tanto, corrías por el jardín. Eso también es un buen regalo.»",
+            en: "«George got a present because he was ill,» explains Mummy. «You, meanwhile, were running about in the garden. That's a lovely present too.»"
           },
           {
             scene: {
@@ -771,7 +869,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 100, y: 26, w: 300, t: 'Pardon George. Il est très beau.', tx: 340, ty: 226 }]
             },
-            text: "Peppa va voir son petit frère. « Pardon George. Il est très beau, ton dinosaure. » George ne répond rien : il lui met simplement le dinosaure dans les pattes."
+            text: "Peppa va voir son petit frère. « Pardon George. Il est très beau, ton dinosaure. » George ne répond rien : il lui met simplement le dinosaure dans les pattes.",
+            es: "Peppa va a ver a su hermanito. «Perdona, George. Es muy bonito, tu dinosaurio.» George no contesta nada: simplemente le pone el dinosaurio en las manos.",
+            en: "Peppa goes to see her little brother. «Sorry, George. Your dinosaur is very nice.» George says nothing at all: he simply puts the dinosaur into her hooves."
           },
           {
             scene: {
@@ -783,7 +883,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'GROOOAR !', x: 620, y: 200, fs: 38, rot: -8, color: '#6fbf5c' }]
             },
-            text: "Il voulait juste jouer avec elle depuis le début. Tout l'après-midi, le dinosaure attaque le jardin en rugissant. Et Peppa, dans son ventre, ne sent plus rien de lourd du tout."
+            text: "Il voulait juste jouer avec elle depuis le début. Tout l'après-midi, le dinosaure attaque le jardin en rugissant. Et Peppa, dans son ventre, ne sent plus rien de lourd du tout.",
+            es: "Lo único que quería desde el principio era jugar con ella. Toda la tarde, el dinosaurio ataca el jardín rugiendo. Y Peppa, en la barriga, ya no siente nada pesado.",
+            en: "He had only ever wanted to play with her. All afternoon the dinosaur attacks the garden, roaring. And in Peppa's tummy there is nothing heavy left at all."
           }
         ]
       },
@@ -792,7 +894,11 @@ var UNIVERSES = [
       {
         id: 'chacun-son-tour',
         title: 'Le vélo de Livia',
+        title_en: "Livia's ball",
+        title_es: "La pelota de Livia",
         subtitle: 'Ce qui est plus drôle à deux',
+        subtitle_en: "What's more fun with two",
+        subtitle_es: "Lo que es más divertido entre dos",
         tag: 'Grandir',
         themes: ['Émotions', 'Amitié', 'Partager'],
         minutes: 5,
@@ -815,7 +921,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 26, w: 300, t: 'Regarde mon ballon tout neuf !', tx: 300, ty: 226 }]
             },
-            text: "Livia arrive dans le jardin avec un ballon tout neuf, bleu et jaune, qui rebondit très haut. Peppa n'a jamais vu un aussi beau ballon de toute sa vie."
+            text: "Livia arrive dans le jardin avec un ballon tout neuf, bleu et jaune, qui rebondit très haut. Peppa n'a jamais vu un aussi beau ballon de toute sa vie.",
+            es: "Livia llega al jardín con una pelota nuevecita, azul y amarilla, que bota altísimo. Peppa no ha visto una pelota tan bonita en toda su vida.",
+            en: "Livia arrives in the garden with a brand new ball, blue and yellow, that bounces very high. Peppa has never seen such a beautiful ball in her whole life."
           },
           {
             scene: {
@@ -827,7 +935,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 26, w: 290, t: 'C\'est moi qui l\'ai ! C\'est moi !', tx: 340, ty: 226 }]
             },
-            text: "Peppa attrape le ballon et le serre très fort contre elle. « C'est moi qui l'ai ! » Livia attend. Elle attend encore. Puis elle s'assoit dans l'herbe, toute seule."
+            text: "Peppa attrape le ballon et le serre très fort contre elle. « C'est moi qui l'ai ! » Livia attend. Elle attend encore. Puis elle s'assoit dans l'herbe, toute seule.",
+            es: "Peppa coge la pelota y la aprieta fuerte contra ella. «¡La tengo yo!» Livia espera. Sigue esperando. Luego se sienta en la hierba, sola.",
+            en: "Peppa grabs the ball and hugs it tight. «I've got it!» Livia waits. She waits some more. Then she sits down in the grass, all by herself."
           },
           {
             scene: {
@@ -838,7 +948,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'POC… POC… POC…', x: 250, y: 250, fs: 30, rot: -4, color: '#fff' }]
             },
-            text: "Peppa fait rebondir le ballon toute seule. Poc. Poc. Poc. C'est bizarre : le ballon est toujours aussi beau, mais ce n'est plus drôle du tout."
+            text: "Peppa fait rebondir le ballon toute seule. Poc. Poc. Poc. C'est bizarre : le ballon est toujours aussi beau, mais ce n'est plus drôle du tout.",
+            es: "Peppa bota la pelota ella sola. Poc. Poc. Poc. Es raro: la pelota sigue siendo igual de bonita, pero ya no tiene ninguna gracia.",
+            en: "Peppa bounces the ball on her own. Bop. Bop. Bop. It's odd: the ball is just as beautiful, but it isn't fun any more at all."
           },
           {
             scene: {
@@ -849,7 +961,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 340, y: 26, w: 300, t: 'Livia ne joue plus. Livia est triste.', tx: 320, ty: 260 }]
             },
-            text: "Peppa regarde son amie assise dans l'herbe, le menton sur les genoux. Elle comprend quelque chose : le ballon est à Livia, et Livia ne joue même plus avec."
+            text: "Peppa regarde son amie assise dans l'herbe, le menton sur les genoux. Elle comprend quelque chose : le ballon est à Livia, et Livia ne joue même plus avec.",
+            es: "Peppa mira a su amiga sentada en la hierba, con la barbilla en las rodillas. Y entiende una cosa: la pelota es de Livia, y Livia ya ni siquiera juega.",
+            en: "Peppa looks at her friend sitting in the grass, chin on her knees. And she understands something: the ball is Livia's, and Livia isn't even playing with it."
           },
           {
             scene: {
@@ -861,7 +975,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 90, y: 26, w: 310, t: 'Tiens. Chacun son tour, d\'accord ?', tx: 330, ty: 226 }]
             },
-            text: "Alors Peppa se lève et lui tend le ballon. « Chacun son tour, d'accord ? » Livia sourit tellement fort que ses joues deviennent toutes rondes."
+            text: "Alors Peppa se lève et lui tend le ballon. « Chacun son tour, d'accord ? » Livia sourit tellement fort que ses joues deviennent toutes rondes.",
+            es: "Entonces Peppa se levanta y le tiende la pelota. «Por turnos, ¿vale?» Livia sonríe tan fuerte que se le ponen los mofletes redondos.",
+            en: "So Peppa gets up and holds out the ball. «Turn about, all right?» Livia smiles so hard that her cheeks go completely round."
           },
           {
             scene: {
@@ -873,7 +989,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'À TOI ! À MOI !', x: 430, y: 190, fs: 34, rot: -6, color: '#f7c518' }]
             },
-            text: "Le ballon vole de l'une à l'autre. « À toi ! » « À moi ! » Elles inventent des règles compliquées, puis elles les oublient, puis elles en inventent d'autres."
+            text: "Le ballon vole de l'une à l'autre. « À toi ! » « À moi ! » Elles inventent des règles compliquées, puis elles les oublient, puis elles en inventent d'autres.",
+            es: "La pelota vuela de una a otra. «¡Para ti!» «¡Para mí!» Inventan reglas complicadísimas, luego se les olvidan, luego inventan otras.",
+            en: "The ball flies from one to the other. «Yours!» «Mine!» They invent complicated rules, then forget them, then invent some more."
           },
           {
             scene: {
@@ -884,7 +1002,9 @@ var UNIVERSES = [
                 { t: 'ball', x: 660, y: 516, s: .8 }
               ]
             },
-            text: "Le soir, elles sont couchées dans l'herbe, essoufflées. « Le ballon était plus rigolo à deux », dit Peppa. « Beaucoup plus », répond Livia. Et le ballon, lui, se repose."
+            text: "Le soir, elles sont couchées dans l'herbe, essoufflées. « Le ballon était plus rigolo à deux », dit Peppa. « Beaucoup plus », répond Livia. Et le ballon, lui, se repose.",
+            es: "Por la tarde están tumbadas en la hierba, sin aliento. «La pelota tenía más gracia entre dos», dice Peppa. «Muchísima más», contesta Livia. Y la pelota descansa.",
+            en: "That evening they lie in the grass, out of breath. «The ball was more fun with two,» says Peppa. «Much more,» answers Livia. And the ball has a rest."
           }
         ]
       },
@@ -893,7 +1013,11 @@ var UNIVERSES = [
       {
         id: 'grosse-colere',
         title: 'La grosse colère de Peppa',
+        title_en: "Peppa's big temper",
+        title_es: "El gran enfado de Peppa",
         subtitle: 'Souffler comme un dragon',
+        subtitle_en: "Breathing out like a dragon",
+        subtitle_es: "Soplar como un dragón",
         tag: 'Grandir',
         themes: ['Émotions', 'Grandir'],
         minutes: 5,
@@ -914,7 +1038,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 120, y: 26, w: 310, t: 'C\'est la plus haute tour du monde !', tx: 380, ty: 206 }]
             },
-            text: "Peppa a construit une tour de cubes immense. Elle a mis presque une heure. Elle est si haute qu'il faut monter sur le tabouret pour poser le dernier cube."
+            text: "Peppa a construit une tour de cubes immense. Elle a mis presque une heure. Elle est si haute qu'il faut monter sur le tabouret pour poser le dernier cube.",
+            es: "Peppa ha construido una torre de cubos inmensa. Ha tardado casi una hora. Es tan alta que hay que subirse al taburete para poner el último cubo.",
+            en: "Peppa has built an enormous tower of blocks. It took her nearly an hour. It is so tall that you have to stand on the stool to put the last block on."
           },
           {
             scene: {
@@ -925,7 +1051,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'BADABOUM !', x: 300, y: 180, fs: 42, rot: -8, color: '#e2593c' }]
             },
-            text: "George passe en courant. Sa queue accroche la tour. BADABOUM ! Les cubes roulent partout dans la chambre. George ne l'a pas fait exprès du tout."
+            text: "George passe en courant. Sa queue accroche la tour. BADABOUM ! Les cubes roulent partout dans la chambre. George ne l'a pas fait exprès du tout.",
+            es: "George pasa corriendo. Su rabo engancha la torre. ¡CATAPLÚN! Los cubos ruedan por toda la habitación. George no lo ha hecho aposta en absoluto.",
+            en: "George runs past. His tail catches the tower. CRASH! The blocks roll all over the bedroom. George did not do it on purpose at all."
           },
           {
             scene: {
@@ -936,7 +1064,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'AAAAAH !', x: 240, y: 190, fs: 46, rot: -10, color: '#e2593c' }]
             },
-            text: "Alors Peppa devient toute rouge. Elle crie très fort, elle tape du pied, elle jette un cube contre le mur. La colère est arrivée d'un seul coup, comme un orage."
+            text: "Alors Peppa devient toute rouge. Elle crie très fort, elle tape du pied, elle jette un cube contre le mur. La colère est arrivée d'un seul coup, comme un orage.",
+            es: "Entonces Peppa se pone roja del todo. Grita muy fuerte, patalea, tira un cubo contra la pared. El enfado ha llegado de golpe, como una tormenta.",
+            en: "So Peppa goes bright red. She shouts very loudly, she stamps her foot, she throws a block at the wall. The temper arrived all at once, like a storm."
           },
           {
             scene: {
@@ -947,7 +1077,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 26, w: 310, t: 'Ta colère a le droit d\'être là. Mais pas de faire mal.', tx: 330, ty: 216 }]
             },
-            text: "Papa Pig entre et s'assoit par terre, sans crier. « Tu as le droit d'être en colère », dit-il. « Ça arrive à tout le monde. Mais la colère n'a pas le droit de faire mal. »"
+            text: "Papa Pig entre et s'assoit par terre, sans crier. « Tu as le droit d'être en colère », dit-il. « Ça arrive à tout le monde. Mais la colère n'a pas le droit de faire mal. »",
+            es: "Papá Pig entra y se sienta en el suelo, sin gritar. «Tienes derecho a estar enfadada», dice. «Le pasa a todo el mundo. Pero el enfado no tiene derecho a hacer daño.»",
+            en: "Daddy Pig comes in and sits down on the floor, without shouting. «You're allowed to be angry,» he says. «It happens to everybody. But anger isn't allowed to hurt anyone.»"
           },
           {
             scene: {
@@ -958,7 +1090,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 26, w: 300, t: 'On souffle comme un dragon. Trois fois.', tx: 330, ty: 216 }]
             },
-            text: "« Regarde », dit Papa. « On respire par le nez, très fort, et on souffle par la bouche comme un dragon. Trois fois. » Ils soufflent tous les deux. Ça fait un bruit ridicule."
+            text: "« Regarde », dit Papa. « On respire par le nez, très fort, et on souffle par la bouche comme un dragon. Trois fois. » Ils soufflent tous les deux. Ça fait un bruit ridicule.",
+            es: "«Mira», dice papá. «Se coge aire por la nariz, muy fuerte, y se suelta por la boca como un dragón. Tres veces.» Soplan los dos. Suena ridículo.",
+            en: "«Look,» says Daddy. «You breathe in through your nose, very hard, and out through your mouth like a dragon. Three times.» They both breathe out. It sounds ridiculous."
           },
           {
             scene: {
@@ -969,7 +1103,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 120, y: 26, w: 300, t: 'Pardon d\'avoir crié, George.', tx: 380, ty: 206 }]
             },
-            text: "Au troisième souffle, l'orage est parti. Peppa va voir George. « Pardon d'avoir crié. » George hausse les épaules : il avait déjà tout oublié."
+            text: "Au troisième souffle, l'orage est parti. Peppa va voir George. « Pardon d'avoir crié. » George hausse les épaules : il avait déjà tout oublié.",
+            es: "Al tercer soplido, la tormenta se ha ido. Peppa va a ver a George. «Perdona por haber gritado.» George se encoge de hombros: ya se le había olvidado todo.",
+            en: "By the third breath, the storm has gone. Peppa goes to see George. «Sorry for shouting.» George shrugs: he had forgotten all about it already."
           },
           {
             scene: {
@@ -980,7 +1116,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ENCORE PLUS HAUTE !', x: 420, y: 180, fs: 30, rot: -5, color: '#f7c518' }]
             },
-            text: "Ils reconstruisent la tour ensemble. Cette fois, elle est encore plus haute. Et quand elle retombe, à la fin, ce sont eux deux qui la font tomber, exprès, en riant."
+            text: "Ils reconstruisent la tour ensemble. Cette fois, elle est encore plus haute. Et quand elle retombe, à la fin, ce sont eux deux qui la font tomber, exprès, en riant.",
+            es: "Reconstruyen la torre juntos. Esta vez sale aún más alta. Y cuando se cae, al final, son ellos dos quienes la tiran, a propósito, riéndose.",
+            en: "They rebuild the tower together. This time it is even taller. And when it falls down, at the end, it is the two of them who knock it over, on purpose, laughing."
           }
         ]
       },
@@ -989,7 +1127,11 @@ var UNIVERSES = [
       {
         id: 'flaque-interdite',
         title: 'La flaque interdite',
+        title_en: "The forbidden puddle",
+        title_es: "El charco prohibido",
         subtitle: 'Pourquoi Maman avait dit non',
+        subtitle_en: "Why Mummy had said no",
+        subtitle_es: "Por qué mamá había dicho que no",
         tag: 'Grandir',
         themes: ['Grandir', 'Bêtises', 'Règles'],
         minutes: 5,
@@ -1011,7 +1153,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 320, y: 26, w: 310, t: 'Ta belle robe, et pas de flaques : c\'est la fête !', tx: 310, ty: 216 }]
             },
-            text: "Cet après-midi, c'est la fête de l'école. Maman a sorti la belle robe de Peppa, celle qu'elle ne met presque jamais. « Et pas de flaques aujourd'hui », dit Maman."
+            text: "Cet après-midi, c'est la fête de l'école. Maman a sorti la belle robe de Peppa, celle qu'elle ne met presque jamais. « Et pas de flaques aujourd'hui », dit Maman.",
+            es: "Esta tarde es la fiesta del colegio. Mamá ha sacado el vestido bonito de Peppa, el que casi nunca se pone. «Y hoy nada de charcos», dice mamá.",
+            en: "This afternoon is the school fair. Mummy has got out Peppa's best dress, the one she hardly ever wears. «And no puddles today,» says Mummy."
           },
           {
             scene: {
@@ -1023,7 +1167,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'OH… UNE FLAQUE.', x: 300, y: 200, fs: 30, rot: -5, color: '#c99a5f' }]
             },
-            text: "Sur le chemin, il y a une flaque. Pas une petite : une flaque magnifique, toute ronde, toute marron, qui attend là comme si elle avait été faite exprès pour elle."
+            text: "Sur le chemin, il y a une flaque. Pas une petite : une flaque magnifique, toute ronde, toute marron, qui attend là comme si elle avait été faite exprès pour elle.",
+            es: "Por el camino hay un charco. No uno pequeño: un charco magnífico, redondo, marrón, que espera ahí como si lo hubieran hecho a propósito para ella.",
+            en: "On the way there is a puddle. Not a small one: a magnificent puddle, perfectly round, perfectly brown, waiting there as if it had been made specially for her."
           },
           {
             scene: {
@@ -1034,7 +1180,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 340, y: 26, w: 300, t: 'Ta maman a dit non, Peppa…', tx: 620, ty: 236 }]
             },
-            text: "« Ta maman a dit non », rappelle Livia. Peppa regarde la flaque. Puis sa robe. Puis la flaque encore. « Juste un tout petit saut », dit-elle. « Un minuscule. »"
+            text: "« Ta maman a dit non », rappelle Livia. Peppa regarde la flaque. Puis sa robe. Puis la flaque encore. « Juste un tout petit saut », dit-elle. « Un minuscule. »",
+            es: "«Tu mamá ha dicho que no», le recuerda Livia. Peppa mira el charco. Luego su vestido. Luego el charco otra vez. «Solo un saltito», dice. «Minúsculo.»",
+            en: "«Your mummy said no,» Livia reminds her. Peppa looks at the puddle. Then at her dress. Then at the puddle again. «Just one tiny jump,» she says. «A minuscule one.»"
           },
           {
             scene: {
@@ -1045,7 +1193,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'SPLATCH !', x: 620, y: 250, fs: 44, rot: -10, color: '#c99a5f' }]
             },
-            text: "SPLATCH ! Le saut n'a rien de minuscule. La boue gicle jusqu'aux oreilles. Pendant une seconde, c'est le plus grand bonheur du monde entier."
+            text: "SPLATCH ! Le saut n'a rien de minuscule. La boue gicle jusqu'aux oreilles. Pendant une seconde, c'est le plus grand bonheur du monde entier.",
+            es: "¡PLAF! El salto no tiene nada de minúsculo. El barro salpica hasta las orejas. Durante un segundo, es la mayor felicidad del mundo entero.",
+            en: "SPLAT! The jump is not remotely minuscule. Mud flies up to her ears. For one second, it is the greatest happiness in the whole world."
           },
           {
             scene: {
@@ -1056,7 +1206,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ET LA ROBE ?', x: 400, y: 190, fs: 32, rot: -5, color: '#e2593c' }]
             },
-            text: "Puis Peppa baisse les yeux. La belle robe est marron du col jusqu'en bas. Le bonheur, lui, est parti aussi vite qu'il était venu."
+            text: "Puis Peppa baisse les yeux. La belle robe est marron du col jusqu'en bas. Le bonheur, lui, est parti aussi vite qu'il était venu.",
+            es: "Luego Peppa baja la mirada. El vestido bonito está marrón desde el cuello hasta abajo. La felicidad se ha ido tan rápido como había venido.",
+            en: "Then Peppa looks down. The best dress is brown from the collar to the hem. The happiness has gone as fast as it came."
           },
           {
             scene: {
@@ -1067,7 +1219,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 320, y: 26, w: 310, t: 'Je ne t\'ai pas dit non pour t\'embêter.', tx: 330, ty: 216 }]
             },
-            text: "À la maison, Maman ne crie pas. Elle dit juste : « Je ne t'avais pas dit non pour t'embêter. C'était pour que tu puisses aller à la fête. » Peppa a la gorge serrée."
+            text: "À la maison, Maman ne crie pas. Elle dit juste : « Je ne t'avais pas dit non pour t'embêter. C'était pour que tu puisses aller à la fête. » Peppa a la gorge serrée.",
+            es: "En casa, mamá no grita. Solo dice: «No te dije que no para fastidiarte. Era para que pudieras ir a la fiesta.» A Peppa se le hace un nudo en la garganta.",
+            en: "At home, Mummy does not shout. She only says: «I didn't say no to spoil your fun. It was so you could go to the fair.» Peppa's throat goes tight."
           },
           {
             scene: {
@@ -1079,7 +1233,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 26, w: 300, t: 'La prochaine fois, j\'écoute.', tx: 340, ty: 226 }]
             },
-            text: "Elles arrivent à la fête à la toute fin, en bottes et en habits de tous les jours. « La prochaine fois, j'écoute », dit Peppa. Maman lui prend la patte. « Je sais. »"
+            text: "Elles arrivent à la fête à la toute fin, en bottes et en habits de tous les jours. « La prochaine fois, j'écoute », dit Peppa. Maman lui prend la patte. « Je sais. »",
+            es: "Llegan a la fiesta al final del todo, con botas y ropa de diario. «La próxima vez hago caso», dice Peppa. Mamá le coge la mano. «Ya lo sé.»",
+            en: "They get to the fair right at the very end, in wellies and everyday clothes. «Next time, I'll listen,» says Peppa. Mummy takes her hoof. «I know.»"
           }
         ]
       },
@@ -1088,7 +1244,11 @@ var UNIVERSES = [
       {
         id: 'verite',
         title: 'Le vase de Maman',
+        title_en: "Mummy's vase",
+        title_es: "El jarrón de mamá",
         subtitle: 'Le poids d\'un petit mensonge',
+        subtitle_en: "The weight of a small lie",
+        subtitle_es: "El peso de una mentira pequeña",
         tag: 'Grandir',
         themes: ['Grandir', 'Famille', 'Règles'],
         minutes: 5,
@@ -1110,7 +1270,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 100, y: 26, w: 310, t: 'Un dernier tir et j\'arrête !', tx: 320, ty: 206 }]
             },
-            text: "On ne joue pas au ballon dans le salon : c'est la règle. Mais Maman est dans le jardin, et Peppa fait juste un tout petit tir. Puis un deuxième. Puis un troisième."
+            text: "On ne joue pas au ballon dans le salon : c'est la règle. Mais Maman est dans le jardin, et Peppa fait juste un tout petit tir. Puis un deuxième. Puis un troisième.",
+            es: "No se juega a la pelota en el salón: esa es la regla. Pero mamá está en el jardín, y Peppa solo da un tirito. Luego un segundo. Luego un tercero.",
+            en: "You don't play ball in the living room: that is the rule. But Mummy is in the garden, and Peppa only takes one tiny shot. Then a second. Then a third."
           },
           {
             scene: {
@@ -1121,7 +1283,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CRAAAC !', x: 620, y: 200, fs: 44, rot: -10, color: '#e2593c' }]
             },
-            text: "CRAAAC ! Le vase bleu de Maman tombe de l'étagère et se casse en trois morceaux sur le tapis. Peppa reste immobile. Son cœur bat très, très vite."
+            text: "CRAAAC ! Le vase bleu de Maman tombe de l'étagère et se casse en trois morceaux sur le tapis. Peppa reste immobile. Son cœur bat très, très vite.",
+            es: "¡CRAAAC! El jarrón azul de mamá se cae del estante y se rompe en tres trozos sobre la alfombra. Peppa se queda inmóvil. El corazón le late muy, muy deprisa.",
+            en: "CRASH! Mummy's blue vase falls off the shelf and breaks into three pieces on the rug. Peppa stands perfectly still. Her heart is beating very, very fast."
           },
           {
             scene: {
@@ -1133,7 +1297,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 340, y: 26, w: 300, t: 'Qui a cassé le vase ?', tx: 310, ty: 216 }]
             },
-            text: "Maman arrive en courant. « Qui a cassé le vase ? » Le salon devient très silencieux. Et Peppa entend sa propre voix dire : « C'est George. »"
+            text: "Maman arrive en courant. « Qui a cassé le vase ? » Le salon devient très silencieux. Et Peppa entend sa propre voix dire : « C'est George. »",
+            es: "Mamá llega corriendo. «¿Quién ha roto el jarrón?» El salón se queda en absoluto silencio. Y Peppa oye su propia voz decir: «Ha sido George.»",
+            en: "Mummy comes running in. «Who broke the vase?» The living room goes very quiet. And Peppa hears her own voice say: «It was George.»"
           },
           {
             scene: {
@@ -1144,7 +1310,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'MAIS… C\'EST PAS MOI…', x: 400, y: 180, fs: 26, rot: -4, color: '#e2593c' }]
             },
-            text: "George ouvre grand les yeux. « C'est pas moi », dit-il tout doucement. Personne ne le croit. Il part dans sa chambre sans dinosaure, et sans jeu jusqu'au soir."
+            text: "George ouvre grand les yeux. « C'est pas moi », dit-il tout doucement. Personne ne le croit. Il part dans sa chambre sans dinosaure, et sans jeu jusqu'au soir.",
+            es: "George abre mucho los ojos. «No he sido yo», dice bajito. Nadie le cree. Se va a su cuarto sin dinosaurio, y sin jugar hasta la noche.",
+            en: "George's eyes go wide. «Wasn't me,» he says very quietly. Nobody believes him. He goes to his room without his dinosaur, and without playing until evening."
           },
           {
             scene: {
@@ -1154,7 +1322,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ÇA SERRE, DANS LE VENTRE…', x: 400, y: 170, fs: 26, rot: -4, color: '#c99a5f' }]
             },
-            text: "Peppa va jouer dehors, mais rien ne marche. Le toboggan n'est pas drôle. Le goûter n'a pas de goût. Le mensonge est resté dans son ventre, et il pèse de plus en plus lourd."
+            text: "Peppa va jouer dehors, mais rien ne marche. Le toboggan n'est pas drôle. Le goûter n'a pas de goût. Le mensonge est resté dans son ventre, et il pèse de plus en plus lourd.",
+            es: "Peppa sale a jugar fuera, pero nada funciona. El tobogán no tiene gracia. La merienda no sabe a nada. La mentira se le ha quedado en la barriga, y pesa cada vez más.",
+            en: "Peppa goes out to play, but nothing works. The slide isn't fun. Her snack has no taste. The lie has stayed in her tummy, and it gets heavier and heavier."
           },
           {
             scene: {
@@ -1165,7 +1335,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 26, w: 300, t: 'Maman… c\'est moi qui l\'ai cassé.', tx: 570, ty: 216 }]
             },
-            text: "Alors Peppa revient dans le salon. Sa voix tremble un peu. « Maman… c'est moi qui l'ai cassé. » Voilà. C'est dit. Et d'un coup, son ventre redevient léger."
+            text: "Alors Peppa revient dans le salon. Sa voix tremble un peu. « Maman… c'est moi qui l'ai cassé. » Voilà. C'est dit. Et d'un coup, son ventre redevient léger.",
+            es: "Entonces Peppa vuelve al salón. Le tiembla un poco la voz. «Mamá… lo he roto yo.» Ya está. Ya lo ha dicho. Y de golpe la barriga se le queda ligera otra vez.",
+            en: "So Peppa comes back into the living room. Her voice wobbles a bit. «Mummy… I broke it.» There. It is said. And all at once her tummy is light again."
           },
           {
             scene: {
@@ -1177,7 +1349,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 26, w: 310, t: 'Merci de me l\'avoir dit. C\'était courageux.', tx: 290, ty: 216 }]
             },
-            text: "Maman la serre dans ses bras. « Le vase, ce n'est qu'un vase. Dire la vérité quand c'est difficile, ça, c'est courageux. » Puis Peppa va présenter ses excuses à George."
+            text: "Maman la serre dans ses bras. « Le vase, ce n'est qu'un vase. Dire la vérité quand c'est difficile, ça, c'est courageux. » Puis Peppa va présenter ses excuses à George.",
+            es: "Mamá la abraza. «El jarrón solo es un jarrón. Decir la verdad cuando es difícil, eso sí que es valiente.» Y luego Peppa va a pedirle perdón a George.",
+            en: "Mummy hugs her. «The vase is only a vase. Telling the truth when it's hard — that's the brave part.» Then Peppa goes to apologise to George."
           }
         ]
       },
@@ -1186,7 +1360,11 @@ var UNIVERSES = [
       {
         id: 'attendre-son-tour',
         title: 'La file du toboggan',
+        title_en: "The queue for the slide",
+        title_es: "La cola del tobogán",
         subtitle: 'Attendre sans que ce soit long',
+        subtitle_en: "Waiting without it feeling long",
+        subtitle_es: "Esperar sin que se haga largo",
         tag: 'Grandir',
         themes: ['Grandir', 'Amitié', 'Règles'],
         minutes: 5,
@@ -1210,7 +1388,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'LE TOBOGGAN !', x: 400, y: 200, fs: 32, rot: -6, color: '#f7c518' }]
             },
-            text: "Au parc, il n'y a qu'un seul toboggan, et il y a beaucoup de monde. Alors tout le monde fait la queue : Suzy devant, puis Peppa, puis Livia."
+            text: "Au parc, il n'y a qu'un seul toboggan, et il y a beaucoup de monde. Alors tout le monde fait la queue : Suzy devant, puis Peppa, puis Livia.",
+            es: "En el parque solo hay un tobogán, y hay muchísima gente. Así que todo el mundo hace cola: Suzy delante, luego Peppa, luego Livia.",
+            en: "At the park there is only one slide, and there are a lot of people. So everybody queues: Suzy in front, then Peppa, then Livia."
           },
           {
             scene: {
@@ -1222,7 +1402,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 26, w: 300, t: 'C\'est trop long, j\'en peux plus !', tx: 480, ty: 226 }]
             },
-            text: "La queue avance tout doucement. Peppa se balance d'une patte sur l'autre. « C'est trop long », soupire-t-elle. « Beaucoup trop long. »"
+            text: "La queue avance tout doucement. Peppa se balance d'une patte sur l'autre. « C'est trop long », soupire-t-elle. « Beaucoup trop long. »",
+            es: "La cola avanza despacísimo. Peppa se balancea de una pata a la otra. «Es demasiado largo», suspira. «Muchísimo demasiado largo.»",
+            en: "The queue moves very slowly. Peppa shifts from one hoof to the other. «It's too long,» she sighs. «Much, much too long.»"
           },
           {
             scene: {
@@ -1234,7 +1416,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PEPPA A DOUBLÉ !', x: 460, y: 190, fs: 30, rot: -6, color: '#e2593c' }]
             },
-            text: "Alors Peppa fait quelque chose de rapide : elle contourne tout le monde et grimpe l'échelle avant son tour. Derrière elle, les autres crient. Suzy croise les bras."
+            text: "Alors Peppa fait quelque chose de rapide : elle contourne tout le monde et grimpe l'échelle avant son tour. Derrière elle, les autres crient. Suzy croise les bras.",
+            es: "Entonces Peppa hace algo muy rápido: rodea a todo el mundo y sube la escalera antes de su turno. Detrás de ella, los demás gritan. Suzy se cruza de brazos.",
+            en: "So Peppa does something very quick: she goes round everybody and climbs the ladder out of turn. Behind her, the others shout. Suzy folds her arms."
           },
           {
             scene: {
@@ -1246,7 +1430,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 470, y: 26, w: 310, t: 'On ne joue plus avec toi si tu triches.', tx: 700, ty: 226 }]
             },
-            text: "En bas du toboggan, plus personne ne lui parle. « On ne joue plus avec toi si tu triches », dit Suzy. C'est descendu très vite, et ce n'était même pas amusant."
+            text: "En bas du toboggan, plus personne ne lui parle. « On ne joue plus avec toi si tu triches », dit Suzy. C'est descendu très vite, et ce n'était même pas amusant.",
+            es: "Abajo del tobogán, ya nadie le habla. «No jugamos contigo si haces trampas», dice Suzy. Ha bajado muy rápido, y ni siquiera ha tenido gracia.",
+            en: "At the bottom of the slide, nobody is speaking to her. «We won't play with you if you cheat,» says Suzy. It went down very fast, and it wasn't even fun."
           },
           {
             scene: {
@@ -1257,7 +1443,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 26, w: 310, t: 'Attendre, ça se remplit. Ça ne se saute pas.', tx: 330, ty: 226 }]
             },
-            text: "Maman lui explique un secret : quand on attend, on peut remplir l'attente. Compter les nuages. Chanter tout bas. Parler à celui qui est devant."
+            text: "Maman lui explique un secret : quand on attend, on peut remplir l'attente. Compter les nuages. Chanter tout bas. Parler à celui qui est devant.",
+            es: "Mamá le explica un secreto: cuando se espera, se puede llenar la espera. Contar nubes. Cantar bajito. Hablar con quien está delante.",
+            en: "Mummy tells her a secret: when you wait, you can fill the waiting. Count clouds. Sing quietly. Talk to whoever is in front of you."
           },
           {
             scene: {
@@ -1270,7 +1458,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 260, y: 26, w: 310, t: 'Un nuage… deux nuages… trois nuages…', tx: 630, ty: 226 }]
             },
-            text: "Peppa retourne se mettre à la fin de la file. Elle compte les nuages avec Livia. Un, deux, trois… et son tour arrive bien avant le septième."
+            text: "Peppa retourne se mettre à la fin de la file. Elle compte les nuages avec Livia. Un, deux, trois… et son tour arrive bien avant le septième.",
+            es: "Peppa vuelve a ponerse al final de la cola. Cuenta nubes con Livia. Una, dos, tres… y le llega el turno mucho antes de la séptima.",
+            en: "Peppa goes back to the end of the queue. She counts clouds with Livia. One, two, three… and her turn comes well before the seventh."
           },
           {
             scene: {
@@ -1282,7 +1472,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'WHIIII !', x: 400, y: 220, fs: 40, rot: -8, color: '#f7c518' }]
             },
-            text: "Et là, ça y est : c'est son tour, pour de vrai. Elle descend en criant, et tout le monde crie avec elle. Attendu, c'était bien meilleur."
+            text: "Et là, ça y est : c'est son tour, pour de vrai. Elle descend en criant, et tout le monde crie avec elle. Attendu, c'était bien meilleur.",
+            es: "Y ya está: es su turno, de verdad. Baja gritando, y todo el mundo grita con ella. Esperado, era muchísimo mejor.",
+            en: "And there it is: her turn, for real. She goes down shouting, and everybody shouts with her. Waited for, it was far better."
           }
         ]
       },
@@ -1291,7 +1483,11 @@ var UNIVERSES = [
       {
         id: 'petit-frere',
         title: 'Pablo veut faire pareil',
+        title_en: "Pablo wants to do it too",
+        title_es: "Pablo quiere hacer lo mismo",
         subtitle: 'Un petit frère qui copie tout',
+        subtitle_en: "A baby brother who copies everything",
+        subtitle_es: "Un hermanito que lo copia todo",
         tag: 'Grandir',
         themes: ['Famille', 'Émotions'],
         minutes: 5,
@@ -1313,7 +1509,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ENFIN TRANQUILLES !', x: 430, y: 168, fs: 26, rot: -4, color: '#e8436e' }]
             },
-            text: "Peppa était venue jouer chez Livia. Elles avaient sorti les crayons, les cubes et le grand tapis. C'était un après-midi parfait, qui allait durer trois minutes."
+            text: "Peppa était venue jouer chez Livia. Elles avaient sorti les crayons, les cubes et le grand tapis. C'était un après-midi parfait, qui allait durer trois minutes.",
+            es: "Peppa había venido a jugar a casa de Livia. Habían sacado los lápices, los cubos y la alfombra grande. Era una tarde perfecta, que iba a durar tres minutos.",
+            en: "Peppa had come to play at Livia's. They had got out the pencils, the blocks and the big rug. It was a perfect afternoon, which was going to last three minutes."
           },
           {
             scene: {
@@ -1325,7 +1523,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PA-BLO !', x: 400, y: 166, fs: 32, rot: -6, color: '#8ec9f0' }]
             },
-            text: "Pablo arriva en trottinant, les bras en avant. Pablo est le petit frère de Livia. Il a un an et demi, il ne parle presque pas, et il veut exactement ce que sa grande sœur a dans les mains."
+            text: "Pablo arriva en trottinant, les bras en avant. Pablo est le petit frère de Livia. Il a un an et demi, il ne parle presque pas, et il veut exactement ce que sa grande sœur a dans les mains.",
+            es: "Pablo llegó trotando, con los brazos por delante. Pablo es el hermanito de Livia. Tiene año y medio, casi no habla, y quiere exactamente lo que su hermana mayor tiene en las manos.",
+            en: "Pablo came toddling in, arms out in front. Pablo is Livia's baby brother. He is one and a half, he barely talks, and he wants exactly whatever his big sister is holding."
           },
           {
             scene: {
@@ -1340,7 +1540,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PATATRAS !', x: 420, y: 164, fs: 34, rot: -8, color: '#e0453c' }]
             },
-            text: "Il prit le crayon rouge. Il renversa la tour de cubes. Il s'assit au milieu du dessin. À chaque fois, il riait, comme si c'était le jeu le plus drôle du monde."
+            text: "Il prit le crayon rouge. Il renversa la tour de cubes. Il s'assit au milieu du dessin. À chaque fois, il riait, comme si c'était le jeu le plus drôle du monde.",
+            es: "Cogió el lápiz rojo. Tiró la torre de cubos. Se sentó encima del dibujo. Cada vez se reía, como si fuera el juego más divertido del mundo.",
+            en: "He took the red pencil. He knocked over the tower of blocks. He sat down in the middle of the drawing. Every time, he laughed, as if it were the funniest game in the world."
           },
           {
             scene: {
@@ -1350,7 +1552,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'IL FAIT TOUT COMME MOI !', x: 400, y: 164, fs: 24, rot: -4, color: '#e0453c' }]
             },
-            text: "« Il fait tout comme moi ! » cria Livia. « Il ne sait rien faire tout seul ! » Elle avait la voix qui montait, et les joues qui chauffaient."
+            text: "« Il fait tout comme moi ! » cria Livia. « Il ne sait rien faire tout seul ! » Elle avait la voix qui montait, et les joues qui chauffaient.",
+            es: "«¡Lo hace todo como yo!», gritó Livia. «¡No sabe hacer nada él solo!» Le subía la voz y le ardían las mejillas.",
+            en: "«He does everything like me!» shouted Livia. «He can't do anything on his own!» Her voice was going up and her cheeks were getting hot."
           },
           {
             scene: {
@@ -1361,7 +1565,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 24, w: 330, t: 'George aussi. C\'est comme ça, les petits.', tx: 285, ty: 244 }]
             },
-            text: "« George aussi faisait ça », dit Peppa. « Il copiait tout. Maintenant, il joue avec moi. » Livia n'avait jamais pensé qu'un petit frère, ça pouvait devenir quelqu'un avec qui jouer."
+            text: "« George aussi faisait ça », dit Peppa. « Il copiait tout. Maintenant, il joue avec moi. » Livia n'avait jamais pensé qu'un petit frère, ça pouvait devenir quelqu'un avec qui jouer.",
+            es: "«George también hacía eso», dijo Peppa. «Lo copiaba todo. Ahora juega conmigo.» A Livia nunca se le había ocurrido que un hermanito pudiera llegar a ser alguien con quien jugar.",
+            en: "«George used to do that too,» said Peppa. «He copied everything. Now he plays with me.» Livia had never thought that a baby brother could turn into somebody to play with."
           },
           {
             scene: {
@@ -1374,7 +1580,9 @@ var UNIVERSES = [
               front: [{ t: 'tourcubes', x: 590, y: 546, s: .7, n: 3 }],
               sfx: [{ t: 'À TOI, PABLO !', x: 380, y: 168, fs: 26, rot: -5, color: '#f7c518' }]
             },
-            text: "Alors Livia essaya autre chose. Elle empila trois cubes et dit : « À toi, Pablo. » Pablo posa le quatrième, tout doucement, la langue sortie. La tour tint debout."
+            text: "Alors Livia essaya autre chose. Elle empila trois cubes et dit : « À toi, Pablo. » Pablo posa le quatrième, tout doucement, la langue sortie. La tour tint debout.",
+            es: "Entonces Livia probó otra cosa. Apiló tres cubos y dijo: «Te toca, Pablo.» Pablo puso el cuarto, despacito, con la lengua fuera. La torre aguantó.",
+            en: "So Livia tried something else. She stacked three blocks and said: «Your turn, Pablo.» Pablo put the fourth one on, very slowly, tongue sticking out. The tower held."
           },
           {
             scene: {
@@ -1386,7 +1594,9 @@ var UNIVERSES = [
               ],
               front: [{ t: 'cube', x: 730, y: 544, s: .75, rot: 10, color: '#f7c518' }]
             },
-            text: "Le soir, la tour faisait onze cubes. Pablo en renversa dix. Livia respira un grand coup, et recommença. C'est aussi ça, être une grande sœur."
+            text: "Le soir, la tour faisait onze cubes. Pablo en renversa dix. Livia respira un grand coup, et recommença. C'est aussi ça, être une grande sœur.",
+            es: "Por la tarde la torre tenía once cubos. Pablo tiró diez. Livia respiró hondo y volvió a empezar. Eso también es ser hermana mayor.",
+            en: "By evening the tower was eleven blocks high. Pablo knocked ten of them over. Livia took a deep breath, and started again. That is part of being a big sister too."
           }
         ]
       },
@@ -1395,7 +1605,11 @@ var UNIVERSES = [
       {
         id: 'dernier-gateau',
         title: 'Le dernier gâteau',
+        title_en: "The last cake",
+        title_es: "El último pastel",
         subtitle: 'Partager quand il n\'y en a qu\'un',
+        subtitle_en: "Sharing when there's only one left",
+        subtitle_es: "Compartir cuando solo queda uno",
         tag: 'Grandir',
         themes: ['Partager', 'Amitié'],
         minutes: 5,
@@ -1416,7 +1630,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'LE GOÛTER !', x: 430, y: 168, fs: 30, rot: -5, color: '#f2803d' }]
             },
-            text: "Il y avait eu six gâteaux au chocolat. Livia en avait mangé deux. Peppa en avait mangé trois. Sur l'assiette, il en restait exactement un."
+            text: "Il y avait eu six gâteaux au chocolat. Livia en avait mangé deux. Peppa en avait mangé trois. Sur l'assiette, il en restait exactement un.",
+            es: "Había habido seis pasteles de chocolate. Livia se había comido dos. Peppa se había comido tres. En el plato quedaba exactamente uno.",
+            en: "There had been six chocolate cakes. Livia had eaten two. Peppa had eaten three. On the plate there was exactly one left."
           },
           {
             scene: {
@@ -1427,7 +1643,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'LE DERNIER…', x: 410, y: 166, fs: 30, rot: -4, color: '#6d5847' }]
             },
-            text: "Elles le regardèrent toutes les deux en même temps. Le dernier gâteau. Il n'y avait plus rien à dire, et pourtant il y avait beaucoup de choses à décider."
+            text: "Elles le regardèrent toutes les deux en même temps. Le dernier gâteau. Il n'y avait plus rien à dire, et pourtant il y avait beaucoup de choses à décider.",
+            es: "Lo miraron las dos a la vez. El último pastel. Ya no quedaba nada que decir, y sin embargo había muchas cosas que decidir.",
+            en: "They both looked at it at the same moment. The last cake. There was nothing left to say, and yet there was a great deal to decide."
           },
           {
             scene: {
@@ -1438,7 +1656,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 26, w: 300, t: 'C\'est moi qui l\'ai vu en premier !', tx: 285, ty: 244 }]
             },
-            text: "« C'est moi qui l'ai vu en premier ! » dit Livia. « C'est moi qui ai apporté l'assiette ! » dit Peppa. Chacune avait une très bonne raison. C'est souvent comme ça, les très bonnes raisons."
+            text: "« C'est moi qui l'ai vu en premier ! » dit Livia. « C'est moi qui ai apporté l'assiette ! » dit Peppa. Chacune avait une très bonne raison. C'est souvent comme ça, les très bonnes raisons.",
+            es: "«¡Lo he visto yo primero!», dijo Livia. «¡Yo he traído el plato!», dijo Peppa. Cada una tenía una razón buenísima. Suele pasar con las razones buenísimas.",
+            en: "«I saw it first!» said Livia. «I brought the plate!» said Peppa. Each had a very good reason. That is often the way with very good reasons."
           },
           {
             scene: {
@@ -1449,7 +1669,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 330, y: 24, w: 330, t: 'Je ne choisis pas. C\'est votre gâteau.', tx: 320, ty: 240 }]
             },
-            text: "Maman Pig passa par là. « Je ne choisis pas », dit-elle. « C'est votre gâteau. » Puis elle posa un couteau sur la table, et elle repartit, l'air de rien."
+            text: "Maman Pig passa par là. « Je ne choisis pas », dit-elle. « C'est votre gâteau. » Puis elle posa un couteau sur la table, et elle repartit, l'air de rien.",
+            es: "Mamá Pig pasó por allí. «Yo no elijo», dijo. «Es vuestro pastel.» Y dejó un cuchillo en la mesa, y se fue como si nada.",
+            en: "Mummy Pig came past. «I'm not choosing,» she said. «It's your cake.» Then she put a knife on the table, and wandered off, as if nothing had happened."
           },
           {
             scene: {
@@ -1460,7 +1682,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CLIC.', x: 430, y: 164, fs: 32, rot: -6, color: '#7ba450' }]
             },
-            text: "Livia prit le couteau. Elle coupa le gâteau en deux, tout doucement, en visant bien le milieu. Une moitié n'est pas un gâteau entier. Une moitié, c'est quand même beaucoup mieux que rien du tout."
+            text: "Livia prit le couteau. Elle coupa le gâteau en deux, tout doucement, en visant bien le milieu. Une moitié n'est pas un gâteau entier. Une moitié, c'est quand même beaucoup mieux que rien du tout.",
+            es: "Livia cogió el cuchillo. Cortó el pastel en dos, despacito, apuntando bien al medio. Media parte no es un pastel entero. Pero media parte es muchísimo mejor que nada.",
+            en: "Livia picked up the knife. She cut the cake in two, very carefully, aiming for the middle. Half is not a whole cake. But half is a great deal better than nothing at all."
           },
           {
             scene: {
@@ -1471,7 +1695,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 330, y: 24, w: 320, t: 'Prends la plus grosse, tu as coupé.', tx: 320, ty: 240 }]
             },
-            text: "« Prends la plus grosse », dit Peppa. « Toi tu as coupé, alors moi je choisis, et je choisis que tu prends la plus grosse. » Livia ne comprit pas très bien, mais ça lui plut beaucoup."
+            text: "« Prends la plus grosse », dit Peppa. « Toi tu as coupé, alors moi je choisis, et je choisis que tu prends la plus grosse. » Livia ne comprit pas très bien, mais ça lui plut beaucoup.",
+            es: "«Coge la más grande», dijo Peppa. «Tú has cortado, así que elijo yo, y elijo que te quedes la más grande.» Livia no lo entendió del todo, pero le gustó mucho.",
+            en: "«Take the bigger one,» said Peppa. «You cut it, so I choose, and I choose that you have the bigger one.» Livia did not entirely follow, but she liked it very much."
           },
           {
             scene: {
@@ -1481,7 +1707,9 @@ var UNIVERSES = [
                 { t: 'livia', x: 540, y: 506, s: 1.1, pose: 'sit' }
               ]
             },
-            text: "Elles mangèrent leur moitié sur les marches, sans se presser. Livia trouva que ce demi-gâteau-là avait bien meilleur goût que les deux qu'elle avait mangés toute seule."
+            text: "Elles mangèrent leur moitié sur les marches, sans se presser. Livia trouva que ce demi-gâteau-là avait bien meilleur goût que les deux qu'elle avait mangés toute seule.",
+            es: "Se comieron su mitad en los escalones, sin prisa. A Livia le pareció que aquella media porción sabía muchísimo mejor que las dos que se había comido sola.",
+            en: "They ate their halves on the steps, taking their time. Livia thought that half a cake tasted far better than the two she had eaten all by herself."
           }
         ]
       },
@@ -1490,7 +1718,11 @@ var UNIVERSES = [
       {
         id: 'donner-la-main',
         title: 'On donne la main',
+        title_en: "We hold hands",
+        title_es: "Se da la mano",
         subtitle: 'La règle qui ne se discute pas',
+        subtitle_en: "The rule that isn't up for discussion",
+        subtitle_es: "La regla que no se discute",
         tag: 'Grandir',
         themes: ['Règles', 'Famille'],
         minutes: 5,
@@ -1512,7 +1744,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ON Y VA !', x: 430, y: 160, fs: 30, rot: -5, color: '#3f6ea8' }]
             },
-            text: "Pour aller à la boulangerie, il faut traverser la route. Avant de traverser, on donne la main. C'est comme ça depuis toujours, et personne n'a jamais demandé pourquoi."
+            text: "Pour aller à la boulangerie, il faut traverser la route. Avant de traverser, on donne la main. C'est comme ça depuis toujours, et personne n'a jamais demandé pourquoi.",
+            es: "Para ir a la panadería hay que cruzar la carretera. Antes de cruzar, se da la mano. Es así desde siempre, y nadie ha preguntado nunca por qué.",
+            en: "To get to the bakery you have to cross the road. Before crossing, you hold hands. It has always been that way, and nobody has ever asked why."
           },
           {
             scene: {
@@ -1523,7 +1757,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 320, y: 24, w: 330, t: 'Je suis grande. Je peux tout seule.', tx: 540, ty: 240 }]
             },
-            text: "Ce jour-là, Livia retira sa main. « Je suis grande », dit-elle. « Je peux traverser toute seule. » Elle était très fière de sa phrase. Elle l'avait préparée dans sa tête."
+            text: "Ce jour-là, Livia retira sa main. « Je suis grande », dit-elle. « Je peux traverser toute seule. » Elle était très fière de sa phrase. Elle l'avait préparée dans sa tête.",
+            es: "Ese día, Livia retiró la mano. «Soy mayor», dijo. «Puedo cruzar yo sola.» Estaba muy orgullosa de su frase. La había preparado en la cabeza.",
+            en: "That day, Livia took her hand away. «I'm big,» she said. «I can cross on my own.» She was very proud of her sentence. She had prepared it in her head."
           },
           {
             scene: {
@@ -1534,7 +1770,9 @@ var UNIVERSES = [
               front: [{ t: 'car', x: 610, y: 512, s: 1.15 }],
               sfx: [{ t: 'TUUUT !!', x: 600, y: 190, fs: 40, rot: -10, color: '#e0453c' }]
             },
-            text: "Elle fit deux pas sur la route. Une voiture arriva. Elle klaxonna très fort et s'arrêta d'un coup. Il ne s'est rien passé. Mais il aurait pu se passer quelque chose."
+            text: "Elle fit deux pas sur la route. Une voiture arriva. Elle klaxonna très fort et s'arrêta d'un coup. Il ne s'est rien passé. Mais il aurait pu se passer quelque chose.",
+            es: "Dio dos pasos en la carretera. Llegó un coche. Pitó muy fuerte y frenó de golpe. No pasó nada. Pero podría haber pasado algo.",
+            en: "She took two steps into the road. A car came. It hooted very loudly and stopped dead. Nothing happened. But something could have happened."
           },
           {
             scene: {
@@ -1545,7 +1783,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'LIVIA !', x: 420, y: 164, fs: 36, rot: -7, color: '#e0453c' }]
             },
-            text: "Maman Pig cria son prénom très fort. Puis elle la serra très fort. Sa voix tremblait un peu. Livia comprit que ce n'était pas de la colère : c'était de la peur."
+            text: "Maman Pig cria son prénom très fort. Puis elle la serra très fort. Sa voix tremblait un peu. Livia comprit que ce n'était pas de la colère : c'était de la peur.",
+            es: "Mamá Pig gritó su nombre muy fuerte. Y luego la abrazó muy fuerte. Le temblaba un poco la voz. Livia entendió que aquello no era enfado: era miedo.",
+            en: "Mummy Pig shouted her name very loudly. Then she hugged her very tightly. Her voice was shaking slightly. Livia understood that this was not anger: it was fear."
           },
           {
             scene: {
@@ -1556,7 +1796,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 24, w: 340, t: 'La règle, c\'est pour te ramener à la maison.', tx: 300, ty: 236 }]
             },
-            text: "Elles s'assirent sur le trottoir. « Certaines règles se discutent », dit Maman Pig. « Celle-là, non. La route, c'est la règle qui te ramène à la maison. »"
+            text: "Elles s'assirent sur le trottoir. « Certaines règles se discutent », dit Maman Pig. « Celle-là, non. La route, c'est la règle qui te ramène à la maison. »",
+            es: "Se sentaron en la acera. «Algunas reglas se discuten», dijo mamá Pig. «Esta, no. La carretera es la regla que te trae de vuelta a casa.»",
+            en: "They sat down on the pavement. «Some rules can be argued about,» said Mummy Pig. «That one can't. The road is the rule that brings you home.»"
           },
           {
             scene: {
@@ -1567,7 +1809,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'À GAUCHE, À DROITE…', x: 420, y: 158, fs: 26, rot: -4, color: '#3f6ea8' }]
             },
-            text: "Alors Livia reprit la main. Elle regarda à gauche, puis à droite, puis encore à gauche, comme on lui avait appris. Et c'est elle qui dit : « On peut y aller. »"
+            text: "Alors Livia reprit la main. Elle regarda à gauche, puis à droite, puis encore à gauche, comme on lui avait appris. Et c'est elle qui dit : « On peut y aller. »",
+            es: "Entonces Livia volvió a darle la mano. Miró a la izquierda, luego a la derecha, luego otra vez a la izquierda, como le habían enseñado. Y fue ella quien dijo: «Podemos ir.»",
+            en: "So Livia took her hand again. She looked left, then right, then left again, the way she had been taught. And it was she who said: «We can go.»"
           },
           {
             scene: {
@@ -1578,7 +1822,9 @@ var UNIVERSES = [
                 { t: 'peppa', x: 690, y: 520, s: 1.1, pose: 'hold' }
               ]
             },
-            text: "Au retour, Livia tendit la main la première, sans qu'on lui demande. Être grande, ce n'est pas faire tout seul. C'est savoir quand on a besoin de quelqu'un."
+            text: "Au retour, Livia tendit la main la première, sans qu'on lui demande. Être grande, ce n'est pas faire tout seul. C'est savoir quand on a besoin de quelqu'un.",
+            es: "A la vuelta, Livia tendió la mano la primera, sin que nadie se lo pidiera. Ser mayor no es hacerlo todo solo. Es saber cuándo necesitas a alguien.",
+            en: "On the way back, Livia held out her hand first, without being asked. Being big isn't doing everything on your own. It's knowing when you need somebody."
           }
         ]
       },
@@ -1587,7 +1833,11 @@ var UNIVERSES = [
       {
         id: 'maman-dit-non',
         title: 'Quand Maman dit non',
+        title_en: "When Mummy says no",
+        title_es: "Cuando mamá dice que no",
         subtitle: 'Un non, et ce qui vient après',
+        subtitle_en: "A no, and what comes after it",
+        subtitle_es: "Un no, y lo que viene después",
         tag: 'Grandir',
         themes: ['Règles', 'Émotions'],
         minutes: 5,
@@ -1608,7 +1858,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'JE VEUX ÇA !', x: 430, y: 164, fs: 30, rot: -5, color: '#e8436e' }]
             },
-            text: "Au magasin, il y avait un tout petit cheval en plastique. Livia le voulait. Elle le voulait tout de suite, elle le voulait beaucoup, et elle le dit très clairement."
+            text: "Au magasin, il y avait un tout petit cheval en plastique. Livia le voulait. Elle le voulait tout de suite, elle le voulait beaucoup, et elle le dit très clairement.",
+            es: "En la tienda había un caballito de plástico. Livia lo quería. Lo quería ya mismo, lo quería mucho, y lo dijo con toda claridad.",
+            en: "In the shop there was a very small plastic horse. Livia wanted it. She wanted it right now, she wanted it a lot, and she said so very clearly."
           },
           {
             scene: {
@@ -1619,7 +1871,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 24, w: 300, t: 'Non. Pas aujourd\'hui.', tx: 300, ty: 240 }]
             },
-            text: "« Non », dit Maman. « Pas aujourd'hui. » Elle ne dit pas peut-être. Elle ne dit pas on verra. Elle dit non, une seule fois, calmement, ce qui est très énervant."
+            text: "« Non », dit Maman. « Pas aujourd'hui. » Elle ne dit pas peut-être. Elle ne dit pas on verra. Elle dit non, une seule fois, calmement, ce qui est très énervant.",
+            es: "«No», dijo mamá. «Hoy no.» No dijo quizá. No dijo ya veremos. Dijo no, una sola vez, tranquilamente, lo cual resulta muy irritante.",
+            en: "«No,» said Mummy. «Not today.» She did not say maybe. She did not say we'll see. She said no, once, calmly, which is extremely annoying."
           },
           {
             scene: {
@@ -1629,7 +1883,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'AAAAAAH !', x: 400, y: 156, fs: 44, rot: -9, color: '#e0453c' }]
             },
-            text: "Alors Livia se coucha par terre. Elle cria. Elle tapa des pieds. Tout le magasin la regarda. Elle sentait bien que c'était très fort, ce qui sortait d'elle."
+            text: "Alors Livia se coucha par terre. Elle cria. Elle tapa des pieds. Tout le magasin la regarda. Elle sentait bien que c'était très fort, ce qui sortait d'elle.",
+            es: "Entonces Livia se tiró al suelo. Gritó. Pataleó. La tienda entera la miró. Notaba perfectamente que aquello que le salía era muy fuerte.",
+            en: "So Livia lay down on the floor. She screamed. She kicked. The whole shop looked at her. She could tell that what was coming out of her was very big."
           },
           {
             scene: {
@@ -1640,7 +1896,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: '. . .', x: 450, y: 172, fs: 32, rot: 0, color: '#8a7768' }]
             },
-            text: "Maman ne cria pas. Elle s'assit à côté, sans rien dire, et elle attendit. La colère est comme une grosse vague : si personne ne la nourrit, elle finit par redescendre."
+            text: "Maman ne cria pas. Elle s'assit à côté, sans rien dire, et elle attendit. La colère est comme une grosse vague : si personne ne la nourrit, elle finit par redescendre.",
+            es: "Mamá no gritó. Se sentó al lado, sin decir nada, y esperó. El enfado es como una ola grande: si nadie lo alimenta, acaba bajando.",
+            en: "Mummy did not shout. She sat down beside her, saying nothing, and waited. Anger is like a big wave: if nobody feeds it, it eventually goes back down."
           },
           {
             scene: {
@@ -1651,7 +1909,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 24, w: 340, t: 'Tu as le droit d\'être triste. Le non reste non.', tx: 300, ty: 240 }]
             },
-            text: "Quand ce fut fini, Maman dit : « Tu as le droit d'être triste. Tu as le droit d'être en colère. Le non, lui, reste non. » Les deux choses tenaient ensemble, bizarrement."
+            text: "Quand ce fut fini, Maman dit : « Tu as le droit d'être triste. Tu as le droit d'être en colère. Le non, lui, reste non. » Les deux choses tenaient ensemble, bizarrement.",
+            es: "Cuando terminó, mamá dijo: «Tienes derecho a estar triste. Tienes derecho a estar enfadada. El no sigue siendo no.» Las dos cosas encajaban juntas, curiosamente.",
+            en: "When it was over, Mummy said: «You're allowed to be sad. You're allowed to be angry. The no stays no.» The two things held together, oddly enough."
           },
           {
             scene: {
@@ -1662,7 +1922,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 24, w: 330, t: 'On le note sur la liste des envies.', tx: 285, ty: 240 }]
             },
-            text: "« On le note sur la liste des envies », dit Maman. « Pour ton anniversaire, tu choisiras dedans. » Ce n'était pas tout de suite. Mais ce n'était plus jamais non plus."
+            text: "« On le note sur la liste des envies », dit Maman. « Pour ton anniversaire, tu choisiras dedans. » Ce n'était pas tout de suite. Mais ce n'était plus jamais non plus.",
+            es: "«Lo apuntamos en la lista de deseos», dijo mamá. «Para tu cumpleaños eliges de ahí.» No era ahora mismo. Pero tampoco era nunca.",
+            en: "«We'll put it on the wish list,» said Mummy. «For your birthday you can choose from it.» It was not right now. But it was not never any more either."
           },
           {
             scene: {
@@ -1672,7 +1934,9 @@ var UNIVERSES = [
                 { t: 'livia', x: 540, y: 520, s: 1.15, pose: 'hold' }
               ]
             },
-            text: "En sortant, Livia tenait la liste dans sa poche. Le petit cheval était resté au magasin. Il n'avait pas bougé, et Livia savait maintenant où le retrouver."
+            text: "En sortant, Livia tenait la liste dans sa poche. Le petit cheval était resté au magasin. Il n'avait pas bougé, et Livia savait maintenant où le retrouver.",
+            es: "Al salir, Livia llevaba la lista en el bolsillo. El caballito se había quedado en la tienda. No se había movido, y ahora Livia sabía dónde volver a encontrarlo.",
+            en: "On the way out, Livia had the list in her pocket. The little horse had stayed in the shop. It had not moved, and now Livia knew where to find it again."
           }
         ]
       },
@@ -1681,7 +1945,11 @@ var UNIVERSES = [
       {
         id: 'tour-de-parole',
         title: 'Chacun son tour de parler',
+        title_en: "Taking turns to talk",
+        title_es: "Cada uno su turno de hablar",
         subtitle: 'On ne coupe pas, même quand c\'est urgent',
+        subtitle_en: "You don't cut in, even when it's urgent",
+        subtitle_es: "No se interrumpe, ni siquiera cuando es urgente",
         tag: 'Grandir',
         themes: ['Partager', 'Règles', 'Famille'],
         minutes: 5,
@@ -1704,7 +1972,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ET MOI ! ET MOI !', x: 430, y: 148, fs: 28, rot: -5, color: '#e8436e' }]
             },
-            text: "À table, tout le monde avait quelque chose de très important à raconter. Peppa parlait. Livia parlait par-dessus. Maman n'entendait ni l'une ni l'autre."
+            text: "À table, tout le monde avait quelque chose de très important à raconter. Peppa parlait. Livia parlait par-dessus. Maman n'entendait ni l'une ni l'autre.",
+            es: "En la mesa, todo el mundo tenía algo importantísimo que contar. Peppa hablaba. Livia hablaba por encima. Mamá no oía ni a una ni a otra.",
+            en: "At the table, everybody had something extremely important to tell. Peppa was talking. Livia was talking over her. Mummy could hear neither of them."
           },
           {
             scene: {
@@ -1715,7 +1985,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 320, y: 22, w: 330, t: 'Tu me coupes tout le temps !', tx: 560, ty: 238 }]
             },
-            text: "« Tu me coupes tout le temps ! » dit Peppa. Livia répondit qu'elle avait fini. Ce n'était pas vrai : Peppa n'avait dit que le début, et le début n'est pas la fin."
+            text: "« Tu me coupes tout le temps ! » dit Peppa. Livia répondit qu'elle avait fini. Ce n'était pas vrai : Peppa n'avait dit que le début, et le début n'est pas la fin.",
+            es: "«¡Me cortas todo el rato!», dijo Peppa. Livia contestó que ya había terminado. No era verdad: Peppa solo había dicho el principio, y el principio no es el final.",
+            en: "«You keep cutting me off!» said Peppa. Livia replied that she had finished. That was not true: Peppa had only said the beginning, and the beginning is not the end."
           },
           {
             scene: {
@@ -1726,7 +1998,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'LA CUILLÈRE !', x: 430, y: 146, fs: 30, rot: -5, color: '#f2803d' }]
             },
-            text: "Alors Maman posa une grande cuillère en bois au milieu de la table. « Celui qui a la cuillère parle », dit-elle. « Les autres écoutent. Puis on la passe. »"
+            text: "Alors Maman posa une grande cuillère en bois au milieu de la table. « Celui qui a la cuillère parle », dit-elle. « Les autres écoutent. Puis on la passe. »",
+            es: "Entonces mamá puso una cuchara grande de madera en medio de la mesa. «El que tiene la cuchara habla», dijo. «Los demás escuchan. Luego se pasa.»",
+            en: "So Mummy put a big wooden spoon in the middle of the table. «Whoever has the spoon talks,» she said. «The others listen. Then you pass it on.»"
           },
           {
             scene: {
@@ -1737,7 +2011,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'MMMMH !', x: 430, y: 148, fs: 32, rot: -6, color: '#6d5847' }]
             },
-            text: "Peppa prit la cuillère et raconta toute son histoire, du début à la fin. Livia serra les lèvres très fort. Attendre son tour de parler, c'est presque aussi dur qu'attendre son tour de toboggan."
+            text: "Peppa prit la cuillère et raconta toute son histoire, du début à la fin. Livia serra les lèvres très fort. Attendre son tour de parler, c'est presque aussi dur qu'attendre son tour de toboggan.",
+            es: "Peppa cogió la cuchara y contó su historia entera, del principio al final. Livia apretó los labios muy fuerte. Esperar tu turno de hablar es casi tan duro como esperar tu turno de tobogán.",
+            en: "Peppa took the spoon and told her whole story, beginning to end. Livia pressed her lips very tightly together. Waiting your turn to talk is nearly as hard as waiting your turn on the slide."
           },
           {
             scene: {
@@ -1748,7 +2024,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 340, t: 'À moi ! Alors, dans le jardin, il y avait…', tx: 545, ty: 238 }]
             },
-            text: "Puis ce fut son tour. Et là, quelque chose d'étonnant arriva : tout le monde se tut, et tout le monde l'écouta jusqu'au bout. Livia n'avait jamais été écoutée aussi longtemps."
+            text: "Puis ce fut son tour. Et là, quelque chose d'étonnant arriva : tout le monde se tut, et tout le monde l'écouta jusqu'au bout. Livia n'avait jamais été écoutée aussi longtemps.",
+            es: "Luego le tocó a ella. Y ahí pasó algo asombroso: todo el mundo se calló, y todo el mundo la escuchó hasta el final. A Livia nunca la habían escuchado tanto rato.",
+            en: "Then it was her turn. And something astonishing happened: everybody went quiet, and everybody listened right to the end. Livia had never been listened to for so long."
           },
           {
             scene: {
@@ -1759,7 +2037,9 @@ var UNIVERSES = [
                 { t: 'livia', x: 680, y: 510, s: 1.05, pose: 'hold' }
               ]
             },
-            text: "Depuis, la cuillère reste sur la table. On ne s'en sert presque plus. Il suffit de la regarder pour se rappeler qu'une histoire a un début, un milieu et une fin."
+            text: "Depuis, la cuillère reste sur la table. On ne s'en sert presque plus. Il suffit de la regarder pour se rappeler qu'une histoire a un début, un milieu et une fin.",
+            es: "Desde entonces, la cuchara sigue en la mesa. Casi no se usa. Basta con mirarla para acordarse de que una historia tiene principio, medio y final.",
+            en: "Ever since, the spoon stays on the table. It hardly ever gets used. You only have to look at it to remember that a story has a beginning, a middle and an end."
           }
         ]
       },
@@ -1768,7 +2048,11 @@ var UNIVERSES = [
       {
         id: 'maman-est-prise',
         title: 'Maman est prise',
+        title_en: "Mummy is busy",
+        title_es: "Mamá está ocupada",
         subtitle: 'Quand il faut attendre son tour de câlin',
+        subtitle_en: "When you have to wait your turn for a cuddle",
+        subtitle_es: "Cuando hay que esperar tu turno de abrazo",
         tag: 'Grandir',
         themes: ['Partager', 'Famille', 'Émotions'],
         minutes: 5,
@@ -1789,7 +2073,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'REGARDE MON DESSIN !', x: 400, y: 146, fs: 26, rot: -4, color: '#3ec9c9' }]
             },
-            text: "Livia avait fait un dessin. Un vrai, avec un soleil, un chien et une maison qui tenait debout. Elle courut le montrer à Maman tout de suite, parce que tout de suite c'est important."
+            text: "Livia avait fait un dessin. Un vrai, avec un soleil, un chien et une maison qui tenait debout. Elle courut le montrer à Maman tout de suite, parce que tout de suite c'est important.",
+            es: "Livia había hecho un dibujo. Uno de verdad, con un sol, un perro y una casa que se tenía en pie. Corrió a enseñárselo a mamá enseguida, porque enseguida es importante.",
+            en: "Livia had done a drawing. A proper one, with a sun, a dog and a house that stayed up. She ran to show Mummy straight away, because straight away matters."
           },
           {
             scene: {
@@ -1801,7 +2087,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'OUIN ! OUIN !', x: 400, y: 146, fs: 30, rot: -6, color: '#8ec9f0' }]
             },
-            text: "Mais Maman avait Pablo dans les bras. Pablo pleurait. Pablo pleure souvent, et quand il pleure, il prend toute la place, tous les bras et toutes les oreilles."
+            text: "Mais Maman avait Pablo dans les bras. Pablo pleurait. Pablo pleure souvent, et quand il pleure, il prend toute la place, tous les bras et toutes les oreilles.",
+            es: "Pero mamá tenía a Pablo en brazos. Pablo lloraba. Pablo llora a menudo, y cuando llora ocupa todo el sitio, todos los brazos y todos los oídos.",
+            en: "But Mummy had Pablo in her arms. Pablo was crying. Pablo cries often, and when he cries he takes up all the room, all the arms and all the ears."
           },
           {
             scene: {
@@ -1811,7 +2099,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'DANS DEUX MINUTES…', x: 400, y: 148, fs: 26, rot: -4, color: '#6d5847' }]
             },
-            text: "« Dans deux minutes, ma chérie. » Deux minutes, c'est très court quand on joue, et très long quand on attend. Livia s'assit par terre avec son dessin sur les genoux."
+            text: "« Dans deux minutes, ma chérie. » Deux minutes, c'est très court quand on joue, et très long quand on attend. Livia s'assit par terre avec son dessin sur les genoux.",
+            es: "«Dentro de dos minutos, cariño.» Dos minutos es muy poco cuando juegas, y larguísimo cuando esperas. Livia se sentó en el suelo con el dibujo sobre las rodillas.",
+            en: "«In two minutes, darling.» Two minutes is very short when you're playing, and very long when you're waiting. Livia sat down on the floor with the drawing on her knees."
           },
           {
             scene: {
@@ -1822,7 +2112,9 @@ var UNIVERSES = [
               front: [{ t: 'cube', x: 620, y: 540, s: .8, rot: 12, color: '#e0453c' }],
               sfx: [{ t: 'ET SI J\'AJOUTAIS…', x: 400, y: 146, fs: 26, rot: -4, color: '#f7c518' }]
             },
-            text: "Alors, en attendant, elle ajouta un chat sur le toit. Puis un arbre. Puis un bonhomme avec un chapeau. Le dessin devint beaucoup plus beau qu'avant."
+            text: "Alors, en attendant, elle ajouta un chat sur le toit. Puis un arbre. Puis un bonhomme avec un chapeau. Le dessin devint beaucoup plus beau qu'avant.",
+            es: "Así que, mientras esperaba, añadió un gato en el tejado. Luego un árbol. Luego un señor con sombrero. El dibujo quedó mucho más bonito que antes.",
+            en: "So, while she waited, she added a cat on the roof. Then a tree. Then a man in a hat. The drawing became much better than before."
           },
           {
             scene: {
@@ -1833,7 +2125,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 320, y: 22, w: 340, t: 'Voilà. Maintenant je suis toute à toi.', tx: 320, ty: 236 }]
             },
-            text: "Pablo s'endormit. Maman s'assit à côté de Livia. « Voilà », dit-elle. « Maintenant je suis toute à toi. » Et elle regarda le dessin très longtemps, en montrant chaque chose du doigt."
+            text: "Pablo s'endormit. Maman s'assit à côté de Livia. « Voilà », dit-elle. « Maintenant je suis toute à toi. » Et elle regarda le dessin très longtemps, en montrant chaque chose du doigt.",
+            es: "Pablo se durmió. Mamá se sentó al lado de Livia. «Ya está», dijo. «Ahora soy toda tuya.» Y miró el dibujo muchísimo rato, señalando cada cosa con el dedo.",
+            en: "Pablo fell asleep. Mummy sat down next to Livia. «There,» she said. «Now I'm all yours.» And she looked at the drawing for a very long time, pointing at each thing."
           },
           {
             scene: {
@@ -1844,7 +2138,9 @@ var UNIVERSES = [
                 { t: 'pablo', x: 700, y: 512, s: 1, mood: 'sleep' }
               ]
             },
-            text: "« Tu as attendu », dit Maman. « C'est difficile, d'attendre. » Livia répondit que oui, mais que ça lui avait laissé le temps d'ajouter le chat. Les deux étaient vraies."
+            text: "« Tu as attendu », dit Maman. « C'est difficile, d'attendre. » Livia répondit que oui, mais que ça lui avait laissé le temps d'ajouter le chat. Les deux étaient vraies.",
+            es: "«Has esperado», dijo mamá. «Es difícil esperar.» Livia contestó que sí, pero que le había dado tiempo a añadir el gato. Las dos cosas eran verdad.",
+            en: "«You waited,» said Mummy. «Waiting is hard.» Livia said yes, but that it had given her time to add the cat. Both were true."
           }
         ]
       },
@@ -1853,7 +2149,11 @@ var UNIVERSES = [
       {
         id: 'reparer',
         title: 'Ce qu\'on fait après',
+        title_en: "What you do afterwards",
+        title_es: "Lo que se hace después",
         subtitle: 'Pardon, c\'est le début, pas la fin',
+        subtitle_en: "Sorry is the beginning, not the end",
+        subtitle_es: "Perdón es el principio, no el final",
         tag: 'Grandir',
         themes: ['Règles', 'Grandir'],
         minutes: 5,
@@ -1874,7 +2174,9 @@ var UNIVERSES = [
               front: [{ t: 'flower', x: 640, y: 540, s: 2 }],
               sfx: [{ t: 'INTERDIT DE CUEILLIR', x: 400, y: 166, fs: 26, rot: -4, color: '#7ba450' }]
             },
-            text: "Dans le jardin, il y avait une règle : on ne cueille pas les fleurs de Papa. Livia connaissait la règle. Elle la connaissait même très bien."
+            text: "Dans le jardin, il y avait une règle : on ne cueille pas les fleurs de Papa. Livia connaissait la règle. Elle la connaissait même très bien.",
+            es: "En el jardín había una regla: no se cogen las flores de papá. Livia conocía la regla. La conocía incluso muy bien.",
+            en: "In the garden there was a rule: you don't pick Daddy's flowers. Livia knew the rule. She knew it extremely well, in fact."
           },
           {
             scene: {
@@ -1884,7 +2186,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CLAC !', x: 420, y: 164, fs: 34, rot: -7, color: '#e0453c' }]
             },
-            text: "Elle en cueillit six. Six d'un coup. Elles étaient jaunes et elles sentaient bon, et sur le moment, ça valait vraiment le coup."
+            text: "Elle en cueillit six. Six d'un coup. Elles étaient jaunes et elles sentaient bon, et sur le moment, ça valait vraiment le coup.",
+            es: "Cogió seis. Seis de golpe. Eran amarillas y olían bien, y en aquel momento mereció totalmente la pena.",
+            en: "She picked six. Six all at once. They were yellow and they smelled lovely, and at the time it was completely worth it."
           },
           {
             scene: {
@@ -1895,7 +2199,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 24, w: 300, t: 'Pardon. Pardon, pardon !', tx: 570, ty: 240 }]
             },
-            text: "Papa vit le trou dans le massif. Livia dit pardon tout de suite, très vite, plusieurs fois. Elle avait remarqué que pardon fait souvent s'arrêter les histoires."
+            text: "Papa vit le trou dans le massif. Livia dit pardon tout de suite, très vite, plusieurs fois. Elle avait remarqué que pardon fait souvent s'arrêter les histoires.",
+            es: "Papá vio el hueco en el parterre. Livia dijo perdón enseguida, muy deprisa, varias veces. Se había fijado en que perdón suele hacer que las historias se paren.",
+            en: "Daddy saw the gap in the flowerbed. Livia said sorry straight away, very fast, several times. She had noticed that sorry usually makes these stories stop."
           },
           {
             scene: {
@@ -1906,7 +2212,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 340, t: 'Pardon, c\'est le début. Après, on répare.', tx: 305, ty: 236 }]
             },
-            text: "« Pardon, c'est le début », dit Papa. « Ce n'est pas la fin. Après pardon, il y a réparer. » Livia ne savait pas qu'il y avait quelque chose après pardon."
+            text: "« Pardon, c'est le début », dit Papa. « Ce n'est pas la fin. Après pardon, il y a réparer. » Livia ne savait pas qu'il y avait quelque chose après pardon.",
+            es: "«Perdón es el principio», dijo papá. «No es el final. Después de perdón viene reparar.» Livia no sabía que hubiera algo después de perdón.",
+            en: "«Sorry is the beginning,» said Daddy. «It isn't the end. After sorry comes putting it right.» Livia had not known there was anything after sorry."
           },
           {
             scene: {
@@ -1918,7 +2226,9 @@ var UNIVERSES = [
               front: [{ t: 'bucket', x: 690, y: 542, s: 1.1 }],
               sfx: [{ t: 'ON CREUSE !', x: 420, y: 164, fs: 28, rot: -5, color: '#7ba450' }]
             },
-            text: "Ils allèrent chercher six graines. Livia creusa six trous, avec la petite pelle, à l'endroit exact des six fleurs. Ça prit tout l'après-midi, et c'était fatigant."
+            text: "Ils allèrent chercher six graines. Livia creusa six trous, avec la petite pelle, à l'endroit exact des six fleurs. Ça prit tout l'après-midi, et c'était fatigant.",
+            es: "Fueron a buscar seis semillas. Livia cavó seis agujeros, con la pala pequeña, en el sitio exacto de las seis flores. Les llevó toda la tarde, y fue cansado.",
+            en: "They went to fetch six seeds. Livia dug six holes, with the little trowel, in the exact spot where the six flowers had been. It took all afternoon, and it was tiring."
           },
           {
             scene: {
@@ -1929,7 +2239,9 @@ var UNIVERSES = [
               ],
               front: [{ t: 'flower', x: 700, y: 542, s: 1.4 }]
             },
-            text: "Trois semaines plus tard, une première pousse sortit. Livia la surveilla tous les jours. Réparer, c'est plus long que dire pardon. C'est aussi ce dont on se souvient."
+            text: "Trois semaines plus tard, une première pousse sortit. Livia la surveilla tous les jours. Réparer, c'est plus long que dire pardon. C'est aussi ce dont on se souvient.",
+            es: "Tres semanas más tarde salió el primer brote. Livia lo vigiló todos los días. Reparar lleva más tiempo que decir perdón. También es lo que se recuerda.",
+            en: "Three weeks later, the first shoot came up. Livia checked on it every day. Putting things right takes longer than saying sorry. It is also the part you remember."
           }
         ]
       },
@@ -1938,7 +2250,11 @@ var UNIVERSES = [
       {
         id: 'papa-se-trompe',
         title: 'Le jour où Papa s\'est trompé',
+        title_en: "The day Daddy got it wrong",
+        title_es: "El día en que papá se equivocó",
         subtitle: 'Les grands aussi disent pardon',
+        subtitle_en: "Grown-ups say sorry too",
+        subtitle_es: "Los mayores también piden perdón",
         tag: 'Grandir',
         themes: ['Règles', 'Famille'],
         minutes: 5,
@@ -1959,7 +2275,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'QUI A FAIT ÇA ?', x: 430, y: 144, fs: 30, rot: -5, color: '#e0453c' }]
             },
-            text: "Le mur du couloir avait un grand trait de feutre bleu. Papa n'était pas content du tout. « Qui a fait ça ? » demanda-t-il en regardant Livia."
+            text: "Le mur du couloir avait un grand trait de feutre bleu. Papa n'était pas content du tout. « Qui a fait ça ? » demanda-t-il en regardant Livia.",
+            es: "La pared del pasillo tenía una raya grande de rotulador azul. Papá no estaba nada contento. «¿Quién ha hecho esto?», preguntó mirando a Livia.",
+            en: "The hallway wall had a long blue felt-tip line on it. Daddy was not at all pleased. «Who did this?» he asked, looking at Livia."
           },
           {
             scene: {
@@ -1969,7 +2287,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 210, y: 22, w: 340, t: 'Ce n\'est pas moi. Je te promets.', tx: 400, ty: 236 }]
             },
-            text: "« Ce n'est pas moi », dit Livia. « Je te promets. » Papa dit que ce n'était pas la peine de mentir. Livia sentit quelque chose de très injuste lui monter dans la gorge."
+            text: "« Ce n'est pas moi », dit Livia. « Je te promets. » Papa dit que ce n'était pas la peine de mentir. Livia sentit quelque chose de très injuste lui monter dans la gorge.",
+            es: "«No he sido yo», dijo Livia. «Te lo prometo.» Papá dijo que no hacía falta mentir. A Livia le subió a la garganta algo muy injusto.",
+            en: "«It wasn't me,» said Livia. «I promise.» Daddy said there was no point lying. Something very unfair rose up in Livia's throat."
           },
           {
             scene: {
@@ -1979,7 +2299,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: '. . .', x: 430, y: 152, fs: 32, rot: 0, color: '#8a7768' }]
             },
-            text: "Elle alla dans sa chambre. Elle ne pleura même pas. C'est très particulier, d'être punie pour quelque chose qu'on n'a pas fait : ça ne ressemble à rien d'autre."
+            text: "Elle alla dans sa chambre. Elle ne pleura même pas. C'est très particulier, d'être punie pour quelque chose qu'on n'a pas fait : ça ne ressemble à rien d'autre.",
+            es: "Se fue a su cuarto. Ni siquiera lloró. Es muy particular que te castiguen por algo que no has hecho: no se parece a nada más.",
+            en: "She went to her room. She did not even cry. Being told off for something you did not do is very particular: it is not like anything else."
           },
           {
             scene: {
@@ -1990,7 +2312,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'OH…', x: 430, y: 146, fs: 34, rot: -6, color: '#8ec9f0' }]
             },
-            text: "Un peu plus tard, Papa trouva Pablo dans le couloir, un feutre bleu dans la main, en train d'ajouter un deuxième trait juste à côté du premier."
+            text: "Un peu plus tard, Papa trouva Pablo dans le couloir, un feutre bleu dans la main, en train d'ajouter un deuxième trait juste à côté du premier.",
+            es: "Un rato después, papá encontró a Pablo en el pasillo, con un rotulador azul en la mano, añadiendo una segunda raya justo al lado de la primera.",
+            en: "A little later, Daddy found Pablo in the hallway, a blue felt-tip in his hand, adding a second line right next to the first."
           },
           {
             scene: {
@@ -2001,7 +2325,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 340, t: 'Je me suis trompé. Pardon, Livia.', tx: 305, ty: 236 }]
             },
-            text: "Papa vint s'asseoir sur le lit. « Je me suis trompé », dit-il. « Je ne t'ai pas crue, et j'aurais dû. Pardon, Livia. » Un papa qui dit pardon, ça fait un drôle d'effet."
+            text: "Papa vint s'asseoir sur le lit. « Je me suis trompé », dit-il. « Je ne t'ai pas crue, et j'aurais dû. Pardon, Livia. » Un papa qui dit pardon, ça fait un drôle d'effet.",
+            es: "Papá vino a sentarse en la cama. «Me he equivocado», dijo. «No te he creído, y debería haberlo hecho. Perdona, Livia.» Un papá que pide perdón hace un efecto rarísimo.",
+            en: "Daddy came and sat on the bed. «I got it wrong,» he said. «I didn't believe you, and I should have. Sorry, Livia.» A daddy saying sorry feels very strange indeed."
           },
           {
             scene: {
@@ -2012,7 +2338,9 @@ var UNIVERSES = [
                 { t: 'pablo', x: 700, y: 512, s: 1 }
               ]
             },
-            text: "Ils nettoyèrent le mur tous les deux. Livia comprit ce jour-là que les grands ne savent pas tout, et que ce n'est pas grave, tant qu'ils savent le dire."
+            text: "Ils nettoyèrent le mur tous les deux. Livia comprit ce jour-là que les grands ne savent pas tout, et que ce n'est pas grave, tant qu'ils savent le dire.",
+            es: "Limpiaron la pared los dos. Livia entendió aquel día que los mayores no lo saben todo, y que no pasa nada, mientras sepan decirlo.",
+            en: "They cleaned the wall together. That day Livia understood that grown-ups don't know everything, and that it doesn't matter, as long as they can say so."
           }
         ]
       },
@@ -2021,7 +2349,11 @@ var UNIVERSES = [
       {
         id: 'la-honte',
         title: 'Devant tout le monde',
+        title_en: "In front of everybody",
+        title_es: "Delante de todo el mundo",
         subtitle: 'La honte, et comment elle s\'en va',
+        subtitle_en: "Embarrassment, and how it goes away",
+        subtitle_es: "La vergüenza, y cómo se va",
         tag: 'Grandir',
         themes: ['Émotions', 'Grandir'],
         minutes: 5,
@@ -2043,7 +2375,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'REGARDEZ-MOI !', x: 430, y: 166, fs: 28, rot: -5, color: '#3ec9c9' }]
             },
-            text: "Livia avait appris à faire la roue. Enfin, presque. Devant toute la classe, elle annonça qu'elle allait la faire, et tout le monde s'arrêta pour regarder."
+            text: "Livia avait appris à faire la roue. Enfin, presque. Devant toute la classe, elle annonça qu'elle allait la faire, et tout le monde s'arrêta pour regarder.",
+            es: "Livia había aprendido a hacer la rueda. Bueno, casi. Delante de toda la clase anunció que iba a hacerla, y todo el mundo se paró a mirar.",
+            en: "Livia had learned to do a cartwheel. Well, nearly. In front of the whole class she announced that she was going to do one, and everybody stopped to watch."
           },
           {
             scene: {
@@ -2053,7 +2387,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'BADABOUM !', x: 400, y: 164, fs: 36, rot: -8, color: '#e0453c' }]
             },
-            text: "Elle prit son élan, leva les bras, et tomba sur les fesses. Tout le monde rit. Pas méchamment. Mais tout le monde rit, et elle entendit chaque rire séparément."
+            text: "Elle prit son élan, leva les bras, et tomba sur les fesses. Tout le monde rit. Pas méchamment. Mais tout le monde rit, et elle entendit chaque rire séparément.",
+            es: "Cogió carrerilla, levantó los brazos y se cayó de culo. Todo el mundo se rio. Sin maldad. Pero todo el mundo se rio, y ella oyó cada risa por separado.",
+            en: "She took a run-up, put her arms up, and landed on her bottom. Everybody laughed. Not unkindly. But everybody laughed, and she heard each laugh separately."
           },
           {
             scene: {
@@ -2063,7 +2399,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'TOUT ROUGE…', x: 400, y: 166, fs: 30, rot: -5, color: '#e0453c' }]
             },
-            text: "Ses joues devinrent brûlantes. Elle voulut disparaître, devenir toute petite, ou partir vivre ailleurs. C'est ça, la honte : ça chauffe, et ça donne envie de s'en aller."
+            text: "Ses joues devinrent brûlantes. Elle voulut disparaître, devenir toute petite, ou partir vivre ailleurs. C'est ça, la honte : ça chauffe, et ça donne envie de s'en aller.",
+            es: "Se le pusieron las mejillas ardiendo. Quiso desaparecer, hacerse pequeñísima, o irse a vivir a otro sitio. Eso es la vergüenza: quema, y da ganas de marcharse.",
+            en: "Her cheeks went burning hot. She wanted to disappear, to become tiny, or to go and live somewhere else. That is embarrassment: it burns, and it makes you want to leave."
           },
           {
             scene: {
@@ -2074,7 +2412,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 340, t: 'Moi je suis tombée à la piscine. Devant tout le monde.', tx: 305, ty: 236 }]
             },
-            text: "Peppa vint s'asseoir à côté. « Moi je suis tombée à la piscine », dit-elle. « Devant tout le monde. Deux fois. » Livia releva la tête de deux centimètres."
+            text: "Peppa vint s'asseoir à côté. « Moi je suis tombée à la piscine », dit-elle. « Devant tout le monde. Deux fois. » Livia releva la tête de deux centimètres.",
+            es: "Peppa vino a sentarse a su lado. «Yo me caí en la piscina», dijo. «Delante de todo el mundo. Dos veces.» Livia levantó la cabeza dos centímetros.",
+            en: "Peppa came and sat beside her. «I fell over at the pool,» she said. «In front of everybody. Twice.» Livia lifted her head two centimetres."
           },
           {
             scene: {
@@ -2086,7 +2426,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'MOI AUSSI !', x: 400, y: 166, fs: 28, rot: -5, color: '#f7c518' }]
             },
-            text: "Alors Suzy raconta la fois du chapeau dans la soupe. Puis quelqu'un d'autre raconta autre chose. Il s'avéra que tout le monde était déjà tombé devant tout le monde."
+            text: "Alors Suzy raconta la fois du chapeau dans la soupe. Puis quelqu'un d'autre raconta autre chose. Il s'avéra que tout le monde était déjà tombé devant tout le monde.",
+            es: "Entonces Suzy contó la vez del sombrero en la sopa. Luego otro contó otra cosa. Resultó que todo el mundo se había caído ya delante de todo el mundo.",
+            en: "Then Suzy told the one about the hat in the soup. Then somebody else told another one. It turned out that everybody had already fallen over in front of everybody."
           },
           {
             scene: {
@@ -2097,7 +2439,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ENCORE UNE FOIS !', x: 430, y: 164, fs: 26, rot: -5, color: '#f7c518' }]
             },
-            text: "Livia réessaya la roue avant de rentrer. Elle retomba. Elle rit la première, cette fois, et c'était complètement différent. La honte n'aime pas beaucoup qu'on rie avec elle."
+            text: "Livia réessaya la roue avant de rentrer. Elle retomba. Elle rit la première, cette fois, et c'était complètement différent. La honte n'aime pas beaucoup qu'on rie avec elle.",
+            es: "Livia volvió a intentar la rueda antes de irse. Se volvió a caer. Esta vez se rio ella primero, y fue completamente distinto. A la vergüenza no le gusta nada que se rían con ella.",
+            en: "Livia tried the cartwheel again before going home. She fell over again. This time she laughed first, and it was completely different. Embarrassment does not much like being laughed with."
           }
         ]
       },
@@ -2106,7 +2450,11 @@ var UNIVERSES = [
       {
         id: 'grande-soeur',
         title: 'Le jour où Pablo est arrivé',
+        title_en: "The day Pablo arrived",
+        title_es: "El día en que llegó Pablo",
         subtitle: 'Devenir grande sœur, ça ne se décide pas',
+        subtitle_en: "Becoming a big sister isn't something you decide",
+        subtitle_es: "Ser hermana mayor no se decide",
         tag: 'Grandir',
         themes: ['Famille', 'Émotions'],
         minutes: 5,
@@ -2128,7 +2476,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'UN BÉBÉ !', x: 430, y: 146, fs: 32, rot: -5, color: '#f2a0c2' }]
             },
-            text: "On avait prévenu Livia longtemps à l'avance : il allait y avoir un bébé. Elle avait dit oui, super, d'accord. Elle imaginait quelqu'un avec qui jouer tout de suite."
+            text: "On avait prévenu Livia longtemps à l'avance : il allait y avoir un bébé. Elle avait dit oui, super, d'accord. Elle imaginait quelqu'un avec qui jouer tout de suite.",
+            es: "A Livia se lo habían avisado con mucha antelación: iba a haber un bebé. Ella había dicho que sí, genial, vale. Se imaginaba a alguien con quien jugar enseguida.",
+            en: "Livia had been warned a long time in advance: there was going to be a baby. She had said yes, great, fine. She imagined somebody to play with straight away."
           },
           {
             scene: {
@@ -2140,7 +2490,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'IL DORT. ENCORE.', x: 400, y: 146, fs: 26, rot: -4, color: '#6d5847' }]
             },
-            text: "Pablo arriva. Il ne jouait pas. Il ne parlait pas. Il dormait, il mangeait, il pleurait, et il prenait tous les bras de la maison. C'était très décevant."
+            text: "Pablo arriva. Il ne jouait pas. Il ne parlait pas. Il dormait, il mangeait, il pleurait, et il prenait tous les bras de la maison. C'était très décevant.",
+            es: "Pablo llegó. No jugaba. No hablaba. Dormía, comía, lloraba, y se llevaba todos los brazos de la casa. Fue muy decepcionante.",
+            en: "Pablo arrived. He did not play. He did not talk. He slept, he ate, he cried, and he took up every pair of arms in the house. It was very disappointing."
           },
           {
             scene: {
@@ -2150,7 +2502,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ON PEUT LE RENDRE ?', x: 400, y: 148, fs: 26, rot: -4, color: '#8a7768' }]
             },
-            text: "Un soir, Livia demanda si on pouvait le rendre. Personne ne se fâcha. Maman dit que non, et qu'on avait le droit de trouver ça difficile, les deux en même temps."
+            text: "Un soir, Livia demanda si on pouvait le rendre. Personne ne se fâcha. Maman dit que non, et qu'on avait le droit de trouver ça difficile, les deux en même temps.",
+            es: "Una noche, Livia preguntó si se podía devolver. Nadie se enfadó. Mamá dijo que no, y que se tenía derecho a que aquello resultara difícil, las dos cosas a la vez.",
+            en: "One evening, Livia asked whether they could send him back. Nobody got cross. Mummy said no, and that she was allowed to find it hard, both at the same time."
           },
           {
             scene: {
@@ -2161,7 +2515,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: '…SOURIRE ?', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
             },
-            text: "Et puis un matin, Livia se pencha au-dessus du berceau, comme d'habitude, sans y croire. Et Pablo la regarda dans les yeux. Et Pablo lui sourit."
+            text: "Et puis un matin, Livia se pencha au-dessus du berceau, comme d'habitude, sans y croire. Et Pablo la regarda dans les yeux. Et Pablo lui sourit.",
+            es: "Y entonces, una mañana, Livia se asomó por encima de la cuna, como siempre, sin ninguna esperanza. Y Pablo la miró a los ojos. Y Pablo le sonrió.",
+            en: "And then one morning, Livia leaned over the cot, as usual, without expecting anything. And Pablo looked her in the eye. And Pablo smiled at her."
           },
           {
             scene: {
@@ -2172,7 +2528,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'À MOI !', x: 430, y: 146, fs: 30, rot: -6, color: '#3ec9c9' }]
             },
-            text: "Pas à Maman. Pas à Papa. À elle. Livia resta là très longtemps, penchée, à refaire toutes les grimaces qu'elle connaissait, pour voir s'il recommençait."
+            text: "Pas à Maman. Pas à Papa. À elle. Livia resta là très longtemps, penchée, à refaire toutes les grimaces qu'elle connaissait, pour voir s'il recommençait.",
+            es: "No a mamá. No a papá. A ella. Livia se quedó allí muchísimo rato, asomada, repitiendo todas las muecas que sabía, a ver si él lo hacía otra vez.",
+            en: "Not at Mummy. Not at Daddy. At her. Livia stayed there a very long time, leaning over, doing every funny face she knew, to see whether he would do it again."
           },
           {
             scene: {
@@ -2183,7 +2541,9 @@ var UNIVERSES = [
                 { t: 'pablo', x: 690, y: 500, s: 1, pose: 'sit', mood: 'sleep' }
               ]
             },
-            text: "Devenir grande sœur, ça ne se décide pas le jour où le bébé arrive. Ça arrive plus tard, un matin, sans prévenir, quand quelqu'un vous sourit à vous."
+            text: "Devenir grande sœur, ça ne se décide pas le jour où le bébé arrive. Ça arrive plus tard, un matin, sans prévenir, quand quelqu'un vous sourit à vous.",
+            es: "Ser hermana mayor no se decide el día en que llega el bebé. Llega más tarde, una mañana, sin avisar, cuando alguien te sonríe a ti.",
+            en: "Becoming a big sister isn't something you decide on the day the baby arrives. It happens later, one morning, without warning, when somebody smiles at you."
           }
         ]
       },
@@ -2192,7 +2552,11 @@ var UNIVERSES = [
       {
         id: 'chez-mamie',
         title: 'Chez Mamie, ce n\'est pas pareil',
+        title_en: "At Granny's it isn't the same",
+        title_es: "En casa de la abuela no es igual",
         subtitle: 'Deux maisons, deux règles',
+        subtitle_en: "Two houses, two sets of rules",
+        subtitle_es: "Dos casas, dos reglas",
         tag: 'Grandir',
         themes: ['Règles', 'Famille'],
         minutes: 5,
@@ -2215,7 +2579,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'BONJOUR MAMIE !', x: 430, y: 146, fs: 28, rot: -5, color: '#a98cf0' }]
             },
-            text: "Chez Mamie, ça sent le gâteau et la lessive. Livia y va un dimanche sur deux. Et chez Mamie, les règles ne sont pas exactement les mêmes qu'à la maison."
+            text: "Chez Mamie, ça sent le gâteau et la lessive. Livia y va un dimanche sur deux. Et chez Mamie, les règles ne sont pas exactement les mêmes qu'à la maison.",
+            es: "En casa de la abuela huele a bizcocho y a colada. Livia va un domingo de cada dos. Y en casa de la abuela las reglas no son exactamente las mismas que en la suya.",
+            en: "At Granny's it smells of cake and washing. Livia goes every other Sunday. And at Granny's, the rules are not exactly the same as at home."
           },
           {
             scene: {
@@ -2227,7 +2593,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'DEUX GÂTEAUX ?!', x: 430, y: 146, fs: 30, rot: -6, color: '#f2803d' }]
             },
-            text: "Chez Mamie, on a le droit à deux gâteaux. À la maison, c'est un. Livia vérifia trois fois, au cas où ce serait une erreur. Ce n'était pas une erreur."
+            text: "Chez Mamie, on a le droit à deux gâteaux. À la maison, c'est un. Livia vérifia trois fois, au cas où ce serait une erreur. Ce n'était pas une erreur.",
+            es: "En casa de la abuela hay derecho a dos pasteles. En la suya, uno. Livia lo comprobó tres veces, por si fuera un error. No era un error.",
+            en: "At Granny's you are allowed two cakes. At home it is one. Livia checked three times, in case it was a mistake. It was not a mistake."
           },
           {
             scene: {
@@ -2237,7 +2605,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 200, y: 22, w: 350, t: 'Alors chez Maman aussi, j\'ai le droit !', tx: 400, ty: 236 }]
             },
-            text: "En rentrant, Livia annonça que désormais, ce serait deux gâteaux partout. Elle avait une preuve. Elle trouvait son raisonnement absolument imparable."
+            text: "En rentrant, Livia annonça que désormais, ce serait deux gâteaux partout. Elle avait une preuve. Elle trouvait son raisonnement absolument imparable.",
+            es: "Al volver, Livia anunció que a partir de ahora serían dos pasteles en todas partes. Tenía una prueba. Su razonamiento le parecía absolutamente indiscutible.",
+            en: "When she got home, Livia announced that from now on it would be two cakes everywhere. She had proof. She found her reasoning absolutely watertight."
           },
           {
             scene: {
@@ -2248,7 +2618,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 340, t: 'Chez Mamie, c\'est la règle de Mamie.', tx: 305, ty: 236 }]
             },
-            text: "« Chez Mamie, c'est la règle de Mamie », dit Maman. « Ici, c'est la mienne. Les deux maisons ont le droit. » Livia trouva ça très mal organisé."
+            text: "« Chez Mamie, c'est la règle de Mamie », dit Maman. « Ici, c'est la mienne. Les deux maisons ont le droit. » Livia trouva ça très mal organisé.",
+            es: "«En casa de la abuela manda la regla de la abuela», dijo mamá. «Aquí manda la mía. Las dos casas tienen derecho.» A Livia le pareció muy mal organizado.",
+            en: "«At Granny's, Granny's rule applies,» said Mummy. «Here, mine does. Both houses are allowed.» Livia thought that was very badly organised."
           },
           {
             scene: {
@@ -2260,7 +2632,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 22, w: 330, t: 'Chez ta maman, tu fais comme ta maman.', tx: 305, ty: 236 }]
             },
-            text: "Le dimanche suivant, Livia posa la question à Mamie. Mamie rit très fort. « Chez ta maman, tu fais comme ta maman », dit-elle. « Et ici, tu fais comme moi. »"
+            text: "Le dimanche suivant, Livia posa la question à Mamie. Mamie rit très fort. « Chez ta maman, tu fais comme ta maman », dit-elle. « Et ici, tu fais comme moi. »",
+            es: "El domingo siguiente, Livia se lo preguntó a la abuela. La abuela se rio muchísimo. «En casa de tu mamá haces como tu mamá», dijo. «Y aquí haces como yo.»",
+            en: "The following Sunday, Livia put the question to Granny. Granny laughed a great deal. «At your mummy's, you do as your mummy does,» she said. «And here, you do as I do.»"
           },
           {
             scene: {
@@ -2271,7 +2645,9 @@ var UNIVERSES = [
                 { t: 'livia', x: 560, y: 496, s: 1.15, pose: 'sit' }
               ]
             },
-            text: "Alors Livia mangea son deuxième gâteau, chez Mamie, sans en parler à personne. Certaines règles changent de maison en maison. C'est ce qui rend les dimanches intéressants."
+            text: "Alors Livia mangea son deuxième gâteau, chez Mamie, sans en parler à personne. Certaines règles changent de maison en maison. C'est ce qui rend les dimanches intéressants.",
+            es: "Así que Livia se comió su segundo pastel, en casa de la abuela, sin decírselo a nadie. Algunas reglas cambian de casa en casa. Es lo que hace los domingos interesantes.",
+            en: "So Livia ate her second cake, at Granny's, without telling anybody. Some rules change from house to house. That is what makes Sundays interesting."
           }
         ]
       }
@@ -2281,7 +2657,11 @@ var UNIVERSES = [
       {
         id: 'la-tele-seteint',
         title: "La télé s'éteint",
+        title_en: "The telly goes off",
+        title_es: "Se apaga la tele",
         subtitle: "Un non qui ne se négocie pas",
+        subtitle_en: "A no that isn't up for negotiation",
+        subtitle_es: "Un no que no se negocia",
         tag: 'Grandir',
         themes: ['Règles', 'Émotions'],
         minutes: 5,
@@ -2303,7 +2683,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ENCORE UN ÉPISODE ?', x: 430, y: 146, fs: 24, rot: -4, color: '#a98cf0' }]
             },
-            text: "Livia et Peppa étaient assises très près de l'écran, la bouche un peu ouverte. L'épisode se terminait. Un autre commençait tout seul, sans rien demander à personne."
+            text: "Livia et Peppa étaient assises très près de l'écran, la bouche un peu ouverte. L'épisode se terminait. Un autre commençait tout seul, sans rien demander à personne.",
+            es: "Livia y Peppa estaban sentadas muy cerca de la pantalla, con la boca un poco abierta. El episodio se acababa. Otro empezaba solo, sin pedirle permiso a nadie.",
+            en: "Livia and Peppa were sitting very close to the screen, mouths slightly open. The episode was ending. Another one started by itself, without asking anybody."
           },
           {
             scene: {
@@ -2314,7 +2696,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 40, y: 22, w: 300, t: 'Celui-là, et on éteint.', tx: 300, ty: 240 }]
             },
-            text: "« Celui-là, et on éteint », dit Maman Pig depuis la cuisine. Livia dit oui sans écouter, comme on dit oui quand on regarde ailleurs, et elle oublia la phrase en trois secondes."
+            text: "« Celui-là, et on éteint », dit Maman Pig depuis la cuisine. Livia dit oui sans écouter, comme on dit oui quand on regarde ailleurs, et elle oublia la phrase en trois secondes.",
+            es: "«Ese, y apagamos», dijo mamá Pig desde la cocina. Livia dijo que sí sin escuchar, como se dice que sí cuando estás mirando otra cosa, y se le olvidó la frase en tres segundos.",
+            en: "«That one, and then it goes off,» said Mummy Pig from the kitchen. Livia said yes without listening, the way you say yes when you're looking elsewhere, and forgot the sentence in three seconds."
           },
           {
             scene: {
@@ -2325,7 +2709,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CLIC.', x: 430, y: 146, fs: 34, rot: -6, color: '#e0453c' }]
             },
-            text: "Clic. L'écran devint noir et refléta deux petites filles très en colère. « Mais il était PAS FINI ! » cria Livia, avec la voix qu'elle n'a que dans ces moments-là."
+            text: "Clic. L'écran devint noir et refléta deux petites filles très en colère. « Mais il était PAS FINI ! » cria Livia, avec la voix qu'elle n'a que dans ces moments-là.",
+            es: "Clic. La pantalla se puso negra y reflejó a dos niñas muy enfadadas. «¡Pero si NO SE HABÍA ACABADO!», gritó Livia, con la voz que solo tiene en esos momentos.",
+            en: "Click. The screen went black and reflected two very cross little girls. «But it WASN'T FINISHED!» shouted Livia, in the voice she only has at moments like that."
           },
           {
             scene: {
@@ -2333,7 +2719,9 @@ var UNIVERSES = [
               items: [{ t: 'livia', x: 400, y: 512, s: 1.25, mood: 'fache' }],
               sfx: [{ t: 'C\'EST PAS JUSTE !', x: 400, y: 146, fs: 30, rot: -7, color: '#e0453c' }]
             },
-            text: "Elle dit que ce n'était pas juste. Elle dit qu'elle n'avait rien demandé. Elle dit une chose méchante, aussi, qu'elle regretta avant même d'avoir fini de la dire."
+            text: "Elle dit que ce n'était pas juste. Elle dit qu'elle n'avait rien demandé. Elle dit une chose méchante, aussi, qu'elle regretta avant même d'avoir fini de la dire.",
+            es: "Dijo que no era justo. Dijo que ella no había pedido nada. Dijo también algo feo, de lo que se arrepintió antes incluso de acabar de decirlo.",
+            en: "She said it wasn't fair. She said she hadn't asked for anything. She said something unkind too, which she regretted before she had even finished saying it."
           },
           {
             scene: {
@@ -2344,7 +2732,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 350, t: 'Tu peux être fâchée. La télé reste éteinte.', tx: 305, ty: 236 }]
             },
-            text: "Maman Pig s'assit à côté d'elle sans rien enlever et sans rien ajouter. « Tu peux être fâchée », dit-elle. « La télé reste éteinte. » Les deux phrases tenaient ensemble, curieusement."
+            text: "Maman Pig s'assit à côté d'elle sans rien enlever et sans rien ajouter. « Tu peux être fâchée », dit-elle. « La télé reste éteinte. » Les deux phrases tenaient ensemble, curieusement.",
+            es: "Mamá Pig se sentó a su lado sin quitar nada y sin añadir nada. «Puedes estar enfadada», dijo. «La tele se queda apagada.» Las dos frases encajaban juntas, curiosamente.",
+            en: "Mummy Pig sat down beside her without taking anything back and without adding anything. «You're allowed to be cross,» she said. «The telly stays off.» The two sentences held together, oddly enough."
           },
           {
             scene: {
@@ -2355,7 +2745,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'SPLATCH !', x: 430, y: 146, fs: 32, rot: -7, color: '#8a5a3b' }]
             },
-            text: "La colère mit onze minutes à partir. Ensuite, elles allèrent sauter dans les flaques. Livia n'a jamais su comment se terminait l'épisode, et ça ne lui a jamais manqué une seule fois."
+            text: "La colère mit onze minutes à partir. Ensuite, elles allèrent sauter dans les flaques. Livia n'a jamais su comment se terminait l'épisode, et ça ne lui a jamais manqué une seule fois.",
+            es: "El enfado tardó once minutos en irse. Después se fueron a saltar en los charcos. Livia nunca supo cómo acababa el episodio, y no lo ha echado de menos ni una sola vez.",
+            en: "The anger took eleven minutes to go. Afterwards, they went and jumped in puddles. Livia never found out how the episode ended, and she has never once missed it."
           }
         ]
       },
@@ -2364,7 +2756,11 @@ var UNIVERSES = [
       {
         id: 'le-bain-de-george',
         title: 'Le bain de George',
+        title_en: "George's bath",
+        title_es: "El baño de George",
         subtitle: "Aider un petit, c'est un vrai travail",
+        subtitle_en: "Looking after a little one is real work",
+        subtitle_es: "Cuidar de un pequeño es un trabajo de verdad",
         tag: 'Grandir',
         themes: ['Famille', 'Partager'],
         minutes: 5,
@@ -2385,7 +2781,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 40, y: 22, w: 330, t: 'Tu peux surveiller George deux minutes ?', tx: 300, ty: 240 }]
             },
-            text: "« Tu peux surveiller George deux minutes ? » demanda Maman Pig. Livia se redressa d'un coup. On ne lui avait encore jamais confié un enfant entier, même pour deux minutes."
+            text: "« Tu peux surveiller George deux minutes ? » demanda Maman Pig. Livia se redressa d'un coup. On ne lui avait encore jamais confié un enfant entier, même pour deux minutes.",
+            es: "«¿Puedes vigilar a George dos minutos?», preguntó mamá Pig. Livia se irguió de golpe. Nunca le habían confiado un niño entero, ni siquiera durante dos minutos.",
+            en: "«Can you watch George for two minutes?» asked Mummy Pig. Livia sat up straight. Nobody had ever put a whole child in her charge before, even for two minutes."
           },
           {
             scene: {
@@ -2396,7 +2794,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'DINO ! DINO !', x: 430, y: 146, fs: 30, rot: -5, color: '#7ab648' }]
             },
-            text: "George voulait son dinosaure dans le bain. Le dinosaure était en bas, dans le panier, sous une pile de choses. George le voulait maintenant, et il le fit savoir avec beaucoup de conviction."
+            text: "George voulait son dinosaure dans le bain. Le dinosaure était en bas, dans le panier, sous une pile de choses. George le voulait maintenant, et il le fit savoir avec beaucoup de conviction.",
+            es: "George quería su dinosaurio en el baño. El dinosaurio estaba abajo, en la cesta, debajo de un montón de cosas. George lo quería ahora, y lo hizo saber con muchísima convicción.",
+            en: "George wanted his dinosaur in the bath. The dinosaur was downstairs, in the basket, under a pile of things. George wanted it now, and he made that known with a great deal of conviction."
           },
           {
             scene: {
@@ -2407,7 +2807,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'OUIIIIIN !', x: 430, y: 146, fs: 34, rot: -7, color: '#e0453c' }]
             },
-            text: "Livia dit non, parce qu'il ne fallait pas quitter la pièce. George se mit à hurler. Deux minutes, découvrit-elle, ça peut être extrêmement long quand on est responsable de quelqu'un."
+            text: "Livia dit non, parce qu'il ne fallait pas quitter la pièce. George se mit à hurler. Deux minutes, découvrit-elle, ça peut être extrêmement long quand on est responsable de quelqu'un.",
+            es: "Livia dijo que no, porque no había que salir de la habitación. George se puso a berrear. Dos minutos, descubrió, pueden ser larguísimos cuando eres responsable de alguien.",
+            en: "Livia said no, because she was not to leave the room. George began to howl. Two minutes, she discovered, can be extremely long when you are responsible for somebody."
           },
           {
             scene: {
@@ -2418,7 +2820,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'REGARDE LA MOUSSE !', x: 430, y: 146, fs: 24, rot: -4, color: '#7fd8f0' }]
             },
-            text: "Alors elle prit une poignée de mousse et se fit une barbe blanche. George s'arrêta net, la bouche encore ouverte sur un cri qui ne sortit jamais. Puis il rit, et il voulut une barbe aussi."
+            text: "Alors elle prit une poignée de mousse et se fit une barbe blanche. George s'arrêta net, la bouche encore ouverte sur un cri qui ne sortit jamais. Puis il rit, et il voulut une barbe aussi.",
+            es: "Entonces cogió un puñado de espuma y se hizo una barba blanca. George se paró en seco, con la boca todavía abierta sobre un grito que no llegó a salir. Luego se rio, y quiso una barba también.",
+            en: "So she took a handful of bubbles and gave herself a white beard. George stopped dead, his mouth still open on a shout that never came out. Then he laughed, and wanted a beard too."
           },
           {
             scene: {
@@ -2429,7 +2833,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'HA HA HA !', x: 430, y: 146, fs: 32, rot: -6, color: '#f7c518' }]
             },
-            text: "Ils firent une barbe, des sourcils, et un chapeau de mousse. Le dinosaure fut complètement oublié, ce qui est le plus grand exploit qu'on puisse accomplir avec George."
+            text: "Ils firent une barbe, des sourcils, et un chapeau de mousse. Le dinosaure fut complètement oublié, ce qui est le plus grand exploit qu'on puisse accomplir avec George.",
+            es: "Se hicieron una barba, unas cejas y un sombrero de espuma. El dinosaurio quedó completamente olvidado, que es la mayor hazaña que se puede lograr con George.",
+            en: "They made a beard, some eyebrows, and a hat out of bubbles. The dinosaur was entirely forgotten, which is the greatest feat anybody can achieve with George."
           },
           {
             scene: {
@@ -2441,7 +2847,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 300, t: 'Tu as fait ça toute seule ?', tx: 300, ty: 240 }]
             },
-            text: "Maman Pig revint dans une salle de bain plus mouillée qu'elle ne l'avait laissée, et beaucoup plus calme. « Tu as fait ça toute seule ? » Livia dit oui, sans en rajouter. Elle n'en avait pas besoin."
+            text: "Maman Pig revint dans une salle de bain plus mouillée qu'elle ne l'avait laissée, et beaucoup plus calme. « Tu as fait ça toute seule ? » Livia dit oui, sans en rajouter. Elle n'en avait pas besoin.",
+            es: "Mamá Pig volvió a un baño más mojado de como lo había dejado, y mucho más tranquilo. «¿Has hecho esto tú sola?» Livia dijo que sí, sin añadir nada. No le hacía falta.",
+            en: "Mummy Pig came back to a bathroom wetter than she had left it, and a great deal calmer. «Did you do that all on your own?» Livia said yes, without adding anything. She did not need to."
           }
         ]
       }
