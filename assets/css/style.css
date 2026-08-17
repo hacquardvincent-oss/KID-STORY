@@ -750,6 +750,28 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 }
 .jeu-fermer:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
 
+/* le panneau des réglages : langue et voix, derrière un drapeau discret dans
+   le bandeau. Un réglage d'adulte n'a rien à faire sur le chemin de l'enfant. */
+.reglages {
+  position: fixed; z-index: 70;
+  top: calc(var(--safe-top) + 54px); right: 10px;
+  width: min(300px, calc(100vw - 20px));
+  padding: 12px 13px 14px;
+  background: var(--page); border: 3px solid var(--ink); border-radius: 14px;
+  box-shadow: 0 8px 0 rgba(58, 42, 34, .22);
+  animation: fadeUp .16s ease both;
+}
+.reglages-bloc + .reglages-bloc { margin-top: 12px; }
+.reglages h4 {
+  margin: 0 0 7px; font-size: 13px; font-weight: 600; letter-spacing: .3px;
+  color: var(--ink-soft); text-transform: uppercase;
+}
+.reglages .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.reglages .voix .chip { font-size: 13px; }
+.voix-vide { color: var(--ink-soft); font-size: 14px; }
+#btnReglages { font-size: 19px; }
+#btnReglages.is-active { background: var(--jaune); }
+
 /* les 6 différences : deux fois la même case, à un détail près */
 /* sur un téléphone, la case va d'un bord à l'autre : chaque pixel compte
    pour viser un détail du doigt */
@@ -787,6 +809,27 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 }
 .jeux-nav::-webkit-scrollbar { display: none; }
 .jeux-nav .chip { flex: 0 0 auto; }
+
+/* choisir son dessin : des vignettes au trait, pas des titres. À quatre ans
+   on ne lit pas la liste, on reconnaît l'image. */
+.dessins-grille {
+  display: grid; gap: 8px; margin: 0 0 12px;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  /* sans « start », les rangées s'étirent pour remplir la hauteur et les
+     vignettes se retrouvent séparées par du vide */
+  align-content: start;
+  overflow-y: auto; min-height: 0;
+}
+.dessin-b {
+  padding: 0; cursor: pointer; overflow: hidden; aspect-ratio: 4 / 3;
+  background: #fffdf6; border: 3px solid var(--ink); border-radius: 12px;
+  box-shadow: 0 3px 0 rgba(58, 42, 34, .28);
+  transition: transform .12s, box-shadow .12s;
+}
+.dessin-b svg { display: block; width: 100%; height: 100%; }
+.dessin-b:active { transform: translateY(3px); box-shadow: 0 0 0 rgba(58, 42, 34, .28); }
+/* dans un jeu à l'écran entier, la grille défile et le bouton reste dessous */
+.jeu-plein .dessins-grille { flex: 1 1 auto; }
 
 /* choisir un prénom, choisir une lettre */
 .choix-grille {

@@ -47,7 +47,8 @@
       planches: 'planches', histoires: 'histoires', tous: 'Tous', langue: 'Langue',
       rejouer: 'Autres choix', jouerSeul: 'Pour jouer tout seul, dès 3 ans',
       navHist: 'Histoires', navJeux: 'Jeux', titreJeux: 'Les jeux de Livia',
-      titreUne: 'Les histoires de <b>Livia</b>', signature: "Créé à la maison, pour l'heure du coucher"
+      titreUne: 'Les histoires de <b>Livia</b>', signature: "Créé à la maison, pour l'heure du coucher",
+      voixTitre: 'Voix de lecture'
     },
     es: {
       choisis: 'Elige un mundo.', filtrer: 'Filtrar por tema',
@@ -59,7 +60,8 @@
       planches: 'láminas', histoires: 'cuentos', tous: 'Todos', langue: 'Idioma',
       rejouer: 'Otras opciones', jouerSeul: 'Para jugar solita, desde los 3 años',
       navHist: 'Cuentos', navJeux: 'Juegos', titreJeux: 'Los juegos de Livia',
-      titreUne: 'Los cuentos de <b>Livia</b>', signature: 'Hecho en casa, para la hora de dormir'
+      titreUne: 'Los cuentos de <b>Livia</b>', signature: 'Hecho en casa, para la hora de dormir',
+      voixTitre: 'Voz de lectura'
     },
     en: {
       choisis: 'Pick a world.', filtrer: 'Filter by theme',
@@ -71,7 +73,8 @@
       planches: 'panels', histoires: 'stories', tous: 'All', langue: 'Language',
       rejouer: 'Other choices', jouerSeul: 'To play on your own, from age 3',
       navHist: 'Stories', navJeux: 'Games', titreJeux: "Livia's games",
-      titreUne: "<b>Livia's</b> bedtime stories", signature: 'Made at home, for bedtime'
+      titreUne: "<b>Livia's</b> bedtime stories", signature: 'Made at home, for bedtime',
+      voixTitre: 'Reading voice'
     }
   };
   function mot(k) { return (MOTS[LANGUE] && MOTS[LANGUE][k]) || MOTS.fr[k]; }
@@ -372,7 +375,10 @@
     grid: $('#uniGrid'), random: $('#btnRandom'),
     soirBadge: $('#soirBadge'), soirCover: $('#soirCover'),
     hello: $('#homeHello'), themeChips: $('#themeChips'),
-    filtres: $('#filtres'), btnFiltres: $('#btnFiltres'), langues: $('#langues'),
+    filtres: $('#filtres'), btnFiltres: $('#btnFiltres'),
+    reglages: $('#reglages'), btnReglages: $('#btnReglages'),
+    langues: $('#langues'), voix: $('#voix'),
+    rglLangue: $('#rglLangue'), rglVoix: $('#rglVoix'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
     cfTags: $('#cfTags'), cfDots: $('#cfDots'), read: $('#btnRead'),
@@ -480,12 +486,61 @@
     if (u) u.innerHTML = mot('titreUne');
     var n = $('.foot-note');
     if (n) n.textContent = mot('signature');
+    if (els.rglLangue) els.rglLangue.textContent = mot('langue');
+    if (els.rglVoix) els.rglVoix.textContent = mot('voixTitre');
+    majDrapeau();
+  }
+
+  /* Le panneau des réglages : la langue et la voix. C'est un réglage d'adulte,
+     donc il vit derrière un petit drapeau dans le bandeau — visible de partout,
+     mais pas sur le chemin de l'enfant. */
+  function ouvrirReglages(ouvert) {
+    if (!els.reglages) return;
+    if (ouvert === undefined) ouvert = els.reglages.hidden;
+    els.reglages.hidden = !ouvert;
+    els.btnReglages.classList.toggle('is-active', ouvert);
+    if (ouvert) { renderLangues(); renderVoix(); }
+  }
+
+  function majDrapeau() {
+    if (!els.btnReglages) return;
+    for (var i = 0; i < LANGUES.length; i++) {
+      if (LANGUES[i].id === LANGUE) els.btnReglages.textContent = LANGUES[i].drapeau;
+    }
+  }
+
+  /* la liste des voix que l'appareil propose dans la langue choisie */
+  function renderVoix() {
+    var z = els.voix;
+    if (!z) return;
+    z.innerHTML = '';
+    var libres = voixDisponibles();
+    if (!libres.length) {
+      z.innerHTML = '<span class="voix-vide">—</span>';
+      return;
+    }
+    var choisie = laVoix && laVoix.name;
+    libres.slice(0, 8).forEach(function (v, i) {
+      var b = document.createElement('button');
+      b.className = 'chip' + (v.name === choisie ? ' is-active' : '');
+      /* le nom brut est parfois interminable : on garde le début */
+      b.textContent = (i === 0 ? '★ ' : '') + v.name.replace(/\s*\(.*\)$/, '').slice(0, 22);
+      b.title = v.name + ' — ' + v.lang;
+      b.onclick = function () {
+        store('voix.' + LANGUE, v.name);
+        poserVoix();
+        renderVoix();
+        stopSpeak();
+        speak(mot('lire'));
+      };
+      z.appendChild(b);
+    });
   }
 
   function renderLangues() {
     var z = els.langues;
     if (!z) return;
-    z.innerHTML = '<span class="langue-titre">' + mot('langue') + '</span>';
+    z.innerHTML = '';
     LANGUES.forEach(function (l) {
       var n = 0;
       UNIVERSES.forEach(function (u) {
@@ -505,16 +560,20 @@
         laVoix = null; voixCherchee = false;
         document.documentElement.lang = l.id;
         Jeux.langue(l.id);
+        poserVoix();
         majMots();
+        majDrapeau();
         renderTabs(null);
         renderHome();
-        ouvrirFiltres(true);
+        renderLangues();
+        renderVoix();
       };
       z.appendChild(b);
     });
   }
   document.documentElement.lang = LANGUE;
   Jeux.langue(LANGUE);
+  poserVoix();
   majMots();
 
   /* ---------------- le menu principal ---------------- */
@@ -1016,27 +1075,83 @@
      audible — c'est ce qui donne l'impression de robot. */
   var laVoix = null, voixCherchee = false;
 
+  /* La langue lue, et son pays. « fr » tout court ne suffit pas : sur beaucoup
+     de téléphones la première voix française venue est canadienne, et l'accent
+     surprend une enfant qui entend du français de France toute la journée. */
+  var LOCALE = { fr: 'fr-fr', es: 'es-es', en: 'en-gb' };
+
+  /* On ne peut pas demander le genre d'une voix : l'API ne le donne pas. On le
+     déduit du nom, qui est stable d'un système à l'autre — Apple, Google et
+     Microsoft nomment leurs voix, et ces noms sont connus.
+
+     La comparaison se fait mot à mot, jamais par morceau de mot : « Paulina »
+     contient « Paul », « Daniela » contient « Daniel », et un simple test de
+     sous-chaîne rangerait ces deux voix féminines du mauvais côté. */
+  function motsDuNom(nom) {
+    return String(nom).toLowerCase().split(/[^a-zà-öø-ÿ]+/).filter(Boolean);
+  }
+  var FEMININ = ('female femenina féminine ' +
+    'amélie amelie audrey aurélie aurelie marie julie chantal céline celine ' +
+    'hortense denise léa lea charlotte virginie manon flore ' +
+    'mónica monica marisol paulina laura helena elvira sabina lucía lucia ' +
+    'daniela carmen esperanza salomé salome ' +
+    'serena kate stephanie martha hazel susan sonia libby samantha karen ' +
+    'moira tessa fiona amelia emma olivia ava allison joanna alexandra').split(' ');
+  var MASCULIN = ('male masculina masculine ' +
+    'thomas nicolas paul henri daniel rémi remi mathieu antoine ' +
+    'jorge diego juan pablo raúl raul álvaro alvaro carlos enrique ' +
+    'oliver arthur ryan george alex fred aaron reed james william guy brian').split(' ');
+  /* les voix « améliorées » ou installées sur l'appareil sonnent mieux */
+  var SOIGNEE = /(enhanced|premium|améliorée|amelioree|mejorada|siri|natural|neural|google)/i;
+
+  function contient(liste, mots) {
+    for (var i = 0; i < mots.length; i++) if (liste.indexOf(mots[i]) >= 0) return true;
+    return false;
+  }
+
+  function noterVoix(v) {
+    var lang = (v.lang || '').toLowerCase().replace('_', '-');
+    var vise = LOCALE[LANGUE];
+    var n = 0;
+    if (lang === vise) n += 100;                       /* le bon pays d'abord */
+    else if (lang.indexOf(vise.slice(0, 2)) === 0) n += 30;   /* la bonne langue, un autre pays */
+    else return -1;                                    /* pas la bonne langue du tout */
+    var mots = motsDuNom(v.name);
+    if (contient(FEMININ, mots)) n += 50;
+    if (contient(MASCULIN, mots)) n -= 80;
+    if (SOIGNEE.test(v.name)) n += 15;
+    if (v.localService) n += 5;
+    return n;
+  }
+
+  function voixDisponibles() {
+    if (!('speechSynthesis' in window)) return [];
+    return (window.speechSynthesis.getVoices() || [])
+      .filter(function (v) { return noterVoix(v) >= 0; })
+      .sort(function (a, b) { return noterVoix(b) - noterVoix(a); });
+  }
+
   function choisirVoix() {
-    if (!('speechSynthesis' in window)) return null;
-    var toutes = window.speechSynthesis.getVoices() || [];
-    if (!toutes.length) return null;
+    var libres = voixDisponibles();
+    if (!libres.length) return null;
     voixCherchee = true;
-    var prefixe = LANGUE === 'es' ? 'es' : 'fr';
-    var fr = toutes.filter(function (v) { return v.lang.toLowerCase().indexOf(prefixe) === 0; });
-    if (!fr.length) return null;
-    /* les voix « améliorées » et les voix installées sur l'appareil sonnent
-       mieux que les voix de secours ; les noms varient d'un système à l'autre */
-    var bonnes = /(enhanced|premium|améliorée|amelioree|mejorada|siri|natural|neural|google|thomas|amélie|amelie|audrey|marie|monica|mónica|paulina|jorge)/i;
-    fr.sort(function (a, b) {
-      var na = (bonnes.test(a.name) ? 2 : 0) + (a.localService ? 1 : 0);
-      var nb = (bonnes.test(b.name) ? 2 : 0) + (b.localService ? 1 : 0);
-      return nb - na;
-    });
-    return fr[0];
+    /* un choix fait à la main l'emporte sur le classement */
+    var voulue = store('voix.' + LANGUE);
+    if (voulue) {
+      for (var i = 0; i < libres.length; i++) if (libres[i].name === voulue) return libres[i];
+    }
+    return libres[0];
+  }
+
+  /* la même voix sert aux jeux */
+  function poserVoix() {
+    laVoix = choisirVoix();
+    if (window.Jeux && Jeux.timbre) Jeux.timbre(laVoix);
+    return laVoix;
   }
 
   if ('speechSynthesis' in window) {
-    window.speechSynthesis.onvoiceschanged = function () { laVoix = choisirVoix(); };
+    window.speechSynthesis.onvoiceschanged = function () { poserVoix(); renderVoix(); };
   }
 
   function phrases(texte) {
@@ -1190,6 +1305,12 @@
     if (els.cover.hidden) { coverForme = null; return; }
     clearTimeout(minuteurUne);
     minuteurUne = setTimeout(dessinerUne, 150);
+  });
+
+  els.btnReglages.onclick = function (e) { e.stopPropagation(); ouvrirReglages(); };
+  document.addEventListener('click', function (e) {
+    if (els.reglages.hidden) return;
+    if (!els.reglages.contains(e.target) && e.target !== els.btnReglages) ouvrirReglages(false);
   });
 
   window.addEventListener('hashchange', route);

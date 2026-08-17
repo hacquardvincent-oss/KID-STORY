@@ -42,7 +42,8 @@
       finVoix: 'Bravo Livia ! Tu as gagné toutes les étoiles.',
       finTitre: 'Bravo Livia !',
       rejouer: 'Rejouer', changer: 'Changer', lesJeux: 'Les jeux',
-      cinqHasard: '🎲 Cinq au hasard',
+      cinqHasard: '🎲 Cinq au hasard', auHasard: '🎲 Au hasard',
+      choixDessin: 'Choisis un dessin.', autreDessin: 'Un autre dessin',
 
       relierConsigne: 'Touche un personnage, puis son objet.',
       /* « de étoiles » ne se dit pas : l'élision voyage avec le mot */
@@ -119,7 +120,8 @@
       finVoix: '¡Bravo Livia! Has ganado todas las estrellas.',
       finTitre: '¡Bravo Livia!',
       rejouer: 'Otra vez', changer: 'Cambiar', lesJeux: 'Los juegos',
-      cinqHasard: '🎲 Cinco al azar',
+      cinqHasard: '🎲 Cinco al azar', auHasard: '🎲 Al azar',
+      choixDessin: 'Elige un dibujo.', autreDessin: 'Otro dibujo',
 
       relierConsigne: 'Toca un personaje y luego su objeto.',
       /* en espagnol, « cuántos » s'accorde : le mot interrogatif voyage donc
@@ -195,7 +197,8 @@
       finVoix: 'Well done Livia! You have won all the stars.',
       finTitre: 'Well done Livia!',
       rejouer: 'Play again', changer: 'Change', lesJeux: 'The games',
-      cinqHasard: '🎲 Five at random',
+      cinqHasard: '🎲 Five at random', auHasard: '🎲 At random',
+      choixDessin: 'Choose a picture.', autreDessin: 'Another picture',
 
       relierConsigne: 'Tap a character, then their thing.',
       compterConsigne: 'How many %s are there?',
@@ -275,11 +278,17 @@
 
   /* ---------------- la voix ---------------- */
   var voixActive = true;
+  /* la voix choisie dans les réglages, posée par app.js : les jeux et les
+     histoires doivent parler de la même bouche */
+  var timbre = null;
+
   function dire(texte) {
     if (!voixActive || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(texte);
-    u.lang = VOIX[LANGUE] || 'fr-FR'; u.rate = .9; u.pitch = 1.1;
+    u.lang = VOIX[LANGUE] || 'fr-FR';
+    if (timbre && timbre.lang && timbre.lang.toLowerCase().indexOf(LANGUE) === 0) u.voice = timbre;
+    u.rate = .9; u.pitch = 1.1;
     window.speechSynthesis.speak(u);
   }
   function taire() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
@@ -837,7 +846,8 @@
       var st = UNIVERSES[i].stories;
       for (var j = 0; j < st.length; j++) {
         if (st[j].id === sid) {
-          var pg = st[j].pages[p];
+          /* une histoire à choix n'a pas de « pages » : sa couverture suffit */
+          var pg = st[j].pages && st[j].pages[p];
           return { u: UNIVERSES[i], s: st[j], scene: pg ? pg.scene : st[j].cover };
         }
       }
@@ -1062,22 +1072,61 @@
   var COULEURS = ['#e0453c', '#f0862c', '#f7c518', '#7ab648', '#3fb3b0',
     '#4a7fc1', '#a98cf0', '#f2a0c2', '#c9622f', '#8a5a3b', '#3a2a22', '#fffdf6'];
 
+  /* Les dessins proposés au coloriage et au puzzle : un par univers au moins,
+     choisis pour leur couverture — des personnages bien séparés, peu de décor,
+     donc de grandes zones à peindre. */
   var A_COLORIER = [
     { u: 'copines', s: 'nouvelle' }, { u: 'peppa', s: 'petit-frere' },
     { u: 'bluey', s: 'balancoire' }, { u: 'monsieurmadame', s: 'bonheur' },
     { u: 'melange', s: 'trois-amies' }, { u: 'frozen', s: 'ete-arendelle' },
-    { u: 'copines', s: 'cabane-copines' }, { u: 'peppa', s: 'dernier-gateau' }
+    { u: 'copines', s: 'cabane-copines' }, { u: 'peppa', s: 'dernier-gateau' },
+    { u: 'frozen', s: 'olaf-a-trop-chaud' }, { u: 'bluey', s: 'crabes' },
+    { u: 'monsieurmadame', s: 'rapide-lent' }, { u: 'peppa', s: 'plage' },
+    { u: 'copines', s: 'le-tour-de-pablo' }, { u: 'melange', s: 'gouter-a-quatre' },
+    { u: 'choix', s: 'cabane-ou-riviere' }, { u: 'bluey', s: 'lucioles' }
   ];
   var lotColoriage = null;
 
+  /* Le choix du dessin : une grille de vignettes. L'enfant ne lit pas le titre,
+     elle reconnaît l'image — c'est donc l'image qu'on lui montre, en grand. */
+  function choixDessin(zone, pret) {
+    var g = el('div', 'dessins-grille');
+    A_COLORIER.forEach(function (choix) {
+      var trouve = trouverScene(choix.u, choix.s, -1);
+      if (!trouve) return;
+      var b = el('button', 'dessin-b');
+      b.innerHTML = Art.scene(trouve.s.cover, {
+        /* 4/3 plutôt que carré : trois personnages côte à côte ne tiennent
+           pas dans un carré sans se faire rogner les épaules */
+        contour: true, noBubbles: true, cadre: cadreAutour(trouve.s.cover, 4 / 3, true)
+      });
+      b.setAttribute('aria-label', trouve.s.title);
+      b.onclick = function () { pret(choix); };
+      g.appendChild(b);
+    });
+    zone.appendChild(g);
+    var h = el('button', 'choix-hasard', t('auHasard'));
+    h.onclick = function () { pret(null); };
+    zone.appendChild(h);
+  }
+
   /* Cadrer une scène sur ses personnages, au format de la boîte à l'écran :
      un dessin à colorier doit remplir la feuille, pas flotter au milieu. */
-  function cadreAutour(scene, format) {
-    var W = 800, H = 560, m = 130;
+  function cadreAutour(scene, format, serre) {
+    var W = 800, H = 560;
+    /* « serre » cadre au plus près des personnages : c'est ce qu'il faut pour
+       une vignette de deux centimètres, pas pour une planche à colorier */
+    /* la marge se compte depuis les pieds d'un personnage, pas depuis son bord :
+       il faut au moins sa demi-largeur pour ne pas lui couper un bras */
+    var m = serre ? 84 : 130;
     var xs = (scene.items || []).map(function (it) { return it.x; });
     if (!xs.length) return null;
     var x0 = Math.min.apply(null, xs) - m, x1 = Math.max.apply(null, xs) + m;
-    var w = Math.max(x1 - x0, W * 0.45), h = w / format;
+    var w = Math.max(x1 - x0, W * (serre ? 0.3 : 0.45)), h = w / format;
+    /* un personnage debout monte à trois cents unités au-dessus du sol : sous
+       cette hauteur, le cadre lui coupe la tête. On élargit alors plutôt que
+       de rogner. */
+    if (serre && h < 340) { h = 340; w = h * format; }
     if (h > H) { h = H; w = Math.min(W, h * format); }
     if (w > W) { w = W; h = w / format; }
     var cx = (x0 + x1) / 2;
@@ -1088,9 +1137,9 @@
     };
   }
 
-  function jeuColoriage(zone, n, api) {
+  function jeuColoriage(zone, n, api, choisi) {
     if (n === 0 || !lotColoriage) lotColoriage = melange(A_COLORIER);
-    var choix = lotColoriage[n % lotColoriage.length];
+    var choix = choisi || lotColoriage[n % lotColoriage.length];
     var trouve = trouverScene(choix.u, choix.s, -1);
     api.consigne(t('coloConsigne'));
 
@@ -1147,9 +1196,9 @@
      ============================================================ */
   var lotPuzzle = null;
 
-  function jeuPuzzle(zone, n, api) {
+  function jeuPuzzle(zone, n, api, choisi) {
     if (n === 0 || !lotPuzzle) lotPuzzle = melange(A_COLORIER);
-    var choix = lotPuzzle[n % lotPuzzle.length];
+    var choix = choisi || lotPuzzle[n % lotPuzzle.length];
     var trouve = trouverScene(choix.u, choix.s, -1);
     var cols = n < 2 ? 2 : 3, rangs = n < 2 ? 2 : 2;   /* 4 morceaux, puis 6 */
     api.consigne(t('puzConsigne'));
@@ -1615,13 +1664,27 @@
       id: 'coloriage', nom: 'jColo', emoji: '🎨', cat: 'creer',
       sous: 'jColoSous',
       vignette: { t: 'maman', ds: .58, dy: 182 },
-      def: { manches: 3, manche: jeuColoriage, plein: true, felicitation: 'jColoBravo' }
+      def: {
+        manches: function (v) { return v ? 1 : 3; },
+        manche: jeuColoriage, plein: true,
+        choisir: choixDessin,
+        choixConsigne: 'choixDessin',
+        choixBouton: 'autreDessin',
+        felicitation: 'jColoBravo'
+      }
     },
     {
       id: 'puzzle', nom: 'jPuz', emoji: '🧩', cat: 'reflechir',
       sous: 'jPuzSous',
       vignette: { t: 'pablo', ds: .62, dy: 186 },
-      def: { manches: 4, manche: jeuPuzzle, plein: true, felicitation: 'jPuzBravo' }
+      def: {
+        manches: function (v) { return v ? 1 : 4; },
+        manche: jeuPuzzle, plein: true,
+        choisir: choixDessin,
+        choixConsigne: 'choixDessin',
+        choixBouton: 'autreDessin',
+        felicitation: 'jPuzBravo'
+      }
     },
     {
       id: 'labyrinthe', nom: 'jLaby', emoji: '🌀', cat: 'reflechir',
@@ -1657,6 +1720,7 @@
     mot: t,
     langue: function (l) { if (T[l]) LANGUE = l; return LANGUE; },
     dictionnaire: function () { return T; },
+    timbre: function (v) { timbre = v || null; },
     trouver: function (id) {
       for (var i = 0; i < JEUX.length; i++) if (JEUX[i].id === id) return JEUX[i];
       return null;

@@ -37,13 +37,26 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   thèmes traversent les univers, et les onglets filtrent à l'intérieur d'un
   thème. Le filtre par thème est **replié** derrière un bouton discret : c'est
   un réglage d'adulte, il ne doit pas encombrer le chemin de l'enfant.
-* **Trois langues, complètes** — français, espagnol, anglais, au choix dans le
-  volet replié. **Les 85 histoires et les onze jeux existent dans les trois** :
+* **Trois langues, complètes** — français, espagnol, anglais, au choix derrière
+  le **petit drapeau du bandeau** (en haut à droite, à côté du dé). Il ouvre un
+  panneau de deux réglages, la langue et la voix : c'est un réglage d'adulte, il
+  est accessible de partout mais reste hors du chemin de l'enfant.
+  **Les 85 histoires et les onze jeux existent dans les trois** :
   titres, textes, étiquettes, consignes, félicitations, et la voix de synthèse
   qui suit (`fr-FR`, `es-ES`, `en-GB`). Le site vérifie qu'une histoire est
   entièrement traduite avant de la proposer dans une langue — une traduction à
   moitié faite reste invisible plutôt que de mélanger deux langues sur la même
   planche. `node outils/traductions.js` le contrôle.
+* **Une voix féminine du bon pays** — le téléphone propose souvent plusieurs
+  voix par langue, et la première venue est parfois canadienne quand on lit du
+  français de France. L'app les classe : le bon pays d'abord (`fr-FR`, `es-ES`,
+  `en-GB`), puis un timbre féminin, puis les voix « améliorées ». Le panneau
+  liste les autres si le classement ne convient pas — le choix est retenu par
+  langue, et il vaut aussi pour les jeux.
+* **Un sélecteur de dessin** — le coloriage et le puzzle s'ouvrent sur une
+  grille de seize dessins au trait. On choisit celui qu'on veut, ou 🎲 pour
+  enchaîner au hasard. Ce sont des images, pas des titres : à quatre ans on
+  reconnaît la planche bien avant de savoir la lire.
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,

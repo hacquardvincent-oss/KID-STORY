@@ -754,6 +754,28 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 }
 .jeu-fermer:active { transform: translateY(2px); box-shadow: 0 0 0 var(--ink); }
 
+/* le panneau des réglages : langue et voix, derrière un drapeau discret dans
+   le bandeau. Un réglage d'adulte n'a rien à faire sur le chemin de l'enfant. */
+.reglages {
+  position: fixed; z-index: 70;
+  top: calc(var(--safe-top) + 54px); right: 10px;
+  width: min(300px, calc(100vw - 20px));
+  padding: 12px 13px 14px;
+  background: var(--page); border: 3px solid var(--ink); border-radius: 14px;
+  box-shadow: 0 8px 0 rgba(58, 42, 34, .22);
+  animation: fadeUp .16s ease both;
+}
+.reglages-bloc + .reglages-bloc { margin-top: 12px; }
+.reglages h4 {
+  margin: 0 0 7px; font-size: 13px; font-weight: 600; letter-spacing: .3px;
+  color: var(--ink-soft); text-transform: uppercase;
+}
+.reglages .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.reglages .voix .chip { font-size: 13px; }
+.voix-vide { color: var(--ink-soft); font-size: 14px; }
+#btnReglages { font-size: 19px; }
+#btnReglages.is-active { background: var(--jaune); }
+
 /* les 6 différences : deux fois la même case, à un détail près */
 /* sur un téléphone, la case va d'un bord à l'autre : chaque pixel compte
    pour viser un détail du doigt */
@@ -791,6 +813,27 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
 }
 .jeux-nav::-webkit-scrollbar { display: none; }
 .jeux-nav .chip { flex: 0 0 auto; }
+
+/* choisir son dessin : des vignettes au trait, pas des titres. À quatre ans
+   on ne lit pas la liste, on reconnaît l'image. */
+.dessins-grille {
+  display: grid; gap: 8px; margin: 0 0 12px;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  /* sans « start », les rangées s'étirent pour remplir la hauteur et les
+     vignettes se retrouvent séparées par du vide */
+  align-content: start;
+  overflow-y: auto; min-height: 0;
+}
+.dessin-b {
+  padding: 0; cursor: pointer; overflow: hidden; aspect-ratio: 4 / 3;
+  background: #fffdf6; border: 3px solid var(--ink); border-radius: 12px;
+  box-shadow: 0 3px 0 rgba(58, 42, 34, .28);
+  transition: transform .12s, box-shadow .12s;
+}
+.dessin-b svg { display: block; width: 100%; height: 100%; }
+.dessin-b:active { transform: translateY(3px); box-shadow: 0 0 0 rgba(58, 42, 34, .28); }
+/* dans un jeu à l'écran entier, la grille défile et le bouton reste dessous */
+.jeu-plein .dessins-grille { flex: 1 1 auto; }
 
 /* choisir un prénom, choisir une lettre */
 .choix-grille {
@@ -1051,8 +1094,21 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
     <span class="logo-txt"><b>KID</b><i>CARTOON</i></span>
   </button>
   <button class="soir-badge" id="soirBadge" hidden></button>
+  <button class="icon-btn" id="btnReglages" aria-label="Langue et voix">🇫🇷</button>
   <button class="icon-btn" id="btnRandom" aria-label="Histoire au hasard">🎲</button>
 </header>
+
+<!-- LANGUE ET VOIX : un réglage d'adulte, accessible partout mais discret -->
+<div class="reglages" id="reglages" hidden>
+  <div class="reglages-bloc">
+    <h4 id="rglLangue">Langue</h4>
+    <div class="chips langues" id="langues"></div>
+  </div>
+  <div class="reglages-bloc">
+    <h4 id="rglVoix">Voix de lecture</h4>
+    <div class="chips voix" id="voix"></div>
+  </div>
+</div>
 
 <nav class="mainnav" id="mainnav" aria-label="Rubriques">
   <button data-nav="histoires">📖 Histoires</button>
@@ -1093,7 +1149,6 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
         <span>Filtrer par thème</span><i></i>
       </button>
       <div class="chips" id="themeChips"></div>
-      <div class="chips langues" id="langues"></div>
     </div>
     <div class="uni-grid" id="uniGrid"></div>
     <p class="foot-note">Créé à la maison, pour l'heure du coucher.</p>
@@ -13874,7 +13929,8 @@ var UNIVERSES = [
       finVoix: 'Bravo Livia ! Tu as gagné toutes les étoiles.',
       finTitre: 'Bravo Livia !',
       rejouer: 'Rejouer', changer: 'Changer', lesJeux: 'Les jeux',
-      cinqHasard: '🎲 Cinq au hasard',
+      cinqHasard: '🎲 Cinq au hasard', auHasard: '🎲 Au hasard',
+      choixDessin: 'Choisis un dessin.', autreDessin: 'Un autre dessin',
 
       relierConsigne: 'Touche un personnage, puis son objet.',
       /* « de étoiles » ne se dit pas : l'élision voyage avec le mot */
@@ -13951,7 +14007,8 @@ var UNIVERSES = [
       finVoix: '¡Bravo Livia! Has ganado todas las estrellas.',
       finTitre: '¡Bravo Livia!',
       rejouer: 'Otra vez', changer: 'Cambiar', lesJeux: 'Los juegos',
-      cinqHasard: '🎲 Cinco al azar',
+      cinqHasard: '🎲 Cinco al azar', auHasard: '🎲 Al azar',
+      choixDessin: 'Elige un dibujo.', autreDessin: 'Otro dibujo',
 
       relierConsigne: 'Toca un personaje y luego su objeto.',
       /* en espagnol, « cuántos » s'accorde : le mot interrogatif voyage donc
@@ -14027,7 +14084,8 @@ var UNIVERSES = [
       finVoix: 'Well done Livia! You have won all the stars.',
       finTitre: 'Well done Livia!',
       rejouer: 'Play again', changer: 'Change', lesJeux: 'The games',
-      cinqHasard: '🎲 Five at random',
+      cinqHasard: '🎲 Five at random', auHasard: '🎲 At random',
+      choixDessin: 'Choose a picture.', autreDessin: 'Another picture',
 
       relierConsigne: 'Tap a character, then their thing.',
       compterConsigne: 'How many %s are there?',
@@ -14107,11 +14165,17 @@ var UNIVERSES = [
 
   /* ---------------- la voix ---------------- */
   var voixActive = true;
+  /* la voix choisie dans les réglages, posée par app.js : les jeux et les
+     histoires doivent parler de la même bouche */
+  var timbre = null;
+
   function dire(texte) {
     if (!voixActive || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(texte);
-    u.lang = VOIX[LANGUE] || 'fr-FR'; u.rate = .9; u.pitch = 1.1;
+    u.lang = VOIX[LANGUE] || 'fr-FR';
+    if (timbre && timbre.lang && timbre.lang.toLowerCase().indexOf(LANGUE) === 0) u.voice = timbre;
+    u.rate = .9; u.pitch = 1.1;
     window.speechSynthesis.speak(u);
   }
   function taire() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
@@ -14669,7 +14733,8 @@ var UNIVERSES = [
       var st = UNIVERSES[i].stories;
       for (var j = 0; j < st.length; j++) {
         if (st[j].id === sid) {
-          var pg = st[j].pages[p];
+          /* une histoire à choix n'a pas de « pages » : sa couverture suffit */
+          var pg = st[j].pages && st[j].pages[p];
           return { u: UNIVERSES[i], s: st[j], scene: pg ? pg.scene : st[j].cover };
         }
       }
@@ -14894,22 +14959,61 @@ var UNIVERSES = [
   var COULEURS = ['#e0453c', '#f0862c', '#f7c518', '#7ab648', '#3fb3b0',
     '#4a7fc1', '#a98cf0', '#f2a0c2', '#c9622f', '#8a5a3b', '#3a2a22', '#fffdf6'];
 
+  /* Les dessins proposés au coloriage et au puzzle : un par univers au moins,
+     choisis pour leur couverture — des personnages bien séparés, peu de décor,
+     donc de grandes zones à peindre. */
   var A_COLORIER = [
     { u: 'copines', s: 'nouvelle' }, { u: 'peppa', s: 'petit-frere' },
     { u: 'bluey', s: 'balancoire' }, { u: 'monsieurmadame', s: 'bonheur' },
     { u: 'melange', s: 'trois-amies' }, { u: 'frozen', s: 'ete-arendelle' },
-    { u: 'copines', s: 'cabane-copines' }, { u: 'peppa', s: 'dernier-gateau' }
+    { u: 'copines', s: 'cabane-copines' }, { u: 'peppa', s: 'dernier-gateau' },
+    { u: 'frozen', s: 'olaf-a-trop-chaud' }, { u: 'bluey', s: 'crabes' },
+    { u: 'monsieurmadame', s: 'rapide-lent' }, { u: 'peppa', s: 'plage' },
+    { u: 'copines', s: 'le-tour-de-pablo' }, { u: 'melange', s: 'gouter-a-quatre' },
+    { u: 'choix', s: 'cabane-ou-riviere' }, { u: 'bluey', s: 'lucioles' }
   ];
   var lotColoriage = null;
 
+  /* Le choix du dessin : une grille de vignettes. L'enfant ne lit pas le titre,
+     elle reconnaît l'image — c'est donc l'image qu'on lui montre, en grand. */
+  function choixDessin(zone, pret) {
+    var g = el('div', 'dessins-grille');
+    A_COLORIER.forEach(function (choix) {
+      var trouve = trouverScene(choix.u, choix.s, -1);
+      if (!trouve) return;
+      var b = el('button', 'dessin-b');
+      b.innerHTML = Art.scene(trouve.s.cover, {
+        /* 4/3 plutôt que carré : trois personnages côte à côte ne tiennent
+           pas dans un carré sans se faire rogner les épaules */
+        contour: true, noBubbles: true, cadre: cadreAutour(trouve.s.cover, 4 / 3, true)
+      });
+      b.setAttribute('aria-label', trouve.s.title);
+      b.onclick = function () { pret(choix); };
+      g.appendChild(b);
+    });
+    zone.appendChild(g);
+    var h = el('button', 'choix-hasard', t('auHasard'));
+    h.onclick = function () { pret(null); };
+    zone.appendChild(h);
+  }
+
   /* Cadrer une scène sur ses personnages, au format de la boîte à l'écran :
      un dessin à colorier doit remplir la feuille, pas flotter au milieu. */
-  function cadreAutour(scene, format) {
-    var W = 800, H = 560, m = 130;
+  function cadreAutour(scene, format, serre) {
+    var W = 800, H = 560;
+    /* « serre » cadre au plus près des personnages : c'est ce qu'il faut pour
+       une vignette de deux centimètres, pas pour une planche à colorier */
+    /* la marge se compte depuis les pieds d'un personnage, pas depuis son bord :
+       il faut au moins sa demi-largeur pour ne pas lui couper un bras */
+    var m = serre ? 84 : 130;
     var xs = (scene.items || []).map(function (it) { return it.x; });
     if (!xs.length) return null;
     var x0 = Math.min.apply(null, xs) - m, x1 = Math.max.apply(null, xs) + m;
-    var w = Math.max(x1 - x0, W * 0.45), h = w / format;
+    var w = Math.max(x1 - x0, W * (serre ? 0.3 : 0.45)), h = w / format;
+    /* un personnage debout monte à trois cents unités au-dessus du sol : sous
+       cette hauteur, le cadre lui coupe la tête. On élargit alors plutôt que
+       de rogner. */
+    if (serre && h < 340) { h = 340; w = h * format; }
     if (h > H) { h = H; w = Math.min(W, h * format); }
     if (w > W) { w = W; h = w / format; }
     var cx = (x0 + x1) / 2;
@@ -14920,9 +15024,9 @@ var UNIVERSES = [
     };
   }
 
-  function jeuColoriage(zone, n, api) {
+  function jeuColoriage(zone, n, api, choisi) {
     if (n === 0 || !lotColoriage) lotColoriage = melange(A_COLORIER);
-    var choix = lotColoriage[n % lotColoriage.length];
+    var choix = choisi || lotColoriage[n % lotColoriage.length];
     var trouve = trouverScene(choix.u, choix.s, -1);
     api.consigne(t('coloConsigne'));
 
@@ -14979,9 +15083,9 @@ var UNIVERSES = [
      ============================================================ */
   var lotPuzzle = null;
 
-  function jeuPuzzle(zone, n, api) {
+  function jeuPuzzle(zone, n, api, choisi) {
     if (n === 0 || !lotPuzzle) lotPuzzle = melange(A_COLORIER);
-    var choix = lotPuzzle[n % lotPuzzle.length];
+    var choix = choisi || lotPuzzle[n % lotPuzzle.length];
     var trouve = trouverScene(choix.u, choix.s, -1);
     var cols = n < 2 ? 2 : 3, rangs = n < 2 ? 2 : 2;   /* 4 morceaux, puis 6 */
     api.consigne(t('puzConsigne'));
@@ -15447,13 +15551,27 @@ var UNIVERSES = [
       id: 'coloriage', nom: 'jColo', emoji: '🎨', cat: 'creer',
       sous: 'jColoSous',
       vignette: { t: 'maman', ds: .58, dy: 182 },
-      def: { manches: 3, manche: jeuColoriage, plein: true, felicitation: 'jColoBravo' }
+      def: {
+        manches: function (v) { return v ? 1 : 3; },
+        manche: jeuColoriage, plein: true,
+        choisir: choixDessin,
+        choixConsigne: 'choixDessin',
+        choixBouton: 'autreDessin',
+        felicitation: 'jColoBravo'
+      }
     },
     {
       id: 'puzzle', nom: 'jPuz', emoji: '🧩', cat: 'reflechir',
       sous: 'jPuzSous',
       vignette: { t: 'pablo', ds: .62, dy: 186 },
-      def: { manches: 4, manche: jeuPuzzle, plein: true, felicitation: 'jPuzBravo' }
+      def: {
+        manches: function (v) { return v ? 1 : 4; },
+        manche: jeuPuzzle, plein: true,
+        choisir: choixDessin,
+        choixConsigne: 'choixDessin',
+        choixBouton: 'autreDessin',
+        felicitation: 'jPuzBravo'
+      }
     },
     {
       id: 'labyrinthe', nom: 'jLaby', emoji: '🌀', cat: 'reflechir',
@@ -15489,6 +15607,7 @@ var UNIVERSES = [
     mot: t,
     langue: function (l) { if (T[l]) LANGUE = l; return LANGUE; },
     dictionnaire: function () { return T; },
+    timbre: function (v) { timbre = v || null; },
     trouver: function (id) {
       for (var i = 0; i < JEUX.length; i++) if (JEUX[i].id === id) return JEUX[i];
       return null;
@@ -15548,7 +15667,8 @@ var UNIVERSES = [
       planches: 'planches', histoires: 'histoires', tous: 'Tous', langue: 'Langue',
       rejouer: 'Autres choix', jouerSeul: 'Pour jouer tout seul, dès 3 ans',
       navHist: 'Histoires', navJeux: 'Jeux', titreJeux: 'Les jeux de Livia',
-      titreUne: 'Les histoires de <b>Livia</b>', signature: "Créé à la maison, pour l'heure du coucher"
+      titreUne: 'Les histoires de <b>Livia</b>', signature: "Créé à la maison, pour l'heure du coucher",
+      voixTitre: 'Voix de lecture'
     },
     es: {
       choisis: 'Elige un mundo.', filtrer: 'Filtrar por tema',
@@ -15560,7 +15680,8 @@ var UNIVERSES = [
       planches: 'láminas', histoires: 'cuentos', tous: 'Todos', langue: 'Idioma',
       rejouer: 'Otras opciones', jouerSeul: 'Para jugar solita, desde los 3 años',
       navHist: 'Cuentos', navJeux: 'Juegos', titreJeux: 'Los juegos de Livia',
-      titreUne: 'Los cuentos de <b>Livia</b>', signature: 'Hecho en casa, para la hora de dormir'
+      titreUne: 'Los cuentos de <b>Livia</b>', signature: 'Hecho en casa, para la hora de dormir',
+      voixTitre: 'Voz de lectura'
     },
     en: {
       choisis: 'Pick a world.', filtrer: 'Filter by theme',
@@ -15572,7 +15693,8 @@ var UNIVERSES = [
       planches: 'panels', histoires: 'stories', tous: 'All', langue: 'Language',
       rejouer: 'Other choices', jouerSeul: 'To play on your own, from age 3',
       navHist: 'Stories', navJeux: 'Games', titreJeux: "Livia's games",
-      titreUne: "<b>Livia's</b> bedtime stories", signature: 'Made at home, for bedtime'
+      titreUne: "<b>Livia's</b> bedtime stories", signature: 'Made at home, for bedtime',
+      voixTitre: 'Reading voice'
     }
   };
   function mot(k) { return (MOTS[LANGUE] && MOTS[LANGUE][k]) || MOTS.fr[k]; }
@@ -15873,7 +15995,10 @@ var UNIVERSES = [
     grid: $('#uniGrid'), random: $('#btnRandom'),
     soirBadge: $('#soirBadge'), soirCover: $('#soirCover'),
     hello: $('#homeHello'), themeChips: $('#themeChips'),
-    filtres: $('#filtres'), btnFiltres: $('#btnFiltres'), langues: $('#langues'),
+    filtres: $('#filtres'), btnFiltres: $('#btnFiltres'),
+    reglages: $('#reglages'), btnReglages: $('#btnReglages'),
+    langues: $('#langues'), voix: $('#voix'),
+    rglLangue: $('#rglLangue'), rglVoix: $('#rglVoix'),
     uniTitle: $('#uniTitle'), uniTagline: $('#uniTagline'),
     cf: $('#cf'), cfTitle: $('#cfTitle'), cfSub: $('#cfSubtitle'),
     cfTags: $('#cfTags'), cfDots: $('#cfDots'), read: $('#btnRead'),
@@ -15981,12 +16106,61 @@ var UNIVERSES = [
     if (u) u.innerHTML = mot('titreUne');
     var n = $('.foot-note');
     if (n) n.textContent = mot('signature');
+    if (els.rglLangue) els.rglLangue.textContent = mot('langue');
+    if (els.rglVoix) els.rglVoix.textContent = mot('voixTitre');
+    majDrapeau();
+  }
+
+  /* Le panneau des réglages : la langue et la voix. C'est un réglage d'adulte,
+     donc il vit derrière un petit drapeau dans le bandeau — visible de partout,
+     mais pas sur le chemin de l'enfant. */
+  function ouvrirReglages(ouvert) {
+    if (!els.reglages) return;
+    if (ouvert === undefined) ouvert = els.reglages.hidden;
+    els.reglages.hidden = !ouvert;
+    els.btnReglages.classList.toggle('is-active', ouvert);
+    if (ouvert) { renderLangues(); renderVoix(); }
+  }
+
+  function majDrapeau() {
+    if (!els.btnReglages) return;
+    for (var i = 0; i < LANGUES.length; i++) {
+      if (LANGUES[i].id === LANGUE) els.btnReglages.textContent = LANGUES[i].drapeau;
+    }
+  }
+
+  /* la liste des voix que l'appareil propose dans la langue choisie */
+  function renderVoix() {
+    var z = els.voix;
+    if (!z) return;
+    z.innerHTML = '';
+    var libres = voixDisponibles();
+    if (!libres.length) {
+      z.innerHTML = '<span class="voix-vide">—</span>';
+      return;
+    }
+    var choisie = laVoix && laVoix.name;
+    libres.slice(0, 8).forEach(function (v, i) {
+      var b = document.createElement('button');
+      b.className = 'chip' + (v.name === choisie ? ' is-active' : '');
+      /* le nom brut est parfois interminable : on garde le début */
+      b.textContent = (i === 0 ? '★ ' : '') + v.name.replace(/\s*\(.*\)$/, '').slice(0, 22);
+      b.title = v.name + ' — ' + v.lang;
+      b.onclick = function () {
+        store('voix.' + LANGUE, v.name);
+        poserVoix();
+        renderVoix();
+        stopSpeak();
+        speak(mot('lire'));
+      };
+      z.appendChild(b);
+    });
   }
 
   function renderLangues() {
     var z = els.langues;
     if (!z) return;
-    z.innerHTML = '<span class="langue-titre">' + mot('langue') + '</span>';
+    z.innerHTML = '';
     LANGUES.forEach(function (l) {
       var n = 0;
       UNIVERSES.forEach(function (u) {
@@ -16006,16 +16180,20 @@ var UNIVERSES = [
         laVoix = null; voixCherchee = false;
         document.documentElement.lang = l.id;
         Jeux.langue(l.id);
+        poserVoix();
         majMots();
+        majDrapeau();
         renderTabs(null);
         renderHome();
-        ouvrirFiltres(true);
+        renderLangues();
+        renderVoix();
       };
       z.appendChild(b);
     });
   }
   document.documentElement.lang = LANGUE;
   Jeux.langue(LANGUE);
+  poserVoix();
   majMots();
 
   /* ---------------- le menu principal ---------------- */
@@ -16517,27 +16695,83 @@ var UNIVERSES = [
      audible — c'est ce qui donne l'impression de robot. */
   var laVoix = null, voixCherchee = false;
 
+  /* La langue lue, et son pays. « fr » tout court ne suffit pas : sur beaucoup
+     de téléphones la première voix française venue est canadienne, et l'accent
+     surprend une enfant qui entend du français de France toute la journée. */
+  var LOCALE = { fr: 'fr-fr', es: 'es-es', en: 'en-gb' };
+
+  /* On ne peut pas demander le genre d'une voix : l'API ne le donne pas. On le
+     déduit du nom, qui est stable d'un système à l'autre — Apple, Google et
+     Microsoft nomment leurs voix, et ces noms sont connus.
+
+     La comparaison se fait mot à mot, jamais par morceau de mot : « Paulina »
+     contient « Paul », « Daniela » contient « Daniel », et un simple test de
+     sous-chaîne rangerait ces deux voix féminines du mauvais côté. */
+  function motsDuNom(nom) {
+    return String(nom).toLowerCase().split(/[^a-zà-öø-ÿ]+/).filter(Boolean);
+  }
+  var FEMININ = ('female femenina féminine ' +
+    'amélie amelie audrey aurélie aurelie marie julie chantal céline celine ' +
+    'hortense denise léa lea charlotte virginie manon flore ' +
+    'mónica monica marisol paulina laura helena elvira sabina lucía lucia ' +
+    'daniela carmen esperanza salomé salome ' +
+    'serena kate stephanie martha hazel susan sonia libby samantha karen ' +
+    'moira tessa fiona amelia emma olivia ava allison joanna alexandra').split(' ');
+  var MASCULIN = ('male masculina masculine ' +
+    'thomas nicolas paul henri daniel rémi remi mathieu antoine ' +
+    'jorge diego juan pablo raúl raul álvaro alvaro carlos enrique ' +
+    'oliver arthur ryan george alex fred aaron reed james william guy brian').split(' ');
+  /* les voix « améliorées » ou installées sur l'appareil sonnent mieux */
+  var SOIGNEE = /(enhanced|premium|améliorée|amelioree|mejorada|siri|natural|neural|google)/i;
+
+  function contient(liste, mots) {
+    for (var i = 0; i < mots.length; i++) if (liste.indexOf(mots[i]) >= 0) return true;
+    return false;
+  }
+
+  function noterVoix(v) {
+    var lang = (v.lang || '').toLowerCase().replace('_', '-');
+    var vise = LOCALE[LANGUE];
+    var n = 0;
+    if (lang === vise) n += 100;                       /* le bon pays d'abord */
+    else if (lang.indexOf(vise.slice(0, 2)) === 0) n += 30;   /* la bonne langue, un autre pays */
+    else return -1;                                    /* pas la bonne langue du tout */
+    var mots = motsDuNom(v.name);
+    if (contient(FEMININ, mots)) n += 50;
+    if (contient(MASCULIN, mots)) n -= 80;
+    if (SOIGNEE.test(v.name)) n += 15;
+    if (v.localService) n += 5;
+    return n;
+  }
+
+  function voixDisponibles() {
+    if (!('speechSynthesis' in window)) return [];
+    return (window.speechSynthesis.getVoices() || [])
+      .filter(function (v) { return noterVoix(v) >= 0; })
+      .sort(function (a, b) { return noterVoix(b) - noterVoix(a); });
+  }
+
   function choisirVoix() {
-    if (!('speechSynthesis' in window)) return null;
-    var toutes = window.speechSynthesis.getVoices() || [];
-    if (!toutes.length) return null;
+    var libres = voixDisponibles();
+    if (!libres.length) return null;
     voixCherchee = true;
-    var prefixe = LANGUE === 'es' ? 'es' : 'fr';
-    var fr = toutes.filter(function (v) { return v.lang.toLowerCase().indexOf(prefixe) === 0; });
-    if (!fr.length) return null;
-    /* les voix « améliorées » et les voix installées sur l'appareil sonnent
-       mieux que les voix de secours ; les noms varient d'un système à l'autre */
-    var bonnes = /(enhanced|premium|améliorée|amelioree|mejorada|siri|natural|neural|google|thomas|amélie|amelie|audrey|marie|monica|mónica|paulina|jorge)/i;
-    fr.sort(function (a, b) {
-      var na = (bonnes.test(a.name) ? 2 : 0) + (a.localService ? 1 : 0);
-      var nb = (bonnes.test(b.name) ? 2 : 0) + (b.localService ? 1 : 0);
-      return nb - na;
-    });
-    return fr[0];
+    /* un choix fait à la main l'emporte sur le classement */
+    var voulue = store('voix.' + LANGUE);
+    if (voulue) {
+      for (var i = 0; i < libres.length; i++) if (libres[i].name === voulue) return libres[i];
+    }
+    return libres[0];
+  }
+
+  /* la même voix sert aux jeux */
+  function poserVoix() {
+    laVoix = choisirVoix();
+    if (window.Jeux && Jeux.timbre) Jeux.timbre(laVoix);
+    return laVoix;
   }
 
   if ('speechSynthesis' in window) {
-    window.speechSynthesis.onvoiceschanged = function () { laVoix = choisirVoix(); };
+    window.speechSynthesis.onvoiceschanged = function () { poserVoix(); renderVoix(); };
   }
 
   function phrases(texte) {
@@ -16691,6 +16925,12 @@ var UNIVERSES = [
     if (els.cover.hidden) { coverForme = null; return; }
     clearTimeout(minuteurUne);
     minuteurUne = setTimeout(dessinerUne, 150);
+  });
+
+  els.btnReglages.onclick = function (e) { e.stopPropagation(); ouvrirReglages(); };
+  document.addEventListener('click', function (e) {
+    if (els.reglages.hidden) return;
+    if (!els.reglages.contains(e.target) && e.target !== els.btnReglages) ouvrirReglages(false);
   });
 
   window.addEventListener('hashchange', route);

@@ -24,8 +24,21 @@
     <span class="logo-txt"><b>KID</b><i>CARTOON</i></span>
   </button>
   <button class="soir-badge" id="soirBadge" hidden></button>
+  <button class="icon-btn" id="btnReglages" aria-label="Langue et voix">🇫🇷</button>
   <button class="icon-btn" id="btnRandom" aria-label="Histoire au hasard">🎲</button>
 </header>
+
+<!-- LANGUE ET VOIX : un réglage d'adulte, accessible partout mais discret -->
+<div class="reglages" id="reglages" hidden>
+  <div class="reglages-bloc">
+    <h4 id="rglLangue">Langue</h4>
+    <div class="chips langues" id="langues"></div>
+  </div>
+  <div class="reglages-bloc">
+    <h4 id="rglVoix">Voix de lecture</h4>
+    <div class="chips voix" id="voix"></div>
+  </div>
+</div>
 
 <nav class="mainnav" id="mainnav" aria-label="Rubriques">
   <button data-nav="histoires">📖 Histoires</button>
@@ -66,7 +79,6 @@
         <span>Filtrer par thème</span><i></i>
       </button>
       <div class="chips" id="themeChips"></div>
-      <div class="chips langues" id="langues"></div>
     </div>
     <div class="uni-grid" id="uniGrid"></div>
     <p class="foot-note">Créé à la maison, pour l'heure du coucher.</p>
