@@ -50,9 +50,12 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 * **Une voix féminine du bon pays** — le téléphone propose souvent plusieurs
   voix par langue, et la première venue est parfois canadienne quand on lit du
   français de France. L'app les classe : le bon pays d'abord (`fr-FR`, `es-ES`,
-  `en-GB`), puis un timbre féminin, puis les voix « améliorées ». Le panneau
-  liste les autres si le classement ne convient pas — le choix est retenu par
-  langue, et il vaut aussi pour les jeux.
+  `en-GB`), puis les voix **installées sur l'appareil** — une voix « distante »
+  est fabriquée par un serveur : elle démarre avec un temps de retard, se coupe
+  quand le réseau hésite, et ne dit rien du tout en avion —, puis un timbre
+  féminin. Le panneau liste les autres si le classement ne convient pas, les
+  distantes marquées d'un ☁. Le choix est retenu par langue, et il vaut aussi
+  pour les jeux.
 * **Un sélecteur de dessin** — le coloriage et le puzzle s'ouvrent sur une
   grille de seize dessins au trait. On choisit celui qu'on veut, ou 🎲 pour
   enchaîner au hasard. Ce sont des images, pas des titres : à quatre ans on
@@ -61,10 +64,12 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
   navigation au doigt (swipe), aux flèches, ou avec les boutons
-* **Lecture à voix haute** (bouton 🔊) via la synthèse vocale du téléphone —
-  le texte est découpé en phrases et envoyé une par une, un peu ralenti, avec la
-  voix la plus soignée que le téléphone propose dans la langue courante : on
-  gagne les respirations entre les phrases, qui manquaient le plus
+* **Lecture à voix haute** (bouton 🔊) via la synthèse vocale du téléphone. Le
+  texte est découpé en phrases, et chaque phrase n'est lancée **qu'à la fin de
+  la précédente** : on gagne les respirations, et surtout on évite la file
+  d'attente, que les moteurs des téléphones gèrent mal — empiler tout un
+  paragraphe d'un coup marche sur un ordinateur et, sur un mobile, ne sort
+  souvent que la première phrase.
 * **Reprise de lecture** — le site se souvient de la page où on s'est arrêté
   et marque les histoires déjà lues d'un ✓
 * **Bouton 🎲** — une histoire au hasard

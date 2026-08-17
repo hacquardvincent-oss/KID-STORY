@@ -285,11 +285,17 @@
   function dire(texte) {
     if (!voixActive || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-    var u = new SpeechSynthesisUtterance(texte);
-    u.lang = VOIX[LANGUE] || 'fr-FR';
-    if (timbre && timbre.lang && timbre.lang.toLowerCase().indexOf(LANGUE) === 0) u.voice = timbre;
-    u.rate = .9; u.pitch = 1.1;
-    window.speechSynthesis.speak(u);
+    /* cancel() est asynchrone : parler dans la foulée fait avaler le début de
+       la consigne, parfois la consigne entière. On laisse passer un tour. */
+    setTimeout(function () {
+      var u = new SpeechSynthesisUtterance(texte);
+      u.lang = VOIX[LANGUE] || 'fr-FR';
+      try {
+        if (timbre && timbre.lang && timbre.lang.toLowerCase().indexOf(LANGUE) === 0) u.voice = timbre;
+      } catch (e) { timbre = null; }   /* voix périmée : la langue suffit */
+      u.rate = .9; u.pitch = 1.1;
+      window.speechSynthesis.speak(u);
+    }, 90);
   }
   function taire() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
 

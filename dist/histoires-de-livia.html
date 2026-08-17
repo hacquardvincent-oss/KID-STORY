@@ -14172,11 +14172,17 @@ var UNIVERSES = [
   function dire(texte) {
     if (!voixActive || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-    var u = new SpeechSynthesisUtterance(texte);
-    u.lang = VOIX[LANGUE] || 'fr-FR';
-    if (timbre && timbre.lang && timbre.lang.toLowerCase().indexOf(LANGUE) === 0) u.voice = timbre;
-    u.rate = .9; u.pitch = 1.1;
-    window.speechSynthesis.speak(u);
+    /* cancel() est asynchrone : parler dans la foulée fait avaler le début de
+       la consigne, parfois la consigne entière. On laisse passer un tour. */
+    setTimeout(function () {
+      var u = new SpeechSynthesisUtterance(texte);
+      u.lang = VOIX[LANGUE] || 'fr-FR';
+      try {
+        if (timbre && timbre.lang && timbre.lang.toLowerCase().indexOf(LANGUE) === 0) u.voice = timbre;
+      } catch (e) { timbre = null; }   /* voix périmée : la langue suffit */
+      u.rate = .9; u.pitch = 1.1;
+      window.speechSynthesis.speak(u);
+    }, 90);
   }
   function taire() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
 
@@ -16144,8 +16150,10 @@ var UNIVERSES = [
       var b = document.createElement('button');
       b.className = 'chip' + (v.name === choisie ? ' is-active' : '');
       /* le nom brut est parfois interminable : on garde le début */
-      b.textContent = (i === 0 ? '★ ' : '') + v.name.replace(/\s*\(.*\)$/, '').slice(0, 22);
-      b.title = v.name + ' — ' + v.lang;
+      b.textContent = (i === 0 ? '★ ' : '') + (v.localService ? '' : '☁ ') +
+        v.name.replace(/\s*\(.*\)$/, '').slice(0, 20);
+      b.title = v.name + ' — ' + v.lang +
+        (v.localService ? '' : ' — voix distante : elle a besoin du réseau');
       b.onclick = function () {
         store('voix.' + LANGUE, v.name);
         poserVoix();
@@ -16698,6 +16706,7 @@ var UNIVERSES = [
   /* La langue lue, et son pays. « fr » tout court ne suffit pas : sur beaucoup
      de téléphones la première voix française venue est canadienne, et l'accent
      surprend une enfant qui entend du français de France toute la journée. */
+  var PARLE = { fr: 'fr-FR', es: 'es-ES', en: 'en-GB' };
   var LOCALE = { fr: 'fr-fr', es: 'es-es', en: 'en-gb' };
 
   /* On ne peut pas demander le genre d'une voix : l'API ne le donne pas. On le
@@ -16740,7 +16749,11 @@ var UNIVERSES = [
     if (contient(FEMININ, mots)) n += 50;
     if (contient(MASCULIN, mots)) n -= 80;
     if (SOIGNEE.test(v.name)) n += 15;
-    if (v.localService) n += 5;
+    /* Décisif, et pas seulement pour le confort : une voix « distante » est
+       fabriquée par un serveur. Elle met une seconde ou deux à démarrer, elle
+       se coupe quand le réseau hésite, et elle ne dit rien du tout en avion.
+       Une application qui fonctionne hors connexion ne peut pas en dépendre. */
+    if (v.localService) n += 45;
     return n;
   }
 
@@ -16784,22 +16797,54 @@ var UNIVERSES = [
       .filter(Boolean);
   }
 
+  /* Chaque lecture porte un jeton. Une nouvelle lecture — ou un arrêt — change
+     le jeton, et la chaîne en cours s'interrompt d'elle-même au lieu de
+     continuer à parler par-dessus la suivante. */
+  var lecture = 0;
+
   function speak(texte) {
     if (!('speechSynthesis' in window)) return;
-    if (!laVoix && !voixCherchee) laVoix = choisirVoix();
+    if (!laVoix) poserVoix();
     var lot = phrases(texte);
-    lot.forEach(function (p, i) {
-      var u = new SpeechSynthesisUtterance(p);
-      if (laVoix) u.voice = laVoix;
-      u.lang = (laVoix && laVoix.lang) || (LANGUE === 'es' ? 'es-ES' : 'fr-FR');
+    if (!lot.length) return;
+    var mien = ++lecture, i = 0;
+
+    /* Une phrase à la fois, la suivante enchaînée sur la fin de la précédente.
+       Empiler tout le paragraphe d'un coup marche sur un ordinateur et casse
+       sur un téléphone : selon les moteurs, seule la première phrase sort, ou
+       la file se bloque et repart une demi-minute plus tard. */
+    function suivante() {
+      if (mien !== lecture || i >= lot.length) return;
+      var derniere = (i === lot.length - 1);
+      var u = new SpeechSynthesisUtterance(lot[i]);
+      i++;
+      /* Un objet voix peut se périmer — la liste est reconstruite quand le
+         téléphone change de moteur ou revient d'une mise en veille. Sans ce
+         garde-fou, l'affectation lève une exception et la lecture meurt en
+         silence ; la langue seule suffit à retomber sur ses pieds. */
+      try { if (laVoix) u.voice = laVoix; } catch (e) { laVoix = null; }
+      u.lang = (laVoix && laVoix.lang) || PARLE[LANGUE] || 'fr-FR';
       u.rate = 0.9;
-      u.pitch = 1.0;
       /* la dernière phrase d'un paragraphe se pose un peu plus bas */
-      if (i === lot.length - 1) u.pitch = 0.97;
+      u.pitch = derniere ? 0.97 : 1.0;
+      var enchaine = function () {
+        if (mien === lecture) setTimeout(suivante, 130);
+      };
+      u.onend = enchaine;
+      /* une voix distante échoue parfois : on passe à la phrase suivante
+         plutôt que de laisser la lecture morte */
+      u.onerror = enchaine;
       window.speechSynthesis.speak(u);
-    });
+    }
+
+    /* cancel() est asynchrone. Parler dans la foulée fait avaler le début de
+       la phrase, parfois la phrase entière : on laisse passer un tour. */
+    window.speechSynthesis.cancel();
+    setTimeout(suivante, 90);
   }
+
   function stopSpeak() {
+    lecture++;
     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
   }
   els.rSpeak.onclick = function () {
