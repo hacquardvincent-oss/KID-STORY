@@ -37,10 +37,14 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   thèmes traversent les univers, et les onglets filtrent à l'intérieur d'un
   thème. Le filtre par thème est **replié** derrière un bouton discret : c'est
   un réglage d'adulte, il ne doit pas encombrer le chemin de l'enfant.
-* **Français et espagnol** — un sélecteur de langue dans le même volet replié.
-  En espagnol, l'interface et le texte des histoires changent, et la voix passe
-  en `es-ES`. Une histoire n'apparaît que si elle est **entièrement traduite** :
-  mieux vaut une bibliothèque plus courte qu'une histoire à moitié en français.
+* **Trois langues** — français, espagnol, anglais, au choix dans le volet
+  replié. Tout bascule : l'interface, les titres, les étiquettes, **les onze
+  jeux** (consignes, félicitations, noms des formes et des objets comptés) et
+  la voix de synthèse (`fr-FR`, `es-ES`, `en-GB`). Une histoire n'apparaît
+  dans une langue que si elle y est **entièrement traduite** — titre,
+  sous-titre et chaque planche : mieux vaut une bibliothèque plus courte
+  qu'une histoire qui bascule en français au milieu. `node outils/traductions.js`
+  dit où on en est.
 * **Cover Flow infini** — on fait tourner les pochettes au doigt, ça boucle sans fin,
   avec le reflet façon iPod
 * **Lecteur de BD** — une planche par page, bulles de dialogue, bruitages,
@@ -180,11 +184,21 @@ même dessin animé, et ils se rencontrent quand même
 
 Pablo apparaît aussi dans **Pablo veut faire pareil** (Peppa Pig, série *Grandir*).
 
-**En espagnol** — quatre histoires sont pour l'instant traduites de bout en
-bout : *Papá no tiene frío*, *El hielo que cruje*, *Mamá llega tarde* et
-*El pastel de papá*. Elles n'apparaissent qu'en mode espagnol, et le reste de la
-bibliothèque se remplit une histoire à la fois (les consignes des jeux, elles,
-restent en français pour le moment).
+**Les traductions** — l'interface et les onze jeux sont traduits **de bout en
+bout** en espagnol et en anglais. Les histoires suivent univers par univers :
+
+| | espagnol | anglais |
+|---|---|---|
+| La Reine des Neiges | 7 / 7 ✅ | 7 / 7 ✅ |
+| Le grand mélange | 7 / 7 ✅ | 7 / 7 ✅ |
+| Les copines | 2 / 17 | — |
+| le reste | — | — |
+| **total** | **16 / 85** | **14 / 85** |
+
+Un univers entier vaut mieux que des morceaux partout : un enfant qui choisit
+l'anglais tombe sur deux mondes complets plutôt que sur une bibliothèque
+trouée. La suite se fait univers par univers, avec `node outils/traductions.js`
+comme tableau de bord.
 
 **Tu choisis !** — cinq histoires à embranchements, quatre fins chacune
 
@@ -317,10 +331,18 @@ dans le tableau `stories` de l'univers voulu :
 }
 ```
 
-**La traduire.** Trois champs facultatifs suffisent : `title_es`, `subtitle_es`,
-et un `es:` à côté du `text:` de **chaque** page. L'histoire n'apparaît en mode
-espagnol que si les trois y sont, page par page — une traduction à moitié faite
-reste invisible plutôt que de mélanger les deux langues.
+**La traduire.** Trois champs facultatifs par langue : `title_es`,
+`subtitle_es`, et un `es:` à côté du `text:` de **chaque** page (`title_en`,
+`subtitle_en`, `en:` pour l'anglais). L'histoire n'apparaît dans une langue que
+si les trois y sont, page par page — une traduction à moitié faite reste
+invisible plutôt que de mélanger deux langues sur la même planche.
+
+Ce qui n'est pas du texte d'histoire — étiquettes, thèmes, noms d'univers —
+passe par le **lexique**, une simple table du français vers les autres langues
+en haut de `stories.js`. Les consignes des jeux vivent dans leur propre
+dictionnaire, en haut de `games.js`. Dans les deux cas, ce qui manque ressort en
+français plutôt que de casser l'affichage, et `node outils/traductions.js` liste
+précisément ce qui reste à faire.
 
 ### Écrire une histoire à choix
 
@@ -532,6 +554,7 @@ sw.js                       le service worker : mise en cache et hors connexion
 assets/icons/               les icônes de l'application (visage de Livia)
 outils/apercu-histoire.html planche de contrôle pour les dessins
 outils/verifier-choix.js    contrôle le réseau des histoires à choix
+outils/traductions.js       où en sont l'espagnol et l'anglais
 outils/construire-page-unique.js  replie tout le site dans un fichier
 dist/histoires-de-livia.html      le résultat, prêt à partager
 ```

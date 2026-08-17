@@ -31,9 +31,10 @@
      vaut quatre histoires vraiment en espagnol qu'un mélange des deux. */
   var LANGUES = [
     { id: 'fr', nom: 'Français', drapeau: '🇫🇷', voix: 'fr' },
-    { id: 'es', nom: 'Español', drapeau: '🇪🇸', voix: 'es' }
+    { id: 'es', nom: 'Español', drapeau: '🇪🇸', voix: 'es' },
+    { id: 'en', nom: 'English', drapeau: '🇬🇧', voix: 'en' }
   ];
-  var LANGUE = store('langue') === 'es' ? 'es' : 'fr';
+  var LANGUE = /^(es|en)$/.test(store('langue') || '') ? store('langue') : 'fr';
 
   var MOTS = {
     fr: {
@@ -44,7 +45,9 @@
       autre: 'Une autre', relire: 'Relire', sommaire: 'Le sommaire',
       encore: function (n) { return 'Encore <b>' + n + '</b> histoire' + (n > 1 ? 's' : '') + ' ce soir.'; },
       planches: 'planches', histoires: 'histoires', tous: 'Tous', langue: 'Langue',
-      rejouer: 'Autres choix'
+      rejouer: 'Autres choix', jouerSeul: 'Pour jouer tout seul, dès 3 ans',
+      navHist: 'Histoires', navJeux: 'Jeux', titreJeux: 'Les jeux de Livia',
+      titreUne: 'Les histoires de <b>Livia</b>', signature: "Créé à la maison, pour l'heure du coucher"
     },
     es: {
       choisis: 'Elige un mundo.', filtrer: 'Filtrar por tema',
@@ -54,7 +57,21 @@
       autre: 'Otro', relire: 'Releer', sommaire: 'El índice',
       encore: function (n) { return 'Todavía <b>' + n + '</b> cuento' + (n > 1 ? 's' : '') + ' esta noche.'; },
       planches: 'láminas', histoires: 'cuentos', tous: 'Todos', langue: 'Idioma',
-      rejouer: 'Otras opciones'
+      rejouer: 'Otras opciones', jouerSeul: 'Para jugar solita, desde los 3 años',
+      navHist: 'Cuentos', navJeux: 'Juegos', titreJeux: 'Los juegos de Livia',
+      titreUne: 'Los cuentos de <b>Livia</b>', signature: 'Hecho en casa, para la hora de dormir'
+    },
+    en: {
+      choisis: 'Pick a world.', filtrer: 'Filter by theme',
+      lire: 'Read the story', soir: 'Tonight we read…', hasard: 'A story at random',
+      fin: 'The end!', derniere: 'That was the last one', eteint: 'Lights out. Good night, Livia.',
+      bonneNuit: 'Good night… and see you tomorrow for another story.',
+      autre: 'Another', relire: 'Read again', sommaire: 'Contents',
+      encore: function (n) { return '<b>' + n + '</b> more story' + (n > 1 ? 'ies' : '') + ' tonight.'; },
+      planches: 'panels', histoires: 'stories', tous: 'All', langue: 'Language',
+      rejouer: 'Other choices', jouerSeul: 'To play on your own, from age 3',
+      navHist: 'Stories', navJeux: 'Games', titreJeux: "Livia's games",
+      titreUne: "<b>Livia's</b> bedtime stories", signature: 'Made at home, for bedtime'
     }
   };
   function mot(k) { return (MOTS[LANGUE] && MOTS[LANGUE][k]) || MOTS.fr[k]; }
@@ -99,6 +116,12 @@
   function titre(st) { return st['title_' + LANGUE] || st.title; }
   function soustitre(st) { return st['subtitle_' + LANGUE] || st.subtitle; }
   function texte(p) { return p[LANGUE] || p.text; }
+  /* étiquettes, thèmes et noms d'univers passent par le lexique ; ce qui n'y
+     est pas ressort tel quel — un nom propre se traduit rarement */
+  function tr(x) {
+    var L = (typeof LEXIQUE !== 'undefined') && LEXIQUE[LANGUE];
+    return (L && L[x]) || x;
+  }
 
   /* ---------------- le compte du soir ----------------
      Un parent décide combien d'histoires on lit ce soir ; le compte
@@ -404,7 +427,7 @@
         (o.total <= o.faites.length ? ' disabled' : '') + '>−</button>' +
         '<span class="soir-titre">' +
         (r > 0
-          ? 'Encore <b>' + r + '</b> histoire' + (r > 1 ? 's' : '') + ' ce soir'
+          ? mot('encore')(r).replace(/[.]$/, '')
           : '<b>Terminé</b> pour ce soir') +
         '</span>' +
         '<button class="soir-pm" data-ajuste="1" aria-label="une histoire de plus">+</button>' +
@@ -443,6 +466,20 @@
     var f = els.btnFiltres.querySelector('span');
     if (f) f.textContent = mot('filtrer');
     if (els.coverRandom) els.coverRandom.textContent = '🎲 ' + mot('hasard');
+    /* les libellés écrits dans la page : les deux rubriques, les deux titres
+       et la signature du bas */
+    [].forEach.call(document.querySelectorAll('[data-nav="histoires"]'), function (b) {
+      b.textContent = '📖 ' + mot('navHist');
+    });
+    [].forEach.call(document.querySelectorAll('[data-nav="jeux"]'), function (b) {
+      b.textContent = '🎮 ' + mot('navJeux');
+    });
+    var t = $('#viewGames h2');
+    if (t) t.textContent = '🎮 ' + mot('titreJeux');
+    var u = $('.cover-head h1');
+    if (u) u.innerHTML = mot('titreUne');
+    var n = $('.foot-note');
+    if (n) n.textContent = mot('signature');
   }
 
   function renderLangues() {
@@ -467,6 +504,7 @@
         store('langue', l.id);
         laVoix = null; voixCherchee = false;
         document.documentElement.lang = l.id;
+        Jeux.langue(l.id);
         majMots();
         renderTabs(null);
         renderHome();
@@ -476,6 +514,7 @@
     });
   }
   document.documentElement.lang = LANGUE;
+  Jeux.langue(LANGUE);
   majMots();
 
   /* ---------------- le menu principal ---------------- */
@@ -516,8 +555,8 @@
       var b = document.createElement('button');
       b.className = 'tab tab-img' + (activeId === u.id ? ' is-active' : '');
       b.innerHTML = '<span class="tab-rond">' + Art.sticker(u.vignette) + '</span>' +
-        '<span class="tab-mot">' + u.name + '</span>';
-      b.setAttribute('aria-label', u.name);
+        '<span class="tab-mot">' + tr(u.name) + '</span>';
+      b.setAttribute('aria-label', tr(u.name));
       b.style.setProperty('--tab-c', u.c1);
       b.onclick = function () { location.hash = lien(u.id); };
       els.tabs.appendChild(b);
@@ -592,13 +631,13 @@
     els.jeuxNav.innerHTML = '';
     var tous = document.createElement('button');
     tous.className = 'chip';
-    tous.textContent = '↩ Tous les jeux';
+    tous.textContent = '↩ ' + Jeux.mot('lesJeux');
     tous.onclick = function () { location.hash = '#/jeux'; };
     els.jeuxNav.appendChild(tous);
     Jeux.liste.forEach(function (j) {
       var b = document.createElement('button');
       b.className = 'chip' + (j.id === actif ? ' is-active' : '');
-      b.textContent = j.emoji + ' ' + j.nom;
+      b.textContent = j.emoji + ' ' + Jeux.mot(j.nom);
       b.onclick = function () { location.hash = '#/jeux/' + j.id; };
       els.jeuxNav.appendChild(b);
     });
@@ -609,7 +648,7 @@
     els.gamesGrid.hidden = false;
     els.gameStage.hidden = true;
     els.gameStage.innerHTML = '';
-    els.gamesSub.textContent = 'Pour jouer tout seul, dès 3 ans';
+    els.gamesSub.textContent = mot('jouerSeul');
     renderJeuxNav(null);
 
     /* rangés par famille : une enfant trouve plus vite « les lettres » qu'un
@@ -619,7 +658,7 @@
       if (!jeux.length) return;
       var titre = document.createElement('h3');
       titre.className = 'jeu-famille';
-      titre.innerHTML = '<span>' + cat.emoji + '</span> ' + cat.nom;
+      titre.innerHTML = '<span>' + cat.emoji + '</span> ' + Jeux.mot(cat.nom);
       els.gamesGrid.appendChild(titre);
       jeux.forEach(function (jeu) { els.gamesGrid.appendChild(carteJeu(jeu)); });
     });
@@ -630,8 +669,8 @@
     c.className = 'jeu-carte';
     c.innerHTML =
       '<div class="jeu-vignette">' + Art.sticker(jeu.vignette) + '</div>' +
-      '<div class="jeu-texte"><h3>' + jeu.emoji + ' ' + jeu.nom + '</h3>' +
-      '<p>' + jeu.sous + '</p></div>';
+      '<div class="jeu-texte"><h3>' + jeu.emoji + ' ' + Jeux.mot(jeu.nom) + '</h3>' +
+      '<p>' + Jeux.mot(jeu.sous) + '</p></div>';
     c.onclick = function () { location.hash = '#/jeux/' + jeu.id; };
     return c;
   }
@@ -639,7 +678,7 @@
   function openGame(jeu) {
     els.gamesGrid.hidden = true;
     els.gameStage.hidden = false;
-    els.gamesSub.textContent = jeu.sous;
+    els.gamesSub.textContent = Jeux.mot(jeu.sous);
     renderJeuxNav(jeu.id);
     Jeux.lancer(els.gameStage, jeu, function () { location.hash = '#/jeux'; });
   }
@@ -687,10 +726,10 @@
       var card = document.createElement('button');
       card.className = 'uni-card';
       card.innerHTML =
-        '<div class="band"><h3>' + u.emoji + ' ' + u.name + '</h3>' +
+        '<div class="band"><h3>' + u.emoji + ' ' + tr(u.name) + '</h3>' +
         '<span class="num">' + plageNumeros(u) + '</span></div>' +
         '<div class="thumb">' + Art.scene(u.cover, { slice: true, noBubbles: true }) + '</div>' +
-        '<div class="cap"><p>' + u.tagline + '</p>' +
+        '<div class="cap"><p>' + tr(u.tagline) + '</p>' +
         '<span class="pill">' + n + ' histoire' + (n > 1 ? 's' : '') + '</span></div>';
       card.onclick = function () { location.hash = '#/u/' + u.id; };
       els.grid.appendChild(card);
@@ -701,14 +740,14 @@
   function renderUniverse(u, startId) {
     state.universe = u;
     setTheme(u);
-    els.uniTitle.textContent = u.emoji + ' ' + u.name;
-    els.uniTagline.textContent = u.tagline;
+    els.uniTitle.textContent = u.emoji + ' ' + tr(u.name);
+    els.uniTagline.textContent = tr(u.tagline);
 
     var start = 0;
     var items = histoiresDe(u).map(function (s, i) {
       if (startId && s.id === startId) start = i;
       return {
-        scene: s.cover, label: titre(s), num: numero(u, s), tag: s.tag,
+        scene: s.cover, label: titre(s), num: numero(u, s), tag: tr(s.tag),
         badge: isRead(u, s) ? '✓' : String(nbPages(s)) + ' p.'
       };
     });

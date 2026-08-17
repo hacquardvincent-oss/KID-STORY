@@ -26,13 +26,256 @@
   function piocher(a, n) { return melange(a).slice(0, n); }
   function entier(min, max) { return min + Math.floor(Math.random() * (max - min + 1)); }
 
+  /* ============================================================
+     LES TROIS LANGUES
+     Tout ce qui se dit ou s'écrit dans un jeu passe par ici. Les consignes
+     sont lues à voix haute : elles doivent tenir en une phrase courte, dans
+     les trois langues, et rester compréhensibles sans l'écran.
+     %s marque l'endroit où se glisse un mot (un prénom, un nombre, un objet).
+     ============================================================ */
+  var LANGUE = 'fr';
+  var VOIX = { fr: 'fr-FR', es: 'es-ES', en: 'en-GB' };
+
+  var T = {
+    fr: {
+      bravo: ['Bravo !', 'Super !', 'Bien joué !', 'Youpi !', 'Parfait !'],
+      finVoix: 'Bravo Livia ! Tu as gagné toutes les étoiles.',
+      finTitre: 'Bravo Livia !',
+      rejouer: 'Rejouer', changer: 'Changer', lesJeux: 'Les jeux',
+      cinqHasard: '🎲 Cinq au hasard',
+
+      relierConsigne: 'Touche un personnage, puis son objet.',
+      compterConsigne: 'Combien y a-t-il de %s ?',
+      compterRate: 'Essaie encore. Compte avec ton doigt !',
+      ecrireConsigne: 'Écris %s.',
+      ecrireTrait: 'Encore un trait !',
+      ecrireLettre: 'Maintenant le %s.',
+      choixPrenom: 'Choisis un prénom à écrire.',
+      autrePrenom: 'Un autre prénom',
+      choixLettre: 'Choisis une lettre.',
+      autreLettre: 'Une autre lettre',
+      lettreConsigne: 'Touche la lettre %s.',
+      lettreRate: "Non, ça c'est le %s. Cherche le %s.",
+      diffConsigne: 'Trouve les 6 différences.',
+      coloConsigne: 'Colorie le dessin.',
+      jaiFini: "J'ai fini", effacer: 'Effacer',
+      puzConsigne: "Remets le dessin dans l'ordre.",
+      labyConsigne: "Amène Livia jusqu'à l'étoile, sans traverser les murs.",
+      ptsConsigne: "Relie les points, du 1 jusqu'au %s.",
+      ptsTrouve: "Bravo ! C'est %s.",
+      grilConsigne: 'Refais le même dessin sur la grille vide.',
+      grilTrouve: "C'est %s !",
+      symConsigne: "Fais le même dessin de l'autre côté du miroir.",
+      symTrouve: 'Regarde, %s !',
+
+      catObserver: 'Regarder', catLettres: 'Les lettres', catNombres: 'Les nombres',
+      catCreer: 'Créer', catReflechir: 'Réfléchir',
+
+      jRelier: 'Relie les amis', jRelierSous: 'Chaque héros retrouve son objet',
+      jRelierBravo: 'Tu as relié tous les amis !',
+      jCompter: 'Compte avec Livia', jCompterSous: 'Combien y en a-t-il ?',
+      jCompterBravo: "Tu sais compter jusqu'à 6 !",
+      jEcrire: 'Écris les prénoms', jEcrireSous: 'Livia, Pablo, Maman, Papa…',
+      jEcrireBravo: 'Bien écrit !',
+      jDiff: 'Les 6 différences', jDiffSous: 'Deux cases presque pareilles',
+      jDiffBravo: "Tu as l'œil ! Six planches, six fois six différences.",
+      jAlpha: "L'alphabet", jAlphaSous: 'Reconnaître puis tracer chaque lettre',
+      jAlphaBravo: 'Tu connais tes lettres !',
+      jColo: 'Le coloriage', jColoSous: 'Une planche à peindre au doigt',
+      jColoBravo: 'Trois beaux dessins !',
+      jPuz: 'Le puzzle', jPuzSous: "Remets le dessin dans l'ordre",
+      jPuzBravo: "Quatre dessins remis d'aplomb !",
+      jLaby: 'Le labyrinthe', jLabySous: "Trouve le chemin jusqu'à l'étoile",
+      jLabyBravo: 'Tu retrouves toujours ton chemin !',
+      jPts: 'Les points à relier', jPtsSous: 'Du 1 au 12, et le dessin apparaît',
+      jPtsBravo: 'Tu comptes dans le bon ordre !',
+      jGril: 'La grille de dessins', jGrilSous: 'Recopie le modèle, case par case',
+      jGrilBravo: 'Quatre dessins recopiés sans une erreur !',
+      jSym: 'La symétrie', jSymSous: "Termine le dessin de l'autre côté",
+      jSymBravo: 'Tes deux moitiés sont parfaites !',
+
+      /* les mots comptés à voix haute */
+      nombres: ['', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six',
+        'sept', 'huit', 'neuf', 'dix', 'onze', 'douze'],
+      /* les objets qu'on compte, au pluriel */
+      objets: {
+        shell: 'coquillages', starfish: 'étoiles de mer', crab: 'crabes',
+        flower: 'fleurs', ball: 'ballons', butterfly: 'papillons',
+        snowball: 'boules de neige', cube: 'cubes'
+      },
+      /* ce que dessinent les points à relier, les grilles et les symétries */
+      formes: {
+        tente: 'une tente', maison: 'une maison', bateau: 'un bateau',
+        chat: 'un chat', poisson: 'un poisson', etoile: 'une étoile',
+        coeur: 'un cœur', lune: 'la lune', sapin: 'un sapin',
+        fenetre: 'une fenêtre', escalier: 'un escalier',
+        petitcoeur: 'un petit cœur', papillon: 'un papillon'
+      }
+    },
+
+    es: {
+      bravo: ['¡Bravo!', '¡Genial!', '¡Muy bien!', '¡Yupi!', '¡Perfecto!'],
+      finVoix: '¡Bravo Livia! Has ganado todas las estrellas.',
+      finTitre: '¡Bravo Livia!',
+      rejouer: 'Otra vez', changer: 'Cambiar', lesJeux: 'Los juegos',
+      cinqHasard: '🎲 Cinco al azar',
+
+      relierConsigne: 'Toca un personaje y luego su objeto.',
+      compterConsigne: '¿Cuántos %s hay?',
+      compterRate: 'Inténtalo otra vez. ¡Cuenta con el dedo!',
+      ecrireConsigne: 'Escribe %s.',
+      ecrireTrait: '¡Otro trazo!',
+      ecrireLettre: 'Ahora la %s.',
+      choixPrenom: 'Elige un nombre para escribir.',
+      autrePrenom: 'Otro nombre',
+      choixLettre: 'Elige una letra.',
+      autreLettre: 'Otra letra',
+      lettreConsigne: 'Toca la letra %s.',
+      lettreRate: 'No, esa es la %s. Busca la %s.',
+      diffConsigne: 'Encuentra las 6 diferencias.',
+      coloConsigne: 'Colorea el dibujo.',
+      jaiFini: 'He terminado', effacer: 'Borrar',
+      puzConsigne: 'Ordena el dibujo.',
+      labyConsigne: 'Lleva a Livia hasta la estrella, sin cruzar las paredes.',
+      ptsConsigne: 'Une los puntos, del 1 hasta el %s.',
+      ptsTrouve: '¡Bravo! Es %s.',
+      grilConsigne: 'Copia el mismo dibujo en la cuadrícula vacía.',
+      grilTrouve: '¡Es %s!',
+      symConsigne: 'Haz el mismo dibujo al otro lado del espejo.',
+      symTrouve: '¡Mira, %s!',
+
+      catObserver: 'Mirar', catLettres: 'Las letras', catNombres: 'Los números',
+      catCreer: 'Crear', catReflechir: 'Pensar',
+
+      jRelier: 'Une a los amigos', jRelierSous: 'Cada héroe encuentra su objeto',
+      jRelierBravo: '¡Has unido a todos los amigos!',
+      jCompter: 'Cuenta con Livia', jCompterSous: '¿Cuántos hay?',
+      jCompterBravo: '¡Ya sabes contar hasta 6!',
+      jEcrire: 'Escribe los nombres', jEcrireSous: 'Livia, Pablo, Mamá, Papá…',
+      jEcrireBravo: '¡Bien escrito!',
+      jDiff: 'Las 6 diferencias', jDiffSous: 'Dos láminas casi iguales',
+      jDiffBravo: '¡Qué ojo! Seis láminas, seis veces seis diferencias.',
+      jAlpha: 'El abecedario', jAlphaSous: 'Reconocer y luego trazar cada letra',
+      jAlphaBravo: '¡Te sabes las letras!',
+      jColo: 'Para colorear', jColoSous: 'Una lámina para pintar con el dedo',
+      jColoBravo: '¡Tres dibujos preciosos!',
+      jPuz: 'El puzle', jPuzSous: 'Ordena el dibujo',
+      jPuzBravo: '¡Cuatro dibujos bien puestos!',
+      jLaby: 'El laberinto', jLabySous: 'Encuentra el camino hasta la estrella',
+      jLabyBravo: '¡Siempre encuentras tu camino!',
+      jPts: 'Unir los puntos', jPtsSous: 'Del 1 al 12, y aparece el dibujo',
+      jPtsBravo: '¡Cuentas en el orden correcto!',
+      jGril: 'La cuadrícula', jGrilSous: 'Copia el modelo, casilla a casilla',
+      jGrilBravo: '¡Cuatro dibujos copiados sin un fallo!',
+      jSym: 'La simetría', jSymSous: 'Termina el dibujo del otro lado',
+      jSymBravo: '¡Tus dos mitades son perfectas!',
+
+      nombres: ['', 'uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis',
+        'siete', 'ocho', 'nueve', 'diez', 'once', 'doce'],
+      objets: {
+        shell: 'conchas', starfish: 'estrellas de mar', crab: 'cangrejos',
+        flower: 'flores', ball: 'pelotas', butterfly: 'mariposas',
+        snowball: 'bolas de nieve', cube: 'cubos'
+      },
+      formes: {
+        tente: 'una tienda de campaña', maison: 'una casa', bateau: 'un barco',
+        chat: 'un gato', poisson: 'un pez', etoile: 'una estrella',
+        coeur: 'un corazón', lune: 'la luna', sapin: 'un abeto',
+        fenetre: 'una ventana', escalier: 'una escalera',
+        petitcoeur: 'un corazoncito', papillon: 'una mariposa'
+      }
+    },
+
+    en: {
+      bravo: ['Well done!', 'Great!', 'Nice one!', 'Yay!', 'Perfect!'],
+      finVoix: 'Well done Livia! You have won all the stars.',
+      finTitre: 'Well done Livia!',
+      rejouer: 'Play again', changer: 'Change', lesJeux: 'The games',
+      cinqHasard: '🎲 Five at random',
+
+      relierConsigne: 'Tap a character, then their thing.',
+      compterConsigne: 'How many %s are there?',
+      compterRate: 'Try again. Count with your finger!',
+      ecrireConsigne: 'Write %s.',
+      ecrireTrait: 'One more stroke!',
+      ecrireLettre: 'Now the %s.',
+      choixPrenom: 'Choose a name to write.',
+      autrePrenom: 'Another name',
+      choixLettre: 'Choose a letter.',
+      autreLettre: 'Another letter',
+      lettreConsigne: 'Tap the letter %s.',
+      lettreRate: "No, that one is %s. Look for %s.",
+      diffConsigne: 'Find the 6 differences.',
+      coloConsigne: 'Colour the picture.',
+      jaiFini: "I'm done", effacer: 'Erase',
+      puzConsigne: 'Put the picture back in order.',
+      labyConsigne: 'Take Livia to the star, without crossing the walls.',
+      ptsConsigne: 'Join the dots, from 1 to %s.',
+      ptsTrouve: "Well done! It's %s.",
+      grilConsigne: 'Copy the same picture onto the empty grid.',
+      grilTrouve: "It's %s!",
+      symConsigne: 'Make the same picture on the other side of the mirror.',
+      symTrouve: 'Look, %s!',
+
+      catObserver: 'Looking', catLettres: 'Letters', catNombres: 'Numbers',
+      catCreer: 'Making', catReflechir: 'Thinking',
+
+      jRelier: 'Match the friends', jRelierSous: 'Each hero finds their thing',
+      jRelierBravo: 'You matched every friend!',
+      jCompter: 'Count with Livia', jCompterSous: 'How many are there?',
+      jCompterBravo: 'You can count to 6!',
+      jEcrire: 'Write the names', jEcrireSous: 'Livia, Pablo, Mummy, Daddy…',
+      jEcrireBravo: 'Nicely written!',
+      jDiff: 'The 6 differences', jDiffSous: 'Two almost identical panels',
+      jDiffBravo: 'Sharp eyes! Six panels, six times six differences.',
+      jAlpha: 'The alphabet', jAlphaSous: 'Spot each letter, then trace it',
+      jAlphaBravo: 'You know your letters!',
+      jColo: 'Colouring in', jColoSous: 'A panel to paint with your finger',
+      jColoBravo: 'Three lovely pictures!',
+      jPuz: 'The jigsaw', jPuzSous: 'Put the picture back in order',
+      jPuzBravo: 'Four pictures put straight!',
+      jLaby: 'The maze', jLabySous: 'Find the way to the star',
+      jLabyBravo: 'You always find your way!',
+      jPts: 'Join the dots', jPtsSous: 'From 1 to 12, and a picture appears',
+      jPtsBravo: 'You count in the right order!',
+      jGril: 'The drawing grid', jGrilSous: 'Copy the model, square by square',
+      jGrilBravo: 'Four pictures copied without a single mistake!',
+      jSym: 'Symmetry', jSymSous: 'Finish the picture on the other side',
+      jSymBravo: 'Both your halves are perfect!',
+
+      nombres: ['', 'one', 'two', 'three', 'four', 'five', 'six',
+        'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'],
+      objets: {
+        shell: 'shells', starfish: 'starfish', crab: 'crabs',
+        flower: 'flowers', ball: 'balls', butterfly: 'butterflies',
+        snowball: 'snowballs', cube: 'blocks'
+      },
+      formes: {
+        tente: 'a tent', maison: 'a house', bateau: 'a boat',
+        chat: 'a cat', poisson: 'a fish', etoile: 'a star',
+        coeur: 'a heart', lune: 'the moon', sapin: 'a fir tree',
+        fenetre: 'a window', escalier: 'a staircase',
+        petitcoeur: 'a little heart', papillon: 'a butterfly'
+      }
+    }
+  };
+
+  /* le mot juste, avec ses trous remplis */
+  function t(cle) {
+    var v = (T[LANGUE] && T[LANGUE][cle]);
+    if (v === undefined) v = T.fr[cle];
+    if (typeof v !== 'string') return v;
+    for (var i = 1; i < arguments.length; i++) v = v.replace('%s', arguments[i]);
+    return v;
+  }
+
   /* ---------------- la voix ---------------- */
   var voixActive = true;
   function dire(texte) {
     if (!voixActive || !('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
     var u = new SpeechSynthesisUtterance(texte);
-    u.lang = 'fr-FR'; u.rate = .9; u.pitch = 1.1;
+    u.lang = VOIX[LANGUE] || 'fr-FR'; u.rate = .9; u.pitch = 1.1;
     window.speechSynthesis.speak(u);
   }
   function taire() { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
@@ -77,7 +320,7 @@
     }
 
     function feter(suite) {
-      var mots = ['Bravo !', 'Super !', 'Bien joué !', 'Youpi !', 'Parfait !'];
+      var mots = t('bravo');
       var m = mots[entier(0, mots.length - 1)];
       var f = el('div', 'jeu-bravo', '<div class="bravo-etoile">⭐</div><b>' + m + '</b>');
       zone.appendChild(f);
@@ -104,7 +347,7 @@
     }
     function choisir() {
       barre.innerHTML = '';
-      consigne.textContent = def.choixConsigne || '';
+      consigne.textContent = def.choixConsigne ? t(def.choixConsigne) : '';
       zone.innerHTML = '';
       def.choisir(zone, demarrer);
     }
@@ -115,14 +358,14 @@
       zone.innerHTML = '';
       var f = el('div', 'jeu-fin',
         '<div class="fin-etoiles">⭐⭐⭐</div>' +
-        '<h3>Bravo Livia !</h3>' +
-        '<p>' + def.felicitation + '</p>' +
+        '<h3>' + t('finTitre') + '</h3>' +
+        '<p>' + t(def.felicitation) + '</p>' +
         '<div class="jeu-actions">' +
-        bi('rejouer', '↻', 'Rejouer', true) +
-        (def.choisir ? bi('choisir', '✎', def.choixBouton || 'Changer', false) : '') +
-        bi('autres', '⌂', 'Les jeux', false) + '</div>');
+        bi('rejouer', '↻', t('rejouer'), true) +
+        (def.choisir ? bi('choisir', '✎', def.choixBouton ? t(def.choixBouton) : t('changer'), false) : '') +
+        bi('autres', '⌂', t('lesJeux'), false) + '</div>');
       zone.appendChild(f);
-      dire('Bravo Livia ! Tu as gagné toutes les étoiles.');
+      dire(t('finVoix'));
       f.addEventListener('click', function (e) {
         /* le clic tombe sur l'image ou le mot : on remonte jusqu'au bouton */
         var cible = e.target.closest && e.target.closest('[data-act]');
@@ -164,7 +407,7 @@
 
   function jeuRelier(zone, n, api) {
     var lot = piocher(PAIRES, 3);
-    api.consigne('Touche un personnage, puis son objet.');
+    api.consigne(t('relierConsigne'));
 
     var plateau = el('div', 'relier');
     var colA = el('div', 'relier-col');
@@ -235,20 +478,20 @@
      JEU 2 — COMPTER : combien y en a-t-il ?
      ============================================================ */
   var A_COMPTER = [
-    { t: 'shell', pluriel: 'coquillages', bg: 'beach', s: 2.2, y: 500 },
-    { t: 'starfish', pluriel: 'étoiles de mer', bg: 'beach', s: 1.9, y: 505 },
-    { t: 'crab', pluriel: 'crabes', bg: 'beach', s: 1.7, y: 515 },
-    { t: 'flower', pluriel: 'fleurs', bg: 'garden', s: 2.4, y: 525 },
-    { t: 'ball', pluriel: 'ballons', bg: 'garden', s: 1.2, y: 505 },
-    { t: 'butterfly', pluriel: 'papillons', bg: 'garden', s: 2.2, y: 330 },
-    { t: 'snowball', pluriel: 'boules de neige', bg: 'snow', s: 1.6, y: 500, r: 26 },
-    { t: 'cube', pluriel: 'cubes', bg: 'bedroom', s: 1.3, y: 520 }
+    { t: 'shell', bg: 'beach', s: 2.2, y: 500 },
+    { t: 'starfish', bg: 'beach', s: 1.9, y: 505 },
+    { t: 'crab', bg: 'beach', s: 1.7, y: 515 },
+    { t: 'flower', bg: 'garden', s: 2.4, y: 525 },
+    { t: 'ball', bg: 'garden', s: 1.2, y: 505 },
+    { t: 'butterfly', bg: 'garden', s: 2.2, y: 330 },
+    { t: 'snowball', bg: 'snow', s: 1.6, y: 500, r: 26 },
+    { t: 'cube', bg: 'bedroom', s: 1.3, y: 520 }
   ];
 
   function jeuCompter(zone, n, api) {
     var o = piocher(A_COMPTER, 1)[0];
     var combien = Math.min(6, 2 + n);          // on monte doucement : 2, 3, 4, 5, 6
-    api.consigne('Combien y a-t-il de ' + o.pluriel + ' ?');
+    api.consigne(t('compterConsigne', t('objets')[o.t] || o.t));
 
     /* Livia montre du doigt, les objets s'étalent bien à plat pour être comptés */
     var items = [{ t: 'livia', x: 90, y: 522, s: .9, pose: 'point' }];
@@ -277,7 +520,7 @@
         } else {
           b.classList.add('secoue');
           setTimeout(function () { b.classList.remove('secoue'); }, 420);
-          dire('Essaie encore. Compte avec ton doigt !');
+          dire(t('compterRate'));
         }
       };
       rangee.appendChild(b);
@@ -345,7 +588,7 @@
     h.onclick = function () { pret(null); };
     zone.appendChild(h);
   }
-  function choixPrenom(zone, pret) { grilleChoix(zone, PRENOMS, pret, '🎲 Cinq au hasard'); }
+  function choixPrenom(zone, pret) { grilleChoix(zone, PRENOMS, pret, t('cinqHasard')); }
 
   function jeuEcrire(zone, n, api, choisi) {
     if (choisi) return ecrireMot(zone, choisi, api);
@@ -357,7 +600,7 @@
 
   function ecrireMot(zone, nom, api, consigne) {
     var lettres = nom.split('').filter(function (c) { return LETTRES[c]; });
-    api.consigne(consigne || ('Écris ' + nom + '.'));
+    api.consigne(consigne || t('ecrireConsigne', nom));
 
     /* le prénom en toutes lettres, pour savoir où on en est */
     var bandeau = el('div', 'prenom');
@@ -457,7 +700,7 @@
       svg.appendChild(depart); svg.appendChild(encre);
       encre.setAttribute('points', '');
       iTrace++;
-      if (iTrace < chemins.length) { majTrace(); dire('Encore un trait !'); return; }
+      if (iTrace < chemins.length) { majTrace(); dire(t('ecrireTrait')); return; }
       majTrace();
       iLettre++;
       if (iLettre >= lettres.length) { setTimeout(function () { api.reussi(); }, 450); return; }
@@ -465,7 +708,7 @@
       sp[iLettre - 1].className = 'fait';
       setTimeout(function () {
         dessinerLettre();
-        dire('Maintenant le ' + lettres[iLettre] + '.');
+        dire(t('ecrireLettre', lettres[iLettre]));
       }, 500);
     }
 
@@ -502,7 +745,7 @@
   }
 
   function reconnaitreLettre(zone, lettre, api) {
-    api.consigne('Touche la lettre ' + lettre + '.');
+    api.consigne(t('lettreConsigne', lettre));
     var autres = piocher(ALPHABET.filter(function (c) { return c !== lettre; }), 2);
     var lot = melange([lettre].concat(autres));
     var g = el('div', 'lettres-choix');
@@ -517,7 +760,7 @@
         else {
           b.classList.add('faux');
           setTimeout(function () { b.classList.remove('faux'); }, 400);
-          dire('Non, ça c\'est le ' + c + '. Cherche le ' + lettre + '.');
+          dire(t('lettreRate', c, lettre));
         }
       };
       g.appendChild(b);
@@ -743,7 +986,7 @@
     }));
     var choix = lotPlanches[n % lotPlanches.length];
     var trouve = trouverScene(choix.p.u, choix.p.s, choix.p.p);
-    api.consigne('Trouve les 6 différences.');
+    api.consigne(t('diffConsigne'));
 
     /* On pose d'abord les deux cases vides, on mesure la place réellement
        disponible, et seulement ensuite on choisit le cadrage : c'est ce qui
@@ -845,7 +1088,7 @@
     if (n === 0 || !lotColoriage) lotColoriage = melange(A_COLORIER);
     var choix = lotColoriage[n % lotColoriage.length];
     var trouve = trouverScene(choix.u, choix.s, -1);
-    api.consigne('Colorie le dessin.');
+    api.consigne(t('coloConsigne'));
 
     var feuille = el('div', 'colo-feuille');
     zone.appendChild(feuille);
@@ -881,10 +1124,10 @@
 
     var actions = el('div', 'colo-actions');
     var fini = el('button', 'bi primary');
-    fini.innerHTML = '<span class="bi-img">✓</span><span class="bi-mot">J\'ai fini</span>';
+    fini.innerHTML = '<span class="bi-img">✓</span><span class="bi-mot">' + t('jaiFini') + '</span>';
     fini.onclick = function () { api.reussi(); };
     var vider = el('button', 'bi');
-    vider.innerHTML = '<span class="bi-img">✻</span><span class="bi-mot">Effacer</span>';
+    vider.innerHTML = '<span class="bi-img">✻</span><span class="bi-mot">' + t('effacer') + '</span>';
     vider.onclick = function () {
       [].forEach.call(feuille.querySelectorAll('.z'), function (x) { x.setAttribute('fill', '#fffdf6'); });
       [].forEach.call(feuille.querySelectorAll('.zs'), function (x) { x.setAttribute('stroke', '#fffdf6'); });
@@ -905,7 +1148,7 @@
     var choix = lotPuzzle[n % lotPuzzle.length];
     var trouve = trouverScene(choix.u, choix.s, -1);
     var cols = n < 2 ? 2 : 3, rangs = n < 2 ? 2 : 2;   /* 4 morceaux, puis 6 */
-    api.consigne('Remets le dessin dans l\'ordre.');
+    api.consigne(t('puzConsigne'));
 
     var n2 = cols * rangs;
     var pieces = [];
@@ -980,7 +1223,7 @@
     var cols = 5 + Math.min(2, n), rangs = 7 + Math.min(2, n);
     var cases = fabriquerLabyrinthe(cols, rangs);
     var depart = 0, arrivee = cols * rangs - 1;
-    api.consigne('Amène Livia jusqu\'à l\'étoile, sans traverser les murs.');
+    api.consigne(t('labyConsigne'));
 
     var P = 100;                       /* côté d'une case, en unités de dessin */
     var W = cols * P, H = rangs * P;
@@ -1074,29 +1317,26 @@
      point suivant : l'ordre des nombres est la règle du jeu, et se tromper
      ne coûte rien — il ne se passe simplement rien.
      ============================================================ */
-  var NOMBRES = ['', 'un', 'deux', 'trois', 'quatre', 'cinq', 'six',
-    'sept', 'huit', 'neuf', 'dix', 'onze', 'douze'];
-
   /* Deux points trop proches se touchent du même doigt : aucune arête ne
      descend sous une douzaine d'unités sur les cent que compte la feuille. */
   var FIGURES = [
-    { nom: 'une tente', c: '#4f8a3d',
+    { nom: 'tente', c: '#4f8a3d',
       p: [[50, 14], [88, 86], [66, 86], [50, 50], [34, 86], [12, 86]] },
-    { nom: 'une maison', c: '#e0453c',
+    { nom: 'maison', c: '#e0453c',
       p: [[22, 92], [22, 52], [50, 26], [62, 37], [62, 18], [74, 18], [78, 52], [78, 92]] },
-    { nom: 'un bateau', c: '#4a7fc1',
+    { nom: 'bateau', c: '#4a7fc1',
       p: [[8, 66], [44, 66], [50, 8], [84, 52], [56, 52], [56, 66], [92, 66], [76, 92], [24, 92]] },
-    { nom: 'un chat', c: '#f2803d',
+    { nom: 'chat', c: '#f2803d',
       p: [[22, 20], [36, 40], [64, 40], [78, 20], [84, 52], [74, 76], [50, 88], [24, 76], [18, 52]] },
-    { nom: 'un poisson', c: '#3fa3c4',
+    { nom: 'poisson', c: '#3fa3c4',
       p: [[14, 52], [38, 30], [66, 32], [76, 44], [94, 26], [94, 74], [76, 58], [62, 72], [34, 70]] },
-    { nom: 'une étoile', c: '#f7c518',
+    { nom: 'etoile', c: '#f7c518',
       p: [[50, 8], [61, 37], [92, 38], [67, 58], [76, 88], [50, 70], [24, 88], [33, 58], [8, 38], [39, 37]] },
-    { nom: 'un cœur', c: '#e0453c',
+    { nom: 'coeur', c: '#e0453c',
       p: [[50, 90], [14, 54], [10, 38], [18, 24], [34, 22], [50, 34], [66, 22], [82, 24], [90, 38], [86, 54]] },
-    { nom: 'la lune', c: '#8a79c4',
+    { nom: 'lune', c: '#8a79c4',
       p: [[56, 8], [34, 14], [18, 32], [14, 54], [24, 76], [46, 90], [62, 88], [40, 72], [32, 50], [38, 26]] },
-    { nom: 'un sapin', c: '#4f8a3d',
+    { nom: 'sapin', c: '#4f8a3d',
       p: [[50, 10], [72, 50], [60, 50], [80, 84], [57, 84], [57, 96], [43, 96], [43, 84], [20, 84], [40, 50], [28, 50]] }
   ];
   var lotPoints = null;
@@ -1114,7 +1354,7 @@
     }
     var f = etaler(lotPoints, n, 4);
     var pts = f.p, N = pts.length;
-    api.consigne('Relie les points, du 1 jusqu\'au ' + N + '.');
+    api.consigne(t('ptsConsigne', N));
 
     var cx = 0, cy = 0;
     pts.forEach(function (p) { cx += p[0]; cy += p[1]; });
@@ -1161,14 +1401,14 @@
       if (i === null) return;
       if (+i !== etape) return;              /* on ne perd rien : il ne se passe rien */
       etape++;
-      dire(NOMBRES[etape] || String(etape));
+      dire(t('nombres')[etape] || String(etape));
       maj();
       if (etape === N) {
         fini = true;
         trait.setAttribute('points', trait.getAttribute('points') + ' ' + pts[0][0] + ',' + pts[0][1]);
         cadre.classList.add('devoile');
         forme.classList.add('on');
-        setTimeout(function () { dire('Bravo ! C\'est ' + f.nom + '.'); }, 420);
+        setTimeout(function () { dire(t('ptsTrouve', t('formes')[f.nom])); }, 420);
         setTimeout(function () { api.reussi(); }, 1700);
       }
     });
@@ -1213,14 +1453,14 @@
      case. Toucher une case la remplit, la retoucher l'efface.
      ============================================================ */
   var MODELES = [
-    { nom: 'une fenêtre', c: '#4a7fc1', g: ['####', '#..#', '#..#', '####'] },
-    { nom: 'un escalier', c: '#f2803d', g: ['#...', '##..', '###.', '####'] },
-    { nom: 'un petit cœur', c: '#e0453c', g: ['.#.#', '####', '.###', '..#.'] },
-    { nom: 'un sapin', c: '#4f8a3d', g: ['..#..', '.###.', '#####', '..#..', '..#..'] },
-    { nom: 'une maison', c: '#e0453c', g: ['..#..', '.###.', '#####', '#.#.#', '#.#.#'] },
-    { nom: 'un poisson', c: '#3fa3c4', g: ['.....', '.####', '#####', '.####', '.....'] },
-    { nom: 'une étoile', c: '#f7c518', g: ['..#..', '#####', '.###.', '.#.#.', '#...#'] },
-    { nom: 'un chat', c: '#8a5a3b', g: ['#....#', '######', '#.##.#', '######', '.####.', '..##..'] }
+    { nom: 'fenetre', c: '#4a7fc1', g: ['####', '#..#', '#..#', '####'] },
+    { nom: 'escalier', c: '#f2803d', g: ['#...', '##..', '###.', '####'] },
+    { nom: 'petitcoeur', c: '#e0453c', g: ['.#.#', '####', '.###', '..#.'] },
+    { nom: 'sapin', c: '#4f8a3d', g: ['..#..', '.###.', '#####', '..#..', '..#..'] },
+    { nom: 'maison', c: '#e0453c', g: ['..#..', '.###.', '#####', '#.#.#', '#.#.#'] },
+    { nom: 'poisson', c: '#3fa3c4', g: ['.....', '.####', '#####', '.####', '.....'] },
+    { nom: 'etoile', c: '#f7c518', g: ['..#..', '#####', '.###.', '.#.#.', '#...#'] },
+    { nom: 'chat', c: '#8a5a3b', g: ['#....#', '######', '#.##.#', '######', '.####.', '..##..'] }
   ];
   var lotGrille = null;
 
@@ -1230,7 +1470,7 @@
     }
     var m = etaler(lotGrille, n, 4);
     var g = lireGrille(m.g);
-    api.consigne('Refais le même dessin sur la grille vide.');
+    api.consigne(t('grilConsigne'));
 
     var mien = g.cases.map(function () { return false; });
     var plateau = el('div', 'gril');
@@ -1252,7 +1492,7 @@
       e.target.setAttribute('fill', mien[i] ? m.c : '#fffdf6');
       if (mien.every(function (v, k) { return v === g.cases[k]; })) {
         fini = true;
-        setTimeout(function () { dire('C\'est ' + m.nom + ' !'); }, 200);
+        setTimeout(function () { dire(t('grilTrouve', t('formes')[m.nom])); }, 200);
         setTimeout(function () { api.reussi(); }, 900);
       }
     });
@@ -1264,10 +1504,10 @@
      inventer. La règle ne s'explique pas : on la voit apparaître.
      ============================================================ */
   var SYMETRIES = [
-    { nom: 'un papillon', c: '#f2803d', g: ['##..', '###.', '.###', '.###', '###.', '##..'] },
-    { nom: 'un cœur', c: '#e0453c', g: ['.##.', '####', '####', '.###', '..##', '...#'] },
-    { nom: 'un sapin', c: '#4f8a3d', g: ['...#', '..##', '.###', '####', '...#', '...#'] },
-    { nom: 'une maison', c: '#4a7fc1', g: ['...#', '..##', '.###', '####', '#.##', '#.#.'] }
+    { nom: 'papillon', c: '#f2803d', g: ['##..', '###.', '.###', '.###', '###.', '##..'] },
+    { nom: 'coeur', c: '#e0453c', g: ['.##.', '####', '####', '.###', '..##', '...#'] },
+    { nom: 'sapin', c: '#4f8a3d', g: ['...#', '..##', '.###', '####', '...#', '...#'] },
+    { nom: 'maison', c: '#4a7fc1', g: ['...#', '..##', '.###', '####', '#.##', '#.#.'] }
   ];
   var lotSym = null;
 
@@ -1285,7 +1525,7 @@
     }
     /* au départ, seule la moitié gauche est dessinée */
     var etat = cible.map(function (v, i) { return (i % cols) < moitie ? v : false; });
-    api.consigne('Fais le même dessin de l\'autre côté du miroir.');
+    api.consigne(t('symConsigne'));
 
     var plateau = el('div', 'sym', grilleSVG(cols, rangs, etat, m.c, {
       miroir: moitie,
@@ -1305,109 +1545,114 @@
       if (etat.every(function (v, k) { return v === cible[k]; })) {
         fini = true;
         plateau.classList.add('devoile');
-        setTimeout(function () { dire('Regarde, ' + m.nom + ' !'); }, 200);
+        setTimeout(function () { dire(t('symTrouve', t('formes')[m.nom])); }, 200);
         setTimeout(function () { api.reussi(); }, 1100);
       }
     });
   }
 
   var CATEGORIES = [
-    { id: 'observer', nom: 'Regarder', emoji: '🔍' },
-    { id: 'lettres', nom: 'Les lettres', emoji: '🔤' },
-    { id: 'nombres', nom: 'Les nombres', emoji: '🔢' },
-    { id: 'creer', nom: 'Créer', emoji: '🎨' },
-    { id: 'reflechir', nom: 'Réfléchir', emoji: '🧩' }
+    { id: 'observer', nom: 'catObserver', emoji: '🔍' },
+    { id: 'lettres', nom: 'catLettres', emoji: '🔤' },
+    { id: 'nombres', nom: 'catNombres', emoji: '🔢' },
+    { id: 'creer', nom: 'catCreer', emoji: '🎨' },
+    { id: 'reflechir', nom: 'catReflechir', emoji: '🧩' }
   ];
 
   var JEUX = [
     {
-      id: 'relier', nom: 'Relie les amis', emoji: '🔗', cat: 'observer',
-      sous: 'Chaque héros retrouve son objet',
+      id: 'relier', nom: 'jRelier', emoji: '🔗', cat: 'observer',
+      sous: 'jRelierSous',
       vignette: { t: 'peppa', ds: .66, dy: 184 },
-      def: { manches: 4, manche: jeuRelier, felicitation: 'Tu as relié tous les amis !' }
+      def: { manches: 4, manche: jeuRelier, felicitation: 'jRelierBravo' }
     },
     {
-      id: 'compter', nom: 'Compte avec Livia', emoji: '🔢', cat: 'nombres',
-      sous: 'Combien y en a-t-il ?',
+      id: 'compter', nom: 'jCompter', emoji: '🔢', cat: 'nombres',
+      sous: 'jCompterSous',
       vignette: { t: 'livia', ds: .66, dy: 184 },
-      def: { manches: 5, manche: jeuCompter, felicitation: 'Tu sais compter jusqu\'à 6 !' }
+      def: { manches: 5, manche: jeuCompter, felicitation: 'jCompterBravo' }
     },
     {
-      id: 'ecrire', nom: 'Écris les prénoms', emoji: '✏️', cat: 'lettres',
-      sous: 'Livia, Pablo, Maman, Papa…',
+      id: 'ecrire', nom: 'jEcrire', emoji: '✏️', cat: 'lettres',
+      sous: 'jEcrireSous',
       vignette: { t: 'elsa', ds: .66, dy: 184 },
       def: {
         manches: function (v) { return v ? 1 : 5; },
         manche: jeuEcrire,
         choisir: choixPrenom,
-        choixConsigne: 'Choisis un prénom à écrire.',
-        choixBouton: 'Un autre prénom',
-        felicitation: 'Bien écrit !'
+        choixConsigne: 'choixPrenom',
+        choixBouton: 'autrePrenom',
+        felicitation: 'jEcrireBravo'
       }
     },
     {
-      id: 'differences', nom: 'Les 6 différences', emoji: '🔍', cat: 'observer',
-      sous: 'Deux cases presque pareilles',
+      id: 'differences', nom: 'jDiff', emoji: '🔍', cat: 'observer',
+      sous: 'jDiffSous',
       vignette: { t: 'bluey', ds: .62, dy: 184 },
       def: {
         manches: 6, manche: jeuDifferences, plein: true,
-        felicitation: 'Tu as l\'œil ! Six planches, six fois six différences.'
+        felicitation: 'jDiffBravo'
       }
     },
     {
-      id: 'alphabet', nom: 'L\'alphabet', emoji: '🔤', cat: 'lettres',
-      sous: 'Reconnaître puis tracer chaque lettre',
+      id: 'alphabet', nom: 'jAlpha', emoji: '🔤', cat: 'lettres',
+      sous: 'jAlphaSous',
       vignette: { t: 'juliette', ds: .62, dy: 184 },
       def: {
         manches: function (v) { return v ? 2 : 6; },
         manche: jeuAlphabet,
         choisir: choixLettre,
-        choixConsigne: 'Choisis une lettre.',
-        choixBouton: 'Une autre lettre',
-        felicitation: 'Tu connais tes lettres !'
+        choixConsigne: 'choixLettre',
+        choixBouton: 'autreLettre',
+        felicitation: 'jAlphaBravo'
       }
     },
     {
-      id: 'coloriage', nom: 'Le coloriage', emoji: '🎨', cat: 'creer',
-      sous: 'Une planche à peindre au doigt',
+      id: 'coloriage', nom: 'jColo', emoji: '🎨', cat: 'creer',
+      sous: 'jColoSous',
       vignette: { t: 'maman', ds: .58, dy: 182 },
-      def: { manches: 3, manche: jeuColoriage, plein: true, felicitation: 'Trois beaux dessins !' }
+      def: { manches: 3, manche: jeuColoriage, plein: true, felicitation: 'jColoBravo' }
     },
     {
-      id: 'puzzle', nom: 'Le puzzle', emoji: '🧩', cat: 'reflechir',
-      sous: 'Remets le dessin dans l\'ordre',
+      id: 'puzzle', nom: 'jPuz', emoji: '🧩', cat: 'reflechir',
+      sous: 'jPuzSous',
       vignette: { t: 'pablo', ds: .62, dy: 186 },
-      def: { manches: 4, manche: jeuPuzzle, plein: true, felicitation: 'Quatre dessins remis d\'aplomb !' }
+      def: { manches: 4, manche: jeuPuzzle, plein: true, felicitation: 'jPuzBravo' }
     },
     {
-      id: 'labyrinthe', nom: 'Le labyrinthe', emoji: '🌀', cat: 'reflechir',
-      sous: 'Trouve le chemin jusqu\'à l\'étoile',
+      id: 'labyrinthe', nom: 'jLaby', emoji: '🌀', cat: 'reflechir',
+      sous: 'jLabySous',
       vignette: { t: 'papa', ds: .42, dy: 176 },
-      def: { manches: 4, manche: jeuLabyrinthe, plein: true, felicitation: 'Tu retrouves toujours ton chemin !' }
+      def: { manches: 4, manche: jeuLabyrinthe, plein: true, felicitation: 'jLabyBravo' }
     },
     {
-      id: 'points', nom: 'Les points à relier', emoji: '🔟', cat: 'nombres',
-      sous: 'Du 1 au 12, et le dessin apparaît',
+      id: 'points', nom: 'jPts', emoji: '🔟', cat: 'nombres',
+      sous: 'jPtsSous',
       vignette: { t: 'anna', ds: .62, dy: 184 },
-      def: { manches: 4, manche: jeuPoints, plein: true, felicitation: 'Tu comptes dans le bon ordre !' }
+      def: { manches: 4, manche: jeuPoints, plein: true, felicitation: 'jPtsBravo' }
     },
     {
-      id: 'grille', nom: 'La grille de dessins', emoji: '🧱', cat: 'creer',
-      sous: 'Recopie le modèle, case par case',
+      id: 'grille', nom: 'jGril', emoji: '🧱', cat: 'creer',
+      sous: 'jGrilSous',
       vignette: { t: 'roxane', ds: .62, dy: 184 },
-      def: { manches: 4, manche: jeuGrille, plein: true, felicitation: 'Quatre dessins recopiés sans une erreur !' }
+      def: { manches: 4, manche: jeuGrille, plein: true, felicitation: 'jGrilBravo' }
     },
     {
-      id: 'symetrie', nom: 'La symétrie', emoji: '🦋', cat: 'reflechir',
-      sous: 'Termine le dessin de l\'autre côté',
+      id: 'symetrie', nom: 'jSym', emoji: '🦋', cat: 'reflechir',
+      sous: 'jSymSous',
       vignette: { t: 'isadora', ds: .62, dy: 184 },
-      def: { manches: 4, manche: jeuSymetrie, plein: true, felicitation: 'Tes deux moitiés sont parfaites !' }
+      def: { manches: 4, manche: jeuSymetrie, plein: true, felicitation: 'jSymBravo' }
     }
   ];
 
   global.Jeux = {
     liste: JEUX,
     categories: CATEGORIES,
+    /* le nom d'un jeu ou d'une famille est une clé : c'est ici qu'il devient
+       un mot, dans la langue courante */
+    mot: t,
+    langue: function (l) { if (T[l]) LANGUE = l; return LANGUE; },
+    dictionnaire: function () { return T; },
     trouver: function (id) {
       for (var i = 0; i < JEUX.length; i++) if (JEUX[i].id === id) return JEUX[i];
       return null;

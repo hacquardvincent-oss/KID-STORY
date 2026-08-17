@@ -71,6 +71,51 @@ var THEMES = [
   { id: 'betises', nom: 'Bêtises', emoji: '🙃' }
 ];
 
+/* Le lexique : tout ce qui n'appartient pas au texte des histoires — étiquettes,
+   thèmes, noms d'univers. Une simple table du français vers les autres langues.
+   Ce qui n'y figure pas est rendu tel quel : les noms propres n'ont pas besoin
+   d'être traduits. */
+var LEXIQUE = {
+  es: {
+    /* étiquettes et thèmes */
+    'Été': 'Verano', 'Grandir': 'Crecer', 'Nuit': 'Noche', 'Amitié': 'Amistad',
+    'Jardin': 'Jardín', 'Plage': 'Playa', 'Humeurs': 'Humores',
+    'Monsieur Madame': 'Mr. Men', 'Tous ensemble': 'Todos juntos',
+    'Mélange': 'Mezcla', 'Copines': 'Amigas', 'Tu choisis': 'Tú eliges',
+    'Émotions': 'Emociones', 'Partager': 'Compartir', 'Règles': 'Reglas',
+    'Famille': 'Familia', 'Dehors': 'Fuera', 'Bêtises': 'Travesuras',
+    /* univers */
+    'La Reine des Neiges': 'Frozen', 'Les Monsieur Madame': 'Los Mr. Men',
+    'Le grand mélange': 'La gran mezcla', 'Les copines de Livia': 'Las amigas de Livia',
+    'Tu choisis !': '¡Tú eliges!',
+    'Livia, Peppa et toute la famille Pig': 'Livia, Peppa y toda la familia Pig',
+    'Livia, Elsa, Anna et Olaf': 'Livia, Elsa, Anna y Olaf',
+    'Livia, Bluey, Bingo et toute la famille Heeler': 'Livia, Bluey, Bingo y toda la familia Heeler',
+    'Livia et les petits bonshommes ronds': 'Livia y los muñequitos redondos',
+    'Quand tous les amis de Livia se retrouvent': 'Cuando se juntan todos los amigos de Livia',
+    'Roxane, Juliette, Isadora — et le petit frère': 'Roxane, Juliette, Isadora — y el hermanito',
+    "C'est Livia qui décide comment l'histoire continue": 'Livia decide cómo sigue el cuento'
+  },
+  en: {
+    'Été': 'Summer', 'Grandir': 'Growing up', 'Nuit': 'Night', 'Amitié': 'Friendship',
+    'Jardin': 'Garden', 'Plage': 'Beach', 'Humeurs': 'Moods',
+    'Monsieur Madame': 'Mr. Men', 'Tous ensemble': 'All together',
+    'Mélange': 'Mix-up', 'Copines': 'Friends', 'Tu choisis': 'You choose',
+    'Émotions': 'Feelings', 'Partager': 'Sharing', 'Règles': 'Rules',
+    'Famille': 'Family', 'Dehors': 'Outdoors', 'Bêtises': 'Mischief',
+    'La Reine des Neiges': 'Frozen', 'Les Monsieur Madame': 'The Mr. Men',
+    'Le grand mélange': 'The big mix-up', 'Les copines de Livia': "Livia's friends",
+    'Tu choisis !': 'You choose!',
+    'Livia, Peppa et toute la famille Pig': 'Livia, Peppa and the whole Pig family',
+    'Livia, Elsa, Anna et Olaf': 'Livia, Elsa, Anna and Olaf',
+    'Livia, Bluey, Bingo et toute la famille Heeler': 'Livia, Bluey, Bingo and the whole Heeler family',
+    'Livia et les petits bonshommes ronds': 'Livia and the little round folk',
+    'Quand tous les amis de Livia se retrouvent': "When all of Livia's friends get together",
+    'Roxane, Juliette, Isadora — et le petit frère': 'Roxane, Juliette, Isadora — and the baby brother',
+    "C'est Livia qui décide comment l'histoire continue": 'Livia decides how the story goes on'
+  }
+};
+
 var UNIVERSES = [
 
   /* ==========================================================
@@ -2428,7 +2473,11 @@ var UNIVERSES = [
       {
         id: 'ete-arendelle',
         title: 'Un été à Arendelle',
+        title_en: "A summer in Arendelle",
+        title_es: "Un verano en Arendelle",
         subtitle: 'De la neige au mois de juillet',
+        subtitle_en: "Snow in the middle of July",
+        subtitle_es: "Nieve en pleno julio",
         tag: 'Été',
         themes: ['Été', 'Amitié'],
         minutes: 6,
@@ -2453,7 +2502,9 @@ var UNIVERSES = [
               sfx: [{ t: 'OUF, QUELLE CHALEUR !', x: 210, y: 424, fs: 26, rot: -4, color: '#ffd93d' }],
               bubbles: [{ x: 480, y: 34, w: 290, t: 'Je fonds ! Je fonds vraiment !', tx: 340, ty: 250 }]
             },
-            text: "À Arendelle, c'est le plein été. Il fait si chaud que la glace des glaciers fond en gouttes. Anna s'évente avec son chapeau : « Je crois que je fonds », dit-elle."
+            text: "À Arendelle, c'est le plein été. Il fait si chaud que la glace des glaciers fond en gouttes. Anna s'évente avec son chapeau : « Je crois que je fonds », dit-elle.",
+            es: "En Arendelle es pleno verano. Hace tanto calor que el hielo de los glaciares se derrite gota a gota. Anna se abanica con el sombrero: «Creo que me estoy derritiendo», dice.",
+            en: "In Arendelle it is high summer. It is so hot that the ice on the glaciers is melting drop by drop. Anna fans herself with her hat. «I think I'm melting,» she says."
           },
           {
             scene: {
@@ -2465,7 +2516,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 34, w: 300, t: 'Bonjour Elsa ! Bonjour Anna !', tx: 300, ty: 250 }]
             },
-            text: "C'est ce moment-là que choisit Livia pour arriver au château, avec sa couronne toute neuve. Elsa et Anna courent l'accueillir. « Tu tombes très bien », sourit Elsa."
+            text: "C'est ce moment-là que choisit Livia pour arriver au château, avec sa couronne toute neuve. Elsa et Anna courent l'accueillir. « Tu tombes très bien », sourit Elsa.",
+            es: "Justo en ese momento llega Livia al castillo, con su corona nuevecita. Elsa y Anna corren a recibirla. «Llegas en el mejor momento», sonríe Elsa.",
+            en: "That is exactly the moment Livia picks to arrive at the castle, wearing her brand new crown. Elsa and Anna run to meet her. «Perfect timing,» smiles Elsa."
           },
           {
             scene: {
@@ -2480,7 +2533,9 @@ var UNIVERSES = [
               sfx: [{ t: 'FRIIIISSS !', x: 620, y: 400, fs: 40, rot: -8, color: '#bfe8f7' }],
               bubbles: [{ x: 120, y: 30, w: 300, t: 'Un petit hiver, juste pour nous !', tx: 260, ty: 250 }]
             },
-            text: "Elsa lève les mains, et FRIIIISS ! Des flocons se mettent à tomber sur la cour du château. Un tout petit hiver, rien que pour elles. Livia n'en revient pas."
+            text: "Elsa lève les mains, et FRIIIISS ! Des flocons se mettent à tomber sur la cour du château. Un tout petit hiver, rien que pour elles. Livia n'en revient pas.",
+            es: "Elsa levanta las manos y ¡FRIIIISS! Empiezan a caer copos sobre el patio del castillo. Un inviernecito, solo para ellas. Livia no se lo puede creer.",
+            en: "Elsa lifts her hands, and WHOOSH! Snowflakes begin to fall over the castle courtyard. A tiny winter, just for them. Livia can hardly believe her eyes."
           },
           {
             scene: {
@@ -2492,7 +2547,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 34, w: 300, t: 'J\'adore les étés enneigés !', tx: 300, ty: 250 }]
             },
-            text: "Olaf arrive en courant, les bras grands ouverts. « De la neige en été ! » dit-il. « C'est exactement ce que je préfère au monde ! » Et il fait trois tours sur lui-même."
+            text: "Olaf arrive en courant, les bras grands ouverts. « De la neige en été ! » dit-il. « C'est exactement ce que je préfère au monde ! » Et il fait trois tours sur lui-même.",
+            es: "Olaf llega corriendo con los brazos abiertos. «¡Nieve en verano!», dice. «¡Es justo lo que más me gusta del mundo!» Y da tres vueltas sobre sí mismo.",
+            en: "Olaf comes running with his arms wide open. «Snow in summer!» he says. «That is exactly my favourite thing in the whole world!» And he spins round three times."
           },
           {
             scene: {
@@ -2507,7 +2564,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PAF !', x: 330, y: 200, fs: 44, rot: -10, color: '#fff' }]
             },
-            text: "Alors commence la plus grande bataille de boules de neige de l'histoire d'Arendelle. Anna vise Elsa. Elsa vise Livia. Livia vise… tout le monde à la fois !"
+            text: "Alors commence la plus grande bataille de boules de neige de l'histoire d'Arendelle. Anna vise Elsa. Elsa vise Livia. Livia vise… tout le monde à la fois !",
+            es: "Entonces empieza la mayor batalla de bolas de nieve de la historia de Arendelle. Anna apunta a Elsa. Elsa apunta a Livia. Livia apunta… ¡a todas a la vez!",
+            en: "Then begins the greatest snowball fight in the history of Arendelle. Anna aims at Elsa. Elsa aims at Livia. Livia aims… at everybody at once!"
           },
           {
             scene: {
@@ -2520,7 +2579,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'WHIIII !', x: 600, y: 232, fs: 38, rot: -8, color: '#7fd8f0' }]
             },
-            text: "Ensuite, Elsa dessine dans l'air un immense toboggan de glace qui descend jusqu'à la cour. Livia se lance la première. Olaf compte les tours : dix-sept !"
+            text: "Ensuite, Elsa dessine dans l'air un immense toboggan de glace qui descend jusqu'à la cour. Livia se lance la première. Olaf compte les tours : dix-sept !",
+            es: "Después, Elsa dibuja en el aire un tobogán de hielo enorme que baja hasta el patio. Livia se tira la primera. Olaf cuenta las bajadas: ¡diecisiete!",
+            en: "Next, Elsa draws a huge ice slide in the air, running all the way down to the courtyard. Livia goes first. Olaf counts the goes: seventeen!"
           },
           {
             scene: {
@@ -2534,7 +2595,9 @@ var UNIVERSES = [
                 { t: 'snowflake', x: 620, y: 160, r: 22 }
               ]
             },
-            text: "Puis Elsa gèle la fontaine du château : ça fait une patinoire ronde et brillante. Elles patinent en se tenant la main, toutes les trois, en tournant de plus en plus vite."
+            text: "Puis Elsa gèle la fontaine du château : ça fait une patinoire ronde et brillante. Elles patinent en se tenant la main, toutes les trois, en tournant de plus en plus vite.",
+            es: "Luego Elsa congela la fuente del castillo: queda una pista de patinaje redonda y brillante. Patinan cogidas de la mano, las tres, girando cada vez más deprisa.",
+            en: "Then Elsa freezes the castle fountain, and it becomes a round, shining ice rink. All three of them skate holding hands, spinning faster and faster."
           },
           {
             scene: {
@@ -2547,7 +2610,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 400, y: 30, w: 300, t: 'Une glace… dans la neige !', tx: 320, ty: 250 }]
             },
-            text: "Pour le goûter, tout le monde mange une glace. Une glace, dans la neige, en plein été : c'est très bizarre et c'est très délicieux. Olaf en prend deux, pour être sûr."
+            text: "Pour le goûter, tout le monde mange une glace. Une glace, dans la neige, en plein été : c'est très bizarre et c'est très délicieux. Olaf en prend deux, pour être sûr.",
+            es: "Para merendar, todo el mundo toma un helado. Un helado, en la nieve, en pleno verano: es rarísimo y está riquísimo. Olaf se toma dos, por si acaso.",
+            en: "For tea, everyone has an ice cream. An ice cream, in the snow, in the middle of summer: very strange and very delicious. Olaf has two, just to be sure."
           },
           {
             scene: {
@@ -2562,7 +2627,9 @@ var UNIVERSES = [
               front: [{ t: 'sparkle', x: 200, y: 160, r: 20 }, { t: 'sparkle', x: 500, y: 120, r: 16 }],
               bubbles: [{ x: 420, y: 40, w: 300, t: 'Reviens l\'été prochain, Livia !', tx: 300, ty: 250 }]
             },
-            text: "Le soir, la neige d'Elsa fond doucement et l'été revient. Toutes les quatre regardent le ciel s'allumer. « Reviens l'été prochain », dit Elsa. Livia promet, la main sur le cœur."
+            text: "Le soir, la neige d'Elsa fond doucement et l'été revient. Toutes les quatre regardent le ciel s'allumer. « Reviens l'été prochain », dit Elsa. Livia promet, la main sur le cœur.",
+            es: "Al anochecer, la nieve de Elsa se derrite despacio y vuelve el verano. Las cuatro miran cómo se enciende el cielo. «Vuelve el verano que viene», dice Elsa. Livia lo promete, con la mano en el corazón.",
+            en: "In the evening, Elsa's snow melts away and summer comes back. All four of them watch the sky light up. «Come back next summer,» says Elsa. Livia promises, hand on heart."
           }
         ]
       },
@@ -2570,7 +2637,11 @@ var UNIVERSES = [
       {
         id: 'nuit-etoiles-glacees',
         title: 'La nuit des étoiles glacées',
+        title_en: "The night of the frozen stars",
+        title_es: "La noche de las estrellas heladas",
         subtitle: 'Une aurore pour Livia',
+        subtitle_en: "An aurora just for Livia",
+        subtitle_es: "Una aurora para Livia",
         tag: 'Nuit',
         themes: ['Nuit', 'Amitié'],
         minutes: 5,
@@ -2594,7 +2665,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 34, w: 300, t: 'Cette nuit, le ciel va danser.', tx: 480, ty: 250 }]
             },
-            text: "Ce soir-là, Elsa réveille Livia tout doucement. « Habille-toi bien chaud », murmure-t-elle. « Cette nuit, le ciel va danser. » Livia enfile son manteau en trois secondes."
+            text: "Ce soir-là, Elsa réveille Livia tout doucement. « Habille-toi bien chaud », murmure-t-elle. « Cette nuit, le ciel va danser. » Livia enfile son manteau en trois secondes.",
+            es: "Esa noche, Elsa despierta a Livia muy despacito. «Abrígate bien», susurra. «Esta noche el cielo va a bailar.» Livia se pone el abrigo en tres segundos.",
+            en: "That evening, Elsa wakes Livia very gently. «Wrap up warm,» she whispers. «Tonight the sky is going to dance.» Livia is in her coat in three seconds flat."
           },
           {
             scene: {
@@ -2606,7 +2679,9 @@ var UNIVERSES = [
                 { t: 'lantern', x: 715, y: 384, s: 1.3 }
               ]
             },
-            text: "Elles traversent la forêt endormie avec une petite lanterne. La neige fait crunch-crunch sous les bottes. Olaf marche devant : il dit qu'il connaît le chemin par cœur."
+            text: "Elles traversent la forêt endormie avec une petite lanterne. La neige fait crunch-crunch sous les bottes. Olaf marche devant : il dit qu'il connaît le chemin par cœur.",
+            es: "Cruzan el bosque dormido con un farolillo. La nieve hace crunch-crunch bajo las botas. Olaf va delante: dice que se sabe el camino de memoria.",
+            en: "They cross the sleeping forest with a little lantern. The snow goes crunch-crunch under their boots. Olaf walks ahead: he says he knows the way by heart."
           },
           {
             scene: {
@@ -2618,7 +2693,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 34, w: 300, t: 'Vous partiez sans moi ?!', tx: 280, ty: 250 }]
             },
-            text: "Au bout du sentier, une voix crie : « Vous partiez sans moi ?! » C'est Anna, avec sa luge et deux couvertures. Bien sûr qu'elle vient aussi."
+            text: "Au bout du sentier, une voix crie : « Vous partiez sans moi ?! » C'est Anna, avec sa luge et deux couvertures. Bien sûr qu'elle vient aussi.",
+            es: "Al final del sendero, una voz grita: «¿¡Os ibais sin mí!?» Es Anna, con su trineo y dos mantas. Claro que ella también viene.",
+            en: "At the end of the path, a voice shouts: «You were leaving without me?!» It is Anna, with her sledge and two blankets. Of course she is coming too."
           },
           {
             scene: {
@@ -2630,7 +2707,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'WHOUUUU !', x: 640, y: 250, fs: 40, rot: -10, color: '#bfe8f7' }]
             },
-            text: "Pour monter en haut de la montagne, il faut d'abord descendre une pente. Alors elles descendent en luge, très vite, en riant si fort que la neige tombe des sapins."
+            text: "Pour monter en haut de la montagne, il faut d'abord descendre une pente. Alors elles descendent en luge, très vite, en riant si fort que la neige tombe des sapins.",
+            es: "Para subir a lo alto de la montaña, primero hay que bajar una cuesta. Así que bajan en trineo, muy rápido, riéndose tan fuerte que la nieve cae de los abetos.",
+            en: "To get to the top of the mountain, you first have to go down a slope. So down they go on the sledge, very fast, laughing so hard that snow falls off the fir trees."
           },
           {
             scene: {
@@ -2642,7 +2721,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 200, y: 30, w: 300, t: 'Mes pieds sont perdus ! Encore !', tx: 400, ty: 250 }]
             },
-            text: "En chemin, Olaf perd ses pieds dans une congère. Livia les retrouve tout de suite : ils étaient juste derrière lui. « Merci ! » dit Olaf. « Ça m'arrive tout le temps. »"
+            text: "En chemin, Olaf perd ses pieds dans une congère. Livia les retrouve tout de suite : ils étaient juste derrière lui. « Merci ! » dit Olaf. « Ça m'arrive tout le temps. »",
+            es: "Por el camino, Olaf pierde los pies en un montón de nieve. Livia los encuentra enseguida: estaban justo detrás de él. «¡Gracias!», dice Olaf. «Me pasa todo el rato.»",
+            en: "On the way, Olaf loses his feet in a snowdrift. Livia finds them straight away: they were just behind him. «Thank you!» says Olaf. «That happens to me all the time.»"
           },
           {
             scene: {
@@ -2657,7 +2738,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'Regarde…', x: 420, y: 186, fs: 34, rot: -4, color: '#fff' }]
             },
-            text: "Enfin, elles arrivent au sommet. Elsa souffle sur ses mains et lance mille flocons vers le ciel. Les flocons montent, montent… et se transforment en lumières vertes et violettes."
+            text: "Enfin, elles arrivent au sommet. Elsa souffle sur ses mains et lance mille flocons vers le ciel. Les flocons montent, montent… et se transforment en lumières vertes et violettes.",
+            es: "Por fin llegan a la cima. Elsa sopla sobre sus manos y lanza mil copos hacia el cielo. Los copos suben, suben… y se convierten en luces verdes y moradas.",
+            en: "At last they reach the summit. Elsa breathes on her hands and throws a thousand snowflakes at the sky. Up they go, up and up… and turn into green and purple lights."
           },
           {
             scene: {
@@ -2670,7 +2753,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 400, y: 34, w: 300, t: 'C\'est le plus beau ciel du monde.', tx: 390, ty: 250 }]
             },
-            text: "L'aurore boréale danse au-dessus de la montagne, comme un immense rideau de lumière. Toutes les quatre se serrent l'une contre l'autre et ne disent plus rien du tout."
+            text: "L'aurore boréale danse au-dessus de la montagne, comme un immense rideau de lumière. Toutes les quatre se serrent l'une contre l'autre et ne disent plus rien du tout.",
+            es: "La aurora boreal baila sobre la montaña, como una cortina de luz enorme. Las cuatro se aprietan una contra otra y ya no dicen nada de nada.",
+            en: "The northern lights dance above the mountain, like an enormous curtain of light. All four huddle together and say nothing at all any more."
           },
           {
             scene: {
@@ -2682,7 +2767,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 90, y: 40, w: 300, t: 'Bonne nuit, petite princesse.', tx: 460, ty: 250, fill: '#fff6ec' }]
             },
-            text: "Au retour, Livia a les yeux qui se ferment tout seuls. Elsa la borde et pose un flocon de glace sur sa table de nuit : un flocon qui ne fond jamais. « Bonne nuit, petite princesse. »"
+            text: "Au retour, Livia a les yeux qui se ferment tout seuls. Elsa la borde et pose un flocon de glace sur sa table de nuit : un flocon qui ne fond jamais. « Bonne nuit, petite princesse. »",
+            es: "A la vuelta, a Livia se le cierran los ojos solos. Elsa la arropa y deja un copo de hielo en su mesilla: un copo que no se derrite nunca. «Buenas noches, princesita.»",
+            en: "On the way home, Livia's eyes close all by themselves. Elsa tucks her in and sets an ice flake on her bedside table: a flake that never melts. «Good night, little princess.»"
           }
         ]
       },
@@ -2691,8 +2778,10 @@ var UNIVERSES = [
       {
         id: 'papa-na-pas-froid',
         title: 'Papa n\'a pas froid',
+        title_en: "Daddy isn't cold",
         title_es: 'Papá no tiene frío',
         subtitle: 'Dire qu\'on a froid, c\'est déjà se réchauffer',
+        subtitle_en: "Saying you're cold is already getting warmer",
         subtitle_es: 'Decir que tienes frío ya es empezar a calentarte',
         tag: 'Nuit',
         themes: ['Famille', 'Émotions'],
@@ -2716,7 +2805,8 @@ var UNIVERSES = [
               sfx: [{ t: 'MOI, JAMAIS FROID !', x: 430, y: 168, fs: 26, rot: -4, color: '#4a7fc1' }]
             },
             text: "Papa était venu à Arendelle en tee-shirt. « Moi, je n'ai jamais froid », dit-il en montrant ses bras. Livia regarda la neige, puis les bras de Papa, et ne dit rien.",
-            es: "Papá había venido a Arendelle en camiseta. «Yo nunca tengo frío», dijo enseñando los brazos. Livia miró la nieve, luego los brazos de papá, y no dijo nada."
+            es: "Papá había venido a Arendelle en camiseta. «Yo nunca tengo frío», dijo enseñando los brazos. Livia miró la nieve, luego los brazos de papá, y no dijo nada.",
+            en: "Daddy had come to Arendelle in a T-shirt. «Me, I never get cold,» he said, showing off his arms. Livia looked at the snow, then at Daddy's arms, and said nothing."
           },
           {
             scene: {
@@ -2729,7 +2819,8 @@ var UNIVERSES = [
               sfx: [{ t: 'FRIIIISSS !', x: 420, y: 164, fs: 34, rot: -7, color: '#7fd8f0' }]
             },
             text: "Elsa leva une main pour dire bonjour. Il se mit à neiger un peu plus fort, comme ça, sans prévenir. Papa fit un sourire qui tremblait légèrement aux commissures.",
-            es: "Elsa levantó una mano para saludar. Empezó a nevar un poco más fuerte, así, sin avisar. Papá sonrió con una sonrisa que temblaba un poquito en las esquinas."
+            es: "Elsa levantó una mano para saludar. Empezó a nevar un poco más fuerte, así, sin avisar. Papá sonrió con una sonrisa que temblaba un poquito en las esquinas.",
+            en: "Elsa raised a hand to say hello. It began to snow a little harder, just like that, without warning. Daddy smiled a smile that wobbled slightly at the corners."
           },
           {
             scene: {
@@ -2741,7 +2832,8 @@ var UNIVERSES = [
               bubbles: [{ x: 60, y: 24, w: 320, t: 'Tu as les lèvres toutes bleues.', tx: 300, ty: 240 }]
             },
             text: "« Tu as les lèvres toutes bleues », dit Livia. Papa répondit que c'était la lumière. La lumière n'y était pour rien : il claquait des dents depuis une bonne minute.",
-            es: "«Tienes los labios azules», dijo Livia. Papá contestó que era la luz. La luz no tenía nada que ver: le castañeteaban los dientes desde hacía un buen rato."
+            es: "«Tienes los labios azules», dijo Livia. Papá contestó que era la luz. La luz no tenía nada que ver: le castañeteaban los dientes desde hacía un buen rato.",
+            en: "«Your lips have gone all blue,» said Livia. Daddy replied that it was the light. The light had nothing to do with it: his teeth had been chattering for a good minute."
           },
           {
             scene: {
@@ -2754,7 +2846,8 @@ var UNIVERSES = [
               sfx: [{ t: 'BRRRRR…', x: 420, y: 164, fs: 32, rot: -6, color: '#bfe8f7' }]
             },
             text: "Anna arriva avec une grosse couverture. Elle ne dit pas « je te l'avais bien dit ». Elle la posa simplement sur les épaules de Papa, et attendit.",
-            es: "Anna llegó con una manta muy gorda. No dijo «te lo dije». Simplemente se la puso sobre los hombros a papá, y esperó."
+            es: "Anna llegó con una manta muy gorda. No dijo «te lo dije». Simplemente se la puso sobre los hombros a papá, y esperó.",
+            en: "Anna arrived with a big thick blanket. She did not say «I told you so». She simply laid it over Daddy's shoulders, and waited."
           },
           {
             scene: {
@@ -2766,7 +2859,8 @@ var UNIVERSES = [
               bubbles: [{ x: 300, y: 24, w: 340, t: 'Bon. J\'ai un peu froid.', tx: 305, ty: 240 }]
             },
             text: "« Bon », dit Papa. « J'ai un peu froid. » Ce n'était que quatre mots, et il fallut pourtant qu'il les prépare longtemps dans sa tête avant de les faire sortir.",
-            es: "«Bueno», dijo papá. «Tengo un poco de frío.» Solo eran cinco palabras, y sin embargo tuvo que prepararlas mucho rato en la cabeza antes de dejarlas salir."
+            es: "«Bueno», dijo papá. «Tengo un poco de frío.» Solo eran cinco palabras, y sin embargo tuvo que prepararlas mucho rato en la cabeza antes de dejarlas salir.",
+            en: "«All right,» said Daddy. «I am a little bit cold.» It was only five words, and yet he had to get them ready in his head for a long time before letting them out."
           },
           {
             scene: {
@@ -2778,7 +2872,8 @@ var UNIVERSES = [
               ]
             },
             text: "Ils rentrèrent boire un chocolat tous ensemble. Livia remarqua que Papa, sous la couverture, avait retrouvé sa vraie couleur. Et qu'il souriait pour de bon, cette fois.",
-            es: "Volvieron todos juntos a tomar un chocolate. Livia notó que papá, debajo de la manta, había recuperado su color de verdad. Y que sonreía en serio, esta vez."
+            es: "Volvieron todos juntos a tomar un chocolate. Livia notó que papá, debajo de la manta, había recuperado su color de verdad. Y que sonreía en serio, esta vez.",
+            en: "They all went in for hot chocolate together. Livia noticed that Daddy, under the blanket, had got his real colour back. And that he was smiling properly this time."
           }
         ]
       },
@@ -2787,8 +2882,10 @@ var UNIVERSES = [
       {
         id: 'glace-qui-craque',
         title: 'La glace qui craque',
+        title_en: "The ice that cracks",
         title_es: 'El hielo que cruje',
         subtitle: 'Une règle qu\'on ne comprend qu\'après',
+        subtitle_en: "A rule you only understand afterwards",
         subtitle_es: 'Una regla que solo se entiende después',
         tag: 'Nuit',
         themes: ['Règles', 'Grandir'],
@@ -2811,7 +2908,8 @@ var UNIVERSES = [
               bubbles: [{ x: 60, y: 24, w: 330, t: 'On ne marche jamais sur le lac.', tx: 290, ty: 240 }]
             },
             text: "« On ne marche jamais sur le lac », dit Elsa. Livia demanda pourquoi. Elsa répondit : « Parce que la glace ment. » Ce n'était pas une réponse très claire.",
-            es: "«Nunca se camina sobre el lago», dijo Elsa. Livia preguntó por qué. Elsa contestó: «Porque el hielo miente.» No era una respuesta muy clara."
+            es: "«Nunca se camina sobre el lago», dijo Elsa. Livia preguntó por qué. Elsa contestó: «Porque el hielo miente.» No era una respuesta muy clara.",
+            en: "«We never walk on the lake,» said Elsa. Livia asked why. Elsa answered: «Because the ice lies.» It was not a very clear answer."
           },
           {
             scene: {
@@ -2820,7 +2918,8 @@ var UNIVERSES = [
               sfx: [{ t: 'ELLE A L\'AIR SOLIDE…', x: 400, y: 168, fs: 26, rot: -4, color: '#6d5847' }]
             },
             text: "Le lendemain, Livia retourna voir le lac toute seule. La glace était blanche, lisse et parfaitement immobile. Elle avait vraiment l'air solide. C'est bien ça, le problème.",
-            es: "Al día siguiente, Livia volvió al lago sola. El hielo estaba blanco, liso y completamente quieto. Parecía de verdad muy sólido. Ese es justamente el problema."
+            es: "Al día siguiente, Livia volvió al lago sola. El hielo estaba blanco, liso y completamente quieto. Parecía de verdad muy sólido. Ese es justamente el problema.",
+            en: "The next day, Livia went back to the lake on her own. The ice was white, smooth and perfectly still. It really did look solid. That is exactly the problem."
           },
           {
             scene: {
@@ -2829,7 +2928,8 @@ var UNIVERSES = [
               sfx: [{ t: 'CRAAAC.', x: 400, y: 164, fs: 40, rot: -8, color: '#4a7fc1' }]
             },
             text: "Elle posa un pied. Puis deux. Au troisième pas, quelque chose craqua sous elle, un bruit sec et très net, qui n'avait rien d'un bruit de jeu.",
-            es: "Puso un pie. Luego dos. Al tercer paso, algo crujió debajo de ella, un ruido seco y muy claro, que no tenía nada de ruido de juego."
+            es: "Puso un pie. Luego dos. Al tercer paso, algo crujió debajo de ella, un ruido seco y muy claro, que no tenía nada de ruido de juego.",
+            en: "She put one foot down. Then two. On the third step, something cracked underneath her, a dry, very clear sound, nothing like the sound of a game."
           },
           {
             scene: {
@@ -2841,7 +2941,8 @@ var UNIVERSES = [
               sfx: [{ t: 'NE BOUGE PLUS !', x: 430, y: 164, fs: 30, rot: -6, color: '#e0453c' }]
             },
             text: "« Ne bouge plus ! » cria Elsa depuis la rive. Livia ne bougea plus du tout. Elsa tendit la main, doucement, et la glace se referma sous ses pieds comme on recoud un tissu.",
-            es: "«¡No te muevas!», gritó Elsa desde la orilla. Livia no se movió nada. Elsa extendió la mano, despacito, y el hielo se cerró bajo sus pies como quien cose una tela."
+            es: "«¡No te muevas!», gritó Elsa desde la orilla. Livia no se movió nada. Elsa extendió la mano, despacito, y el hielo se cerró bajo sus pies como quien cose una tela.",
+            en: "«Don't move!» shouted Elsa from the shore. Livia did not move at all. Elsa stretched out her hand, gently, and the ice closed under her feet the way you sew up cloth."
           },
           {
             scene: {
@@ -2853,7 +2954,8 @@ var UNIVERSES = [
               bubbles: [{ x: 300, y: 22, w: 350, t: 'La glace ment : elle est belle et elle est mince.', tx: 305, ty: 236 }]
             },
             text: "Elles s'assirent au bord. « La glace ment », répéta Elsa. « Elle est belle, elle est blanche, et par endroits elle est mince comme une feuille. » Cette fois, Livia comprit.",
-            es: "Se sentaron en la orilla. «El hielo miente», repitió Elsa. «Es bonito, es blanco, y en algunos sitios es fino como una hoja.» Esta vez, Livia lo entendió."
+            es: "Se sentaron en la orilla. «El hielo miente», repitió Elsa. «Es bonito, es blanco, y en algunos sitios es fino como una hoja.» Esta vez, Livia lo entendió.",
+            en: "They sat down on the bank. «The ice lies,» Elsa said again. «It is beautiful, it is white, and in places it is as thin as a leaf.» This time, Livia understood."
           },
           {
             scene: {
@@ -2865,7 +2967,8 @@ var UNIVERSES = [
               ]
             },
             text: "Certaines règles s'expliquent, et on les comprend tout de suite. D'autres attendent qu'on ait entendu le craquement. Livia n'est jamais retournée sur le lac.",
-            es: "Algunas reglas se explican y se entienden enseguida. Otras esperan a que hayas oído el crujido. Livia nunca volvió a pisar el lago."
+            es: "Algunas reglas se explican y se entienden enseguida. Otras esperan a que hayas oído el crujido. Livia nunca volvió a pisar el lago.",
+            en: "Some rules can be explained, and you understand them straight away. Others wait until you have heard the crack. Livia never went back onto the lake."
           }
         ]
       },
@@ -2874,7 +2977,11 @@ var UNIVERSES = [
       {
         id: 'secret-danna',
         title: "Le secret d'Anna",
+        title_en: "Anna's secret",
+        title_es: "El secreto de Anna",
         subtitle: 'Tenir sa langue quand ça démange',
+        subtitle_en: "Holding your tongue when it itches",
+        subtitle_es: "Morderse la lengua cuando pica",
         tag: 'Amitié',
         themes: ['Amitié', 'Émotions'],
         minutes: 5,
@@ -2895,7 +3002,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 40, y: 22, w: 350, t: "Je prépare une surprise pour Elsa. Tu ne dis rien ?", tx: 300, ty: 240 }]
             },
-            text: "Anna prit Livia par le bras et l'emmena derrière la grande porte. « Je prépare une surprise pour Elsa », chuchota-t-elle. « Tu ne dis rien ? » Livia fit non de la tête, très fort."
+            text: "Anna prit Livia par le bras et l'emmena derrière la grande porte. « Je prépare une surprise pour Elsa », chuchota-t-elle. « Tu ne dis rien ? » Livia fit non de la tête, très fort.",
+            es: "Anna cogió a Livia del brazo y se la llevó detrás de la puerta grande. «Estoy preparando una sorpresa para Elsa», susurró. «¿No dices nada?» Livia dijo que no con la cabeza, muy fuerte.",
+            en: "Anna took Livia by the arm and led her behind the big door. «I'm getting a surprise ready for Elsa,» she whispered. «You won't say anything?» Livia shook her head very hard."
           },
           {
             scene: {
@@ -2906,7 +3015,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ÇA GRATTE DEDANS !', x: 450, y: 150, fs: 25, rot: -4, color: '#8a79c4' }]
             },
-            text: "Deux minutes plus tard, Elsa arriva. Le secret se mit à gratter à l'intérieur de Livia, juste derrière les dents, comme une chose vivante qui veut sortir."
+            text: "Deux minutes plus tard, Elsa arriva. Le secret se mit à gratter à l'intérieur de Livia, juste derrière les dents, comme une chose vivante qui veut sortir.",
+            es: "Dos minutos después llegó Elsa. El secreto empezó a picar dentro de Livia, justo detrás de los dientes, como una cosa viva que quiere salir.",
+            en: "Two minutes later, Elsa arrived. The secret began to itch inside Livia, right behind her teeth, like a living thing that wants to get out."
           },
           {
             scene: {
@@ -2917,7 +3028,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 40, y: 22, w: 330, t: "Tu as l'air bizarre. Il se passe quelque chose ?", tx: 300, ty: 240 }]
             },
-            text: "« Tu as l'air bizarre », dit Elsa. « Il se passe quelque chose ? » C'était la question la plus difficile de toute la journée, et Livia n'avait rien préparé du tout."
+            text: "« Tu as l'air bizarre », dit Elsa. « Il se passe quelque chose ? » C'était la question la plus difficile de toute la journée, et Livia n'avait rien préparé du tout.",
+            es: "«Tienes cara rara», dijo Elsa. «¿Pasa algo?» Era la pregunta más difícil del día entero, y Livia no había preparado nada de nada.",
+            en: "«You look odd,» said Elsa. «Is something going on?» It was the hardest question of the whole day, and Livia had not prepared a single thing."
           },
           {
             scene: {
@@ -2925,7 +3038,9 @@ var UNIVERSES = [
               items: [{ t: 'liviaPrincess', x: 400, y: 522, s: 1.25 }],
               sfx: [{ t: 'OUI. MAIS JE NE PEUX PAS.', x: 400, y: 150, fs: 22, rot: -4, color: '#4a7fc1' }]
             },
-            text: "Livia respira un grand coup. « Oui », dit-elle. « Mais je ne peux pas te le dire. » Ce n'était pas un mensonge, et ce n'était pas non plus le secret. C'était juste la vérité, en plus petit."
+            text: "Livia respira un grand coup. « Oui », dit-elle. « Mais je ne peux pas te le dire. » Ce n'était pas un mensonge, et ce n'était pas non plus le secret. C'était juste la vérité, en plus petit.",
+            es: "Livia respiró hondo. «Sí», dijo. «Pero no te lo puedo contar.» No era mentira, y tampoco era el secreto. Era simplemente la verdad, en pequeñito.",
+            en: "Livia took a big breath. «Yes,» she said. «But I can't tell you.» It was not a lie, and it was not the secret either. It was just the truth, in a smaller size."
           },
           {
             scene: {
@@ -2936,7 +3051,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ALORS J\'ATTENDRAI.', x: 440, y: 150, fs: 24, rot: -4, color: '#7fd8f0' }]
             },
-            text: "Elsa la regarda un moment. Puis elle sourit. « Alors j'attendrai », dit-elle, et elle parla d'autre chose, ce qui est une façon très élégante de laisser quelqu'un tranquille."
+            text: "Elsa la regarda un moment. Puis elle sourit. « Alors j'attendrai », dit-elle, et elle parla d'autre chose, ce qui est une façon très élégante de laisser quelqu'un tranquille.",
+            es: "Elsa la miró un momento. Luego sonrió. «Pues esperaré», dijo, y se puso a hablar de otra cosa, que es una manera muy elegante de dejar en paz a alguien.",
+            en: "Elsa looked at her for a moment. Then she smiled. «Then I'll wait,» she said, and she talked about something else, which is a very elegant way of leaving someone alone."
           },
           {
             scene: {
@@ -2948,7 +3065,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'SURPRISE !', x: 450, y: 150, fs: 32, rot: -6, color: '#f7c518' }]
             },
-            text: "Le soir, la surprise sortit enfin de sa cachette. Elsa fit semblant de ne pas s'y attendre. Livia, elle, avait gardé quelque chose de lourd pendant tout un après-midi — et elle avait tenu."
+            text: "Le soir, la surprise sortit enfin de sa cachette. Elsa fit semblant de ne pas s'y attendre. Livia, elle, avait gardé quelque chose de lourd pendant tout un après-midi — et elle avait tenu.",
+            es: "Por la noche, la sorpresa salió por fin de su escondite. Elsa hizo como que no se lo esperaba. Livia, en cambio, había cargado con algo pesado toda una tarde — y había aguantado.",
+            en: "That evening, the surprise came out of its hiding place at last. Elsa pretended not to be expecting it. Livia had carried something heavy all afternoon — and she had held on."
           }
         ]
       },
@@ -2957,7 +3076,11 @@ var UNIVERSES = [
       {
         id: 'olaf-a-trop-chaud',
         title: 'Olaf a trop chaud',
+        title_en: "Olaf is far too hot",
+        title_es: "Olaf tiene demasiado calor",
         subtitle: "Aider, même quand ça ne nous arrange pas",
+        subtitle_en: "Helping, even when it doesn't suit you",
+        subtitle_es: "Ayudar, aunque no nos venga bien",
         tag: 'Été',
         themes: ['Amitié', 'Été'],
         minutes: 5,
@@ -2979,7 +3102,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'LA GLISSADE !', x: 380, y: 150, fs: 28, rot: -5, color: '#7fd8f0' }]
             },
-            text: "Elsa avait fabriqué une glissade de glace qui descendait jusqu'en bas de la colline. Livia s'apprêtait à la prendre pour la sixième fois quand elle entendit quelqu'un souffler."
+            text: "Elsa avait fabriqué une glissade de glace qui descendait jusqu'en bas de la colline. Livia s'apprêtait à la prendre pour la sixième fois quand elle entendit quelqu'un souffler.",
+            es: "Elsa había fabricado un tobogán de hielo que bajaba hasta el pie de la colina. Livia iba a tirarse por sexta vez cuando oyó que alguien resoplaba.",
+            en: "Elsa had built an ice slide that ran all the way down the hill. Livia was about to take it for the sixth time when she heard somebody puffing."
           },
           {
             scene: {
@@ -2987,7 +3112,9 @@ var UNIVERSES = [
               items: [{ t: 'olaf', x: 400, y: 520, s: 1.3, mood: 'sad' }],
               sfx: [{ t: 'PFOUUU…', x: 400, y: 148, fs: 32, rot: -5, color: '#f2803d' }]
             },
-            text: "C'était Olaf. Il s'était assis au soleil, et il avait la tête un peu penchée, comme une bougie qu'on aurait laissée trop près du feu. « Ça va », dit-il, ce qui n'était pas vrai du tout."
+            text: "C'était Olaf. Il s'était assis au soleil, et il avait la tête un peu penchée, comme une bougie qu'on aurait laissée trop près du feu. « Ça va », dit-il, ce qui n'était pas vrai du tout.",
+            es: "Era Olaf. Se había sentado al sol y tenía la cabeza un poco torcida, como una vela que se ha dejado demasiado cerca del fuego. «Estoy bien», dijo, lo cual no era verdad en absoluto.",
+            en: "It was Olaf. He had sat down in the sun, and his head was leaning over a bit, like a candle left too close to the fire. «I'm fine,» he said, which was not true at all."
           },
           {
             scene: {
@@ -2998,7 +3125,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ENCORE UNE FOIS… OU PAS.', x: 440, y: 150, fs: 22, rot: -4, color: '#6d5847' }]
             },
-            text: "Livia regarda la glissade. Puis Olaf. Puis la glissade. Personne ne lui demandait rien, et c'est bien ça qui était embêtant : elle aurait pu partir, et personne n'aurait rien su."
+            text: "Livia regarda la glissade. Puis Olaf. Puis la glissade. Personne ne lui demandait rien, et c'est bien ça qui était embêtant : elle aurait pu partir, et personne n'aurait rien su.",
+            es: "Livia miró el tobogán. Luego a Olaf. Luego el tobogán. Nadie le pedía nada, y eso era justamente lo incómodo: podría haberse ido, y nadie se habría enterado.",
+            en: "Livia looked at the slide. Then at Olaf. Then at the slide. Nobody was asking her for anything, and that was the awkward part: she could have gone, and nobody would have known."
           },
           {
             scene: {
@@ -3009,7 +3138,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ON VA À L\'OMBRE.', x: 430, y: 150, fs: 25, rot: -4, color: '#4a7fc1' }]
             },
-            text: "Elle prit Olaf par le bâton qui lui sert de bras et l'emmena derrière le grand rocher, là où la neige reste dure toute la journée. Le trajet dura longtemps : Olaf ne va pas vite."
+            text: "Elle prit Olaf par le bâton qui lui sert de bras et l'emmena derrière le grand rocher, là où la neige reste dure toute la journée. Le trajet dura longtemps : Olaf ne va pas vite.",
+            es: "Lo cogió por el palo que le hace de brazo y se lo llevó detrás de la roca grande, donde la nieve se queda dura todo el día. El camino duró mucho: Olaf no va deprisa.",
+            en: "She took Olaf by the stick that serves as his arm and led him behind the big rock, where the snow stays hard all day. The journey took a long time: Olaf is not fast."
           },
           {
             scene: {
@@ -3021,7 +3152,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'AAAH.', x: 420, y: 148, fs: 30, rot: -5, color: '#bfe8f7' }]
             },
-            text: "À l'ombre, Olaf se redressa d'un coup, comme une plante qu'on arrose. « Aaah », dit-il. Ils restèrent là un moment, à ne rien faire, ce qui est parfois exactement ce qu'il faut faire."
+            text: "À l'ombre, Olaf se redressa d'un coup, comme une plante qu'on arrose. « Aaah », dit-il. Ils restèrent là un moment, à ne rien faire, ce qui est parfois exactement ce qu'il faut faire.",
+            es: "A la sombra, Olaf se enderezó de golpe, como una planta a la que riegan. «Aaah», dijo. Se quedaron allí un rato, sin hacer nada, que es a veces exactamente lo que hay que hacer.",
+            en: "In the shade, Olaf straightened up all at once, like a plant being watered. «Aaah,» he said. They stayed there a while, doing nothing, which is sometimes exactly the thing to do."
           },
           {
             scene: {
@@ -3033,7 +3166,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'WHIIII !', x: 440, y: 150, fs: 30, rot: -6, color: '#f7c518' }]
             },
-            text: "La glissade était toujours là après. Livia la prit trois fois, avec Olaf qui comptait en bas. Ce qu'elle avait laissé passer ne s'était pas perdu — ça l'attendait, tout simplement."
+            text: "La glissade était toujours là après. Livia la prit trois fois, avec Olaf qui comptait en bas. Ce qu'elle avait laissé passer ne s'était pas perdu — ça l'attendait, tout simplement.",
+            es: "El tobogán seguía allí después. Livia se tiró tres veces, con Olaf contando abajo. Lo que había dejado pasar no se había perdido: simplemente la estaba esperando.",
+            en: "The slide was still there afterwards. Livia took it three times, with Olaf counting at the bottom. What she had let go had not been lost — it had simply been waiting for her."
           }
         ]
       },
@@ -3042,7 +3177,11 @@ var UNIVERSES = [
       {
         id: 'couronne-cassee',
         title: 'La couronne cassée',
+        title_en: "The broken crown",
+        title_es: "La corona rota",
         subtitle: "Le dire avant qu'on le découvre",
+        subtitle_en: "Saying it before anyone finds out",
+        subtitle_es: "Decirlo antes de que lo descubran",
         tag: 'Nuit',
         themes: ['Règles', 'Grandir'],
         minutes: 5,
@@ -3061,7 +3200,9 @@ var UNIVERSES = [
               items: [{ t: 'liviaPrincess', x: 360, y: 512, s: 1.25, pose: 'point' }],
               sfx: [{ t: 'JUSTE UNE FOIS…', x: 400, y: 146, fs: 25, rot: -4, color: '#a98cf0' }]
             },
-            text: "La couronne d'Elsa était posée sur l'étagère du haut. On n'y touche pas, c'était dit depuis longtemps. Livia n'y toucha pas non plus : elle monta seulement sur le tabouret pour mieux la voir."
+            text: "La couronne d'Elsa était posée sur l'étagère du haut. On n'y touche pas, c'était dit depuis longtemps. Livia n'y toucha pas non plus : elle monta seulement sur le tabouret pour mieux la voir.",
+            es: "La corona de Elsa estaba en el estante de arriba. No se toca, eso estaba dicho desde hacía tiempo. Livia tampoco la tocó: solo se subió al taburete para verla mejor.",
+            en: "Elsa's crown sat on the top shelf. You don't touch it — that had been said long ago. Livia didn't touch it either: she only climbed onto the stool for a better look."
           },
           {
             scene: {
@@ -3069,7 +3210,9 @@ var UNIVERSES = [
               items: [{ t: 'liviaPrincess', x: 400, y: 512, s: 1.25, mood: 'wow' }],
               sfx: [{ t: 'CLING !', x: 400, y: 146, fs: 40, rot: -8, color: '#e0453c' }]
             },
-            text: "Le tabouret glissa. La couronne fit un bruit très court et très clair en touchant le sol, et une petite branche de glace se détacha net. La chambre devint extrêmement silencieuse."
+            text: "Le tabouret glissa. La couronne fit un bruit très court et très clair en touchant le sol, et une petite branche de glace se détacha net. La chambre devint extrêmement silencieuse.",
+            es: "El taburete resbaló. La corona hizo un ruido muy corto y muy claro al tocar el suelo, y una ramita de hielo se partió del todo. La habitación se quedó extremadamente silenciosa.",
+            en: "The stool slipped. The crown made a very short, very clear sound as it hit the floor, and a little branch of ice snapped clean off. The room went extremely quiet."
           },
           {
             scene: {
@@ -3077,7 +3220,9 @@ var UNIVERSES = [
               items: [{ t: 'liviaPrincess', x: 400, y: 498, s: 1.2, pose: 'sit', mood: 'sad' }],
               sfx: [{ t: 'PERSONNE N\'A VU.', x: 400, y: 146, fs: 24, rot: -4, color: '#6d5847' }]
             },
-            text: "Personne n'avait rien vu. Livia remit la couronne en place, le morceau caché derrière. On ne voyait rien, vraiment rien. Elle s'assit par terre et ce fut le plus long moment de sa vie."
+            text: "Personne n'avait rien vu. Livia remit la couronne en place, le morceau caché derrière. On ne voyait rien, vraiment rien. Elle s'assit par terre et ce fut le plus long moment de sa vie.",
+            es: "Nadie había visto nada. Livia volvió a colocar la corona con el trozo escondido detrás. No se notaba nada, nada de nada. Se sentó en el suelo y fue el rato más largo de su vida.",
+            en: "Nobody had seen anything. Livia put the crown back with the broken piece hidden behind it. You couldn't see a thing, not a thing. She sat down on the floor and it was the longest moment of her life."
           },
           {
             scene: {
@@ -3088,7 +3233,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 320, t: "J'ai cassé ta couronne.", tx: 300, ty: 240 }]
             },
-            text: "Quand Elsa entra, Livia dit tout, très vite, avant que le courage ne reparte : « J'ai cassé ta couronne. » Elle avait préparé les larmes, et elles arrivèrent quand même."
+            text: "Quand Elsa entra, Livia dit tout, très vite, avant que le courage ne reparte : « J'ai cassé ta couronne. » Elle avait préparé les larmes, et elles arrivèrent quand même.",
+            es: "Cuando entró Elsa, Livia lo dijo todo, muy deprisa, antes de que se le fuera el valor: «He roto tu corona.» Había preparado las lágrimas, y llegaron igual.",
+            en: "When Elsa came in, Livia said it all, very fast, before the courage went away again: «I broke your crown.» She had got the tears ready, and they came anyway."
           },
           {
             scene: {
@@ -3099,7 +3246,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 40, y: 22, w: 350, t: "Ça, je peux le réparer. L'autre chose, non.", tx: 300, ty: 236 }]
             },
-            text: "Elsa s'assit à côté d'elle et regarda le morceau au creux de sa main. « Ça, je peux le réparer », dit-elle. « L'autre chose, non. Et l'autre chose, tu ne l'as pas faite. »"
+            text: "Elsa s'assit à côté d'elle et regarda le morceau au creux de sa main. « Ça, je peux le réparer », dit-elle. « L'autre chose, non. Et l'autre chose, tu ne l'as pas faite. »",
+            es: "Elsa se sentó a su lado y miró el trozo en la palma de su mano. «Esto lo puedo arreglar», dijo. «Lo otro, no. Y lo otro no lo has hecho.»",
+            en: "Elsa sat down beside her and looked at the piece in the hollow of her hand. «That, I can mend,» she said. «The other thing, I can't. And the other thing, you didn't do.»"
           },
           {
             scene: {
@@ -3110,7 +3259,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'TSSING…', x: 440, y: 146, fs: 30, rot: -5, color: '#7fd8f0' }]
             },
-            text: "La glace se recolla toute seule sous les doigts d'Elsa. On voit encore le trait, si on cherche bien. Livia le cherche à chaque fois, et à chaque fois elle est contente de le trouver."
+            text: "La glace se recolla toute seule sous les doigts d'Elsa. On voit encore le trait, si on cherche bien. Livia le cherche à chaque fois, et à chaque fois elle est contente de le trouver.",
+            es: "El hielo se pegó solo bajo los dedos de Elsa. Todavía se ve la línea, si uno la busca bien. Livia la busca siempre, y siempre se alegra de encontrarla.",
+            en: "The ice knitted itself back together under Elsa's fingers. You can still see the line, if you look properly. Livia looks for it every time, and every time she is glad to find it."
           }
         ]
       }
@@ -5678,7 +5829,11 @@ var UNIVERSES = [
       {
         id: 'trois-amies',
         title: 'Les trois amies de Livia',
+        title_en: "Livia's three friends",
+        title_es: "Las tres amigas de Livia",
         subtitle: 'Trois jeux différents, un seul après-midi',
+        subtitle_en: "Three different games, one single afternoon",
+        subtitle_es: "Tres juegos distintos, una sola tarde",
         tag: 'Tous ensemble',
         themes: ['Amitié', 'Dehors'],
         minutes: 5,
@@ -5697,7 +5852,9 @@ var UNIVERSES = [
               items: [{ t: 'livia', x: 400, y: 524, s: 1.15, pose: 'armsup' }],
               sfx: [{ t: 'TOUT LE MONDE VIENT !', x: 400, y: 170, fs: 26, rot: -4, color: '#3ec9c9' }]
             },
-            text: "Ce mercredi-là, Livia avait invité ses amies. Toutes ses amies. Celles de la boue, celles du jardin, et celle de la neige. Elle attendait devant la maison, le cœur qui sautait."
+            text: "Ce mercredi-là, Livia avait invité ses amies. Toutes ses amies. Celles de la boue, celles du jardin, et celle de la neige. Elle attendait devant la maison, le cœur qui sautait.",
+            es: "Ese miércoles, Livia había invitado a sus amigas. A todas sus amigas. Las del barro, las del jardín y la de la nieve. Esperaba delante de casa, con el corazón dando saltos.",
+            en: "That Wednesday, Livia had invited her friends. All of her friends. The muddy one, the garden one, and the snowy one. She waited outside the house with her heart jumping."
           },
           {
             scene: {
@@ -5709,7 +5866,9 @@ var UNIVERSES = [
               front: [{ t: 'mudpuddle', x: 700, y: 534, s: 1 }],
               sfx: [{ t: 'SPLATCH !', x: 300, y: 174, fs: 34, rot: -8, color: '#8a6a4a' }]
             },
-            text: "Peppa arriva la première. Elle avait mis ses bottes. « J'ai vu une flaque en chemin », dit-elle. « Une très bonne flaque. » Peppa connaissait les bonnes flaques."
+            text: "Peppa arriva la première. Elle avait mis ses bottes. « J'ai vu une flaque en chemin », dit-elle. « Une très bonne flaque. » Peppa connaissait les bonnes flaques.",
+            es: "Peppa llegó la primera. Se había puesto las botas. «He visto un charco por el camino», dijo. «Un charco buenísimo.» Peppa sabía reconocer los buenos charcos.",
+            en: "Peppa arrived first. She had put her boots on. «I saw a puddle on the way,» she said. «A very good puddle.» Peppa knew a good puddle when she saw one."
           },
           {
             scene: {
@@ -5721,7 +5880,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 440, y: 26, w: 320, t: 'On invente un jeu ! Ça s\'appelle…', tx: 620, ty: 244 }]
             },
-            text: "Bluey arriva ensuite, en courant. Bluey n'arrivait jamais autrement. « On invente un jeu ! » dit-elle. Elle avait déjà un nom pour le jeu. Elle n'avait pas encore de règles."
+            text: "Bluey arriva ensuite, en courant. Bluey n'arrivait jamais autrement. « On invente un jeu ! » dit-elle. Elle avait déjà un nom pour le jeu. Elle n'avait pas encore de règles.",
+            es: "Bluey llegó después, corriendo. Bluey nunca llegaba de otra manera. «¡Inventamos un juego!», dijo. Ya tenía nombre para el juego. Todavía no tenía reglas.",
+            en: "Bluey arrived next, at a run. Bluey never arrived any other way. «Let's invent a game!» she said. She already had a name for the game. She did not yet have any rules."
           },
           {
             scene: {
@@ -5734,7 +5895,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'FRIIIISSS…', x: 400, y: 168, fs: 30, rot: -5, color: '#7fd8f0' }]
             },
-            text: "Elsa arriva la dernière, sans bruit. Sur son passage, l'herbe fit de tout petits cristaux. Peppa la regarda. Bluey la regarda. Personne ne savait quoi dire."
+            text: "Elsa arriva la dernière, sans bruit. Sur son passage, l'herbe fit de tout petits cristaux. Peppa la regarda. Bluey la regarda. Personne ne savait quoi dire.",
+            es: "Elsa llegó la última, sin hacer ruido. A su paso, la hierba se llenó de cristalitos. Peppa la miró. Bluey la miró. Nadie sabía qué decir.",
+            en: "Elsa arrived last, without a sound. Where she walked, the grass grew tiny crystals. Peppa looked at her. Bluey looked at her. Nobody knew what to say."
           },
           {
             scene: {
@@ -5747,7 +5910,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 26, w: 300, t: 'Moi je veux sauter dans la flaque.', tx: 160, ty: 250 }]
             },
-            text: "Peppa voulait sauter dans la flaque. Bluey voulait inventer. Elsa voulait la neige. Chacune tirait de son côté, et l'après-midi commençait à se casser en trois morceaux."
+            text: "Peppa voulait sauter dans la flaque. Bluey voulait inventer. Elsa voulait la neige. Chacune tirait de son côté, et l'après-midi commençait à se casser en trois morceaux.",
+            es: "Peppa quería saltar en el charco. Bluey quería inventar. Elsa quería nieve. Cada una tiraba para su lado, y la tarde empezaba a partirse en tres trozos.",
+            en: "Peppa wanted to jump in the puddle. Bluey wanted to invent. Elsa wanted snow. Each pulled her own way, and the afternoon began to break into three pieces."
           },
           {
             scene: {
@@ -5757,7 +5922,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 230, y: 24, w: 340, t: 'Et si on faisait les trois à la fois ?', tx: 400, ty: 236 }]
             },
-            text: "Alors Livia leva le doigt. « Et si on faisait les trois à la fois ? » Une flaque, inventée par Bluey, gelée par Elsa. Ça n'existait pas. C'est bien pour ça que c'était une bonne idée."
+            text: "Alors Livia leva le doigt. « Et si on faisait les trois à la fois ? » Une flaque, inventée par Bluey, gelée par Elsa. Ça n'existait pas. C'est bien pour ça que c'était une bonne idée.",
+            es: "Entonces Livia levantó el dedo. «¿Y si hacemos las tres cosas a la vez?» Un charco, inventado por Bluey, congelado por Elsa. No existía. Justo por eso era una buena idea.",
+            en: "So Livia put a finger up. «What if we did all three at once?» A puddle, invented by Bluey, frozen by Elsa. It did not exist. That is exactly why it was a good idea."
           },
           {
             scene: {
@@ -5771,7 +5938,9 @@ var UNIVERSES = [
               front: [{ t: 'mudpuddle', x: 440, y: 548, s: 1.1 }],
               sfx: [{ t: 'CRIC ! SPLATCH ! YOUPI !', x: 400, y: 164, fs: 28, rot: -6, color: '#f7c518' }]
             },
-            text: "Elles glissèrent, tombèrent, recommencèrent. La flaque était gelée sur le dessus et boueuse en dessous : exactement ce qu'il fallait. Le soir, elles étaient sales, mouillées et amies."
+            text: "Elles glissèrent, tombèrent, recommencèrent. La flaque était gelée sur le dessus et boueuse en dessous : exactement ce qu'il fallait. Le soir, elles étaient sales, mouillées et amies.",
+            es: "Resbalaron, se cayeron, volvieron a empezar. El charco estaba helado por encima y embarrado por debajo: exactamente lo que hacía falta. Por la noche estaban sucias, mojadas y amigas.",
+            en: "They slid, they fell, they started again. The puddle was frozen on top and muddy underneath: exactly right. By evening they were dirty, soaked and friends."
           }
         ]
       },
@@ -5780,7 +5949,11 @@ var UNIVERSES = [
       {
         id: 'neige-plage',
         title: 'De la neige sur la plage',
+        title_en: "Snow on the beach",
+        title_es: "Nieve en la playa",
         subtitle: 'Un cadeau qui fond, et ce qu\'on en fait',
+        subtitle_en: "A present that melts, and what you do about it",
+        subtitle_es: "Un regalo que se derrite, y qué hacer con eso",
         tag: 'Tous ensemble',
         themes: ['Été', 'Amitié'],
         minutes: 5,
@@ -5803,7 +5976,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'QU\'EST-CE QU\'IL FAIT CHAUD !', x: 400, y: 168, fs: 24, rot: -4, color: '#e0453c' }]
             },
-            text: "C'était le jour le plus chaud de l'été. Le sable brûlait les pieds. Peppa s'éventait avec une feuille. Livia n'avait plus envie de rien, même pas d'une glace."
+            text: "C'était le jour le plus chaud de l'été. Le sable brûlait les pieds. Peppa s'éventait avec une feuille. Livia n'avait plus envie de rien, même pas d'une glace.",
+            es: "Era el día más caluroso del verano. La arena quemaba los pies. Peppa se abanicaba con una hoja. Livia ya no tenía ganas de nada, ni siquiera de un helado.",
+            en: "It was the hottest day of the summer. The sand burned your feet. Peppa fanned herself with a leaf. Livia did not feel like anything at all, not even an ice cream."
           },
           {
             scene: {
@@ -5815,7 +5990,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 26, w: 320, t: 'Elsa ! Tu peux faire quelque chose ?', tx: 430, ty: 248 }]
             },
-            text: "Et puis Elsa arriva, avec sa robe qui ne se froissait jamais. « Elsa ! » cria Livia. « Tu peux faire quelque chose ? » Elsa regarda le ciel, puis le sable, et sourit."
+            text: "Et puis Elsa arriva, avec sa robe qui ne se froissait jamais. « Elsa ! » cria Livia. « Tu peux faire quelque chose ? » Elsa regarda le ciel, puis le sable, et sourit.",
+            es: "Y entonces llegó Elsa, con su vestido que nunca se arruga. «¡Elsa!», gritó Livia. «¿Puedes hacer algo?» Elsa miró el cielo, luego la arena, y sonrió.",
+            en: "And then Elsa arrived, in her dress that never creases. «Elsa!» cried Livia. «Can you do something?» Elsa looked at the sky, then at the sand, and smiled."
           },
           {
             scene: {
@@ -5827,7 +6004,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'FROUUUCH !', x: 400, y: 160, fs: 38, rot: -8, color: '#bfe8f7' }]
             },
-            text: "Elsa leva les deux mains. Il se mit à neiger. Sur la plage. En plein mois d'août. Les flocons tombaient sur le sable chaud comme des confettis très sérieux."
+            text: "Elsa leva les deux mains. Il se mit à neiger. Sur la plage. En plein mois d'août. Les flocons tombaient sur le sable chaud comme des confettis très sérieux.",
+            es: "Elsa levantó las dos manos. Empezó a nevar. En la playa. En pleno agosto. Los copos caían sobre la arena caliente como confeti muy serio.",
+            en: "Elsa raised both hands. It began to snow. On the beach. In the middle of August. The flakes fell on the hot sand like very serious confetti."
           },
           {
             scene: {
@@ -5839,7 +6018,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'BONJOUR TOUT LE MONDE !', x: 420, y: 166, fs: 24, rot: -4, color: '#5fb8d8' }]
             },
-            text: "Dans la neige, quelque chose bougea. Deux brindilles, un nez de carotte, et un très large sourire. « Bonjour tout le monde ! » dit Olaf. « J'adore l'été. C'est ma première fois. »"
+            text: "Dans la neige, quelque chose bougea. Deux brindilles, un nez de carotte, et un très large sourire. « Bonjour tout le monde ! » dit Olaf. « J'adore l'été. C'est ma première fois. »",
+            es: "En la nieve, algo se movió. Dos ramitas, una nariz de zanahoria y una sonrisa amplísima. «¡Hola a todos!», dijo Olaf. «Me encanta el verano. Es mi primera vez.»",
+            en: "Something moved in the snow. Two twigs, a carrot nose, and an extremely wide smile. «Hello everybody!» said Olaf. «I love summer. This is my first one.»"
           },
           {
             scene: {
@@ -5851,7 +6032,9 @@ var UNIVERSES = [
               front: [{ t: 'splash', x: 620, y: 546, s: 1 }],
               sfx: [{ t: 'PLIC… PLOC…', x: 380, y: 174, fs: 30, rot: -6, color: '#4f9cb5' }]
             },
-            text: "Mais la neige n'est pas faite pour le sable chaud. Elle devint de l'eau. Olaf devint plus petit. Livia sentit sa gorge se serrer. « Ne t'en va pas », dit-elle tout bas."
+            text: "Mais la neige n'est pas faite pour le sable chaud. Elle devint de l'eau. Olaf devint plus petit. Livia sentit sa gorge se serrer. « Ne t'en va pas », dit-elle tout bas.",
+            es: "Pero la nieve no está hecha para la arena caliente. Se volvió agua. Olaf se hizo más pequeño. A Livia se le cerró la garganta. «No te vayas», dijo bajito.",
+            en: "But snow is not made for hot sand. It turned into water. Olaf got smaller. Livia felt her throat go tight. «Don't go,» she said quietly."
           },
           {
             scene: {
@@ -5863,7 +6046,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 24, w: 320, t: 'Je peux le refaire. Autant de fois que tu veux.', tx: 250, ty: 244 }]
             },
-            text: "Elsa posa une main sur l'épaule de Livia. « Je peux le refaire », dit-elle. « Autant de fois que tu veux. » Elle souffla, et Olaf redevint entier, avec un flocon au-dessus de la tête pour le garder au frais."
+            text: "Elsa posa une main sur l'épaule de Livia. « Je peux le refaire », dit-elle. « Autant de fois que tu veux. » Elle souffla, et Olaf redevint entier, avec un flocon au-dessus de la tête pour le garder au frais.",
+            es: "Elsa puso una mano en el hombro de Livia. «Puedo volver a hacerlo», dijo. «Todas las veces que quieras.» Sopló, y Olaf volvió a estar entero, con un copo encima de la cabeza para mantenerlo fresco.",
+            en: "Elsa put a hand on Livia's shoulder. «I can make him again,» she said. «As many times as you like.» She breathed out, and Olaf was whole again, with a snowflake over his head to keep him cool."
           },
           {
             scene: {
@@ -5876,7 +6061,9 @@ var UNIVERSES = [
               ],
               front: [{ t: 'shell', x: 480, y: 548, s: .8 }]
             },
-            text: "Ils restèrent jusqu'au coucher du soleil, à moitié dans le sable et à moitié dans la neige. « Le plus beau jour de ma vie », dit Olaf. C'était aussi le seul, mais personne ne le lui fit remarquer."
+            text: "Ils restèrent jusqu'au coucher du soleil, à moitié dans le sable et à moitié dans la neige. « Le plus beau jour de ma vie », dit Olaf. C'était aussi le seul, mais personne ne le lui fit remarquer.",
+            es: "Se quedaron hasta la puesta de sol, medio en la arena y medio en la nieve. «El día más bonito de mi vida», dijo Olaf. También era el único, pero nadie se lo hizo notar.",
+            en: "They stayed until sunset, half in the sand and half in the snow. «The best day of my life,» said Olaf. It was also the only one, but nobody pointed that out."
           }
         ]
       },
@@ -5885,7 +6072,11 @@ var UNIVERSES = [
       {
         id: 'grande-cabane',
         title: 'La cabane de tous les amis',
+        title_en: "The hut everyone built",
+        title_es: "La cabaña de todos los amigos",
         subtitle: 'Chacun apporte ce qu\'il sait faire',
+        subtitle_en: "Each one brings what they're good at",
+        subtitle_es: "Cada uno trae lo que sabe hacer",
         tag: 'Tous ensemble',
         themes: ['Amitié', 'Dehors', 'Règles'],
         minutes: 5,
@@ -5908,7 +6099,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 26, w: 320, t: 'On construit une cabane. Une immense.', tx: 300, ty: 244 }]
             },
-            text: "« On construit une cabane », annonça Bluey. « Une immense. » Livia demanda comment. Bluey répondit qu'on verrait bien. C'est souvent comme ça que commencent les meilleures constructions."
+            text: "« On construit une cabane », annonça Bluey. « Une immense. » Livia demanda comment. Bluey répondit qu'on verrait bien. C'est souvent comme ça que commencent les meilleures constructions.",
+            es: "«Vamos a construir una cabaña», anunció Bluey. «Enorme.» Livia preguntó cómo. Bluey contestó que ya se vería. Así empiezan a menudo las mejores construcciones.",
+            en: "«We're building a hut,» announced Bluey. «An enormous one.» Livia asked how. Bluey said they'd see. That is often how the best builds begin."
           },
           {
             scene: {
@@ -5921,7 +6114,9 @@ var UNIVERSES = [
               front: [{ t: 'cabane', x: 690, y: 550, s: .7, ecroulee: true }],
               sfx: [{ t: 'HHHNN… ÇA GLISSE !', x: 380, y: 170, fs: 26, rot: -5, color: '#7ba450' }]
             },
-            text: "Elles portèrent des branches. Peppa en laissa tomber deux. Bluey en laissa tomber trois. Le tas ressemblait à un tas, pas encore à une cabane."
+            text: "Elles portèrent des branches. Peppa en laissa tomber deux. Bluey en laissa tomber trois. Le tas ressemblait à un tas, pas encore à une cabane.",
+            es: "Cargaron ramas. Peppa se le cayeron dos. A Bluey se le cayeron tres. El montón parecía un montón, todavía no una cabaña.",
+            en: "They carried branches. Peppa dropped two. Bluey dropped three. The pile looked like a pile, not yet like a hut."
           },
           {
             scene: {
@@ -5933,7 +6128,9 @@ var UNIVERSES = [
               front: [{ t: 'log', x: 740, y: 540, s: 1 }],
               sfx: [{ t: 'FASTOCHE !', x: 560, y: 168, fs: 32, rot: -6, color: '#c4453c' }]
             },
-            text: "Alors Livia alla chercher Monsieur Costaud. Il souleva le tronc le plus gros comme si c'était une cuillère. « Fastoche », dit-il. Il aimait bien qu'on ait besoin de lui."
+            text: "Alors Livia alla chercher Monsieur Costaud. Il souleva le tronc le plus gros comme si c'était une cuillère. « Fastoche », dit-il. Il aimait bien qu'on ait besoin de lui.",
+            es: "Entonces Livia fue a buscar a Don Fuerte. Levantó el tronco más gordo como si fuera una cuchara. «Facilísimo», dijo. Le gustaba que lo necesitaran.",
+            en: "So Livia went to fetch Mr Strong. He lifted the biggest log as if it were a teaspoon. «Easy,» he said. He rather liked being needed."
           },
           {
             scene: {
@@ -5947,7 +6144,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CRIIIC !', x: 420, y: 164, fs: 34, rot: -7, color: '#7fd8f0' }]
             },
-            text: "Il manquait un toit. Elsa souffla doucement au-dessus des branches, et la glace se posa entre elles comme du ciment. Un toit transparent, où l'on voyait passer les nuages."
+            text: "Il manquait un toit. Elsa souffla doucement au-dessus des branches, et la glace se posa entre elles comme du ciment. Un toit transparent, où l'on voyait passer les nuages.",
+            es: "Faltaba un tejado. Elsa sopló despacio por encima de las ramas, y el hielo se coló entre ellas como si fuera cemento. Un tejado transparente, por donde se veían pasar las nubes.",
+            en: "A roof was missing. Elsa breathed gently over the branches, and ice settled between them like cement. A see-through roof, with clouds drifting past above."
           },
           {
             scene: {
@@ -5960,7 +6159,9 @@ var UNIVERSES = [
               front: [{ t: 'cabane', x: 420, y: 552, s: 1, ecroulee: true }],
               sfx: [{ t: 'PATATRAS !', x: 400, y: 168, fs: 36, rot: -8, color: '#e0453c' }]
             },
-            text: "Elles entrèrent toutes en même temps. La cabane fit un bruit, pencha, et s'écroula sur leurs têtes. Il y eut un grand silence, puis un très grand fou rire."
+            text: "Elles entrèrent toutes en même temps. La cabane fit un bruit, pencha, et s'écroula sur leurs têtes. Il y eut un grand silence, puis un très grand fou rire.",
+            es: "Entraron todas a la vez. La cabaña hizo un ruido, se inclinó y se les cayó encima. Hubo un gran silencio, y luego un ataque de risa enorme.",
+            en: "They all went in at once. The hut made a noise, tilted, and collapsed on their heads. There was a great silence, and then a very great fit of giggles."
           },
           {
             scene: {
@@ -5972,7 +6173,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 24, w: 340, t: 'On recommence. Mais on entre un par un.', tx: 380, ty: 240 }]
             },
-            text: "« On recommence », dit Livia. « Mais on entre un par un. » Bluey trouva que c'était une règle un peu ennuyeuse. Elle trouva aussi que c'était sûrement une bonne règle."
+            text: "« On recommence », dit Livia. « Mais on entre un par un. » Bluey trouva que c'était une règle un peu ennuyeuse. Elle trouva aussi que c'était sûrement une bonne règle.",
+            es: "«Otra vez», dijo Livia. «Pero entramos de uno en uno.» A Bluey le pareció una regla un poco aburrida. También le pareció que seguramente era una buena regla.",
+            en: "«Again,» said Livia. «But we go in one at a time.» Bluey thought that was a slightly boring rule. She also thought it was probably a good rule."
           },
           {
             scene: {
@@ -5985,7 +6188,9 @@ var UNIVERSES = [
                 { t: 'costaud', x: 704, y: 522, s: .8 }
               ]
             },
-            text: "La deuxième cabane tint jusqu'au soir. Elles s'assirent dedans, serrées, sous le toit de glace qui gouttait un peu. Monsieur Costaud resta dehors : il ne rentrait pas. « C'est la plus belle maison du monde », dit Peppa, et personne ne dit le contraire."
+            text: "La deuxième cabane tint jusqu'au soir. Elles s'assirent dedans, serrées, sous le toit de glace qui gouttait un peu. Monsieur Costaud resta dehors : il ne rentrait pas. « C'est la plus belle maison du monde », dit Peppa, et personne ne dit le contraire.",
+            es: "La segunda cabaña aguantó hasta la noche. Se sentaron dentro, apretadas, bajo el tejado de hielo que goteaba un poco. Don Fuerte se quedó fuera: no cabía. «Es la casa más bonita del mundo», dijo Peppa, y nadie la contradijo.",
+            en: "The second hut held until evening. They sat inside, squashed together, under the ice roof that dripped a little. Mr Strong stayed outside: he didn't fit. «It's the finest house in the world,» said Peppa, and nobody disagreed."
           }
         ]
       },
@@ -5994,7 +6199,11 @@ var UNIVERSES = [
       {
         id: 'grande-course',
         title: 'La grande course des amis',
+        title_en: "The great friends' race",
+        title_es: "La gran carrera de los amigos",
         subtitle: 'Gagner, ce n\'est pas toujours arriver devant',
+        subtitle_en: "Winning isn't always coming first",
+        subtitle_es: "Ganar no siempre es llegar delante",
         tag: 'Tous ensemble',
         themes: ['Amitié', 'Dehors'],
         minutes: 5,
@@ -6016,7 +6225,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 26, w: 300, t: 'Le premier en haut de la colline !', tx: 240, ty: 244 }]
             },
-            text: "« Le premier en haut de la colline ! » cria Bluey. Livia trouva l'idée excellente. C'était une longue colline, et un très beau matin pour courir."
+            text: "« Le premier en haut de la colline ! » cria Bluey. Livia trouva l'idée excellente. C'était une longue colline, et un très beau matin pour courir.",
+            es: "«¡El primero arriba de la colina!», gritó Bluey. A Livia le pareció una idea excelente. Era una colina larga, y una mañana preciosa para correr.",
+            en: "«First one to the top of the hill!» shouted Bluey. Livia thought it was an excellent idea. It was a long hill, and a very fine morning for running."
           },
           {
             scene: {
@@ -6029,7 +6240,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'À VOS MARQUES…', x: 400, y: 166, fs: 28, rot: -4, color: '#3f6ea8' }]
             },
-            text: "Tout le monde vint. Peppa, Bluey, Livia, et même Monsieur Rapide, qui était déjà arrivé avant le départ. Il fallut lui demander de revenir se mettre sur la ligne."
+            text: "Tout le monde vint. Peppa, Bluey, Livia, et même Monsieur Rapide, qui était déjà arrivé avant le départ. Il fallut lui demander de revenir se mettre sur la ligne.",
+            es: "Vinieron todos. Peppa, Bluey, Livia, y hasta Don Rápido, que ya había llegado antes de la salida. Hubo que pedirle que volviera a la línea.",
+            en: "Everybody came. Peppa, Bluey, Livia, and even Mr Rush, who had already arrived before the start. They had to ask him to come back to the line."
           },
           {
             scene: {
@@ -6041,7 +6254,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ZOOOUM !', x: 420, y: 160, fs: 36, rot: -8, color: '#f0862c' }]
             },
-            text: "Monsieur Rapide partit comme une flèche. Bluey partit comme un chien. Livia partit comme une fille de quatre ans, c'est-à-dire très vite, mais pas très longtemps."
+            text: "Monsieur Rapide partit comme une flèche. Bluey partit comme un chien. Livia partit comme une fille de quatre ans, c'est-à-dire très vite, mais pas très longtemps.",
+            es: "Don Rápido salió como una flecha. Bluey salió como un perro. Livia salió como una niña de cuatro años, es decir muy rápido, pero no mucho rato.",
+            en: "Mr Rush shot off like an arrow. Bluey shot off like a dog. Livia shot off like a four-year-old, which is to say very fast, but not for very long."
           },
           {
             scene: {
@@ -6052,7 +6267,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'AÏE…', x: 300, y: 172, fs: 32, rot: -6, color: '#e8436e' }]
             },
-            text: "Au milieu de la montée, Peppa s'assit dans l'herbe. Elle avait un caillou dans la botte et plus du tout envie. Livia s'arrêta net, alors qu'elle était deuxième."
+            text: "Au milieu de la montée, Peppa s'assit dans l'herbe. Elle avait un caillou dans la botte et plus du tout envie. Livia s'arrêta net, alors qu'elle était deuxième.",
+            es: "A media cuesta, Peppa se sentó en la hierba. Tenía una piedra en la bota y ya no le apetecía nada. Livia se paró en seco, y eso que iba segunda.",
+            en: "Halfway up, Peppa sat down in the grass. She had a stone in her boot and no wish to go on. Livia stopped dead, and she was in second place."
           },
           {
             scene: {
@@ -6063,7 +6280,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 380, y: 24, w: 320, t: 'On monte ensemble, doucement.', tx: 520, ty: 240 }]
             },
-            text: "Livia enleva le caillou de la botte. Puis elle prit la main de Peppa. « On monte ensemble, doucement. » Elles montèrent doucement. Elles arrivèrent dernières."
+            text: "Livia enleva le caillou de la botte. Puis elle prit la main de Peppa. « On monte ensemble, doucement. » Elles montèrent doucement. Elles arrivèrent dernières.",
+            es: "Livia le sacó la piedra de la bota. Luego le dio la mano. «Subimos juntas, despacito.» Subieron despacito. Llegaron las últimas.",
+            en: "Livia took the stone out of the boot. Then she took Peppa's hand. «We'll go up together, slowly.» They went up slowly. They came last."
           },
           {
             scene: {
@@ -6076,7 +6295,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'BRAVO !', x: 400, y: 164, fs: 34, rot: -6, color: '#f7c518' }]
             },
-            text: "En haut, Bluey et Monsieur Rapide les attendaient. Ils ne s'étaient pas assis. Ils avaient regardé toute la montée, et ils applaudirent les dernières comme on applaudit les premières."
+            text: "En haut, Bluey et Monsieur Rapide les attendaient. Ils ne s'étaient pas assis. Ils avaient regardé toute la montée, et ils applaudirent les dernières comme on applaudit les premières.",
+            es: "Arriba, Bluey y Don Rápido las esperaban. No se habían sentado. Habían mirado toda la subida, y aplaudieron a las últimas como se aplaude a las primeras.",
+            en: "At the top, Bluey and Mr Rush were waiting. They had not sat down. They had watched the whole climb, and they clapped the last ones the way you clap the first."
           },
           {
             scene: {
@@ -6088,7 +6309,9 @@ var UNIVERSES = [
                 { t: 'rapide', x: 698, y: 518, s: .85 }
               ]
             },
-            text: "Ils s'assirent tous en haut pour regarder le soleil descendre. « Qui a gagné ? » demanda Peppa. Personne ne s'en souvenait. Monsieur Rapide trouva ça très reposant."
+            text: "Ils s'assirent tous en haut pour regarder le soleil descendre. « Qui a gagné ? » demanda Peppa. Personne ne s'en souvenait. Monsieur Rapide trouva ça très reposant.",
+            es: "Se sentaron todos arriba a ver bajar el sol. «¿Quién ha ganado?», preguntó Peppa. Nadie se acordaba. A Don Rápido le pareció muy descansado.",
+            en: "They all sat at the top to watch the sun go down. «Who won?» asked Peppa. Nobody could remember. Mr Rush found that very restful."
           }
         ]
       },
@@ -6097,7 +6320,11 @@ var UNIVERSES = [
       {
         id: 'nuit-etoiles',
         title: 'La nuit où tout le monde a dormi dehors',
+        title_en: "The night everybody slept outside",
+        title_es: "La noche en que todos durmieron fuera",
         subtitle: 'Une tente, quatre amis, et le noir',
+        subtitle_en: "One tent, four friends, and the dark",
+        subtitle_es: "Una tienda, cuatro amigos y la oscuridad",
         tag: 'Tous ensemble',
         themes: ['Nuit', 'Amitié'],
         minutes: 5,
@@ -6121,7 +6348,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ON DORT DEHORS !', x: 420, y: 168, fs: 28, rot: -5, color: '#7ac6a8' }]
             },
-            text: "La tente était montée au fond du jardin. Un peu de travers, mais montée. « On dort dehors ! » criaient Livia et Bluey, qui n'avaient encore jamais dormi dehors."
+            text: "La tente était montée au fond du jardin. Un peu de travers, mais montée. « On dort dehors ! » criaient Livia et Bluey, qui n'avaient encore jamais dormi dehors.",
+            es: "La tienda estaba montada al fondo del jardín. Un poco torcida, pero montada. «¡Dormimos fuera!», gritaban Livia y Bluey, que nunca habían dormido fuera.",
+            en: "The tent was up at the bottom of the garden. A bit crooked, but up. «We're sleeping outside!» shouted Livia and Bluey, who had never slept outside."
           },
           {
             scene: {
@@ -6135,7 +6364,9 @@ var UNIVERSES = [
               front: [{ t: 'marshmallow', x: 250, y: 480, s: 1 }],
               sfx: [{ t: 'MIAM !', x: 460, y: 172, fs: 32, rot: -6, color: '#f2803d' }]
             },
-            text: "Il y eut des chamallows au bout des bâtons. Peppa fit brûler le sien et dit que c'était exprès. Personne ne la crut, et tout le monde fit semblant."
+            text: "Il y eut des chamallows au bout des bâtons. Peppa fit brûler le sien et dit que c'était exprès. Personne ne la crut, et tout le monde fit semblant.",
+            es: "Hubo nubes de azúcar en la punta de unos palos. Peppa quemó la suya y dijo que era a propósito. Nadie la creyó, y todo el mundo hizo como que sí.",
+            en: "There were marshmallows on the ends of sticks. Peppa burnt hers and said she had meant to. Nobody believed her, and everybody pretended to."
           },
           {
             scene: {
@@ -6148,7 +6379,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CRAC…', x: 430, y: 156, fs: 30, rot: -6, color: '#bfe8f7' }]
             },
-            text: "Puis la nuit tomba pour de bon. Le jardin qu'elles connaissaient par cœur devint un endroit inconnu. Il y eut un craquement. Trois amies se rapprochèrent en même temps."
+            text: "Puis la nuit tomba pour de bon. Le jardin qu'elles connaissaient par cœur devint un endroit inconnu. Il y eut un craquement. Trois amies se rapprochèrent en même temps.",
+            es: "Luego cayó la noche de verdad. El jardín que se sabían de memoria se convirtió en un sitio desconocido. Se oyó un crujido. Tres amigas se acercaron a la vez.",
+            en: "Then night fell properly. The garden they knew by heart became somewhere unknown. There was a crack. Three friends moved closer together at the same moment."
           },
           {
             scene: {
@@ -6160,7 +6393,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PSSSCHHH…', x: 420, y: 150, fs: 30, rot: -5, color: '#7fd8f0' }]
             },
-            text: "Alors Elsa arriva. Elle ne dit pas qu'il ne fallait pas avoir peur. Elle leva la main, et de tout petits flocons se mirent à briller dans l'air, comme des lampes de poche minuscules."
+            text: "Alors Elsa arriva. Elle ne dit pas qu'il ne fallait pas avoir peur. Elle leva la main, et de tout petits flocons se mirent à briller dans l'air, comme des lampes de poche minuscules.",
+            es: "Entonces llegó Elsa. No dijo que no había que tener miedo. Levantó la mano, y unos copos pequeñísimos se pusieron a brillar en el aire, como linternas diminutas.",
+            en: "Then Elsa arrived. She did not say there was nothing to be afraid of. She raised her hand, and tiny snowflakes began to glow in the air, like miniature torches."
           },
           {
             scene: {
@@ -6173,7 +6408,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 60, y: 22, w: 320, t: 'Le craquement, c\'était juste une branche.', tx: 420, ty: 238 }]
             },
-            text: "À la lumière des flocons, elles allèrent voir le craquement de plus près. C'était une branche. Une simple branche, posée par le vent. Le jardin redevint le jardin."
+            text: "À la lumière des flocons, elles allèrent voir le craquement de plus près. C'était une branche. Une simple branche, posée par le vent. Le jardin redevint le jardin.",
+            es: "A la luz de los copos fueron a ver el crujido de cerca. Era una rama. Una simple rama, dejada por el viento. El jardín volvió a ser el jardín.",
+            en: "By the light of the flakes they went to look at the crack close up. It was a branch. Just a branch, put there by the wind. The garden turned back into the garden."
           },
           {
             scene: {
@@ -6187,7 +6424,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CHUUUT…', x: 420, y: 152, fs: 28, rot: -4, color: '#bfe8f7' }]
             },
-            text: "Elles s'installèrent devant la tente pour compter les étoiles. Peppa s'arrêta à douze. Bluey s'arrêta à cinquante. Livia s'endormit à sept, la tête sur l'épaule d'Elsa."
+            text: "Elles s'installèrent devant la tente pour compter les étoiles. Peppa s'arrêta à douze. Bluey s'arrêta à cinquante. Livia s'endormit à sept, la tête sur l'épaule d'Elsa.",
+            es: "Se instalaron delante de la tienda a contar estrellas. Peppa se paró en doce. Bluey se paró en cincuenta. Livia se durmió en siete, con la cabeza en el hombro de Elsa.",
+            en: "They settled down outside the tent to count stars. Peppa stopped at twelve. Bluey stopped at fifty. Livia fell asleep at seven, her head on Elsa's shoulder."
           },
           {
             scene: {
@@ -6199,7 +6438,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ZZZ…', x: 430, y: 180, fs: 32, rot: -6, color: '#bfe8f7' }]
             },
-            text: "Au matin, il restait un peu de givre sur la tente et beaucoup de miettes de chamallow. « On recommence ce soir ? » demanda Bluey. Livia dormait encore. Elle dit oui quand même."
+            text: "Au matin, il restait un peu de givre sur la tente et beaucoup de miettes de chamallow. « On recommence ce soir ? » demanda Bluey. Livia dormait encore. Elle dit oui quand même.",
+            es: "Por la mañana quedaba un poco de escarcha en la tienda y muchísimas migas de nube de azúcar. «¿Repetimos esta noche?», preguntó Bluey. Livia seguía dormida. Dijo que sí igualmente.",
+            en: "In the morning there was a little frost on the tent and a great many marshmallow crumbs. «Shall we do it again tonight?» asked Bluey. Livia was still asleep. She said yes anyway."
           }
         ]
       },
@@ -6208,7 +6449,11 @@ var UNIVERSES = [
       {
         id: 'gouter-a-quatre',
         title: 'Le goûter à quatre',
+        title_en: "Tea for four",
+        title_es: "La merienda de cuatro",
         subtitle: "Une part de plus qu'il n'y a de mains",
+        subtitle_en: "One more slice than there are hands",
+        subtitle_es: "Un trozo más que manos",
         tag: 'Mélange',
         themes: ['Partager', 'Amitié'],
         minutes: 5,
@@ -6233,7 +6478,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CINQ GÂTEAUX !', x: 400, y: 148, fs: 27, rot: -5, color: '#f2803d' }]
             },
-            text: "Il y avait cinq gâteaux sur l'assiette, et quatre invités autour. Peppa fit le calcul à voix haute, deux fois, pour être bien sûre du problème."
+            text: "Il y avait cinq gâteaux sur l'assiette, et quatre invités autour. Peppa fit le calcul à voix haute, deux fois, pour être bien sûre du problème.",
+            es: "Había cinco pasteles en el plato y cuatro invitados alrededor. Peppa hizo la cuenta en voz alta, dos veces, para estar segura del problema.",
+            en: "There were five cakes on the plate and four guests around it. Peppa did the sum out loud, twice, to be quite sure of the problem."
           },
           {
             scene: {
@@ -6244,7 +6491,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'MOI D\'ABORD ! NON, MOI !', x: 400, y: 148, fs: 24, rot: -4, color: '#e0453c' }]
             },
-            text: "Peppa dit que le cinquième revenait à celle qui avait apporté l'assiette. Bluey dit qu'il revenait à celui qui avait mis la table. Les deux avaient raison, ce qui n'aidait absolument personne."
+            text: "Peppa dit que le cinquième revenait à celle qui avait apporté l'assiette. Bluey dit qu'il revenait à celui qui avait mis la table. Les deux avaient raison, ce qui n'aidait absolument personne.",
+            es: "Peppa dijo que el quinto era para quien había traído el plato. Bluey dijo que era para quien había puesto la mesa. Los dos tenían razón, lo cual no ayudaba absolutamente a nadie.",
+            en: "Peppa said the fifth belonged to whoever had brought the plate. Bluey said it belonged to whoever had laid the table. They were both right, which helped absolutely nobody."
           },
           {
             scene: {
@@ -6255,7 +6504,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 340, t: 'On peut aussi le couper en quatre.', tx: 310, ty: 236 }]
             },
-            text: "Elsa attendit que ça se calme. « On peut aussi le couper en quatre », dit-elle. Personne n'y avait pensé, parce que tout le monde était très occupé à avoir raison."
+            text: "Elsa attendit que ça se calme. « On peut aussi le couper en quatre », dit-elle. Personne n'y avait pensé, parce que tout le monde était très occupé à avoir raison.",
+            es: "Elsa esperó a que se calmara la cosa. «También lo podemos cortar en cuatro», dijo. Nadie había pensado en eso, porque todo el mundo estaba muy ocupado teniendo razón.",
+            en: "Elsa waited for it to settle down. «We could also cut it into four,» she said. Nobody had thought of that, because everybody was very busy being right."
           },
           {
             scene: {
@@ -6265,7 +6516,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CROC. CROC. CROC. CROC.', x: 400, y: 148, fs: 23, rot: -4, color: '#8a5a3b' }]
             },
-            text: "Livia coupa. Ce n'était pas très droit : un morceau était nettement plus gros que les autres, et tout le monde le vit en même temps, avec beaucoup d'attention."
+            text: "Livia coupa. Ce n'était pas très droit : un morceau était nettement plus gros que les autres, et tout le monde le vit en même temps, avec beaucoup d'attention.",
+            es: "Livia cortó. No salió muy recto: un trozo era claramente más grande que los demás, y todo el mundo lo vio a la vez, con muchísima atención.",
+            en: "Livia cut. It was not very straight: one piece was clearly bigger than the others, and everybody saw it at the same moment, with a great deal of attention."
           },
           {
             scene: {
@@ -6278,7 +6531,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'À TOI.', x: 400, y: 148, fs: 28, rot: -5, color: '#7ac6a8' }]
             },
-            text: "Peppa prit le plus gros. Puis elle le regarda, soupira, et le posa dans la main de Bluey. « À toi », dit-elle très vite, comme on arrache un pansement."
+            text: "Peppa prit le plus gros. Puis elle le regarda, soupira, et le posa dans la main de Bluey. « À toi », dit-elle très vite, comme on arrache un pansement.",
+            es: "Peppa cogió el más grande. Luego lo miró, suspiró, y lo puso en la mano de Bluey. «Para ti», dijo muy deprisa, como quien se arranca una tirita.",
+            en: "Peppa took the biggest. Then she looked at it, sighed, and put it into Bluey's hand. «Yours,» she said very quickly, the way you pull off a plaster."
           },
           {
             scene: {
@@ -6290,7 +6545,9 @@ var UNIVERSES = [
                 { t: 'elsa', x: 724, y: 508, s: .9 }
               ]
             },
-            text: "Les quatre parts furent mangées en trois minutes. Personne ne se souvient de qui a eu la plus grosse. Tout le monde se souvient que Peppa l'a donnée, et c'est une chose qui reste."
+            text: "Les quatre parts furent mangées en trois minutes. Personne ne se souvient de qui a eu la plus grosse. Tout le monde se souvient que Peppa l'a donnée, et c'est une chose qui reste.",
+            es: "Los cuatro trozos se comieron en tres minutos. Nadie se acuerda de quién tuvo el más grande. Todo el mundo se acuerda de que Peppa lo regaló, y eso es algo que se queda.",
+            en: "The four pieces were eaten in three minutes. Nobody remembers who got the biggest. Everybody remembers that Peppa gave it away, and that is the kind of thing that stays."
           }
         ]
       },
@@ -6299,7 +6556,11 @@ var UNIVERSES = [
       {
         id: 'chacun-ses-regles',
         title: 'Chacun ses règles',
+        title_en: "Every house has its rules",
+        title_es: "Cada casa, sus reglas",
         subtitle: "Chez toi ce n'est pas pareil que chez moi",
+        subtitle_en: "At yours it isn't the same as at mine",
+        subtitle_es: "En tu casa no es igual que en la mía",
         tag: 'Mélange',
         themes: ['Règles', 'Amitié'],
         minutes: 5,
@@ -6322,7 +6583,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'CHEZ LIVIA !', x: 400, y: 146, fs: 28, rot: -5, color: '#4ea8f0' }]
             },
-            text: "Bluey et Peppa venaient jouer à la maison pour la première fois. Ils entrèrent en courant, et Bluey sauta sur le lit avant même d'avoir enlevé ses chaussures."
+            text: "Bluey et Peppa venaient jouer à la maison pour la première fois. Ils entrèrent en courant, et Bluey sauta sur le lit avant même d'avoir enlevé ses chaussures.",
+            es: "Bluey y Peppa venían a jugar a casa por primera vez. Entraron corriendo, y Bluey saltó sobre la cama antes incluso de quitarse los zapatos.",
+            en: "Bluey and Peppa were coming to play at the house for the first time. They ran in, and Bluey jumped on the bed before he had even taken his shoes off."
           },
           {
             scene: {
@@ -6333,7 +6596,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'PAS SUR LE LIT !', x: 430, y: 146, fs: 28, rot: -5, color: '#e0453c' }]
             },
-            text: "« Pas sur le lit ! » Le cri sortit tout seul de Livia, plus fort qu'elle ne voulait. Bluey descendit d'un bond, l'air surpris. Chez lui, on saute sur le lit. C'est même le jeu principal."
+            text: "« Pas sur le lit ! » Le cri sortit tout seul de Livia, plus fort qu'elle ne voulait. Bluey descendit d'un bond, l'air surpris. Chez lui, on saute sur le lit. C'est même le jeu principal.",
+            es: "«¡Sobre la cama no!» El grito le salió solo a Livia, más fuerte de lo que quería. Bluey bajó de un salto, con cara de sorpresa. En su casa se salta sobre la cama. Es hasta el juego principal.",
+            en: "«Not on the bed!» The shout came out of Livia all by itself, louder than she meant. Bluey hopped down, looking surprised. At his house you jump on the bed. It is practically the main game."
           },
           {
             scene: {
@@ -6344,7 +6609,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: '. . .', x: 430, y: 146, fs: 34, rot: 0, color: '#8a7768' }]
             },
-            text: "Il y eut un silence pas agréable du tout. Livia se sentit méchante, et Bluey se sentit bête, alors que ni l'un ni l'autre n'avait rien fait de mal."
+            text: "Il y eut un silence pas agréable du tout. Livia se sentit méchante, et Bluey se sentit bête, alors que ni l'un ni l'autre n'avait rien fait de mal.",
+            es: "Hubo un silencio nada agradable. Livia se sintió mala, y Bluey se sintió tonto, cuando ninguno de los dos había hecho nada malo.",
+            en: "There was a silence that was not at all pleasant. Livia felt mean, and Bluey felt silly, when neither of them had done anything wrong."
           },
           {
             scene: {
@@ -6355,7 +6622,9 @@ var UNIVERSES = [
               ],
               bubbles: [{ x: 300, y: 22, w: 340, t: 'Chez moi non plus on ne saute pas. Mais on crie.', tx: 310, ty: 236 }]
             },
-            text: "Peppa haussa les épaules. « Chez moi non plus on ne saute pas », dit-elle. « Mais on a le droit de crier. » Il apparut que chaque maison avait ses règles, et qu'aucune n'était la bonne."
+            text: "Peppa haussa les épaules. « Chez moi non plus on ne saute pas », dit-elle. « Mais on a le droit de crier. » Il apparut que chaque maison avait ses règles, et qu'aucune n'était la bonne.",
+            es: "Peppa se encogió de hombros. «En mi casa tampoco se salta», dijo. «Pero se puede gritar.» Resultó que cada casa tenía sus reglas, y que ninguna era la buena.",
+            en: "Peppa shrugged. «We don't jump at my house either,» she said. «But we're allowed to shout.» It turned out that every house had its rules, and that none of them was the right one."
           },
           {
             scene: {
@@ -6367,7 +6636,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'ICI : LE TAPIS.', x: 400, y: 146, fs: 26, rot: -4, color: '#7ab648' }]
             },
-            text: "Livia montra le tapis. « Ici, on saute là », dit-elle. « C'est mou et Maman ne dit rien. » Bluey trouva que c'était une règle très acceptable, et il l'essaya immédiatement."
+            text: "Livia montra le tapis. « Ici, on saute là », dit-elle. « C'est mou et Maman ne dit rien. » Bluey trouva que c'était une règle très acceptable, et il l'essaya immédiatement.",
+            es: "Livia señaló la alfombra. «Aquí se salta ahí», dijo. «Es blanda y mamá no dice nada.» A Bluey le pareció una regla muy aceptable, y la probó inmediatamente.",
+            en: "Livia pointed at the rug. «Here, we jump there,» she said. «It's soft and Mummy doesn't mind.» Bluey found that a very acceptable rule, and tried it out immediately."
           },
           {
             scene: {
@@ -6379,7 +6650,9 @@ var UNIVERSES = [
               ],
               sfx: [{ t: 'BOUM ! BOUM ! BOUM !', x: 420, y: 146, fs: 27, rot: -6, color: '#f7c518' }]
             },
-            text: "Ils sautèrent sur le tapis jusqu'à ce qu'on leur demande d'arrêter. Depuis, quand Livia va chez quelqu'un, elle commence par demander : « chez toi, on fait comment ? »"
+            text: "Ils sautèrent sur le tapis jusqu'à ce qu'on leur demande d'arrêter. Depuis, quand Livia va chez quelqu'un, elle commence par demander : « chez toi, on fait comment ? »",
+            es: "Saltaron en la alfombra hasta que les pidieron parar. Desde entonces, cuando Livia va a casa de alguien, empieza por preguntar: «en tu casa, ¿cómo se hace?»",
+            en: "They jumped on the rug until somebody asked them to stop. Ever since, when Livia goes to somebody's house, she starts by asking: «at your house, how do you do it?»"
           }
         ]
       }
