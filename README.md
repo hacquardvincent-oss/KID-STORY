@@ -636,18 +636,26 @@ fenêtre. On échange deux pièces en les touchant l'une après l'autre — pas 
 glisser-déposer, qui demande une précision qu'on n'a pas à quatre ans.
 
 **Le labyrinthe** est engendré à chaque partie (parcours en profondeur avec
-retour arrière), donc jamais deux fois le même. On **touche l'endroit où l'on
-veut aller**, et Livia s'y rend toute seule, en ligne droite, une case après
-l'autre — elle s'arrête au mur si le couloir est bouché.
+retour arrière), donc jamais deux fois le même. On **pose le doigt et on
+glisse** : Livia colle au doigt et le suit dans les couloirs, sans jamais
+lâcher l'écran. C'est le geste le plus direct qui soit, et le seul qui marche
+vraiment à quatre ans — toucher une case, même sans viser, reste un geste
+indirect : on désigne, on attend, on regarde marcher.
 
-Suivre un couloir en gardant le doigt dessus demandait une précision qu'on n'a
-pas à quatre ans : le doigt sortait du tracé, sautait une case, et le
-personnage ne bougeait plus. Le jeu, lui, reste entier — à chaque croisement
-c'est toujours l'enfant qui choisit la direction. Ce qui a disparu, c'est
-l'exigence du geste. Un labyrinthe de vingt et une cases se termine en douze
-appuis, un par virage. Le personnage glisse d'une case à l'autre au lieu de s'y
-téléporter : sans cette transition, une marche de quatre cases est une suite de
-sauts et l'œil perd de vue qui bouge.
+Pour qu'elle ne traverse jamais un mur, sa position n'est pas un point libre
+sur le plateau : elle vit **sur le réseau des couloirs**. Elle est soit au
+centre d'une case, soit quelque part entre deux cases voisines et reliées. Le
+doigt ne fait que projeter sa position sur ce réseau — un mur devient alors
+infranchissable par construction, sans un seul calcul de collision.
+
+Reste le geste réel, celui d'un enfant : il tremble et il coupe les angles.
+Exiger le centre exact d'une case avant d'autoriser un virage, c'était bloquer
+le personnage à un cheveu du croisement. Alors plus le doigt s'écarte sur le
+côté du couloir, plus elle accepte de se ranger au bout le plus proche : à
+cinquante unités d'écart, les deux tiers du couloir suffisent. Et l'étoile
+étant une grande case jaune, y poser le pied suffit à gagner. Le jeu, lui,
+reste entier : à chaque croisement, c'est toujours l'enfant qui choisit la
+direction — rien ici ne cherche la sortie à sa place.
 
 **Les points à relier** n'acceptent que le point suivant : se tromper ne fait
 rien, ni bruit ni pénalité, et le prochain point est toujours celui qui
