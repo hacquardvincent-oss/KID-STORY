@@ -677,6 +677,11 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   fill: none; stroke: var(--rouge); stroke-width: 22; opacity: .5;
   stroke-linecap: round; stroke-linejoin: round;
 }
+/* Le personnage glisse d'une case à l'autre au lieu de s'y téléporter. Sans
+   cela, une marche de quatre cases est une suite de sauts, et l'œil d'une
+   enfant perd de vue qui bouge et où. */
+.laby-heros { transition: transform .14s linear; }
+@media (prefers-reduced-motion: reduce) { .laby-heros { transition: none; } }
 
 /* les points à relier */
 /* une vraie feuille blanche : sur le fond grainé, les points se perdaient */

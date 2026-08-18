@@ -681,6 +681,11 @@ main, .topbar, .tabs, .mainnav { position: relative; z-index: 1; }
   fill: none; stroke: var(--rouge); stroke-width: 22; opacity: .5;
   stroke-linecap: round; stroke-linejoin: round;
 }
+/* Le personnage glisse d'une case à l'autre au lieu de s'y téléporter. Sans
+   cela, une marche de quatre cases est une suite de sauts, et l'œil d'une
+   enfant perd de vue qui bouge et où. */
+.laby-heros { transition: transform .14s linear; }
+@media (prefers-reduced-motion: reduce) { .laby-heros { transition: none; } }
 
 /* les points à relier */
 /* une vraie feuille blanche : sur le fond grainé, les points se perdaient */
@@ -13949,7 +13954,7 @@ var UNIVERSES = [
       coloConsigne: 'Colorie le dessin.',
       jaiFini: "J'ai fini", effacer: 'Effacer',
       puzConsigne: "Remets le dessin dans l'ordre.",
-      labyConsigne: "Amène Livia jusqu'à l'étoile, sans traverser les murs.",
+      labyConsigne: "Touche où tu veux aller. Livia marche jusqu'à l'étoile.",
       ptsConsigne: "Relie les points, du 1 jusqu'au %s.",
       ptsTrouve: "Bravo ! C'est %s.",
       grilConsigne: 'Refais le même dessin sur la grille vide.',
@@ -13974,7 +13979,7 @@ var UNIVERSES = [
       jColoBravo: 'Trois beaux dessins !',
       jPuz: 'Le puzzle', jPuzSous: "Remets le dessin dans l'ordre",
       jPuzBravo: "Quatre dessins remis d'aplomb !",
-      jLaby: 'Le labyrinthe', jLabySous: "Trouve le chemin jusqu'à l'étoile",
+      jLaby: 'Le labyrinthe', jLabySous: 'Touche, et Livia trouve le chemin',
       jLabyBravo: 'Tu retrouves toujours ton chemin !',
       jPts: 'Les points à relier', jPtsSous: 'Du 1 au 12, et le dessin apparaît',
       jPtsBravo: 'Tu comptes dans le bon ordre !',
@@ -14028,7 +14033,7 @@ var UNIVERSES = [
       coloConsigne: 'Colorea el dibujo.',
       jaiFini: 'He terminado', effacer: 'Borrar',
       puzConsigne: 'Ordena el dibujo.',
-      labyConsigne: 'Lleva a Livia hasta la estrella, sin cruzar las paredes.',
+      labyConsigne: 'Toca adónde quieres ir. Livia camina hasta la estrella.',
       ptsConsigne: 'Une los puntos, del 1 hasta el %s.',
       ptsTrouve: '¡Bravo! Es %s.',
       grilConsigne: 'Copia el mismo dibujo en la cuadrícula vacía.',
@@ -14053,7 +14058,7 @@ var UNIVERSES = [
       jColoBravo: '¡Tres dibujos preciosos!',
       jPuz: 'El puzle', jPuzSous: 'Ordena el dibujo',
       jPuzBravo: '¡Cuatro dibujos bien puestos!',
-      jLaby: 'El laberinto', jLabySous: 'Encuentra el camino hasta la estrella',
+      jLaby: 'El laberinto', jLabySous: 'Toca, y Livia encuentra el camino',
       jLabyBravo: '¡Siempre encuentras tu camino!',
       jPts: 'Unir los puntos', jPtsSous: 'Del 1 al 12, y aparece el dibujo',
       jPtsBravo: '¡Cuentas en el orden correcto!',
@@ -14103,7 +14108,7 @@ var UNIVERSES = [
       coloConsigne: 'Colour the picture.',
       jaiFini: "I'm done", effacer: 'Erase',
       puzConsigne: 'Put the picture back in order.',
-      labyConsigne: 'Take Livia to the star, without crossing the walls.',
+      labyConsigne: 'Tap where you want to go. Livia walks to the star.',
       ptsConsigne: 'Join the dots, from 1 to %s.',
       ptsTrouve: "Well done! It's %s.",
       grilConsigne: 'Copy the same picture onto the empty grid.',
@@ -14128,7 +14133,7 @@ var UNIVERSES = [
       jColoBravo: 'Three lovely pictures!',
       jPuz: 'The jigsaw', jPuzSous: 'Put the picture back in order',
       jPuzBravo: 'Four pictures put straight!',
-      jLaby: 'The maze', jLabySous: 'Find the way to the star',
+      jLaby: 'The maze', jLabySous: 'Tap, and Livia finds the way',
       jLabyBravo: 'You always find your way!',
       jPts: 'Join the dots', jPtsSous: 'From 1 to 12, and a picture appears',
       jPtsBravo: 'You count in the right order!',
@@ -15231,27 +15236,79 @@ var UNIVERSES = [
       if (b === a + 1) return !c.e;
       return false;
     }
-    function avancer(c) {
-      if (c < 0) return;
-      var d = chemin[chemin.length - 1];
-      if (c === d) return;
-      if (chemin.length > 1 && c === chemin[chemin.length - 2]) { chemin.pop(); majTrait(); return; }
-      if (!ouvert(d, c)) return;
-      chemin.push(c);
+
+    /* Une case de plus sur le chemin — ou une case de moins, si l'on revient
+       sur ses pas : le trait se raccourcit alors au lieu de se dédoubler. */
+    function pas(c) {
+      if (chemin.length > 1 && c === chemin[chemin.length - 2]) chemin.pop();
+      else chemin.push(c);
       majTrait();
-      if (c === arrivee) { fini = true; setTimeout(function () { api.reussi(); }, 400); }
+      if (c === arrivee && !fini) {
+        fini = true;
+        clearInterval(marche);
+        setTimeout(function () { api.reussi(); }, 550);
+      }
     }
 
-    var trace = false, fini = false;
+    /* ------------------------------------------------------------
+       Le déplacement.
+
+       Suivre un couloir en gardant le doigt dessus demande une précision
+       qu'on n'a pas à quatre ans : le doigt sort du tracé, saute une case,
+       et le personnage ne bouge plus. On touche donc simplement un endroit
+       du labyrinthe, et Livia s'y rend toute seule, en ligne droite, une
+       case après l'autre — elle s'arrête au mur si le chemin est bouché.
+
+       Le jeu reste entier : à chaque croisement, c'est toujours l'enfant qui
+       choisit la direction. Ce qui disparaît, c'est l'exigence du geste.
+       ------------------------------------------------------------ */
+    var marche = null, fini = false, vise = -1;
+
+    function versLaCase(cible) {
+      if (fini || cible < 0) return;
+      var d = chemin[chemin.length - 1];
+      if (cible === d) return;
+      var dx = (cible % cols) - (d % cols);
+      var dy = Math.floor(cible / cols) - Math.floor(d / cols);
+      /* une seule direction à la fois : la plus franche des deux */
+      var ax = 0, ay = 0;
+      if (Math.abs(dx) >= Math.abs(dy)) ax = dx > 0 ? 1 : (dx < 0 ? -1 : 0);
+      else ay = dy > 0 ? 1 : (dy < 0 ? -1 : 0);
+      if (!ax && !ay) return;
+      var reste = ax ? Math.abs(dx) : Math.abs(dy);
+
+      clearInterval(marche);
+      marche = setInterval(function () {
+        if (fini || reste-- <= 0) { clearInterval(marche); return; }
+        var a = chemin[chemin.length - 1];
+        var nx = (a % cols) + ax, ny = Math.floor(a / cols) + ay;
+        if (nx < 0 || ny < 0 || nx >= cols || ny >= rangs) { clearInterval(marche); return; }
+        var b = ny * cols + nx;
+        if (!ouvert(a, b)) { clearInterval(marche); return; }   /* un mur : on s'arrête */
+        pas(b);
+      }, 135);
+    }
+
+    var trace = false;
     svg.addEventListener('pointerdown', function (e) {
       if (fini) return;
-      trace = true; svg.setPointerCapture && svg.setPointerCapture(e.pointerId);
-      avancer(caseSous(e));
+      trace = true; vise = -1;
+      /* la capture du pointeur est un confort, pas une nécessité : si elle
+         échoue, elle ne doit pas emporter le déplacement avec elle */
+      try { svg.setPointerCapture && svg.setPointerCapture(e.pointerId); } catch (err) { }
+      var c = caseSous(e);
+      vise = c;
+      versLaCase(c);
     });
+    /* on peut aussi glisser le doigt : la marche se recalcule dès qu'il
+       change de case, sans jamais exiger qu'il suive le couloir */
     svg.addEventListener('pointermove', function (e) {
       if (!trace || fini) return;
       e.preventDefault();
-      avancer(caseSous(e));
+      var c = caseSous(e);
+      if (c < 0 || c === vise) return;
+      vise = c;
+      versLaCase(c);
     });
     svg.addEventListener('pointerup', function () { trace = false; });
     svg.addEventListener('pointercancel', function () { trace = false; });

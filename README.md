@@ -636,8 +636,18 @@ fenêtre. On échange deux pièces en les touchant l'une après l'autre — pas 
 glisser-déposer, qui demande une précision qu'on n'a pas à quatre ans.
 
 **Le labyrinthe** est engendré à chaque partie (parcours en profondeur avec
-retour arrière), donc jamais deux fois le même. On garde le doigt appuyé et on
-avance case par case ; les murs arrêtent le trait au lieu de faire perdre.
+retour arrière), donc jamais deux fois le même. On **touche l'endroit où l'on
+veut aller**, et Livia s'y rend toute seule, en ligne droite, une case après
+l'autre — elle s'arrête au mur si le couloir est bouché.
+
+Suivre un couloir en gardant le doigt dessus demandait une précision qu'on n'a
+pas à quatre ans : le doigt sortait du tracé, sautait une case, et le
+personnage ne bougeait plus. Le jeu, lui, reste entier — à chaque croisement
+c'est toujours l'enfant qui choisit la direction. Ce qui a disparu, c'est
+l'exigence du geste. Un labyrinthe de vingt et une cases se termine en douze
+appuis, un par virage. Le personnage glisse d'une case à l'autre au lieu de s'y
+téléporter : sans cette transition, une marche de quatre cases est une suite de
+sauts et l'œil perd de vue qui bouge.
 
 **Les points à relier** n'acceptent que le point suivant : se tromper ne fait
 rien, ni bruit ni pénalité, et le prochain point est toujours celui qui
