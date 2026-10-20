@@ -41,7 +41,7 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
   le **petit drapeau du bandeau** (en haut à droite, à côté du dé). Il ouvre un
   panneau de deux réglages, la langue et la voix : c'est un réglage d'adulte, il
   est accessible de partout mais reste hors du chemin de l'enfant.
-  **Les 85 histoires et les onze jeux existent dans les trois** :
+  **Les 350 histoires et les onze jeux existent dans les trois** :
   titres, textes, étiquettes, consignes, félicitations, et la voix de synthèse
   qui suit (`fr-FR`, `es-ES`, `en-GB`). Le site vérifie qu'une histoire est
   entièrement traduite avant de la proposer dans une langue — une traduction à
@@ -102,165 +102,54 @@ caractère de lecture. Chaque histoire porte son numéro, comme un numéro de re
 
 ### Les histoires déjà écrites
 
-**Peppa Pig** — l'été
+**350 histoires, 2541 planches, les sept univers à cinquante.** Le détail
+histoire par histoire a cessé d'être tenable à la main vers la centième ; il
+n'est donc plus recopié ici. Ce qui suit est la forme de chaque univers, et
+`node outils/traductions.js` imprime la liste complète à jour quand on la veut.
 
-| Histoire | Planches |
-|---|---|
-| Livia et Peppa à la plage | 9 |
-| Le camping sous les étoiles | 9 |
-| La grande journée à la piscine | 8 |
-| Le cerf-volant de l'été | 8 |
+| Univers | Histoires | Planches | Par histoire | Ce qu'il raconte |
+|---|---|---|---|---|
+| **Peppa Pig** | 50 | 320 | 6,4 | l'été, puis *grandir* : une émotion nommée et une réparation concrète par épisode |
+| **La Reine des Neiges** | 50 | 305 | 6,1 | la nuit, le froid, et les grandes émotions qu'on n'arrive pas à cacher |
+| **Bluey** | 50 | 311 | 6,2 | le jardin, les bêtises, et les jeux que les parents acceptent de jouer |
+| **Les Monsieur Madame** | 50 | 300 | 6,0 | une humeur chacun, tenue jusqu'au bout sans jamais devenir une leçon |
+| **Le grand mélange** | 50 | 305 | 6,1 | les cross-over : les amis de Livia ne viennent pas du même dessin animé |
+| **Les copines de Livia** | 50 | 300 | 6,0 | Roxane, Juliette, Isadora et Pablo le petit frère : l'amitié au ras du sol |
+| **Tu choisis !** | 50 | 700 | 14,0 | des histoires à embranchements, quatre fins chacune |
 
-**Peppa Pig** — grandir : ce qui se joue à trois ans, chaque épisode autour
-d'une émotion nommée et d'une réparation concrète, sans morale plaquée
+Les dix thèmes traversent les univers et servent de second filtre : Été,
+Amitié, Nuit, Dehors, Émotions, Famille, Partager, Grandir, Bêtises, Règles.
+Les plus denses sont Amitié (154 histoires), Émotions (133) et Famille (111) —
+c'est ce qui se joue réellement à quatre ans.
 
-| Histoire | Ce qu'elle raconte |
-|---|---|
-| Le cadeau de George | la jalousie |
-| Le vélo de Livia | le partage |
-| La grosse colère de Peppa | la colère, et souffler comme un dragon |
-| La flaque interdite | écouter ses parents, et la conséquence |
-| Le vase de Maman | dire la vérité |
-| La file du toboggan | attendre son tour |
-| La télé s'éteint | un non qui ne se négocie pas, et la colère qui redescend |
-| Le bain de George | s'occuper d'un petit, et découvrir que c'est du travail |
+**Tu choisis !** — la forme est fixe, et c'est ce qui la rend sûre : sept blocs
+de deux planches, **quatorze planches écrites pour six planches lues**, deux
+choix par lecture, quatre fins. Tous les chemins font la même longueur ; aucun
+n'est plus court parce qu'on aurait « mal » choisi.
 
-**La Reine des Neiges**
-
-| Histoire | Planches |
-|---|---|
-| Un été à Arendelle | 9 |
-| La nuit des étoiles glacées | 8 |
-| Papa n'a pas froid | 6 |
-| La glace qui craque | 6 |
-| Le secret d'Anna | 6 |
-| Olaf a trop chaud | 6 |
-| La couronne cassée | 6 |
-
-**Bluey** (l'été australien, et deux histoires de règles)
-
-| Histoire | Planches |
-|---|---|
-| La grande bataille d'arroseur | 7 |
-| Le ruisseau secret | 7 |
-| Le ballon qui ne doit pas tomber | 7 |
-| La plage aux mille crabes | 7 |
-| Le camping dans le jardin | 7 |
-| La course des glaces fondues | 7 |
-| Le toboggan d'eau du jardin | 7 |
-| La chasse au trésor du jardin | 7 |
-| Le pique-nique tout en haut | 7 |
-| La nuit des lucioles | 7 |
-| Le jeu qui s'arrête | 6 |
-| Bingo a peur du noir | 6 |
-
-**Les Monsieur Madame** (une humeur chacune)
-
-| Histoire | Ce qu'elle raconte |
-|---|---|
-| Monsieur Grognon et le sourire perdu | on peut être grognon, et se laisser attraper |
-| Madame Chipie fait une farce | une farce n'est drôle que si on rit à deux |
-| Monsieur Étourdi perd tout | une place pour chaque chose |
-| Madame Timide dit bonjour | commencer tout petit |
-| Monsieur Rapide et Monsieur Lent | la vitesse du milieu |
-| Madame Range-Tout et le grand désordre | on range après, pas pendant |
-| Monsieur Costaud n'y arrive pas | demander de l'aide |
-| Madame Bonheur et le jour gris | rester là quand ça ne va pas |
-| Madame Chipie dit pardon | le mot le plus court et le plus lourd |
-| Monsieur Lent arrive quand même | aller à son rythme, jusqu'au bout |
-
-**Le grand mélange** — les cross-over : les amis de Livia ne viennent pas du
-même dessin animé, et ils se rencontrent quand même
-
-| Histoire | Qui s'y retrouve |
-|---|---|
-| Les trois amies de Livia | Peppa, Bluey et Elsa, trois jeux à réconcilier |
-| De la neige sur la plage | Peppa, Elsa et Olaf, un jour de canicule |
-| La cabane de tous les amis | Bluey, Peppa, Elsa et Monsieur Costaud |
-| La grande course des amis | Peppa, Bluey et Monsieur Rapide |
-| La nuit où tout le monde a dormi dehors | Peppa, Bluey et Elsa sous la tente |
-| Le goûter à quatre | cinq gâteaux, quatre invités, et un couteau |
-| Chacun ses règles | chez toi on saute sur le lit, chez moi non |
-
-**Les copines de Livia** — Roxane, Juliette, Isadora, et Pablo le petit frère
-
-| Histoire | Ce qu'elle raconte |
-|---|---|
-| La nouvelle | quand on est déjà deux et qu'une troisième arrive |
-| La dispute du toboggan | bouder, c'est long |
-| Le secret de Juliette | se retenir de répéter |
-| Le goûter et le petit frère | un bébé renverse tout, et ce n'est pas grave |
-| La cabane des quatre | décider à plusieurs, en votant |
-| Le jour où Livia n'a pas été gentille | réparer, c'est plus que dire pardon |
-| Prêter son doudou | prêter ce à quoi on tient le plus |
-| Les règles du jeu | on les dit avant, pas pendant |
-| Maman est en retard | attendre sans savoir combien de temps |
-| Le gâteau de Papa | à quatre mains, c'est plus salissant et plus rigolo |
-| Isadora ne veut pas jouer | un non qui n'est pas contre toi |
-| Le tour de Pablo | changer la règle pour que le petit joue aussi |
-
-Pablo apparaît aussi dans **Pablo veut faire pareil** (Peppa Pig, série *Grandir*).
+**Aucun choix n'est un piège** — c'est la règle du genre ici. Celui qui a l'air
+moins sage ne fait pas perdre l'enfant : il raconte autre chose, et un adulte y
+répare quelque chose sans gronder. Une branche peut finir de travers — un pull
+taché pour de bon, un ticket de manège qui ne sert plus — mais jamais en
+punition, et l'enfant peut revenir en arrière pour voir l'autre route.
+`node outils/verifier-choix.js` contrôle le réseau de chaque histoire : un
+`vers` qui ne mène nulle part, un bloc devenu inatteignable après une
+réécriture, une boucle, un chemin plus court que les autres — rien de tout ça
+ne se voit en lisant une seule branche.
 
 **Les traductions** — **tout est traduit**, en espagnol et en anglais : les
-85 histoires (591 planches, plus les mots des boutons de choix), les onze jeux
-(72 entrées : consignes, encouragements, félicitations, noms des formes, mots
-des nombres, pluriels des objets qu'on compte) et l'interface entière.
+350 histoires (2541 planches, plus les mots des boutons de choix), les onze
+jeux (75 entrées : consignes, encouragements, félicitations, noms des formes,
+mots des nombres, pluriels des objets qu'on compte) et l'interface entière.
 
 | | français | espagnol | anglais |
 |---|---|---|---|
-| histoires | 85 / 85 | 85 / 85 | 85 / 85 |
-| jeux | 72 / 72 | 72 / 72 | 72 / 72 |
+| histoires | 350 / 350 | 350 / 350 | 350 / 350 |
+| jeux | 75 / 75 | 75 / 75 | 75 / 75 |
 | lexique | 30 / 30 | 30 / 30 | 30 / 30 |
 
 `node outils/traductions.js` le vérifie et signale toute histoire qu'on
 commencerait sans la finir — celles-là restent invisibles.
-
-**Tu choisis !** — cinq histoires à embranchements, quatre fins chacune
-
-| Histoire | Le premier choix | Ce qu'elle travaille |
-|---|---|---|
-| La cabane ou la rivière | la cabane dans l'arbre, ou l'eau en bas | la règle qu'on garde en tête quand personne ne regarde |
-| Le ballon tout neuf | j'appelle Isadora, ou je joue un peu d'abord | partager un peu plus tard n'est pas partager un peu moins |
-| Le bruit dans le couloir | la petite lampe, ou appeler Maman | se rassurer seule, et avoir le droit d'appeler |
-| Le chien du voisin | aller demander, ou il a l'air gentil | demander avant de toucher, toujours |
-| Le dernier carré de chocolat | je le donne, ou je le mange | partager, ce n'est pas ne rien vouloir |
-
-Chaque histoire fait quatorze planches écrites pour six planches lues : quatre
-chemins, quatre fins, toutes bonnes. **Aucun choix n'est un piège** — c'est la
-règle du genre ici. Celui qui a l'air moins sage ne fait pas perdre l'enfant,
-il raconte simplement autre chose, et un adulte y répare quelque chose sans
-gronder.
-
-**Partager et les règles** — la série la plus demandée à la maison
-
-| Histoire | Univers | Ce qu'elle raconte |
-|---|---|---|
-| Le dernier gâteau | Peppa Pig | partager quand il n'y en a qu'un |
-| La balançoire pour deux | Bluey | vingt secondes chacun, et l'attente devient courte |
-| Prêter son doudou | Les copines | prêter ce à quoi on tient |
-| On donne la main | Peppa Pig | la règle qui ne se discute pas |
-| Quand Maman dit non | Peppa Pig | un non qui tient, et la colère qui redescend |
-| Les règles du jeu | Les copines | changer les règles en cours de partie |
-| Chacun son tour de parler | Peppa Pig | on ne coupe pas, même quand c'est urgent |
-| Maman est prise | Peppa Pig | attendre son tour de câlin |
-| Les jouets qu'on donne | Bluey | se séparer de ce dont on ne joue plus |
-| Le jouet cassé | Les copines | prêter, et que ça finisse mal |
-| Ce qu'on fait après | Peppa Pig | pardon est le début, réparer est la suite |
-| Le jour où Papa s'est trompé | Peppa Pig | les grands aussi disent pardon |
-| Dedans on marche, dehors on court | Bluey | la règle change parce que l'endroit change |
-| À la bibliothèque | Les copines | chuchoter, la règle qui protège les autres |
-| Chez Mamie, ce n'est pas pareil | Peppa Pig | deux maisons, deux règles |
-
-**Les émotions et la famille**
-
-| Histoire | Univers | Ce qu'elle raconte |
-|---|---|---|
-| Devant tout le monde | Peppa Pig | la honte, et comment elle s'en va |
-| Le jour où Pablo est arrivé | Peppa Pig | devenir grande sœur, ça ne se décide pas |
-| Tout le monde regarde Pablo | Les copines | la jalousie a un nom |
-| La nuit chez Livia | Les copines | avoir peur du noir sans qu'on se moque |
-| Isadora s'en va | Les copines | une amie qui déménage |
-| Je m'ennuie | Bluey | ce qu'on trouve quand il n'y a rien à faire |
 
 ---
 
@@ -283,7 +172,7 @@ garder sur le téléphone sans connexion, on peut tout replier dans un seul fich
 
 ```bash
 node outils/construire-page-unique.js
-# → dist/histoires-de-livia.html  (~700 Ko, aucune requête vers l'extérieur)
+# → dist/histoires-de-livia.html  (~2,8 Mo, aucune requête vers l'extérieur)
 ```
 
 Le fichier est déjà présent dans `dist/` ; il suffit de relancer la commande après
@@ -358,6 +247,43 @@ en haut de `stories.js`. Les consignes des jeux vivent dans leur propre
 dictionnaire, en haut de `games.js`. Dans les deux cas, ce qui manque ressort en
 français plutôt que de casser l'affichage, et `node outils/traductions.js` liste
 précisément ce qui reste à faire.
+
+### Écrire vite, et beaucoup
+
+À la main, l'objet ci-dessus prend quelques minutes ; trois cents histoires en
+trois langues, non. `outils/ecrire-histoires.py` lit un format compact, une
+ligne par chose, et sort le JavaScript dans le style du fichier :
+
+```
+STORY copines|le-pull-de-roxane
+TITLE Le pull de Roxane
+TITLE_EN Roxane's jumper
+TITLE_ES El jersey de Roxane
+SUB Une tache sur une chose prêtée
+SUB_EN A stain on a borrowed thing
+SUB_ES Una mancha en algo prestado
+META Copines|Amitié,Émotions|6
+COVER garden|day|roxane@300,516,1|livia@600,518,1
+PAGE bedroom|day|roxane@300,516,1|livia@600,518,1,mood=happy
+FR Roxane a prêté à Livia son pull jaune, celui avec le renard devant.
+ES Roxane le prestó a Livia su jersey amarillo, el del zorro delante.
+EN Roxane lent Livia her yellow jumper, the one with the fox on the front.
+```
+
+`BACK` et `FRONT` posent les plans arrière et avant, `BUB x,y,w|texte|tx,ty`
+une bulle, `SFX x,y,taille,rotation,couleur|TEXTE` un bruitage. Les histoires à
+choix ajoutent `BLOC <nom>` et `CHOIX dessin|mot|mot_es|mot_en|vers`.
+
+```bash
+python3 outils/ecrire-histoires.py lot.txt            # vérifie seulement
+python3 outils/ecrire-histoires.py lot.txt --inserer  # écrit dans stories.js
+```
+
+Le convertisseur refuse un décor, une pose ou une humeur qui n'existent pas, un
+champ de langue manquant, une histoire de moins de cinq planches, et — pour les
+histoires à choix — tout réseau de blocs mal formé. Le format n'est pas une
+abstraction en plus : c'est le même objet, écrit sans accolades, et contrôlé
+avant d'entrer dans le fichier.
 
 ### Écrire une histoire à choix
 
@@ -551,6 +477,36 @@ http://localhost:8000/outils/apercu-histoire.html
 http://localhost:8000/outils/apercu-histoire.html?u=peppa&s=plage
 ```
 
+### Les quatre contrôles
+
+Deux mille cinq cents planches ne se relisent pas à l'œil. Quatre programmes
+s'en chargent, et on les passe tous avant de publier :
+
+```bash
+node outils/verifier-compo.js    # cadrage et chevauchements
+node outils/verifier-langue.js   # la copie des trois langues
+node outils/verifier-choix.js    # le réseau des histoires à choix
+node outils/traductions.js       # ce qui reste à traduire
+```
+
+**La composition** se vérifie par le calcul, pas à l'œil. `outils/mesurer-boites.html`
+dessine chaque personnage et chaque objet seul, à l'origine, et relève sa boîte
+réelle avec `getBBox()` — 93 dessins fois les poses qui les changent, soit 1288
+boîtes, rangées dans `outils/boites.json`. `verifier-compo.js` applique ensuite
+la position et l'échelle de chaque planche à ces boîtes et signale ce qui sort
+du cadre 800×560 ou ce qui recouvre un voisin de plus de la moitié. C'est ainsi
+qu'on a retrouvé dix personnages coupés de trois à six unités sur le bord
+droit — invisibles sur un grand écran, bien coupés sur un téléphone.
+
+**La copie** est relue par `verifier-langue.js` : guillemets dépareillés,
+espaces doubles, mots redoublés, espace manquante avant `! ? ; :` en français,
+`¿` et `¡` manquants en espagnol, espace à la française devant une ponctuation
+anglaise ou espagnole, texte identique dans deux langues (donc oublié), bulle
+trop longue pour son cadre, et planche trop courte ou trop longue par rapport à
+la moyenne. Une note pour qui touchera au fichier : `\b` de JavaScript ne
+connaît pas les lettres accentuées — les frontières de mots y sont écrites à la
+main, sinon `subía a` ressort comme un mot redoublé.
+
 ---
 
 ## Comment c'est fait
@@ -567,7 +523,12 @@ assets/fonts/               Fredoka et Literata (SIL Open Font License 1.1)
 assets/img/grain.png        le grain du papier, en surimpression
 sw.js                       le service worker : mise en cache et hors connexion
 assets/icons/               les icônes de l'application (visage de Livia)
+outils/ecrire-histoires.py  le format d'écriture compact, et son convertisseur
 outils/apercu-histoire.html planche de contrôle pour les dessins
+outils/mesurer-boites.html  relève la boîte de chaque dessin, pose par pose
+outils/boites.json          le résultat du relevé : 93 dessins, 1288 boîtes
+outils/verifier-compo.js    personnages hors cadre ou l'un sur l'autre
+outils/verifier-langue.js   relit la copie des trois langues
 outils/verifier-choix.js    contrôle le réseau des histoires à choix
 outils/traductions.js       où en sont l'espagnol et l'anglais
 outils/construire-page-unique.js  replie tout le site dans un fichier

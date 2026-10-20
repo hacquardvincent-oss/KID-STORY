@@ -36376,6 +36376,4981 @@ var UNIVERSES = [
             ]
           }
         }
+      },
+
+      /* ---------- 29 : la porte du grenier ---------- */
+      {
+        id: 'la-porte-du-grenier',
+        title: 'La porte du grenier',
+        title_en: 'The attic door',
+        title_es: 'La puerta del desván',
+        subtitle: 'Monter, ou demander avant',
+        subtitle_en: 'Go up, or ask first',
+        subtitle_es: 'Subir, o preguntar antes',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Nuit'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'wow' }]
+                },
+                text: "Chez Mamie, la porte du grenier est toujours fermée. Ce mardi-là, elle était entrouverte de la largeur d'une main, et l'escalier derrière montait dans le noir.",
+                es: 'En casa de la abuela, la puerta del desván siempre está cerrada. Ese martes estaba entreabierta el ancho de una mano, y la escalera de detrás subía hacia la oscuridad.',
+                en: "At Granny's, the attic door is always shut. That Tuesday it was ajar by the width of a hand, and the staircase behind it climbed into the dark."
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Mamie était au jardin, à vingt mètres, avec un sécateur. La règle sur le grenier n'a jamais été dite à voix haute, et c'est bien ça le problème.",
+                es: 'La abuela estaba en el jardín, a veinte metros, con unas tijeras de podar. La regla sobre el desván nunca se ha dicho en voz alta, y ese es justamente el problema.',
+                en: 'Granny was in the garden, twenty yards away, with a pair of secateurs. The rule about the attic has never been said out loud, and that is precisely the problem.',
+                choix: {
+                  options: [
+                    { v: 'etagere', mot: 'Monter voir', mot_es: 'Subir a ver', mot_en: 'Go up and look', vers: 'monter' },
+                    { v: 'mamie', mot: 'Demander à Mamie', mot_es: 'Preguntar a la abuela', mot_en: 'Ask Granny', vers: 'demander' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          monter: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'gris',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'wow' }]
+                },
+                text: 'Livia monta les treize marches. En haut, il y avait une lucarne, de la poussière dans la lumière, et des choses sous des draps, beaucoup de choses.',
+                es: 'Livia subió los trece escalones. Arriba había un tragaluz, polvo en la luz y cosas bajo sábanas, muchas cosas.',
+                en: 'Livia climbed the thirteen steps. At the top there was a skylight, dust in the light, and things under sheets, a great many things.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'gris',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Elle souleva un drap. C'était un berceau en bois, très vieux, avec de la peinture bleue écaillée. Il y avait un prénom gravé dessus, et ce n'était pas le sien.",
+                es: 'Levantó una sábana. Era una cuna de madera, muy vieja, con la pintura azul desconchada. Tenía un nombre grabado, y no era el suyo.',
+                en: 'She lifted a sheet. It was a wooden cradle, very old, with flaking blue paint. There was a name carved on it, and it was not hers.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Redescendre sans rien dire', mot_es: 'Bajar sin decir nada', mot_en: 'Go back down and say nothing', vers: 'mon_taire' },
+                    { v: 'mamie', mot: 'Demander qui est ce prénom', mot_es: 'Preguntar de quién es ese nombre', mot_en: 'Ask whose name it is', vers: 'mon_demander' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          mon_taire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia redescendit, referma la porte à la bonne largeur, et ne dit rien. Le prénom gravé resta dans sa tête tout l'après-midi, et toute la semaine.",
+                es: 'Livia bajó, dejó la puerta al ancho exacto y no dijo nada. El nombre grabado se le quedó en la cabeza toda la tarde, y toda la semana.',
+                en: 'Livia went back down, shut the door to the right width, and said nothing. The carved name stayed in her head all afternoon, and all week.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Elle ne l'a jamais demandé, et elle ne sait toujours pas. C'est une question qui grossit quand on ne la pose pas, au lieu de disparaître.",
+                es: 'Nunca lo ha preguntado, y sigue sin saberlo. Es una pregunta que crece cuando no se hace, en vez de desaparecer.',
+                en: 'She has never asked, and she still does not know. It is a question that grows when you do not ask it, instead of going away.'
+              }
+            ]
+          },
+
+          mon_demander: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia descendit et demanda à Mamie qui était le prénom du berceau. Elle dit aussi qu'elle était montée, dans la même phrase, pour ne pas avoir à le dire après.",
+                es: 'Livia bajó y le preguntó a la abuela de quién era el nombre de la cuna. También dijo que había subido, en la misma frase, para no tener que decirlo después.',
+                en: 'Livia went down and asked Granny whose name was on the cradle. She also said that she had been up there, in the same sentence, so as not to have to say it later.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Mamie posa son sécateur. C'était le prénom de son premier bébé, qui n'a pas vécu. Elle en parla vingt minutes, assise sur la marche, et c'était la première fois.",
+                es: 'La abuela dejó las tijeras. Era el nombre de su primer bebé, que no vivió. Habló de ello veinte minutos, sentada en el escalón, y era la primera vez.',
+                en: 'Granny put down her secateurs. It was the name of her first baby, who did not live. She talked about it for twenty minutes, sitting on the step, and it was the first time.'
+              }
+            ]
+          },
+
+          demander: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Livia alla au jardin et demanda si elle pouvait monter au grenier. Mamie leva la tête et mit quatre secondes à répondre, ce qui est beaucoup.',
+                es: 'Livia fue al jardín y preguntó si podía subir al desván. La abuela levantó la cabeza y tardó cuatro segundos en contestar, lo cual es mucho.',
+                en: 'Livia went into the garden and asked whether she could go up to the attic. Granny looked up and took four seconds to answer, which is a long time.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Elle dit : « Pas toute seule. » Ce n'est pas non. Ce n'est pas oui. C'est une troisième réponse, que Livia n'avait pas prévue du tout.",
+                es: 'Dijo: «Sola no.» No es no. No es sí. Es una tercera respuesta, que Livia no había previsto en absoluto.',
+                en: 'She said: «Not on your own.» That is not no. It is not yes. It is a third answer, which Livia had not anticipated at all.',
+                choix: {
+                  options: [
+                    { v: 'mamie', mot: 'Y aller avec Mamie', mot_es: 'Ir con la abuela', mot_en: 'Go up with Granny', vers: 'dem_avec' },
+                    { v: 'cube', mot: 'Attendre un autre jour', mot_es: 'Esperar otro día', mot_en: 'Wait for another day', vers: 'dem_attendre' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          dem_avec: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'gris',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'wow' }
+                  ]
+                },
+                text: "Elles montèrent à deux. Mamie connaît chaque drap et ce qu'il y a dessous. Elle les souleva un par un, en racontant, pendant une heure et demie.",
+                es: 'Subieron las dos. La abuela conoce cada sábana y lo que hay debajo. Las levantó una a una, contando, durante hora y media.',
+                en: 'They went up together. Granny knows every sheet and what is underneath it. She lifted them one by one, telling the stories, for an hour and a half.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Il y a un berceau, une malle de lettres et une robe de mariée. Livia monte au grenier avec Mamie le dernier mercredi de chaque mois. C'est une institution.",
+                es: 'Hay una cuna, un baúl de cartas y un vestido de novia. Livia sube al desván con la abuela el último miércoles de cada mes. Es una institución.',
+                en: 'There is a cradle, a trunk of letters and a wedding dress. Livia goes up to the attic with Granny on the last Wednesday of every month. It is an institution.'
+              }
+            ]
+          },
+
+          dem_attendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia attendit, parce que Mamie avait l'air fatiguée ce jour-là. Elle le dit même : « On fera un autre jour. » C'est elle qui l'a proposé, et c'était bien vu.",
+                es: 'Livia esperó, porque la abuela parecía cansada ese día. Incluso lo dijo: «Lo haremos otro día.» Lo propuso ella, y estuvo bien visto.',
+                en: "Livia waited, because Granny looked tired that day. She even said so: «We'll do it another day.» She suggested it herself, and it was well judged."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Elles y montèrent trois semaines plus tard, un jour où Mamie allait bien. Ça dura tout l'après-midi. Livia pense que c'était mieux ce jour-là, et elle a raison.",
+                es: 'Subieron tres semanas más tarde, un día en que la abuela estaba bien. Duró toda la tarde. Livia cree que fue mejor ese día, y tiene razón.',
+                en: 'They went up three weeks later, on a day when Granny was well. It lasted the whole afternoon. Livia thinks it was better that day, and she is right.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 30 : le secret de roxane ---------- */
+      {
+        id: 'le-secret-de-roxane',
+        title: 'Le secret de Roxane',
+        title_en: "Roxane's secret",
+        title_es: 'El secreto de Roxane',
+        subtitle: 'Un secret qui inquiète',
+        subtitle_en: 'A secret that worries you',
+        subtitle_es: 'Un secreto que preocupa',
+        tag: 'Tu choisis',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'roxane', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Roxane dit à Livia un secret, derrière le préau, en faisant promettre avant. Le secret était : elle a très mal au ventre tous les matins, et elle ne l'a dit à personne.",
+                es: 'Roxane le contó a Livia un secreto, detrás del cobertizo, haciéndole prometer antes. El secreto era: le duele mucho la barriga todas las mañanas, y no se lo ha dicho a nadie.',
+                en: 'Roxane told Livia a secret, behind the shelter, making her promise first. The secret was: her stomach hurts a great deal every morning, and she has told nobody.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia avait promis avant de savoir, encore une fois. Un secret de jeu, on le garde. Un secret de mal au ventre tous les matins, c'est autre chose.",
+                es: 'Livia había prometido antes de saberlo, otra vez. Un secreto de juego se guarda. Un secreto de dolor de barriga todas las mañanas es otra cosa.',
+                en: 'Livia had promised before knowing, once again. A secret about a game you keep. A secret about a stomach that hurts every morning is something else.',
+                choix: {
+                  options: [
+                    { v: 'roxane', mot: 'Lui demander de le dire elle-même', mot_es: 'Pedirle que lo cuente ella', mot_en: 'Ask her to tell somebody herself', vers: 'elle' },
+                    { v: 'maman', mot: 'Le dire à un grand', mot_es: 'Contárselo a un mayor', mot_en: 'Tell a grown-up', vers: 'grand' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          elle: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'roxane', x: 600, y: 516, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia lui demanda de le dire à sa maman. Roxane dit non, trois fois, avec une raison différente chaque fois, et aucune n'était la vraie raison.",
+                es: 'Livia le pidió que se lo contara a su madre. Roxane dijo no, tres veces, con una razón distinta cada vez, y ninguna era la razón verdadera.',
+                en: 'Livia asked her to tell her mum. Roxane said no, three times, with a different reason each time, and none of them was the real reason.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "La vraie raison sortit à la quatrième fois : elle avait peur qu'on l'emmène chez le docteur, et le docteur, elle n'y était pas allée depuis la piqûre.",
+                es: 'La razón verdadera salió a la cuarta: tenía miedo de que la llevaran al médico, y al médico no había ido desde la inyección.',
+                en: 'The real reason came out on the fourth time: she was afraid they would take her to the doctor, and she had not been to the doctor since the injection.',
+                choix: {
+                  options: [
+                    { v: 'roxane', mot: "Lui proposer d'y aller avec elle", mot_es: 'Ofrecerse a ir con ella', mot_en: 'Offer to go with her', vers: 'ell_avec' },
+                    { v: 'livia', mot: 'Lui laisser deux jours', mot_es: 'Darle dos días', mot_en: 'Give her two days', vers: 'ell_jours' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          ell_avec: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia proposa d'aller chez le docteur avec elle, dans la salle d'attente, et de l'attendre à la porte. Roxane demanda si c'était permis. Personne n'en savait rien.",
+                es: 'Livia se ofreció a ir al médico con ella, a la sala de espera, y a esperarla en la puerta. Roxane preguntó si eso se permitía. Nadie lo sabía.',
+                en: 'Livia offered to go to the doctor with her, into the waiting room, and to wait for her at the door. Roxane asked whether that was allowed. Nobody knew.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1, mood: 'happy' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "C'était permis. Livia a attendu quarante minutes dans la salle d'attente. Roxane avait quelque chose qui se soigne, et elle va mieux depuis trois semaines.",
+                es: 'Se permitía. Livia esperó cuarenta minutos en la sala de espera. Roxane tenía algo que se cura, y está mejor desde hace tres semanas.',
+                en: 'It was allowed. Livia waited forty minutes in the waiting room. Roxane had something that can be treated, and she has been better for three weeks.'
+              }
+            ]
+          },
+
+          ell_jours: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia lui laissa deux jours, en disant : « Tu le dis avant jeudi, sinon je le dis. » C'est un marché honnête, et il est très difficile à tenir des deux côtés.",
+                es: 'Livia le dio dos días, diciendo: «Lo cuentas antes del jueves, o lo cuento yo.» Es un trato honesto, y es muy difícil de cumplir por los dos lados.',
+                en: 'Livia gave her two days, saying: «You tell them before Thursday, or I tell them.» That is an honest bargain, and it is very hard to keep on both sides.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Roxane le dit le mercredi soir, à la dernière minute. Elle fut fâchée contre Livia pendant deux jours, puis elle lui dit merci, à la fin de la semaine.',
+                es: 'Roxane lo contó el miércoles por la noche, en el último momento. Estuvo enfadada con Livia dos días, y luego le dio las gracias, al final de la semana.',
+                en: 'Roxane told them on Wednesday evening, at the last minute. She was cross with Livia for two days, then she thanked her, at the end of the week.'
+              }
+            ]
+          },
+
+          grand: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia le dit à Maman le soir même, en expliquant d'abord qu'elle avait promis. C'est important, cet ordre-là : la promesse d'abord, le secret ensuite.",
+                es: 'Livia se lo contó a Mamá esa misma noche, explicando primero que lo había prometido. Es importante ese orden: la promesa primero, el secreto después.',
+                en: 'Livia told Mummy that very evening, explaining first that she had promised. That order matters: the promise first, the secret afterwards.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Maman ne dit pas « tu as bien fait » tout de suite. Elle demanda d'abord si Livia avait essayé autre chose avant, ce qui était une question juste.",
+                es: 'Mamá no dijo «has hecho bien» enseguida. Primero preguntó si Livia había intentado otra cosa antes, lo cual era una pregunta justa.',
+                en: 'Mummy did not say «you did the right thing» straight away. She first asked whether Livia had tried anything else before, which was a fair question.',
+                choix: {
+                  options: [
+                    { v: 'maman', mot: 'Demander à Maman de ne pas dire son nom', mot_es: 'Pedir a Mamá que no diga su nombre', mot_en: 'Ask Mummy not to use her name', vers: 'gra_nom' },
+                    { v: 'roxane', mot: "Prévenir Roxane d'abord", mot_es: 'Avisar a Roxane primero', mot_en: 'Warn Roxane first', vers: 'gra_prevenir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          gra_nom: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia demanda à Maman de ne pas dire que ça venait d'elle. Maman dit que ce n'était pas possible : la maman de Roxane allait demander comment elle savait.",
+                es: 'Livia le pidió a Mamá que no dijera que venía de ella. Mamá dijo que no era posible: la madre de Roxane iba a preguntar cómo lo sabía.',
+                en: "Livia asked Mummy not to say that it had come from her. Mummy said that was not possible: Roxane's mum was going to ask how she knew."
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Roxane sut que c'était Livia. Elle ne lui parla pas pendant trois jours. Le quatrième, elle vint lui dire ce que le docteur avait dit, ce qui est une façon de pardonner.",
+                es: 'Roxane supo que había sido Livia. No le habló durante tres días. El cuarto, fue a contarle lo que había dicho el médico, que es una forma de perdonar.',
+                en: 'Roxane knew it had been Livia. She did not speak to her for three days. On the fourth, she came to tell her what the doctor had said, which is a way of forgiving.'
+              }
+            ]
+          },
+
+          gra_prevenir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1, mood: 'fache' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Livia prévint Roxane avant que Maman appelle. Elle dit : « Je vais le dire. Je te le dis avant. » Roxane fut très fâchée, et elle était prévenue.',
+                es: 'Livia avisó a Roxane antes de que Mamá llamara. Dijo: «Voy a contarlo. Te lo digo antes.» Roxane se enfadó mucho, y estaba avisada.',
+                en: "Livia warned Roxane before Mummy rang. She said: «I'm going to tell. I'm telling you first.» Roxane was very cross, and she had been warned."
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Les deux choses comptent et ne s'annulent pas : Livia a trahi un secret, et elle a prévenu avant. Roxane lui dit un autre secret six semaines plus tard.",
+                es: 'Las dos cosas cuentan y no se anulan: Livia traicionó un secreto, y avisó antes. Roxane le contó otro secreto seis semanas después.',
+                en: 'Both things count and do not cancel out: Livia broke a secret, and she gave warning first. Roxane told her another secret six weeks later.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 31 : le vélo trop grand ---------- */
+      {
+        id: 'le-velo-trop-grand',
+        title: 'Le vélo trop grand',
+        title_en: "The bike that's too big",
+        title_es: 'La bici demasiado grande',
+        subtitle: "L'essayer, ou attendre de grandir",
+        subtitle_en: "Try it, or wait until you've grown",
+        subtitle_es: 'Probarla, o esperar a crecer',
+        tag: 'Tu choisis',
+        themes: ['Grandir', 'Famille'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'road',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'wow' }
+                  ]
+                },
+                text: 'Le cousin de Livia lui donna son vélo, le grand, celui avec les vitesses. Il est trop grand : assise sur la selle, elle ne touche pas le sol.',
+                es: 'El primo de Livia le dio su bici, la grande, la de las marchas. Es demasiado grande: sentada en el sillín, no llega al suelo.',
+                en: "Livia's cousin gave her his bike, the big one, the one with gears. It is too big: sitting on the saddle, she cannot touch the ground."
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Papa dit qu'on peut baisser la selle, mais pas assez. Il dit : « Dans un an, il sera parfait. » Un an, quand on a quatre ans, c'est à peu près infini.",
+                es: 'Papá dijo que se puede bajar el sillín, pero no bastante. Dijo: «En un año estará perfecta.» Un año, cuando tienes cuatro, es más o menos infinito.',
+                en: "Daddy said the saddle can be lowered, but not enough. He said: «In a year it'll be perfect.» A year, when you are four, is roughly infinite.",
+                choix: {
+                  options: [
+                    { v: 'livia', mot: "L'essayer maintenant", mot_es: 'Probarla ahora', mot_en: 'Try it now', vers: 'essayer' },
+                    { v: 'cube', mot: 'Attendre un an', mot_es: 'Esperar un año', mot_en: 'Wait a year', vers: 'attendre' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          essayer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia l'essaya dans l'allée, avec Papa qui tenait la selle. Elle démarra bien. Au moment de s'arrêter, elle découvrit le vrai problème.",
+                es: 'Livia la probó en el camino, con Papá sujetando el sillín. Arrancó bien. Al pararse descubrió el verdadero problema.',
+                en: 'Livia tried it on the drive, with Daddy holding the saddle. She set off well. When it came to stopping, she discovered the real problem.'
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }],
+                  sfx: [{ t: 'BOUM.', x: 400, y: 146, fs: 26, rot: -6, color: '#e0453c' }]
+                },
+                text: "On ne peut pas s'arrêter sur un vélo trop grand : il n'y a pas de sol sous les pieds. Elle tomba sur le côté, trois fois en dix minutes, toujours à l'arrêt.",
+                es: 'No se puede parar en una bici demasiado grande: no hay suelo bajo los pies. Se cayó de lado, tres veces en diez minutos, siempre al pararse.',
+                en: 'You cannot stop on a bike that is too big: there is no ground under your feet. She fell sideways, three times in ten minutes, always when stopping.',
+                choix: {
+                  options: [
+                    { v: 'papa', mot: 'Apprendre à sauter de la selle', mot_es: 'Aprender a saltar del sillín', mot_en: 'Learn to jump off the saddle', vers: 'ess_sauter' },
+                    { v: 'cube', mot: 'Pédaler debout', mot_es: 'Pedalear de pie', mot_en: 'Pedal standing up', vers: 'ess_debout' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          ess_sauter: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Papa lui montra la technique : avant de s'arrêter, on se penche et on passe une jambe, et on descend en marchant. C'est ce que font les grands.",
+                es: 'Papá le enseñó la técnica: antes de parar, te inclinas, pasas una pierna y bajas andando. Es lo que hacen los mayores.',
+                en: 'Daddy showed her the technique: before stopping, you lean over, swing one leg through, and step down walking. That is what big people do.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: 'Elle le rata onze fois et le réussit la douzième. Elle descend du vélo comme les grands, maintenant, et elle a quatre ans. Ça impressionne tout le monde.',
+                es: 'Lo falló once veces y lo consiguió a la duodécima. Ahora baja de la bici como los mayores, y tiene cuatro años. Impresiona a todo el mundo.',
+                en: 'She got it wrong eleven times and right on the twelfth. She gets off the bike like a grown-up now, and she is four. It impresses everybody.'
+              }
+            ]
+          },
+
+          ess_debout: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia essaya de pédaler debout, sans s'asseoir du tout, ce qui résout le problème des pieds et crée trois problèmes nouveaux.",
+                es: 'Livia intentó pedalear de pie, sin sentarse nunca, lo que resuelve el problema de los pies y crea tres problemas nuevos.',
+                en: 'Livia tried pedalling standing up, without sitting down at all, which solves the problem of her feet and creates three new problems.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: 'Ça marche sur vingt mètres. Après, les jambes brûlent et le vélo zigzague. Elle est rentrée en poussant le vélo, et elle a demandé la technique à Papa le lendemain.',
+                es: 'Funciona durante veinte metros. Después, las piernas arden y la bici zigzaguea. Volvió empujando la bici, y le pidió la técnica a Papá al día siguiente.',
+                en: 'It works for twenty yards. After that your legs burn and the bike wobbles. She came home pushing the bike, and asked Daddy for the technique the next day.'
+              }
+            ]
+          },
+
+          attendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia accepta d'attendre. Papa rangea le grand vélo dans le garage, debout contre le mur, et il resta là, visible depuis la porte de la cuisine.",
+                es: 'Livia aceptó esperar. Papá guardó la bici grande en el garaje, de pie contra la pared, y se quedó ahí, visible desde la puerta de la cocina.',
+                en: 'Livia agreed to wait. Daddy put the big bike away in the garage, standing against the wall, and there it stayed, visible from the kitchen door.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: "Attendre un vélo qu'on voit tous les jours, c'est beaucoup plus dur qu'attendre un vélo rangé. Livia le regarda chaque matin pendant onze jours.",
+                es: 'Esperar una bici que ves todos los días es mucho más difícil que esperar una bici guardada. Livia la miró cada mañana durante once días.',
+                en: 'Waiting for a bike you can see every day is much harder than waiting for a bike that is put away. Livia looked at it every morning for eleven days.',
+                choix: {
+                  options: [
+                    { v: 'cube', mot: 'Mesurer ses jambes chaque semaine', mot_es: 'Medirse las piernas cada semana', mot_en: 'Measure her legs every week', vers: 'att_mesurer' },
+                    { v: 'papa', mot: "Demander à s'entraîner autrement", mot_es: 'Pedir entrenar de otra forma', mot_en: 'Ask to train some other way', vers: 'att_entrainer' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          att_mesurer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Ils firent un trait sur le mur du garage, à la hauteur de la selle, et un trait à la hauteur de Livia. Il y avait huit centimètres entre les deux.',
+                es: 'Hicieron una raya en la pared del garaje, a la altura del sillín, y una raya a la altura de Livia. Había ocho centímetros entre las dos.',
+                en: "They drew a line on the garage wall, at the height of the saddle, and a line at Livia's height. There were three inches between them."
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, mood: 'happy' },
+                    { t: 'papa', x: 600, y: 514, s: 1 }
+                  ]
+                },
+                text: 'Au bout de quatre mois, les deux traits se touchaient. Livia a surveillé ça chaque dimanche. Le jour où ils se sont touchés est noté sur le mur, avec la date.',
+                es: 'Al cabo de cuatro meses, las dos rayas se tocaban. Livia lo vigiló cada domingo. El día en que se tocaron está anotado en la pared, con la fecha.',
+                en: 'After four months the two lines met. Livia checked every Sunday. The day they met is written on the wall, with the date.'
+              }
+            ]
+          },
+
+          att_entrainer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia demanda à s'entraîner autrement en attendant. Ils mirent les vitesses du grand vélo sur le petit, ce qui est possible et ce que personne ne fait jamais.",
+                es: 'Livia pidió entrenar de otra forma mientras esperaba. Pusieron las marchas de la bici grande en la pequeña, lo cual es posible y nadie lo hace nunca.',
+                en: "Livia asked to train some other way while she waited. They put the big bike's gears on the little one, which is possible and which nobody ever does."
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'happy' }]
+                },
+                text: "Livia apprit les six vitesses sur le petit vélo, où ses pieds touchent par terre. Quand le grand vélo est devenu à sa taille, elle savait déjà s'en servir.",
+                es: 'Livia aprendió las seis marchas en la bici pequeña, donde sus pies llegan al suelo. Cuando la bici grande se puso a su medida, ya sabía usarla.',
+                en: 'Livia learned all six gears on the little bike, where her feet reach the ground. When the big bike became her size, she already knew how to use it.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 32 : la pièce trouvée ---------- */
+      {
+        id: 'la-piece-trouvee',
+        title: 'La pièce trouvée',
+        title_en: 'The coin on the pavement',
+        title_es: 'La moneda encontrada',
+        subtitle: 'Une pièce par terre, devant la boulangerie',
+        subtitle_en: "A coin on the ground, outside the baker's",
+        subtitle_es: 'Una moneda en el suelo, ante la panadería',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Partager'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'village',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'wow' }]
+                },
+                text: 'Devant la boulangerie, par terre, il y avait une pièce. Pas une petite : une grosse, de celles avec lesquelles on achète trois choses.',
+                es: 'Delante de la panadería, en el suelo, había una moneda. No una pequeña: una grande, de las que compran tres cosas.',
+                en: "Outside the baker's, on the ground, there was a coin. Not a small one: a big one, the kind you can buy three things with."
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: 'Il y avait du monde dans la rue : quatre personnes, dont un monsieur qui venait de sortir de la boulangerie en remettant son porte-monnaie dans sa poche.',
+                es: 'Había gente en la calle: cuatro personas, entre ellas un señor que acababa de salir de la panadería guardándose el monedero en el bolsillo.',
+                en: "There were people in the street: four of them, including a man who had just come out of the baker's putting his purse back in his pocket.",
+                choix: {
+                  options: [
+                    { v: 'mamie', mot: 'Demander au monsieur', mot_es: 'Preguntar al señor', mot_en: 'Ask the man', vers: 'monsieur' },
+                    { v: 'cube', mot: 'La garder', mot_es: 'Quedársela', mot_en: 'Keep it', vers: 'garder' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          monsieur: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia ramassa la pièce et courut derrière le monsieur. Elle lui demanda si c'était à lui. Il tâta sa poche, compta dans sa main, et dit non.",
+                es: 'Livia recogió la moneda y corrió detrás del señor. Le preguntó si era suya. Se tocó el bolsillo, contó en la mano y dijo no.',
+                en: 'Livia picked the coin up and ran after the man. She asked whether it was his. He felt his pocket, counted in his hand, and said no.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Il dit non, mais il mit quatre secondes à répondre, et il regarda la pièce une fois de plus que nécessaire. Livia n'a jamais su si c'était la sienne.",
+                es: 'Dijo no, pero tardó cuatro segundos en contestar, y mirá la moneda una vez más de lo necesario. Livia nunca ha sabido si era suya.',
+                en: 'He said no, but he took four seconds to answer, and he looked at the coin one more time than was necessary. Livia has never known whether it was his.',
+                choix: {
+                  options: [
+                    { v: 'etagere', mot: 'La laisser à la boulangère', mot_es: 'Dejarla a la panadera', mot_en: 'Leave it with the baker', vers: 'mon_boulangere' },
+                    { v: 'cube', mot: "La garder, puisqu'il a dit non", mot_es: 'Quedársela, puesto que dijo no', mot_en: 'Keep it, since he said no', vers: 'mon_garder' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          mon_boulangere: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Livia porta la pièce à la boulangère et expliqua tout : la pièce, le monsieur, les quatre secondes. La boulangère la mit dans une boîte sur le comptoir.',
+                es: 'Livia le llevó la moneda a la panadera y se lo explicó todo: la moneda, el señor, los cuatro segundos. La panadera la puso en una caja en el mostrador.',
+                en: 'Livia took the coin to the baker and explained everything: the coin, the man, the four seconds. The baker put it in a box on the counter.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Personne ne la réclama. Au bout d'un mois, la boulangère la mit dans la tirelire de l'école, qui sert à acheter des livres. Il y a un livre, quelque part, grâce à cette pièce.",
+                es: 'Nadie la reclamó. Al cabo de un mes, la panadera la puso en la hucha del colegio, que sirve para comprar libros. Hay un libro, en algún sitio, gracias a esa moneda.',
+                en: 'Nobody claimed it. After a month the baker put it in the school collection box, which is for buying books. There is a book, somewhere, thanks to that coin.'
+              }
+            ]
+          },
+
+          mon_garder: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia garda la pièce. Elle avait demandé, il avait dit non : c'est honnête, et c'est la fin de l'affaire du point de vue des règles.",
+                es: 'Livia se quedó la moneda. Había preguntado, él había dicho no: es honesto, y es el final del asunto desde el punto de vista de las reglas.',
+                en: 'Livia kept the coin. She had asked, he had said no: that is honest, and it is the end of the matter as far as the rules are concerned.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Elle la mit dans son bocal. Elle y pense encore, parfois, à cause des quatre secondes. Elle ne l'a jamais dépensée, et c'est un détail intéressant.",
+                es: 'La metió en su bote. Todavía piensa en ella, a veces, por los cuatro segundos. Nunca la ha gastado, y es un detalle interesante.',
+                en: 'She put it in her jar. She still thinks about it sometimes, because of the four seconds. She has never spent it, and that is an interesting detail.'
+              }
+            ]
+          },
+
+          garder: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia ramassa la pièce et la mit dans sa poche sans demander à personne. Une pièce par terre n'est à personne : c'est ce que tout le monde dit, à peu près.",
+                es: 'Livia recogió la moneda y se la metió en el bolsillo sin preguntar a nadie. Una moneda en el suelo no es de nadie: es lo que dice todo el mundo, más o menos.',
+                en: 'Livia picked the coin up and put it in her pocket without asking anybody. A coin on the ground belongs to nobody: that is what everybody says, more or less.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: 'Dix minutes plus tard, une dame très âgée revint sur ses pas en regardant le trottoir, lentement, en cherchant quelque chose par terre.',
+                es: 'Diez minutos después, una señora muy mayor volvió atrás mirando la acera, despacio, buscando algo en el suelo.',
+                en: 'Ten minutes later a very old lady came back along the pavement, slowly, looking for something on the ground.',
+                choix: {
+                  options: [
+                    { v: 'mamie', mot: 'Lui donner la pièce', mot_es: 'Darle la moneda', mot_en: 'Give her the coin', vers: 'gar_donner' },
+                    { v: 'cube', mot: 'Ne rien dire', mot_es: 'No decir nada', mot_en: 'Say nothing', vers: 'gar_rien' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          gar_donner: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia sortit la pièce et la tendit. La dame dit que oui, c'était la sienne, et qu'elle l'avait cherchée pendant dix minutes. C'était son pain de la semaine.",
+                es: 'Livia sacó la moneda y la tendió. La señora dijo que sí, era la suya, y que la había buscado durante diez minutos. Era su pan de la semana.',
+                en: 'Livia took out the coin and held it out. The lady said yes, it was hers, and that she had been looking for it for ten minutes. It was her bread for the week.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Elle acheta son pain devant Livia. Livia a compris deux choses : une pièce par terre est à quelqu'un, et dix minutes suffisent pour que ce quelqu'un revienne.",
+                es: 'Compró su pan delante de Livia. Livia entendió dos cosas: una moneda en el suelo es de alguien, y diez minutos bastan para que ese alguien vuelva.',
+                en: 'She bought her bread in front of Livia. Livia understood two things: a coin on the ground belongs to somebody, and ten minutes is enough for that somebody to come back.'
+              }
+            ]
+          },
+
+          gar_rien: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia ne dit rien. La dame chercha encore quatre minutes, puis entra dans la boulangerie et ressortit sans pain, et repartit dans l'autre sens.",
+                es: 'Livia no dijo nada. La señora buscó cuatro minutos más, luego entró en la panadería, salió sin pan y se fue en la otra dirección.',
+                en: "Livia said nothing. The lady searched for another four minutes, then went into the baker's and came out without any bread, and walked off the other way."
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "La pièce est dans le bocal de Livia. Elle sait exactement laquelle c'est, parmi les autres. Elle ne l'a jamais dépensée, et elle ne la dépensera pas.",
+                es: 'La moneda está en el bote de Livia. Sabe exactamente cuál es, entre las demás. Nunca la ha gastado, y no la va a gastar.',
+                en: "The coin is in Livia's jar. She knows exactly which one it is, among the others. She has never spent it, and she is not going to."
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 33 : la dispute qu'on entend ---------- */
+      {
+        id: 'la-dispute-quon-entend',
+        title: "La dispute qu'on entend",
+        title_en: 'The argument you can hear',
+        title_es: 'La discusión que se oye',
+        subtitle: 'Les parents se disputent, en bas',
+        subtitle_en: 'The parents are arguing, downstairs',
+        subtitle_es: 'Los padres discuten, abajo',
+        tag: 'Tu choisis',
+        themes: ['Famille', 'Nuit'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom', time: 'night',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "À neuf heures et demie, Livia entendit Papa et Maman parler fort, en bas. Pas des cris : des voix dures, qui se coupent, et qui s'arrêtent d'un coup parfois.",
+                es: 'A las nueve y media, Livia oyó a Papá y a Mamá hablar fuerte, abajo. No gritos: voces duras, que se cortan, y que se paran de golpe a veces.',
+                en: 'At half past nine Livia heard Daddy and Mummy talking loudly, downstairs. Not shouting: hard voices, cutting across each other, and sometimes stopping all at once.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Elle ne comprenait pas les mots. C'est le pire : les mots qu'on ne comprend pas, à travers un plancher, sont beaucoup plus gros que les vrais mots.",
+                es: 'No entendía las palabras. Eso es lo peor: las palabras que no se entienden, a través de un suelo, son mucho más grandes que las palabras de verdad.',
+                en: 'She could not make out the words. That is the worst part: words you cannot make out, through a floor, are much bigger than the real words.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Descendre', mot_es: 'Bajar', mot_en: 'Go downstairs', vers: 'descendre' },
+                    { v: 'cube', mot: 'Rester dans son lit', mot_es: 'Quedarse en la cama', mot_en: 'Stay in bed', vers: 'rester' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          descendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia descendit six marches et s'assit, là où on voit la cuisine par l'ouverture de la rampe. Les voix devinrent des mots, et les mots étaient ordinaires.",
+                es: 'Livia bajó seis escalones y se sentó, donde se ve la cocina por el hueco de la barandilla. Las voces se convirtieron en palabras, y las palabras eran corrientes.',
+                en: 'Livia went down six steps and sat there, where you can see the kitchen through the gap in the banister. The voices became words, and the words were ordinary.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'maman', x: 600, y: 514, s: 1 }
+                  ]
+                },
+                text: "Ils parlaient d'argent et d'une voiture à réparer. C'est ennuyeux, et c'est un soulagement énorme : ça n'avait rien à voir avec Livia ni avec Pablo.",
+                es: 'Hablaban de dinero y de un coche que arreglar. Es aburrido, y es un alivio enorme: no tenía nada que ver con Livia ni con Pablo.',
+                en: 'They were talking about money and a car that needed mending. That is boring, and it is an enormous relief: it had nothing to do with Livia or with Pablo.',
+                choix: {
+                  options: [
+                    { v: 'papa', mot: 'Se montrer', mot_es: 'Dejarse ver', mot_en: 'Show herself', vers: 'des_montrer' },
+                    { v: 'cube', mot: 'Remonter sans bruit', mot_es: 'Subir sin ruido', mot_en: 'Creep back up', vers: 'des_remonter' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          des_montrer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia se leva et descendit les six dernières marches. Les voix s'arrêtèrent net, ce qui est très impressionnant à provoquer quand on a quatre ans.",
+                es: 'Livia se levantó y bajó los seis últimos escalones. Las voces se cortaron en seco, lo cual resulta impresionante de provocar cuando tienes cuatro años.',
+                en: 'Livia got up and came down the last six steps. The voices stopped dead, which is a very impressive thing to cause when you are four.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'papa', x: 140, y: 514, s: .85 },
+                    { t: 'maman', x: 330, y: 514, s: .85 },
+                    { t: 'livia', x: 520, y: 518, s: .9 },
+                    { t: 'pablo', x: 700, y: 520, s: .8 }
+                  ]
+                },
+                text: "Papa dit qu'ils parlaient de la voiture. Maman dit la même chose. Les deux étaient vrais, et Livia remonta se coucher et s'endormit en six minutes.",
+                es: 'Papá dijo que hablaban del coche. Mamá dijo lo mismo. Las dos cosas eran verdad, y Livia volvió a la cama y se durmió en seis minutos.',
+                en: 'Daddy said they were talking about the car. Mummy said the same. Both were true, and Livia went back to bed and fell asleep in six minutes.'
+              }
+            ]
+          },
+
+          des_remonter: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia remonta sans bruit, avec l'information. Elle savait que c'était la voiture, et c'était suffisant. Elle ne dit jamais qu'elle était descendue.",
+                es: 'Livia subió sin ruido, con la información. Sabía que era el coche, y era suficiente. Nunca dijo que había bajado.',
+                en: 'Livia crept back up with the information. She knew it was the car, and that was enough. She never said that she had been downstairs.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sleep' }]
+                },
+                text: "Elle s'endormit avec le bruit des voix, qui ne faisait plus peur du tout. Elle redescend les six marches chaque fois, depuis, et elle remonte toujours.",
+                es: 'Se durmió con el ruido de las voces, que ya no daba ningún miedo. Baja los seis escalones cada vez, desde entonces, y siempre sube otra vez.',
+                en: 'She fell asleep with the sound of the voices, which was no longer frightening at all. She goes down the six steps every time now, and she always goes back up.'
+              }
+            ]
+          },
+
+          rester: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia resta dans son lit, avec la couverture jusqu'au menton, et écouta pendant quarante minutes sans comprendre un seul mot.",
+                es: 'Livia se quedó en la cama, con la manta hasta el mentón, y escuchó durante cuarenta minutos sin entender ni una palabra.',
+                en: 'Livia stayed in bed, with the blanket up to her chin, and listened for forty minutes without understanding a single word.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Elle inventa quatre explications, pendant ces quarante minutes, et les quatre étaient pires que la vraie. C'est ce que fait une tête qui n'a pas d'information.",
+                es: 'Inventó cuatro explicaciones durante esos cuarenta minutos, y las cuatro eran peores que la verdadera. Es lo que hace una cabeza sin información.',
+                en: 'She invented four explanations during those forty minutes, and all four were worse than the truth. That is what a head with no information does.',
+                choix: {
+                  options: [
+                    { v: 'maman', mot: 'En parler le matin', mot_es: 'Hablarlo por la mañana', mot_en: 'Bring it up in the morning', vers: 'res_matin' },
+                    { v: 'cube', mot: 'Ne rien dire du tout', mot_es: 'No decir nada', mot_en: 'Say nothing at all', vers: 'res_rien' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          res_matin: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ],
+                  bubbles: [{ x: 40, y: 22, w: 350, t: "Vous parliez fort, hier. C'était à cause de moi ?", tx: 300, ty: 240 }]
+                },
+                text: "Au petit déjeuner, Livia posa la question en entier : « Vous parliez fort, hier. C'était à cause de moi ? » Maman posa sa tasse et répondit tout de suite.",
+                es: 'En el desayuno, Livia hizo la pregunta entera: «Hablabais fuerte, ayer. ¿Era por mí?» Mamá dejó la taza y contestó enseguida.',
+                en: 'At breakfast Livia asked the whole question: «You were talking loudly last night. Was it because of me?» Mummy put her cup down and answered at once.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "C'était la voiture. Maman expliqua aussi que les grands se disputent et restent ensemble, ce qui était l'autre question, celle que Livia n'avait pas posée.",
+                es: 'Era el coche. Mamá explicó también que los mayores discuten y siguen juntos, que era la otra pregunta, la que Livia no había hecho.',
+                en: 'It was the car. Mummy also explained that grown-ups argue and stay together, which was the other question, the one Livia had not asked.'
+              }
+            ]
+          },
+
+          res_rien: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: 'Livia ne dit rien. Les quatre explications inventées restèrent dans sa tête, et la troisième, la pire, revint trois nuits de suite.',
+                es: 'Livia no dijo nada. Las cuatro explicaciones inventadas se quedaron en su cabeza, y la tercera, la peor, volvió tres noches seguidas.',
+                en: 'Livia said nothing. The four invented explanations stayed in her head, and the third, the worst one, came back three nights in a row.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Le quatrième jour, Maman remarqua quelque chose et demanda. Livia raconta les quatre explications. Maman eut l'air bouleversée par la troisième.",
+                es: 'El cuarto día, Mamá notó algo y preguntó. Livia contó las cuatro explicaciones. Mamá pareció muy afectada por la tercera.',
+                en: 'On the fourth day Mummy noticed something and asked. Livia described the four explanations. Mummy looked shaken by the third one.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 34 : le jeu qu'on n'aime pas ---------- */
+      {
+        id: 'le-jeu-quon-naime-pas',
+        title: "Le jeu qu'on n'aime pas",
+        title_en: "The game you don't like",
+        title_es: 'El juego que no te gusta',
+        subtitle: 'Jouer quand même, ou le dire',
+        subtitle_en: 'Play anyway, or say so',
+        subtitle_es: 'Jugar igualmente, o decirlo',
+        tag: 'Tu choisis',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'juliette', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1, mood: 'happy' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Juliette adore le jeu des mariages. On se déguise, on fait une cérémonie, et il y a des discours. Ça dure une heure et quart, à chaque fois.',
+                es: 'A Juliette le encanta el juego de las bodas. Te disfrazas, haces una ceremonia y hay discursos. Dura una hora y cuarto, cada vez.',
+                en: 'Juliette adores the wedding game. You dress up, you have a ceremony, and there are speeches. It lasts an hour and a quarter, every time.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia n'aime pas ce jeu. Pas du tout. Elle y a joué onze fois cette année, à chaque visite, parce que c'est Juliette qui invite et que c'est son jeu.",
+                es: 'A Livia no le gusta ese juego. Nada. Ha jugado once veces este año, en cada visita, porque es Juliette la que invita y es su juego.',
+                en: 'Livia does not like that game. Not at all. She has played it eleven times this year, on every visit, because Juliette does the inviting and it is her game.',
+                choix: {
+                  options: [
+                    { v: 'juliette', mot: 'Y jouer encore une fois', mot_es: 'Jugar otra vez', mot_en: 'Play it one more time', vers: 'jouer' },
+                    { v: 'livia', mot: "Dire qu'elle n'aime pas", mot_es: 'Decir que no le gusta', mot_en: "Say she doesn't like it", vers: 'dire' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          jouer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: 'Livia y joua, pour la douzième fois. Elle fit tous les gestes et tous les discours, correctement, sans aucun enthousiasme et sans que ça se voie.',
+                es: 'Livia jugó, por duodécima vez. Hizo todos los gestos y todos los discursos, correctamente, sin ningún entusiasmo y sin que se notara.',
+                en: 'Livia played, for the twelfth time. She did all the actions and all the speeches, correctly, with no enthusiasm whatsoever and without it showing.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "À la fin, Juliette dit : « Tu t'amuses pas, en fait. » Elle l'avait vu depuis longtemps. C'est très désagréable d'être vue en train de faire semblant.",
+                es: 'Al final, Juliette dijo: «No te diviertes, en realidad.» Lo había visto desde hacía tiempo. Es muy desagradable que te vean fingiendo.',
+                en: "At the end Juliette said: «You're not actually enjoying it.» She had seen it long ago. It is very unpleasant to be caught pretending.",
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Dire la vérité maintenant', mot_es: 'Decir la verdad ahora', mot_en: 'Tell the truth now', vers: 'jou_verite' },
+                    { v: 'cube', mot: 'Dire que si', mot_es: 'Decir que sí', mot_en: 'Insist that she is', vers: 'jou_nier' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          jou_verite: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Livia dit la vérité : « Non. Je joue parce que tu aimes. » Juliette fut vexée dix minutes, puis elle demanda à quoi Livia voulait jouer, elle.',
+                es: 'Livia dijo la verdad: «No. Juego porque a ti te gusta.» Juliette se ofendió diez minutos, y luego preguntó a qué quería jugar Livia.',
+                en: 'Livia told the truth: «No. I play because you like it.» Juliette was offended for ten minutes, then she asked what Livia wanted to play.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Elles font un mariage et un jeu de Livia, chaque visite, dans cet ordre. Le mariage dure vingt minutes maintenant, au lieu d'une heure et quart.",
+                es: 'Hacen una boda y un juego de Livia, cada visita, en ese orden. La boda dura veinte minutos ahora, en vez de hora y cuarto.',
+                en: "They have one wedding and one of Livia's games, every visit, in that order. The wedding lasts twenty minutes now, instead of an hour and a quarter."
+              }
+            ]
+          },
+
+          jou_nier: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia dit que si, qu'elle s'amusait beaucoup. Juliette dit « d'accord » et ne la crut pas. Le jeu suivant fut très silencieux et pas amusant du tout.",
+                es: 'Livia dijo que sí, que se divertía mucho. Juliette dijo «vale» y no la creyó. El juego siguiente fue muy silencioso y nada divertido.',
+                en: 'Livia said she was, that she was enjoying it a lot. Juliette said «all right» and did not believe her. The next game was very quiet and not fun at all.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Elles ont joué au mariage six fois de plus cette année-là. Juliette a arrêté de proposer en mars, sans explication, et Livia n'a jamais su pourquoi.",
+                es: 'Jugaron a la boda seis veces más ese año. Juliette dejó de proponerlo en marzo, sin explicación, y Livia nunca supo por qué.',
+                en: 'They played the wedding game six more times that year. Juliette stopped suggesting it in March, with no explanation, and Livia never knew why.'
+              }
+            ]
+          },
+
+          dire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia le dit avant de commencer : « Moi j'aime pas trop ce jeu. » Ça sortit plus sec qu'elle ne voulait, parce que les phrases préparées sortent toujours sèches.",
+                es: 'Livia lo dijo antes de empezar: «A mí ese juego no me gusta mucho.» Salió más seco de lo que quería, porque las frases preparadas siempre salen secas.',
+                en: "Livia said so before they started: «I don't really like that game.» It came out drier than she had meant, because prepared sentences always come out dry."
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'juliette', x: 400, y: 516, s: 1.05, mood: 'sad' }]
+                },
+                text: "Juliette eut l'air triste pendant une seconde, puis fâchée. C'est son jeu : dire qu'on ne l'aime pas, ça ressemble beaucoup à dire qu'on ne l'aime pas, elle.",
+                es: 'Juliette pareció triste un segundo, y luego enfadada. Es su juego: decir que no te gusta se parece mucho a decir que no te gusta ella.',
+                en: "Juliette looked sad for one second, then cross. It is her game: saying you don't like it sounds a great deal like saying you don't like her.",
+                choix: {
+                  options: [
+                    { v: 'juliette', mot: "Expliquer ce qu'elle aime, elle", mot_es: 'Explicar lo que a ella sí le gusta', mot_en: 'Explain what she does like', vers: 'dir_expliquer' },
+                    { v: 'cube', mot: 'Proposer un échange', mot_es: 'Proponer un intercambio', mot_en: 'Suggest a swap', vers: 'dir_echange' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          dir_expliquer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia expliqua ce qui l'ennuyait précisément : les discours. Pas les déguisements, pas la cérémonie. Juste les discours, qui durent quarante minutes.",
+                es: 'Livia explicó qué le aburría exactamente: los discursos. No los disfraces, no la ceremonia. Solo los discursos, que duran cuarenta minutos.',
+                en: 'Livia explained exactly what bored her: the speeches. Not the dressing up, not the ceremony. Just the speeches, which last forty minutes.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1, mood: 'happy' },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Juliette enleva les discours. Le jeu dure vingt-cinq minutes maintenant et Livia l'aime bien. Juliette dit que c'est mieux aussi, ce qui est généreux et peut-être vrai.",
+                es: 'Juliette quitó los discursos. El juego dura veinticinco minutos ahora y a Livia le gusta. Juliette dice que también es mejor, lo cual es generoso y puede que cierto.',
+                en: 'Juliette took the speeches out. The game lasts twenty-five minutes now and Livia likes it. Juliette says it is better too, which is generous and possibly true.'
+              }
+            ]
+          },
+
+          dir_echange: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia proposa un échange : un jeu de Juliette, un jeu de Livia, en alternance, à chaque visite. C'est très simple et personne ne l'avait proposé en un an.",
+                es: 'Livia propuso un intercambio: un juego de Juliette, un juego de Livia, alternando, en cada visita. Es muy simple y nadie lo había propuesto en un año.',
+                en: "Livia suggested a swap: one of Juliette's games, one of Livia's, alternating, every visit. It is very simple and nobody had suggested it in a year."
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Juliette accepta tout de suite. Elle n'aime pas les cailloux de Livia, d'ailleurs, et elle y joue quand même, et elle ne l'a jamais dit.",
+                es: 'Juliette aceptó enseguida. Por cierto, a ella no le gustan las piedras de Livia, y juega igualmente, y nunca lo ha dicho.',
+                en: "Juliette agreed at once. She does not like Livia's pebbles, as a matter of fact, and she plays anyway, and she has never said so."
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 35 : la cousine qu'on n'aime pas ---------- */
+      {
+        id: 'la-cousine-quon-naime-pas',
+        title: "La cousine qu'on n'aime pas",
+        title_en: "The cousin you don't like",
+        title_es: 'La prima que no te cae bien',
+        subtitle: "Être obligée de jouer avec quelqu'un",
+        subtitle_en: 'Having to play with somebody',
+        subtitle_es: 'Tener que jugar con alguien',
+        tag: 'Tu choisis',
+        themes: ['Famille', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 300, y: 518, s: 1 },
+            { t: 'juliette', x: 600, y: 516, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+                  ]
+                },
+                text: "La cousine de Livia vient dimanche. Elle s'appelle Lou, elle a cinq ans, et elle corrige tout : la façon de dessiner, de courir, de prononcer les mots.",
+                es: 'La prima de Livia viene el domingo. Se llama Lou, tiene cinco años y lo corrige todo: cómo dibujar, cómo correr, cómo pronunciar las palabras.',
+                en: "Livia's cousin is coming on Sunday. She is called Lou, she is five, and she corrects everything: how to draw, how to run, how to say words."
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: "Maman dit : « Tu joues avec elle. C'est ta cousine. » C'est une raison qui n'explique rien du tout, et c'est la seule raison qu'il y a.",
+                es: 'Mamá dijo: «Juegas con ella. Es tu prima.» Es una razón que no explica nada, y es la única razón que hay.',
+                en: "Mummy said: «You will play with her. She's your cousin.» That is a reason that explains nothing at all, and it is the only reason there is.",
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Faire le minimum', mot_es: 'Hacer lo mínimo', mot_en: 'Do the minimum', vers: 'minimum' },
+                    { v: 'juliette', mot: "Chercher ce qu'elle sait faire", mot_es: 'Buscar lo que sí sabe hacer', mot_en: "Look for what she's good at", vers: 'chercher' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          minimum: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+                  ]
+                },
+                text: "Livia fit le minimum : elle joua à côté de Lou plutôt qu'avec elle, répondit par oui et par non, et compta les heures. Il y en avait six.",
+                es: 'Livia hizo lo mínimo: jugó al lado de Lou más que con ella, contestó con sí y con no, y contó las horas. Eran seis.',
+                en: 'Livia did the minimum: she played next to Lou rather than with her, answered yes and no, and counted the hours. There were six of them.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'juliette', x: 400, y: 516, s: 1.05, mood: 'sad' }]
+                },
+                text: "Lou corrigea tout, comme prévu, mais moins fort au fil de l'après-midi. Vers quatre heures, elle ne corrigeait plus rien et elle ne parlait plus beaucoup.",
+                es: 'Lou lo corrigió todo, como estaba previsto, pero cada vez más bajo a lo largo de la tarde. Hacia las cuatro ya no corregía nada y no hablaba mucho.',
+                en: "Lou corrected everything, as expected, but more quietly as the afternoon went on. By four o'clock she was no longer correcting anything and not talking much.",
+                choix: {
+                  options: [
+                    { v: 'juliette', mot: 'Lui demander ce qui se passe', mot_es: 'Preguntarle qué le pasa', mot_en: "Ask her what's wrong", vers: 'min_demander' },
+                    { v: 'cube', mot: "Finir l'après-midi comme ça", mot_es: 'Acabar la tarde así', mot_en: 'Finish the afternoon like that', vers: 'min_finir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          min_demander: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia demanda ce qui se passait. Lou dit qu'elle corrigeait parce que sa maîtresse la corrige tout le temps, et qu'elle croyait que c'était comme ça qu'on aidait.",
+                es: 'Livia preguntó qué pasaba. Lou dijo que corregía porque su maestra la corrige todo el rato, y que creía que así se ayudaba.',
+                en: 'Livia asked what was wrong. Lou said she corrected people because her teacher corrects her all the time, and she thought that was how you helped.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia lui expliqua que non. Lou corrige encore, mais elle dit « j'aide ou je corrige ? » avant, maintenant, ce qui est une phrase assez étonnante à cinq ans.",
+                es: 'Livia le explicó que no. Lou todavía corrige, pero ahora dice antes «¿ayudo o corrijo?», lo cual es una frase bastante asombrosa a los cinco años.',
+                en: 'Livia explained that it was not. Lou still corrects people, but she now says «am I helping or correcting?» first, which is a fairly astonishing sentence at five.'
+              }
+            ]
+          },
+
+          min_finir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia finit l'après-midi comme ça, à côté. Lou partit à six heures. Dans la voiture, par la vitre, elle fit un signe de la main, et Livia ne le vit pas.",
+                es: 'Livia acabó la tarde así, al lado. Lou se fue a las seis. En el coche, por la ventanilla, hizo un gesto con la mano, y Livia no lo vio.',
+                en: 'Livia finished the afternoon like that, alongside. Lou left at six. In the car, through the window, she waved, and Livia did not see it.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Maman dit après que Lou avait demandé, dans la voiture, si Livia l'aimait bien. Livia ne savait pas quoi répondre à ça, et elle y pense encore.",
+                es: 'Mamá contó después que Lou había preguntado, en el coche, si Livia la quería. Livia no supo qué contestar a eso, y todavía lo piensa.',
+                en: 'Mummy said afterwards that Lou had asked, in the car, whether Livia liked her. Livia did not know what to answer to that, and she still thinks about it.'
+              }
+            ]
+          },
+
+          chercher: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia décida de chercher une chose que Lou sait faire. C'est une méthode : quelqu'un qui corrige est souvent quelqu'un qui sait quelque chose.",
+                es: 'Livia decidió buscar algo que Lou supiera hacer. Es un método: quien corrige suele ser alguien que sabe algo.',
+                en: 'Livia decided to look for one thing Lou was good at. It is a method: somebody who corrects you is often somebody who knows something.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1, mood: 'happy' },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'wow' }
+                  ]
+                },
+                text: "Lou sait faire des nœuds. Des vrais, de quatre sortes, qu'elle a appris avec son grand-père. Elle en fit un en huit secondes, sur une corde à linge.",
+                es: 'Lou sabe hacer nudos. De verdad, de cuatro clases, que aprendió con su abuelo. Hizo uno en ocho segundos, en una cuerda de tender.',
+                en: 'Lou can tie knots. Real ones, four sorts, which she learned with her grandfather. She tied one in eight seconds, on a washing line.',
+                choix: {
+                  options: [
+                    { v: 'juliette', mot: 'Lui demander de lui apprendre', mot_es: 'Pedirle que le enseñe', mot_en: 'Ask her to teach her', vers: 'che_apprendre' },
+                    { v: 'cube', mot: 'Essayer toute seule', mot_es: 'Intentarlo sola', mot_en: 'Try on her own', vers: 'che_seule' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          che_apprendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Livia demanda à Lou de lui apprendre. Lou devint une personne complètement différente : elle expliqua lentement, patiemment, et elle ne corrigea pas une seule fois.',
+                es: 'Livia le pidió a Lou que le enseñara. Lou se convirtió en una persona completamente distinta: explicó despacio, con paciencia, y no corrigió ni una vez.',
+                en: 'Livia asked Lou to teach her. Lou became a completely different person: she explained slowly, patiently, and did not correct her once.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Livia sait faire deux nœuds sur quatre. Elles passent les dimanches sur les cordes, maintenant. Livia attend les dimanches, ce qui n'était pas prévu du tout.",
+                es: 'Livia sabe hacer dos nudos de cuatro. Ahora pasan los domingos con las cuerdas. Livia espera los domingos, lo cual no estaba previsto en absoluto.',
+                en: 'Livia can tie two knots out of four. They spend their Sundays on ropes now. Livia looks forward to Sundays, which was not in the plan at all.'
+              }
+            ]
+          },
+
+          che_seule: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: 'Livia essaya de refaire le nœud toute seule, en regardant de loin, sans demander. Elle le rata dix-sept fois. Lou la regardait sans rien dire.',
+                es: 'Livia intentó repetir el nudo sola, mirando de lejos, sin preguntar. Lo falló diecisiete veces. Lou la miraba sin decir nada.',
+                en: 'Livia tried to copy the knot by herself, watching from a distance, without asking. She got it wrong seventeen times. Lou watched her without saying anything.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Au bout d'une heure, Lou vint s'asseoir à côté et fit le nœud très lentement, trois fois, sans commentaire. Livia le réussit à la quatrième.",
+                es: 'Al cabo de una hora, Lou fue a sentarse al lado e hizo el nudo muy despacio, tres veces, sin comentarios. Livia lo consiguió a la cuarta.',
+                en: 'After an hour Lou came and sat down next to her and tied the knot very slowly, three times, without comment. Livia got it right on the fourth.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 36 : le chemin plus court ---------- */
+      {
+        id: 'le-chemin-plus-court',
+        title: 'Le chemin plus court',
+        title_en: 'The shorter way',
+        title_es: 'El camino más corto',
+        subtitle: "Un raccourci qu'on n'a pas le droit de prendre",
+        subtitle_en: "A short cut you're not allowed to take",
+        subtitle_es: 'Un atajo que no se puede tomar',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Dehors'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'road',
+          items: [
+            { t: 'roxane', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1, pose: 'point' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Roxane montra à Livia un passage entre deux maisons qui coupe tout le détour : deux minutes au lieu de dix. Il faut passer par un terrain vide.',
+                es: 'Roxane le mostró a Livia un paso entre dos casas que se salta todo el rodeo: dos minutos en vez de diez. Hay que cruzar un terreno vacío.',
+                en: 'Roxane showed Livia a gap between two houses that cuts out the whole detour: two minutes instead of ten. You have to go across an empty plot.'
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Le terrain n'est pas interdit par un panneau. Il est interdit par Maman, qui a dit une fois : « Tu passes par la rue. Toujours. »",
+                es: 'El terreno no está prohibido por un cartel. Está prohibido por Mamá, que dijo una vez: «Pasas por la calle. Siempre.»',
+                en: 'The plot is not forbidden by a sign. It is forbidden by Mummy, who said once: «You go by the street. Always.»',
+                choix: {
+                  options: [
+                    { v: 'roxane', mot: 'Prendre le raccourci', mot_es: 'Tomar el atajo', mot_en: 'Take the short cut', vers: 'raccourci' },
+                    { v: 'livia', mot: 'Passer par la rue', mot_es: 'Pasar por la calle', mot_en: 'Go by the street', vers: 'rue' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          raccourci: {
+            pages: [
+              {
+                scene: {
+                  bg: 'plain',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Elles passèrent par le terrain. C'est plein d'herbes hautes, de gravats, et d'un vieux bidon. Il y a aussi deux planches avec des clous qui dépassent.",
+                es: 'Cruzaron el terreno. Está lleno de hierbas altas, escombros y un bidón viejo. También hay dos tablas con clavos salidos.',
+                en: 'They went across the plot. It is full of long grass, rubble, and an old drum. There are also two planks with nails sticking out.'
+              },
+              {
+                scene: {
+                  bg: 'plain',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Elles arrivèrent en deux minutes, comme annoncé. Livia avait de la terre jusqu'aux chevilles et une égratignure au genou, et il fallait expliquer les deux.",
+                es: 'Llegaron en dos minutos, como se había dicho. Livia tenía tierra hasta los tobillos y un rasguño en la rodilla, y había que explicar las dos cosas.',
+                en: 'They arrived in two minutes, as promised. Livia had earth up to her ankles and a scratch on her knee, and both needed explaining.',
+                choix: {
+                  options: [
+                    { v: 'maman', mot: 'Dire le raccourci', mot_es: 'Contar el atajo', mot_en: 'Admit the short cut', vers: 'rac_dire' },
+                    { v: 'cube', mot: "Dire qu'elle est tombée dans la rue", mot_es: 'Decir que se cayó en la calle', mot_en: 'Say she fell in the street', vers: 'rac_mentir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          rac_dire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia dit le raccourci en arrivant, en entier, avec le bidon et les planches. Maman écouta sans rien dire jusqu'à la fin, ce qui est difficile à supporter.",
+                es: 'Livia contó el atajo al llegar, entero, con el bidón y las tablas. Mamá escuchó sin decir nada hasta el final, lo cual es difícil de soportar.',
+                en: 'Livia described the short cut on arrival, all of it, including the drum and the planks. Mummy listened without saying anything until the end, which is hard to bear.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Puis Maman alla voir le terrain elle-même. Elle revint et dit : « Les planches, non. Le reste, avec moi d'abord. » Elles l'ont traversé ensemble le samedi.",
+                es: 'Luego Mamá fue a ver el terreno ella misma. Volvió y dijo: «Las tablas, no. El resto, conmigo primero.» Lo cruzaron juntas el sábado.',
+                en: 'Then Mummy went to look at the plot herself. She came back and said: «The planks, no. The rest, with me first.» They crossed it together on the Saturday.'
+              }
+            ]
+          },
+
+          rac_mentir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia dit qu'elle était tombée dans la rue. Maman regarda la terre sur les chaussettes, qui n'est pas de la terre de rue, et ne dit rien du tout.",
+                es: 'Livia dijo que se había caído en la calle. Mamá miró la tierra de los calcetines, que no es tierra de calle, y no dijo nada.',
+                en: 'Livia said she had fallen in the street. Mummy looked at the earth on her socks, which is not street earth, and said nothing at all.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Le soir, Maman dit une seule phrase : « La prochaine fois, dis-le-moi. » Elle n'avait pas dit qu'elle savait, et Livia a compris qu'elle savait depuis le début.",
+                es: 'Por la noche, Mamá dijo una sola frase: «La próxima vez, dímelo.» No había dicho que lo sabía, y Livia entendió que lo sabía desde el principio.',
+                en: 'That evening Mummy said one sentence only: «Next time, tell me.» She had not said that she knew, and Livia understood that she had known all along.'
+              }
+            ]
+          },
+
+          rue: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Livia passa par la rue, et Roxane par le terrain. Roxane arriva huit minutes avant et attendit en se moquant un peu, ce qui est très agaçant.',
+                es: 'Livia pasó por la calle, y Roxane por el terreno. Roxane llegó ocho minutos antes y esperó burlándose un poco, lo cual es muy irritante.',
+                en: 'Livia went by the street, and Roxane by the plot. Roxane arrived eight minutes earlier and waited, teasing her slightly, which is very annoying.'
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: "Ça se répéta quatre jours de suite. Huit minutes de moquerie par jour, c'est beaucoup, et Livia commença à trouver la rue très longue.",
+                es: 'Se repitió cuatro días seguidos. Ocho minutos de burla al día es mucho, y Livia empezó a encontrar la calle larguísima.',
+                en: 'This happened four days in a row. Eight minutes of teasing a day is a lot, and Livia began to find the street very long.',
+                choix: {
+                  options: [
+                    { v: 'maman', mot: 'Demander la permission', mot_es: 'Pedir permiso', mot_en: 'Ask for permission', vers: 'rue_permission' },
+                    { v: 'cube', mot: 'Tenir la rue', mot_es: 'Mantener la calle', mot_en: 'Stick to the street', vers: 'rue_tenir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          rue_permission: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Livia demanda la permission, en expliquant le terrain, les huit minutes, et Roxane. Elle ne cacha pas la partie « Roxane se moque », qui était la vraie raison.',
+                es: 'Livia pidió permiso, explicando el terreno, los ocho minutos y a Roxane. No ocultó la parte de «Roxane se burla», que era la razón verdadera.',
+                en: 'Livia asked for permission, explaining the plot, the eight minutes, and Roxane. She did not hide the «Roxane teases me» part, which was the real reason.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: 'Maman alla voir, enleva les deux planches elle-même, et dit oui. Le raccourci est autorisé depuis, et il prend trois minutes, pas deux.',
+                es: 'Mamá fue a ver, quitó las dos tablas ella misma y dijo sí. El atajo está autorizado desde entonces, y lleva tres minutos, no dos.',
+                en: 'Mummy went to look, removed the two planks herself, and said yes. The short cut has been allowed ever since, and it takes three minutes, not two.'
+              }
+            ]
+          },
+
+          rue_tenir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia tint la rue. Onze jours. Roxane arrêta de se moquer au bout de quatre, parce que se moquer onze jours de suite, c'est trop de travail.",
+                es: 'Livia mantuvo la calle. Once días. Roxane dejó de burlarse al cuarto, porque burlarse once días seguidos es demasiado trabajo.',
+                en: 'Livia stuck to the street. Eleven days. Roxane stopped teasing after four, because teasing somebody for eleven days in a row is too much work.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Le douzième jour, Roxane passa par la rue avec elle, sans explication. Elles font le détour ensemble depuis, et il dure dix minutes, et il est très bien.',
+                es: 'El duodécimo día, Roxane pasó por la calle con ella, sin explicación. Hacen el rodeo juntas desde entonces, dura diez minutos y está muy bien.',
+                en: 'On the twelfth day Roxane walked by the street with her, with no explanation. They do the long way together now, it takes ten minutes, and it is very good.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 37 : le gâteau pour deux ---------- */
+      {
+        id: 'le-gateau-pour-deux',
+        title: 'Le gâteau pour deux',
+        title_en: 'The cake for two',
+        title_es: 'El pastel para dos',
+        subtitle: "Couper, ou laisser l'autre couper",
+        subtitle_en: 'Cut it, or let the other one cut',
+        subtitle_es: 'Cortar, o dejar que corte la otra',
+        tag: 'Tu choisis',
+        themes: ['Partager', 'Amitié'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 300, y: 518, s: 1 },
+            { t: 'pablo', x: 600, y: 520, s: .95 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Il restait un morceau de gâteau pour deux : Livia et Pablo. Maman posa le couteau sur la table et dit : « Vous vous arrangez », et sortit de la cuisine.',
+                es: 'Quedaba un trozo de pastel para dos: Livia y Pablo. Mamá dejó el cuchillo en la mesa y dijo: «Os arregláis», y salió de la cocina.',
+                en: 'There was one piece of cake left for two: Livia and Pablo. Mummy put the knife on the table and said: «Sort it out between you,» and left the kitchen.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: .95 }
+                  ]
+                },
+                text: 'Pablo a deux ans. Il ne sait pas couper, et il sait très bien reconnaître le plus gros morceau. Les deux choses en même temps, ce qui complique tout.',
+                es: 'Pablo tiene dos años. No sabe cortar, y sabe perfectamente reconocer el trozo más grande. Las dos cosas a la vez, lo cual lo complica todo.',
+                en: 'Pablo is two. He cannot cut, and he is extremely good at recognising the bigger piece. Both at once, which complicates everything.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Couper elle-même', mot_es: 'Cortar ella', mot_en: 'Cut it herself', vers: 'couper' },
+                    { v: 'pablo', mot: 'Le laisser choisir après', mot_es: 'Dejarle elegir después', mot_en: 'Let him choose afterwards', vers: 'choisir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          couper: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia coupa. Elle essaya très fort de faire deux parts égales, et elle en fit deux inégales, parce que c'est très difficile avec un couteau et un gâteau mou.",
+                es: 'Livia cortó. Intentó con mucho esmero hacer dos partes iguales, e hizo dos desiguales, porque es muy difícil con un cuchillo y un pastel blando.',
+                en: 'Livia cut. She tried very hard to make two equal pieces, and made two unequal ones, because it is very hard with a knife and a soft cake.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: .95, mood: 'fache' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Elle prit la plus grosse, sans y penser, par réflexe de main. Pablo le vit immédiatement et hurla, et il avait entièrement raison.',
+                es: 'Cogió el más grande, sin pensarlo, por reflejo de la mano. Pablo lo vio inmediatamente y gritó, y tenía toda la razón.',
+                en: 'She took the bigger one, without thinking, by reflex of the hand. Pablo saw it immediately and howled, and he was entirely right.',
+                choix: {
+                  options: [
+                    { v: 'pablo', mot: 'Échanger les assiettes', mot_es: 'Cambiar los platos', mot_en: 'Swap the plates', vers: 'cou_echanger' },
+                    { v: 'cube', mot: 'Garder la plus grosse', mot_es: 'Quedarse con el grande', mot_en: 'Keep the bigger piece', vers: 'cou_garder' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          cou_echanger: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: .95 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia échangea les assiettes sans discuter. Pablo s'arrêta de hurler instantanément. Il mangea les trois quarts et en laissa un peu, ce qui est très énervant.",
+                es: 'Livia cambió los platos sin discutir. Pablo dejó de gritar al instante. Se comió tres cuartos y dejó un poco, lo cual es muy irritante.',
+                en: 'Livia swapped the plates without arguing. Pablo stopped howling instantly. He ate three quarters and left a bit, which is extremely annoying.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Maman revint et ne demanda rien. Elle vit les deux assiettes et comprit tout. Elle coupa la part suivante en deux parts égales, au millimètre, le lendemain.',
+                es: 'Mamá volvió y no preguntó nada. Vio los dos platos y lo entendió todo. Cortó el trozo siguiente en dos partes iguales, al milímetro, al día siguiente.',
+                en: 'Mummy came back and asked nothing. She saw the two plates and understood everything. She cut the next piece into two equal halves, to the millimetre, the next day.'
+              }
+            ]
+          },
+
+          cou_garder: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: .95, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+                  ]
+                },
+                text: "Livia garda la plus grosse, en expliquant à Pablo qu'elle était plus grande, donc qu'il lui en fallait plus. C'est un raisonnement, et ce n'est pas un bon.",
+                es: 'Livia se quedó el más grande, explicándole a Pablo que ella era más grande y por tanto necesitaba más. Es un razonamiento, y no es bueno.',
+                en: 'Livia kept the bigger piece, explaining to Pablo that she was bigger, so she needed more. That is a line of reasoning, and it is not a good one.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: .95, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Pablo pleura jusqu'à la fin du gâteau, ce qui est long. Le gâteau n'était pas bon du tout, mangé comme ça, et Livia s'en souvient très bien.",
+                es: 'Pablo lloró hasta el final del pastel, lo cual es mucho. El pastel no estaba bueno en absoluto, comido así, y Livia se acuerda muy bien.',
+                en: 'Pablo cried until the cake was finished, which is a long time. The cake was not good at all, eaten like that, and Livia remembers it very well.'
+              }
+            ]
+          },
+
+          choisir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: .95 }
+                  ]
+                },
+                text: "Livia utilisa la règle la plus ancienne du monde : elle coupa, et Pablo choisit le premier. C'est elle qui l'a proposé, ce qui est remarquable.",
+                es: 'Livia usó la regla más antigua del mundo: ella cortó y Pablo eligió primero. Lo propuso ella, lo cual es notable.',
+                en: 'Livia used the oldest rule in the world: she cut, and Pablo chose first. She suggested it herself, which is remarkable.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: 'Du coup, elle coupa avec une précision extraordinaire, pendant quatre minutes, en ajustant trois fois. Les deux parts étaient quasiment identiques.',
+                es: 'Así que cortó con una precisión extraordinaria, durante cuatro minutos, ajustando tres veces. Las dos partes eran casi idénticas.',
+                en: 'So she cut with extraordinary precision, for four minutes, adjusting three times. The two pieces were virtually identical.',
+                choix: {
+                  options: [
+                    { v: 'pablo', mot: 'Le laisser vraiment choisir', mot_es: 'Dejarle elegir de verdad', mot_en: 'Really let him choose', vers: 'cho_vrai' },
+                    { v: 'cube', mot: 'Lui montrer laquelle prendre', mot_es: 'Indicarle cuál coger', mot_en: 'Point him at one', vers: 'cho_montrer' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          cho_vrai: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: .95, mood: 'happy' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Pablo choisit. Il prit celle de gauche, qui était la plus petite d'un cheveu, parce qu'il a deux ans et qu'il ne regarde pas la taille, il regarde la place.",
+                es: 'Pablo eligió. Cogió el de la izquierda, que era el más pequeño por un pelo, porque tiene dos años y no mira el tamaño, mira el sitio.',
+                en: 'Pablo chose. He took the left one, which was smaller by a hair, because he is two and does not look at the size, he looks at the position.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: .95 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Livia eut la plus grosse, par accident, et sans avoir rien pris. C'est le seul cas où avoir la plus grosse est entièrement agréable.",
+                es: 'Livia tuvo el más grande, por accidente, y sin haber cogido nada. Es el único caso en que tener el más grande resulta completamente agradable.',
+                en: 'Livia got the bigger one, by accident, and without having taken anything. It is the only case in which having the bigger piece is entirely pleasant.'
+              }
+            ]
+          },
+
+          cho_montrer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                    { t: 'pablo', x: 600, y: 520, s: .95 }
+                  ]
+                },
+                text: "Livia poussa légèrement une assiette vers Pablo, celle de gauche, pour l'orienter. Il prit l'autre, bien sûr, parce qu'un enfant de deux ans voit tout.",
+                es: 'Livia empujó ligeramente un plato hacia Pablo, el de la izquierda, para orientarlo. Cogió el otro, por supuesto, porque un niño de dos años lo ve todo.',
+                en: 'Livia nudged one plate slightly towards Pablo, the left one, to steer him. He took the other one, of course, because a two-year-old sees everything.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: .95 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia se retrouva avec la part qu'elle avait essayé de donner. C'était exactement la même taille. La leçon est quelque part là-dedans.",
+                es: 'Livia se quedó con el trozo que había intentado dar. Era exactamente del mismo tamaño. La lección está en algún sitio ahí dentro.',
+                en: 'Livia was left with the piece she had tried to give away. It was exactly the same size. The lesson is somewhere in there.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 38 : la photo cassée ---------- */
+      {
+        id: 'la-photo-cassee',
+        title: 'La photo cassée',
+        title_en: 'The broken photograph',
+        title_es: 'La foto rota',
+        subtitle: 'Un cadre tombé, et personne dans la pièce',
+        subtitle_en: 'A fallen frame, and nobody in the room',
+        subtitle_es: 'Un marco caído, y nadie en la habitación',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Famille'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }],
+                  sfx: [{ t: 'CLING.', x: 400, y: 146, fs: 28, rot: -6, color: '#e0453c' }]
+                },
+                text: 'Livia courait dans le couloir, ce qui est interdit, et le cadre du mur tomba. Le verre se fendit en deux, en travers de la photo, pile au milieu.',
+                es: 'Livia corría por el pasillo, lo cual está prohibido, y el marco de la pared se cayó. El cristal se partió en dos, atravesando la foto, justo por el medio.',
+                en: 'Livia was running in the corridor, which is forbidden, and the frame on the wall fell down. The glass split in two, across the photograph, right down the middle.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Sur la photo, il y a Mamie jeune avec un bébé. C'est la seule photo de cette sorte dans la maison, et Livia le sait, et c'est pour ça que c'est grave.",
+                es: 'En la foto está la abuela joven con un bebé. Es la única foto de ese tipo en la casa, y Livia lo sabe, y por eso es grave.',
+                en: 'In the photograph there is Granny when she was young with a baby. It is the only photograph of its kind in the house, and Livia knows it, and that is why it matters.',
+                choix: {
+                  options: [
+                    { v: 'etagere', mot: 'Remettre le cadre au mur', mot_es: 'Volver a colgar el marco', mot_en: 'Hang the frame back up', vers: 'remettre' },
+                    { v: 'maman', mot: 'Aller le dire tout de suite', mot_es: 'Ir a decirlo enseguida', mot_en: 'Go and tell straight away', vers: 'dire' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          remettre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia remit le cadre au mur, avec le verre cassé dedans, en tournant la fente vers le haut pour qu'elle se voie moins. Ça tient, et ça se voit quand même.",
+                es: 'Livia volvió a colgar el marco, con el cristal roto dentro, girando la grieta hacia arriba para que se viera menos. Aguanta, y se ve igualmente.',
+                en: 'Livia hung the frame back on the wall, with the broken glass in it, turning the crack upwards so that it would show less. It holds, and it shows anyway.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Elle passa devant le cadre onze fois dans l'après-midi, et regarda la fente chaque fois. Personne d'autre ne regarda, parce que personne ne cherchait.",
+                es: 'Pasó por delante del marco once veces por la tarde, y miró la grieta cada vez. Nadie más miró, porque nadie buscaba.',
+                en: 'She walked past the frame eleven times that afternoon, and looked at the crack each time. Nobody else looked, because nobody was looking for it.',
+                choix: {
+                  options: [
+                    { v: 'maman', mot: 'Le dire le soir', mot_es: 'Decirlo por la noche', mot_en: 'Tell her that evening', vers: 'rem_soir' },
+                    { v: 'cube', mot: "Attendre qu'on le voie", mot_es: 'Esperar a que lo vean', mot_en: 'Wait for somebody to notice', vers: 'rem_attendre' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          rem_soir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Au dîner, Livia dit : « Le cadre du couloir, c'est moi. Je courais. » Maman alla voir, revint, et dit que ce n'était pas la photo qui était abîmée.",
+                es: 'En la cena, Livia dijo: «El marco del pasillo, he sido yo. Corría.» Mamá fue a ver, volvió y dijo que no era la foto lo que estaba estropeado.',
+                en: 'At dinner Livia said: «The frame in the corridor, that was me. I was running.» Mummy went to look, came back, and said that it was not the photograph that was damaged.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Le verre se remplace pour trois euros. Elles le changèrent le samedi, à deux. Livia a appris qu'un verre cassé n'est pas une photo cassée.",
+                es: 'El cristal se cambia por tres euros. Lo cambiaron el sábado, las dos. Livia aprendió que un cristal roto no es una foto rota.',
+                en: 'Glass can be replaced for three euros. They changed it on the Saturday, the two of them. Livia learned that broken glass is not a broken photograph.'
+              }
+            ]
+          },
+
+          rem_attendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: 'Livia attendit. Personne ne vit la fente pendant quatre jours. Chaque jour, elle était un peu plus visible pour Livia et aussi invisible pour les autres.',
+                es: 'Livia esperó. Nadie vio la grieta durante cuatro días. Cada día era algo más visible para Livia e igual de invisible para los demás.',
+                en: 'Livia waited. Nobody saw the crack for four days. Every day it was slightly more visible to Livia and just as invisible to everybody else.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "C'est Mamie qui la vit, le dimanche, en passant. Elle ne demanda rien du tout. Elle décrocha le cadre et l'emporta chez elle, et il n'est jamais revenu.",
+                es: 'Fue la abuela quien la vio, el domingo, al pasar. No preguntó nada. Descolgó el marco y se lo llevó a su casa, y nunca volvió.',
+                en: 'It was Granny who saw it, on the Sunday, as she went past. She asked nothing at all. She took the frame down and took it home with her, and it has never come back.'
+              }
+            ]
+          },
+
+          dire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: 'Livia alla trouver Maman avec le cadre dans les bras, le verre cassé dedans, en marchant très lentement pour ne rien laisser tomber.',
+                es: 'Livia fue a buscar a Mamá con el marco en brazos, con el cristal roto dentro, andando muy despacio para no dejar caer nada.',
+                en: 'Livia went to find Mummy with the frame in her arms, the broken glass inside it, walking very slowly so as not to drop anything.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Maman prit le cadre, enleva le verre, et vérifia la photo. La photo n'avait rien du tout. Elle le dit à voix haute, trois fois, parce que Livia tremblait.",
+                es: 'Mamá cogió el marco, quitó el cristal y revisó la foto. La foto no tenía nada. Lo dijo en voz alta, tres veces, porque Livia temblaba.',
+                en: 'Mummy took the frame, removed the glass, and checked the photograph. The photograph was completely undamaged. She said so out loud, three times, because Livia was shaking.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Proposer de payer le verre', mot_es: 'Ofrecerse a pagar el cristal', mot_en: 'Offer to pay for the glass', vers: 'dir_payer' },
+                    { v: 'mamie', mot: 'Le dire aussi à Mamie', mot_es: 'Decírselo también a la abuela', mot_en: 'Tell Granny too', vers: 'dir_mamie' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          dir_payer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia proposa de payer le verre avec son bocal. Maman dit qu'elle paierait la moitié, ce qui est plus juste : Livia courait, et le crochet était mal mis.",
+                es: 'Livia se ofreció a pagar el cristal con su bote. Mamá dijo que pagaría la mitad, lo cual es más justo: Livia corría, y el gancho estaba mal puesto.',
+                en: 'Livia offered to pay for the glass out of her jar. Mummy said she would pay half, which is fairer: Livia had been running, and the hook had been badly fixed.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Elles allèrent acheter le verre à deux, et Livia posa sa moitié sur le comptoir elle-même. Le crochet a été remis correctement, aussi, le même jour.',
+                es: 'Fueron a comprar el cristal las dos, y Livia puso su mitad en el mostrador ella misma. El gancho también se volvió a poner bien, el mismo día.',
+                en: 'They went to buy the glass together, and Livia put her half on the counter herself. The hook was refitted properly too, the same day.'
+              }
+            ]
+          },
+
+          dir_mamie: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia téléphona à Mamie elle-même, ce qui demande du courage, et dit la phrase en entier : « J'ai cassé le verre de ta photo. La photo n'a rien. »",
+                es: 'Livia llamó a la abuela ella misma, lo cual requiere valor, y dijo la frase entera: «He roto el cristal de tu foto. La foto no tiene nada.»',
+                en: 'Livia telephoned Granny herself, which takes courage, and said the whole sentence: «I broke the glass on your photograph. The photograph is fine.»'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Mamie dit que la photo avait quarante-six ans et sept verres différents. Celui-là était le huitième. Livia trouva ça très rassurant, et ça l'était.",
+                es: 'La abuela dijo que la foto tenía cuarenta y seis años y siete cristales distintos. Ese era el octavo. A Livia le pareció muy tranquilizador, y lo era.',
+                en: 'Granny said the photograph was forty-six years old and had had seven different sheets of glass. That one was the eighth. Livia found that very reassuring, and it was.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 39 : la bagarre dans la cour ---------- */
+      {
+        id: 'la-bagarre-dans-la-cour',
+        title: 'La bagarre dans la cour',
+        title_en: 'The fight in the playground',
+        title_es: 'La pelea en el patio',
+        subtitle: 'Deux garçons, et personne qui bouge',
+        subtitle_en: 'Two boys, and nobody moving',
+        subtitle_es: 'Dos niños, y nadie se mueve',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'village',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: 'Au fond de la cour, deux garçons de grande section se battaient pour de vrai. Pas une bagarre de jeu : il y avait une manche déchirée et du sang sur une lèvre.',
+                es: 'Al fondo del patio, dos niños mayores se peleaban de verdad. No una pelea de juego: había una manga rota y sangre en un labio.',
+                en: 'At the far end of the playground two older boys were fighting for real. Not a play fight: there was a torn sleeve and blood on a lip.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Il y avait onze enfants autour, dont Livia, et aucun adulte en vue. Personne ne bougeait, et personne n'allait chercher personne.",
+                es: 'Había once niños alrededor, incluida Livia, y ningún adulto a la vista. Nadie se movía, y nadie iba a buscar a nadie.',
+                en: 'There were eleven children standing round, Livia among them, and no adult in sight. Nobody was moving, and nobody was going to fetch anybody.',
+                choix: {
+                  options: [
+                    { v: 'etagere', mot: 'Courir chercher la maîtresse', mot_es: 'Correr a buscar a la maestra', mot_en: 'Run and fetch the teacher', vers: 'maitresse' },
+                    { v: 'livia', mot: 'Crier très fort', mot_es: 'Gritar muy fuerte', mot_en: 'Shout very loudly', vers: 'crier' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          maitresse: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'run' }]
+                },
+                text: "Livia courut vers le préau, où les maîtresses sont, à l'autre bout de la cour. Elle courut vite et elle arriva en quarante secondes.",
+                es: 'Livia corrió hacia el cobertizo, donde están las maestras, en el otro extremo del patio. Corrió rápido y llegó en cuarenta segundos.',
+                en: 'Livia ran towards the shelter, where the teachers are, at the other end of the playground. She ran fast and got there in forty seconds.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: 'Elle ne savait pas comment dire. Elle dit : « Ils se tapent, là-bas, pour de vrai. » Les trois derniers mots sont ceux qui firent se lever la maîtresse.',
+                es: 'No sabía cómo decirlo. Dijo: «Se están pegando, allí, de verdad.» Las últimas palabras fueron las que hicieron levantarse a la maestra.',
+                en: "She did not know how to say it. She said: «They're hitting each other, over there, for real.» The last three words are the ones that made the teacher get up.",
+                choix: {
+                  options: [
+                    { v: 'etagere', mot: 'Retourner avec elle', mot_es: 'Volver con ella', mot_en: 'Go back with her', vers: 'mai_retour' },
+                    { v: 'cube', mot: 'Rester au préau', mot_es: 'Quedarse en el cobertizo', mot_en: 'Stay by the shelter', vers: 'mai_rester' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          mai_retour: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia retourna avec la maîtresse, en courant à côté d'elle. La bagarre s'arrêta dès qu'une adulte fut à dix mètres, ce qui est toujours le cas.",
+                es: 'Livia volvió con la maestra, corriendo a su lado. La pelea se paró en cuanto una adulta estuvo a diez metros, lo cual pasa siempre.',
+                en: 'Livia went back with the teacher, running alongside her. The fight stopped as soon as an adult was ten yards away, which is always the case.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "La maîtresse demanda qui avait couru la chercher. Onze enfants dirent « Livia ». Elle n'a pas aimé être montrée, et elle le referait exactement pareil.",
+                es: 'La maestra preguntó quién había corrido a buscarla. Once niños dijeron «Livia». No le gustó ser señalada, y lo volvería a hacer exactamente igual.',
+                en: 'The teacher asked who had run to fetch her. Eleven children said «Livia.» She did not enjoy being pointed out, and she would do it again exactly the same.'
+              }
+            ]
+          },
+
+          mai_rester: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia resta au préau, parce qu'elle n'avait pas envie de revoir ça. C'est une raison honnête, et elle ne l'a dite à personne.",
+                es: 'Livia se quedó en el cobertizo, porque no tenía ganas de volver a ver eso. Es una razón honesta, y no se la ha dicho a nadie.',
+                en: 'Livia stayed by the shelter, because she did not want to see it again. That is an honest reason, and she has told nobody.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Personne ne sut qui avait prévenu la maîtresse, et deux enfants dirent que c'était eux. Livia ne corrigea pas. Elle sait ce qu'elle a fait, et ça suffit.",
+                es: 'Nadie supo quién había avisado a la maestra, y dos niños dijeron que habían sido ellos. Livia no lo corrigió. Sabe lo que hizo, y es suficiente.',
+                en: 'Nobody knew who had alerted the teacher, and two children said it had been them. Livia did not correct them. She knows what she did, and that is enough.'
+              }
+            ]
+          },
+
+          crier: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }],
+                  sfx: [{ t: 'MAÎTRESSE !', x: 400, y: 146, fs: 30, rot: -5, color: '#e0453c' }]
+                },
+                text: "Livia cria « maîtresse » aussi fort qu'elle pouvait, une fois, puis deux. C'est très désagréable à faire : onze enfants se tournèrent vers elle d'un coup.",
+                es: 'Livia gritó «maestra» tan fuerte como pudo, una vez, y luego dos. Es muy desagradable hacerlo: once niños se giraron hacia ella de golpe.',
+                en: 'Livia shouted «Miss!» as loudly as she could, once, then twice. It is very unpleasant to do: eleven children turned towards her all at once.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Un garçon lui dit de se taire, qu'elle était une rapporteuse. C'est le mot qui fait le plus peur dans une cour d'école, et il arrive toujours à ce moment-là.",
+                es: 'Un niño le dijo que se callara, que era una chivata. Es la palabra que más miedo da en un patio de colegio, y siempre llega en ese momento.',
+                en: 'A boy told her to shut up, that she was a tell-tale. That is the most frightening word in a school playground, and it always arrives at that moment.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Crier encore', mot_es: 'Gritar otra vez', mot_en: 'Shout again', vers: 'cri_encore' },
+                    { v: 'cube', mot: "S'arrêter", mot_es: 'Pararse', mot_en: 'Stop', vers: 'cri_arreter' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          cri_encore: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia cria encore, deux fois, en regardant le garçon qui lui avait dit de se taire. La maîtresse arriva à la deuxième. La bagarre s'arrêta.",
+                es: 'Livia gritó otra vez, dos veces, mirando al niño que le había dicho que se callara. La maestra llegó a la segunda. La pelea se paró.',
+                en: 'Livia shouted again, twice, looking at the boy who had told her to shut up. The teacher arrived on the second. The fight stopped.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "On l'appela rapporteuse pendant trois jours. Le quatrième, un des deux garçons de la bagarre vint lui dire merci, tout bas, et c'était terminé.",
+                es: 'La llamaron chivata durante tres días. El cuarto, uno de los dos niños de la pelea fue a darle las gracias, en voz baja, y se acabó.',
+                en: 'She was called a tell-tale for three days. On the fourth, one of the two boys from the fight came to thank her, very quietly, and that was the end of it.'
+              }
+            ]
+          },
+
+          cri_arreter: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia s'arrêta de crier. C'est très compréhensible. La bagarre continua encore deux minutes, qui sont deux minutes très longues quand on a arrêté de crier.",
+                es: 'Livia dejó de gritar. Es muy comprensible. La pelea siguió dos minutos más, que son dos minutos larguísimos cuando has dejado de gritar.',
+                en: 'Livia stopped shouting. That is entirely understandable. The fight went on for another two minutes, which are two very long minutes when you have stopped shouting.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Le soir, elle en parla à Maman, qui ne dit pas qu'elle avait mal fait. Elle dit : « La prochaine fois, cours au lieu de crier. On ne peut pas te dire de te taire en courant. »",
+                es: 'Por la noche se lo contó a Mamá, que no dijo que hubiera hecho mal. Dijo: «La próxima vez corre en vez de gritar. No se te puede mandar callar mientras corres.»',
+                en: "That evening she told Mummy, who did not say she had done wrong. She said: «Next time, run instead of shouting. Nobody can tell you to shut up while you're running.»"
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 40 : la clé trouvée ---------- */
+      {
+        id: 'la-cle-trouvee',
+        title: 'La clé trouvée',
+        title_en: 'The key on the step',
+        title_es: 'La llave encontrada',
+        subtitle: 'Une clé sur un paillasson',
+        subtitle_en: 'A key on a doormat',
+        subtitle_es: 'Una llave en un felpudo',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Amitié'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'road',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'wow' }]
+                },
+                text: 'Sur le paillasson du numéro quatre, il y avait un trousseau de clés, posé, avec un porte-clés en forme de poisson. La porte était fermée.',
+                es: 'En el felpudo del número cuatro había un manojo de llaves, puesto ahí, con un llavero en forma de pez. La puerta estaba cerrada.',
+                en: 'On the doormat at number four there was a bunch of keys, lying there, with a fish-shaped key ring. The door was closed.'
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Quelqu'un les avait oubliées en rentrant, ou en sortant. Dans les deux cas, quelqu'un allait les chercher bientôt, et dans un cas, quelqu'un était dedans.",
+                es: 'Alguien las había olvidado al entrar, o al salir. En los dos casos, alguien iba a buscarlas pronto, y en un caso, alguien estaba dentro.',
+                en: 'Somebody had forgotten them on their way in, or on their way out. Either way, somebody would be looking for them soon, and in one case, somebody was inside.',
+                choix: {
+                  options: [
+                    { v: 'etagere', mot: 'Sonner à la porte', mot_es: 'Llamar a la puerta', mot_en: 'Ring the bell', vers: 'sonner' },
+                    { v: 'livia', mot: 'Les laisser où elles sont', mot_es: 'Dejarlas donde están', mot_en: 'Leave them where they are', vers: 'laisser' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          sonner: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia sonna. Il ne se passa rien pendant huit secondes, puis la porte s'ouvrit sur un monsieur en chaussettes qui cherchait quelque chose dans ses poches.",
+                es: 'Livia llamó. No pasó nada durante ocho segundos, y luego la puerta se abrió y apareció un señor en calcetines que buscaba algo en sus bolsillos.',
+                en: 'Livia rang. Nothing happened for eight seconds, then the door opened onto a man in his socks who was searching through his pockets.'
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia montra les clés par terre. Le monsieur dit « ah » et s'assit sur la marche, parce qu'il les cherchait depuis dix minutes dans la maison.",
+                es: 'Livia señaló las llaves en el suelo. El señor dijo «ah» y se sentó en el escalón, porque las llevaba diez minutos buscando dentro de la casa.',
+                en: 'Livia pointed at the keys on the ground. The man said «ah» and sat down on the step, because he had been looking for them indoors for ten minutes.',
+                choix: {
+                  options: [
+                    { v: 'etagere', mot: "Lui demander comment c'est arrivé", mot_es: 'Preguntarle cómo ha pasado', mot_en: 'Ask him how it happened', vers: 'son_comment' },
+                    { v: 'livia', mot: 'Partir', mot_es: 'Irse', mot_en: 'Leave', vers: 'son_partir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          son_comment: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Livia demanda comment on oublie des clés sur son propre paillasson. Le monsieur expliqua : il portait trois sacs et il avait posé les clés pour ouvrir.',
+                es: 'Livia preguntó cómo se olvidan las llaves en el propio felpudo. El señor explicó: llevaba tres bolsas y había dejado las llaves para abrir.',
+                en: 'Livia asked how anybody forgets their keys on their own doormat. The man explained: he had been carrying three bags and had put the keys down to open up.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Il lui montra son truc, depuis : les clés dans la poche de gauche, toujours, jamais ailleurs. Livia met les siennes à gauche. Elle n'a pas de clés, mais c'est prévu.",
+                es: 'Le enseñó su truco, desde entonces: las llaves en el bolsillo izquierdo, siempre, nunca en otro. Livia pone las suyas a la izquierda. No tiene llaves, pero está previsto.',
+                en: 'He showed her his trick, from then on: keys in the left-hand pocket, always, never anywhere else. Livia puts hers on the left. She has no keys, but she is prepared.'
+              }
+            ]
+          },
+
+          son_partir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia partit dès que le monsieur eut les clés en main. Elle ne dit pas au revoir, parce qu'elle était un peu intimidée, ce qui arrive souvent.",
+                es: 'Livia se fue en cuanto el señor tuvo las llaves en la mano. No se despidió, porque estaba algo intimidada, lo cual pasa a menudo.',
+                en: 'Livia left as soon as the man had the keys in his hand. She did not say goodbye, because she was slightly intimidated, which happens often.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Le lendemain, il y avait un petit paquet sur le paillasson de Livia : un porte-clés en forme de poisson, le même. Elle l'a accroché à son cartable.",
+                es: 'Al día siguiente había un paquetito en el felpudo de Livia: un llavero en forma de pez, el mismo. Se lo ha colgado de la mochila.',
+                en: "The next day there was a small parcel on Livia's doormat: a fish-shaped key ring, the same one. She has hung it on her satchel."
+              }
+            ]
+          },
+
+          laisser: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia laissa les clés exactement où elles étaient. C'est la règle qu'on lui a apprise : on ne touche pas, et surtout on ne déplace pas.",
+                es: 'Livia dejó las llaves exactamente donde estaban. Es la regla que le han enseñado: no se toca, y sobre todo no se mueve.',
+                en: 'Livia left the keys exactly where they were. That is the rule she has been taught: you do not touch, and above all you do not move things.'
+              },
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Elle continua son chemin, et au bout de quatre maisons, elle pensa à quelque chose : un trousseau sur un paillasson, n'importe qui peut le prendre.",
+                es: 'Siguió su camino y, a las cuatro casas, pensó en algo: un manojo en un felpudo, cualquiera puede cogerlo.',
+                en: 'She carried on, and four houses later, she thought of something: a bunch of keys on a doormat, anybody could take them.',
+                choix: {
+                  options: [
+                    { v: 'maman', mot: 'En parler à Maman', mot_es: 'Contárselo a Mamá', mot_en: 'Tell Mummy about it', vers: 'lai_maman' },
+                    { v: 'livia', mot: 'Revenir sonner', mot_es: 'Volver a llamar', mot_en: 'Go back and ring', vers: 'lai_revenir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          lai_maman: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia en parla à Maman en arrivant. Maman reposa son sac et elles repartirent toutes les deux, en marchant vite, jusqu'au numéro quatre.",
+                es: 'Livia se lo contó a Mamá al llegar. Mamá dejó el bolso y volvieron a salir las dos, andando rápido, hasta el número cuatro.',
+                en: 'Livia told Mummy on arriving home. Mummy put her bag down and they both set off again, walking fast, to number four.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'Les clés étaient encore là, vingt minutes plus tard. Maman sonna. Livia a compris une chose : une règle peut être bonne et incomplète en même temps.',
+                es: 'Las llaves seguían ahí, veinte minutos después. Mamá llamó. Livia entendió una cosa: una regla puede ser buena e incompleta a la vez.',
+                en: 'The keys were still there, twenty minutes later. Mummy rang the bell. Livia understood one thing: a rule can be good and incomplete at the same time.'
+              }
+            ]
+          },
+
+          lai_revenir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'run' }]
+                },
+                text: 'Livia revint sur ses pas en courant, toute seule, et sonna. Elle avait décidé que laisser des clés dehors était pire que de toucher à quelque chose.',
+                es: 'Livia volvió corriendo, sola, y llamó. Había decidido que dejar unas llaves fuera era peor que tocar algo.',
+                en: 'Livia ran back, on her own, and rang the bell. She had decided that leaving keys outside was worse than touching something.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "La dame du numéro quatre les cherchait partout dans la maison. Elle remercia trois fois. Livia a raconté sa décision à Maman le soir, et Maman a dit que c'était la bonne.",
+                es: 'La señora del número cuatro las buscaba por toda la casa. Dio las gracias tres veces. Livia le contó su decisión a Mamá por la noche, y Mamá dijo que era la correcta.',
+                en: 'The lady at number four was looking for them all over the house. She said thank you three times. Livia told Mummy about her decision that evening, and Mummy said it was the right one.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 41 : l'heure du départ ---------- */
+      {
+        id: 'lheure-du-depart',
+        title: "L'heure du départ",
+        title_en: 'Time to go',
+        title_es: 'La hora de irse',
+        subtitle: 'Cinq minutes qui ne suffisent pas',
+        subtitle_en: "Five minutes that aren't enough",
+        subtitle_es: 'Cinco minutos que no bastan',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'garden', time: 'sunset',
+          items: [
+            { t: 'livia', x: 300, y: 518, s: 1 },
+            { t: 'pablo', x: 600, y: 520, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: 1, pose: 'sit' }
+                  ]
+                },
+                text: "Livia et Pablo construisaient une tour depuis le début de l'après-midi. Elle avait trois étages, un escalier, et il restait le toit à faire.",
+                es: 'Livia y Pablo llevaban toda la tarde construyendo una torre. Tenía tres pisos, una escalera, y faltaba el tejado.',
+                en: 'Livia and Pablo had been building a tower all afternoon. It had three floors, a staircase, and the roof was still to do.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1, pose: 'point' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Maman dit : « Cinq minutes. » Livia sait que cinq minutes n'est pas une vraie mesure : c'est le mot que disent les grands quand ils ont déjà décidé de partir.",
+                es: 'Mamá dijo: «Cinco minutos.» Livia sabe que cinco minutos no es una medida de verdad: es la palabra que dicen los mayores cuando ya han decidido irse.',
+                en: 'Mummy said: «Five minutes.» Livia knows that five minutes is not a real measurement: it is the word grown-ups use when they have already decided to leave.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Demander cinq minutes de plus', mot_es: 'Pedir cinco minutos más', mot_en: 'Ask for five more minutes', vers: 'rallonger' },
+                    { v: 'pablo', mot: 'Dire ce qui manque vraiment', mot_es: 'Decir qué falta de verdad', mot_en: "Say what's really missing", vers: 'dire' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          rallonger: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia demanda cinq minutes de plus. Maman en donna trois. Trois minutes pour faire un toit qui en demandait dix, c'est de l'arithmétique perdue d'avance.",
+                es: 'Livia pidió cinco minutos más. Mamá dio tres. Tres minutos para hacer un tejado que necesitaba diez es una aritmética perdida de antemano.',
+                en: 'Livia asked for five more minutes. Mummy gave three. Three minutes to build a roof that needed ten is arithmetic you have lost before you start.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, mood: 'fache' },
+                    { t: 'pablo', x: 600, y: 520, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: 'Ils se dépêchèrent. Le toit tomba, et il emporta le troisième étage avec lui. Pablo ne dit rien du tout, ce qui est pire que de crier.',
+                es: 'Se dieron prisa. El tejado se cayó, y se llevó el tercer piso consigo. Pablo no dijo nada de nada, que es peor que gritar.',
+                en: 'They hurried. The roof fell in, and it took the third floor down with it. Pablo said nothing at all, which is worse than shouting.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Recommencer très vite', mot_es: 'Empezar de nuevo muy rápido', mot_en: 'Start again very fast', vers: 'ral_vite' },
+                    { v: 'cube', mot: 'Laisser la tour comme ça', mot_es: 'Dejar la torre así', mot_en: 'Leave the tower as it is', vers: 'ral_laisser' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          ral_vite: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, pose: 'sit' },
+                    { t: 'pablo', x: 600, y: 520, s: 1, pose: 'sit' }
+                  ]
+                },
+                text: "Ils recommencèrent très vite, à quatre mains, sans parler. Le troisième étage revint. Le toit, non : il n'y avait plus de temps pour le toit.",
+                es: 'Empezaron de nuevo muy rápido, a cuatro manos, sin hablar. El tercer piso volvió. El tejado, no: ya no quedaba tiempo para el tejado.',
+                en: 'They started again very fast, four hands, no talking. The third floor came back. The roof did not: there was no time left for the roof.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "En partant, Pablo dit qu'une tour sans toit, c'est un château. Livia trouve que c'est une façon très élégante de régler le problème.",
+                es: 'Al irse, Pablo dijo que una torre sin tejado es un castillo. Livia piensa que es una manera muy elegante de resolver el problema.',
+                en: 'As they left, Pablo said that a tower with no roof is a castle. Livia thinks that is a very elegant way of settling the matter.'
+              }
+            ]
+          },
+
+          ral_laisser: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: 'Livia laissa la tour cassée. On ne répare pas un troisième étage en une minute et demie, et elle le savait avant de commencer à se dépêcher.',
+                es: 'Livia dejó la torre rota. Un tercer piso no se arregla en un minuto y medio, y lo sabía antes de empezar a darse prisa.',
+                en: 'Livia left the tower broken. You do not repair a third floor in a minute and a half, and she knew that before she started hurrying.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Dans la rue, elle expliqua à Maman que trois minutes, ça ne sert à rien. Maman dit qu'elle n'y avait pas pensé, et que la prochaine fois elle demanderait combien il en faut.",
+                es: 'En la calle le explicó a Mamá que tres minutos no sirven de nada. Mamá dijo que no lo había pensado, y que la próxima vez preguntaría cuántos hacen falta.',
+                en: 'In the street she explained to Mummy that three minutes are no use. Mummy said she had not thought of that, and next time she would ask how many were needed.'
+              }
+            ]
+          },
+
+          dire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                    { t: 'maman', x: 600, y: 514, s: 1 }
+                  ]
+                },
+                text: "Livia dit ce qui manquait vraiment : le toit, qui demande deux personnes et quatre minutes, parce qu'il faut tenir les côtés pendant qu'on pose le dessus.",
+                es: 'Livia dijo qué faltaba de verdad: el tejado, que necesita dos personas y cuatro minutos, porque hay que sujetar los lados mientras se pone encima.',
+                en: 'Livia said what was really missing: the roof, which needs two people and four minutes, because you have to hold the sides while you lay the top on.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'maman', x: 400, y: 514, s: 1.1 }]
+                },
+                text: 'Maman regarda la tour, puis sa montre. Elle était en retard pour quelque chose de vrai, un rendez-vous avec une heure écrite dessus.',
+                es: 'Mamá miró la torre, y luego su reloj. Llegaba tarde a algo de verdad, una cita con una hora escrita.',
+                en: 'Mummy looked at the tower, then at her watch. She was late for something real, an appointment with a time written on it.',
+                choix: {
+                  options: [
+                    { v: 'maman', mot: 'Attendre sa réponse', mot_es: 'Esperar su respuesta', mot_en: 'Wait for her answer', vers: 'dir_attendre' },
+                    { v: 'cabane', mot: 'Proposer de revenir demain', mot_es: 'Proponer volver mañana', mot_en: 'Offer to come back tomorrow', vers: 'dir_demain' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          dir_attendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: 1 }
+                  ]
+                },
+                text: "Livia attendit sans rien ajouter. Maman dit : « Quatre minutes. Allez. » Et elle s'assit sur le banc pour les compter, ce qui changeait tout.",
+                es: 'Livia esperó sin añadir nada. Mamá dijo: «Cuatro minutos. Venga.» Y se sentó en el banco a contarlos, lo cual lo cambiaba todo.',
+                en: 'Livia waited without adding anything. Mummy said: «Four minutes. Go on.» And she sat down on the bench to count them, which changed everything.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 230, y: 518, s: .95 },
+                    { t: 'pablo', x: 450, y: 520, s: .95 },
+                    { t: 'maman', x: 670, y: 514, s: .95 }
+                  ]
+                },
+                text: "Le toit tint. Maman arriva en retard à son rendez-vous, de quatre minutes exactement, et elle a dit que ça n'avait embêté personne.",
+                es: 'El tejado aguantó. Mamá llegó tarde a su cita, cuatro minutos exactos, y dijo que no molestó a nadie.',
+                en: 'The roof held. Mummy was late for her appointment by exactly four minutes, and she said it had bothered nobody.'
+              }
+            ]
+          },
+
+          dir_demain: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'maman', x: 600, y: 514, s: 1 }
+                  ]
+                },
+                text: "Livia proposa de revenir demain finir le toit, à deux, sans se dépêcher. C'était une idée raisonnable, et les idées raisonnables surprennent beaucoup les grands.",
+                es: 'Livia propuso volver mañana a acabar el tejado, los dos, sin prisa. Era una idea razonable, y las ideas razonables sorprenden mucho a los mayores.',
+                en: 'Livia offered to come back tomorrow to finish the roof, the two of them, without rushing. It was a reasonable idea, and reasonable ideas surprise grown-ups a great deal.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: 'Ils revinrent le lendemain. La tour était encore là, un peu tassée par la nuit. Le toit prit onze minutes, parce que personne ne comptait.',
+                es: 'Volvieron al día siguiente. La torre seguía allí, un poco hundida por la noche. El tejado llevó once minutos, porque nadie contaba.',
+                en: 'They came back the next day. The tower was still there, a little settled from the night. The roof took eleven minutes, because nobody was counting.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 42 : le chat qui veut sortir ---------- */
+      {
+        id: 'le-chat-qui-veut-sortir',
+        title: 'Le chat qui veut sortir',
+        title_en: 'The cat that wants out',
+        title_es: 'El gato que quiere salir',
+        subtitle: 'Une porte, et une règle derrière',
+        subtitle_en: 'A door, and a rule behind it',
+        subtitle_es: 'Una puerta, y una regla detrás',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia garde le chat de la voisine pendant trois jours. Il s'appelle Pruneau, il est gris, et il a une seule idée dans la tête : la porte.",
+                es: 'Livia cuida el gato de la vecina durante tres días. Se llama Pruneau, es gris, y tiene una sola idea en la cabeza: la puerta.',
+                en: "Livia is looking after the neighbour's cat for three days. He is called Pruneau, he is grey, and he has one idea in his head: the door."
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Il reste assis devant, il miaule, il gratte. La voisine a écrit sur un papier : « Il ne sort pas. Il y a la route. » C'est la seule ligne du papier.",
+                es: 'Se queda sentado delante, maúlla, araña. La vecina escribió en un papel: «No sale. Hay carretera.» Es la única línea del papel.',
+                en: 'He sits in front of it, he miaows, he scratches. The neighbour wrote on a piece of paper: «He does not go out. There is the road.» It is the only line on the paper.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Ouvrir juste un peu', mot_es: 'Abrir solo un poco', mot_en: 'Open it just a bit', vers: 'ouvrir' },
+                    { v: 'cube', mot: 'Chercher pourquoi il veut sortir', mot_es: 'Buscar por qué quiere salir', mot_en: 'Find out why he wants out', vers: 'chercher' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          ouvrir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'wow' }]
+                },
+                text: "Livia ouvrit juste un peu, en tenant la porte. Pruneau passa par les huit centimètres comme s'il les avait mesurés la veille, et il fut dans le jardin.",
+                es: 'Livia abrió solo un poco, sujetando la puerta. Pruneau pasó por los ocho centímetros como si los hubiera medido el día antes, y ya estaba en el jardín.',
+                en: 'Livia opened it just a bit, holding the door. Pruneau went through the eight centimetres as if he had measured them the day before, and he was in the garden.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: "Il ne partit pas vers la route. Il alla sous le même buisson, s'y coucha, et ne bougea plus. Mais il était dehors, et le papier disait non.",
+                es: 'No fue hacia la carretera. Fue debajo del mismo arbusto, se tumbó allí y no se movió más. Pero estaba fuera, y el papel decía no.',
+                en: 'He did not head for the road. He went under the same bush, lay down there, and did not move again. But he was outside, and the paper said no.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Le ramener tout de suite', mot_es: 'Traerlo de vuelta ahora mismo', mot_en: 'Bring him back right away', vers: 'ouv_ramener' },
+                    { v: 'bush', mot: 'Le laisser sous le buisson', mot_es: 'Dejarlo bajo el arbusto', mot_en: 'Leave him under the bush', vers: 'ouv_laisser' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          ouv_ramener: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'hold' }]
+                },
+                text: "Livia alla le chercher sous le buisson. Il se laissa porter sans se battre, et il pesait très lourd, comme pèsent les chats qui ne sont pas d'accord.",
+                es: 'Livia fue a buscarlo debajo del arbusto. Se dejó llevar sin pelear, y pesaba muchísimo, como pesan los gatos que no están de acuerdo.',
+                en: 'Livia went to fetch him from under the bush. He let himself be carried without a fight, and he weighed a great deal, the way cats weigh when they disagree.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Elle raconta tout à la voisine au retour. La voisine dit que le buisson, c'était celui de son ancienne maison, qu'il y a une touffe pareille, et qu'elle n'y avait pas pensé.",
+                es: 'Se lo contó todo a la vecina a su vuelta. La vecina dijo que el arbusto era el de su casa de antes, que hay una mata igual, y que no lo había pensado.',
+                en: 'She told the neighbour everything when she got back. The neighbour said the bush was the one from her old house, that there is a clump just like it, and she had not thought of that.'
+              }
+            ]
+          },
+
+          ouv_laisser: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: "Livia s'assit à côté du buisson et le surveilla jusqu'au soir, sans bouger non plus. Deux heures et dix minutes, à regarder un chat couché.",
+                es: 'Livia se sentó al lado del arbusto y lo vigiló hasta la noche, sin moverse tampoco. Dos horas y diez minutos mirando a un gato tumbado.',
+                en: 'Livia sat down next to the bush and watched over him until evening, not moving either. Two hours and ten minutes, watching a cat lie down.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Il rentra tout seul quand il eut froid. Rien de grave n'arriva, et Livia sait quand même qu'elle a eu de la chance, ce qui n'est pas la même chose qu'avoir raison.",
+                es: 'Entró solo cuando tuvo frío. No pasó nada grave, y Livia sabe de todas formas que tuvo suerte, que no es lo mismo que tener razón.',
+                en: 'He came in by himself when he got cold. Nothing bad happened, and Livia knows all the same that she was lucky, which is not the same thing as being right.'
+              }
+            ]
+          },
+
+          chercher: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: "Livia décida de chercher pourquoi. Elle s'assit par terre à côté de lui et regarda la porte à sa hauteur, c'est-à-dire à vingt centimètres du sol.",
+                es: 'Livia decidió buscar el motivo. Se sentó en el suelo a su lado y miró la puerta a su altura, es decir, a veinte centímetros del suelo.',
+                en: 'Livia decided to find out why. She sat on the floor next to him and looked at the door from his height, which is to say twenty centimetres up.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'wow' }]
+                },
+                text: 'De là, on voit passer un merle, toujours le même, qui vient sur le pas de la porte à quatre heures et repart. Pruneau miaule quand le merle est là.',
+                es: 'Desde allí se ve pasar un mirlo, siempre el mismo, que llega al umbral a las cuatro y se va. Pruneau maúlla cuando el mirlo está.',
+                en: "From down there you can see a blackbird go by, always the same one, which comes onto the doorstep at four o'clock and leaves. Pruneau miaows when the blackbird is there.",
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Fermer le rideau à quatre heures', mot_es: 'Cerrar la cortina a las cuatro', mot_en: 'Close the curtain at four', vers: 'che_rideau' },
+                    { v: 'cube', mot: 'Lui montrer le merle de près', mot_es: 'Enseñarle el mirlo de cerca', mot_en: 'Show him the blackbird close up', vers: 'che_montrer' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          che_rideau: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia ferma le rideau à quatre heures moins cinq. Pruneau ne miaula pas du tout, et il dormit sur le tapis de l'entrée, dans la lumière qui restait.",
+                es: 'Livia cerró la cortina a las cuatro menos cinco. Pruneau no maulló nada, y durmió en la alfombra de la entrada, en la luz que quedaba.',
+                en: 'Livia closed the curtain at five to four. Pruneau did not miaow at all, and he slept on the hall rug, in the light that was left.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'happy' }]
+                },
+                text: "Elle le fit les trois jours. La voisine a dit qu'elle n'aurait jamais trouvé ça, et qu'elle ferme le rideau maintenant, à quatre heures moins cinq.",
+                es: 'Lo hizo los tres días. La vecina dijo que nunca lo habría encontrado, y que ahora cierra la cortina, a las cuatro menos cinco.',
+                en: 'She did it for all three days. The neighbour said she would never have worked that out, and that she closes the curtain now, at five to four.'
+              }
+            ]
+          },
+
+          che_montrer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'hold' }]
+                },
+                text: "Livia le prit dans ses bras et l'emmena à la fenêtre, en haut, d'où le merle se voit très bien et reste très loin. Pruneau regarda sans miauler.",
+                es: 'Livia lo cogió en brazos y lo llevó a la ventana, arriba, desde donde el mirlo se ve muy bien y queda muy lejos. Pruneau miró sin maullar.',
+                en: 'Livia picked him up and took him to the window, upstairs, where the blackbird can be seen very clearly and stays very far away. Pruneau watched without miaowing.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Il descendit après, calme, et il ne retourna pas devant la porte. Livia pense qu'il voulait voir le merle, pas sortir, et que ce n'était pas la même demande.",
+                es: 'Bajó después, tranquilo, y no volvió a la puerta. Livia piensa que quería ver al mirlo, no salir, y que no era la misma petición.',
+                en: 'He came down afterwards, calm, and he did not go back to the door. Livia thinks he wanted to see the blackbird, not to go out, and that those were not the same request.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 43 : la chanson trop forte ---------- */
+      {
+        id: 'la-chanson-trop-forte',
+        title: 'La chanson trop forte',
+        title_en: "The song that's too loud",
+        title_es: 'La canción demasiado alta',
+        subtitle: 'Aimer quelque chose fort, et le mettre fort',
+        subtitle_en: 'Loving something a lot, and playing it loud',
+        subtitle_es: 'Querer algo mucho, y ponerlo alto',
+        tag: 'Tu choisis',
+        themes: ['Famille', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'jump' }]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'jump' }],
+                  sfx: [{ t: 'LA LA LA', x: 420, y: 146, fs: 32, rot: -5, color: '#e8a33d' }]
+                },
+                text: "Livia a trouvé une chanson. Elle ne sait pas de quoi elle parle, mais il y a un moment, vers le milieu, où tout s'arrête et repart, et ce moment lui fait quelque chose.",
+                es: 'Livia ha encontrado una canción. No sabe de qué habla, pero hay un momento, hacia la mitad, en que todo se para y arranca otra vez, y ese momento le hace algo.',
+                en: 'Livia has found a song. She does not know what it is about, but there is a moment, around the middle, where everything stops and starts again, and that moment does something to her.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Elle l'a mise fort. Papa travaille dans la pièce d'à côté, avec un casque et des chiffres, et il est venu deux fois sans rien dire, juste en montrant le bouton.",
+                es: 'La puso alto. Papá trabaja en la habitación de al lado, con auriculares y números, y vino dos veces sin decir nada, solo señalando el botón.',
+                en: 'She put it on loud. Daddy is working in the next room, with headphones and numbers, and he came in twice without saying anything, just pointing at the knob.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Baisser et écouter tout bas', mot_es: 'Bajarla y escuchar bajito', mot_en: 'Turn it down and listen quietly', vers: 'baisser' },
+                    { v: 'papa', mot: 'Lui faire écouter le moment', mot_es: 'Hacerle escuchar el momento', mot_en: 'Play him the moment', vers: 'ecouter' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          baisser: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: "Livia baissa très bas. Le moment du milieu, à ce volume, ne fait plus rien du tout : c'est le même air, et ce n'est plus la même chose.",
+                es: 'Livia la bajó muchísimo. El momento del medio, a ese volumen, ya no hace nada: es la misma melodía, y ya no es lo mismo.',
+                en: 'Livia turned it right down. The moment in the middle, at that volume, does nothing at all any more: it is the same tune, and it is not the same thing.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Elle l'écouta quand même onze fois, tout bas, en attendant. Au bout d'un moment, on n'attend plus rien, et c'est un peu triste.",
+                es: 'La escuchó igual once veces, bajito, esperando. Al cabo de un rato ya no se espera nada, y eso es un poco triste.',
+                en: 'She listened to it eleven times anyway, very quietly, waiting. After a while you stop waiting for anything, and that is a bit sad.',
+                choix: {
+                  options: [
+                    { v: 'papa', mot: 'Aller lui expliquer', mot_es: 'Ir a explicárselo', mot_en: 'Go and explain to him', vers: 'bai_expliquer' },
+                    { v: 'cube', mot: "Attendre qu'il ait fini", mot_es: 'Esperar a que acabe', mot_en: "Wait until he's finished", vers: 'bai_attendre' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          bai_expliquer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia alla expliquer qu'il y a un moment qui ne marche que fort. Papa dit que ça existe, qu'il a la même chose avec un morceau de trompette, et qu'il comprend.",
+                es: 'Livia fue a explicar que hay un momento que solo funciona alto. Papá dijo que eso existe, que a él le pasa con una pieza de trompeta, y que lo entiende.',
+                en: 'Livia went to explain that there is a moment that only works loud. Daddy said that does exist, that he has the same thing with a trumpet piece, and that he understands.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Ils ont décidé six heures et demie : à six heures et demie, Papa ferme l'ordinateur et la chanson a le droit d'être forte. Ça dure trois minutes et dix secondes.",
+                es: 'Decidieron las seis y media: a las seis y media Papá cierra el ordenador y la canción tiene derecho a sonar fuerte. Dura tres minutos y diez segundos.',
+                en: 'They settled on half past six: at half past six Daddy closes the computer and the song is allowed to be loud. It lasts three minutes and ten seconds.'
+              }
+            ]
+          },
+
+          bai_attendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: "Livia attendit sans rien demander. Papa travailla jusqu'à sept heures, puis il y eut le dîner, puis le bain, et la journée se termina sans la chanson.",
+                es: 'Livia esperó sin pedir nada. Papá trabajó hasta las siete, luego hubo cena, luego baño, y el día acabó sin la canción.',
+                en: 'Livia waited without asking for anything. Daddy worked until seven, then there was dinner, then the bath, and the day ended without the song.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Au lit, Papa demanda pourquoi elle avait l'air comme ça. Elle dit : « Rien. » Il s'est assis sur le bord du lit et il a attendu, mais elle n'a rien dit de plus.",
+                es: 'En la cama, Papá preguntó por qué tenía esa cara. Ella dijo: «Nada.» Él se sentó en el borde de la cama y esperó, pero ella no dijo nada más.',
+                en: 'At bedtime Daddy asked why she looked like that. She said: «Nothing.» He sat down on the edge of the bed and waited, but she said nothing more.'
+              }
+            ]
+          },
+
+          ecouter: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, pose: 'point' }
+                  ]
+                },
+                text: "Livia alla chercher Papa et lui demanda d'écouter un seul endroit, à partir d'une minute douze. Elle lui dit où regarder, comme pour un dessin.",
+                es: 'Livia fue a buscar a Papá y le pidió escuchar un solo trozo, a partir del minuto uno doce. Le dijo dónde mirar, como con un dibujo.',
+                en: 'Livia went to get Daddy and asked him to listen to one single bit, from one minute twelve. She told him where to look, as if it were a drawing.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'papa', x: 400, y: 514, s: 1.1, mood: 'wow' }]
+                },
+                text: "Papa enleva son casque, s'assit par terre, et écouta les trente secondes. À la fin il dit : « Ah. Oui. D'accord. » Ce qui est beaucoup, venant de lui.",
+                es: 'Papá se quitó los auriculares, se sentó en el suelo y escuchó los treinta segundos. Al final dijo: «Ah. Sí. Vale.» Que es mucho, viniendo de él.',
+                en: 'Daddy took off his headphones, sat on the floor, and listened to the thirty seconds. At the end he said: «Ah. Yes. All right.» Which is a lot, coming from him.',
+                choix: {
+                  options: [
+                    { v: 'papa', mot: 'Lui demander la sienne', mot_es: 'Pedirle la suya', mot_en: 'Ask him for his', vers: 'eco_sienne' },
+                    { v: 'cube', mot: 'Garder la chanson pour elle', mot_es: 'Guardarse la canción', mot_en: 'Keep the song to herself', vers: 'eco_garder' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          eco_sienne: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'wow' }
+                  ]
+                },
+                text: "Livia demanda laquelle lui faisait ça, à lui. Papa chercha longtemps dans son téléphone, et il mit un morceau avec une trompette qui monte très haut d'un seul coup.",
+                es: 'Livia preguntó cuál le hacía eso a él. Papá buscó mucho rato en el móvil, y puso una pieza con una trompeta que sube muy alto de golpe.',
+                en: 'Livia asked which one did that to him. Daddy searched a long time on his phone, and played a piece with a trumpet that goes very high all at once.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'papa', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Livia n'a pas tout aimé, mais elle a aimé l'endroit qui monte. Ils ont deux moments, maintenant, et ils les mettent fort l'un après l'autre, le samedi.",
+                es: 'A Livia no le gustó todo, pero le gustó el trozo que sube. Ahora tienen dos momentos, y los ponen fuerte uno detrás del otro, los sábados.',
+                en: 'Livia did not like all of it, but she liked the bit that goes up. They have two moments now, and they play them loud one after the other, on Saturdays.'
+              }
+            ]
+          },
+
+          eco_garder: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia garda la chanson pour elle. Papa remit son casque, et elle referma la porte doucement, avec l'impression d'avoir rangé quelque chose de précieux.",
+                es: 'Livia se guardó la canción. Papá se puso otra vez los auriculares, y ella cerró la puerta con cuidado, con la sensación de haber guardado algo valioso.',
+                en: 'Livia kept the song to herself. Daddy put his headphones back on, and she closed the door gently, feeling she had put something precious away.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sleep' }]
+                },
+                text: "Elle se la chante dans la tête, le soir, et dans la tête on peut la mettre aussi fort qu'on veut. Personne ne vient montrer le bouton.",
+                es: 'Se la canta en la cabeza, por la noche, y en la cabeza se puede poner tan alto como se quiera. Nadie viene a señalar el botón.',
+                en: 'She sings it in her head at night, and in your head you can play it as loud as you like. Nobody comes to point at the knob.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 44 : le pull de roxane ---------- */
+      {
+        id: 'le-pull-de-roxane',
+        title: 'Le pull de Roxane',
+        title_en: "Roxane's jumper",
+        title_es: 'El jersey de Roxane',
+        subtitle: 'Une tache sur une chose prêtée',
+        subtitle_en: 'A stain on a borrowed thing',
+        subtitle_es: 'Una mancha en algo prestado',
+        tag: 'Tu choisis',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'roxane', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Roxane a prêté à Livia son pull jaune, celui avec le renard devant, celui qu'elle ne prête jamais. Elle a dit : « Pour la journée. » Et elle a dit ça très sérieusement.",
+                es: 'Roxane le prestó a Livia su jersey amarillo, el del zorro delante, el que no presta nunca. Dijo: «Para el día.» Y lo dijo muy en serio.',
+                en: 'Roxane lent Livia her yellow jumper, the one with the fox on the front, the one she never lends. She said: «For the day.» And she said it very seriously.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "À trois heures, il y a eu de la peinture verte, et une manche est passée dedans. La tache fait la taille d'une pièce, juste sous le renard.",
+                es: 'A las tres hubo pintura verde, y una manga pasó por encima. La mancha es del tamaño de una moneda, justo debajo del zorro.',
+                en: "At three o'clock there was green paint, and one sleeve went through it. The stain is the size of a coin, just under the fox.",
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Le laver tout de suite en cachette', mot_es: 'Lavarlo ahora mismo a escondidas', mot_en: 'Wash it right away in secret', vers: 'laver' },
+                    { v: 'roxane', mot: 'Aller le dire à Roxane', mot_es: 'Ir a decírselo a Roxane', mot_en: 'Go and tell Roxane', vers: 'dire' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          laver: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia alla le laver dans le lavabo, à l'eau froide, en frottant fort. La peinture partit un peu, et la laine devint plus claire tout autour.",
+                es: 'Livia fue a lavarlo en el lavabo, con agua fría, frotando fuerte. La pintura se fue un poco, y la lana quedó más clara alrededor.',
+                en: 'Livia went to wash it in the basin, in cold water, rubbing hard. The paint came off a little, and the wool went paler all around.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: 'Maintenant il y a une petite tache verte et un grand rond pâle. Le rond pâle se voit de plus loin que la tache, ce qui est une surprise désagréable.',
+                es: 'Ahora hay una manchita verde y un círculo pálido grande. El círculo pálido se ve de más lejos que la mancha, lo cual es una sorpresa desagradable.',
+                en: 'Now there is a small green stain and a large pale ring. The pale ring shows up from further away than the stain did, which is an unpleasant surprise.',
+                choix: {
+                  options: [
+                    { v: 'roxane', mot: 'Tout raconter maintenant', mot_es: 'Contarlo todo ahora', mot_en: 'Tell her everything now', vers: 'lav_raconter' },
+                    { v: 'cube', mot: 'Rendre le pull sans rien dire', mot_es: 'Devolver el jersey sin decir nada', mot_en: 'Give it back and say nothing', vers: 'lav_rien' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          lav_raconter: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'roxane', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia raconta tout, la peinture et le lavabo. Roxane regarda le rond pâle et dit que c'était pire, et Livia dit qu'elle le savait, maintenant.",
+                es: 'Livia lo contó todo, la pintura y el lavabo. Roxane miró el círculo pálido y dijo que era peor, y Livia dijo que ahora ya lo sabía.',
+                en: 'Livia told her everything, the paint and the basin. Roxane looked at the pale ring and said it was worse, and Livia said she knew that now.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: 'La maman de Roxane a mis du vrai produit dessus. Il reste un rond, plus petit. Roxane met le pull quand même, et elle dit que le renard a de la mousse.',
+                es: 'La mamá de Roxane le puso producto de verdad. Queda un círculo, más pequeño. Roxane se pone el jersey igual, y dice que el zorro tiene musgo.',
+                en: "Roxane's mum put proper stuff on it. There is still a ring, a smaller one. Roxane wears the jumper anyway, and she says the fox has moss on it."
+              }
+            ]
+          },
+
+          lav_rien: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia plia le pull avec la manche en dessous et le rendit sans rien dire. Roxane dit merci, et l'histoire aurait pu s'arrêter là, mais les pulls se déplient.",
+                es: 'Livia dobló el jersey con la manga por debajo y lo devolvió sin decir nada. Roxane dijo gracias, y la historia podría haber acabado ahí, pero los jerséis se desdoblan.',
+                en: 'Livia folded the jumper with the sleeve underneath and handed it back without a word. Roxane said thank you, and the story could have ended there, but jumpers get unfolded.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'gris',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1, mood: 'fache' },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Le lendemain, Roxane avait vu. Elle ne cria pas. Elle demanda juste pourquoi Livia ne lui avait rien dit, et c'est la question la plus difficile des deux.",
+                es: 'Al día siguiente Roxane lo había visto. No gritó. Solo preguntó por qué Livia no le había dicho nada, y es la más difícil de las dos preguntas.',
+                en: 'The next day Roxane had seen it. She did not shout. She just asked why Livia had not told her, and that is the harder of the two questions.'
+              }
+            ]
+          },
+
+          dire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'roxane', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia alla le dire tout de suite, avec le pull à la main et la manche en l'air, pour qu'on voie bien. Elle dit la peinture, l'heure, et que c'était elle.",
+                es: 'Livia fue a decirlo en seguida, con el jersey en la mano y la manga en alto, para que se viera bien. Dijo la pintura, la hora, y que había sido ella.',
+                en: 'Livia went and told her straight away, with the jumper in her hand and the sleeve up, so it could be seen properly. She said the paint, the time, and that it was her.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'roxane', x: 400, y: 516, s: 1.1, mood: 'sad' }]
+                },
+                text: "Roxane s'assit par terre et ne dit rien pendant longtemps. Puis elle dit : « C'est mon pull de l'année dernière. » Ce qui voulait dire beaucoup de choses.",
+                es: 'Roxane se sentó en el suelo y no dijo nada un buen rato. Luego dijo: «Es mi jersey del año pasado.» Lo cual quería decir muchas cosas.',
+                en: "Roxane sat down on the ground and said nothing for a long time. Then she said: «It's my jumper from last year.» Which meant a great many things.",
+                choix: {
+                  options: [
+                    { v: 'roxane', mot: "Lui demander ce qu'elle veut", mot_es: 'Preguntarle qué quiere ella', mot_en: 'Ask her what she wants', vers: 'dir_demander' },
+                    { v: 'cube', mot: 'Proposer de le réparer', mot_es: 'Proponer arreglarlo', mot_en: 'Offer to mend it', vers: 'dir_reparer' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          dir_demander: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'roxane', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia demanda ce que Roxane voulait, au lieu de proposer. Roxane réfléchit et dit qu'elle voulait surtout qu'on ne le lave pas, parce que la laine jaune, ça bouge.",
+                es: 'Livia preguntó qué quería Roxane, en vez de proponer. Roxane pensó y dijo que sobre todo quería que no lo lavaran, porque la lana amarilla se mueve.',
+                en: 'Livia asked what Roxane wanted, instead of offering. Roxane thought and said that mostly she wanted nobody to wash it, because yellow wool shifts.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "C'est sa maman qui s'en est occupée, avec le bon produit et sans eau. La tache est partie presque entièrement. Livia n'aurait jamais deviné le « sans eau ».",
+                es: 'Se encargó su mamá, con el producto bueno y sin agua. La mancha se fue casi del todo. Livia nunca habría adivinado lo de «sin agua».',
+                en: 'Her mum dealt with it, with the right stuff and no water. The stain came out almost completely. Livia would never have guessed the «no water» part.'
+              }
+            ]
+          },
+
+          dir_reparer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'roxane', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia proposa de le réparer elle-même. Elles essayèrent le savon, puis le dentifrice, puis l'eau chaude, dans cet ordre, qui est l'ordre le plus mauvais.",
+                es: 'Livia propuso arreglarlo ella misma. Probaron jabón, luego pasta de dientes, luego agua caliente, en ese orden, que es el peor orden posible.',
+                en: 'Livia offered to mend it herself. They tried soap, then toothpaste, then hot water, in that order, which is the worst possible order.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'roxane', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Le renard a maintenant un ventre vert pâle qui ne partira plus. Roxane dit qu'au moins elles l'ont raté ensemble, et c'est vrai que ça change quelque chose.",
+                es: 'El zorro tiene ahora una barriga verde pálido que ya no se irá. Roxane dice que al menos lo estropearon juntas, y es verdad que eso cambia algo.',
+                en: 'The fox now has a pale green belly that will not come out. Roxane says that at least they ruined it together, and it is true that that changes something.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 45 : le jeu interdit ---------- */
+      {
+        id: 'le-jeu-interdit',
+        title: 'Le jeu interdit',
+        title_en: 'The forbidden game',
+        title_es: 'El juego prohibido',
+        subtitle: "Un mur bas, et une règle de l'école",
+        subtitle_en: 'A low wall, and a school rule',
+        subtitle_es: 'Un muro bajo, y una regla del colegio',
+        tag: 'Tu choisis',
+        themes: ['Règles', 'Amitié'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'juliette', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1, pose: 'point' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Dans la cour, il y a un mur bas, et sur le mur bas on peut marcher. C'est interdit depuis mars, à cause d'un garçon et d'un poignet.",
+                es: 'En el patio hay un muro bajo, y por el muro bajo se puede andar. Está prohibido desde marzo, por un niño y una muñeca.',
+                en: 'In the playground there is a low wall, and on the low wall you can walk. It has been forbidden since March, because of a boy and a wrist.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Les grands y vont quand la maîtresse est de l'autre côté. Juliette dit qu'elle y va aujourd'hui, et elle regarde Livia comme on regarde quelqu'un à qui on demande quelque chose.",
+                es: 'Los mayores van cuando la maestra está al otro lado. Juliette dice que hoy va, y mira a Livia como se mira a alguien a quien se le pide algo.',
+                en: 'The big kids go up when the teacher is on the other side. Juliette says she is going today, and she looks at Livia the way you look at somebody you are asking something of.',
+                choix: {
+                  options: [
+                    { v: 'juliette', mot: 'Y aller avec elle', mot_es: 'Ir con ella', mot_en: 'Go up with her', vers: 'aller' },
+                    { v: 'cube', mot: 'Rester en bas', mot_es: 'Quedarse abajo', mot_en: 'Stay down', vers: 'rester' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          aller: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, mood: 'wow' },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia monta. Le mur fait la hauteur d'une chaise et la largeur de deux mains, et de là-haut la cour est une autre cour, avec d'autres distances.",
+                es: 'Livia subió. El muro tiene la altura de una silla y el ancho de dos manos, y desde arriba el patio es otro patio, con otras distancias.',
+                en: 'Livia climbed up. The wall is the height of a chair and the width of two hands, and from up there the playground is a different playground, with different distances.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'juliette', x: 400, y: 516, s: 1.1, mood: 'sad' }]
+                },
+                text: "Elles firent six pas. Au septième, Juliette s'arrêta net : la maîtresse revenait du bout, et elle regardait exactement le mur.",
+                es: 'Dieron seis pasos. Al séptimo Juliette se paró en seco: la maestra volvía desde el fondo, y miraba exactamente el muro.',
+                en: 'They took six steps. On the seventh Juliette stopped dead: the teacher was coming back from the far end, and she was looking at the wall exactly.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Descendre et aller lui parler', mot_es: 'Bajar e ir a hablar con ella', mot_en: 'Get down and go and talk to her', vers: 'all_parler' },
+                    { v: 'cube', mot: 'Sauter et faire comme si', mot_es: 'Saltar y hacer como si nada', mot_en: 'Jump down and act normal', vers: 'all_comme' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          all_parler: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia descendit et alla voir la maîtresse avant que la maîtresse arrive. Elle dit qu'elles étaient sur le mur, qu'elles le savaient, et qu'elles en étaient descendues.",
+                es: 'Livia bajó y fue a ver a la maestra antes de que la maestra llegara. Dijo que estaban en el muro, que lo sabían, y que se habían bajado.',
+                en: 'Livia got down and went to the teacher before the teacher arrived. She said they had been on the wall, that they knew, and that they had got down.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "La maîtresse dit merci d'être venue, puis les mit cinq minutes sur le banc quand même. Juliette trouve ça injuste. Livia trouve que les deux choses vont ensemble.",
+                es: 'La maestra dio las gracias por haber venido, y luego las sentó cinco minutos en el banco igual. Juliette lo encuentra injusto. Livia encuentra que las dos cosas van juntas.',
+                en: 'The teacher said thank you for coming, then put them on the bench for five minutes all the same. Juliette thinks that is unfair. Livia thinks the two things go together.'
+              }
+            ]
+          },
+
+          all_comme: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, pose: 'jump' },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Elles sautèrent et firent comme si, en marchant très normalement vers les cerceaux, avec cette façon de marcher qu'on n'a que quand on fait comme si.",
+                es: 'Saltaron e hicieron como si nada, andando muy normalmente hacia los aros, con esa manera de andar que solo se tiene cuando se hace como si nada.',
+                en: 'They jumped down and acted normal, walking very normally towards the hoops, with that way of walking you only have when you are acting normal.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'gris',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: 'La maîtresse ne dit rien ce jour-là. Elle le dit le lendemain, à toute la classe, sans nommer personne, et Livia eut chaud aux oreilles pendant six minutes.',
+                es: 'La maestra no dijo nada ese día. Lo dijo al día siguiente, a toda la clase, sin nombrar a nadie, y a Livia le ardieron las orejas seis minutos.',
+                en: "The teacher said nothing that day. She said it the next day, to the whole class, naming nobody, and Livia's ears were hot for six minutes."
+              }
+            ]
+          },
+
+          rester: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: 'Livia resta en bas. Juliette monta seule, fit onze pas, et sauta. Elle était contente, et Livia était en bas, et les deux choses étaient vraies en même temps.',
+                es: 'Livia se quedó abajo. Juliette subió sola, dio once pasos y saltó. Estaba contenta, y Livia estaba abajo, y las dos cosas eran verdad a la vez.',
+                en: 'Livia stayed down. Juliette climbed up alone, took eleven steps, and jumped. She was pleased, and Livia was down below, and both things were true at the same time.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'juliette', x: 400, y: 516, s: 1.1 }]
+                },
+                text: "À la récréation suivante, Juliette dit qu'elle recommence, et qu'elle y va de toute façon. Elle le dit sans regarder Livia, cette fois.",
+                es: 'En el recreo siguiente, Juliette dijo que lo repite, y que va de todas formas. Esta vez lo dijo sin mirar a Livia.',
+                en: 'At the next break Juliette said she was doing it again, and that she was going anyway. This time she said it without looking at Livia.',
+                choix: {
+                  options: [
+                    { v: 'juliette', mot: "Lui dire pourquoi c'est interdit", mot_es: 'Decirle por qué está prohibido', mot_en: "Tell her why it's forbidden", vers: 'res_pourquoi' },
+                    { v: 'cube', mot: 'Aller jouer ailleurs', mot_es: 'Ir a jugar a otro sitio', mot_en: 'Go and play somewhere else', vers: 'res_ailleurs' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          res_pourquoi: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: 'Livia raconta le garçon de mars : le poignet, le plâtre, les six semaines sans dessiner. Juliette ne savait pas cette partie-là, personne ne la lui avait dite.',
+                es: 'Livia contó lo del niño de marzo: la muñeca, la escayola, las seis semanas sin dibujar. Juliette no sabía esa parte, nadie se la había contado.',
+                en: 'Livia told her about the boy in March: the wrist, the plaster cast, the six weeks of not drawing. Juliette did not know that part; nobody had told her.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Juliette y est remontée une fois depuis, et elle est redescendue au deuxième pas. Elle dit que c'est le plâtre qui l'a fait descendre, pas la règle.",
+                es: 'Juliette ha vuelto a subir una vez desde entonces, y se bajó al segundo paso. Dice que la bajó la escayola, no la regla.',
+                en: 'Juliette has been back up once since, and she came down on the second step. She says it was the plaster cast that got her down, not the rule.'
+              }
+            ]
+          },
+
+          res_ailleurs: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: "Livia alla jouer ailleurs, aux cerceaux, toute seule, pendant que Juliette marchait sur le mur avec les grands. C'était une récréation très longue.",
+                es: 'Livia fue a jugar a otro sitio, a los aros, sola, mientras Juliette andaba por el muro con los mayores. Fue un recreo muy largo.',
+                en: 'Livia went to play somewhere else, at the hoops, by herself, while Juliette walked on the wall with the big kids. It was a very long break.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "À la sortie, Juliette vint lui demander à quoi elle avait joué. Livia dit : « À rien. » Juliette dit que le mur n'est pas si bien, et elles ne savent ni l'une ni l'autre si c'est vrai.",
+                es: 'A la salida, Juliette fue a preguntarle a qué había jugado. Livia dijo: «A nada.» Juliette dijo que el muro no es tan bueno, y ninguna de las dos sabe si eso es verdad.',
+                en: 'At home time Juliette came to ask what she had played at. Livia said: «Nothing.» Juliette said the wall is not that good, and neither of them knows whether that is true.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 46 : la dent de pablo ---------- */
+      {
+        id: 'la-dent-de-pablo',
+        title: 'La dent de Pablo',
+        title_en: "Pablo's tooth",
+        title_es: 'El diente de Pablo',
+        subtitle: 'Une dent qui bouge, et personne pour la tirer',
+        subtitle_en: 'A wobbly tooth, and nobody to pull it',
+        subtitle_es: 'Un diente que se mueve, y nadie para sacarlo',
+        tag: 'Tu choisis',
+        themes: ['Grandir', 'Amitié'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 300, y: 518, s: 1 },
+            { t: 'pablo', x: 600, y: 520, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: 1, mood: 'sad' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "La dent du bas de Pablo bouge depuis onze jours. Elle tient par un fil, elle fait mal quand il mange du pain, et il ne veut pas qu'on y touche.",
+                es: 'El diente de abajo de Pablo se mueve desde hace once días. Aguanta por un hilo, le duele cuando come pan, y no quiere que nadie lo toque.',
+                en: "Pablo's bottom tooth has been wobbly for eleven days. It is hanging by a thread, it hurts when he eats bread, and he does not want anybody near it."
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'pablo', x: 400, y: 520, s: 1.1, mood: 'sad' }]
+                },
+                text: "Il la montre à tout le monde et il retire la tête dès qu'on approche la main. Il a demandé à Livia si elle savait ce qui se passe quand ça saigne.",
+                es: 'Se lo muestra a todo el mundo y aparta la cabeza en cuanto alguien acerca la mano. Le preguntó a Livia si sabía qué pasa cuando sangra.',
+                en: 'He shows it to everybody and pulls his head back the moment a hand comes near. He asked Livia whether she knew what happens when it bleeds.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: "Lui dire que ce n'est rien", mot_es: 'Decirle que no es nada', mot_en: "Tell him it's nothing", vers: 'rien' },
+                    { v: 'pablo', mot: 'Lui demander de quoi il a peur', mot_es: 'Preguntarle de qué tiene miedo', mot_en: "Ask him what he's afraid of", vers: 'peur' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          rien: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: 1, mood: 'fache' }
+                  ]
+                },
+                text: "Livia dit que ce n'est rien du tout, qu'elle en a perdu deux, et que ça ne fait pas mal. Pablo dit que ce n'est pas sa bouche à elle, et il a raison.",
+                es: 'Livia dijo que no es nada, que ella ha perdido dos, y que no duele. Pablo dijo que no es su boca, y tiene razón.',
+                en: 'Livia said it is nothing at all, that she has lost two, and that it does not hurt. Pablo said it is not her mouth, and he is right.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'pablo', x: 400, y: 520, s: 1.1, mood: 'sad' }]
+                },
+                text: "Il s'en alla s'asseoir contre le mur, avec la langue sur la dent, et il resta là. Les choses qui ne sont rien ne font pas asseoir les gens contre les murs.",
+                es: 'Se fue a sentarse contra la pared, con la lengua en el diente, y se quedó allí. Las cosas que no son nada no sientan a la gente contra las paredes.',
+                en: 'He went and sat against the wall, with his tongue on the tooth, and stayed there. Things that are nothing do not make people sit against walls.',
+                choix: {
+                  options: [
+                    { v: 'pablo', mot: "Aller s'asseoir à côté de lui", mot_es: 'Ir a sentarse a su lado', mot_en: 'Go and sit next to him', vers: 'rie_assise' },
+                    { v: 'cube', mot: 'Le laisser tranquille', mot_es: 'Dejarlo tranquilo', mot_en: 'Leave him alone', vers: 'rie_laisser' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          rie_assise: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: 1, pose: 'sit' },
+                    { t: 'livia', x: 600, y: 518, s: 1, pose: 'sit' }
+                  ]
+                },
+                text: "Livia alla s'asseoir contre le mur à côté de lui, sans parler de la dent du tout. Ils regardèrent passer trois voitures et un facteur.",
+                es: 'Livia fue a sentarse contra la pared a su lado, sin hablar del diente en absoluto. Vieron pasar tres coches y un cartero.',
+                en: 'Livia went and sat against the wall next to him, without mentioning the tooth at all. They watched three cars and a postman go by.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Au bout d'un moment, c'est lui qui en reparla. Il dit qu'il a peur du bruit, pas du sang. Livia ne savait pas qu'une dent faisait du bruit.",
+                es: 'Al cabo de un rato fue él quien volvió a hablar de eso. Dijo que tiene miedo del ruido, no de la sangre. Livia no sabía que un diente hiciera ruido.',
+                en: 'After a while it was he who brought it up again. He said he is afraid of the noise, not the blood. Livia did not know a tooth made a noise.'
+              }
+            ]
+          },
+
+          rie_laisser: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia le laissa tranquille et alla jouer. C'est souvent une bonne idée, mais ce jour-là ça voulait dire qu'il resta contre le mur pendant toute la récréation.",
+                es: 'Livia lo dejó tranquilo y se fue a jugar. Muchas veces es buena idea, pero ese día significaba que él se quedó contra la pared todo el recreo.',
+                en: 'Livia left him alone and went off to play. That is often a good idea, but that day it meant he stayed against the wall for the whole of break.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'gris',
+                  items: [{ t: 'pablo', x: 400, y: 520, s: 1.1, mood: 'sad' }]
+                },
+                text: "La dent est tombée trois jours plus tard, dans une pomme, pendant le repas, devant tout le monde. Pablo a pleuré, et ce n'était pas à cause de la dent.",
+                es: 'El diente se cayó tres días después, en una manzana, durante la comida, delante de todos. Pablo lloró, y no fue por el diente.',
+                en: 'The tooth came out three days later, in an apple, at lunch, in front of everybody. Pablo cried, and it was not because of the tooth.'
+              }
+            ]
+          },
+
+          peur: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: 1 }
+                  ]
+                },
+                text: "Livia demanda de quoi il avait peur exactement. C'est une question plus longue à répondre, et Pablo prit du temps avant de dire le vrai mot.",
+                es: 'Livia preguntó de qué tenía miedo exactamente. Es una pregunta más larga de contestar, y Pablo tardó en decir la palabra de verdad.',
+                en: 'Livia asked what exactly he was afraid of. That is a longer question to answer, and Pablo took a while before he said the real word.'
+              },
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [{ t: 'pablo', x: 400, y: 520, s: 1.1, mood: 'sad' }]
+                },
+                text: 'Il dit : le trou. Pas le sang, pas le fil, pas le dentiste : le trou, et le fait de parler avec un trou pendant des semaines.',
+                es: 'Dijo: el agujero. No la sangre, no el hilo, no el dentista: el agujero, y hablar con un agujero durante semanas.',
+                en: 'He said: the hole. Not the blood, not the thread, not the dentist: the hole, and talking with a hole in your mouth for weeks.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Lui montrer le sien', mot_es: 'Mostrarle el suyo', mot_en: 'Show him hers', vers: 'peu_montrer' },
+                    { v: 'cube', mot: 'Compter les trous de la classe', mot_es: 'Contar los agujeros de la clase', mot_en: 'Count the holes in the class', vers: 'peu_compter' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          peu_montrer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: 1, mood: 'wow' }
+                  ]
+                },
+                text: "Livia ouvrit grand la bouche et montra le sien, en bas à droite, où il n'y a encore rien du tout depuis cinq mois. Pablo regarda de très près.",
+                es: 'Livia abrió mucho la boca y le mostró el suyo, abajo a la derecha, donde no hay nada de nada desde hace cinco meses. Pablo miró muy de cerca.',
+                en: 'Livia opened her mouth wide and showed him hers, bottom right, where there has been nothing at all for five months. Pablo looked very closely.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Il dit qu'il ne l'avait jamais remarqué, en cinq mois, alors qu'ils parlent tous les jours. Ça l'a rassuré plus que n'importe quelle phrase.",
+                es: 'Dijo que no se había dado cuenta nunca, en cinco meses, y hablan todos los días. Eso lo tranquilizó más que cualquier frase.',
+                en: 'He said he had never noticed it, in five months, even though they talk every day. That reassured him more than any sentence could have.'
+              }
+            ]
+          },
+
+          peu_compter: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                    { t: 'pablo', x: 600, y: 520, s: 1 }
+                  ]
+                },
+                text: "Ils comptèrent les trous de la classe pendant la récréation, en demandant à tout le monde d'ouvrir la bouche. Il y en avait quatorze, sur dix-neuf enfants.",
+                es: 'Contaron los agujeros de la clase en el recreo, pidiendo a todos que abrieran la boca. Había catorce, entre diecinueve niños.',
+                en: 'They counted the holes in the class during break, asking everybody to open their mouths. There were fourteen of them, among nineteen children.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [{ t: 'pablo', x: 400, y: 520, s: 1.1, mood: 'happy' }]
+                },
+                text: "Pablo décida que quatorze, c'est la normale, et pas un accident. Il a laissé son père tirer le soir même. Il dit que le bruit, finalement, il ne l'a pas entendu.",
+                es: 'Pablo decidió que catorce es lo normal, y no un accidente. Dejó que su padre se lo sacara esa misma noche. Dice que al final el ruido no lo oyó.',
+                en: 'Pablo decided that fourteen is normal, and not an accident. He let his father pull it that same evening. He says that in the end he did not hear the noise.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 47 : le mensonge de juliette ---------- */
+      {
+        id: 'le-mensonge-de-juliette',
+        title: 'Le mensonge de Juliette',
+        title_en: "Juliette's lie",
+        title_es: 'La mentira de Juliette',
+        subtitle: "Savoir une chose qu'on est seule à savoir",
+        subtitle_en: 'Knowing something only you know',
+        subtitle_es: 'Saber algo que solo sabes tú',
+        tag: 'Tu choisis',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'village',
+          items: [
+            { t: 'juliette', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'juliette', x: 400, y: 516, s: 1.1, pose: 'point' }]
+                },
+                text: "Juliette a dit devant toute la classe qu'elle a un cheval. Un vrai, blanc, qui s'appelle Tempête, dans un champ chez son oncle, et qu'elle monte le dimanche.",
+                es: 'Juliette dijo delante de toda la clase que tiene un caballo. De verdad, blanco, que se llama Tempête, en un campo de su tío, y que lo monta los domingos.',
+                en: "Juliette told the whole class she has a horse. A real one, white, called Tempête, in a field at her uncle's, and she rides him on Sundays."
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Livia est allée chez son oncle au mois de mai. Il y a un champ, il y a de l'herbe haute, et il n'y a pas de cheval. Elle est la seule de la classe à le savoir.",
+                es: 'Livia fue a casa de su tío en mayo. Hay un campo, hay hierba alta, y no hay caballo. Es la única de la clase que lo sabe.',
+                en: "Livia went to his uncle's in May. There is a field, there is long grass, and there is no horse. She is the only one in the class who knows.",
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Le dire devant les autres', mot_es: 'Decirlo delante de los demás', mot_en: 'Say it in front of the others', vers: 'devant' },
+                    { v: 'juliette', mot: 'Lui en parler à elle seule', mot_es: 'Hablarlo con ella a solas', mot_en: 'Talk to her on her own', vers: 'seule' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          devant: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia le dit devant les autres : qu'elle est allée dans ce champ, et qu'il est vide. Le silence qui suivit dura à peu près quatre secondes, qui sont très longues.",
+                es: 'Livia lo dijo delante de los demás: que ella fue a ese campo, y que está vacío. El silencio que vino después duró unos cuatro segundos, que son larguísimos.',
+                en: 'Livia said it in front of the others: that she had been to that field, and that it is empty. The silence that followed lasted about four seconds, which are very long ones.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'gris',
+                  items: [{ t: 'juliette', x: 400, y: 516, s: 1.1, mood: 'sad' }]
+                },
+                text: "Juliette ne répondit rien. Elle rangea son manteau et alla se mettre au fond, et personne ne lui reparla du cheval, ni de rien d'autre, jusqu'à midi.",
+                es: 'Juliette no contestó nada. Guardó su abrigo y se fue al fondo, y nadie le volvió a hablar del caballo, ni de nada más, hasta mediodía.',
+                en: 'Juliette did not answer. She hung up her coat and went and sat at the back, and nobody mentioned the horse to her again, or anything else, until lunchtime.',
+                choix: {
+                  options: [
+                    { v: 'juliette', mot: "Aller s'excuser", mot_es: 'Ir a disculparse', mot_en: 'Go and apologise', vers: 'dev_excuser' },
+                    { v: 'cube', mot: 'Attendre que ça passe', mot_es: 'Esperar a que pase', mot_en: 'Wait for it to blow over', vers: 'dev_attendre' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          dev_excuser: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia alla dire qu'elle s'excusait de l'avoir dit là, devant tout le monde, et pas de l'avoir su. Ce sont deux choses différentes et elle les sépara bien.",
+                es: 'Livia fue a decir que se disculpaba por haberlo dicho allí, delante de todos, y no por saberlo. Son dos cosas distintas y las separó bien.',
+                en: 'Livia went and said she was sorry for saying it there, in front of everybody, and not for knowing it. Those are two different things and she kept them well apart.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Juliette dit qu'elle voulait un cheval depuis deux ans et que dire qu'elle en a un, c'est presque pareil. Livia pense que non, mais elle comprend le presque.",
+                es: 'Juliette dijo que quiere un caballo desde hace dos años y que decir que lo tiene es casi lo mismo. Livia piensa que no, pero entiende el casi.',
+                en: 'Juliette said she had wanted a horse for two years and that saying she has one is almost the same. Livia thinks it is not, but she understands the almost.'
+              }
+            ]
+          },
+
+          dev_attendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village', time: 'gris',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: 'Livia attendit que ça passe. Ça passa : au bout de trois jours, plus personne ne parlait du cheval, et tout le monde avait oublié le champ vide.',
+                es: 'Livia esperó a que pasara. Pasó: al cabo de tres días ya nadie hablaba del caballo, y todo el mundo había olvidado el campo vacío.',
+                en: 'Livia waited for it to blow over. It did: after three days nobody talked about the horse any more, and everybody had forgotten the empty field.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'gris',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Mais Juliette ne raconte plus rien devant la classe, même les choses vraies. Elle a arrêté de lever la main, et ça, ça n'est pas passé du tout.",
+                es: 'Pero Juliette ya no cuenta nada delante de la clase, ni las cosas verdaderas. Dejó de levantar la mano, y eso no ha pasado en absoluto.',
+                en: 'But Juliette no longer tells the class anything, not even true things. She has stopped putting her hand up, and that has not blown over at all.'
+              }
+            ]
+          },
+
+          seule: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia attendit la récréation et lui parla à elle seule, derrière le préau, en commençant par dire qu'elle n'avait rien dit à personne.",
+                es: 'Livia esperó al recreo y habló con ella a solas, detrás del porche, empezando por decir que no había dicho nada a nadie.',
+                en: 'Livia waited for break and talked to her on her own, behind the shelter, starting by saying that she had not told anybody.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'juliette', x: 400, y: 516, s: 1.1, mood: 'sad' }]
+                },
+                text: "Juliette regarda ses chaussures et dit : « Je sais que tu sais. » Elle le savait depuis le début, depuis le mois de mai, et elle l'avait dit quand même.",
+                es: 'Juliette se miró los zapatos y dijo: «Sé que lo sabes.» Lo sabía desde el principio, desde mayo, y lo dijo igual.',
+                en: 'Juliette looked at her shoes and said: «I know you know.» She had known from the start, since May, and she had said it anyway.',
+                choix: {
+                  options: [
+                    { v: 'juliette', mot: 'Lui demander pourquoi quand même', mot_es: 'Preguntarle por qué lo dijo igual', mot_en: 'Ask why she said it anyway', vers: 'seu_pourquoi' },
+                    { v: 'cube', mot: 'Lui proposer de le rattraper', mot_es: 'Proponerle arreglarlo', mot_en: 'Offer to help her fix it', vers: 'seu_rattraper' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          seu_pourquoi: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia demanda pourquoi elle l'avait dit en sachant que Livia savait. Juliette dit que c'est justement pour ça : parce qu'il fallait que quelqu'un sache que c'était faux.",
+                es: 'Livia preguntó por qué lo dijo sabiendo que Livia lo sabía. Juliette dijo que justo por eso: porque hacía falta que alguien supiera que era mentira.',
+                en: 'Livia asked why she had said it knowing that Livia knew. Juliette said that was exactly why: because somebody had to know it was not true.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'juliette', x: 300, y: 516, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia a mis trois jours à comprendre cette phrase. Maintenant elle la comprend, et c'est la chose la plus compliquée qu'on lui ait dite cette année.",
+                es: 'Livia tardó tres días en entender esa frase. Ahora la entiende, y es la cosa más complicada que le han dicho este año.',
+                en: 'It took Livia three days to understand that sentence. Now she understands it, and it is the most complicated thing anybody has said to her this year.'
+              }
+            ]
+          },
+
+          seu_rattraper: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia proposa de le rattraper : dire que Tempête est le cheval du voisin de l'oncle, qu'on voit par-dessus la haie. Ce qui est vrai, et il y en a un.",
+                es: 'Livia propuso arreglarlo: decir que Tempête es el caballo del vecino del tío, que se ve por encima del seto. Lo cual es verdad, y hay uno.',
+                en: "Livia offered to help her fix it: to say that Tempête is the horse of the uncle's neighbour, which you can see over the hedge. Which is true, and there is one."
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [{ t: 'juliette', x: 400, y: 516, s: 1.1 }]
+                },
+                text: "Juliette l'a dit comme ça le lendemain, sans que ça intéresse personne. Elle dit que c'est beaucoup moins bien, et qu'elle dort beaucoup mieux.",
+                es: 'Juliette lo contó así al día siguiente, sin que le interesara a nadie. Dice que es mucho menos bueno, y que duerme mucho mejor.',
+                en: 'Juliette told it that way the next day, and it interested nobody. She says it is a great deal less good, and that she sleeps a great deal better.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 48 : le dernier tour ---------- */
+      {
+        id: 'le-dernier-tour',
+        title: 'Le dernier tour',
+        title_en: 'One last turn',
+        title_es: 'La última vuelta',
+        subtitle: "Le dernier tour, et quelqu'un qui attend",
+        subtitle_en: 'The last turn, and somebody waiting',
+        subtitle_es: 'La última vuelta, y alguien esperando',
+        tag: 'Tu choisis',
+        themes: ['Partager', 'Émotions'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'garden', time: 'sunset',
+          items: [
+            { t: 'livia', x: 300, y: 518, s: 1 },
+            { t: 'roxane', x: 600, y: 516, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'happy' }]
+                },
+                text: "Le manège ferme à sept heures. Livia a eu quatre tours, et le monsieur a dit qu'il en reste un, un seul, et qu'après il met la bâche.",
+                es: 'El tiovivo cierra a las siete. Livia ha dado cuatro vueltas, y el señor dijo que queda una, una sola, y que luego pone la lona.',
+                en: 'The roundabout closes at seven. Livia has had four turns, and the man said there is one left, one only, and then he puts the cover on.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Derrière elle, il y a un petit garçon qu'elle ne connaît pas, trois ans peut-être, qui n'a pas eu de tour du tout et qui tient un ticket dans sa main.",
+                es: 'Detrás de ella hay un niño pequeño que no conoce, tres años quizá, que no ha dado ninguna vuelta y que lleva un ticket en la mano.',
+                en: 'Behind her there is a little boy she does not know, three years old maybe, who has not had a single turn and who is holding a ticket in his hand.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Prendre son tour', mot_es: 'Dar su vuelta', mot_en: 'Take her turn', vers: 'prendre' },
+                    { v: 'pablo', mot: 'Lui laisser la place', mot_es: 'Dejarle el sitio', mot_en: 'Let him have it', vers: 'laisser' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          prendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'happy' }]
+                },
+                text: 'Livia monta sur le cheval bleu, celui qui monte et descend le plus haut. Le tour dure une minute quarante, et elle les connaît toutes les deux.',
+                es: 'Livia se subió al caballo azul, el que sube y baja más alto. La vuelta dura un minuto cuarenta, y ella se los conoce todos.',
+                en: 'Livia got on the blue horse, the one that goes up and down the highest. The turn lasts one minute forty, and she knows every second of it.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: 'Au troisième passage devant la barrière, elle vit le petit garçon qui regardait, avec son ticket. Elle passa encore huit fois devant lui.',
+                es: 'En el tercer paso por delante de la valla vio al niño pequeño mirando, con su ticket. Pasó ocho veces más por delante de él.',
+                en: 'On the third time round past the railing she saw the little boy watching, with his ticket. She went past him eight more times.',
+                choix: {
+                  options: [
+                    { v: 'pablo', mot: 'Lui donner son ticket après', mot_es: 'Darle su ticket después', mot_en: 'Give him her ticket afterwards', vers: 'pre_ticket' },
+                    { v: 'cube', mot: "Descendre et s'en aller", mot_es: 'Bajar e irse', mot_en: 'Get off and go', vers: 'pre_partir' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          pre_ticket: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: 1, mood: 'wow' }
+                  ]
+                },
+                text: 'Livia descendit et donna son ticket de la prochaine fois au petit garçon. Il ne servait à rien ce soir-là, mais il valait un tour un autre jour.',
+                es: 'Livia bajó y le dio al niño su ticket para la próxima vez. No servía de nada esa noche, pero valía una vuelta otro día.',
+                en: 'Livia got off and gave the little boy her ticket for next time. It was no use that evening, but it was worth a turn another day.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'night',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'maman', x: 600, y: 514, s: 1 }
+                  ]
+                },
+                text: 'Le monsieur du manège vit ça et dit : « Bon. Un tour de plus. » Il le fit pour le petit garçon, et Livia regarda depuis la barrière, debout, contente.',
+                es: 'El señor del tiovivo lo vio y dijo: «Bueno. Una vuelta más.» La hizo para el niño, y Livia miró desde la valla, de pie, contenta.',
+                en: 'The roundabout man saw that and said: «All right. One more turn.» He ran it for the little boy, and Livia watched from the railing, standing, pleased.'
+              }
+            ]
+          },
+
+          pre_partir: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia descendit et s'en alla sans regarder derrière. Le monsieur mit la bâche. Le petit garçon avait toujours son ticket, et le manège était fermé.",
+                es: 'Livia bajó y se fue sin mirar atrás. El señor puso la lona. El niño seguía con su ticket, y el tiovivo estaba cerrado.',
+                en: 'Livia got off and went away without looking back. The man put the cover on. The little boy still had his ticket, and the roundabout was closed.'
+              },
+              {
+                scene: {
+                  bg: 'road', time: 'night',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Dans la rue, Maman demanda si c'était bien. Livia dit oui, parce que c'était vrai. Elle pensait quand même au ticket, et elle y pensa jusqu'au bain.",
+                es: 'En la calle, Mamá preguntó si había estado bien. Livia dijo que sí, porque era verdad. Pensaba igual en el ticket, y pensó en él hasta el baño.',
+                en: 'In the street Mummy asked whether it had been nice. Livia said yes, because it was true. She was still thinking about the ticket, and she thought about it until bathtime.'
+              }
+            ]
+          },
+
+          laisser: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                    { t: 'pablo', x: 600, y: 520, s: 1, mood: 'wow' }
+                  ]
+                },
+                text: "Livia s'écarta et montra le cheval bleu au petit garçon. Il ne comprit pas tout de suite, puis il comprit, et il courut comme courent les enfants de trois ans.",
+                es: 'Livia se apartó y le señaló el caballo azul al niño. No lo entendió en seguida, luego sí, y corrió como corren los niños de tres años.',
+                en: 'Livia stepped aside and pointed out the blue horse to the little boy. He did not understand straight away, then he did, and he ran the way three-year-olds run.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'sunset',
+                  items: [{ t: 'pablo', x: 400, y: 520, s: 1.1, mood: 'happy' }]
+                },
+                text: "Il fit son tour en criant une seule fois, très fort, au premier passage. Livia regarda depuis la barrière, et une minute quarante, de ce côté-là, c'est long.",
+                es: 'Dio su vuelta gritando una sola vez, muy fuerte, en el primer paso. Livia miró desde la valla, y un minuto cuarenta, desde ese lado, es largo.',
+                en: 'He had his turn, shouting just once, very loudly, on the first time round. Livia watched from the railing, and one minute forty, from that side, is a long time.',
+                choix: {
+                  options: [
+                    { v: 'cube', mot: 'Rentrer comme ça', mot_es: 'Volver a casa así', mot_en: 'Go home like that', vers: 'lai_rentrer' },
+                    { v: 'pablo', mot: "Lui demander s'il a eu peur", mot_es: 'Preguntarle si tuvo miedo', mot_en: 'Ask him if he was scared', vers: 'lai_demander' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          lai_rentrer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'road', time: 'night',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia rentra comme ça, sans rien dire à personne. Maman ne savait pas et ne l'a jamais su, et Livia a décidé que ça ne changeait rien du tout.",
+                es: 'Livia volvió a casa así, sin decir nada a nadie. Mamá no lo sabía y nunca lo ha sabido, y Livia decidió que eso no cambia nada.',
+                en: 'Livia went home like that, without telling anybody. Mummy did not know and has never known, and Livia decided it did not change anything at all.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sleep' }]
+                },
+                text: "Dans le lit, elle se repassa le cri du petit garçon, celui du premier passage. Elle l'a encore dans la tête, et c'est un souvenir qui ne coûte rien.",
+                es: 'En la cama se repitió el grito del niño, el del primer paso. Todavía lo tiene en la cabeza, y es un recuerdo que no cuesta nada.',
+                en: "In bed she played the little boy's shout over again, the one from the first time round. She still has it in her head, and it is a memory that costs nothing."
+              }
+            ]
+          },
+
+          lai_demander: {
+            pages: [
+              {
+                scene: {
+                  bg: 'garden', time: 'night',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'pablo', x: 600, y: 520, s: 1 }
+                  ]
+                },
+                text: "Livia lui demanda après s'il avait eu peur, en haut du cheval bleu. Il dit oui, deux fois, et qu'il recommencerait, ce qui est exactement la bonne réponse.",
+                es: 'Livia le preguntó después si había tenido miedo, arriba del caballo azul. Dijo que sí, dos veces, y que lo repetiría, que es exactamente la respuesta correcta.',
+                en: 'Livia asked him afterwards whether he had been scared, up on the blue horse. He said yes, twice, and that he would do it again, which is exactly the right answer.'
+              },
+              {
+                scene: {
+                  bg: 'garden', time: 'night',
+                  items: [
+                    { t: 'pablo', x: 300, y: 520, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Sa maman voulut rendre le prix du tour. Livia dit non. Le petit garçon s'appelle Noé, il habite deux rues plus loin, et ils se voient le mercredi.",
+                es: 'Su mamá quiso devolver el precio de la vuelta. Livia dijo que no. El niño se llama Noé, vive dos calles más allá, y se ven los miércoles.',
+                en: 'His mum wanted to pay her back for the turn. Livia said no. The little boy is called Noé, he lives two streets away, and they see each other on Wednesdays.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 49 : le choix de mamie ---------- */
+      {
+        id: 'le-choix-de-mamie',
+        title: 'Le choix de Mamie',
+        title_en: "Granny's choice",
+        title_es: 'La elección de la abuela',
+        subtitle: "Choisir quand on devine ce qu'on espère de nous",
+        subtitle_en: "Choosing when you can guess what's hoped for",
+        subtitle_es: 'Elegir cuando adivinas qué se espera de ti',
+        tag: 'Tu choisis',
+        themes: ['Famille', 'Grandir'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'mamie', x: 300, y: 514, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Mamie a posé deux choses sur la table : une boîte de perles, et un vieux jeu de cartes abîmé avec des dessins d'oiseaux. Elle a dit : « Tu choisis. »",
+                es: 'La abuela puso dos cosas en la mesa: una caja de cuentas y una baraja vieja y gastada con dibujos de pájaros. Dijo: «Tú eliges.»',
+                en: 'Granny put two things on the table: a box of beads, and an old battered pack of cards with birds on them. She said: «You choose.»'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'mamie', x: 400, y: 514, s: 1.1 }]
+                },
+                text: "Livia veut les perles. Mais Mamie a sorti le jeu de cartes de tout en haut de l'armoire, avec une chaise, et elle en a parlé plus longtemps.",
+                es: 'Livia quiere las cuentas. Pero la abuela sacó la baraja de lo más alto del armario, con una silla, y habló mucho más tiempo de ella.',
+                en: 'Livia wants the beads. But Granny got the pack of cards down from the very top of the wardrobe, standing on a chair, and she talked about it for longer.',
+                choix: {
+                  options: [
+                    { v: 'mamie', mot: 'Prendre les cartes', mot_es: 'Coger las cartas', mot_en: 'Take the cards', vers: 'cartes' },
+                    { v: 'livia', mot: 'Prendre les perles', mot_es: 'Coger las cuentas', mot_en: 'Take the beads', vers: 'perles' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          cartes: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1, mood: 'happy' },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia prit les cartes. Mamie fut contente d'une façon très visible, et elle commença tout de suite à expliquer un jeu qui s'appelle le pouilleux.",
+                es: 'Livia cogió las cartas. La abuela se puso contenta de una manera muy visible, y empezó en seguida a explicar un juego que se llama el pouilleux.',
+                en: 'Livia took the cards. Granny was pleased in a very visible way, and she started explaining a game called Old Maid straight away.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: 'Le pouilleux est compliqué, et les oiseaux sont tous un peu pareils quand on a quatre ans. Livia perdit six fois, et elle pensait aux perles.',
+                es: 'El pouilleux es complicado, y los pájaros son todos un poco iguales cuando tienes cuatro años. Livia perdió seis veces, y pensaba en las cuentas.',
+                en: 'Old Maid is complicated, and the birds all look rather alike when you are four. Livia lost six times, and she was thinking about the beads.',
+                choix: {
+                  options: [
+                    { v: 'mamie', mot: 'Dire la vérité à Mamie', mot_es: 'Decirle la verdad a la abuela', mot_en: 'Tell Granny the truth', vers: 'car_verite' },
+                    { v: 'cube', mot: 'Continuer à jouer', mot_es: 'Seguir jugando', mot_en: 'Keep playing', vers: 'car_continuer' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          car_verite: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia dit la vérité : qu'elle avait pris les cartes pour faire plaisir, et qu'elle voulait les perles. Mamie rit très fort, ce qui n'était pas prévu.",
+                es: 'Livia dijo la verdad: que había cogido las cartas para dar gusto, y que quería las cuentas. La abuela se rió muchísimo, lo cual no estaba previsto.',
+                en: 'Livia told the truth: that she had taken the cards to please her, and that she wanted the beads. Granny laughed very loudly, which was not expected.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Elles firent un collier de perles tout l'après-midi, avec les cartes à côté sur la table. Elles jouent au pouilleux depuis, le dimanche, vingt minutes.",
+                es: 'Hicieron un collar de cuentas toda la tarde, con las cartas al lado en la mesa. Desde entonces juegan al pouilleux los domingos, veinte minutos.',
+                en: 'They made a bead necklace all afternoon, with the cards beside them on the table. They have played Old Maid since then, on Sundays, for twenty minutes.'
+              }
+            ]
+          },
+
+          car_continuer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'sad' }
+                  ]
+                },
+                text: "Livia continua à jouer sans rien dire, jusqu'à la nuit, en perdant. Mamie était heureuse tout du long, et Livia fut fatiguée d'une fatigue bizarre.",
+                es: 'Livia siguió jugando sin decir nada, hasta la noche, perdiendo. La abuela estuvo feliz todo el rato, y Livia se cansó con un cansancio raro.',
+                en: 'Livia kept playing without saying anything, until nightfall, losing. Granny was happy the whole time, and Livia got tired with a strange sort of tiredness.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: "Les cartes sont dans sa chambre maintenant, sur l'étagère, et elle n'y touche pas. Mamie demande parfois si elles servent, et Livia dit que oui.",
+                es: 'Las cartas están ahora en su habitación, en la estantería, y no las toca. La abuela pregunta a veces si las usa, y Livia dice que sí.',
+                en: 'The cards are in her room now, on the shelf, and she does not touch them. Granny sometimes asks whether she uses them, and Livia says yes.'
+              }
+            ]
+          },
+
+          perles: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'mamie', x: 600, y: 514, s: 1 }
+                  ]
+                },
+                text: "Livia prit les perles, celles qu'elle voulait. Mamie dit « très bien » d'une voix un peu plus courte que d'habitude, et rangea les cartes dans sa poche.",
+                es: 'Livia cogió las cuentas, las que quería. La abuela dijo «muy bien» con una voz un poco más corta que de costumbre, y guardó las cartas en el bolsillo.',
+                en: 'Livia took the beads, the ones she wanted. Granny said «very good» in a slightly shorter voice than usual, and put the cards in her pocket.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Elles enfilèrent des perles pendant une heure, bien, en silence. Les cartes restèrent dans la poche de Mamie tout l'après-midi, et ça se sentait un peu.",
+                es: 'Ensartaron cuentas durante una hora, bien, en silencio. Las cartas se quedaron en el bolsillo de la abuela toda la tarde, y se notaba un poco.',
+                en: "They threaded beads for an hour, nicely, in silence. The cards stayed in Granny's pocket all afternoon, and you could feel it a little.",
+                choix: {
+                  options: [
+                    { v: 'mamie', mot: "Lui demander ce qu'il y a", mot_es: 'Preguntarle qué pasa', mot_en: "Ask her what's wrong", vers: 'per_demander' },
+                    { v: 'cube', mot: 'Demander les cartes aussi', mot_es: 'Pedir las cartas también', mot_en: 'Ask for the cards too', vers: 'per_cartes' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          per_demander: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia demanda ce qu'il y avait. Mamie dit que les cartes étaient à son frère, qui est mort, et qu'elle les monte et les descend de l'armoire depuis des années.",
+                es: 'Livia preguntó qué pasaba. La abuela dijo que las cartas eran de su hermano, que murió, y que las sube y las baja del armario desde hace años.',
+                en: 'Livia asked what was wrong. Granny said the cards had belonged to her brother, who died, and that she has been taking them up and down from the wardrobe for years.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Livia a demandé à les regarder, pas à jouer : juste les oiseaux, un par un. Elles ont fait ça jusqu'au soir, et Mamie racontait un nom à chaque fois.",
+                es: 'Livia pidió mirarlas, no jugar: solo los pájaros, uno a uno. Lo hicieron hasta la noche, y la abuela contaba un nombre cada vez.',
+                en: 'Livia asked to look at them, not to play: just the birds, one by one. They did that until evening, and Granny told her a name each time.'
+              }
+            ]
+          },
+
+          per_cartes: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                    { t: 'mamie', x: 600, y: 514, s: 1, mood: 'wow' }
+                  ]
+                },
+                text: "Livia demanda les cartes aussi, en plus des perles, ce qui n'était pas une des deux réponses prévues. Mamie dit qu'on n'avait pas le droit, puis qu'en fait si.",
+                es: 'Livia pidió las cartas también, además de las cuentas, lo cual no era ninguna de las dos respuestas previstas. La abuela dijo que no se podía, y luego que sí.',
+                en: 'Livia asked for the cards as well, on top of the beads, which was not one of the two answers on offer. Granny said that was not allowed, then that actually it was.'
+              },
+              {
+                scene: {
+                  bg: 'bedroom', time: 'sunset',
+                  items: [
+                    { t: 'mamie', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Elles firent un collier le matin et les oiseaux l'après-midi. Livia pense que « tu choisis » veut dire moins de choses qu'on croit, et qu'il faut vérifier.",
+                es: 'Hicieron un collar por la mañana y los pájaros por la tarde. Livia piensa que «tú eliges» quiere decir menos cosas de lo que parece, y que hay que comprobarlo.',
+                en: 'They made a necklace in the morning and did the birds in the afternoon. Livia thinks «you choose» means less than people suppose, and that it is worth checking.'
+              }
+            ]
+          }
+        }
+      },
+
+      /* ---------- 50 : le numéro de téléphone ---------- */
+      {
+        id: 'le-numero-de-telephone',
+        title: 'Le numéro de téléphone',
+        title_en: 'The phone number',
+        title_es: 'El número de teléfono',
+        subtitle: 'Dix chiffres dans une poche, ou dans la tête',
+        subtitle_en: 'Ten numbers in a pocket, or in your head',
+        subtitle_es: 'Diez cifras en un bolsillo, o en la cabeza',
+        tag: 'Tu choisis',
+        themes: ['Grandir', 'Famille'],
+        minutes: 6,
+        debut: 'depart',
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'maman', x: 300, y: 514, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        blocs: {
+
+          depart: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Demain, c'est la sortie au musée. Maman a écrit son numéro de téléphone sur un bout de carton et l'a mis dans la poche du manteau de Livia.",
+                es: 'Mañana es la salida al museo. Mamá escribió su número de teléfono en un trozo de cartón y lo metió en el bolsillo del abrigo de Livia.',
+                en: "Tomorrow is the museum trip. Mummy wrote her phone number on a bit of card and put it in the pocket of Livia's coat."
+              },
+              {
+                scene: {
+                  bg: 'bedroom',
+                  items: [{ t: 'maman', x: 400, y: 514, s: 1.1, pose: 'point' }]
+                },
+                text: 'Elle a dit : « Si tu es perdue, tu montres ça à un adulte. » Puis elle a dit le numéro à voix haute, deux fois, en regardant Livia dans les yeux.',
+                es: 'Dijo: «Si te pierdes, le enseñas esto a un adulto.» Luego dijo el número en voz alta, dos veces, mirando a Livia a los ojos.',
+                en: 'She said: «If you get lost, you show this to a grown-up.» Then she said the number out loud, twice, looking Livia in the eyes.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Apprendre le numéro par cœur', mot_es: 'Aprender el número de memoria', mot_en: 'Learn the number by heart', vers: 'apprendre' },
+                    { v: 'cube', mot: 'Garder le carton dans la poche', mot_es: 'Guardar el cartón en el bolsillo', mot_en: 'Keep the card in the pocket', vers: 'carton' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          apprendre: {
+            pages: [
+              {
+                scene: {
+                  bg: 'bedroom', time: 'night',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: "Livia décida de l'apprendre par cœur. Dix chiffres, c'est long. Elle les coupa en cinq morceaux de deux et les répéta dans le lit, jusqu'à ce que ça rentre.",
+                es: 'Livia decidió aprenderlo de memoria. Diez cifras es mucho. Los cortó en cinco trozos de dos y los repitió en la cama, hasta que entraron.',
+                en: 'Livia decided to learn it by heart. Ten numbers is a lot. She cut them into five pieces of two and repeated them in bed, until they went in.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Au musée, le carton tomba de sa poche dans l'autocar, et elle ne s'en aperçut pas. Elle avait les dix chiffres, mais elle n'avait plus le carton.",
+                es: 'En el museo, el cartón se le cayó del bolsillo en el autobús, y no se dio cuenta. Tenía las diez cifras, pero ya no tenía el cartón.',
+                en: 'At the museum the card fell out of her pocket on the coach, and she did not notice. She had the ten numbers, but she no longer had the card.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Dire le numéro à la maîtresse', mot_es: 'Decirle el número a la maestra', mot_en: 'Tell the teacher the number', vers: 'app_dire' },
+                    { v: 'cube', mot: 'Chercher le carton partout', mot_es: 'Buscar el cartón por todas partes', mot_en: 'Look everywhere for the card', vers: 'app_chercher' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          app_dire: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [
+                    { t: 'livia', x: 300, y: 518, s: 1 },
+                    { t: 'juliette', x: 600, y: 516, s: 1 }
+                  ]
+                },
+                text: "Livia alla dire le numéro à la maîtresse, de mémoire, pour qu'elle l'écrive. La maîtresse le nota, puis demanda de le répéter, et c'était exactement le même.",
+                es: 'Livia fue a decirle el número a la maestra, de memoria, para que lo escribiera. La maestra lo apuntó, y luego pidió que lo repitiera, y era exactamente el mismo.',
+                en: 'Livia went and told the teacher the number, from memory, so she could write it down. The teacher wrote it, then asked her to say it again, and it was exactly the same.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1, mood: 'happy' }
+                  ]
+                },
+                text: "Personne ne s'est perdu, et le numéro n'a servi à rien du tout. Livia le sait encore, par groupes de deux, et elle le dira toute sa vie comme ça.",
+                es: 'Nadie se perdió, y el número no sirvió para nada. Livia todavía lo sabe, por grupos de dos, y lo dirá así toda su vida.',
+                en: 'Nobody got lost, and the number was of no use at all. Livia still knows it, in groups of two, and she will say it that way all her life.'
+              }
+            ]
+          },
+
+          app_chercher: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: 'Livia chercha le carton partout : les poches, le sac, le sol, deux fois chaque endroit. Pendant ce temps, le groupe passa dans la salle suivante.',
+                es: 'Livia buscó el cartón por todas partes: los bolsillos, la mochila, el suelo, dos veces cada sitio. Mientras, el grupo pasó a la sala siguiente.',
+                en: 'Livia looked everywhere for the card: pockets, bag, floor, twice in each place. Meanwhile the group moved on to the next room.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Quand elle releva la tête, il n'y avait plus personne de sa classe dans la salle des oiseaux. Elle avait les dix chiffres dans la tête, ce qui était heureux.",
+                es: 'Cuando levantó la cabeza, ya no había nadie de su clase en la sala de los pájaros. Tenía las diez cifras en la cabeza, lo cual fue una suerte.',
+                en: 'When she looked up, there was nobody from her class left in the bird room. She had the ten numbers in her head, which was fortunate.'
+              }
+            ]
+          },
+
+          carton: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia garda le carton dans la poche, bien au fond, et vérifia quatre fois dans l'autocar qu'il y était toujours. Il y était toujours.",
+                es: 'Livia guardó el cartón en el bolsillo, bien al fondo, y comprobó cuatro veces en el autobús que seguía allí. Seguía allí.',
+                en: 'Livia kept the card in her pocket, right at the bottom, and checked four times on the coach that it was still there. It was still there.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+                },
+                text: "Au musée, elle s'arrêta trop longtemps devant une vitrine de coquillages, et quand elle se retourna la salle était vide. Elle sortit le carton. Il était plié et mouillé.",
+                es: 'En el museo se paró demasiado rato ante una vitrina de conchas, y cuando se giró la sala estaba vacía. Sacó el cartón. Estaba doblado y mojado.',
+                en: 'At the museum she stopped too long in front of a case of seashells, and when she turned round the room was empty. She took out the card. It was folded and wet.',
+                choix: {
+                  options: [
+                    { v: 'livia', mot: 'Montrer le carton quand même', mot_es: 'Enseñar el cartón igual', mot_en: 'Show the card anyway', vers: 'car_montrer' },
+                    { v: 'cube', mot: 'Essayer de deviner les chiffres', mot_es: 'Intentar adivinar las cifras', mot_en: 'Try to guess the numbers', vers: 'car_deviner' }
+                  ]
+                }
+              }
+            ]
+          },
+
+          car_montrer: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+                },
+                text: "Livia montra le carton mouillé à la dame de la salle. On lisait six chiffres sur dix. La dame dit que ça ne suffit pas, mais qu'elle allait trouver la classe.",
+                es: 'Livia le enseñó el cartón mojado a la señora de la sala. Se leían seis cifras de diez. La señora dijo que no bastan, pero que iba a encontrar la clase.',
+                en: 'Livia showed the wet card to the lady in the room. Six of the ten numbers could be read. The lady said that is not enough, but that she would find the class.'
+              },
+              {
+                scene: {
+                  bg: 'village', time: 'sunset',
+                  items: [
+                    { t: 'maman', x: 300, y: 514, s: 1 },
+                    { t: 'livia', x: 600, y: 518, s: 1 }
+                  ]
+                },
+                text: "Elle la trouva en quatre minutes, dans la salle des oiseaux. Le soir, Livia a demandé à Maman de redire le numéro, et elle l'a appris pour de bon.",
+                es: 'La encontró en cuatro minutos, en la sala de los pájaros. Por la noche, Livia le pidió a Mamá que repitiera el número, y se lo aprendió de verdad.',
+                en: 'She found them in four minutes, in the bird room. That evening Livia asked Mummy to say the number again, and she learned it properly.'
+              }
+            ]
+          },
+
+          car_deviner: {
+            pages: [
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+                },
+                text: 'Livia essaya de deviner les quatre chiffres manquants. Il y a dix mille façons de se tromper sur quatre chiffres, et elle en essaya trois toute seule, dans sa tête.',
+                es: 'Livia intentó adivinar las cuatro cifras que faltaban. Hay diez mil maneras de equivocarse con cuatro cifras, y probó tres sola, en su cabeza.',
+                en: 'Livia tried to guess the four missing numbers. There are ten thousand ways of getting four numbers wrong, and she tried three of them on her own, in her head.'
+              },
+              {
+                scene: {
+                  bg: 'village',
+                  items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sit' }]
+                },
+                text: "Puis elle s'assit par terre à côté de la vitrine et attendit, ce qui était la seule bonne idée. La maîtresse revint la chercher au bout de six minutes.",
+                es: 'Luego se sentó en el suelo al lado de la vitrina y esperó, que era la única buena idea. La maestra volvió a buscarla al cabo de seis minutos.',
+                en: 'Then she sat down on the floor next to the case and waited, which was the only good idea. The teacher came back for her after six minutes.'
+              }
+            ]
+          }
+        }
       }
 ]
   }
