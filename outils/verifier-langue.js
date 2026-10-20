@@ -28,6 +28,24 @@ function note(ou, quoi) { soucis.push(ou + ' : ' + quoi); }
    contient donc un faux « a a » si l'on s'y fie. On écrit donc les frontières à la
    main, avec un jeu de lettres qui inclut les accents. */
 var LETTRE = '0-9A-Za-zÀ-ÖØ-öø-ÿ';
+/* Les mots espagnols terminés par á, à, ò ou ô : presque toujours un passé
+   simple mal accentué, sauf une liste courte de mots parfaitement normaux. */
+var MOT_ESPAGNOL = new RegExp('(^|[^' + LETTRE + '])[' + LETTRE + ']*[áàòô]($|[^' + LETTRE + '])', 'gi');
+var RX_NON_LETTRE = new RegExp('[^' + LETTRE + ']', 'g');
+/* Le futur espagnol finit en -rá (« servirá », « aguantará ») : celui-là est
+   normal. Le passé simple mal accentué, lui, finit en -á sans r devant
+   (« mirá » au lieu de « miró »), et c'est la faute qu'on cherche. À, ò et ô
+   n'existent pas en espagnol : on les signale toujours. */
+var ACCENT_NORMAL = {};
+('está acá allá aquí ahí así quizá sofá mamá papá ojalá además jamás detrás ' +
+ 'atrás través jamás').split(' ')
+  .forEach(function (m) { ACCENT_NORMAL[m] = true; });
+function accentNormal(mot) {
+  var m = mot.toLowerCase();
+  if (ACCENT_NORMAL[m]) return true;
+  return /rá$/.test(m);            /* un futur, pas un passé simple */
+}
+
 var MOTS_DOUBLES = new RegExp(
   '(^|[^' + LETTRE + '])' +
   '(le|la|les|de|du|des|un|une|et|à|que|qui|elle|il|on|ne|pas|son|sa|ses|dans|sur|pour' +
@@ -69,6 +87,16 @@ function verifierTexte(ou, langue, t) {
     if (excl !== exclO) note(ou + '/es', '¡ manquant (' + exclO + ' pour ' + excl + ' !)');
     /* une espace avant la ponctuation est une faute en espagnol */
     if (/\s[!?,.;:]/.test(t)) note(ou + '/es', 'espace avant la ponctuation (usage français)');
+    /* Le passé simple espagnol porte l'accent sur le O : « miró », jamais
+       « mirá » ni « mirò ». La faute est invisible à la relecture rapide et
+       elle revient toujours sur les mêmes verbes. Les frontières de mot sont
+       écrites à la main : \b ne connaît pas les lettres accentuées. */
+    var mots = t.match(MOT_ESPAGNOL) || [];
+    mots.forEach(function (brut) {
+      var mot = brut.replace(RX_NON_LETTRE, '');
+      if (!mot || accentNormal(mot)) return;
+      note(ou + '/es', 'accent suspect : « ' + mot + ' » (passé simple en -ó ?)');
+    });
   }
 
   if (langue === 'en') {
