@@ -127,6 +127,7 @@ def parser(texte):
             histoires.append(cour)
             page = None
             scene = None
+            bloc = None
             continue
         if cour is None:
             erreur(ligne, n, 'il faut commencer par une ligne STORY')
@@ -144,9 +145,25 @@ def parser(texte):
         elif mot == 'COVER':
             cour['cover'] = lire_scene(reste, ligne, n)
             scene = cour['cover']
+        elif mot == 'BLOC':
+            # Une histoire à choix n'est pas une suite de pages : c'est un
+            # réseau de blocs, et chaque bloc se termine soit par un choix,
+            # soit par une fin.
+            if not re.match(r'^[a-z0-9_]+$', reste):
+                erreur(ligne, n, 'BLOC identifiant (minuscules, chiffres, souligné)')
+            cour.setdefault('blocs', {})
+            if reste in cour['blocs']:
+                erreur(ligne, n, 'bloc « %s » déjà ouvert' % reste)
+            bloc = {'pages': []}
+            cour['blocs'][reste] = bloc
+            cour.setdefault('ordre', []).append(reste)
+            if 'debut' not in cour:
+                cour['debut'] = reste
+            page = None
+            scene = None
         elif mot == 'PAGE':
             page = {'scene': lire_scene(reste, ligne, n)}
-            cour['pages'].append(page)
+            (bloc['pages'] if bloc is not None else cour['pages']).append(page)
             scene = page['scene']
         elif mot in ('BACK', 'FRONT'):
             if scene is None:
@@ -174,6 +191,24 @@ def parser(texte):
             scene.setdefault('sfx', []).append({
                 't': m[1], 'x': float(v[0]), 'y': float(v[1]),
                 'fs': float(v[2]), 'rot': float(v[3]), 'color': v[4].strip()})
+        elif mot == 'CHOIX':
+            if page is None:
+                erreur(ligne, n, 'CHOIX doit suivre la dernière PAGE d\'un bloc')
+            options = []
+            for bout in reste.split(';'):
+                bout = bout.strip()
+                if not bout:
+                    continue
+                ch = [c.strip() for c in bout.split('|')]
+                if len(ch) < 5:
+                    erreur(ligne, n, 'une option s\'écrit dessin|mot|mot_es|mot_en|vers[|nuit]')
+                o = {'v': ch[0], 'mot': ch[1], 'mot_es': ch[2], 'mot_en': ch[3], 'vers': ch[4]}
+                if len(ch) > 5 and ch[5] == 'nuit':
+                    o['fond'] = 'nuit'
+                options.append(o)
+            if len(options) < 2:
+                erreur(ligne, n, 'un choix demande au moins deux options')
+            page['choix'] = {'options': options}
         elif mot in ('FR', 'ES', 'EN'):
             if page is None:
                 erreur(ligne, n, '%s doit suivre une PAGE' % mot)
@@ -201,6 +236,9 @@ def verifier(histoires):
                 soucis.append(ou + ' : il manque ' + cle)
         if not re.match(r'^[a-z0-9-]+$', h['id']):
             soucis.append(ou + " : l'identifiant doit être en minuscules sans accent")
+        if 'blocs' in h:
+            soucis.extend(verifier_graphe(h, ou))
+            continue
         if len(h['pages']) < 5:
             soucis.append('%s : %d pages seulement' % (ou, len(h['pages'])))
         for i, p in enumerate(h['pages'], 1):
@@ -209,6 +247,67 @@ def verifier(histoires):
                     soucis.append('%s page %d : il manque %s' % (ou, i, nom))
             if not p['scene'].get('items'):
                 soucis.append('%s page %d : aucun personnage' % (ou, i))
+    return soucis
+
+
+
+def verifier_graphe(h, ou):
+    """Un réseau d'histoire à choix doit tenir debout : chaque « vers »
+       désigne un bloc qui existe, aucun bloc n'est orphelin, tous les
+       chemins font la même longueur, et un choix ne se pose que sur la
+       dernière page d'un bloc."""
+    soucis = []
+    blocs = h['blocs']
+    for nom, b in blocs.items():
+        if not b['pages']:
+            soucis.append('%s/%s : bloc vide' % (ou, nom))
+            continue
+        for i, p in enumerate(b['pages']):
+            dernier = (i == len(b['pages']) - 1)
+            if 'choix' in p and not dernier:
+                soucis.append('%s/%s : un choix au milieu du bloc (page %d)' % (ou, nom, i + 1))
+            for cle, nomlangue in (('text', 'le français'), ('es', "l'espagnol"), ('en', "l'anglais")):
+                if not p.get(cle):
+                    soucis.append('%s/%s p%d : il manque %s' % (ou, nom, i + 1, nomlangue))
+        fin = b['pages'][-1]
+        for o in fin.get('choix', {}).get('options', []):
+            if o['vers'] not in blocs:
+                soucis.append('%s/%s : « vers %s » ne mène nulle part' % (ou, nom, o['vers']))
+
+    # tous les blocs doivent être atteignables depuis le début
+    vus, pile = set(), [h['debut']]
+    while pile:
+        nom = pile.pop()
+        if nom in vus or nom not in blocs:
+            continue
+        vus.add(nom)
+        for o in blocs[nom]['pages'][-1].get('choix', {}).get('options', []):
+            pile.append(o['vers'])
+    for nom in blocs:
+        if nom not in vus:
+            soucis.append('%s/%s : bloc orphelin, aucun choix n\'y mène' % (ou, nom))
+
+    # toutes les lectures doivent faire le même nombre de pages
+    longueurs = set()
+
+    def marcher(nom, deja, chemin):
+        if nom in chemin:
+            soucis.append('%s : boucle sur « %s »' % (ou, nom))
+            return
+        b = blocs[nom]
+        total = deja + len(b['pages'])
+        opts = b['pages'][-1].get('choix', {}).get('options', [])
+        if not opts:
+            longueurs.add(total)
+            return
+        for o in opts:
+            if o['vers'] in blocs:
+                marcher(o['vers'], total, chemin + [nom])
+
+    marcher(h['debut'], 0, [])
+    if len(longueurs) > 1:
+        soucis.append('%s : les lectures n\'ont pas la même longueur (%s pages)'
+                      % (ou, ', '.join(str(x) for x in sorted(longueurs))))
     return soucis
 
 
@@ -288,22 +387,59 @@ def js_histoire(h, numero):
     L.append("        tag: '%s'," % h['tag'])
     L.append('        themes: [%s],' % ', '.join("'%s'" % t for t in h['themes']))
     L.append('        minutes: %d,' % h['minutes'])
+    if 'blocs' in h:
+        L.append("        debut: '%s'," % h['debut'])
     L.append('        cover: {')
     L.append(js_scene(h['cover'], 10))
     L.append('        },')
+    if 'blocs' in h:
+        L.append('        blocs: {')
+        noms = h['ordre']
+        for k, nom in enumerate(noms):
+            L.append('')
+            L.append('          %s: {' % nom)
+            L.append('            pages: [')
+            L.extend(js_pages(h['blocs'][nom]['pages'], 14))
+            L.append('            ]')
+            L.append('          }' + ('' if k == len(noms) - 1 else ','))
+        L.append('        }')
+        L.append('      }')
+        return '\n'.join(L)
     L.append('        pages: [')
-    for k, p in enumerate(h['pages']):
-        L.append('          {')
-        L.append('            scene: {')
-        L.append(js_scene(p['scene'], 14))
-        L.append('            },')
-        L.append('            text: %s,' % js_texte(p['text']))
-        L.append('            es: %s,' % js_texte(p['es']))
-        L.append('            en: %s' % js_texte(p['en']))
-        L.append('          }' + ('' if k == len(h['pages']) - 1 else ','))
+    L.extend(js_pages(h['pages'], 12))
     L.append('        ]')
     L.append('      }')
     return '\n'.join(L)
+
+
+def js_pages(pages, ind):
+    """Les pages d'une histoire ou d'un bloc, à l'indentation voulue."""
+    b = ' ' * ind
+    L = []
+    for k, p in enumerate(pages):
+        L.append(b + '{')
+        L.append(b + '  scene: {')
+        L.append(js_scene(p['scene'], ind + 4))
+        L.append(b + '  },')
+        L.append(b + '  text: %s,' % js_texte(p['text']))
+        L.append(b + '  es: %s,' % js_texte(p['es']))
+        virgule = ',' if 'choix' in p else ''
+        L.append(b + '  en: %s%s' % (js_texte(p['en']), virgule))
+        if 'choix' in p:
+            L.append(b + '  choix: {')
+            L.append(b + '    options: [')
+            opts = p['choix']['options']
+            for j, o in enumerate(opts):
+                bouts = ["v: '%s'" % o['v'], 'mot: ' + js_texte(o['mot']),
+                         'mot_es: ' + js_texte(o['mot_es']), 'mot_en: ' + js_texte(o['mot_en']),
+                         "vers: '%s'" % o['vers']]
+                if 'fond' in o:
+                    bouts.append("fond: '%s'" % o['fond'])
+                L.append(b + '      { ' + ', '.join(bouts) + ' }' + ('' if j == len(opts) - 1 else ','))
+            L.append(b + '    ]')
+            L.append(b + '  }')
+        L.append(b + '}' + ('' if k == len(pages) - 1 else ','))
+    return L
 
 
 # ------------------------------------------------------------------
@@ -359,9 +495,14 @@ if __name__ == '__main__':
     if soucis:
         print('\n'.join('  ✗ ' + s for s in soucis))
         raise SystemExit('%d souci(s) — rien n\'a été écrit.' % len(soucis))
-    print('%d histoire(s), %d page(s)' % (len(lot), sum(len(h['pages']) for h in lot)))
+    def pages(h):
+        if 'blocs' in h:
+            return sum(len(b['pages']) for b in h['blocs'].values())
+        return len(h['pages'])
+    print('%d histoire(s), %d page(s)' % (len(lot), sum(pages(h) for h in lot)))
     if '--inserer' in sys.argv:
         inserer(lot)
         print('inséré dans ' + STORIES)
     elif '--js' in sys.argv:
-        print(js_histoire(lot[0], 99))
+        k = int(sys.argv[sys.argv.index('--js') + 1]) if len(sys.argv) > sys.argv.index('--js') + 1 and sys.argv[sys.argv.index('--js') + 1].isdigit() else 0
+        print(js_histoire(lot[k], 99))
