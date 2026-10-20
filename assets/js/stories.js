@@ -10675,8 +10675,1100 @@ var UNIVERSES = [
             en: "When Mr Slow finally touched the tree, they both cheered as if he had won. In a way he had won: he was the only one who had not stopped at any point."
           }
         ]
+      },
+
+      /* ---------- 11 : monsieur curieux pose trop de questions ---------- */
+      {
+        id: 'curieux-pose-trop-de-questions',
+        title: 'Monsieur Curieux pose trop de questions',
+        title_en: 'Mr Curieux asks too many questions',
+        title_es: 'El señor Curioso pregunta demasiado',
+        subtitle: "Il y a des questions qu'on garde",
+        subtitle_en: 'Some questions you keep to yourself',
+        subtitle_es: 'Hay preguntas que uno se guarda',
+        tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
+        minutes: 4,
+        cover: {
+          bg: 'plain',
+          items: [
+            { t: 'curieux', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'curieux', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              sfx: [{ t: 'POURQUOI ?', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: 'Monsieur Curieux posa à Livia quarante-deux questions avant le déjeuner. Pourquoi le ciel. Pourquoi les pieds. Pourquoi on dit bonjour. Les quarante-deux étaient de bonnes questions.',
+            es: 'El señor Curioso le hizo a Livia cuarenta y dos preguntas antes de comer. Por qué el cielo. Por qué los pies. Por qué se dice hola. Las cuarenta y dos eran buenas preguntas.',
+            en: 'Mr Curieux asked Livia forty-two questions before lunch. Why the sky. Why feet. Why people say hello. All forty-two were good questions.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'fache' }]
+            },
+            text: 'Livia répondit aux trente premières. Aux suivantes, elle répondit « je sais pas » de plus en plus vite. À la quarante-deuxième, elle ne répondit plus du tout.',
+            es: 'Livia contestó a las treinta primeras. A las siguientes contestó «no sé» cada vez más rápido. A la cuarenta y dos ya no contestó nada.',
+            en: "Livia answered the first thirty. To the next ones she said «don't know» faster and faster. By the forty-second she did not answer at all."
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'curieux', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'timide', x: 600, y: 516, s: 1, mood: 'sad' }
+              ]
+            },
+            text: 'Puis il se tourna vers Madame Timide et demanda pourquoi elle parlait si bas. Madame Timide devint très rouge et regarda ses pieds sans rien dire du tout.',
+            es: 'Luego se giró hacia la señora Tímida y le preguntó por qué hablaba tan bajo. La señora Tímida se puso muy roja y se miró los pies sin decir nada.',
+            en: 'Then he turned to Mrs Timide and asked why she talked so quietly. Mrs Timide went very red and looked at her feet without saying anything at all.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Livia vit la différence tout de suite. Ses quarante-deux questions étaient fatigantes. Celle-là faisait mal. Ce n'est pas le nombre qui compte, c'est l'endroit où on appuie.",
+            es: 'Livia vio la diferencia enseguida. Sus cuarenta y dos preguntas eran agotadoras. Esa hacía daño. No es el número lo que cuenta, es el sitio donde se aprieta.',
+            en: 'Livia saw the difference at once. His forty-two questions were tiring. That one hurt. It is not the number that matters, it is where you press.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'curieux', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'Cette question-là, garde-la pour toi.', tx: 300, ty: 240 }]
+            },
+            text: '« Cette question-là, garde-la pour toi », dit Livia. Monsieur Curieux demanda pourquoi, évidemment. Livia dit : « Parce que ça se voit sur son visage. » Il regarda, et il vit.',
+            es: '«Esa pregunta guárdatela», dijo Livia. El señor Curioso preguntó por qué, evidentemente. Livia dijo: «Porque se le ve en la cara.» Él miró, y lo vio.',
+            en: '«That question, keep it to yourself,» said Livia. Mr Curieux asked why, obviously. Livia said: «Because you can see it on her face.» He looked, and he saw it.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'sunset',
+              items: [
+                { t: 'curieux', x: 300, y: 516, s: 1 },
+                { t: 'timide', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: 'Il continue de poser quarante questions par jour. Mais il en garde deux ou trois dans sa poche, maintenant, et il sait très bien lesquelles.',
+            es: 'Sigue haciendo cuarenta preguntas al día. Pero ahora se guarda dos o tres en el bolsillo, y sabe muy bien cuáles.',
+            en: 'He still asks forty questions a day. But he keeps two or three in his pocket now, and he knows perfectly well which ones.'
+          }
+        ]
+      },
+
+      /* ---------- 12 : monsieur costaud aide trop ---------- */
+      {
+        id: 'costaud-aide-trop',
+        title: 'Monsieur Costaud aide trop',
+        title_en: 'Mr Costaud helps too much',
+        title_es: 'El señor Fuerte ayuda demasiado',
+        subtitle: "Laisser quelqu'un y arriver",
+        subtitle_en: 'Letting somebody manage',
+        subtitle_es: 'Dejar que alguien lo consiga',
+        tag: 'Humeurs',
+        themes: ['Amitié', 'Grandir'],
+        minutes: 4,
+        cover: {
+          bg: 'plain',
+          items: [
+            { t: 'costaud', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Livia essayait d'ouvrir un bocal de confiture. Elle avait les deux mains dessus, la langue dehors, et le couvercle commençait à bouger d'un quart de millimètre.",
+            es: 'Livia intentaba abrir un bote de mermelada. Tenía las dos manos encima, la lengua fuera, y la tapa empezaba a moverse un cuarto de milímetro.',
+            en: 'Livia was trying to open a jar of jam. She had both hands on it, her tongue sticking out, and the lid was beginning to move by a quarter of a millimetre.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'costaud', x: 300, y: 516, s: 1, pose: 'hold' },
+                { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+              ],
+              sfx: [{ t: 'CLAC !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Monsieur Costaud le prit et l'ouvrit en une seconde. Il le fit avec beaucoup de gentillesse, en souriant, et il ne comprit pas du tout pourquoi Livia était fâchée.",
+            es: 'El señor Fuerte lo cogió y lo abrió en un segundo. Lo hizo con mucha amabilidad, sonriendo, y no entendió para nada por qué Livia estaba enfadada.',
+            en: 'Mr Costaud took it and opened it in one second. He did it with great kindness, smiling, and did not understand at all why Livia was cross.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'fache' }]
+            },
+            text: "Elle ne pouvait pas dire merci. Elle ne pouvait pas dire que c'était mal, non plus. Il y a une colère sans nom qui vient quand on nous enlève une chose qu'on allait réussir.",
+            es: 'No podía decir gracias. Tampoco podía decir que estaba mal. Hay un enfado sin nombre que llega cuando nos quitan algo que estábamos a punto de conseguir.',
+            en: 'She could not say thank you. She could not say it was wrong either. There is a nameless anger that comes when something you were about to manage is taken away from you.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'costaud', x: 300, y: 516, s: 1, mood: 'sad' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Dans l'après-midi, il ouvrit aussi : sa porte, son cartable, et un paquet de gâteaux qu'elle tenait. À la troisième fois, elle lui tourna le dos et il resta tout bête.",
+            es: 'Por la tarde también le abrió: la puerta, la mochila y un paquete de galletas que ella tenía. A la tercera vez le dio la espalda y él se quedó desconcertado.',
+            en: 'During the afternoon he also opened: her door, her satchel, and a packet of biscuits she was holding. The third time, she turned her back on him and he was left standing there.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'costaud', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'Demande-moi avant. Des fois je veux.', tx: 300, ty: 240 }]
+            },
+            text: "Alors elle expliqua. « Demande-moi avant. Des fois je veux, des fois non. » Monsieur Costaud trouva ça très compliqué. Il le fit quand même, parce qu'elle l'avait dit gentiment.",
+            es: 'Entonces se lo explicó. «Pregúntame antes. A veces quiero, a veces no.» Al señor Fuerte le pareció muy complicado. Lo hizo igualmente, porque ella lo había dicho con amabilidad.',
+            en: "So she explained. «Ask me first. Sometimes I want you to, sometimes I don't.» Mr Costaud found that extremely complicated. He did it anyway, because she had said it kindly."
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'sunset',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, mood: 'happy' },
+                { t: 'costaud', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: "Le lendemain, elle ouvrit le bocal toute seule en quatre minutes. Monsieur Costaud regarda sans bouger, ce qui fut, de l'avis de tous, un exploit de force considérable.",
+            es: 'Al día siguiente abrió el bote ella sola en cuatro minutos. El señor Fuerte miró sin moverse, lo cual fue, en opinión de todos, una hazaña de fuerza considerable.',
+            en: "The next day she opened the jar herself in four minutes. Mr Costaud watched without moving, which was, in everybody's opinion, a considerable feat of strength."
+          }
+        ]
+      },
+
+      /* ---------- 13 : monsieur grognon dit merci ---------- */
+      {
+        id: 'grognon-dit-merci',
+        title: 'Monsieur Grognon dit merci',
+        title_en: 'Mr Grognon says thank you',
+        title_es: 'El señor Gruñón dice gracias',
+        subtitle: 'Un mot très difficile pour certains',
+        subtitle_en: 'A very hard word for some people',
+        subtitle_es: 'Una palabra muy difícil para algunos',
+        tag: 'Monsieur Madame',
+        themes: ['Émotions', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'plain', time: 'gris',
+          items: [
+            { t: 'grognon', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [{ t: 'grognon', x: 400, y: 516, s: 1.05, mood: 'fache' }]
+            },
+            text: "Il pleuvait et Monsieur Grognon n'avait pas de parapluie. Il marchait sous la pluie en grognant contre la pluie, ce qui n'a jamais arrêté une goutte.",
+            es: 'Llovía y el señor Gruñón no tenía paraguas. Caminaba bajo la lluvia gruñendo contra la lluvia, lo cual nunca ha detenido una gota.',
+            en: 'It was raining and Mr Grognon had no umbrella. He was walking through the rain grumbling at the rain, which has never stopped a single drop.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'hold' },
+                { t: 'grognon', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: "Livia le rattrapa et tint son parapluie au-dessus de lui pendant tout le chemin. Il était plus grand qu'elle, donc elle marchait le bras en l'air, ce qui fait mal au bout d'un moment.",
+            es: 'Livia lo alcanzó y sostuvo su paraguas sobre él todo el camino. Él era más alto que ella, así que iba con el brazo en alto, lo cual duele al cabo de un rato.',
+            en: 'Livia caught up with him and held her umbrella over him the whole way. He was taller than she was, so she walked with her arm in the air, which hurts after a while.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [{ t: 'grognon', x: 400, y: 516, s: 1.05 }]
+            },
+            text: 'À la porte, il entra sans rien dire. Pas un mot. Livia resta sous la pluie à regarder la porte fermée, avec le bras qui lui faisait mal et une impression désagréable.',
+            es: 'En la puerta entró sin decir nada. Ni una palabra. Livia se quedó bajo la lluvia mirando la puerta cerrada, con el brazo dolorido y una sensación desagradable.',
+            en: 'At the door he went in without saying anything. Not a word. Livia stood in the rain looking at the closed door, with an aching arm and an unpleasant feeling.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'fache' }]
+            },
+            text: "Elle décida de ne plus jamais lui tenir le parapluie. C'est une décision qu'on prend très fermement et qui tient en général une demi-journée.",
+            es: 'Decidió no volver a sostenerle el paraguas nunca. Es una decisión que se toma con mucha firmeza y que suele durar media jornada.',
+            en: 'She decided never to hold the umbrella for him again. That is a decision one takes very firmly and which generally lasts half a day.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              back: [{ t: 'flower', x: 690, y: 520, s: .85 }],
+              items: [
+                { t: 'grognon', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1, mood: 'wow' }
+              ]
+            },
+            text: "Le lendemain matin, il y avait une fleur sur le pas de sa porte. Une seule, pas très belle, un peu écrasée. Il n'y avait pas de mot avec. Livia comprit quand même.",
+            es: 'A la mañana siguiente había una flor en el umbral de su casa. Una sola, no muy bonita, algo aplastada. No había ninguna nota. Livia lo entendió igual.',
+            en: 'The next morning there was a flower on her doorstep. One single flower, not very pretty, slightly squashed. There was no note with it. Livia understood anyway.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'grognon', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Elle ne lui a jamais demandé si c'était lui. Il n'a jamais dit merci avec sa bouche. Il y a une fleur sur le pas de sa porte à peu près chaque fois qu'elle l'aide.",
+            es: 'Nunca le ha preguntado si fue él. Él nunca ha dicho gracias con la boca. Hay una flor en su umbral más o menos cada vez que ella lo ayuda.',
+            en: 'She has never asked him whether it was him. He has never said thank you with his mouth. There is a flower on her doorstep roughly every time she helps him.'
+          }
+        ]
+      },
+
+      /* ---------- 14 : madame chipie se fait avoir ---------- */
+      {
+        id: 'chipie-se-fait-avoir',
+        title: 'Madame Chipie se fait avoir',
+        title_en: 'Mrs Chipie gets caught out',
+        title_es: 'La señora Pícara cae en la trampa',
+        subtitle: 'Recevoir sa propre farce',
+        subtitle_en: 'Getting your own trick back',
+        subtitle_es: 'Recibir tu propia broma',
+        tag: 'Humeurs',
+        themes: ['Bêtises', 'Amitié'],
+        minutes: 4,
+        cover: {
+          bg: 'plain',
+          items: [
+            { t: 'chipie', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'chipie', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+              ],
+              sfx: [{ t: 'HA HA !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Madame Chipie avait mis du sel dans le verre d'eau de Livia. Elle riait encore dix minutes après, et elle le raconta trois fois, ce qui est la partie la plus agaçante d'une farce.",
+            es: 'La señora Pícara había puesto sal en el vaso de agua de Livia. Seguía riéndose diez minutos después, y lo contó tres veces, que es la parte más irritante de una broma.',
+            en: "Mrs Chipie had put salt in Livia's glass of water. She was still laughing ten minutes later, and she told the story three times, which is the most annoying part of a practical joke."
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Livia réfléchit à une vengeance pendant une heure. C'est long, une heure de vengeance, et au bout de quarante minutes on ne sait plus très bien pourquoi on est fâché.",
+            es: 'Livia pensó en una venganza durante una hora. Es largo, una hora de venganza, y a los cuarenta minutos ya no se sabe muy bien por qué estás enfadado.',
+            en: 'Livia thought about revenge for an hour. An hour of revenge is a long time, and after forty minutes you no longer quite know why you were cross.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'chipie', x: 600, y: 516, s: 1, mood: 'wow' }
+              ]
+            },
+            text: 'Elle trouva mieux. Elle refit exactement la même farce, le même jour, avec le même sel, dans le verre de Madame Chipie, sans rien changer du tout.',
+            es: 'Encontró algo mejor. Repitió exactamente la misma broma, el mismo día, con la misma sal, en el vaso de la señora Pícara, sin cambiar nada.',
+            en: "She found something better. She did exactly the same trick, on the same day, with the same salt, in Mrs Chipie's glass, without changing a thing."
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'chipie', x: 400, y: 516, s: 1.05, mood: 'fache' }],
+              sfx: [{ t: 'PFFF !', x: 400, y: 146, fs: 28, rot: -6, color: '#e0453c' }]
+            },
+            text: "Madame Chipie recracha tout sur la table. Elle ne rit pas du tout. Elle dit que ce n'était pas drôle, ce qui est exactement la phrase que Livia avait dite une heure avant.",
+            es: 'La señora Pícara lo escupió todo sobre la mesa. No se rió nada. Dijo que no tenía gracia, que es exactamente la frase que Livia había dicho una hora antes.',
+            en: "Mrs Chipie spat the lot out onto the table. She did not laugh at all. She said it wasn't funny, which is exactly the sentence Livia had said an hour earlier."
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'chipie', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 320, t: "C'est la tienne. Mot pour mot.", tx: 300, ty: 240 }]
+            },
+            text: "« C'est la tienne », dit Livia. « Mot pour mot. » Madame Chipie resta la bouche ouverte pendant un long moment, puis dit : « Ah. » Un seul son, mais un vrai.",
+            es: '«Es la tuya», dijo Livia. «Palabra por palabra.» La señora Pícara se quedó boquiabierta un buen rato, y luego dijo: «Ah.» Un solo sonido, pero de verdad.',
+            en: "«It's yours,» said Livia. «Word for word.» Mrs Chipie stood open-mouthed for a long moment, then said: «Ah.» One sound only, but a real one."
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'sunset',
+              items: [
+                { t: 'chipie', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Elle fait encore des farces, bien sûr. Mais depuis ce jour-là, elle les essaie d'abord sur elle-même, et il y en a beaucoup qu'elle ne fait plus.",
+            es: 'Sigue haciendo bromas, por supuesto. Pero desde ese día las prueba primero en sí misma, y hay muchas que ya no hace.',
+            en: 'She still plays tricks, of course. But ever since that day she tries them on herself first, and there are a great many she no longer plays.'
+          }
+        ]
+      },
+
+      /* ---------- 15 : madame timide parle en premier ---------- */
+      {
+        id: 'timide-parle-en-premier',
+        title: 'Madame Timide parle en premier',
+        title_en: 'Mrs Timide speaks first',
+        title_es: 'La señora Tímida habla primero',
+        subtitle: 'Dire une chose avant tout le monde',
+        subtitle_en: 'Saying something before everybody else',
+        subtitle_es: 'Decir algo antes que nadie',
+        tag: 'Monsieur Madame',
+        themes: ['Émotions', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'plain',
+          items: [
+            { t: 'timide', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'timide', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'rapide', x: 520, y: 516, s: .85 },
+                { t: 'curieux', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Ils étaient six à chercher quoi faire de l'après-midi. Tout le monde parlait. Madame Timide avait une idée depuis le début et ne l'avait pas dite.",
+            es: 'Eran seis buscando qué hacer por la tarde. Todos hablaban. La señora Tímida tenía una idea desde el principio y no la había dicho.',
+            en: 'There were six of them trying to decide what to do with the afternoon. Everybody was talking. Mrs Timide had had an idea from the start and had not said it.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'timide', x: 400, y: 516, s: 1.05, mood: 'sad' }]
+            },
+            text: "Elle ouvrit la bouche quatre fois. Les quatre fois, quelqu'un parla une demi-seconde avant elle. C'est une chose qui arrive tous les jours à certaines personnes.",
+            es: 'Abrió la boca cuatro veces. Las cuatro veces alguien habló medio segundo antes que ella. Es algo que les pasa todos los días a ciertas personas.',
+            en: 'She opened her mouth four times. All four times, somebody spoke half a second before her. It is a thing that happens every day to certain people.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: 'Livia le remarqua à la troisième fois. Elle ne dit pas « laissez parler Madame Timide », parce que ça aurait tout gâché et que Madame Timide aurait voulu disparaître.',
+            es: 'Livia se dio cuenta a la tercera vez. No dijo «dejad hablar a la señora Tímida», porque lo habría estropeado todo y la señora Tímida habría querido desaparecer.',
+            en: 'Livia noticed at the third time. She did not say «let Mrs Timide speak,» because that would have ruined everything and Mrs Timide would have wanted to vanish.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'timide', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 300, t: 'Tu me la dis, à moi ?', tx: 300, ty: 240 }]
+            },
+            text: "Elle alla simplement s'asseoir à côté d'elle et demanda, à voix basse : « Tu me la dis, à moi ? » Madame Timide la lui dit dans l'oreille. C'était une très bonne idée.",
+            es: 'Simplemente se sentó a su lado y preguntó, en voz baja: «¿Me la dices a mí?» La señora Tímida se la dijo al oído. Era una idea muy buena.',
+            en: 'She simply went and sat down next to her and asked, quietly: «Will you tell me?» Mrs Timide told her in her ear. It was a very good idea.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'timide', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1, pose: 'point' }
+              ]
+            },
+            text: "Livia ne la répéta pas. Elle dit : « Madame Timide a une idée, et c'est la meilleure. » Puis elle se tut et attendit. Les cinq autres se taisirent aussi, forcément.",
+            es: 'Livia no la repitió. Dijo: «La señora Tímida tiene una idea, y es la mejor.» Luego se calló y esperó. Los otros cinco también se callaron, por fuerza.',
+            en: "Livia did not repeat it. She said: «Mrs Timide has an idea, and it's the best one.» Then she went quiet and waited. The other five went quiet too, inevitably."
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'sunset',
+              items: [
+                { t: 'timide', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'curieux', x: 520, y: 516, s: .85 },
+                { t: 'rapide', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Madame Timide la dit elle-même, pas très fort, et tout le monde l'entendit. L'après-midi fut exactement comme elle l'avait imaginé. Elle parle un peu plus souvent, depuis.",
+            es: 'La señora Tímida la dijo ella misma, no muy alto, y todos la oyeron. La tarde fue exactamente como ella la había imaginado. Habla algo más a menudo desde entonces.',
+            en: 'Mrs Timide said it herself, not very loudly, and everybody heard her. The afternoon turned out exactly as she had imagined it. She speaks a little more often now.'
+          }
+        ]
+      },
+
+      /* ---------- 16 : monsieur rapide doit attendre ---------- */
+      {
+        id: 'rapide-doit-attendre',
+        title: 'Monsieur Rapide doit attendre',
+        title_en: 'Mr Rapide has to wait',
+        title_es: 'El señor Rápido tiene que esperar',
+        subtitle: "Il n'y a pas de raccourci pour certaines choses",
+        subtitle_en: "There's no shortcut for some things",
+        subtitle_es: 'Para algunas cosas no hay atajo',
+        tag: 'Humeurs',
+        themes: ['Émotions', 'Grandir'],
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'rapide', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: 'Livia avait planté un haricot dans un pot, le mardi. Monsieur Rapide demanda quand ça pousserait. Livia dit : « Dans une semaine. » Il trouva ce chiffre scandaleux.',
+            es: 'Livia había plantado una judía en una maceta, el martes. El señor Rápido preguntó cuándo crecería. Livia dijo: «En una semana.» Le pareció una cifra escandalosa.',
+            en: 'Livia had planted a bean in a pot, on the Tuesday. Mr Rapide asked when it would grow. Livia said: «In a week.» He found that figure outrageous.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'rapide', x: 400, y: 516, s: 1.05, mood: 'fache' }]
+            },
+            text: "Il revint le mercredi matin. Rien. Le mercredi après-midi. Rien. Il secoua le pot, ce qui n'aide pas, et il arrosa trois fois, ce qui aide encore moins.",
+            es: 'Volvió el miércoles por la mañana. Nada. El miércoles por la tarde. Nada. Agitó la maceta, lo cual no ayuda, y la regó tres veces, lo cual ayuda aún menos.',
+            en: 'He came back on Wednesday morning. Nothing. Wednesday afternoon. Nothing. He shook the pot, which does not help, and watered it three times, which helps even less.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+              ]
+            },
+            text: "Le jeudi, il déterra le haricot pour vérifier s'il poussait. Il poussait, un peu, et il arrêta de pousser le lendemain, pour la raison qu'on devine.",
+            es: 'El jueves desenterró la judía para comprobar si crecía. Crecía, un poco, y dejó de crecer al día siguiente, por la razón que se adivina.',
+            en: 'On Thursday he dug the bean up to check whether it was growing. It was, a little, and it stopped growing the next day, for the reason you would guess.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'sad' }]
+            },
+            text: 'Livia fut vraiment triste, et elle ne cria pas. Elle planta un deuxième haricot et dit une seule phrase : « Celui-là, tu ne le touches pas. » Monsieur Rapide promit.',
+            es: 'Livia se puso realmente triste, y no gritó. Plantó una segunda judía y dijo una sola frase: «A esta no la tocas.» El señor Rápido lo prometió.',
+            en: "Livia was genuinely sad, and she did not shout. She planted a second bean and said one single sentence: «That one, you don't touch.» Mr Rapide promised."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'Viens le voir une fois par jour. Pas plus.', tx: 300, ty: 240 }]
+            },
+            text: "Puis elle lui donna un travail, parce qu'attendre sans rien faire est impossible pour lui. « Viens le voir une fois par jour. Tu dessines ce que tu vois. » Il fit sept dessins.",
+            es: 'Luego le dio un trabajo, porque esperar sin hacer nada le resulta imposible. «Ven a verla una vez al día. Dibujas lo que ves.» Hizo siete dibujos.',
+            en: 'Then she gave him a job, because waiting with nothing to do is impossible for him. «Come and look at it once a day. Draw what you see.» He made seven drawings.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'rapide', x: 300, y: 516, s: 1, mood: 'wow' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Les six premiers dessins sont identiques : un pot et de la terre. Le septième a une petite chose verte. Monsieur Rapide a gardé les sept, dans l'ordre, et il les montre.",
+            es: 'Los seis primeros dibujos son idénticos: una maceta y tierra. El séptimo tiene una cosita verde. El señor Rápido ha guardado los siete, en orden, y los enseña.',
+            en: 'The first six drawings are identical: a pot and some soil. The seventh has a small green thing in it. Mr Rapide has kept all seven, in order, and he shows them to people.'
+          }
+        ]
+      },
+
+      /* ---------- 17 : madame range-tout casse quelque chose ---------- */
+      {
+        id: 'rangetout-casse-quelque-chose',
+        title: 'Madame Range-Tout casse quelque chose',
+        title_en: 'Mrs Range-Tout breaks something',
+        title_es: 'La señora Ordenada rompe algo',
+        subtitle: 'Celle qui ne se trompe jamais se trompe',
+        subtitle_en: 'The one who never gets it wrong gets it wrong',
+        subtitle_es: 'La que nunca se equivoca se equivoca',
+        tag: 'Monsieur Madame',
+        themes: ['Émotions', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'rangetout', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Madame Range-Tout rangeait la chambre de Livia, ce qu'elle fait très bien et sans qu'on lui demande. Tout était par couleur, par taille, et par ordre d'importance.",
+            es: 'La señora Ordenada ordenaba el cuarto de Livia, lo que hace muy bien y sin que se lo pidan. Todo estaba por color, por tamaño y por orden de importancia.',
+            en: "Mrs Range-Tout was tidying Livia's room, which she does extremely well and without being asked. Everything was arranged by colour, by size, and by order of importance."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'rangetout', x: 400, y: 516, s: 1.05, mood: 'sad' }],
+              sfx: [{ t: 'CRAC.', x: 400, y: 146, fs: 28, rot: -6, color: '#e0453c' }]
+            },
+            text: "En déplaçant l'étagère d'un centimètre, elle fit tomber la tasse peinte que Livia avait faite à l'école. La tasse se cassa en trois morceaux, dont un très petit.",
+            es: 'Al mover la estantería un centímetro, tiró la taza pintada que Livia había hecho en el colegio. La taza se rompió en tres trozos, uno de ellos muy pequeño.',
+            en: 'Moving the shelf by one centimetre, she knocked over the painted mug Livia had made at school. The mug broke into three pieces, one of them very small.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'rangetout', x: 400, y: 516, s: 1.05, mood: 'sad' }]
+            },
+            text: "Madame Range-Tout resta immobile. Elle n'a pas l'habitude : les choses ne cassent pas, chez elle. Elle pensa d'abord à ranger les morceaux, ce qui est son premier réflexe.",
+            es: 'La señora Ordenada se quedó inmóvil. No está acostumbrada: en su casa las cosas no se rompen. Primero pensó en ordenar los trozos, que es su primer reflejo.',
+            en: 'Mrs Range-Tout stood still. She is not used to it: things do not break at her house. Her first thought was to tidy up the pieces, which is her first instinct.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'rangetout', x: 400, y: 516, s: 1.05 }]
+            },
+            text: "Elle les rangea effectivement, en ligne, par taille, sur le bureau. Puis elle resta devant les trois morceaux bien alignés, et ça n'allait pas mieux du tout.",
+            es: 'Y en efecto los ordenó, en fila, por tamaño, sobre el escritorio. Luego se quedó ante los tres trozos bien alineados, y no estaba nada mejor.',
+            en: 'She did indeed tidy them up, in a line, by size, on the desk. Then she stood in front of the three neatly aligned pieces, and it was not any better at all.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'rangetout', x: 300, y: 516, s: 1, mood: 'sad' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 320, t: "J'ai cassé ta tasse. Je suis désolée.", tx: 300, ty: 240 }]
+            },
+            text: "Quand Livia rentra, Madame Range-Tout dit la phrase avant même qu'on la lui demande. « J'ai cassé ta tasse. Je suis désolée. » Livia regarda les trois morceaux alignés.",
+            es: 'Cuando Livia entró, la señora Ordenada dijo la frase antes incluso de que se la pidieran. «He roto tu taza. Lo siento.» Livia miró los tres trozos alineados.',
+            en: "When Livia came in, Mrs Range-Tout said the sentence before anybody asked her to. «I broke your mug. I'm sorry.» Livia looked at the three aligned pieces."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'rangetout', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Elles l'ont recollée ensemble. Ça se voit beaucoup. La tasse est sur l'étagère, avec les fissures devant, parce que Livia a demandé qu'on les mette devant.",
+            es: 'La pegaron juntas. Se ve muchísimo. La taza está en la estantería, con las grietas hacia delante, porque Livia pidió que se pusieran hacia delante.',
+            en: 'They glued it back together. It shows a great deal. The mug is on the shelf, with the cracks facing forwards, because Livia asked for them to face forwards.'
+          }
+        ]
+      },
+
+      /* ---------- 18 : monsieur étourdi se trompe de chemin ---------- */
+      {
+        id: 'etourdi-emmene-livia',
+        title: 'Monsieur Étourdi se trompe de chemin',
+        title_en: 'Mr Étourdi takes the wrong road',
+        title_es: 'El señor Despistado se equivoca de camino',
+        subtitle: 'Être perdue avec un adulte',
+        subtitle_en: 'Being lost with a grown-up',
+        subtitle_es: 'Estar perdida con un adulto',
+        tag: 'Humeurs',
+        themes: ['Émotions', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'road',
+          items: [
+            { t: 'etourdi', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'etourdi', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Monsieur Étourdi devait emmener Livia à la boulangerie, qui est à deux rues. Il partit avec beaucoup de confiance dans la direction opposée, en parlant d'autre chose.",
+            es: 'El señor Despistado tenía que llevar a Livia a la panadería, que está a dos calles. Salió con mucha confianza en dirección opuesta, hablando de otra cosa.',
+            en: "Mr Étourdi was supposed to take Livia to the baker's, which is two streets away. He set off with great confidence in the opposite direction, talking about something else."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Livia le remarqua au bout de trois rues. Elle hésita, parce qu'un adulte sait où il va, en principe, et qu'elle n'avait que quatre ans et une impression.",
+            es: 'Livia se dio cuenta al cabo de tres calles. Dudó, porque un adulto sabe adónde va, en principio, y ella solo tenía cuatro años y una impresión.',
+            en: 'Livia noticed after three streets. She hesitated, because a grown-up knows where he is going, in principle, and she had only four years and a feeling.'
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'etourdi', x: 300, y: 516, s: 1, mood: 'sad' },
+                { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+              ]
+            },
+            text: "Elle le dit à la cinquième rue. Monsieur Étourdi s'arrêta, regarda autour de lui, et dit « ah » d'une voix qui enlève toute confiance à un enfant de quatre ans.",
+            es: 'Lo dijo en la quinta calle. El señor Despistado se paró, mirá alrededor y dijo «ah» con una voz que quita toda la confianza a una niña de cuatro años.',
+            en: 'She said so at the fifth street. Mr Étourdi stopped, looked around, and said «ah» in a voice that removes all confidence from a four-year-old.'
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'sad' }]
+            },
+            text: "Ils étaient perdus tous les deux, ce qui est très différent d'être perdue toute seule et pas forcément mieux. Livia eut l'impression d'avoir brusquement deux ans de plus.",
+            es: 'Estaban perdidos los dos, lo cual es muy distinto de estar perdida sola y no necesariamente mejor. Livia tuvo la impresión de tener de pronto dos años más.',
+            en: 'They were both lost, which is very different from being lost on your own and not necessarily better. Livia had the impression of being suddenly two years older.'
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'etourdi', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: "L'église. On la voit de chez moi.", tx: 300, ty: 240 }]
+            },
+            text: "Elle chercha quelque chose qu'elle connaissait, et elle trouva : le clocher de l'église, qu'on voit de sa fenêtre. « On marche vers l'église. » Ils marchèrent vers l'église.",
+            es: 'Buscó algo que conociera, y lo encontró: el campanario de la iglesia, que se ve desde su ventana. «Caminamos hacia la iglesia.» Caminaron hacia la iglesia.',
+            en: 'She looked for something she knew, and found it: the church tower, which you can see from her window. «We walk towards the church.» They walked towards the church.'
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'etourdi', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Ils arrivèrent à la boulangerie à quatre heures et demie, et il n'y avait plus de pain. Monsieur Étourdi demande maintenant à Livia la direction, chaque fois, avant de partir.",
+            es: 'Llegaron a la panadería a las cuatro y media, y ya no había pan. El señor Despistado ahora le pregunta a Livia la dirección, cada vez, antes de salir.',
+            en: "They reached the baker's at half past four, and there was no bread left. Mr Étourdi now asks Livia for the direction, every time, before they set off."
+          }
+        ]
+      },
+
+      /* ---------- 19 : madame bonheur est fatiguée ---------- */
+      {
+        id: 'bonheur-fatiguee',
+        title: 'Madame Bonheur est fatiguée',
+        title_en: 'Mrs Bonheur is tired',
+        title_es: 'La señora Felicidad está cansada',
+        subtitle: 'Celle qui remonte tout le monde',
+        subtitle_en: 'The one who cheers everybody up',
+        subtitle_es: 'La que anima a todos',
+        tag: 'Monsieur Madame',
+        themes: ['Émotions', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'plain', time: 'gris',
+          items: [
+            { t: 'bonheur', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'bonheur', x: 140, y: 516, s: .85 },
+                { t: 'grognon', x: 330, y: 516, s: .85 },
+                { t: 'livia', x: 520, y: 518, s: .9 },
+                { t: 'timide', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Madame Bonheur avait consolé Monsieur Grognon le matin, Madame Timide à midi, et Monsieur Étourdi deux fois dans l'après-midi. Elle est très bonne à ça.",
+            es: 'La señora Felicidad había consolado al señor Gruñón por la mañana, a la señora Tímida al mediodía y al señor Despistado dos veces por la tarde. Es muy buena en eso.',
+            en: 'Mrs Bonheur had cheered up Mr Grognon in the morning, Mrs Timide at midday, and Mr Étourdi twice during the afternoon. She is very good at it.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [{ t: 'bonheur', x: 400, y: 516, s: 1.05, mood: 'sad' }]
+            },
+            text: "Vers cinq heures, elle s'assit sur un banc et ne se releva pas. Elle souriait encore, parce que c'est son visage, mais le sourire ne descendait pas plus bas que la bouche.",
+            es: 'Hacia las cinco se sentó en un banco y no se levantó. Todavía sonreía, porque es su cara, pero la sonrisa no bajaba más allá de la boca.',
+            en: "At around five o'clock she sat down on a bench and did not get up again. She was still smiling, because that is her face, but the smile did not go any lower than her mouth."
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 300, y: 516, s: 1, mood: 'sad' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Personne ne le remarqua, parce qu'on ne regarde pas si Madame Bonheur va bien : c'est elle qui demande aux autres. Livia passa devant le banc, et revint sur ses pas.",
+            es: 'Nadie se dio cuenta, porque a la señora Felicidad no se le pregunta si está bien: es ella la que pregunta a los demás. Livia pasó ante el banco, y volvió atrás.',
+            en: 'Nobody noticed, because you do not check whether Mrs Bonheur is all right: she is the one who asks other people. Livia walked past the bench, and came back.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1, pose: 'point' }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 300, t: 'Et toi, ça va ?', tx: 300, ty: 240 }]
+            },
+            text: "Elle demanda : « Et toi, ça va ? » Madame Bonheur répondit « oui » tout de suite, par habitude, puis s'arrêta au milieu du mot et dit : « Non. Pas très. »",
+            es: 'Preguntó: «¿Y tú, estás bien?» La señora Felicidad respondió «sí» enseguida, por costumbre, luego se paró en medio de la palabra y dijo: «No. No mucho.»',
+            en: 'She asked: «And you — are you all right?» Mrs Bonheur answered «yes» at once, out of habit, then stopped in the middle of the word and said: «No. Not very.»'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [
+                { t: 'bonheur', x: 300, y: 496, s: 1, pose: 'sit' },
+                { t: 'livia', x: 600, y: 496, s: 1.05, pose: 'sit' }
+              ]
+            },
+            text: "Livia s'assit à côté d'elle sur le banc et ne dit rien pendant un bon moment. Elle ne chercha pas à la remonter : c'est précisément ce dont Madame Bonheur n'avait pas besoin.",
+            es: 'Livia se sentó a su lado en el banco y no dijo nada durante un buen rato. No intentó animarla: es precisamente lo que la señora Felicidad no necesitaba.',
+            en: 'Livia sat down next to her on the bench and said nothing for quite a while. She did not try to cheer her up: that is precisely what Mrs Bonheur did not need.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'sunset',
+              items: [
+                { t: 'bonheur', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Au bout de vingt minutes, Madame Bonheur dit qu'elle allait mieux. C'était vrai. Livia demande maintenant « et toi, ça va ? » à peu près tous les deux jours.",
+            es: 'Al cabo de veinte minutos, la señora Felicidad dijo que estaba mejor. Era verdad. Livia ahora pregunta «¿y tú, estás bien?» más o menos cada dos días.',
+            en: 'After twenty minutes Mrs Bonheur said she felt better. It was true. Livia now asks «and you — are you all right?» roughly every other day.'
+          }
+        ]
+      },
+
+      /* ---------- 20 : monsieur lent dit non ---------- */
+      {
+        id: 'lent-apprend-a-dire-non',
+        title: 'Monsieur Lent dit non',
+        title_en: 'Mr Lent says no',
+        title_es: 'El señor Lento dice no',
+        subtitle: 'Dire non quand on met du temps à parler',
+        subtitle_en: "Saying no when you're slow to speak",
+        subtitle_es: 'Decir no cuando tardas en hablar',
+        tag: 'Monsieur Madame',
+        themes: ['Règles', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'plain',
+          items: [
+            { t: 'lent', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'chipie', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'lent', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: 'Madame Chipie demanda à Monsieur Lent de porter ses six sacs. Il réfléchissait encore à la question quand elle lui avait déjà mis les six sacs dans les bras.',
+            es: 'La señora Pícara le pidió al señor Lento que le llevara sus seis bolsas. Él todavía pensaba la pregunta cuando ella ya le había puesto las seis bolsas en los brazos.',
+            en: 'Mrs Chipie asked Mr Lent to carry her six bags. He was still thinking about the question when she had already put all six bags into his arms.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [{ t: 'lent', x: 400, y: 516, s: 1.05, mood: 'sad' }]
+            },
+            text: "C'est son problème : le temps qu'il trouve le mot non, la chose est déjà faite. Ça fait des années que ça dure, et il porte beaucoup de sacs qui ne sont pas à lui.",
+            es: 'Es su problema: para cuando encuentra la palabra no, la cosa ya está hecha. Lleva años pasándole, y carga con muchas bolsas que no son suyas.',
+            en: 'That is his problem: by the time he finds the word no, the thing has already happened. It has been going on for years, and he carries a great many bags that are not his.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'lent', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Livia marchait à côté de lui. Elle lui demanda s'il voulait porter les sacs. Il réfléchit onze secondes et dit : « Non. » C'était le premier non de la journée, et il arrivait tard.",
+            es: 'Livia caminaba a su lado. Le preguntó si quería llevar las bolsas. Pensó once segundos y dijo: «No.» Era el primer no del día, y llegaba tarde.',
+            en: 'Livia was walking beside him. She asked him whether he wanted to carry the bags. He thought for eleven seconds and said: «No.» It was the first no of the day, and it arrived late.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'lent', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "Dis « attends » d'abord. Puis réfléchis.", tx: 300, ty: 240 }]
+            },
+            text: "Livia lui donna un mot plus court. « Dis attends d'abord. Après, tu réfléchis le temps que tu veux. » Monsieur Lent trouva ce mot excellent. Il ne l'avait jamais essayé.",
+            es: 'Livia le dio una palabra más corta. «Di espera primero. Después piensas el tiempo que quieras.» Al señor Lento le pareció una palabra excelente. Nunca la había probado.',
+            en: 'Livia gave him a shorter word. «Say wait first. Afterwards, you can think for as long as you like.» Mr Lent found that word excellent. He had never tried it.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'chipie', x: 300, y: 516, s: 1, mood: 'wow' },
+                { t: 'lent', x: 600, y: 516, s: 1 }
+              ],
+              sfx: [{ t: 'ATTENDS.', x: 430, y: 146, fs: 26, rot: -5, color: '#7ac6a8' }]
+            },
+            text: 'Le lendemain, Madame Chipie recommença. Monsieur Lent dit « attends » tout de suite, puis réfléchit quatorze secondes, puis dit non. Madame Chipie resta sans voix.',
+            es: 'Al día siguiente, la señora Pícara volvió a intentarlo. El señor Lento dijo «espera» enseguida, luego pensó catorce segundos, luego dijo no. La señora Pícara se quedó sin palabras.',
+            en: 'The next day Mrs Chipie tried again. Mr Lent said «wait» straight away, then thought for fourteen seconds, then said no. Mrs Chipie was left speechless.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'sunset',
+              items: [
+                { t: 'lent', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Il porte encore des sacs, parfois, quand il a décidé que oui. Ce n'est plus la même chose du tout, et Livia dit que ça se voit sur sa figure.",
+            es: 'Todavía lleva bolsas, a veces, cuando ha decidido que sí. Ya no es lo mismo en absoluto, y Livia dice que se le nota en la cara.',
+            en: 'He still carries bags sometimes, when he has decided yes. It is not the same thing at all any more, and Livia says you can see it on his face.'
+          }
+        ]
+      },
+
+      /* ---------- 21 : le chapeau de monsieur grognon ---------- */
+      {
+        id: 'le-chapeau-de-grognon',
+        title: 'Le chapeau de Monsieur Grognon',
+        title_en: "Mr Grognon's hat",
+        title_es: 'El sombrero del señor Gruñón',
+        subtitle: 'Il grogne, et il a une raison',
+        subtitle_en: 'He grumbles, and he has a reason',
+        subtitle_es: 'Gruñe, y tiene un motivo',
+        tag: 'Humeurs',
+        themes: ['Émotions', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'plain', time: 'gris',
+          items: [
+            { t: 'grognon', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [{ t: 'grognon', x: 400, y: 516, s: 1.05, mood: 'fache' }]
+            },
+            text: "Monsieur Grognon avait grogné contre tout, ce matin-là, y compris contre des choses qui n'existaient pas. C'était plus que d'habitude, et l'habitude est déjà beaucoup.",
+            es: 'El señor Gruñón había gruñido contra todo esa mañana, incluso contra cosas que no existían. Era más de lo habitual, y lo habitual ya es bastante.',
+            en: 'Mr Grognon had grumbled at everything that morning, including at things that did not exist. It was more than usual, and usual is already a great deal.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [
+                { t: 'grognon', x: 300, y: 516, s: 1, mood: 'fache' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Tout le monde l'évita, ce qui est la chose normale à faire. Livia aussi, pendant deux heures. Puis elle remarqua un détail : il n'avait pas son chapeau.",
+            es: 'Todos lo evitaron, que es lo normal. Livia también, durante dos horas. Luego notó un detalle: no llevaba su sombrero.',
+            en: 'Everybody kept out of his way, which is the normal thing to do. Livia did too, for two hours. Then she noticed a detail: he was not wearing his hat.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Il a toujours son chapeau. Toujours. Livia ne l'avait jamais vu sans. Elle réfléchit à ce détail pendant un moment, et ça changea complètement la journée.",
+            es: 'Siempre lleva su sombrero. Siempre. Livia nunca lo había visto sin él. Pensó en ese detalle un rato, y eso cambió completamente el día.',
+            en: 'He always has his hat. Always. Livia had never seen him without it. She thought about that detail for a while, and it changed the whole day completely.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'gris',
+              items: [
+                { t: 'grognon', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1, pose: 'point' }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 320, t: "Tu l'as perdu où, ton chapeau ?", tx: 300, ty: 240 }]
+            },
+            text: "Elle alla le voir et ne dit pas « pourquoi tu grognes ». Elle dit : « Tu l'as perdu où, ton chapeau ? » Monsieur Grognon ouvrit la bouche et ne grogna pas.",
+            es: 'Fue a verlo y no dijo «por qué gruñes». Dijo: «¿Dónde lo has perdido, tu sombrero?» El señor Gruñón abrió la boca y no gruñó.',
+            en: 'She went to him and did not say «why are you grumbling?» She said: «Where did you lose your hat?» Mr Grognon opened his mouth and did not grumble.'
+          },
+          {
+            scene: {
+              bg: 'plain',
+              items: [
+                { t: 'grognon', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: 'Ils le cherchèrent une heure. Il était derrière le banc, sous des feuilles, écrasé par la pluie. Monsieur Grognon le remit sur sa tête tout mouillé, sans le secouer.',
+            es: 'Lo buscaron una hora. Estaba detrás del banco, bajo unas hojas, aplastado por la lluvia. El señor Gruñón se lo puso en la cabeza todo mojado, sin sacudirlo.',
+            en: 'They looked for it for an hour. It was behind the bench, under some leaves, flattened by the rain. Mr Grognon put it back on his head sopping wet, without shaking it out.'
+          },
+          {
+            scene: {
+              bg: 'plain', time: 'sunset',
+              items: [
+                { t: 'grognon', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Il grogna le reste de la journée, normalement. Livia a appris une chose ce jour-là : quand quelqu'un grogne plus que d'habitude, il faut chercher le chapeau.",
+            es: 'Gruñó el resto del día, con normalidad. Livia aprendió una cosa ese día: cuando alguien gruñe más de lo normal, hay que buscar el sombrero.',
+            en: 'He grumbled for the rest of the day, normally. Livia learned one thing that day: when somebody grumbles more than usual, you look for the hat.'
+          }
+        ]
+      },
+
+      /* ---------- 22 : monsieur costaud a peur ---------- */
+      {
+        id: 'costaud-a-peur',
+        title: 'Monsieur Costaud a peur',
+        title_en: 'Mr Costaud is scared',
+        title_es: 'El señor Fuerte tiene miedo',
+        subtitle: 'Être fort et avoir peur quand même',
+        subtitle_en: 'Being strong and scared at the same time',
+        subtitle_es: 'Ser fuerte y tener miedo igual',
+        tag: 'Monsieur Madame',
+        themes: ['Émotions', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'costaud', x: 300, y: 516, s: 1 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'costaud', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1, pose: 'point' }
+              ]
+            },
+            text: 'Il y avait une araignée sur le mur du jardin, une grosse, avec des pattes compliquées. Livia alla chercher Monsieur Costaud, qui porte des armoires et des pianos.',
+            es: 'Había una araña en el muro del jardín, grande, con patas complicadas. Livia fue a buscar al señor Fuerte, que carga armarios y pianos.',
+            en: 'There was a spider on the garden wall, a big one, with complicated legs. Livia went to fetch Mr Costaud, who carries wardrobes and pianos.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'costaud', x: 400, y: 516, s: 1.05, mood: 'sad' }]
+            },
+            text: "Il arriva, vit l'araignée, et fit trois pas en arrière. Trois pas très rapides, pour quelqu'un de sa taille. Puis il dit qu'il avait quelque chose à faire ailleurs.",
+            es: 'Llegó, vio la araña y dio tres pasos atrás. Tres pasos muy rápidos, para alguien de su tamaño. Luego dijo que tenía algo que hacer en otro sitio.',
+            en: 'He came, saw the spider, and took three steps backwards. Three very quick steps, for somebody his size. Then he said he had something to do elsewhere.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'wow' }]
+            },
+            text: "Livia resta très étonnée. Elle croyait que la force et la peur ne pouvaient pas tenir dans la même personne. Elle venait de découvrir que c'est faux.",
+            es: 'Livia se quedó muy sorprendida. Creía que la fuerza y el miedo no podían caber en la misma persona. Acababa de descubrir que es falso.',
+            en: 'Livia was extremely surprised. She had thought that strength and fear could not fit inside the same person. She had just discovered that this is untrue.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'costaud', x: 300, y: 516, s: 1, mood: 'sad' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Il avait l'air plus embêté d'avoir eu peur que d'avoir peur. C'est une chose que Livia connaît très bien : la honte en plus de la peur, ça fait deux choses à porter.",
+            es: 'Parecía más molesto por haber tenido miedo que por tener miedo. Es algo que Livia conoce muy bien: la vergüenza además del miedo son dos cosas que cargar.',
+            en: 'He seemed more bothered about having been scared than about being scared. It is something Livia knows very well: shame on top of fear makes two things to carry.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'hold' },
+                { t: 'costaud', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'Moi les araignées, ça va. On échange.', tx: 300, ty: 240 }]
+            },
+            text: "Elle prit l'araignée dans un verre et la mit dehors. Puis elle dit : « Moi les araignées, ça va. Les hauteurs, non. On échange. » Monsieur Costaud trouva ce marché très juste.",
+            es: 'Cogió la araña en un vaso y la sacó fuera. Luego dijo: «A mí las arañas me da igual. Las alturas no. Hacemos un cambio.» Al señor Fuerte el trato le pareció muy justo.',
+            en: "She caught the spider in a glass and put it outside. Then she said: «Spiders are fine for me. Heights aren't. Let's swap.» Mr Costaud found that bargain very fair."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'costaud', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Depuis, c'est lui qui monte sur l'échelle et c'est elle qui sort les araignées. Personne d'autre ne connaît l'arrangement, et ni l'un ni l'autre ne l'a jamais raconté.",
+            es: 'Desde entonces, él se sube a la escalera y ella saca las arañas. Nadie más conoce el acuerdo, y ninguno de los dos lo ha contado nunca.',
+            en: 'Ever since, he goes up the ladder and she takes the spiders out. Nobody else knows about the arrangement, and neither of them has ever mentioned it.'
+          }
+        ]
       }
-    ]
+]
   },
 
   /* ==========================================================
@@ -11533,8 +12625,4221 @@ var UNIVERSES = [
             en: "They jumped on the rug until somebody asked them to stop. Ever since, when Livia goes to somebody's house, she starts by asking: «at your house, how do you do it?»"
           }
         ]
+      },
+
+      /* ---------- 8 : qui commence ? ---------- */
+      {
+        id: 'qui-commence',
+        title: 'Qui commence ?',
+        title_en: 'Who goes first?',
+        title_es: '¿Quién empieza?',
+        subtitle: 'Six enfants et un seul premier tour',
+        subtitle_en: 'Six children and only one first turn',
+        subtitle_es: 'Seis niños y un solo primer turno',
+        tag: 'Tous ensemble',
+        themes: ['Règles', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 140, y: 516, s: .85 },
+            { t: 'livia', x: 330, y: 518, s: .9 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'roxane', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'roxane', x: 700, y: 516, s: .85 }
+              ],
+              sfx: [{ t: "MOI D'ABORD !", x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Il y avait un trampoline et six enfants. Le trampoline tenait une personne. Tout le monde cria « moi d'abord » exactement en même temps, ce qui ne résout jamais rien.",
+            es: 'Había una cama elástica y seis niños. La cama elástica aguantaba a una persona. Todos gritaron «yo primero» exactamente al mismo tiempo, lo cual nunca resuelve nada.',
+            en: 'There was a trampoline and six children. The trampoline held one person. Everybody shouted «me first» at exactly the same moment, which never settles anything.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'bluey', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: "Peppa proposa l'ordre d'arrivée, et elle était arrivée la première. Bluey proposa le plus petit d'abord, et Bingo était le plus petit. Chacun proposa une règle qui le faisait gagner.",
+            es: 'Peppa propuso el orden de llegada, y ella había llegado primera. Bluey propuso el más pequeño primero, y Bingo era el más pequeño. Cada uno propuso una regla que le hacía ganar.',
+            en: 'Peppa suggested order of arrival, and she had arrived first. Bluey suggested smallest first, and Bingo was the smallest. Everybody suggested a rule that made them the winner.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1, mood: 'fache' }]
+            },
+            text: "Livia écouta les six règles. Elles étaient toutes très justes et toutes complètement fausses. Pendant la discussion, personne n'avait sauté une seule fois sur le trampoline.",
+            es: 'Livia escuchó las seis reglas. Todas eran muy justas y todas completamente falsas. Durante la discusión, nadie había saltado ni una vez en la cama elástica.',
+            en: 'Livia listened to all six rules. They were all perfectly fair and all completely wrong. During the discussion nobody had jumped on the trampoline once.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'roxane', x: 580, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'On tire au sort. Personne ne choisit.', tx: 300, ty: 240 }]
+            },
+            text: "Alors elle dit : « On tire au sort. Personne ne choisit. » Elle prit six brins d'herbe de longueurs différentes et les tint dans son poing. Ça eut l'air immédiatement sérieux.",
+            es: 'Entonces dijo: «Lo sorteamos. Nadie elige.» Cogió seis briznas de hierba de distintas longitudes y las sujetó en el puño. Pareció serio de inmediato.',
+            en: "So she said: «We'll draw lots. Nobody chooses.» She took six blades of grass of different lengths and held them in her fist. It looked serious immediately."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'coco', x: 140, y: 518, s: .85 },
+                { t: 'peppa', x: 330, y: 516, s: .9 },
+                { t: 'livia', x: 520, y: 518, s: .9 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Le sort désigna Coco, que personne n'avait proposée, et qui n'avait rien demandé. Elle sauta trois minutes. Personne ne protesta, parce qu'il n'y avait personne à qui en vouloir.",
+            es: 'La suerte eligió a Coco, a quien nadie había propuesto y que no había pedido nada. Saltó tres minutos. Nadie protestó, porque no había nadie a quien culpar.',
+            en: 'The draw picked Coco, whom nobody had suggested, and who had asked for nothing. She jumped for three minutes. Nobody protested, because there was nobody to blame.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .85 },
+                { t: 'bingo', x: 330, y: 518, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .9 },
+                { t: 'roxane', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Ils firent six tours de trois minutes. Livia passa cinquième, ce qui n'est pas bien. Les brins d'herbe sont devenus la règle officielle de ce jardin-là.",
+            es: 'Hicieron seis turnos de tres minutos. Livia fue la quinta, lo cual no está bien. Las briznas de hierba se convirtieron en la regla oficial de ese jardín.',
+            en: 'They had six turns of three minutes. Livia went fifth, which is not good. The blades of grass became the official rule of that garden.'
+          }
+        ]
+      },
+
+      /* ---------- 9 : elsa découvre les flaques ---------- */
+      {
+        id: 'elsa-et-les-flaques',
+        title: 'Elsa découvre les flaques',
+        title_en: 'Elsa discovers puddles',
+        title_es: 'Elsa descubre los charcos',
+        subtitle: 'Apprendre quelque chose à une reine',
+        subtitle_en: 'Teaching a queen something',
+        subtitle_es: 'Enseñarle algo a una reina',
+        tag: 'Mélange',
+        themes: ['Bêtises', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden', time: 'gris',
+          back: [{ t: 'mudpuddle', x: 680, y: 530, s: 1 }],
+          items: [
+            { t: 'elsa', x: 320, y: 508, s: 1.05 },
+            { t: 'peppa', x: 580, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              back: [{ t: 'mudpuddle', x: 690, y: 530, s: 1 }],
+              items: [
+                { t: 'elsa', x: 300, y: 508, s: 1.05 },
+                { t: 'peppa', x: 580, y: 516, s: 1, pose: 'point' }
+              ]
+            },
+            text: "Il avait plu toute la nuit et le jardin de Peppa était plein de flaques marron. Elsa regarda tout cela avec l'air de quelqu'un qui voit un problème de propreté.",
+            es: 'Había llovido toda la noche y el jardín de Peppa estaba lleno de charcos marrones. Elsa miró todo aquello con cara de quien ve un problema de limpieza.',
+            en: "It had rained all night and Peppa's garden was full of brown puddles. Elsa surveyed it all with the expression of somebody looking at a hygiene problem."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'peppa', x: 230, y: 516, s: .95 },
+                { t: 'livia', x: 450, y: 518, s: 1 },
+                { t: 'elsa', x: 670, y: 508, s: 1 }
+              ]
+            },
+            text: "Peppa expliqua la règle, qui est la plus importante de sa maison : si on saute dans les flaques, on met des bottes. Elsa dit qu'elle n'avait pas de bottes. Peppa en trouva une paire.",
+            es: 'Peppa explicó la regla, que es la más importante de su casa: si saltas en los charcos, te pones botas. Elsa dijo que no tenía botas. Peppa le encontró un par.',
+            en: 'Peppa explained the rule, which is the most important one in her house: if you jump in puddles, you wear boots. Elsa said she had no boots. Peppa found her a pair.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              back: [{ t: 'mudpuddle', x: 400, y: 535, s: 1.1 }],
+              items: [{ t: 'elsa', x: 400, y: 508, s: 1.1 }]
+            },
+            text: 'Elsa resta au bord de la flaque un long moment. Elle a fabriqué des palais de glace et traversé des montagnes, et là, devant une flaque de boue, elle hésitait franchement.',
+            es: 'Elsa se quedó al borde del charco un buen rato. Ha construido palacios de hielo y cruzado montañas, y ahí, ante un charco de barro, dudaba claramente.',
+            en: 'Elsa stood on the edge of the puddle for a long moment. She has built ice palaces and crossed mountains, and there, in front of a mud puddle, she was frankly hesitating.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'jump' },
+                { t: 'elsa', x: 580, y: 508, s: 1.05 }
+              ],
+              sfx: [{ t: 'SPLATCH !', x: 430, y: 146, fs: 30, rot: -5, color: '#8a5a3b' }]
+            },
+            text: "Livia sauta la première pour montrer. La boue monta jusqu'aux genoux d'Elsa, qui recula d'un pas et dit « oh » d'une voix qu'on ne lui connaissait pas.",
+            es: 'Livia saltó primero para enseñarle. El barro llegó hasta las rodillas de Elsa, que retrocedió un paso y dijo «oh» con una voz que no se le conocía.',
+            en: "Livia jumped first to show her. The mud came up to Elsa's knees, and she took a step back and said «oh» in a voice nobody had heard from her before."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'elsa', x: 300, y: 508, s: 1.1, pose: 'jump' },
+                { t: 'peppa', x: 580, y: 516, s: 1, pose: 'jump' }
+              ],
+              sfx: [{ t: 'SPLOTCH !!', x: 430, y: 146, fs: 32, rot: -6, color: '#8a5a3b' }]
+            },
+            text: "Puis elle sauta. À pieds joints, très haut, comme quelqu'un qui n'a jamais appris à se retenir. Peppa dit que c'était le plus gros splatch de l'histoire de ce jardin.",
+            es: 'Luego saltó. Con los pies juntos, muy alto, como alguien que nunca ha aprendido a contenerse. Peppa dijo que fue el chapoteo más grande de la historia de ese jardín.',
+            en: 'Then she jumped. Both feet together, very high, like somebody who has never learned to hold back. Peppa said it was the biggest splash in the history of that garden.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'elsa', x: 520, y: 508, s: .95 },
+                { t: 'olaf', x: 700, y: 520, s: .8 }
+              ]
+            },
+            text: "Elles sautèrent jusqu'au soir. Elsa rentra à Arendelle avec de la boue jusqu'au col. Olaf raconte encore à qui veut l'entendre qu'il a vu une reine faire splatch.",
+            es: 'Saltaron hasta la noche. Elsa volvió a Arendelle con barro hasta el cuello. Olaf todavía cuenta a quien quiera oírlo que vio a una reina hacer chapoteo.',
+            en: 'They jumped until evening. Elsa went back to Arendelle with mud up to her collar. Olaf still tells anyone who will listen that he once saw a queen go splash.'
+          }
+        ]
+      },
+
+      /* ---------- 10 : bluey découvre la neige ---------- */
+      {
+        id: 'bluey-apprend-la-neige',
+        title: 'Bluey découvre la neige',
+        title_en: 'Bluey discovers snow',
+        title_es: 'Bluey descubre la nieve',
+        subtitle: "Montrer son pays à quelqu'un",
+        subtitle_en: 'Showing somebody your country',
+        subtitle_es: 'Enseñarle tu país a alguien',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'snow',
+          items: [
+            { t: 'bluey', x: 320, y: 518, s: 1.05 },
+            { t: 'livia', x: 580, y: 514, s: 1.1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.05, mood: 'wow' },
+                { t: 'livia', x: 570, y: 514, s: 1.1 }
+              ]
+            },
+            text: "Bluey arriva à Arendelle en short, parce qu'elle vient d'un pays où il n'y a pas d'hiver. Elle resta debout dans la neige pendant huit secondes, puis elle changea d'avis très vite.",
+            es: 'Bluey llegó a Arendelle en pantalón corto, porque viene de un país donde no hay invierno. Se quedó de pie en la nieve ocho segundos, y luego cambió de opinión muy rápido.',
+            en: 'Bluey arrived in Arendelle in shorts, because she comes from a country where there is no winter. She stood in the snow for eight seconds, then changed her mind very quickly.'
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'livia', x: 300, y: 514, s: 1.1, pose: 'point' },
+                { t: 'bluey', x: 570, y: 518, s: 1.05 }
+              ]
+            },
+            text: "Livia lui prêta un bonnet, deux écharpes et des chaussettes de laine. Bluey ressemblait à un paquet. « Maintenant tu peux », dit Livia, avec le sérieux d'un professeur.",
+            es: 'Livia le prestó un gorro, dos bufandas y calcetines de lana. Bluey parecía un paquete. «Ahora ya puedes», dijo Livia, con la seriedad de una profesora.',
+            en: 'Livia lent her a hat, two scarves and woollen socks. Bluey looked like a parcel. «Now you can,» said Livia, with the seriousness of a teacher.'
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.05, pose: 'quatrepattes' },
+                { t: 'livia', x: 580, y: 514, s: 1.1 }
+              ]
+            },
+            text: "Elle lui apprit tout dans l'ordre : comment faire une boule qui tient, comment marcher sans tomber, et surtout comment reconnaître la neige qui colle de celle qui ne colle pas.",
+            es: 'Le enseñó todo por orden: cómo hacer una bola que aguante, cómo caminar sin caerse y, sobre todo, cómo distinguir la nieve que se pega de la que no.',
+            en: "She taught her everything in order: how to make a snowball that holds together, how to walk without falling over, and above all how to tell snow that sticks from snow that doesn't."
+          },
+          {
+            scene: {
+              bg: 'snow',
+              items: [{ t: 'bluey', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+            },
+            text: "Au bout d'une heure, Bluey avait les mains rouges et elle ne disait plus rien. Le froid, de l'intérieur, ça ne se voit pas. Livia le vit quand même, parce qu'elle connaît.",
+            es: 'Al cabo de una hora, Bluey tenía las manos rojas y ya no decía nada. El frío, desde dentro, no se ve. Livia lo vio igual, porque lo conoce.',
+            en: "After an hour Bluey's hands were red and she had stopped saying anything. Cold, from the inside, doesn't show. Livia saw it anyway, because she knows."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1.05 },
+                { t: 'livia', x: 570, y: 514, s: 1.1, pose: 'hold' }
+              ]
+            },
+            text: "Elle la fit rentrer avant qu'elle demande, et lui mit les mains sous l'eau tiède, pas chaude. C'est ce qu'on fait à Arendelle. Bluey dit que ça piquait et que c'était bon.",
+            es: 'La hizo entrar antes de que lo pidiera y le puso las manos bajo agua tibia, no caliente. Es lo que se hace en Arendelle. Bluey dijo que escocía y que estaba bien.',
+            en: 'She brought her inside before she asked, and put her hands under warm water, not hot. That is what you do in Arendelle. Bluey said it stung and that it was lovely.'
+          },
+          {
+            scene: {
+              bg: 'snow', time: 'sunset',
+              items: [
+                { t: 'bluey', x: 230, y: 518, s: 1 },
+                { t: 'livia', x: 450, y: 514, s: 1.05 },
+                { t: 'olaf', x: 670, y: 520, s: .95 }
+              ]
+            },
+            text: "L'été suivant, Bluey a appris à Livia le ruisseau, les sangsues et les pierres qui glissent. Chacune a emmené l'autre chez elle. C'est la meilleure chose qu'on puisse offrir.",
+            es: 'Al verano siguiente, Bluey le enseñó a Livia el arroyo, las sanguijuelas y las piedras que resbalan. Cada una llevó a la otra a su casa. Es lo mejor que se puede regalar.',
+            en: 'The following summer Bluey taught Livia about the creek, the leeches and the slippery stones. Each took the other to her own place. It is the best thing you can give anybody.'
+          }
+        ]
+      },
+
+      /* ---------- 11 : trop de monde ---------- */
+      {
+        id: 'trop-de-monde',
+        title: 'Trop de monde',
+        title_en: 'Too many people',
+        title_es: 'Demasiada gente',
+        subtitle: "Avoir besoin d'être seule au milieu de la fête",
+        subtitle_en: 'Needing to be alone in the middle of the party',
+        subtitle_es: 'Necesitar estar sola en plena fiesta',
+        tag: 'Mélange',
+        themes: ['Émotions', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 140, y: 516, s: .85 },
+            { t: 'livia', x: 330, y: 518, s: .9 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'anna', x: 700, y: 512, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'anna', x: 700, y: 512, s: .85 }
+              ],
+              sfx: [{ t: 'TOUS LÀ !', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: 'Ils étaient neuf dans le jardin, ce qui est un nombre énorme. Il y avait trois jeux en même temps, deux disputes et une chanson. Livia avait demandé cette fête depuis des semaines.',
+            es: 'Eran nueve en el jardín, que es un número enorme. Había tres juegos a la vez, dos peleas y una canción. Livia había pedido esa fiesta durante semanas.',
+            en: 'There were nine of them in the garden, which is an enormous number. There were three games going on at once, two arguments and a song. Livia had been asking for this party for weeks.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1, mood: 'sad' }]
+            },
+            text: "Au bout d'une heure, elle eut une sensation bizarre : la tête pleine, comme quand on parle dans un tunnel. Le bruit était trop gros pour la taille de sa tête.",
+            es: 'Al cabo de una hora tuvo una sensación extraña: la cabeza llena, como cuando hablas en un túnel. El ruido era demasiado grande para el tamaño de su cabeza.',
+            en: 'After an hour she had a strange sensation: a full head, like talking inside a tunnel. The noise was too big for the size of her head.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1, mood: 'fache' }]
+            },
+            text: "Elle ne pouvait pas dire « partez », c'est sa fête. Elle ne pouvait pas pleurer, il n'y avait aucune raison. Elle resta debout au milieu en souriant d'un sourire fabriqué.",
+            es: 'No podía decir «marchaos», es su fiesta. No podía llorar, no había ningún motivo. Se quedó de pie en medio sonriendo con una sonrisa fabricada.',
+            en: 'She could not say «go away,» it was her party. She could not cry, there was no reason to. She stood in the middle smiling a manufactured smile.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'cabane', x: 640, y: 470, s: .85 }],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: 'Alors elle alla dans la cabane du fond, toute seule, et tira la planche derrière elle. Dedans, il faisait sombre et le bruit devenait un bruit lointain. Elle resta là quatre minutes.',
+            es: 'Entonces se fue a la caseta del fondo, sola, y cerró la tabla tras ella. Dentro estaba oscuro y el ruido se volvía un ruido lejano. Se quedó ahí cuatro minutos.',
+            en: 'So she went to the hut at the end of the garden, by herself, and pulled the plank shut behind her. Inside it was dark and the noise became a distant noise. She stayed there four minutes.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'roxane', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 580, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 320, t: 'Tu veux que je reste dehors ?', tx: 300, ty: 240 }]
+            },
+            text: "Roxane vint frapper à la planche. « Tu veux que je reste dehors ? » demanda-t-elle, ce qui était exactement la bonne question. Livia dit oui. Roxane s'assit dehors, contre la cabane.",
+            es: 'Roxane fue a llamar a la tabla. «¿Quieres que me quede fuera?», preguntó, que era exactamente la pregunta correcta. Livia dijo que sí. Roxane se sentó fuera, contra la caseta.',
+            en: 'Roxane came and knocked on the plank. «Do you want me to stay outside?» she asked, which was exactly the right question. Livia said yes. Roxane sat down outside, against the hut.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 230, y: 518, s: 1 },
+                { t: 'roxane', x: 450, y: 516, s: 1 },
+                { t: 'peppa', x: 670, y: 516, s: .95 }
+              ]
+            },
+            text: "Livia ressortit au bout d'un moment et la fête était encore là, et c'était redevenu bien. Depuis, quand il y a trop de monde, elle va dans la cabane quatre minutes et revient.",
+            es: 'Livia salió al rato y la fiesta seguía ahí, y volvía a estar bien. Desde entonces, cuando hay demasiada gente, va a la caseta cuatro minutos y vuelve.',
+            en: 'Livia came back out after a while and the party was still there, and it had become good again. Ever since, when there are too many people, she goes into the hut for four minutes and comes back.'
+          }
+        ]
+      },
+
+      /* ---------- 12 : la course des escargots ---------- */
+      {
+        id: 'la-course-des-escargots',
+        title: 'La course des escargots',
+        title_en: 'The snail race',
+        title_es: 'La carrera de los caracoles',
+        subtitle: 'Une course où le plus lent gagne',
+        subtitle_en: 'A race where the slowest wins',
+        subtitle_es: 'Una carrera donde gana el más lento',
+        tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'rapide', x: 300, y: 516, s: .95 },
+            { t: 'lent', x: 600, y: 516, s: .95 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              sfx: [{ t: 'PARTI !', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Monsieur Rapide gagna les quatre premières courses de l'après-midi, ce qui devint assez ennuyeux pour tout le monde, y compris pour lui, même s'il ne le disait pas.",
+            es: 'El señor Rápido ganó las cuatro primeras carreras de la tarde, lo que resultó bastante aburrido para todos, incluido para él, aunque no lo dijera.',
+            en: 'Mr Rapide won the first four races of the afternoon, which became rather boring for everybody, including him, though he did not say so.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'lent', x: 400, y: 516, s: 1, mood: 'sad' }]
+            },
+            text: "Monsieur Lent arrivait toujours quand les autres étaient déjà repartis. Il ne se plaignait pas. Il s'asseyait un peu à l'écart, le temps de respirer, et on l'oubliait.",
+            es: 'El señor Lento llegaba siempre cuando los demás ya se habían ido. No se quejaba. Se sentaba algo apartado, para recuperar el aliento, y se le olvidaba.',
+            en: 'Mr Lent always arrived when the others had already set off again. He did not complain. He sat down a little way off, to get his breath back, and people forgot him.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'lent', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "Course d'escargots. Le dernier gagne.", tx: 300, ty: 240 }]
+            },
+            text: "Livia annonça alors une nouvelle règle. « Course d'escargots. Le dernier gagne. » Il y eut un silence étonné, puis Madame Chipie demanda si on pouvait s'arrêter complètement.",
+            es: 'Livia anunció entonces una regla nueva. «Carrera de caracoles. Gana el último.» Hubo un silencio de asombro, y luego la señora Chipie preguntó si se podía parar del todo.',
+            en: 'So Livia announced a new rule. «Snail race. Last one wins.» There was an astonished silence, and then Mrs Chipie asked whether you were allowed to stop completely.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'chipie', x: 520, y: 516, s: .85 },
+                { t: 'lent', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "C'est beaucoup plus dur qu'il n'y paraît. Monsieur Rapide partit comme une balle sans s'en rendre compte et se retrouva à l'arrivée en trois secondes, donc dernier au classement, donc perdant.",
+            es: 'Es mucho más difícil de lo que parece. El señor Rápido salió disparado sin darse cuenta y llegó a la meta en tres segundos, por tanto último en la clasificación, por tanto perdedor.',
+            en: 'It is far harder than it looks. Mr Rapide shot off like a bullet without noticing and found himself at the finish in three seconds, therefore last in the ranking, therefore the loser.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'lent', x: 300, y: 516, s: 1, mood: 'happy' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              sfx: [{ t: 'BRAVO !', x: 430, y: 146, fs: 28, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "Monsieur Lent gagna. Il ne s'était même pas appliqué : il avait marché normalement. Il resta un moment sans comprendre, puis il sourit d'un sourire qu'on ne lui avait jamais vu.",
+            es: 'El señor Lento ganó. Ni se había esforzado: había caminado normal. Se quedó un momento sin entender, y luego sonrió con una sonrisa que nunca se le había visto.',
+            en: 'Mr Lent won. He had not even tried: he had simply walked normally. He stood there a moment without understanding, and then smiled a smile nobody had ever seen on him.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'rapide', x: 140, y: 516, s: .85 },
+                { t: 'lent', x: 330, y: 516, s: .85 },
+                { t: 'livia', x: 520, y: 518, s: .9 },
+                { t: 'chipie', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Ils firent les deux courses, maintenant : une rapide et une d'escargots. Monsieur Rapide gagne l'une, Monsieur Lent gagne l'autre, et personne ne rentre tout seul.",
+            es: 'Ahora hacen las dos carreras: una rápida y una de caracoles. El señor Rápido gana una, el señor Lento gana la otra, y nadie vuelve solo a casa.',
+            en: 'They do both races now: a fast one and a snail one. Mr Rapide wins one, Mr Lent wins the other, and nobody goes home alone.'
+          }
+        ]
+      },
+
+      /* ---------- 13 : la photo de tout le monde ---------- */
+      {
+        id: 'la-photo-de-groupe',
+        title: 'La photo de tout le monde',
+        title_en: 'The picture of everybody',
+        title_es: 'La foto de todos',
+        subtitle: 'Faire tenir neuf personnes dans un cadre',
+        subtitle_en: 'Fitting nine people into one frame',
+        subtitle_es: 'Hacer caber a nueve en un marco',
+        tag: 'Tous ensemble',
+        themes: ['Amitié', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 140, y: 516, s: .85 },
+            { t: 'livia', x: 330, y: 518, s: .9 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'roxane', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'papa', x: 300, y: 514, s: 1, pose: 'point' },
+                { t: 'livia', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: "Papa voulait une photo de tout le monde, parce qu'ils n'étaient jamais tous là en même temps et que ça n'arriverait peut-être plus. Il dit « deux minutes ». C'était très optimiste.",
+            es: 'Papá quería una foto de todos, porque nunca estaban todos a la vez y quizá no volvería a ocurrir. Dijo «dos minutos». Era muy optimista.',
+            en: 'Daddy wanted a photo of everybody, because they were never all there at the same time and it might not happen again. He said «two minutes.» That was very optimistic.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'anna', x: 700, y: 512, s: .85 }
+              ]
+            },
+            text: "Les grands derrière, les petits devant : c'est simple à dire. Olaf fondait doucement au soleil. Pablo partait sur le côté. Monsieur Grognon refusait de sourire, par principe.",
+            es: 'Los mayores detrás, los pequeños delante: es fácil decirlo. Olaf se derretía despacio al sol. Pablo se iba por un lado. El señor Gruñón se negaba a sonreír, por principio.',
+            en: 'Big ones at the back, little ones in front: simple to say. Olaf was slowly melting in the sun. Pablo kept wandering off to one side. Mr Grognon refused to smile, on principle.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'papa', x: 400, y: 514, s: 1, mood: 'fache' }]
+            },
+            text: 'La quatrième tentative fut ratée parce que Bingo avait éternué. La sixième parce que Peppa avait les yeux fermés. La huitième parce que personne ne regardait au même endroit.',
+            es: 'El cuarto intento salió mal porque Bingo estornudó. El sexto porque Peppa tenía los ojos cerrados. El octavo porque nadie miraba al mismo sitio.',
+            en: 'The fourth attempt failed because Bingo sneezed. The sixth because Peppa had her eyes shut. The eighth because nobody was looking in the same direction.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'papa', x: 580, y: 514, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 330, t: 'Dis une bêtise. Tous en même temps.', tx: 300, ty: 240 }]
+            },
+            text: "Livia eut l'idée. « Dis une bêtise. Tous en même temps. » Papa dit : « Chaussette. » Neuf personnes rirent exactement au même moment, pour la première fois de l'après-midi.",
+            es: 'Livia tuvo la idea. «Di una tontería. Todos a la vez.» Papá dijo: «Calcetín.» Nueve personas se rieron exactamente al mismo tiempo, por primera vez en toda la tarde.',
+            en: 'Livia had the idea. «Say something silly. All at once.» Daddy said: «Sock.» Nine people laughed at exactly the same moment, for the first time all afternoon.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'grognon', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ],
+              sfx: [{ t: 'CLIC !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "La photo est floue. Olaf a un bras en moins. Monsieur Grognon sourit, et c'est la seule preuve au monde que ça lui arrive. Papa dit que c'est sa préférée.",
+            es: 'La foto está borrosa. A Olaf le falta un brazo. El señor Gruñón sonríe, y es la única prueba en el mundo de que eso le pasa. Papá dice que es su favorita.',
+            en: 'The photo is blurred. Olaf is missing an arm. Mr Grognon is smiling, and it is the only evidence in the world that this ever happens. Daddy says it is his favourite.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'papa', x: 580, y: 514, s: 1 }
+              ]
+            },
+            text: 'Elle est accrochée dans le couloir, un peu de travers. Livia la montre à tout le monde en commençant toujours par la même phrase : « Là, on avait dit chaussette. »',
+            es: 'Está colgada en el pasillo, algo torcida. Livia se la enseña a todo el mundo empezando siempre por la misma frase: «Ahí habíamos dicho calcetín.»',
+            en: "It hangs in the hallway, slightly crooked. Livia shows it to everybody, always starting with the same sentence: «That's when we said sock.»"
+          }
+        ]
+      },
+
+      /* ---------- 14 : le bruit qui dérange ---------- */
+      {
+        id: 'le-bruit-qui-derange',
+        title: 'Le bruit qui dérange',
+        title_en: 'The noise that bothers',
+        title_es: 'El ruido que molesta',
+        subtitle: "Faire de la place à quelqu'un de silencieux",
+        subtitle_en: 'Making room for somebody quiet',
+        subtitle_es: 'Hacer sitio a alguien silencioso',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'timide', x: 300, y: 516, s: .95 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'livia', x: 520, y: 518, s: .9 },
+                { t: 'timide', x: 700, y: 516, s: .85 }
+              ],
+              sfx: [{ t: 'AAAAH !', x: 430, y: 146, fs: 30, rot: -5, color: '#f7c518' }]
+            },
+            text: 'Le jeu était bruyant, comme tous les bons jeux : on criait, on courait, on tapait sur un seau. Madame Timide était là aussi, tout au bord, et ne jouait pas.',
+            es: 'El juego era ruidoso, como todos los buenos juegos: se gritaba, se corría, se golpeaba un cubo. La señora Tímida también estaba, justo en el borde, y no jugaba.',
+            en: 'The game was loud, like all good games: there was shouting, running, and banging on a bucket. Mrs Timide was there too, right at the edge, and was not playing.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'timide', x: 400, y: 516, s: 1, mood: 'sad' }]
+            },
+            text: "Elle avait essayé deux fois d'entrer dans le jeu. Les deux fois, elle avait dit quelque chose de trop bas, personne n'avait entendu, et elle était retournée au bord.",
+            es: 'Había intentado dos veces entrar en el juego. Las dos veces había dicho algo demasiado bajo, nadie la había oído, y había vuelto al borde.',
+            en: 'She had tried twice to join in. Both times she had said something too quietly, nobody had heard, and she had gone back to the edge.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Livia la vit. Elle hésita, parce que le jeu était vraiment très bien et qu'elle était en train de gagner. S'occuper de quelqu'un coûte quelque chose, et c'est bien ça le sujet.",
+            es: 'Livia la vio. Dudó, porque el juego estaba muy bien y ella iba ganando. Ocuparse de alguien cuesta algo, y de eso se trata precisamente.',
+            en: 'Livia saw her. She hesitated, because the game was really very good and she was winning. Looking after somebody costs something, and that is precisely the point.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'timide', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'Tu veux jouer au jeu sans crier ?', tx: 300, ty: 240 }]
+            },
+            text: "Elle alla au bord et dit : « Tu veux jouer au jeu sans crier ? » Madame Timide demanda s'il existait. Livia répondit que non, et qu'elles allaient l'inventer tout de suite.",
+            es: 'Fue al borde y dijo: «¿Quieres jugar al juego sin gritar?» La señora Tímida preguntó si existía. Livia contestó que no, y que lo iban a inventar ahora mismo.',
+            en: 'She went over to the edge and said: «Do you want to play the game with no shouting?» Mrs Timide asked whether there was one. Livia said no, and that they were going to invent it right away.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'timide', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 580, y: 518, s: 1, mood: 'happy' }
+              ]
+            },
+            text: 'Le jeu consistait à se faire passer un caillou derrière le dos sans rien dire. Il faut regarder les gens pour y jouer. Madame Timide était redoutable : personne ne la voyait venir.',
+            es: 'El juego consistía en pasarse una piedra por detrás de la espalda sin decir nada. Hay que mirar a la gente para jugarlo. La señora Tímida era temible: nadie la veía venir.',
+            en: 'The game involved passing a pebble behind your back without saying anything. You have to look at people in order to play it. Mrs Timide was formidable: nobody saw her coming.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'timide', x: 330, y: 516, s: .85 },
+                { t: 'livia', x: 520, y: 518, s: .9 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Au bout d'un moment, les bruyants vinrent jouer au jeu silencieux, parce qu'il était meilleur. Madame Timide expliqua les règles, à voix basse, et tout le monde se tut pour entendre.",
+            es: 'Al rato, los ruidosos vinieron a jugar al juego silencioso, porque era mejor. La señora Tímida explicó las reglas, en voz baja, y todos se callaron para oírla.',
+            en: 'After a while the loud ones came and played the quiet game, because it was better. Mrs Timide explained the rules, quietly, and everybody shut up in order to hear her.'
+          }
+        ]
+      },
+
+      /* ---------- 15 : la glace pour huit ---------- */
+      {
+        id: 'la-glace-pour-huit',
+        title: 'La glace pour huit',
+        title_en: 'Ice cream for eight',
+        title_es: 'El helado para ocho',
+        subtitle: 'Partager ce qui ne se partage pas bien',
+        subtitle_en: "Sharing what doesn't share well",
+        subtitle_es: 'Compartir lo que no se comparte bien',
+        tag: 'Mélange',
+        themes: ['Partager', 'Été'],
+        minutes: 5,
+        cover: {
+          bg: 'beach',
+          back: [{ t: 'icecream', x: 620, y: 480, s: .8 }],
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'peppa', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'anna', x: 700, y: 512, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'icecream', x: 700, y: 490, s: .9 }],
+              items: [
+                { t: 'papa', x: 300, y: 514, s: 1, pose: 'hold' },
+                { t: 'livia', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: "Papa revint du kiosque avec six glaces, et ils étaient huit. Il avait compté sur la plage, de loin, et deux enfants étaient dans l'eau au moment du comptage.",
+            es: 'Papá volvió del kiosco con seis helados, y eran ocho. Había contado en la playa, de lejos, y dos niños estaban en el agua en el momento del recuento.',
+            en: 'Daddy came back from the kiosk with six ice creams, and there were eight of them. He had counted from a distance on the beach, and two children had been in the water at the time.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bingo', x: 520, y: 518, s: .85 },
+                { t: 'george', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: 'Six glaces pour huit, ça ne se divise pas. On ne peut pas couper une glace en morceaux : elle coule, elle tombe, elle devient du sable. Tout le monde réfléchit en silence.',
+            es: 'Seis helados para ocho no se divide. Un helado no se puede cortar en trozos: se derrite, se cae, se convierte en arena. Todos pensaron en silencio.',
+            en: 'Six ice creams between eight does not divide. You cannot cut an ice cream into pieces: it drips, it falls, it becomes sand. Everybody thought in silence.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: "Peppa proposa que les plus petits en aient une pour deux, ce qui était pratique et un peu injuste. George dit non avec la seule voix qu'il utilise pour dire non.",
+            es: 'Peppa propuso que los más pequeños tuvieran uno para dos, lo cual era práctico y un poco injusto. George dijo no con la única voz que usa para decir no.',
+            en: 'Peppa suggested that the little ones should have one between two, which was practical and slightly unfair. George said no in the only voice he uses for saying no.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Livia regarda les six glaces en train de fondre pendant la discussion, ce qui est le vrai danger. Elle fit un calcul rapide : parler encore cinq minutes, et il n'y aurait plus rien du tout.",
+            es: 'Livia miró los seis helados derritiéndose durante la discusión, que es el verdadero peligro. Hizo un cálculo rápido: cinco minutos más de charla y no quedaría nada.',
+            en: 'Livia looked at the six ice creams melting during the discussion, which is the real danger. She did a quick sum: five more minutes of talking and there would be nothing left at all.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'papa', x: 580, y: 514, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'Deux tours. Une bouchée chacun, à huit.', tx: 300, ty: 240 }]
+            },
+            text: "« Deux tours », dit-elle. « Une bouchée chacun, à huit, et on recommence. » C'est salissant, c'est long, et chacun en a eu exactement autant que les autres.",
+            es: '«Dos rondas», dijo. «Un bocado cada uno, entre ocho, y volvemos a empezar.» Es pringoso, es largo, y cada uno tomó exactamente lo mismo que los demás.',
+            en: '«Two rounds,» she said. «One bite each, all eight of us, then round again.» It is messy, it takes ages, and everybody got exactly as much as everybody else.'
+          },
+          {
+            scene: {
+              bg: 'beach', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'george', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Ils finirent couverts de glace jusqu'aux oreilles, tous les huit. Papa a raconté cette histoire à la maison en disant qu'il avait mal compté. Personne n'a jamais corrigé.",
+            es: 'Acabaron cubiertos de helado hasta las orejas, los ocho. Papá contó esta historia en casa diciendo que había contado mal. Nadie lo ha corregido nunca.',
+            en: 'They ended up covered in ice cream up to their ears, all eight of them. Daddy told this story at home saying he had counted badly. Nobody has ever corrected him.'
+          }
+        ]
+      },
+
+      /* ---------- 16 : le petit qui suit partout ---------- */
+      {
+        id: 'le-petit-qui-suit',
+        title: 'Le petit qui suit partout',
+        title_en: 'The little one who follows',
+        title_es: 'El pequeño que sigue a todas partes',
+        subtitle: 'Jouer avec un petit sans gâcher le jeu',
+        subtitle_en: 'Playing with a little one without spoiling the game',
+        subtitle_es: 'Jugar con un pequeño sin estropear el juego',
+        tag: 'Mélange',
+        themes: ['Famille', 'Partager'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'pablo', x: 580, y: 520, s: .95 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'pablo', x: 700, y: 520, s: .8 }
+              ]
+            },
+            text: "Le jeu demandait de courir vite et de grimper sur le mur bas. Pablo a deux ans. Il suivait quand même, en courant d'une façon qui n'est pas vraiment de la course.",
+            es: 'El juego consistía en correr rápido y subirse al muro bajo. Pablo tiene dos años. Les seguía igualmente, corriendo de una forma que no es realmente correr.',
+            en: 'The game involved running fast and climbing the low wall. Pablo is two. He followed along anyway, running in a way that is not really running.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, mood: 'fache' },
+                { t: 'pablo', x: 600, y: 520, s: .9 }
+              ]
+            },
+            text: "À chaque tour, il arrivait en retard et au mauvais endroit. Peppa dit tout haut ce que les autres pensaient : « Il gâche tout. » Et ce n'était pas complètement faux.",
+            es: 'En cada ronda llegaba tarde y al sitio equivocado. Peppa dijo en voz alta lo que los demás pensaban: «Lo está estropeando todo.» Y no era del todo falso.',
+            en: "Every round he arrived late and in the wrong place. Peppa said out loud what the others were thinking: «He's spoiling it.» And it was not completely untrue."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Livia sentit les deux choses en même temps : c'est son frère, et il gâche tout. Les deux étaient vraies. Elle découvrit qu'on peut être très en colère et défendre quelqu'un.",
+            es: 'Livia sintió las dos cosas a la vez: es su hermano, y lo está estropeando todo. Las dos eran verdad. Descubrió que se puede estar muy enfadada y defender a alguien.',
+            en: 'Livia felt both things at once: he is her brother, and he is spoiling it. Both were true. She discovered that you can be very cross and defend somebody at the same time.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'pablo', x: 600, y: 520, s: .9 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 330, t: 'Toi, tu gardes la porte. Personne passe.', tx: 300, ty: 240 }]
+            },
+            text: 'Elle ne le fit pas jouer au même jeu : ça ne marche pas. Elle lui donna un travail à lui. « Toi, tu gardes la porte. Personne passe. » Pablo prit son poste très au sérieux.',
+            es: 'No le hizo jugar al mismo juego: eso no funciona. Le dio un trabajo suyo. «Tú guardas la puerta. No pasa nadie.» Pablo se tomó su puesto muy en serio.',
+            en: "She did not make him play the same game: that doesn't work. She gave him a job of his own. «You guard the gate. Nobody gets through.» Pablo took his post very seriously."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'pablo', x: 300, y: 520, s: .95, pose: 'armsup' },
+                { t: 'peppa', x: 600, y: 516, s: 1, mood: 'fache' }
+              ],
+              sfx: [{ t: 'NON ! NON !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: 'Il garda la porte pendant une demi-heure, debout, les deux bras ouverts, en disant non à tout le monde. Peppa fut obligée de passer par-dessus le mur, et perdit sa manche.',
+            es: 'Guardó la puerta media hora, de pie, con los dos brazos abiertos, diciendo no a todo el mundo. Peppa tuvo que pasar por encima del muro, y perdió su ronda.',
+            en: 'He guarded the gate for half an hour, standing there, both arms out, saying no to everyone. Peppa had to climb over the wall, and lost her round.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'pablo', x: 580, y: 520, s: .95 }
+              ]
+            },
+            text: "Le soir, Pablo répétait « moi la porte » à table. Livia a compris quelque chose d'utile ce jour-là : un petit n'a pas besoin du même jeu, il a besoin d'un rôle.",
+            es: 'Por la noche, Pablo repetía «yo la puerta» en la mesa. Livia entendió algo útil aquel día: un pequeño no necesita el mismo juego, necesita un papel.',
+            en: "That evening Pablo kept repeating «me the gate» at the table. Livia understood something useful that day: a little one doesn't need the same game, he needs a part to play."
+          }
+        ]
+      },
+
+      /* ---------- 17 : le mot de passe ---------- */
+      {
+        id: 'le-mot-de-passe',
+        title: 'Le mot de passe',
+        title_en: 'The password',
+        title_es: 'La contraseña',
+        subtitle: "Un club avec quelqu'un dehors",
+        subtitle_en: 'A club with somebody left outside',
+        subtitle_es: 'Un club con alguien fuera',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Règles'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          back: [{ t: 'cabane', x: 670, y: 470, s: .85 }],
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'roxane', x: 580, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'cabane', x: 690, y: 470, s: .85 }],
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'roxane', x: 580, y: 516, s: 1 }
+              ]
+            },
+            text: "Elles inventèrent un mot de passe pour entrer dans la cabane. Le mot était « cornichon », parce que c'est le mot le plus drôle qu'elles connaissent. Seules celles qui savaient pouvaient entrer.",
+            es: 'Inventaron una contraseña para entrar en la caseta. La palabra era «pepinillo», porque es la palabra más graciosa que conocen. Solo podían entrar las que la sabían.',
+            en: 'They invented a password to get into the hut. The word was «gherkin,» because it is the funniest word they know. Only those who knew it could come in.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'roxane', x: 330, y: 516, s: .85 },
+                { t: 'juliette', x: 520, y: 516, s: .85 },
+                { t: 'isadora', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Le club marcha très bien pendant une heure. Quatre membres, un mot de passe, une cabane. C'est à peu près le bonheur parfait quand on a quatre ans.",
+            es: 'El club funcionó muy bien durante una hora. Cuatro miembros, una contraseña, una caseta. Es más o menos la felicidad perfecta cuando tienes cuatro años.',
+            en: 'The club worked very well for an hour. Four members, one password, one hut. That is roughly perfect happiness when you are four.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'coco', x: 300, y: 518, s: 1, mood: 'sad' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: 'Puis Coco arriva. Elle ne connaissait pas le mot. Elle attendit à côté de la planche, sans pleurer, en faisant semblant de regarder une fourmi par terre.',
+            es: 'Luego llegó Coco. No sabía la palabra. Esperó junto a la tabla, sin llorar, fingiendo mirar una hormiga en el suelo.',
+            en: 'Then Coco turned up. She did not know the word. She waited beside the plank, without crying, pretending to look at an ant on the ground.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Livia connaissait exactement le poids de ce moment-là, parce qu'elle l'avait vécu l'an dernier, de l'autre côté de la planche. Elle regarda Coco faire semblant pendant trois minutes.",
+            es: 'Livia conocía exactamente el peso de ese momento, porque lo había vivido el año pasado, al otro lado de la tabla. Miró a Coco fingir durante tres minutos.',
+            en: 'Livia knew exactly how much that moment weighs, because she had lived it last year, on the other side of the plank. She watched Coco pretending for three minutes.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'coco', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 320, t: "Le mot, c'est cornichon.", tx: 300, ty: 240 }]
+            },
+            text: "Alors elle sortit et dit : « Le mot, c'est cornichon. » Les autres protestèrent : ça ne vaut plus rien, un mot qu'on donne. Livia dit qu'un mot de passe sert à faire entrer.",
+            es: 'Entonces salió y dijo: «La palabra es pepinillo.» Las demás protestaron: una palabra que se regala ya no vale nada. Livia dijo que una contraseña sirve para dejar entrar.',
+            en: 'So she went out and said: «The word is gherkin.» The others objected: a password you give away is worth nothing. Livia said a password is for letting people in.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'coco', x: 330, y: 518, s: .85 },
+                { t: 'roxane', x: 520, y: 516, s: .85 },
+                { t: 'juliette', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Le club a maintenant un mot de passe que tout le monde connaît, ce qui est ridicule et très bien. On le dit quand même, à chaque fois, parce que c'est la meilleure partie.",
+            es: 'El club tiene ahora una contraseña que todo el mundo conoce, lo cual es ridículo y está muy bien. Se dice igualmente, cada vez, porque es la mejor parte.',
+            en: 'The club now has a password that everybody knows, which is ridiculous and very good. They say it anyway, every time, because it is the best part.'
+          }
+        ]
+      },
+
+      /* ---------- 18 : la tente pour six ---------- */
+      {
+        id: 'la-tente-pour-six',
+        title: 'La tente pour six',
+        title_en: 'The tent for six',
+        title_es: 'La tienda para seis',
+        subtitle: 'Dormir les uns sur les autres',
+        subtitle_en: 'Sleeping all on top of each other',
+        subtitle_es: 'Dormir unos encima de otros',
+        tag: 'Tous ensemble',
+        themes: ['Nuit', 'Amitié'],
+        minutes: 6,
+        cover: {
+          bg: 'camp', time: 'night',
+          back: [{ t: 'tent', x: 660, y: 480, s: .9 }],
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'bluey', x: 580, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'camp', time: 'sunset',
+              back: [{ t: 'tent', x: 120, y: 480, s: .9 }],
+              items: [
+                { t: 'papa', x: 300, y: 514, s: 1, pose: 'point' },
+                { t: 'livia', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: 'La tente était prévue pour quatre. Ils étaient six, plus Olaf, qui ne compte pas vraiment mais qui prend de la place. Papa dit que ça ne rentrerait jamais.',
+            es: 'La tienda era para cuatro. Eran seis, más Olaf, que no cuenta de verdad pero ocupa sitio. Papá dijo que no cabrían nunca.',
+            en: "The tent was designed for four. There were six of them, plus Olaf, who doesn't really count but does take up room. Daddy said they would never fit."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'sunset',
+              back: [{ t: 'tent', x: 430, y: 470, s: .8 }],
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Ils rentrèrent quand même. En mettant les têtes aux deux bouts, comme des sardines, et en négociant chaque centimètre pendant vingt minutes. C'était très serré et personne ne voulait ressortir.",
+            es: 'Entraron igualmente. Poniendo las cabezas en los dos extremos, como sardinas, y negociando cada centímetro durante veinte minutos. Estaban muy apretados y nadie quería salir.',
+            en: 'They got in anyway. Heads at both ends, like sardines, negotiating every inch for twenty minutes. It was extremely tight and nobody wanted to get out.'
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'tent', x: 430, y: 470, s: .8 }],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'fache' }]
+            },
+            text: "À dix heures, quelqu'un avait un pied dans l'oreille de quelqu'un d'autre. Bingo riait pour rien, ce qui est contagieux et interdit à cette heure-là. Papa cria une fois, de loin.",
+            es: 'A las diez, alguien tenía un pie en la oreja de otro. Bingo se reía sin motivo, lo cual es contagioso y está prohibido a esa hora. Papá gritó una vez, desde lejos.',
+            en: "By ten o'clock somebody had a foot in somebody else's ear. Bingo was laughing at nothing, which is contagious and forbidden at that hour. Daddy shouted once, from a distance."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [
+                { t: 'tent', x: 430, y: 470, s: .8 },
+                { t: 'campfire', x: 120, y: 520, s: .8 }
+              ],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Puis il y eut le moment où le bruit s'arrête tout seul. Personne ne décide ; ça arrive. On entend la toile, le feu dehors, et six respirations qui ne vont pas ensemble.",
+            es: 'Luego llegó el momento en que el ruido se para solo. Nadie lo decide; pasa. Se oye la lona, el fuego fuera, y seis respiraciones que no van a la vez.',
+            en: "Then came the moment when the noise stops by itself. Nobody decides it; it just happens. You hear the canvas, the fire outside, and six lots of breathing that don't match."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'tent', x: 430, y: 470, s: .8 }],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, pose: 'sleep' }]
+            },
+            text: "Livia ne dormit pas tout de suite. Elle resta à écouter. Elle se dit qu'elle voulait se souvenir de ce bruit-là exactement, et qu'elle ne savait pas comment on garde un bruit.",
+            es: 'Livia no se durmió enseguida. Se quedó escuchando. Pensó que quería acordarse de ese ruido exactamente, y que no sabía cómo se guarda un ruido.',
+            en: 'Livia did not go to sleep straight away. She lay there listening. She thought that she wanted to remember that sound exactly, and that she did not know how one keeps a sound.'
+          },
+          {
+            scene: {
+              bg: 'camp',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'olaf', x: 700, y: 520, s: .8 }
+              ]
+            },
+            text: 'Au matin, ils avaient tous mal au cou et ils redemandèrent la même tente pour le soir. Papa dit non. Ils y dormirent quand même, et il le savait en disant non.',
+            es: 'Por la mañana les dolía el cuello a todos y volvieron a pedir la misma tienda para esa noche. Papá dijo que no. Durmieron ahí igualmente, y él ya lo sabía al decir que no.',
+            en: 'In the morning they all had stiff necks and asked for the same tent again for that evening. Daddy said no. They slept in it anyway, and he knew that when he said no.'
+          }
+        ]
+      },
+
+      /* ---------- 19 : celui qui ne veut pas jouer ---------- */
+      {
+        id: 'celui-qui-ne-veut-pas-jouer',
+        title: 'Celui qui ne veut pas jouer',
+        title_en: "The one who doesn't want to play",
+        title_es: 'El que no quiere jugar',
+        subtitle: "On n'oblige personne, et on n'oublie personne",
+        subtitle_en: 'Nobody is forced, and nobody is forgotten',
+        subtitle_es: 'A nadie se le obliga, y a nadie se le olvida',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'grognon', x: 300, y: 516, s: .95 },
+            { t: 'livia', x: 600, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'grognon', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: 'Tout le monde jouait au ballon sauf Monsieur Grognon, qui était assis sur la marche avec les bras croisés. On lui avait demandé six fois. Il avait dit non six fois.',
+            es: 'Todos jugaban al balón menos el señor Gruñón, que estaba sentado en el escalón con los brazos cruzados. Se lo habían pedido seis veces. Había dicho que no seis veces.',
+            en: 'Everybody was playing ball except Mr Grognon, who was sitting on the step with his arms folded. They had asked him six times. He had said no six times.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'grognon', x: 600, y: 516, s: 1, mood: 'fache' }
+              ]
+            },
+            text: "Peppa dit qu'il était pénible. Bluey proposa de l'obliger, ce qui ne marche jamais. Quelqu'un dit de l'oublier, et tout le monde fut un peu d'accord, ce qui est pire.",
+            es: 'Peppa dijo que era un pesado. Bluey propuso obligarle, lo que nunca funciona. Alguien dijo que lo olvidaran, y todos estuvieron un poco de acuerdo, lo cual es peor.',
+            en: 'Peppa said he was being difficult. Bluey suggested forcing him, which never works. Somebody said to forget about him, and everybody rather agreed, which is worse.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Livia trouva les deux solutions mauvaises. Obliger quelqu'un à s'amuser, ça ne s'est jamais vu. Oublier quelqu'un, c'est facile et ça laisse un goût désagréable.",
+            es: 'A Livia las dos soluciones le parecieron malas. Obligar a alguien a divertirse no se ha visto nunca. Olvidar a alguien es fácil y deja un sabor desagradable.',
+            en: 'Livia thought both solutions were bad. Forcing somebody to enjoy themselves has never been known to work. Forgetting somebody is easy and leaves an unpleasant taste.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'grognon', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 330, t: 'Je mets le ballon là. Si tu veux.', tx: 300, ty: 240 }]
+            },
+            text: "Elle posa le ballon à deux pas de la marche. « Je le mets là. Si tu veux. » Elle ne dit rien d'autre et retourna jouer, sans se retourner, ce qui est la partie difficile.",
+            es: 'Dejó el balón a dos pasos del escalón. «Lo dejo aquí. Por si quieres.» No dijo nada más y volvió a jugar, sin girarse, que es la parte difícil.',
+            en: "She put the ball down two steps from the step. «I'll leave it there. If you want.» She said nothing else and went back to play, without turning round, which is the hard part."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'grognon', x: 400, y: 516, s: 1 }]
+            },
+            text: "Le ballon resta là vingt minutes. Puis il bougea d'un mètre. Puis de trois. Personne ne dit rien et personne ne regarda, parce que regarder aurait tout gâché.",
+            es: 'El balón se quedó ahí veinte minutos. Luego se movió un metro. Luego tres. Nadie dijo nada y nadie miró, porque mirar lo habría estropeado todo.',
+            en: 'The ball stayed there for twenty minutes. Then it moved a yard. Then three. Nobody said anything and nobody looked, because looking would have spoiled everything.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'grognon', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "À la fin de l'après-midi, Monsieur Grognon jouait au but, et il grognait tout le temps, et il ne voulait plus s'arrêter. Personne ne lui a jamais fait remarquer.",
+            es: 'Al final de la tarde, el señor Gruñón jugaba de portero, gruñía todo el rato y ya no quería parar. Nadie se lo ha hecho notar nunca.',
+            en: 'By the end of the afternoon Mr Grognon was playing in goal, grumbling constantly, and did not want to stop. Nobody has ever pointed it out to him.'
+          }
+        ]
+      },
+
+      /* ---------- 20 : olaf et la piscine ---------- */
+      {
+        id: 'olaf-et-la-piscine',
+        title: 'Olaf et la piscine',
+        title_en: 'Olaf and the swimming pool',
+        title_es: 'Olaf y la piscina',
+        subtitle: "Trouver comment inviter quelqu'un qui ne peut pas",
+        subtitle_en: "Finding a way to include someone who can't",
+        subtitle_es: 'Encontrar cómo incluir a quien no puede',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Été'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          back: [{ t: 'pool', x: 660, y: 500, s: .8 }],
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'olaf', x: 580, y: 520, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'pool', x: 430, y: 505, s: .9 }],
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'olaf', x: 700, y: 520, s: .8 }
+              ]
+            },
+            text: "Il faisait trente degrés et la piscine gonflable était pleine. Tout le monde était dedans sauf Olaf, qui se tenait à un mètre et disait que l'eau ne l'intéressait pas du tout.",
+            es: 'Hacía treinta grados y la piscina hinchable estaba llena. Todos estaban dentro menos Olaf, que se quedaba a un metro diciendo que el agua no le interesaba en absoluto.',
+            en: 'It was thirty degrees and the paddling pool was full. Everybody was in it except Olaf, who stood a yard away saying that water did not interest him in the slightest.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'olaf', x: 400, y: 520, s: 1.1, mood: 'sad' }]
+            },
+            text: "C'était faux, bien sûr. Il regardait la piscine exactement comme on regarde une chose qu'on veut. Un bonhomme de neige dans l'eau, ça s'appelle une flaque.",
+            es: 'Era falso, por supuesto. Miraba la piscina exactamente como se mira algo que se desea. Un muñeco de nieve en el agua se llama charco.',
+            en: 'It was untrue, of course. He was looking at the pool exactly the way you look at something you want. A snowman in water is called a puddle.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Livia sortit de l'eau et réfléchit. Dire « viens » serait cruel. Dire « reste là » serait pire. Il fallait une troisième chose, et elle n'existait pas encore.",
+            es: 'Livia salió del agua y se quedó pensando. Decir «ven» sería cruel. Decir «quédate ahí» sería peor. Hacía falta una tercera cosa, y todavía no existía.',
+            en: 'Livia got out of the water and thought. Saying «come in» would be cruel. Saying «stay there» would be worse. A third thing was needed, and it did not exist yet.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'olaf', x: 600, y: 520, s: 1.05 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: "Les glaçons. Il en faut, dans l'eau.", tx: 300, ty: 240 }]
+            },
+            text: "Elle alla chercher le bac à glaçons de la cuisine. « Il en faut, dans l'eau. Toi tu les gardes. » Olaf prit le bac et devint immédiatement le personnage le plus important du jardin.",
+            es: 'Fue a por la cubitera de la cocina. «Hacen falta, en el agua. Tú los guardas.» Olaf cogió la cubitera y se convirtió al instante en el personaje más importante del jardín.',
+            en: 'She went and got the ice-cube tray from the kitchen. «We need these, in the water. You look after them.» Olaf took the tray and instantly became the most important person in the garden.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'olaf', x: 300, y: 520, s: 1.1, mood: 'happy' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              sfx: [{ t: 'UN GLAÇON !', x: 430, y: 146, fs: 26, rot: -5, color: '#4a7fc1' }]
+            },
+            text: "Il distribuait les glaçons un par un, à la demande, en restant à l'ombre du mur. Tout le monde venait le voir. Il n'est pas entré dans l'eau une seule fois.",
+            es: 'Repartía los cubitos uno a uno, a petición, quedándose a la sombra del muro. Todos iban a verlo. No entró en el agua ni una vez.',
+            en: 'He handed out the ice cubes one by one, on request, staying in the shade of the wall. Everybody came to see him. He did not get into the water once.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'olaf', x: 700, y: 520, s: .8 }
+              ]
+            },
+            text: "Le lendemain, il réclama son poste avant même qu'on ait rempli la piscine. Livia a appris ce jour-là qu'inviter quelqu'un, ce n'est pas toujours lui dire de venir.",
+            es: 'Al día siguiente reclamó su puesto antes incluso de que llenaran la piscina. Livia aprendió ese día que invitar a alguien no siempre es decirle que venga.',
+            en: 'The next day he claimed his post before the pool had even been filled. Livia learned that day that inviting somebody is not always telling them to come in.'
+          }
+        ]
+      },
+
+      /* ---------- 21 : les équipes injustes ---------- */
+      {
+        id: 'les-equipes-injustes',
+        title: 'Les équipes injustes',
+        title_en: 'The unfair teams',
+        title_es: 'Los equipos injustos',
+        subtitle: "Gagner parce que l'autre équipe était plus faible",
+        subtitle_en: 'Winning because the other side was weaker',
+        subtitle_es: 'Ganar porque el otro equipo era más débil',
+        tag: 'Tous ensemble',
+        themes: ['Règles', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'bluey', x: 140, y: 518, s: .85 },
+            { t: 'livia', x: 330, y: 518, s: .9 },
+            { t: 'peppa', x: 520, y: 516, s: .85 },
+            { t: 'bingo', x: 700, y: 518, s: .8 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Livia et Bluey furent capitaines, ce qui veut dire qu'elles choisissaient. On choisit toujours dans le même ordre : les grands d'abord, les petits à la fin, et ça fait mal à la fin.",
+            es: 'Livia y Bluey fueron capitanas, lo que significa que elegían. Siempre se elige en el mismo orden: los mayores primero, los pequeños al final, y al final eso duele.',
+            en: 'Livia and Bluey were captains, which means they got to pick. People always pick in the same order: the big ones first, the little ones last, and at the end it hurts.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 140, y: 518, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'george', x: 520, y: 518, s: .8 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "L'équipe de Livia avait les trois plus rapides. L'équipe de Bluey avait George, Bingo et Pablo. Tout le monde le vit tout de suite, et personne ne dit rien.",
+            es: 'El equipo de Livia tenía a los tres más rápidos. El equipo de Bluey tenía a George, Bingo y Pablo. Todos lo vieron enseguida, y nadie dijo nada.',
+            en: "Livia's team had the three fastest. Bluey's team had George, Bingo and Pablo. Everybody saw it immediately, and nobody said anything."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }],
+              sfx: [{ t: 'SEPT À ZÉRO.', x: 400, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Elles gagnèrent sept à zéro en dix minutes. Au troisième but, ce n'était plus drôle. Au cinquième, Livia marquait en regardant ailleurs, ce qui est le signe que le jeu est mort.",
+            es: 'Ganaron siete a cero en diez minutos. Al tercer gol ya no tenía gracia. Al quinto, Livia marcaba mirando a otro lado, señal de que el juego está muerto.',
+            en: 'They won seven–nil in ten minutes. By the third goal it was no longer funny. By the fifth, Livia was scoring while looking elsewhere, which is the sign that a game has died.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bingo', x: 300, y: 518, s: .9, mood: 'sad' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Bingo s'assit par terre au milieu du terrain et dit qu'elle ne voulait plus. Elle ne pleurait pas. Elle avait seulement cessé de croire que ça servait à quelque chose.",
+            es: 'Bingo se sentó en el suelo en medio del campo y dijo que ya no quería. No lloraba. Simplemente había dejado de creer que sirviera para algo.',
+            en: "Bingo sat down on the ground in the middle of the pitch and said she didn't want to any more. She was not crying. She had simply stopped believing it was any use."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: "On recommence. Je change d'équipe.", tx: 300, ty: 240 }]
+            },
+            text: "Livia dit : « On recommence. Je change d'équipe. » Elle passa chez les petits, avec George, Bingo et Pablo. C'est la décision la moins agréable qu'elle ait prise cet été-là.",
+            es: 'Livia dijo: «Volvemos a empezar. Me cambio de equipo.» Se pasó con los pequeños, con George, Bingo y Pablo. Es la decisión menos agradable que tomó ese verano.',
+            en: "Livia said: «We'll start again. I'm swapping teams.» She went over to the little ones, with George, Bingo and Pablo. It is the least pleasant decision she made that summer."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bingo', x: 330, y: 518, s: .8 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'george', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: 'Ils perdirent quatre à trois, et ce fut la meilleure partie de la journée. Depuis, dans ce jardin, les capitaines se choisissent en dernier.',
+            es: 'Perdieron cuatro a tres, y fue el mejor partido del día. Desde entonces, en ese jardín, los capitanes se eligen al final.',
+            en: 'They lost four–three, and it was the best game of the day. Ever since, in that garden, captains pick themselves last.'
+          }
+        ]
+      },
+
+      /* ---------- 22 : chacun son mot ---------- */
+      {
+        id: 'la-langue-des-autres',
+        title: 'Chacun son mot',
+        title_en: "Everybody's own word",
+        title_es: 'Cada uno su palabra',
+        subtitle: 'Le même jeu avec des noms différents',
+        subtitle_en: 'The same game with different names',
+        subtitle_es: 'El mismo juego con nombres distintos',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Règles'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 140, y: 516, s: .85 },
+            { t: 'livia', x: 330, y: 518, s: .9 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'anna', x: 700, y: 512, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Peppa proposa de jouer à « chat perché ». Bluey dit qu'elle ne connaissait pas, mais qu'elle connaissait « tag ». Anna parla d'un jeu où on touche et on crie. C'était le même jeu.",
+            es: 'Peppa propuso jugar a «la pilla». Bluey dijo que no lo conocía, pero que conocía «tag». Anna habló de un juego en el que se toca y se grita. Era el mismo juego.',
+            en: "Peppa suggested playing «chat perché.» Bluey said she didn't know it, but she knew «tag.» Anna described a game where you touch somebody and shout. It was the same game."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'livia', x: 520, y: 518, s: .9 },
+                { t: 'anna', x: 700, y: 512, s: .85 }
+              ]
+            },
+            text: "Il fallut une demi-heure pour s'en rendre compte, parce que chacune défendait son mot comme si c'était le jeu. On s'attache aux mots plus qu'aux règles, à tout âge.",
+            es: 'Hicieron falta treinta minutos para darse cuenta, porque cada una defendía su palabra como si fuera el juego. Uno se apega a las palabras más que a las reglas, a cualquier edad.',
+            en: 'It took half an hour to work this out, because each of them defended her own word as though it were the game. People get attached to words more than to rules, at any age.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Puis vinrent les vraies différences, qui étaient petites et très importantes. Chez Peppa, on est à l'abri sur un banc. Chez Bluey, on est à l'abri accroupi. Chez Anna, il n'y a pas d'abri.",
+            es: 'Luego llegaron las diferencias de verdad, que eran pequeñas y muy importantes. En casa de Peppa estás a salvo en un banco. En la de Bluey, agachado. En la de Anna no hay refugio.',
+            en: "Then came the real differences, which were small and very important. At Peppa's, you are safe on a bench. At Bluey's, you are safe crouching. At Anna's, there is no safe place."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, mood: 'fache' },
+                { t: 'bluey', x: 600, y: 518, s: 1, mood: 'fache' }
+              ],
+              sfx: [{ t: "NON, C'EST FAUX !", x: 430, y: 146, fs: 26, rot: -6, color: '#e0453c' }]
+            },
+            text: "Chacune était sûre d'avoir la vraie règle. Elles l'étaient parce qu'elles jouaient comme ça depuis toujours, et « depuis toujours » est le meilleur argument du monde et il ne vaut rien.",
+            es: 'Cada una estaba segura de tener la regla verdadera. Lo estaban porque jugaban así desde siempre, y «desde siempre» es el mejor argumento del mundo y no vale nada.',
+            en: 'Each was certain she had the true rule. They were certain because they had always played that way, and «always» is the best argument in the world and it is worth nothing.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'anna', x: 600, y: 512, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'On prend une règle de chaque. Essayons.', tx: 300, ty: 240 }]
+            },
+            text: "Livia proposa de prendre une règle de chaque et d'essayer. L'abri est un banc, on s'y accroupit, et il n'y en a qu'un pour tout le monde. C'était n'importe quoi. C'était excellent.",
+            es: 'Livia propuso coger una regla de cada una y probar. El refugio es un banco, te agachas en él y solo hay uno para todos. Era un disparate. Era excelente.',
+            en: 'Livia suggested taking one rule from each and trying it. The safe place is a bench, you crouch on it, and there is only one for everybody. It was nonsense. It was excellent.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'anna', x: 700, y: 512, s: .85 }
+              ]
+            },
+            text: "Le jeu n'a pas de nom. Quand quelqu'un demande à quoi ils jouent, chacun répond un mot différent, et ils se mettent tous à rire sans expliquer.",
+            es: 'El juego no tiene nombre. Cuando alguien pregunta a qué juegan, cada uno dice una palabra distinta, y todos se echan a reír sin explicarlo.',
+            en: 'The game has no name. When somebody asks what they are playing, each of them says a different word, and they all start laughing without explaining.'
+          }
+        ]
+      },
+
+      /* ---------- 23 : le grand orage ---------- */
+      {
+        id: 'le-grand-orage',
+        title: 'Le grand orage',
+        title_en: 'The big storm',
+        title_es: 'La gran tormenta',
+        subtitle: 'Huit enfants et un seul couloir',
+        subtitle_en: 'Eight children and one corridor',
+        subtitle_es: 'Ocho niños y un solo pasillo',
+        tag: 'Tous ensemble',
+        themes: ['Nuit', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'garden', time: 'gris',
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'peppa', x: 580, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ],
+              sfx: [{ t: 'GRRROUM !', x: 430, y: 146, fs: 30, rot: -6, color: '#4a7fc1' }]
+            },
+            text: "L'orage arriva en six minutes, comme ils font. Le jeu s'arrêta au milieu d'une phrase. Huit enfants rentrèrent par la porte de derrière en même temps, ce qui ne se peut pas.",
+            es: 'La tormenta llegó en seis minutos, como siempre. El juego se paró en medio de una frase. Ocho niños entraron por la puerta de atrás a la vez, lo cual es imposible.',
+            en: 'The storm arrived in six minutes, the way they do. The game stopped in the middle of a sentence. Eight children came in through the back door at the same time, which is not possible.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'gris',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'george', x: 330, y: 518, s: .8 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'coco', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Dans le couloir, il y avait huit paires de bottes mouillées et beaucoup de bruit. Puis la lumière s'éteignit, et le bruit s'arrêta d'un coup, ce qui est encore plus bruyant.",
+            es: 'En el pasillo había ocho pares de botas mojadas y mucho ruido. Luego se apagó la luz, y el ruido se cortó de golpe, lo cual es aún más ruidoso.',
+            en: 'In the corridor there were eight pairs of wet boots and a great deal of noise. Then the light went out, and the noise stopped all at once, which is even louder.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'gris',
+              items: [{ t: 'george', x: 400, y: 518, s: .9, mood: 'sad' }]
+            },
+            text: "George se mit à pleurer, parce qu'il a deux ans et que c'est exactement ce qu'il faut faire. Deux autres petits y pensèrent très sérieusement. L'ambiance tenait à un fil.",
+            es: 'George se echó a llorar, porque tiene dos años y es exactamente lo que hay que hacer. Otros dos pequeños lo pensaron muy en serio. El ambiente pendía de un hilo.',
+            en: 'George started to cry, because he is two and that is exactly the thing to do. Two other little ones considered it very seriously. The mood was hanging by a thread.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'gris',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'george', x: 600, y: 518, s: .9 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "On compte entre l'éclair et le bruit.", tx: 300, ty: 240 }]
+            },
+            text: "Livia dit la chose que Papa lui dit, à elle. « On compte entre l'éclair et le bruit. Ça dit à quelle distance il est. » Huit enfants se taisent instantanément pour compter.",
+            es: 'Livia dijo lo que Papá le dice a ella. «Contamos entre el rayo y el ruido. Eso dice a qué distancia está.» Ocho niños se callan al instante para contar.',
+            en: 'Livia said the thing Daddy says to her. «We count between the flash and the bang. That tells you how far away it is.» Eight children fall instantly silent in order to count.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'gris',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'george', x: 700, y: 518, s: .8 }
+              ],
+              sfx: [{ t: 'UN... DEUX... SIX !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Ils comptèrent douze orages. Un, deux, six. Puis quatre. Puis sept. Puis onze, et là tout le monde applaudit, parce que onze veut dire que ça s'en va.",
+            es: 'Contaron doce truenos. Uno, dos, seis. Luego cuatro. Luego siete. Luego once, y entonces todos aplaudieron, porque once significa que se está yendo.',
+            en: 'They counted twelve thunderclaps. One, two, six. Then four. Then seven. Then eleven, and at that everybody clapped, because eleven means it is going away.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'coco', x: 520, y: 518, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Après, il y avait des flaques partout et le soleil. Personne n'a parlé de la panne de courant. Tout le monde raconte l'orage où ils ont compté jusqu'à onze.",
+            es: 'Después había charcos por todas partes y sol. Nadie habló del apagón. Todos cuentan la tormenta en la que contaron hasta once.',
+            en: 'Afterwards there were puddles everywhere and sunshine. Nobody mentioned the power cut. Everybody tells the story of the storm where they counted to eleven.'
+          }
+        ]
+      },
+
+      /* ---------- 24 : le cadeau de tout le monde ---------- */
+      {
+        id: 'le-cadeau-collectif',
+        title: 'Le cadeau de tout le monde',
+        title_en: "Everybody's present",
+        title_es: 'El regalo de todos',
+        subtitle: 'Huit idées et un seul cadeau',
+        subtitle_en: 'Eight ideas and one present',
+        subtitle_es: 'Ocho ideas y un solo regalo',
+        tag: 'Tous ensemble',
+        themes: ['Amitié', 'Partager'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'roxane', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'peppa', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'roxane', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: "C'était l'anniversaire de Mamie et ils étaient huit à vouloir offrir quelque chose. Huit cadeaux, c'est trop. Un cadeau à huit, c'est une négociation très compliquée.",
+            es: 'Era el cumpleaños de la abuela y eran ocho los que querían regalar algo. Ocho regalos son demasiados. Un regalo entre ocho es una negociación muy complicada.',
+            en: "It was Granny's birthday and there were eight of them wanting to give something. Eight presents is too many. One present between eight is an extremely complicated negotiation."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'livia', x: 520, y: 518, s: .9 },
+                { t: 'anna', x: 700, y: 512, s: .85 }
+              ]
+            },
+            text: 'Peppa voulait un dessin. Bluey voulait un caillou peint. Anna voulait une chanson. Monsieur Grognon ne voulait rien, par principe, mais il avait une idée quand même.',
+            es: 'Peppa quería un dibujo. Bluey quería una piedra pintada. Anna quería una canción. El señor Gruñón no quería nada, por principio, pero tenía una idea igualmente.',
+            en: 'Peppa wanted a drawing. Bluey wanted a painted pebble. Anna wanted a song. Mr Grognon did not want anything, on principle, but he had an idea anyway.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1, mood: 'fache' }]
+            },
+            text: "Ils discutèrent quarante minutes. À la fin, il n'y avait pas de cadeau, huit enfants vexés et l'anniversaire était le lendemain. C'est à ce moment-là que Livia arrêta de discuter.",
+            es: 'Discutieron cuarenta minutos. Al final no había regalo, ocho niños ofendidos y el cumpleaños era al día siguiente. Fue entonces cuando Livia dejó de discutir.',
+            en: 'They argued for forty minutes. At the end there was no present, eight offended children and the birthday was the next day. That was the moment Livia stopped arguing.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'Une boîte. Chacun met un truc dedans.', tx: 300, ty: 240 }]
+            },
+            text: '« Une boîte », dit-elle. « Chacun met un truc dedans. » Personne ne trouva à répondre, parce que ça ne demandait à personne de renoncer à son idée.',
+            es: '«Una caja», dijo. «Cada uno mete algo dentro.» Nadie supo qué contestar, porque no pedía a nadie renunciar a su idea.',
+            en: '«A box,» she said. «Everybody puts one thing in it.» Nobody could find an objection, because it asked nobody to give up their own idea.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'grognon', x: 520, y: 516, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Dedans, il y eut : un dessin, un caillou peint, trois coquillages, une plume, un bonbon déjà entamé, une liste des chansons qu'on chanterait, et un caillou pas peint, de Monsieur Grognon.",
+            es: 'Dentro había: un dibujo, una piedra pintada, tres conchas, una pluma, un caramelo ya empezado, una lista de las canciones que cantarían y una piedra sin pintar, del señor Gruñón.',
+            en: 'Inside there was: a drawing, a painted pebble, three shells, a feather, a half-eaten sweet, a list of the songs they would sing, and one unpainted pebble, from Mr Grognon.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'mamie', x: 300, y: 514, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Mamie sortit les objets un par un et demanda qui avait mis quoi. Ça prit une demi-heure. C'est, de l'avis de tout le monde, la meilleure partie de l'anniversaire.",
+            es: 'La abuela sacó los objetos uno a uno y preguntó quién había puesto cada cosa. Llevó media hora. Es, en opinión de todos, la mejor parte del cumpleaños.',
+            en: "Granny took the things out one by one and asked who had put in what. It took half an hour. It is, in everybody's opinion, the best part of the birthday."
+          }
+        ]
+      },
+
+      /* ---------- 25 : le jeu qu'on invente ---------- */
+      {
+        id: 'le-jeu-quon-invente',
+        title: "Le jeu qu'on invente",
+        title_en: 'The game you make up',
+        title_es: 'El juego que se inventa',
+        subtitle: 'Ajouter une règle, puis une autre',
+        subtitle_en: 'Adding a rule, then another',
+        subtitle_es: 'Añadir una regla, y luego otra',
+        tag: 'Tous ensemble',
+        themes: ['Dehors', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'bluey', x: 330, y: 518, s: .85 },
+            { t: 'peppa', x: 520, y: 516, s: .85 },
+            { t: 'coco', x: 700, y: 518, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Il n'y avait rien à faire, ce qui est le meilleur point de départ. Livia posa un seau retourné au milieu du jardin. Bluey dit : « On ne peut pas le toucher. » Le jeu existait.",
+            es: 'No había nada que hacer, que es el mejor punto de partida. Livia puso un cubo del revés en medio del jardín. Bluey dijo: «No se puede tocar.» El juego ya existía.',
+            en: "There was nothing to do, which is the best starting point. Livia put an upturned bucket in the middle of the garden. Bluey said: «You can't touch it.» The game existed."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Peppa ajouta qu'on doit sauter à cloche-pied. Coco ajouta qu'on doit dire un nom d'animal. Bingo ajouta qu'on a le droit de mentir une fois. On ne sait plus qui a ajouté le reste.",
+            es: 'Peppa añadió que hay que saltar a la pata coja. Coco añadió que hay que decir un nombre de animal. Bingo añadió que se puede mentir una vez. Ya no se sabe quién añadió el resto.',
+            en: "Peppa added that you have to hop on one leg. Coco added that you have to say an animal's name. Bingo added that you are allowed to lie once. Nobody knows who added the rest."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1, mood: 'fache' }]
+            },
+            text: 'Au bout de vingt minutes, il y avait quatorze règles et plus personne ne savait y jouer. Chacun jouait à un jeu légèrement différent, et chacun avait raison.',
+            es: 'A los veinte minutos había catorce reglas y ya nadie sabía jugar. Cada uno jugaba a un juego ligeramente distinto, y cada uno tenía razón.',
+            en: 'After twenty minutes there were fourteen rules and nobody knew how to play any more. Each of them was playing a slightly different game, and each of them was right.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'peppa', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'On en garde quatre. On vote.', tx: 300, ty: 240 }]
+            },
+            text: "Livia proposa de n'en garder que quatre et de voter. Il fallut sacrifier la règle du mensonge, qui était pourtant la préférée de tout le monde, parce qu'elle rendait le jeu infini.",
+            es: 'Livia propuso quedarse solo con cuatro y votar. Hubo que sacrificar la regla de la mentira, que sin embargo era la favorita de todos, porque hacía el juego infinito.',
+            en: "Livia suggested keeping only four and voting on them. The lying rule had to be sacrificed, even though it was everybody's favourite, because it made the game infinite."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'coco', x: 330, y: 518, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'peppa', x: 700, y: 516, s: .85 }
+              ],
+              sfx: [{ t: 'GIRAFE !', x: 430, y: 146, fs: 26, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "À quatre règles, le jeu marchait. Ils y jouèrent deux heures sans s'arrêter, en criant des noms d'animaux de plus en plus improbables.",
+            es: 'Con cuatro reglas el juego funcionaba. Jugaron dos horas sin parar, gritando nombres de animales cada vez más improbables.',
+            en: 'With four rules, the game worked. They played it for two hours without stopping, shouting ever more improbable animal names.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'bluey', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: "Le jeu s'appelle « le seau ». Ils l'ont écrit sur un papier, avec les quatre règles, et le papier est punaisé dans la cabane. La règle du mensonge est notée en bas, barrée.",
+            es: 'El juego se llama «el cubo». Lo escribieron en un papel, con las cuatro reglas, y el papel está clavado en la caseta. La regla de la mentira está anotada abajo, tachada.',
+            en: 'The game is called «the bucket.» They wrote it down on a piece of paper, with the four rules, and the paper is pinned up in the hut. The lying rule is written at the bottom, crossed out.'
+          }
+        ]
+      },
+
+      /* ---------- 26 : qui raconte l'histoire ---------- */
+      {
+        id: 'qui-raconte-lhistoire',
+        title: "Qui raconte l'histoire",
+        title_en: 'Who tells the story',
+        title_es: 'Quién cuenta el cuento',
+        subtitle: 'Une histoire à huit bouches',
+        subtitle_en: 'A story with eight mouths',
+        subtitle_es: 'Un cuento con ocho bocas',
+        tag: 'Tous ensemble',
+        themes: ['Nuit', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'camp', time: 'night',
+          back: [{ t: 'campfire', x: 430, y: 520, s: .8 }],
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'bluey', x: 330, y: 518, s: .85 },
+            { t: 'peppa', x: 520, y: 516, s: .85 },
+            { t: 'anna', x: 700, y: 512, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'campfire', x: 120, y: 520, s: .8 }],
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'papa', x: 600, y: 514, s: 1 }
+              ]
+            },
+            text: "Autour du feu, Papa commença une histoire, puis il dit qu'il était fatigué et que c'était à eux. Huit enfants, une histoire : personne ne savait comment ça allait marcher.",
+            es: 'Alrededor del fuego, Papá empezó un cuento, luego dijo que estaba cansado y que les tocaba a ellos. Ocho niños, un cuento: nadie sabía cómo iba a funcionar.',
+            en: 'Round the fire, Daddy began a story, then said he was tired and that it was their turn. Eight children, one story: nobody knew how that was going to work.'
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'campfire', x: 430, y: 525, s: .75 }],
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Peppa commença par un dragon. Bluey ajouta que le dragon était gentil. Bingo ajouta qu'il était tout petit. Peppa dit que non, et l'histoire s'arrêta à la troisième phrase.",
+            es: 'Peppa empezó con un dragón. Bluey añadió que el dragón era bueno. Bingo añadió que era muy pequeño. Peppa dijo que no, y el cuento se paró en la tercera frase.',
+            en: 'Peppa began with a dragon. Bluey added that the dragon was kind. Bingo added that it was very small. Peppa said no, and the story stopped at the third sentence.'
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'campfire', x: 700, y: 525, s: .7 }],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: 'Livia remarqua le problème : chacun voulait raconter SON histoire, pas la même. Huit histoires qui se marchent dessus ne font pas une grande histoire, elles font du bruit.',
+            es: 'Livia vio el problema: cada uno quería contar SU cuento, no el mismo. Ocho cuentos pisándose no hacen un gran cuento, hacen ruido.',
+            en: 'Livia spotted the problem: each of them wanted to tell THEIR story, not the same one. Eight stories treading on each other do not make a great story, they make noise.'
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'Une phrase chacun. On ne défait rien.', tx: 300, ty: 240 }]
+            },
+            text: "« Une phrase chacun », dit-elle. « Et on ne défait pas ce que l'autre a dit. » C'est une règle très dure. Elle oblige à faire quelque chose du dragon gentil tout petit.",
+            es: '«Una frase cada uno», dijo. «Y no se deshace lo que ha dicho el otro.» Es una regla muy dura. Obliga a hacer algo con el dragón bueno y pequeñito.',
+            en: "«One sentence each,» she said. «And you don't undo what the person before you said.» It is a very hard rule. It forces you to do something with the kind, tiny dragon."
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'campfire', x: 430, y: 525, s: .75 }],
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'anna', x: 330, y: 512, s: .85 },
+                { t: 'george', x: 520, y: 518, s: .8 },
+                { t: 'peppa', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "L'histoire devint complètement folle. Le dragon minuscule et gentil finit facteur, puis perdit une lettre importante, puis la retrouva dans le ventre d'un poisson. George dit un seul mot, et c'était le meilleur.",
+            es: 'El cuento se volvió una locura. El dragón minúsculo y bueno acabó de cartero, luego perdió una carta importante y luego la encontró en la barriga de un pez. George dijo una sola palabra, y fue la mejor.',
+            en: 'The story went completely mad. The tiny kind dragon became a postman, then lost an important letter, then found it inside a fish. George said one single word, and it was the best one.'
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05, pose: 'sleep' },
+                { t: 'bluey', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: "Ils arrivèrent à la fin sans se disputer une fois. Personne ne se souvient de l'histoire en entier. Tout le monde se souvient du mot de George, qui était « bateau ».",
+            es: 'Llegaron al final sin discutir ni una vez. Nadie se acuerda del cuento entero. Todos se acuerdan de la palabra de George, que fue «barco».',
+            en: "They reached the end without arguing once. Nobody remembers the whole story. Everybody remembers George's word, which was «boat.»"
+          }
+        ]
+      },
+
+      /* ---------- 27 : une minute de silence ---------- */
+      {
+        id: 'le-silence-dune-minute',
+        title: 'Une minute de silence',
+        title_en: 'One minute of silence',
+        title_es: 'Un minuto de silencio',
+        subtitle: 'Le jeu le plus difficile du monde',
+        subtitle_en: 'The hardest game in the world',
+        subtitle_es: 'El juego más difícil del mundo',
+        tag: 'Mélange',
+        themes: ['Bêtises', 'Amitié'],
+        minutes: 4,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'peppa', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'bingo', x: 700, y: 518, s: .8 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'maman', x: 300, y: 514, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: 'Maman avait besoin de téléphoner et il y avait huit enfants dans la maison. Elle demanda une minute de silence. Une vraie minute, complète, sans un bruit.',
+            es: 'Mamá tenía que llamar por teléfono y había ocho niños en casa. Pidió un minuto de silencio. Un minuto de verdad, entero, sin un ruido.',
+            en: 'Mummy needed to make a phone call and there were eight children in the house. She asked for one minute of silence. A real minute, a whole one, without a sound.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'peppa', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 320, t: "C'est un jeu. Le premier qui parle perd.", tx: 300, ty: 240 }]
+            },
+            text: 'Livia transforma la demande en jeu, ce qui est le seul moyen. « Le premier qui parle perd. » Huit enfants devinrent immédiatement très sérieux et très immobiles.',
+            es: 'Livia convirtió la petición en un juego, que es el único método. «El primero que habla pierde.» Ocho niños se pusieron inmediatamente muy serios y muy quietos.',
+            en: 'Livia turned the request into a game, which is the only method. «First one to speak loses.» Eight children instantly became very serious and very still.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Les dix premières secondes furent magnifiques. Puis Bingo eut envie de rire, et l'envie de rire se voit, et ça se transmet. Peppa mit ses mains sur sa bouche.",
+            es: 'Los diez primeros segundos fueron magníficos. Luego a Bingo le entró la risa, y las ganas de reír se notan, y se transmiten. Peppa se tapó la boca con las manos.',
+            en: 'The first ten seconds were magnificent. Then Bingo wanted to laugh, and wanting to laugh shows, and it spreads. Peppa put both hands over her mouth.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'olaf', x: 400, y: 520, s: 1.1 }],
+              sfx: [{ t: '... TROIS ...', x: 400, y: 146, fs: 24, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "Olaf, qui compte tout depuis qu'il sait compter, se mit à compter les secondes à voix haute. Il perdit donc immédiatement, et il ne s'en aperçut pas.",
+            es: 'Olaf, que lo cuenta todo desde que sabe contar, se puso a contar los segundos en voz alta. Así que perdió inmediatamente, y no se dio cuenta.',
+            en: 'Olaf, who counts everything now that he can count, started counting the seconds out loud. He therefore lost immediately, and did not notice.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'olaf', x: 520, y: 520, s: .8 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ],
+              sfx: [{ t: 'HA HA HA !', x: 430, y: 146, fs: 30, rot: -6, color: '#f7c518' }]
+            },
+            text: "Tout le monde explosa de rire en même temps, à quarante-trois secondes. Maman, au téléphone dans la pièce d'à côté, dit : « Ce sont les enfants, oui. »",
+            es: 'Todos estallaron en risas a la vez, a los cuarenta y tres segundos. Mamá, al teléfono en la habitación de al lado, dijo: «Sí, son los niños.»',
+            en: "Everybody exploded with laughter at the same moment, at forty-three seconds. Mummy, on the phone in the next room, said: «Yes, that's the children.»"
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'maman', x: 580, y: 514, s: 1 }
+              ]
+            },
+            text: "Ils ont réessayé onze fois cet été-là. Le record est de cinquante-deux secondes. Maman n'a jamais réussi à finir un seul appel, et elle demande toujours.",
+            es: 'Lo han vuelto a intentar once veces ese verano. El récord es de cincuenta y dos segundos. Mamá nunca ha conseguido terminar una llamada, y sigue pidiéndolo.',
+            en: 'They tried again eleven times that summer. The record is fifty-two seconds. Mummy has never managed to finish a single call, and she still asks.'
+          }
+        ]
+      },
+
+      /* ---------- 28 : le nouveau ---------- */
+      {
+        id: 'le-nouveau',
+        title: 'Le nouveau',
+        title_en: 'The new one',
+        title_es: 'El nuevo',
+        subtitle: "Huit amis et quelqu'un qui n'en connaît aucun",
+        subtitle_en: 'Eight friends and somebody who knows none of them',
+        subtitle_es: 'Ocho amigos y alguien que no conoce a ninguno',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'coco', x: 580, y: 518, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'coco', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Coco arriva dans un groupe où tout le monde se connaissait depuis toujours. C'est la situation la plus difficile qui existe, et personne ne le remarque jamais de l'intérieur.",
+            es: 'Coco llegó a un grupo donde todos se conocían desde siempre. Es la situación más difícil que existe, y desde dentro nadie se da cuenta nunca.',
+            en: 'Coco arrived in a group where everybody had known each other for ever. It is the hardest situation there is, and from the inside nobody ever notices.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'livia', x: 520, y: 518, s: .9 },
+                { t: 'coco', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Les autres parlaient de choses passées. L'été dernier. La fois du ballon. Le jour où Monsieur Grognon avait souri. Coco riait un peu en retard, à chaque fois.",
+            es: 'Los demás hablaban de cosas pasadas. El verano pasado. La vez del balón. El día en que el señor Gruñón sonrió. Coco se reía un poco tarde, cada vez.',
+            en: 'The others talked about past things. Last summer. The time with the ball. The day Mr Grognon smiled. Coco laughed slightly late, every time.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'coco', x: 400, y: 518, s: 1, mood: 'sad' }]
+            },
+            text: "Au bout d'une heure, elle n'avait rien dit du tout. Elle n'était pas exclue : personne ne l'avait écartée. Elle était simplement à côté de tout, ce qui ressemble beaucoup.",
+            es: 'Al cabo de una hora no había dicho nada. No estaba excluida: nadie la había apartado. Simplemente estaba al lado de todo, lo cual se parece mucho.',
+            en: 'After an hour she had said nothing at all. She was not excluded: nobody had pushed her out. She was simply beside everything, which is very similar.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Livia s'en aperçut parce qu'elle avait été la nouvelle, une fois, et qu'on se souvient de ça très précisément et très longtemps.",
+            es: 'Livia se dio cuenta porque ella había sido la nueva, una vez, y de eso uno se acuerda con mucha precisión y durante mucho tiempo.',
+            en: 'Livia noticed because she had been the new one, once, and one remembers that very precisely and for a very long time.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'coco', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "Raconte un truc qu'on ne connaît pas.", tx: 300, ty: 240 }]
+            },
+            text: "Elle ne dit pas « venez jouer avec Coco », ce qui aurait été humiliant. Elle dit : « Coco, raconte un truc qu'on ne connaît pas. » Tout le groupe se tourna, et attendit.",
+            es: 'No dijo «venid a jugar con Coco», que habría sido humillante. Dijo: «Coco, cuenta algo que no sepamos.» Todo el grupo se giró, y esperó.',
+            en: "She did not say «come and play with Coco,» which would have been humiliating. She said: «Coco, tell us something we don't know.» The whole group turned round, and waited."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'coco', x: 140, y: 518, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'peppa', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Coco raconta son chien, qui a trois pattes et grimpe aux arbres. Personne n'avait jamais entendu une chose aussi intéressante. Le soir, c'est le chien de Coco que tout le monde racontait.",
+            es: 'Coco contó lo de su perro, que tiene tres patas y se sube a los árboles. Nadie había oído nunca nada tan interesante. Por la noche, todos contaban lo del perro de Coco.',
+            en: "Coco told them about her dog, which has three legs and climbs trees. Nobody had ever heard anything so interesting. By the evening everybody was telling the story of Coco's dog."
+          }
+        ]
+      },
+
+      /* ---------- 29 : la fête sous la pluie ---------- */
+      {
+        id: 'la-fete-sous-la-pluie',
+        title: 'La fête sous la pluie',
+        title_en: 'The party in the rain',
+        title_es: 'La fiesta bajo la lluvia',
+        subtitle: "Quand le plan tombe à l'eau",
+        subtitle_en: 'When the plan falls through',
+        subtitle_es: 'Cuando el plan se va al agua',
+        tag: 'Tous ensemble',
+        themes: ['Émotions', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'garden', time: 'gris',
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'peppa', x: 580, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom', time: 'gris',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'sad' }]
+            },
+            text: 'Il pleuvait depuis six heures du matin. Tout était prévu depuis trois semaines : la chasse au trésor, le pique-nique, les douze ballons. Livia regarda la fenêtre comme on regarde un traître.',
+            es: 'Llovía desde las seis de la mañana. Todo estaba previsto desde hacía tres semanas: la búsqueda del tesoro, el picnic, los doce globos. Livia miró la ventana como se mira a un traidor.',
+            en: 'It had been raining since six in the morning. Everything had been planned for three weeks: the treasure hunt, the picnic, the twelve balloons. Livia looked at the window the way you look at a traitor.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'gris',
+              items: [
+                { t: 'maman', x: 300, y: 514, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+              ]
+            },
+            text: "Maman proposa de tout faire dedans. Livia dit que ce ne serait pas pareil, et c'était parfaitement exact. Elle resta fâchée contre le ciel pendant une heure et demie.",
+            es: 'Mamá propuso hacerlo todo dentro. Livia dijo que no sería lo mismo, y era perfectamente cierto. Estuvo enfadada con el cielo una hora y media.',
+            en: "Mummy suggested doing it all indoors. Livia said it wouldn't be the same, and that was perfectly accurate. She stayed cross with the sky for an hour and a half."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'gris',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'roxane', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Les invités arrivèrent trempés et très contents, ce qui est agaçant quand on est triste. Peppa demanda où étaient les bottes. Personne n'avait pensé aux bottes.",
+            es: 'Los invitados llegaron empapados y muy contentos, lo cual es irritante cuando estás triste. Peppa preguntó dónde estaban las botas. Nadie había pensado en las botas.',
+            en: 'The guests arrived soaked and extremely cheerful, which is annoying when you are sad. Peppa asked where the boots were. Nobody had thought about boots.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, pose: 'jump' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              sfx: [{ t: 'SPLATCH !', x: 430, y: 146, fs: 30, rot: -5, color: '#8a5a3b' }]
+            },
+            text: "Peppa sortit sous la pluie sans demander, parce que chez elle c'est normal. Puis Bluey. Puis six autres. Livia resta seule à la fenêtre, à regarder sa fête se passer dehors.",
+            es: 'Peppa salió bajo la lluvia sin pedir permiso, porque en su casa es lo normal. Luego Bluey. Luego otros seis. Livia se quedó sola en la ventana, viendo su fiesta celebrarse fuera.',
+            en: 'Peppa went out into the rain without asking, because at her house that is normal. Then Bluey. Then six others. Livia stayed alone at the window, watching her party happen outside.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'jump' },
+                { t: 'peppa', x: 600, y: 516, s: 1, pose: 'jump' }
+              ]
+            },
+            text: 'Elle sortit à la quatrième minute. La chasse au trésor sous la pluie est beaucoup mieux : les indices sont mous, on glisse, et on finit tous de la même couleur.',
+            es: 'Salió al cuarto minuto. La búsqueda del tesoro bajo la lluvia es mucho mejor: las pistas están blandas, uno resbala y todos acabamos del mismo color.',
+            en: 'She went out at the fourth minute. A treasure hunt in the rain is far better: the clues go soggy, you slip, and everybody ends up the same colour.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'roxane', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: 'Les douze ballons ont éclaté sur les ronces. La fête de Livia est encore racontée par tous ceux qui y étaient, et toujours en commençant par « il pleuvait ».',
+            es: 'Los doce globos explotaron en las zarzas. La fiesta de Livia todavía la cuentan todos los que fueron, y siempre empezando por «llovía».',
+            en: "All twelve balloons burst on the brambles. Livia's party is still talked about by everyone who was there, and always beginning with «it was raining.»"
+          }
+        ]
+      },
+
+      /* ---------- 30 : le grand rangement ---------- */
+      {
+        id: 'le-grand-menage',
+        title: 'Le grand rangement',
+        title_en: 'The big tidy-up',
+        title_es: 'La gran recogida',
+        subtitle: 'Ranger à huit, ou ranger seule',
+        subtitle_en: 'Tidying up with eight, or on your own',
+        subtitle_es: 'Recoger entre ocho, o recoger sola',
+        tag: 'Mélange',
+        themes: ['Règles', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden', time: 'sunset',
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'rangetout', x: 580, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'sad' }]
+            },
+            text: 'À six heures, il y avait dans le jardin : deux seaux, un ballon, onze cailloux, une couverture, quatre chaussures et aucun enfant. Ils étaient tous partis dîner.',
+            es: 'A las seis había en el jardín: dos cubos, un balón, once piedras, una manta, cuatro zapatos y ningún niño. Se habían ido todos a cenar.',
+            en: "At six o'clock the garden contained: two buckets, a ball, eleven pebbles, a blanket, four shoes and no children. They had all gone home for dinner."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'maman', x: 300, y: 514, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+              ]
+            },
+            text: "Maman dit que c'était à Livia de ranger, puisque c'était chez Livia. Livia trouva que c'était profondément injuste, et elle avait raison sur ce point précis.",
+            es: 'Mamá dijo que le tocaba a Livia recoger, puesto que era en casa de Livia. Livia pensó que era profundamente injusto, y en ese punto concreto tenía razón.',
+            en: "Mummy said it was up to Livia to tidy up, since it was Livia's house. Livia thought that was deeply unfair, and on that precise point she was right."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: 'Elle rangea vingt minutes toute seule, en faisant le compte de tout ce que les autres avaient laissé. Chaque objet ramassé ajoutait une ligne à une liste intérieure très longue.',
+            es: 'Recogió veinte minutos ella sola, haciendo la cuenta de todo lo que los demás habían dejado. Cada objeto recogido añadía una línea a una lista interior larguísima.',
+            en: 'She tidied for twenty minutes all by herself, keeping a tally of everything the others had left behind. Each object picked up added a line to a very long inner list.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rangetout', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'Une minute avant de partir. Chacun.', tx: 300, ty: 240 }]
+            },
+            text: 'Le lendemain, Madame Range-Tout proposa une règle. « Une minute avant de partir. Chacun. » Une seule minute, mais tous en même temps, et juste avant de franchir le portail.',
+            es: 'Al día siguiente, la señora Ordenada propuso una regla. «Un minuto antes de irse. Cada uno.» Un solo minuto, pero todos a la vez, y justo antes de salir por la puerta.',
+            en: 'The next day Mrs Range-Tout suggested a rule. «One minute before you go. Each of you.» Just one minute, but everybody at the same time, and right before going out of the gate.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'rangetout', x: 330, y: 516, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ],
+              sfx: [{ t: 'UNE MINUTE !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "À huit, une minute suffit. Le jardin fut vide en soixante secondes exactement, et personne ne s'en plaignit, parce qu'une minute ne ressemble pas à une punition.",
+            es: 'Entre ocho, un minuto basta. El jardín quedó vacío en sesenta segundos exactos, y nadie se quejó, porque un minuto no se parece a un castigo.',
+            en: 'With eight of you, one minute is enough. The garden was empty in exactly sixty seconds, and nobody complained, because one minute does not feel like a punishment.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'maman', x: 580, y: 514, s: 1 }
+              ]
+            },
+            text: "Livia a raconté la règle à Maman avec beaucoup de fierté, en oubliant de dire qu'elle venait de Madame Range-Tout. Elle l'a dit le lendemain, quand même.",
+            es: 'Livia le contó la regla a Mamá con mucho orgullo, olvidándose de decir que venía de la señora Ordenada. Lo dijo al día siguiente, de todos modos.',
+            en: 'Livia told Mummy about the rule with great pride, forgetting to mention that it came from Mrs Range-Tout. She did say so the next day, though.'
+          }
+        ]
+      },
+
+      /* ---------- 31 : le jour où tout le monde est parti ---------- */
+      {
+        id: 'le-jour-ou-tout-le-monde-est-parti',
+        title: 'Le jour où tout le monde est parti',
+        title_en: 'The day everybody left',
+        title_es: 'El día en que todos se fueron',
+        subtitle: 'La maison après les amis',
+        subtitle_en: 'The house after the friends',
+        subtitle_es: 'La casa después de los amigos',
+        tag: 'Mélange',
+        themes: ['Émotions', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom', time: 'sunset',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'roxane', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: 'Ils avaient été huit pendant trois jours entiers. Trois jours de bruit, de disputes, de jeux inventés, de tente trop petite. Puis les voitures arrivèrent les unes après les autres.',
+            es: 'Habían sido ocho durante tres días enteros. Tres días de ruido, de peleas, de juegos inventados, de tienda demasiado pequeña. Luego los coches llegaron uno detrás de otro.',
+            en: 'They had been eight for three whole days. Three days of noise, arguments, invented games and a tent that was too small. Then the cars arrived one after another.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'peppa', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: "Peppa partit la première et ce fut facile : on se dit à bientôt, on agite la main. La troisième fois, c'était déjà moins facile. La septième, Livia ne dit presque rien.",
+            es: 'Peppa se fue la primera y fue fácil: se dice hasta pronto, se agita la mano. A la tercera vez ya era menos fácil. A la séptima, Livia casi no dijo nada.',
+            en: 'Peppa left first and it was easy: you say see you soon, you wave. The third time was already less easy. By the seventh, Livia hardly said anything.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+            },
+            text: "Le jardin devint grand. C'est la chose étrange : il n'avait pas changé de taille. Il y avait juste beaucoup de place là où il y avait eu des gens.",
+            es: 'El jardín se volvió grande. Eso es lo raro: no había cambiado de tamaño. Simplemente había mucho sitio donde había habido gente.',
+            en: 'The garden became big. That is the odd part: it had not changed size. There was simply a great deal of room where there had been people.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+            },
+            text: 'Elle retrouva un gant de Bingo sous le canapé et le garda dans la main pendant tout le dîner. Personne ne lui demanda pourquoi, ce qui était très bien.',
+            es: 'Encontró un guante de Bingo debajo del sofá y lo tuvo en la mano durante toda la cena. Nadie le preguntó por qué, lo cual estuvo muy bien.',
+            en: "She found one of Bingo's gloves under the sofa and held it in her hand all through dinner. Nobody asked her why, which was very good."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [
+                { t: 'maman', x: 300, y: 496, s: 1, pose: 'sit' },
+                { t: 'livia', x: 600, y: 496, s: 1.1, pose: 'sit' }
+              ],
+              bubbles: [{ x: 300, y: 22, w: 350, t: "C'est triste parce que c'était bien.", tx: 305, ty: 236 }]
+            },
+            text: "Maman s'assit sur le lit et dit la phrase juste : « C'est triste parce que c'était bien. » Livia n'avait pas vu les choses dans cet ordre-là, et ça l'aida énormément.",
+            es: 'Mamá se sentó en la cama y dijo la frase exacta: «Está triste porque estuvo bien.» Livia no había visto las cosas en ese orden, y le ayudó enormemente.',
+            en: "Mummy sat down on the bed and said the right sentence: «It's sad because it was good.» Livia had not seen things in that order, and it helped her enormously."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'night',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'sleep' }]
+            },
+            text: "Elle s'endormit en faisant la liste de ce qu'ils feraient la prochaine fois. Le gant de Bingo est dans son tiroir. Elle ne l'a jamais rendu, et personne ne l'a réclamé.",
+            es: 'Se durmió haciendo la lista de lo que harían la próxima vez. El guante de Bingo está en su cajón. Nunca lo ha devuelto, y nadie lo ha reclamado.',
+            en: "She fell asleep making a list of what they would do next time. Bingo's glove is in her drawer. She has never given it back, and nobody has asked for it."
+          }
+        ]
+      },
+
+      /* ---------- 32 : le plus grand château ---------- */
+      {
+        id: 'le-plus-grand-chateau',
+        title: 'Le plus grand château',
+        title_en: 'The biggest castle',
+        title_es: 'El castillo más grande',
+        subtitle: "Une chose qu'on ne peut pas faire seul",
+        subtitle_en: "A thing you can't do alone",
+        subtitle_es: 'Algo que no se puede hacer solo',
+        tag: 'Tous ensemble',
+        themes: ['Été', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'beach',
+          back: [{ t: 'sandcastle', x: 640, y: 490, s: .5 }],
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'peppa', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'anna', x: 700, y: 512, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'sandcastle', x: 650, y: 500, s: .45 }],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, pose: 'quatrepattes' }]
+            },
+            text: "Livia voulait un château de sable plus grand qu'elle. Elle commença seule, le matin, avec un seau. À midi, elle avait une tour et demie et les bras qui tremblaient.",
+            es: 'Livia quería un castillo de arena más grande que ella. Empezó sola, por la mañana, con un cubo. A mediodía tenía una torre y media y los brazos temblando.',
+            en: 'Livia wanted a sandcastle taller than she was. She began alone, in the morning, with a bucket. By midday she had one and a half towers and trembling arms.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'sandcastle', x: 650, y: 500, s: .45 }],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+            },
+            text: "Le problème n'est pas la fatigue : c'est que le sable sec tombe. Il faut quelqu'un qui apporte l'eau pendant que quelqu'un d'autre tasse. Seule, on ne peut pas être les deux.",
+            es: 'El problema no es el cansancio: es que la arena seca se cae. Hace falta alguien que traiga agua mientras otro aprieta. Sola no se pueden ser las dos cosas.',
+            en: 'The problem is not tiredness: it is that dry sand collapses. Somebody has to bring the water while somebody else packs it down. Alone, you cannot be both.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'peppa', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "J'ai besoin de vous. Pas pour m'aider.", tx: 300, ty: 240 }]
+            },
+            text: "Elle alla chercher les autres et dit une phrase qu'elle n'avait jamais dite : « J'ai besoin de vous. » Puis elle ajouta : « Pas pour m'aider. Pour le faire. » Ce n'est pas la même chose.",
+            es: 'Fue a buscar a los demás y dijo una frase que nunca había dicho: «Os necesito.» Y añadió: «No para ayudarme. Para hacerlo.» No es lo mismo.',
+            en: 'She went to fetch the others and said a sentence she had never said before: «I need you.» Then she added: «Not to help me. To do it.» It is not the same thing.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Ils s'organisèrent sans qu'on leur dise : deux à l'eau, trois au sable, un au tassage, Bingo aux coquillages. Le château monta à toute vitesse, et il n'était plus celui de Livia.",
+            es: 'Se organizaron sin que nadie se lo dijera: dos al agua, tres a la arena, uno a apretar, Bingo a las conchas. El castillo subió a toda velocidad, y ya no era el de Livia.',
+            en: "They organised themselves without being told: two on water, three on sand, one on packing, Bingo on shells. The castle went up at great speed, and it was no longer Livia's."
+          },
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'sandcastle', x: 430, y: 480, s: .75 }],
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'anna', x: 520, y: 512, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ],
+              sfx: [{ t: 'PLUS HAUT QUE TOI !', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "À quatre heures, il était plus haut que Livia. Elle se mit debout à côté pour vérifier, et il la dépassait d'une main. Elle ne dit pas « mon château » une seule fois.",
+            es: 'A las cuatro era más alto que Livia. Se puso de pie al lado para comprobarlo, y la pasaba por una mano. No dijo «mi castillo» ni una vez.',
+            en: "By four o'clock it was taller than Livia. She stood up next to it to check, and it was a hand's width above her. She did not say «my castle» once."
+          },
+          {
+            scene: {
+              bg: 'beach', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "La marée l'a mangé le soir même. Ils l'ont regardée faire tous ensemble, assis en ligne, sans essayer de le sauver. C'est aussi une chose qu'on fait mieux à plusieurs.",
+            es: 'La marea se lo comió esa misma noche. Lo vieron todos juntos, sentados en fila, sin intentar salvarlo. Eso también es algo que se hace mejor entre varios.',
+            en: 'The tide ate it that same evening. They all watched it happen together, sitting in a row, without trying to save it. That too is a thing you do better with other people.'
+          }
+        ]
+      },
+
+      /* ---------- 33 : le jeu trop difficile ---------- */
+      {
+        id: 'le-jeu-trop-difficile',
+        title: 'Le jeu trop difficile',
+        title_en: 'The game that was too hard',
+        title_es: 'El juego demasiado difícil',
+        subtitle: 'Changer les règles pour les plus petits',
+        subtitle_en: 'Changing the rules for the little ones',
+        subtitle_es: 'Cambiar las reglas para los pequeños',
+        tag: 'Mélange',
+        themes: ['Règles', 'Partager'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'bluey', x: 330, y: 518, s: .85 },
+            { t: 'bingo', x: 520, y: 518, s: .8 },
+            { t: 'george', x: 700, y: 518, s: .8 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Le jeu était compliqué : six règles, deux équipes, un mot de passe et un endroit interdit. Les grands l'adoraient. Il avait pris tout l'été à se mettre au point.",
+            es: 'El juego era complicado: seis reglas, dos equipos, una contraseña y un sitio prohibido. A los mayores les encantaba. Había costado todo el verano afinarlo.',
+            en: 'The game was complicated: six rules, two teams, a password and a forbidden place. The big ones loved it. It had taken all summer to get right.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'george', x: 300, y: 518, s: .9, mood: 'sad' },
+                { t: 'bingo', x: 600, y: 518, s: .9, mood: 'sad' }
+              ]
+            },
+            text: "George et Bingo perdaient en trente secondes à chaque partie. Pas parce qu'ils jouaient mal : parce qu'ils n'arrivaient pas à retenir six règles. Personne n'y arrive à deux ans.",
+            es: 'George y Bingo perdían en treinta segundos en cada partida. No porque jugaran mal: porque no conseguían recordar seis reglas. Nadie puede a los dos años.',
+            en: 'George and Bingo lost within thirty seconds every round. Not because they played badly: because they could not hold six rules in their heads. Nobody can at two.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1 }]
+            },
+            text: "Les grands avaient deux solutions habituelles : jouer sans eux, ou faire semblant de les laisser gagner. Livia connaît les deux et sait qu'elles sont mauvaises toutes les deux.",
+            es: 'Los mayores tenían dos soluciones habituales: jugar sin ellos, o fingir dejarles ganar. Livia conoce las dos y sabe que son malas las dos.',
+            en: 'The big ones had two usual solutions: play without them, or pretend to let them win. Livia knows both and knows that they are both bad.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'Eux, ils jouent avec trois règles.', tx: 300, ty: 240 }]
+            },
+            text: "Elle proposa autre chose. « Eux, ils jouent avec trois règles. Nous avec six. En même temps. » Bluey dit que ce n'était pas le même jeu. Livia dit que si, presque.",
+            es: 'Propuso otra cosa. «Ellos juegan con tres reglas. Nosotros con seis. A la vez.» Bluey dijo que no era el mismo juego. Livia dijo que sí, casi.',
+            en: "She suggested something else. «They play with three rules. We play with six. At the same time.» Bluey said that wasn't the same game. Livia said it was, nearly."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'george', x: 330, y: 518, s: .8 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ],
+              sfx: [{ t: 'GAGNÉ !', x: 430, y: 146, fs: 26, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "Bingo gagna la deuxième partie pour de vrai, avec ses trois règles, en profitant d'une faute que les grands avaient faite sur une des leurs. Elle cria pendant une minute entière.",
+            es: 'Bingo ganó la segunda partida de verdad, con sus tres reglas, aprovechando un fallo que los mayores habían cometido en una de las suyas. Gritó durante un minuto entero.',
+            en: 'Bingo won the second round for real, with her three rules, taking advantage of a mistake the big ones had made on one of theirs. She shouted for a whole minute.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bingo', x: 330, y: 518, s: .8 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'george', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Le jeu a maintenant deux niveaux, comme les vrais jeux. Bingo est passée à quatre règles en septembre, de sa propre initiative, et elle l'a annoncé à table.",
+            es: 'El juego tiene ahora dos niveles, como los juegos de verdad. Bingo pasó a cuatro reglas en septiembre, por iniciativa propia, y lo anunció en la mesa.',
+            en: 'The game now has two levels, like real games. Bingo moved up to four rules in September, on her own initiative, and announced it at the dinner table.'
+          }
+        ]
+      },
+
+      /* ---------- 34 : la chasse au trésor géante ---------- */
+      {
+        id: 'la-chasse-au-tresor-geante',
+        title: 'La chasse au trésor géante',
+        title_en: 'The giant treasure hunt',
+        title_es: 'La búsqueda del tesoro gigante',
+        subtitle: 'Un trésor pour huit, et il est petit',
+        subtitle_en: "One treasure for eight, and it's small",
+        subtitle_es: 'Un tesoro para ocho, y es pequeño',
+        tag: 'Tous ensemble',
+        themes: ['Dehors', 'Partager'],
+        minutes: 6,
+        cover: {
+          bg: 'forest',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'bluey', x: 330, y: 518, s: .85 },
+            { t: 'peppa', x: 520, y: 516, s: .85 },
+            { t: 'roxane', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'papa', x: 300, y: 514, s: 1, pose: 'hold' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Papa avait caché un trésor dans le bois et écrit sept indices sur des bouts de papier. Il dit que c'était la plus grande chasse qu'il ait organisée, et il avait l'air content de lui.",
+            es: 'Papá había escondido un tesoro en el bosque y escrito siete pistas en trozos de papel. Dijo que era la búsqueda más grande que había organizado, y parecía satisfecho de sí mismo.',
+            en: 'Daddy had hidden a treasure in the wood and written seven clues on scraps of paper. He said it was the biggest hunt he had ever organised, and he looked rather pleased with himself.'
+          },
+          {
+            scene: {
+              bg: 'forest',
+              back: [{ t: 'tree', x: 430, y: 440, s: .9 }],
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "À huit, une chasse au trésor va très vite et très mal. Tout le monde court dans la même direction, personne ne lit l'indice en entier, et deux papiers furent déchirés en se les arrachant.",
+            es: 'Entre ocho, una búsqueda del tesoro va muy rápido y muy mal. Todos corren en la misma dirección, nadie lee la pista entera, y dos papeles se rompieron al arrancárselos.',
+            en: 'With eight of you, a treasure hunt goes very fast and very badly. Everybody runs in the same direction, nobody reads the whole clue, and two papers got torn in the grabbing.'
+          },
+          {
+            scene: {
+              bg: 'forest',
+              back: [
+                { t: 'tree', x: 140, y: 440, s: .9 },
+                { t: 'bush', x: 690, y: 520, s: .9 }
+              ],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'fache' }]
+            },
+            text: "Au quatrième indice, le groupe s'était coupé en deux, chaque moitié était sûre d'avoir raison, et les deux moitiés étaient perdues dans deux endroits différents.",
+            es: 'En la cuarta pista el grupo se había partido en dos, cada mitad estaba segura de tener razón, y las dos mitades estaban perdidas en dos sitios distintos.',
+            en: 'By the fourth clue the group had split in two, each half was certain it was right, and both halves were lost in two different places.'
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'roxane', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'On lit tout haut. Une fois. Ensemble.', tx: 300, ty: 240 }]
+            },
+            text: "Livia cria assez fort pour rassembler tout le monde, puis proposa une règle : « On lit tout haut. Une fois. Ensemble. » L'indice disait quelque chose de très simple que personne n'avait vu.",
+            es: 'Livia gritó bastante fuerte para reunir a todos y propuso una regla: «Lo leemos en voz alta. Una vez. Juntos.» La pista decía algo muy simple que nadie había visto.',
+            en: 'Livia shouted loudly enough to gather everybody, then suggested a rule: «We read it out loud. Once. Together.» The clue said something very simple that nobody had seen.'
+          },
+          {
+            scene: {
+              bg: 'forest',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'george', x: 520, y: 518, s: .8 },
+                { t: 'peppa', x: 700, y: 516, s: .85 }
+              ],
+              sfx: [{ t: 'LÀ-DESSOUS !', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: 'Ils trouvèrent le trésor sous la troisième pierre du ruisseau : une boîte en fer avec dix bonbons dedans. Ils étaient huit. Dix divisé par huit, ça fait un problème.',
+            es: 'Encontraron el tesoro bajo la tercera piedra del arroyo: una caja de hierro con diez caramelos. Eran ocho. Diez entre ocho da un problema.',
+            en: 'They found the treasure under the third stone in the creek: a tin box with ten sweets in it. There were eight of them. Ten divided by eight makes a problem.'
+          },
+          {
+            scene: {
+              bg: 'creek', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Un chacun, et les deux derniers pour celui qui avait lu l'indice tout haut. Tout le monde désigna Livia. Elle en garda un et donna l'autre à George, qui n'avait rien trouvé du tout.",
+            es: 'Uno para cada uno, y los dos últimos para quien había leído la pista en voz alta. Todos señalaron a Livia. Se quedó uno y le dio el otro a George, que no había encontrado nada.',
+            en: 'One each, and the last two for whoever had read the clue out loud. Everybody pointed at Livia. She kept one and gave the other to George, who had found nothing at all.'
+          }
+        ]
+      },
+
+      /* ---------- 35 : la cabane trop petite ---------- */
+      {
+        id: 'la-cabane-trop-petite',
+        title: 'La cabane trop petite',
+        title_en: 'The hut that was too small',
+        title_es: 'La caseta demasiado pequeña',
+        subtitle: 'Agrandir au lieu de choisir',
+        subtitle_en: 'Making it bigger instead of choosing',
+        subtitle_es: 'Agrandar en vez de elegir',
+        tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          back: [{ t: 'cabane', x: 430, y: 460, s: .8 }],
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'bluey', x: 330, y: 518, s: .85 },
+            { t: 'peppa', x: 520, y: 516, s: .85 },
+            { t: 'roxane', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              back: [{ t: 'cabane', x: 120, y: 460, s: .8 }],
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "La cabane tient quatre enfants assis, à condition qu'ils ne respirent pas trop. Ils étaient huit dans le jardin, et il commençait à pleuvoir, ce qui rend le problème urgent.",
+            es: 'La caseta cabe cuatro niños sentados, siempre que no respiren mucho. Eran ocho en el jardín, y empezaba a llover, lo que hace el problema urgente.',
+            en: "The hut holds four children sitting down, provided they don't breathe too much. There were eight of them in the garden, and it was starting to rain, which makes the problem urgent."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Peppa proposa de tirer au sort les quatre qui rentrent. C'est une bonne idée du point de vue des maths et une très mauvaise du point de vue des quatre autres.",
+            es: 'Peppa propuso sortear los cuatro que entran. Es una buena idea desde el punto de vista de las matemáticas y muy mala desde el de los otros cuatro.',
+            en: 'Peppa suggested drawing lots for the four who got in. That is a good idea from the point of view of arithmetic and a very bad one from the point of view of the other four.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: 'Livia regarda la cabane, puis la pluie, puis les huit. Tout le monde cherchait comment partager la cabane. Personne ne cherchait comment faire une cabane plus grande.',
+            es: 'Livia miró la caseta, luego la lluvia, luego a los ocho. Todos buscaban cómo repartir la caseta. Nadie buscaba cómo hacer una caseta más grande.',
+            en: 'Livia looked at the hut, then at the rain, then at the eight of them. Everybody was trying to work out how to share the hut. Nobody was trying to work out how to make a bigger one.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'roxane', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'La couverture. On fait un toit devant.', tx: 300, ty: 240 }]
+            },
+            text: '« La couverture », dit-elle. « On fait un toit devant. » Ils tendirent la grande couverture entre la cabane et le mur, avec quatre cailloux et une corde à linge.',
+            es: '«La manta», dijo. «Hacemos un techo delante.» Tendieron la manta grande entre la caseta y el muro, con cuatro piedras y una cuerda de tender.',
+            en: "«The blanket,» she said. «We'll make a roof in front.» They stretched the big blanket between the hut and the wall, with four stones and a washing line."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'gris',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ],
+              sfx: [{ t: 'ÇA TIENT !', x: 430, y: 146, fs: 26, rot: -5, color: '#4a7fc1' }]
+            },
+            text: 'Ça tenait. Mal, et avec une fuite au milieu, mais ça tenait. Huit enfants tenaient dessous, serrés, avec la pluie qui tapait sur la couverture juste au-dessus de leurs têtes.',
+            es: 'Aguantaba. Mal, y con una gotera en el medio, pero aguantaba. Ocho niños cabían debajo, apretados, con la lluvia golpeando la manta justo encima de sus cabezas.',
+            en: 'It held. Badly, and with a leak in the middle, but it held. Eight children fitted underneath, squeezed together, with the rain drumming on the blanket right above their heads.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'bluey', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: "La fuite tombait exactement sur Bluey, qui ne s'est pas plainte une fois. La couverture est restée tendue tout l'été. On appelle maintenant ça « la grande cabane ».",
+            es: 'La gotera caía exactamente sobre Bluey, que no se quejó ni una vez. La manta se quedó tendida todo el verano. Ahora lo llaman «la caseta grande».',
+            en: 'The leak fell precisely on Bluey, who did not complain once. The blanket stayed up all summer. They now call the whole thing «the big hut.»'
+          }
+        ]
+      },
+
+      /* ---------- 36 : le pique-nique de tout le monde ---------- */
+      {
+        id: 'le-pique-nique-de-tous',
+        title: 'Le pique-nique de tout le monde',
+        title_en: "Everybody's picnic",
+        title_es: 'El picnic de todos',
+        subtitle: 'Huit paniers et rien à boire',
+        subtitle_en: 'Eight baskets and nothing to drink',
+        subtitle_es: 'Ocho cestas y nada que beber',
+        tag: 'Tous ensemble',
+        themes: ['Partager', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'hill',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'peppa', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'anna', x: 700, y: 512, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'roxane', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Chaque famille avait préparé un panier. Huit paniers, c'est beaucoup de nourriture. On déballa tout sur la couverture et on découvrit la vérité : il y avait six gâteaux au chocolat.",
+            es: 'Cada familia había preparado una cesta. Ocho cestas son mucha comida. Lo desempaquetaron todo en la manta y descubrieron la verdad: había seis bizcochos de chocolate.',
+            en: 'Each family had packed a basket. Eight baskets is a great deal of food. They unpacked everything onto the blanket and discovered the truth: there were six chocolate cakes.'
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1, mood: 'fache' }
+              ]
+            },
+            text: "Six gâteaux, quatre paquets de chips, zéro boisson. Tout le monde avait pensé au dessert et personne à l'eau. On était en haut de la colline, en juillet, à trente degrés.",
+            es: 'Seis bizcochos, cuatro bolsas de patatas, cero bebidas. Todos habían pensado en el postre y nadie en el agua. Estaban en lo alto de la colina, en julio, a treinta grados.',
+            en: 'Six cakes, four bags of crisps, nought drinks. Everybody had thought about pudding and nobody about water. They were at the top of the hill, in July, at thirty degrees.'
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Au bout de vingt minutes de gâteau, la bouche devient un désert. C'est une chose que les enfants apprennent une seule fois et n'oublient plus jamais.",
+            es: 'Al cabo de veinte minutos de bizcocho, la boca se vuelve un desierto. Es algo que los niños aprenden una sola vez y no olvidan nunca.',
+            en: 'After twenty minutes of cake your mouth becomes a desert. It is a thing children learn once and never forget.'
+          },
+          {
+            scene: {
+              bg: 'hill',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "Il y a la pastèque. C'est de l'eau.", tx: 300, ty: 240 }]
+            },
+            text: "Bluey trouva la solution au fond du panier d'Anna. « Il y a la pastèque. C'est de l'eau. » Personne n'avait compté la pastèque, parce qu'une pastèque, ça ne ressemble pas à une boisson.",
+            es: 'Bluey encontró la solución al fondo de la cesta de Anna. «Hay sandía. Es agua.» Nadie había contado la sandía, porque una sandía no se parece a una bebida.',
+            en: "Bluey found the answer at the bottom of Anna's basket. «There's the watermelon. That's water.» Nobody had counted the watermelon, because a watermelon does not look like a drink."
+          },
+          {
+            scene: {
+              bg: 'hill',
+              back: [{ t: 'watermelon', x: 430, y: 520, s: .9 }],
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ],
+              sfx: [{ t: 'SCHLURP !', x: 430, y: 146, fs: 26, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "Une pastèque pour huit, c'est une tranche chacun et beaucoup de menton mouillé. Ce fut le meilleur moment du pique-nique, et aussi le plus salissant.",
+            es: 'Una sandía para ocho es una tajada cada uno y mucha barbilla mojada. Fue el mejor momento del picnic, y también el más pringoso.',
+            en: 'A watermelon between eight is one slice each and a great deal of wet chin. It was the best moment of the picnic, and also the messiest.'
+          },
+          {
+            scene: {
+              bg: 'hill', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'bluey', x: 580, y: 518, s: 1 }
+              ]
+            },
+            text: 'Au retour, Livia a écrit une liste pour la prochaine fois. Elle commence par « EAU » en très grandes lettres. La liste est punaisée dans la cuisine, et elle sert.',
+            es: 'A la vuelta, Livia escribió una lista para la próxima vez. Empieza por «AGUA» en letras muy grandes. La lista está clavada en la cocina, y sirve.',
+            en: 'On the way back Livia wrote a list for next time. It begins with «WATER» in very large letters. The list is pinned up in the kitchen, and it gets used.'
+          }
+        ]
+      },
+
+      /* ---------- 37 : peppa et monsieur grognon ---------- */
+      {
+        id: 'peppa-et-grognon',
+        title: 'Peppa et Monsieur Grognon',
+        title_en: 'Peppa and Mr Grognon',
+        title_es: 'Peppa y el señor Gruñón',
+        subtitle: 'Deux personnes qui ne se supportent pas',
+        subtitle_en: "Two people who can't stand each other",
+        subtitle_es: 'Dos personas que no se soportan',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 300, y: 516, s: 1 },
+            { t: 'grognon', x: 600, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, mood: 'fache' },
+                { t: 'grognon', x: 600, y: 516, s: 1, mood: 'fache' }
+              ]
+            },
+            text: "Peppa parle fort et tout le temps. Monsieur Grognon n'aime ni le fort ni le tout le temps. Ils s'étaient déjà disputés deux fois avant dix heures du matin.",
+            es: 'Peppa habla fuerte y sin parar. Al señor Gruñón no le gusta ni lo fuerte ni lo sin parar. Ya se habían peleado dos veces antes de las diez de la mañana.',
+            en: 'Peppa talks loudly and all the time. Mr Grognon likes neither loudly nor all the time. They had already argued twice before ten in the morning.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, mood: 'fache' },
+                { t: 'peppa', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: "Livia les aime tous les deux, ce qui est très inconfortable. Elle passa la matinée à traduire : « il ne dit pas ça », « elle ne voulait pas dire ça ». C'est épuisant.",
+            es: 'Livia los quiere a los dos, lo cual resulta muy incómodo. Pasó la mañana traduciendo: «no dice eso», «ella no quería decir eso». Es agotador.',
+            en: "Livia likes them both, which is extremely uncomfortable. She spent the morning translating: «he doesn't mean that,» «she didn't mean that.» It is exhausting."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Vers midi, elle comprit qu'elle n'y arriverait pas. On ne peut pas faire s'aimer deux personnes en se tenant au milieu. Elle arrêta de traduire et alla jouer ailleurs.",
+            es: 'Hacia el mediodía entendió que no lo conseguiría. No se puede hacer que dos personas se quieran poniéndose en medio. Dejó de traducir y se fue a jugar a otro sitio.',
+            en: 'Around midday she understood that she was not going to manage it. You cannot make two people like each other by standing in the middle. She stopped translating and went off to play somewhere else.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1 },
+                { t: 'grognon', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: "Ils se retrouvèrent tous les deux seuls devant le portail cassé, qui ne fermait plus. Peppa tenait une planche. Monsieur Grognon tenait l'autre bout, sans l'avoir décidé.",
+            es: 'Se encontraron los dos solos ante la puerta rota, que ya no cerraba. Peppa sujetaba una tabla. El señor Gruñón sujetaba el otro extremo, sin haberlo decidido.',
+            en: 'They found themselves alone together in front of the broken gate, which no longer shut. Peppa was holding a plank. Mr Grognon was holding the other end, without having decided to.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1 },
+                { t: 'grognon', x: 600, y: 516, s: 1, mood: 'happy' }
+              ],
+              sfx: [{ t: 'TOC ! TOC !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Ils réparèrent le portail en vingt minutes, sans se parler une fois, sauf pour dire « tiens » et « là ». C'est la première chose qu'ils aient réussie ensemble.",
+            es: 'Repararon la puerta en veinte minutos, sin hablarse ni una vez, salvo para decir «toma» y «ahí». Es lo primero que han conseguido juntos.',
+            en: 'They mended the gate in twenty minutes, without speaking once, except to say «here» and «there.» It is the first thing they have ever managed together.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'grognon', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Ils ne sont pas devenus amis. Ils se disputent encore, à peu près autant. Mais quand il y a quelque chose à réparer, c'est eux deux, et personne n'a jamais rien dit.",
+            es: 'No se han hecho amigos. Siguen peleándose, más o menos igual. Pero cuando hay algo que arreglar, son ellos dos, y nadie ha dicho nunca nada.',
+            en: 'They did not become friends. They still argue, just about as much. But when there is something to be mended, it is those two, and nobody has ever said a word about it.'
+          }
+        ]
+      },
+
+      /* ---------- 38 : la liste des invités ---------- */
+      {
+        id: 'la-liste-des-invites',
+        title: 'La liste des invités',
+        title_en: 'The guest list',
+        title_es: 'La lista de invitados',
+        subtitle: 'Six places et sept amis',
+        subtitle_en: 'Six places and seven friends',
+        subtitle_es: 'Seis plazas y siete amigos',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Émotions'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'maman', x: 580, y: 514, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'maman', x: 300, y: 514, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Maman dit six invités, pas plus, parce que la voiture fait sept places et qu'il faut quelqu'un pour conduire. Livia a sept amis. Le calcul était fait avant qu'elle écrive la première ligne.",
+            es: 'Mamá dijo seis invitados, no más, porque el coche tiene siete plazas y alguien tiene que conducir. Livia tiene siete amigos. La cuenta estaba hecha antes de escribir la primera línea.',
+            en: 'Mummy said six guests, no more, because the car has seven seats and somebody has to drive. Livia has seven friends. The sum was done before she wrote the first line.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Elle écrivit les six noms faciles. Le septième nom resta en l'air très longtemps, parce qu'il fallait choisir qui ne viendrait pas, et ce n'est pas un travail d'enfant.",
+            es: 'Escribió los seis nombres fáciles. El séptimo nombre se quedó en el aire mucho rato, porque había que elegir quién no vendría, y eso no es trabajo de niña.',
+            en: "She wrote the six easy names. The seventh name hung in the air for a very long time, because somebody had to be chosen not to come, and that is not a child's job."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'sad' }]
+            },
+            text: "Elle essaya des règles : le plus ancien ami, celui qui habite le plus près, celui qui m'a invitée. Chaque règle donnait un résultat différent, et toutes laissaient quelqu'un dehors.",
+            es: 'Probó con reglas: el amigo más antiguo, el que vive más cerca, el que me invitó. Cada regla daba un resultado distinto, y todas dejaban a alguien fuera.',
+            en: 'She tried rules: oldest friend, the one who lives nearest, the one who invited me. Each rule gave a different answer, and all of them left somebody out.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'maman', x: 300, y: 514, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: "Je n'arrive pas à choisir. Vraiment pas.", tx: 300, ty: 240 }]
+            },
+            text: "Elle alla voir Maman et dit la vérité : « Je n'arrive pas à choisir. Vraiment pas. » Elle ne demanda pas une place en plus. Elle dit juste qu'elle n'y arrivait pas.",
+            es: 'Fue a ver a Mamá y dijo la verdad: «No consigo elegir. De verdad que no.» No pidió una plaza más. Solo dijo que no podía.',
+            en: "She went to Mummy and told the truth: «I can't choose. I really can't.» She did not ask for an extra seat. She just said that she couldn't."
+          },
+          {
+            scene: {
+              bg: 'road',
+              items: [
+                { t: 'maman', x: 300, y: 514, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Maman réfléchit, appela le papa de Roxane, et il y eut deux voitures. Ce n'était pas la solution de Livia : c'est la solution d'une grande personne qui a été écoutée.",
+            es: 'Mamá lo pensó, llamó al padre de Roxane, y hubo dos coches. No fue la solución de Livia: es la solución de una persona mayor a la que se ha escuchado.',
+            en: "Mummy thought about it, rang Roxane's dad, and there were two cars. It was not Livia's solution: it is the solution of a grown-up who has been listened to."
+          },
+          {
+            scene: {
+              bg: 'beach', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'roxane', x: 330, y: 516, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Ils y allèrent à sept. Livia a gardé le papier avec les six noms et le blanc en dessous. Elle sait maintenant qu'il y a des choix qu'on a le droit de ne pas faire seule.",
+            es: 'Fueron los siete. Livia ha guardado el papel con los seis nombres y el hueco debajo. Ahora sabe que hay elecciones que uno tiene derecho a no hacer solo.',
+            en: 'All seven went. Livia has kept the paper with the six names and the blank space underneath. She now knows there are choices you are allowed not to make on your own.'
+          }
+        ]
+      },
+
+      /* ---------- 39 : le relais ---------- */
+      {
+        id: 'le-relais',
+        title: 'Le relais',
+        title_en: 'The relay race',
+        title_es: 'La carrera de relevos',
+        subtitle: 'On est aussi rapide que le plus lent',
+        subtitle_en: "You're as fast as the slowest",
+        subtitle_es: 'Eres tan rápido como el más lento',
+        tag: 'Tous ensemble',
+        themes: ['Amitié', 'Dehors'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'rapide', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'lent', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 300, y: 516, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: 'Monsieur Rapide expliqua le relais : quatre coureurs, un bâton, et le bâton doit passer de main en main. Il se mit tout seul au départ, ce qui est le poste de celui qui veut briller.',
+            es: 'El señor Rápido explicó el relevo: cuatro corredores, un bastón, y el bastón pasa de mano en mano. Se puso él solo en la salida, que es el puesto de quien quiere lucirse.',
+            en: 'Mr Rapide explained the relay: four runners, one baton, and the baton has to pass from hand to hand. He put himself at the start, which is the position for somebody who wants to shine.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'lent', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Dans l'équipe, il y avait aussi Monsieur Lent. Monsieur Rapide proposa de le mettre en dernier, là où ça ne sert plus à rien. Personne ne le contredit, ce qui était lâche.",
+            es: 'En el equipo también estaba el señor Lento. El señor Rápido propuso ponerlo al final, donde ya no sirve de nada. Nadie lo contradijo, lo cual fue cobarde.',
+            en: 'The team also included Mr Lent. Mr Rapide suggested putting him last, where it no longer makes any difference. Nobody contradicted him, which was cowardly.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 300, y: 516, s: 1, pose: 'run' },
+                { t: 'livia', x: 600, y: 518, s: 1, pose: 'run' }
+              ],
+              sfx: [{ t: 'VITE ! VITE !', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Ils menaient de vingt mètres après trois coureurs. Monsieur Lent partit avec le bâton. Les vingt mètres fondirent doucement, puis complètement, puis dans l'autre sens.",
+            es: 'Iban veinte metros por delante tras tres corredores. El señor Lento salió con el bastón. Los veinte metros se fundieron despacio, luego del todo, y luego al contrario.',
+            en: 'They were twenty yards ahead after three runners. Mr Lent set off with the baton. The twenty yards melted slowly, then completely, then the other way.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'rapide', x: 300, y: 516, s: 1, mood: 'fache' },
+                { t: 'lent', x: 600, y: 516, s: 1, mood: 'sad' }
+              ]
+            },
+            text: "Ils perdirent. Monsieur Rapide dit tout haut que c'était à cause de Monsieur Lent, ce qui était vrai et ce qu'on ne dit pas. Monsieur Lent alla s'asseoir derrière la cabane.",
+            es: 'Perdieron. El señor Rápido dijo en voz alta que fue por el señor Lento, lo cual era cierto y no se dice. El señor Lento se fue a sentar detrás de la caseta.',
+            en: "They lost. Mr Rapide said out loud that it was Mr Lent's fault, which was true and which one does not say. Mr Lent went and sat down behind the hut."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'rapide', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'Il court en premier. On verra bien.', tx: 300, ty: 240 }]
+            },
+            text: "Livia proposa l'inverse pour la revanche. « Il court en premier. On verra bien. » Monsieur Rapide trouva l'idée stupide. Elle l'était, du point de vue de la vitesse.",
+            es: 'Livia propuso lo contrario para la revancha. «Corre él primero. Ya veremos.» Al señor Rápido la idea le pareció estúpida. Lo era, desde el punto de vista de la velocidad.',
+            en: "Livia suggested the opposite for the rematch. «He runs first. We'll see what happens.» Mr Rapide thought the idea was stupid. It was, from the point of view of speed."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'lent', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'rapide', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Ils perdirent encore, mais de deux mètres seulement, et Monsieur Rapide finit la course en criant pour rattraper. Il n'a plus jamais proposé de mettre quelqu'un en dernier.",
+            es: 'Volvieron a perder, pero solo por dos metros, y el señor Rápido acabó la carrera gritando para recuperar. Nunca ha vuelto a proponer poner a alguien al final.',
+            en: 'They lost again, but by only two yards, and Mr Rapide finished the race yelling as he tried to catch up. He has never again suggested putting somebody last.'
+          }
+        ]
+      },
+
+      /* ---------- 40 : perdue dans le groupe ---------- */
+      {
+        id: 'perdu-dans-le-groupe',
+        title: 'Perdue dans le groupe',
+        title_en: 'Lost in the group',
+        title_es: 'Perdida en el grupo',
+        subtitle: "Personne ne m'a vue partir",
+        subtitle_en: 'Nobody saw me go',
+        subtitle_es: 'Nadie me vio irme',
+        tag: 'Mélange',
+        themes: ['Émotions', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'village',
+          items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'roxane', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Ils étaient huit dans le marché du village, ce qui fait beaucoup de bruit et beaucoup de dos. Livia s'arrêta devant un étalage de fruits pendant environ quinze secondes.",
+            es: 'Eran ocho en el mercado del pueblo, lo que hace mucho ruido y muchas espaldas. Livia se paró ante un puesto de frutas durante unos quince segundos.',
+            en: 'There were eight of them in the village market, which makes a lot of noise and a lot of backs. Livia stopped in front of a fruit stall for about fifteen seconds.'
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+            },
+            text: "Quand elle releva la tête, il n'y avait plus personne qu'elle connaisse. Le groupe avait continué sans elle, naturellement, sans méchanceté, et c'est exactement ce qui fait mal.",
+            es: 'Cuando levantó la cabeza, no había nadie a quien conociera. El grupo había seguido sin ella, con naturalidad, sin maldad, y eso es exactamente lo que duele.',
+            en: 'When she looked up, there was nobody she knew. The group had carried on without her, naturally, with no unkindness, and that is exactly what hurts.'
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+            },
+            text: "Elle fit la chose qu'on lui a apprise : rester sur place. C'est la chose la plus difficile du monde, parce que tout le corps veut courir dans une direction au hasard.",
+            es: 'Hizo lo que le han enseñado: quedarse quieta. Es lo más difícil del mundo, porque todo el cuerpo quiere correr en una dirección cualquiera.',
+            en: 'She did the thing she has been taught: stay put. It is the hardest thing in the world, because your whole body wants to run off in a random direction.'
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+            },
+            text: "Elle attendit. Deux minutes, qui en firent vingt. Elle compta les pommes de l'étalage pour s'occuper, et elle en compta trente-quatre, deux fois, avec le même résultat.",
+            es: 'Esperó. Dos minutos, que fueron veinte. Contó las manzanas del puesto para entretenerse, y contó treinta y cuatro, dos veces, con el mismo resultado.',
+            en: 'She waited. Two minutes, which felt like twenty. She counted the apples on the stall to keep herself busy, and counted thirty-four, twice, with the same result.'
+          },
+          {
+            scene: {
+              bg: 'village',
+              items: [
+                { t: 'roxane', x: 300, y: 516, s: 1, mood: 'wow' },
+                { t: 'livia', x: 600, y: 518, s: 1.05 }
+              ],
+              sfx: [{ t: 'ELLE EST LÀ !', x: 430, y: 146, fs: 26, rot: -5, color: '#7ac6a8' }]
+            },
+            text: "C'est Roxane qui la retrouva, et qui pleurait plus que Livia. Elle avait couru dans tout le marché. Les six autres n'avaient encore rien remarqué du tout.",
+            es: 'Fue Roxane quien la encontró, y lloraba más que Livia. Había corrido por todo el mercado. Los otros seis todavía no se habían dado cuenta de nada.',
+            en: 'It was Roxane who found her, and she was crying more than Livia was. She had run all over the market. The other six had still not noticed anything at all.'
+          },
+          {
+            scene: {
+              bg: 'village', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'roxane', x: 330, y: 516, s: .85 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Le soir, ils inventèrent une règle : à chaque coin de rue, on compte à huit voix. Ils l'ont fait tout l'été, et ça prend du temps, et personne ne s'est plus jamais perdu.",
+            es: 'Por la noche inventaron una regla: en cada esquina se cuenta a ocho voces. Lo hicieron todo el verano, lleva tiempo, y nadie se ha vuelto a perder.',
+            en: 'That evening they invented a rule: at every street corner, you count in eight voices. They did it all summer, it takes time, and nobody has ever got lost again.'
+          }
+        ]
+      },
+
+      /* ---------- 41 : la règle de bluey ---------- */
+      {
+        id: 'la-regle-de-bluey',
+        title: 'La règle de Bluey',
+        title_en: "Bluey's rule",
+        title_es: 'La regla de Bluey',
+        subtitle: "Ce qu'on fait quand on perd",
+        subtitle_en: 'What you do when you lose',
+        subtitle_es: 'Lo que se hace cuando se pierde',
+        tag: 'Mélange',
+        themes: ['Règles', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'bluey', x: 320, y: 518, s: 1.05 },
+            { t: 'livia', x: 580, y: 518, s: 1.05 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'bluey', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Chez Bluey, il y a une règle que personne d'autre ne connaît : celui qui perd choisit le jeu suivant. Elle l'annonça au milieu de l'après-midi, et tout le monde cria que c'était injuste.",
+            es: 'En casa de Bluey hay una regla que nadie más conoce: el que pierde elige el juego siguiente. La anunció a media tarde, y todos gritaron que era injusto.',
+            en: "At Bluey's house there is a rule nobody else knows: whoever loses chooses the next game. She announced it in the middle of the afternoon, and everybody shouted that it was unfair."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, mood: 'fache' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Peppa dit que le gagnant doit choisir, parce qu'il a gagné. C'est ce que tout le monde pense, et c'est pour ça que les gagnants jouent toujours au même jeu.",
+            es: 'Peppa dijo que debe elegir el ganador, porque ha ganado. Es lo que todos piensan, y por eso los ganadores siempre juegan al mismo juego.',
+            en: 'Peppa said the winner should choose, because they won. That is what everybody thinks, and it is why winners always play the same game.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Livia réfléchit à la règle de Bluey en jouant. Elle découvrit qu'elle changeait tout : on peut perdre sans que ce soit une journée perdue. Perdre devient presque supportable.",
+            es: 'Livia pensó en la regla de Bluey mientras jugaba. Descubrió que lo cambiaba todo: se puede perder sin que el día esté perdido. Perder se vuelve casi soportable.',
+            en: "Livia thought about Bluey's rule while playing. She discovered that it changed everything: you can lose without the day being lost. Losing becomes almost bearable."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'george', x: 300, y: 518, s: .9, mood: 'happy' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "George perdit la première partie, comme toujours, et choisit un jeu que personne n'avait jamais joué : marcher en arrière jusqu'au mur. C'était ridicule et formidable.",
+            es: 'George perdió la primera partida, como siempre, y eligió un juego al que nadie había jugado nunca: andar hacia atrás hasta el muro. Era ridículo y estupendo.',
+            en: 'George lost the first round, as always, and chose a game nobody had ever played: walking backwards to the wall. It was ridiculous and splendid.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'george', x: 330, y: 518, s: .8 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ],
+              sfx: [{ t: 'EN ARRIÈRE !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Ils y jouèrent une heure. Puis Peppa perdit et choisit son jeu, et personne ne protesta. On avait oublié que c'était une règle : c'était devenu la manière de faire.",
+            es: 'Jugaron una hora. Luego Peppa perdió y eligió su juego, y nadie protestó. Se había olvidado que era una regla: se había convertido en la forma de hacer las cosas.',
+            en: 'They played it for an hour. Then Peppa lost and chose her game, and nobody protested. They had forgotten it was a rule: it had become the way things were done.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'bluey', x: 320, y: 518, s: 1.05 },
+                { t: 'livia', x: 580, y: 518, s: 1.05 }
+              ]
+            },
+            text: "Livia a rapporté la règle chez elle et l'a expliquée à Pablo, qui perd tout. Depuis, il choisit souvent. C'est le seul avantage qu'il ait d'avoir deux ans.",
+            es: 'Livia se llevó la regla a casa y se la explicó a Pablo, que lo pierde todo. Desde entonces elige a menudo. Es la única ventaja que tiene de tener dos años.',
+            en: 'Livia took the rule home and explained it to Pablo, who loses everything. He gets to choose often now. It is the only advantage he has from being two.'
+          }
+        ]
+      },
+
+      /* ---------- 42 : la dispute à huit ---------- */
+      {
+        id: 'la-dispute-a-huit',
+        title: 'La dispute à huit',
+        title_en: 'The eight-way argument',
+        title_es: 'La pelea de ocho',
+        subtitle: 'Plus personne ne sait pourquoi',
+        subtitle_en: "Nobody knows what it's about any more",
+        subtitle_es: 'Ya nadie sabe por qué',
+        tag: 'Mélange',
+        themes: ['Émotions', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'peppa', x: 140, y: 516, s: .85 },
+            { t: 'livia', x: 330, y: 518, s: .9 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'roxane', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1, mood: 'fache' },
+                { t: 'bluey', x: 600, y: 518, s: 1, mood: 'fache' }
+              ]
+            },
+            text: 'Ça commença par un ballon sorti de la ligne, ou pas sorti, on ne sait pas. Deux avis. Puis quatre. Puis tout le monde avait un avis sur un ballon que personne ne regardait plus.',
+            es: 'Empezó con un balón que salió de la línea, o que no salió, no se sabe. Dos opiniones. Luego cuatro. Luego todos tenían una opinión sobre un balón que ya nadie miraba.',
+            en: "It began with a ball that went out, or didn't go out, nobody knows. Two opinions. Then four. Then everybody had an opinion about a ball nobody was looking at any more."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ],
+              sfx: [{ t: 'SI ! NON ! SI !', x: 430, y: 146, fs: 30, rot: -6, color: '#e0453c' }]
+            },
+            text: 'Au bout de cinq minutes, on ne parlait plus du ballon. On parlait de la semaine dernière, du goûter, de qui avait dit quoi. Une dispute à huit grossit toute seule.',
+            es: 'Al cabo de cinco minutos ya no se hablaba del balón. Se hablaba de la semana pasada, de la merienda, de quién había dicho qué. Una pelea de ocho crece sola.',
+            en: 'After five minutes nobody was talking about the ball. They were talking about last week, about the snack, about who had said what. An eight-way argument grows all by itself.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'fache' }]
+            },
+            text: "Livia criait aussi. Elle s'en rendit compte au milieu d'une phrase et s'arrêta net, parce qu'elle avait oublié de quoi elle parlait et qu'elle était en train de crier quand même.",
+            es: 'Livia también gritaba. Se dio cuenta en medio de una frase y se paró en seco, porque había olvidado de qué hablaba y seguía gritando igualmente.',
+            en: 'Livia was shouting too. She noticed in the middle of a sentence and stopped dead, because she had forgotten what she was talking about and was shouting anyway.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }],
+              bubbles: [{ x: 160, y: 22, w: 420, t: "Quelqu'un se rappelle pourquoi on crie ?", tx: 400, ty: 240 }]
+            },
+            text: "Elle posa alors la seule question utile, très fort : « Quelqu'un se rappelle pourquoi on crie ? » Huit enfants se regardèrent. Personne ne savait. Vraiment personne.",
+            es: 'Entonces hizo la única pregunta útil, muy fuerte: «¿Alguien se acuerda de por qué gritamos?» Ocho niños se miraron. Nadie lo sabía. Nadie en absoluto.',
+            en: "Then she asked the only useful question, very loudly: «Does anybody remember why we're shouting?» Eight children looked at each other. Nobody knew. Truly nobody."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1 },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Il y eut un silence d'environ quatre secondes, puis Bingo rit, et c'était fini. Le ballon était resté dans les ronces pendant toute la dispute, et personne ne l'avait repris.",
+            es: 'Hubo un silencio de unos cuatro segundos, luego Bingo se rió, y se acabó. El balón se había quedado en las zarzas durante toda la pelea, y nadie lo había recogido.',
+            en: 'There was a silence of about four seconds, then Bingo laughed, and it was over. The ball had stayed in the brambles throughout the whole argument, and nobody had gone to get it.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bingo', x: 520, y: 518, s: .8 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: 'Ils rejouèrent sans compter les points, ce qui est la seule solution connue. La question de Livia est devenue une blague : on la pose maintenant dès la deuxième minute.',
+            es: 'Volvieron a jugar sin contar los puntos, que es la única solución conocida. La pregunta de Livia se ha vuelto una broma: ahora la hacen ya en el segundo minuto.',
+            en: "They played again without keeping score, which is the only known solution. Livia's question has become a joke: they now ask it as early as the second minute."
+          }
+        ]
+      },
+
+      /* ---------- 43 : olaf à la plage ---------- */
+      {
+        id: 'olaf-a-la-plage',
+        title: 'Olaf à la plage',
+        title_en: 'Olaf at the beach',
+        title_es: 'Olaf en la playa',
+        subtitle: "Emmener quelqu'un là où il ne devrait pas aller",
+        subtitle_en: "Taking somebody where they shouldn't go",
+        subtitle_es: 'Llevar a alguien donde no debería ir',
+        tag: 'Mélange',
+        themes: ['Été', 'Amitié'],
+        minutes: 5,
+        cover: {
+          bg: 'beach',
+          back: [{ t: 'parasol', x: 120, y: 490, s: .8 }],
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'olaf', x: 580, y: 520, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'parasol', x: 120, y: 490, s: .85 }],
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'olaf', x: 600, y: 520, s: 1 }
+              ]
+            },
+            text: 'Olaf avait demandé la plage pendant tout le printemps. Tout le monde lui avait dit non pour la raison évidente. Un jour, Livia dit oui, ce qui était imprudent et gentil.',
+            es: 'Olaf había pedido la playa durante toda la primavera. Todos le habían dicho no por la razón evidente. Un día Livia dijo sí, lo cual fue imprudente y amable.',
+            en: 'Olaf had been asking about the beach all spring. Everybody had said no, for the obvious reason. One day Livia said yes, which was reckless and kind.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              back: [
+                { t: 'parasol', x: 120, y: 490, s: .85 },
+                { t: 'sun', x: 680, y: 160, s: .7 }
+              ],
+              items: [{ t: 'olaf', x: 400, y: 520, s: 1.1, mood: 'wow' }]
+            },
+            text: "Il descendit sur le sable à onze heures du matin, en plein soleil. Il resta exactement là où on l'avait posé et dit que c'était encore mieux qu'il ne l'avait imaginé.",
+            es: 'Bajó a la arena a las once de la mañana, a pleno sol. Se quedó exactamente donde lo habían puesto y dijo que era aún mejor de lo que había imaginado.',
+            en: 'He got down onto the sand at eleven in the morning, in full sun. He stayed exactly where he had been put and said it was even better than he had imagined.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'parasol', x: 690, y: 490, s: .85 }],
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, mood: 'sad' },
+                { t: 'olaf', x: 600, y: 520, s: 1.05 }
+              ]
+            },
+            text: "Au bout de dix minutes, il y avait une petite flaque sous lui. Livia le vit. Olaf le vit aussi et ne dit rien, parce qu'il ne voulait pas rentrer.",
+            es: 'A los diez minutos había un pequeño charco debajo de él. Livia lo vio. Olaf también lo vio y no dijo nada, porque no quería volver.',
+            en: 'After ten minutes there was a small puddle underneath him. Livia saw it. Olaf saw it too and said nothing, because he did not want to go home.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              back: [{ t: 'parasol', x: 430, y: 480, s: .9 }],
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: 'Livia eut à choisir entre deux choses désagréables : le ramener tout de suite, ou le laisser fondre un peu. Elle inventa une troisième chose, en six minutes, avec un seau et le parasol.',
+            es: 'Livia tuvo que elegir entre dos cosas desagradables: llevarlo de vuelta ya, o dejarlo derretirse un poco. Inventó una tercera cosa, en seis minutos, con un cubo y la sombrilla.',
+            en: 'Livia had to choose between two unpleasant things: take him home at once, or let him melt a bit. She invented a third thing, in six minutes, with a bucket and the parasol.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              back: [
+                { t: 'parasol', x: 600, y: 470, s: 1 },
+                { t: 'bucket', x: 180, y: 520, s: .8 }
+              ],
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'olaf', x: 600, y: 520, s: 1.05, mood: 'happy' }
+              ],
+              sfx: [{ t: "À L'OMBRE !", x: 430, y: 146, fs: 26, rot: -5, color: '#4a7fc1' }]
+            },
+            text: "Elle creusa un trou à l'ombre du parasol, le remplit d'eau de mer froide, et installa Olaf dedans jusqu'à la taille. Il passa l'après-midi là, à regarder la mer, très content.",
+            es: 'Cavó un hoyo a la sombra de la sombrilla, lo llenó de agua de mar fría e instaló a Olaf dentro hasta la cintura. Pasó la tarde ahí, mirando el mar, muy contento.',
+            en: 'She dug a hole in the shade of the parasol, filled it with cold sea water, and installed Olaf in it up to his waist. He spent the afternoon there, looking at the sea, extremely happy.'
+          },
+          {
+            scene: {
+              bg: 'beach', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'olaf', x: 580, y: 520, s: 1.05 }
+              ]
+            },
+            text: 'Il rentra plus petit de deux centimètres. Elsa le remarqua et ne dit rien, ce qui est une façon de dire quelque chose. Olaf réclame la plage chaque été depuis.',
+            es: 'Volvió dos centímetros más pequeño. Elsa lo notó y no dijo nada, que es una manera de decir algo. Olaf pide la playa cada verano desde entonces.',
+            en: 'He went home two centimetres shorter. Elsa noticed and said nothing, which is a way of saying something. Olaf has asked for the beach every summer since.'
+          }
+        ]
+      },
+
+      /* ---------- 44 : le feu de camp ---------- */
+      {
+        id: 'le-feu-de-camp',
+        title: 'Le feu de camp',
+        title_en: 'The campfire',
+        title_es: 'La hoguera',
+        subtitle: 'Chacun apporte un bâton',
+        subtitle_en: 'Everybody brings one stick',
+        subtitle_es: 'Cada uno trae un palo',
+        tag: 'Tous ensemble',
+        themes: ['Nuit', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'camp', time: 'night',
+          back: [{ t: 'campfire', x: 430, y: 525, s: .8 }],
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'bluey', x: 330, y: 518, s: .85 },
+            { t: 'peppa', x: 520, y: 516, s: .85 },
+            { t: 'roxane', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'camp', time: 'sunset',
+              items: [
+                { t: 'papa', x: 300, y: 514, s: 1, pose: 'point' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Papa dit qu'il fallait du bois, et beaucoup, et qu'il n'irait pas le chercher tout seul. Huit enfants partirent dans huit directions, ce qui n'est pas une méthode.",
+            es: 'Papá dijo que hacía falta leña, mucha, y que no iría a buscarla solo. Ocho niños salieron en ocho direcciones, lo cual no es un método.',
+            en: 'Daddy said that wood was needed, a lot of it, and that he was not going to fetch it on his own. Eight children set off in eight directions, which is not a method.'
+          },
+          {
+            scene: {
+              bg: 'forest', time: 'sunset',
+              back: [{ t: 'tree', x: 430, y: 440, s: .85 }],
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'george', x: 520, y: 518, s: .8 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: 'Ils revinrent avec : trois brindilles, une branche trop verte, un bâton magnifique mais trop gros, et une pomme de pin. George revint avec un caillou, qui ne brûle pas.',
+            es: 'Volvieron con: tres ramitas, una rama demasiado verde, un palo magnífico pero demasiado gordo y una piña. George volvió con una piedra, que no arde.',
+            en: 'They came back with: three twigs, a branch that was too green, a magnificent but far too thick stick, and a pine cone. George came back with a stone, which does not burn.'
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'sunset',
+              items: [{ t: 'papa', x: 400, y: 514, s: 1, mood: 'fache' }]
+            },
+            text: "Papa expliqua ce qu'il fallait : du sec, du fin, et de plus en plus gros. Il l'expliqua une fois, et personne n'écoutait, parce que tout le monde regardait déjà ailleurs.",
+            es: 'Papá explicó lo que hacía falta: seco, fino y cada vez más gordo. Lo explicó una vez, y nadie escuchaba, porque todos miraban ya a otro lado.',
+            en: 'Daddy explained what was needed: dry, thin, and progressively thicker. He explained it once, and nobody was listening, because everybody was already looking elsewhere.'
+          },
+          {
+            scene: {
+              bg: 'forest', time: 'sunset',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'Trois tas. Du fin, du moyen, du gros.', tx: 300, ty: 240 }]
+            },
+            text: "Livia reprit l'explication à sa manière, qui marche mieux. « Trois tas. Du fin, du moyen, du gros. Chacun va chercher pour un tas. » En dix minutes, les trois tas existaient.",
+            es: 'Livia repitió la explicación a su manera, que funciona mejor. «Tres montones. Fino, mediano y gordo. Cada uno busca para un montón.» En diez minutos los tres montones existían.',
+            en: 'Livia repeated the explanation in her own way, which works better. «Three piles. Thin, medium, thick. Each of you fetches for one pile.» Within ten minutes the three piles existed.'
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'campfire', x: 430, y: 525, s: .8 }],
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'george', x: 700, y: 518, s: .8 }
+              ],
+              sfx: [{ t: 'IL PREND !', x: 430, y: 146, fs: 26, rot: -5, color: '#f7c518' }]
+            },
+            text: "Le feu prit du premier coup, ce qui n'arrive jamais. Papa le dit à voix haute, honnêtement : « Ça n'arrive jamais. » Huit enfants furent très fiers pendant toute la soirée.",
+            es: 'El fuego prendió a la primera, lo que nunca ocurre. Papá lo dijo en voz alta, con honestidad: «Esto nunca pasa.» Ocho niños estuvieron muy orgullosos toda la noche.',
+            en: 'The fire caught first time, which never happens. Daddy said so out loud, honestly: «That never happens.» Eight children were extremely proud for the whole evening.'
+          },
+          {
+            scene: {
+              bg: 'camp', time: 'night',
+              back: [{ t: 'campfire', x: 120, y: 525, s: .75 }],
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'papa', x: 580, y: 514, s: 1 }
+              ]
+            },
+            text: "Le caillou de George est resté au bord du feu toute la nuit, par respect. Il est encore dans le jardin, noirci d'un côté, et il s'appelle le caillou du feu.",
+            es: 'La piedra de George se quedó al borde del fuego toda la noche, por respeto. Sigue en el jardín, negra por un lado, y se llama la piedra del fuego.',
+            en: "George's stone stayed at the edge of the fire all night, out of respect. It is still in the garden, blackened on one side, and it is called the fire stone."
+          }
+        ]
+      },
+
+      /* ---------- 45 : le gâteau qui manque ---------- */
+      {
+        id: 'le-gateau-qui-manque',
+        title: 'Le gâteau qui manque',
+        title_en: 'The missing cake',
+        title_es: 'El pastel que falta',
+        subtitle: 'Avouer devant sept personnes',
+        subtitle_en: 'Owning up in front of seven people',
+        subtitle_es: 'Confesar delante de siete personas',
+        tag: 'Mélange',
+        themes: ['Règles', 'Grandir'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'peppa', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'roxane', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'maman', x: 300, y: 514, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Il y avait huit parts de gâteau sur la table, une par enfant, comptées par Maman. À quatre heures, il y en avait sept. C'est le genre de calcul que personne ne rate.",
+            es: 'Había ocho trozos de pastel en la mesa, uno por niño, contados por Mamá. A las cuatro había siete. Es el tipo de cuenta que nadie falla.',
+            en: "There were eight slices of cake on the table, one per child, counted by Mummy. At four o'clock there were seven. That is the kind of sum nobody gets wrong."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: 'Huit enfants furent réunis dans la cuisine. On demanda qui. Personne ne répondit. Le silence durait, et il devenait plus lourd à chaque seconde qui passait.',
+            es: 'Ocho niños fueron reunidos en la cocina. Preguntaron quién. Nadie contestó. El silencio se alargaba y se volvía más pesado a cada segundo.',
+            en: 'Eight children were assembled in the kitchen. They were asked who. Nobody answered. The silence went on, and grew heavier with every passing second.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'sad' }]
+            },
+            text: "C'était Livia. Elle l'avait mangée à trois heures, en pensant qu'il y en avait neuf. Ce n'était même pas de la gourmandise : c'était une erreur de comptage.",
+            es: 'Fue Livia. Se lo había comido a las tres, pensando que había nueve. No fue ni golosina: fue un error de cuentas.',
+            en: "It was Livia. She had eaten it at three o'clock, thinking there were nine. It was not even greed: it was a counting mistake."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Avouer devant une personne, c'est difficile. Devant sept amis, c'est autre chose : il y a le regard des autres, et le regard des autres pèse plus lourd que la punition.",
+            es: 'Confesar ante una persona es difícil. Ante siete amigos es otra cosa: está la mirada de los demás, y la mirada de los demás pesa más que el castigo.',
+            en: 'Owning up in front of one person is hard. In front of seven friends it is something else: there is the way the others look at you, and that weighs more than the punishment.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, mood: 'sad' },
+                { t: 'maman', x: 600, y: 514, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 320, t: "C'est moi. J'avais mal compté.", tx: 300, ty: 240 }]
+            },
+            text: "Elle le dit. « C'est moi. J'avais mal compté. » Il y eut un petit bruit dans le groupe, pas moqueur, plutôt soulagé. Sept enfants avaient eu peur d'être accusés.",
+            es: 'Lo dijo. «He sido yo. Conté mal.» Hubo un pequeño ruido en el grupo, no burlón, más bien de alivio. Siete niños habían tenido miedo de que los acusaran.',
+            en: 'She said it. «It was me. I counted wrong.» There was a small noise in the group, not mocking, more like relief. Seven children had been afraid of being blamed.'
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'roxane', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Maman coupa les sept parts en huit. Chacun eut un peu moins, y compris Livia. Personne ne le lui a reproché, et c'est ce qui l'a le plus étonnée de toute l'affaire.",
+            es: 'Mamá cortó los siete trozos en ocho. Cada uno tuvo algo menos, incluida Livia. Nadie se lo reprochó, y eso fue lo que más la sorprendió de todo el asunto.',
+            en: 'Mummy cut the seven slices into eight. Everybody got slightly less, including Livia. Nobody held it against her, and that is what astonished her most about the whole business.'
+          }
+        ]
+      },
+
+      /* ---------- 46 : le concert ---------- */
+      {
+        id: 'le-concert',
+        title: 'Le concert',
+        title_en: 'The concert',
+        title_es: 'El concierto',
+        subtitle: 'Huit musiciens et aucun instrument',
+        subtitle_en: 'Eight musicians and no instruments',
+        subtitle_es: 'Ocho músicos y ningún instrumento',
+        tag: 'Tous ensemble',
+        themes: ['Amitié', 'Bêtises'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'peppa', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'bingo', x: 700, y: 518, s: .8 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'peppa', x: 600, y: 516, s: 1 }
+              ]
+            },
+            text: "Ils décidèrent de faire un concert pour les parents, le soir, dans le jardin. Personne ne savait jouer de quoi que ce soit, ce qui n'a arrêté aucun orchestre d'enfants.",
+            es: 'Decidieron hacer un concierto para los padres, por la noche, en el jardín. Nadie sabía tocar nada, lo cual no ha detenido nunca a ninguna orquesta de niños.',
+            en: "They decided to put on a concert for the parents, in the evening, in the garden. Nobody knew how to play anything, which has never stopped a children's orchestra."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'bluey', x: 330, y: 518, s: .85 },
+                { t: 'george', x: 520, y: 518, s: .8 },
+                { t: 'coco', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Les instruments furent : deux seaux retournés, une boîte à biscuits, un peigne, un seau d'eau qu'on secoue, et la voix de Peppa, qui compte pour trois instruments.",
+            es: 'Los instrumentos fueron: dos cubos del revés, una caja de galletas, un peine, un cubo de agua que se agita y la voz de Peppa, que cuenta por tres instrumentos.',
+            en: "The instruments were: two upturned buckets, a biscuit tin, a comb, a bucket of water you shake, and Peppa's voice, which counts as three instruments."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'fache' }],
+              sfx: [{ t: 'BOUM ! CLANG !', x: 400, y: 146, fs: 30, rot: -6, color: '#e0453c' }]
+            },
+            text: 'La première répétition fut un désastre complet. Huit personnes qui tapent chacune à son rythme, ça ne fait pas de la musique, ça fait un chantier.',
+            es: 'El primer ensayo fue un desastre completo. Ocho personas golpeando cada una a su ritmo no hacen música, hacen una obra.',
+            en: 'The first rehearsal was a complete disaster. Eight people each banging at their own speed does not make music, it makes a building site.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'On tape tous sur le même temps. Un seul.', tx: 300, ty: 240 }]
+            },
+            text: "Livia proposa la chose la plus simple du monde. « On tape tous sur le même temps. Un seul. » Un coup tous ensemble, puis le silence, puis un coup. Rien d'autre.",
+            es: 'Livia propuso lo más simple del mundo. «Golpeamos todos en el mismo tiempo. Uno solo.» Un golpe todos juntos, luego silencio, luego un golpe. Nada más.',
+            en: 'Livia suggested the simplest thing in the world. «We all hit on the same beat. One beat.» One bang all together, then silence, then one bang. Nothing else.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'george', x: 700, y: 518, s: .8 }
+              ],
+              sfx: [{ t: 'BOUM. BOUM. BOUM.', x: 430, y: 146, fs: 28, rot: -5, color: '#f7c518' }]
+            },
+            text: "Le soir, ils firent trente-deux coups ensemble devant quatre parents. C'était très simple, très fort, et parfaitement réglé. Papa dit que c'était impressionnant, et il ne mentait pas.",
+            es: 'Por la noche dieron treinta y dos golpes juntos ante cuatro padres. Era muy simple, muy fuerte y perfectamente acompasado. Papá dijo que era impresionante, y no mentía.',
+            en: 'That evening they did thirty-two beats together in front of four parents. It was very simple, very loud, and perfectly in time. Daddy said it was impressive, and he was not lying.'
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'night',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'papa', x: 580, y: 514, s: 1 }
+              ]
+            },
+            text: "Peppa a chanté par-dessus sans que ce soit prévu, et c'était mieux. Ils refont le concert chaque été. Il y a maintenant deux temps, ce qui est un progrès énorme.",
+            es: 'Peppa cantó por encima sin que estuviera previsto, y quedó mejor. Repiten el concierto cada verano. Ahora hay dos tiempos, lo cual es un progreso enorme.',
+            en: 'Peppa sang over the top without it having been planned, and it was better. They do the concert every summer. There are two beats now, which is an enormous advance.'
+          }
+        ]
+      },
+
+      /* ---------- 47 : celui qui arrive en retard ---------- */
+      {
+        id: 'celui-qui-arrive-en-retard',
+        title: 'Celui qui arrive en retard',
+        title_en: 'The one who arrives late',
+        title_es: 'El que llega tarde',
+        subtitle: "Recommencer pour quelqu'un",
+        subtitle_en: 'Starting again for somebody',
+        subtitle_es: 'Volver a empezar por alguien',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Partager'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'bluey', x: 330, y: 518, s: .85 },
+            { t: 'peppa', x: 520, y: 516, s: .85 },
+            { t: 'isadora', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: 'Le jeu avait commencé à deux heures et il était très bien. À deux heures et demie, tout le monde connaissait les règles, les équipes étaient faites, et le score était de trois à deux.',
+            es: 'El juego había empezado a las dos y estaba muy bien. A las dos y media todos conocían las reglas, los equipos estaban hechos y el marcador era de tres a dos.',
+            en: "The game had started at two o'clock and it was very good. By half past two everybody knew the rules, the teams were made, and the score was three–two."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'isadora', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Isadora arriva à trois heures moins le quart, parce que sa maman était en retard. Elle s'arrêta au portail et regarda un jeu en cours, ce qui est une des pires sensations.",
+            es: 'Isadora llegó a las tres menos cuarto, porque su madre iba con retraso. Se paró en la puerta y miró un juego ya empezado, que es una de las peores sensaciones.',
+            en: 'Isadora arrived at a quarter to three, because her mum was late. She stopped at the gate and looked at a game already in progress, which is one of the worst feelings.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 300, y: 516, s: 1 },
+                { t: 'isadora', x: 600, y: 516, s: 1, mood: 'sad' }
+              ]
+            },
+            text: "On lui expliqua les règles en quarante secondes, trop vite, en continuant à jouer. Elle dit qu'elle avait compris. Elle n'avait rien compris, et tout le monde fit comme si.",
+            es: 'Le explicaron las reglas en cuarenta segundos, demasiado rápido, sin dejar de jugar. Dijo que había entendido. No había entendido nada, y todos hicieron como si.',
+            en: 'The rules were explained to her in forty seconds, too fast, while the game went on. She said she had understood. She had understood nothing, and everybody pretended otherwise.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05 }]
+            },
+            text: "Livia vit Isadora courir au mauvais endroit deux fois de suite. Arrêter le jeu coûte quelque chose à sept personnes. Ne pas l'arrêter coûte quelque chose à une seule.",
+            es: 'Livia vio a Isadora correr al sitio equivocado dos veces seguidas. Parar el juego cuesta algo a siete personas. No pararlo cuesta algo a una sola.',
+            en: 'Livia saw Isadora run to the wrong place twice in a row. Stopping the game costs seven people something. Not stopping it costs one person something.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'isadora', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: 'On arrête. On recommence à zéro.', tx: 300, ty: 240 }]
+            },
+            text: '« On arrête », dit Livia. « On recommence à zéro. » Son équipe gagnait trois à deux, et ce détail rend la phrase beaucoup plus difficile à prononcer.',
+            es: '«Paramos», dijo Livia. «Volvemos a empezar de cero.» Su equipo iba ganando tres a dos, y ese detalle hace la frase mucho más difícil de pronunciar.',
+            en: "«We'll stop,» said Livia. «We'll start again from nothing.» Her team was winning three–two, and that detail makes the sentence much harder to say."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'isadora', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'peppa', x: 520, y: 516, s: .85 },
+                { t: 'bluey', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Ils rejouèrent depuis le début, avec les règles expliquées lentement. Isadora marqua deux fois. Son équipe gagna. Livia a trouvé que c'était cher payé, et elle recommencerait.",
+            es: 'Volvieron a jugar desde el principio, con las reglas explicadas despacio. Isadora marcó dos veces. Su equipo ganó. A Livia le pareció caro, y lo volvería a hacer.',
+            en: 'They played again from the start, with the rules explained slowly. Isadora scored twice. Her team won. Livia thought that was a high price, and she would do it again.'
+          }
+        ]
+      },
+
+      /* ---------- 48 : la dernière journée ---------- */
+      {
+        id: 'la-derniere-journee',
+        title: 'La dernière journée',
+        title_en: 'The last day',
+        title_es: 'El último día',
+        subtitle: 'Faire tenir tout dans un seul jour',
+        subtitle_en: 'Fitting everything into one day',
+        subtitle_es: 'Hacer caber todo en un solo día',
+        tag: 'Tous ensemble',
+        themes: ['Émotions', 'Été'],
+        minutes: 6,
+        cover: {
+          bg: 'beach', time: 'sunset',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'peppa', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'roxane', x: 700, y: 516, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+            },
+            text: "C'était le dernier jour des vacances et tout le monde le savait depuis la veille. Livia s'était réveillée à six heures avec une liste de douze choses à faire absolument.",
+            es: 'Era el último día de vacaciones y todos lo sabían desde el día anterior. Livia se había despertado a las seis con una lista de doce cosas que había que hacer sin falta.',
+            en: 'It was the last day of the holidays and everybody had known it since the day before. Livia had woken at six with a list of twelve things that absolutely had to be done.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'peppa', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'bingo', x: 700, y: 518, s: .8 }
+              ]
+            },
+            text: "Ils firent les six premières avant midi, en courant d'une à l'autre. C'était bien, et un peu étrange : on ne s'amuse pas tout à fait pareil quand on coche une liste.",
+            es: 'Hicieron las seis primeras antes de mediodía, corriendo de una a otra. Estuvo bien, y un poco raro: no se disfruta igual cuando se va tachando una lista.',
+            en: 'They did the first six before midday, running from one to the next. It was good, and slightly strange: you do not quite enjoy yourself in the same way when you are ticking off a list.'
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'fache' }]
+            },
+            text: "À deux heures, il restait six choses et quatre heures. Livia calcula. Ça ne rentrait pas. Elle sentit monter une colère qui n'avait personne à qui s'adresser.",
+            es: 'A las dos quedaban seis cosas y cuatro horas. Livia calculó. No cabía. Sintió subir un enfado que no tenía a nadie a quien dirigirse.',
+            en: "At two o'clock there were six things left and four hours. Livia did the sum. It did not fit. She felt a rising anger that had nobody to be directed at."
+          },
+          {
+            scene: {
+              bg: 'beach',
+              items: [
+                { t: 'roxane', x: 300, y: 516, s: 1 },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'On en choisit deux. Les vraies.', tx: 300, ty: 240 }]
+            },
+            text: "C'est Roxane qui dit : « On en choisit deux. Les vraies. » Il fallut abandonner quatre choses, dont le grand château, et Livia raya les lignes elle-même, à regret.",
+            es: 'Fue Roxane quien dijo: «Elegimos dos. Las de verdad.» Hubo que renunciar a cuatro cosas, entre ellas el castillo grande, y Livia tachó las líneas ella misma, a disgusto.',
+            en: "It was Roxane who said: «We'll choose two. The real ones.» Four things had to be given up, including the big castle, and Livia crossed out the lines herself, reluctantly."
+          },
+          {
+            scene: {
+              bg: 'beach', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'roxane', x: 330, y: 516, s: .85 },
+                { t: 'bluey', x: 520, y: 518, s: .85 },
+                { t: 'peppa', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Les deux choses restantes furent : se baigner tous ensemble, et rester jusqu'à ce que le soleil touche l'eau. Elles prirent trois heures, à elles deux, et personne ne regarda l'heure.",
+            es: 'Las dos cosas que quedaron fueron: bañarse todos juntos y quedarse hasta que el sol tocara el agua. Entre las dos ocuparon tres horas, y nadie miró el reloj.',
+            en: 'The two remaining things were: all swim together, and stay until the sun touched the water. Between them they took three hours, and nobody looked at the time.'
+          },
+          {
+            scene: {
+              bg: 'beach', time: 'sunset',
+              items: [
+                { t: 'livia', x: 320, y: 518, s: 1.05 },
+                { t: 'roxane', x: 580, y: 516, s: 1 }
+              ]
+            },
+            text: 'La liste est dans le tiroir, avec quatre lignes barrées. Livia la relit parfois. Elle se souvient très bien des deux dernières choses, et pas du tout des six premières.',
+            es: 'La lista está en el cajón, con cuatro líneas tachadas. Livia la vuelve a leer a veces. Se acuerda muy bien de las dos últimas cosas, y nada de las seis primeras.',
+            en: 'The list is in the drawer, with four lines crossed out. Livia reads it again sometimes. She remembers the last two things very well, and the first six not at all.'
+          }
+        ]
+      },
+
+      /* ---------- 49 : le secret à huit ---------- */
+      {
+        id: 'le-secret-a-huit',
+        title: 'Le secret à huit',
+        title_en: 'A secret between eight',
+        title_es: 'El secreto entre ocho',
+        subtitle: 'Un secret partagé par trop de monde',
+        subtitle_en: 'A secret shared by too many people',
+        subtitle_es: 'Un secreto compartido por demasiados',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Règles'],
+        minutes: 5,
+        cover: {
+          bg: 'garden',
+          items: [
+            { t: 'livia', x: 140, y: 518, s: .9 },
+            { t: 'peppa', x: 330, y: 516, s: .85 },
+            { t: 'bluey', x: 520, y: 518, s: .85 },
+            { t: 'coco', x: 700, y: 518, s: .85 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'bluey', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Ils préparaient une surprise pour l'anniversaire de Maman : un spectacle, avec des costumes. Huit enfants au courant, et il fallait tenir six jours sans rien dire.",
+            es: 'Preparaban una sorpresa para el cumpleaños de Mamá: un espectáculo, con disfraces. Ocho niños al tanto, y había que aguantar seis días sin decir nada.',
+            en: "They were preparing a surprise for Mummy's birthday: a show, with costumes. Eight children in the know, and six days to get through without saying anything."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'peppa', x: 140, y: 516, s: .85 },
+                { t: 'livia', x: 330, y: 518, s: .9 },
+                { t: 'bingo', x: 520, y: 518, s: .8 },
+                { t: 'coco', x: 700, y: 518, s: .85 }
+              ]
+            },
+            text: "Le premier jour, tout le monde fut magnifique. Le deuxième, Bingo dit « on ne peut pas dire ce qu'on fait », ce qui est déjà dire quelque chose.",
+            es: 'El primer día todos estuvieron magníficos. El segundo, Bingo dijo «no podemos decir lo que hacemos», lo cual ya es decir algo.',
+            en: "On the first day everybody was magnificent. On the second, Bingo said «we can't tell you what we're doing,» which is already telling somebody something."
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.05, mood: 'fache' }]
+            },
+            text: "Le troisième jour, Maman demanda pourquoi il y avait une nappe découpée dans le garage. Personne ne mentit vraiment, et personne ne dit la vérité. L'ambiance devint très étrange.",
+            es: 'El tercer día, Mamá preguntó por qué había un mantel cortado en el garaje. Nadie mintió de verdad, y nadie dijo la verdad. El ambiente se volvió muy raro.',
+            en: 'On the third day Mummy asked why there was a cut-up tablecloth in the garage. Nobody actually lied, and nobody told the truth. The atmosphere became very strange.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'coco', x: 600, y: 518, s: 1, mood: 'sad' }
+              ]
+            },
+            text: "Le quatrième jour, Coco craqua et raconta tout, sans le vouloir, en répondant à une question simple. Elle le dit ensuite au groupe, en pleurant, avant que quelqu'un le découvre.",
+            es: 'El cuarto día, Coco se derrumbó y lo contó todo, sin querer, al responder a una pregunta simple. Luego se lo dijo al grupo, llorando, antes de que alguien lo descubriera.',
+            en: 'On the fourth day Coco cracked and told everything, without meaning to, while answering a simple question. She then told the group, in tears, before anybody found out.'
+          },
+          {
+            scene: {
+              bg: 'garden',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1 },
+                { t: 'coco', x: 600, y: 518, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 350, t: 'On fait quand même. Elle fera semblant.', tx: 300, ty: 240 }]
+            },
+            text: "Il y eut un moment de colère, puis Livia dit : « On fait quand même. Elle fera semblant d'être surprise. Les mamans savent faire ça. » Et c'était exactement vrai.",
+            es: 'Hubo un momento de enfado, y luego Livia dijo: «Lo hacemos igual. Ella finge sorprenderse. Las madres saben hacerlo.» Y era exactamente cierto.',
+            en: "There was a moment of anger, then Livia said: «We'll do it anyway. She'll pretend to be surprised. Mums know how to do that.» And it was exactly true."
+          },
+          {
+            scene: {
+              bg: 'garden', time: 'sunset',
+              items: [
+                { t: 'livia', x: 140, y: 518, s: .9 },
+                { t: 'maman', x: 330, y: 514, s: .9 },
+                { t: 'coco', x: 520, y: 518, s: .85 },
+                { t: 'peppa', x: 700, y: 516, s: .85 }
+              ]
+            },
+            text: "Maman fut surprise d'une façon absolument pas crédible, avec les deux mains sur la bouche. Coco fut la plus applaudie du spectacle. Personne n'a jamais su pourquoi, sauf sept enfants.",
+            es: 'Mamá se sorprendió de una manera absolutamente poco creíble, con las dos manos en la boca. Coco fue la más aplaudida del espectáculo. Nadie ha sabido nunca por qué, salvo siete niños.',
+            en: 'Mummy was surprised in an utterly unconvincing way, with both hands over her mouth. Coco got the biggest applause of the show. Nobody has ever known why, except seven children.'
+          }
+        ]
+      },
+
+      /* ---------- 50 : le carnet des anniversaires ---------- */
+      {
+        id: 'le-carnet-des-anniversaires',
+        title: 'Le carnet des anniversaires',
+        title_en: 'The birthday notebook',
+        title_es: 'El cuaderno de los cumpleaños',
+        subtitle: 'Se souvenir de huit dates',
+        subtitle_en: 'Remembering eight dates',
+        subtitle_es: 'Acordarse de ocho fechas',
+        tag: 'Mélange',
+        themes: ['Amitié', 'Famille'],
+        minutes: 5,
+        cover: {
+          bg: 'bedroom',
+          items: [
+            { t: 'livia', x: 320, y: 518, s: 1.05 },
+            { t: 'roxane', x: 580, y: 516, s: 1 }
+          ]
+        },
+        pages: [
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1, mood: 'sad' }]
+            },
+            text: "Livia avait oublié l'anniversaire d'Isadora. Pas par méchanceté : elle ne savait pas la date, personne ne la lui avait dite, et c'était passé depuis quatre jours.",
+            es: 'Livia había olvidado el cumpleaños de Isadora. No por maldad: no sabía la fecha, nadie se la había dicho, y había pasado hacía cuatro días.',
+            en: "Livia had forgotten Isadora's birthday. Not out of unkindness: she did not know the date, nobody had told her, and it had been four days ago."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'isadora', x: 300, y: 516, s: 1, mood: 'sad' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "Isadora dit que ce n'était pas grave trois fois de suite, ce qui veut dire que c'était grave. Livia connaît ce compte-là : trois fois, c'est le nombre exact.",
+            es: 'Isadora dijo que no pasaba nada tres veces seguidas, lo que significa que sí pasaba. Livia conoce esa cuenta: tres veces es el número exacto.',
+            en: "Isadora said it didn't matter three times in a row, which means it did matter. Livia knows that count: three times is the exact number."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+            },
+            text: 'Elle demanda à Maman comment les grands font. Maman montra un carnet avec des dates dedans. Livia trouva ça décevant : elle espérait un pouvoir, pas un carnet.',
+            es: 'Preguntó a Mamá cómo lo hacen los mayores. Mamá le mostró un cuaderno con fechas dentro. A Livia le pareció decepcionante: esperaba un poder, no un cuaderno.',
+            en: 'She asked Mummy how grown-ups manage it. Mummy showed her a notebook with dates in it. Livia found that disappointing: she had been hoping for a power, not a notebook.'
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [
+                { t: 'livia', x: 300, y: 518, s: 1, pose: 'point' },
+                { t: 'roxane', x: 600, y: 516, s: 1 }
+              ],
+              bubbles: [{ x: 40, y: 22, w: 340, t: "Dis-moi ta date. Je l'écris.", tx: 300, ty: 240 }]
+            },
+            text: "Elle fit le tour de ses huit amis avec un carnet et un crayon. « Dis-moi ta date. Je l'écris. » Elle ne sait pas encore vraiment écrire : elle dessina des bonshommes et des traits.",
+            es: 'Hizo la ronda de sus ocho amigos con un cuaderno y un lápiz. «Dime tu fecha. La apunto.» Todavía no sabe escribir de verdad: dibujó muñecos y rayas.',
+            en: "She went round all eight friends with a notebook and a pencil. «Tell me your date. I'll write it down.» She cannot really write yet: she drew little figures and lines."
+          },
+          {
+            scene: {
+              bg: 'bedroom',
+              items: [{ t: 'livia', x: 400, y: 518, s: 1.1 }]
+            },
+            text: "Le carnet est incompréhensible pour tout le monde sauf elle. Elle sait lire chaque page. Celle d'Isadora a une étoile dessus, parce que c'est celle qu'elle avait manquée.",
+            es: 'El cuaderno es incomprensible para todos menos para ella. Sabe leer cada página. La de Isadora tiene una estrella, porque es la que se había perdido.',
+            en: "The notebook is incomprehensible to everybody except her. She can read every page. Isadora's has a star on it, because it is the one she had missed."
+          },
+          {
+            scene: {
+              bg: 'bedroom', time: 'sunset',
+              items: [
+                { t: 'isadora', x: 300, y: 516, s: 1, mood: 'happy' },
+                { t: 'livia', x: 600, y: 518, s: 1 }
+              ]
+            },
+            text: "L'année suivante, elle fut la première à souhaiter à Isadora, à sept heures du matin. Isadora a dit que ce n'était pas grave une seule fois, cette fois-là, et en riant.",
+            es: 'Al año siguiente fue la primera en felicitar a Isadora, a las siete de la mañana. Isadora dijo que no pasaba nada una sola vez, esa vez, y riéndose.',
+            en: "The following year she was the first to wish Isadora a happy birthday, at seven in the morning. Isadora said it didn't matter only once that time, and laughing."
+          }
+        ]
       }
-    ]
+]
   },
 
   /* ==========================================================
