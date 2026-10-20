@@ -196,18 +196,25 @@ Après une mise à jour, il faut changer `VERSION` en tête de `sw.js`, sinon le
 appareils déjà installés continuent de servir l'ancienne version depuis leur
 cache.
 
-### Le mettre en ligne (GitHub Pages)
+### Le mettre en ligne
 
-Le dépôt est un site statique posé à la racine : il se publie sans rien construire.
+Le dépôt est privé — les personnages de ces histoires appartiennent à leurs
+auteurs, et cette app reste un cadeau pour une seule enfant. GitHub Pages ne
+convient donc plus : il est gratuit sur un dépôt public, et demande un compte
+Pro sur un dépôt privé.
 
-**Settings → Pages → Source : Deploy from a branch**, puis la branche du projet et
-le dossier **`/ (root)`**. Le site est en ligne une minute plus tard, et chaque
-`git push` le met à jour tout seul.
+La mise en ligne passe par **Cloudflare Pages avec Access devant** : le site est
+en ligne, mais seules les adresses autorisées peuvent l'ouvrir. La marche à
+suivre, les réglages et les pièges sont dans **[DEPLOIEMENT.md](DEPLOIEMENT.md)**.
 
-Deux choses à savoir : Pages est gratuit sur un dépôt **public** mais demande un
-compte Pro sur un dépôt privé ; et GitHub refuse qu'un jeton automatique crée le
-site — cette première activation revient au propriétaire du dépôt. Le fichier
-`.nojekyll` est déjà là pour éviter que GitHub ne bricole les fichiers.
+```bash
+node outils/construire-deploiement.js
+# → public/   (seulement ce que l'app a besoin de servir, avec ses en-têtes)
+```
+
+Pour s'en passer tout à fait, `dist/histoires-de-livia.html` reste la solution
+la plus simple : un seul fichier, posé sur le téléphone, qui n'a besoin ni
+d'hébergeur ni de réseau.
 
 ---
 
@@ -531,8 +538,11 @@ outils/verifier-compo.js    personnages hors cadre ou l'un sur l'autre
 outils/verifier-langue.js   relit la copie des trois langues
 outils/verifier-choix.js    contrôle le réseau des histoires à choix
 outils/traductions.js       où en sont l'espagnol et l'anglais
+outils/essai-service-worker.js    teste le garde-fou du cache (voir DEPLOIEMENT.md)
 outils/construire-page-unique.js  replie tout le site dans un fichier
+outils/construire-deploiement.js  choisit ce qui part en ligne, et ses en-têtes
 dist/histoires-de-livia.html      le résultat, prêt à partager
+DEPLOIEMENT.md              mettre l'app en ligne, en privé
 ```
 
 Rien n'est chargé depuis un serveur extérieur : ni police, ni script, ni image.

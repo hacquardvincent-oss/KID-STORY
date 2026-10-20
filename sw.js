@@ -9,7 +9,7 @@
    Pour publier une mise à jour : changer VERSION. L'ancien cache est
    effacé, le nouveau se remplit, et la page se recharge d'elle-même.
    ============================================================ */
-var VERSION = 'livia-2026-08-18i';
+var VERSION = 'livia-2026-08-18j';
 
 var FICHIERS = [
   './',
@@ -30,6 +30,10 @@ var FICHIERS = [
   './assets/icons/apple-touch-icon.png'
 ];
 
+/* addAll() est tout ou rien, et on y tient : si un seul fichier manquait,
+   l'installation échoue, l'ancien cache n'est pas supprimé, et l'enfant garde
+   la version précédente qui marche. Mettre en cache fichier par fichier
+   donnerait une app à moitié installée, donc cassée hors connexion. */
 self.addEventListener('install', function (e) {
   e.waitUntil(
     caches.open(VERSION)
@@ -48,6 +52,20 @@ self.addEventListener('activate', function (e) {
   );
 });
 
+/* Si le site est servi derrière une porte d'authentification — c'est le cas
+   sur Cloudflare Access —, une session expirée ne répond pas par une erreur :
+   elle répond par la page de connexion, parfois avec un franc code 200. Mise
+   en cache à la place de stories.js, cette page casserait l'app jusqu'au
+   prochain changement de VERSION, hors connexion comprise. On ne garde donc
+   qu'une réponse qui est bien ce qu'on avait demandé : un fichier same-origin
+   n'a aucune raison de rediriger, et seule une navigation attend du HTML. */
+function utilisable(requete, r) {
+  if (!r || !r.ok || r.type === 'opaque' || r.redirected) return false;
+  var navigation = requete.mode === 'navigate' || requete.destination === 'document';
+  var type = (r.headers.get('content-type') || '').split(';')[0].trim().toLowerCase();
+  return navigation || type !== 'text/html';
+}
+
 /* Cache d'abord : c'est un site figé entre deux mises à jour. On rafraîchit
    la copie en arrière-plan pour que la prochaine ouverture soit à jour. */
 self.addEventListener('fetch', function (e) {
@@ -58,7 +76,7 @@ self.addEventListener('fetch', function (e) {
   e.respondWith(
     caches.match(e.request, { ignoreSearch: true }).then(function (rep) {
       var reseau = fetch(e.request).then(function (r) {
-        if (r && r.ok) {
+        if (utilisable(e.request, r)) {
           var copie = r.clone();
           caches.open(VERSION).then(function (c) { c.put(e.request, copie); });
         }
