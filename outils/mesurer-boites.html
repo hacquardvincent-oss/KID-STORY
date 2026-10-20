@@ -1,0 +1,46 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Mesure des boîtes de chaque dessin</title>
+<body style="margin:0">
+<div id="bac" style="position:absolute;left:0;top:0;width:1600px;height:1120px"></div>
+<pre id="out"></pre>
+<script src="../assets/js/art.js"></script>
+<script>
+/* ------------------------------------------------------------------
+   On relève la vraie boîte de chaque dessin, une fois pour toutes.
+   getBBox() sur le <g> d'un élément rend sa boîte AVANT sa propre
+   transformation : c'est donc la boîte à l'échelle 1, pieds à l'origine.
+   De là, toute instance se déduit : gauche = x + bx*s, haut = y + by*s.
+   ------------------------------------------------------------------ */
+var POSES = ['', 'sit', 'jump', 'point', 'wave', 'run', 'sleep', 'hold',
+  'magic', 'porte', 'quatrepattes', 'shrug', 'swim', 'armsup'];
+
+var bac = document.getElementById('bac');
+var table = {};
+var noms = Object.keys(Art.items());
+
+noms.forEach(function (t) {
+  POSES.forEach(function (p) {
+    var it = { t: t, x: 0, y: 0, s: 1 };
+    if (p) it.pose = p;
+    bac.innerHTML = Art.scene({ bg: 'plain', items: [it] });
+    var svg = bac.querySelector('svg');
+    /* le dernier <g> à transformation translate(0,0) : notre élément */
+    var gs = svg.querySelectorAll('g[transform]');
+    var cible = null;
+    for (var i = 0; i < gs.length; i++) {
+      if (gs[i].getAttribute('transform').indexOf('translate(0,0)') === 0) cible = gs[i];
+    }
+    if (!cible) return;
+    var b = cible.getBBox();
+    if (!b.width && !b.height) return;
+    var cle = p ? t + ':' + p : t;
+    table[cle] = [Math.round(b.x * 10) / 10, Math.round(b.y * 10) / 10,
+                  Math.round(b.width * 10) / 10, Math.round(b.height * 10) / 10];
+  });
+});
+
+bac.innerHTML = '';
+document.getElementById('out').textContent = JSON.stringify(table);
+</script>
+</body>
